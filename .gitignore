@@ -1,5 +1,4 @@
-# Base de données (binaire, ne pas versionner)
-data/*.duckdb
+# Fichier WAL temporaire DuckDB (créé pendant les transactions)
 data/*.duckdb.wal
 
 # Python
