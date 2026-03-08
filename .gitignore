@@ -1,0 +1,26 @@
+# Base de données (binaire, ne pas versionner)
+data/*.duckdb
+data/*.duckdb.wal
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env
+*.egg-info/
+dist/
+build/
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Cursor / IDE
+.cursor/debug-*.log
+
+# OS
+.DS_Store
+Thumbs.db

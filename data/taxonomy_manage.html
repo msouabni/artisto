@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des taxonomies – Artiste Coloriage</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; margin: 0; padding: 0; transition: background 0.2s, color 0.2s; }
+    body[data-theme="light"] { background: #f8f9fa; color: #202124; }
+    body[data-theme="dark"] { background: #1a1a2e; color: #f7fafc; }
+
+    .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid #dadce0; }
+    body[data-theme="dark"] .header { border-color: #2d3748; }
+    .header h1 { font-size: 1.25rem; margin: 0; font-weight: 600; }
+    .theme-switcher { display: flex; align-items: center; gap: 0.25rem; }
+    .theme-switcher span { font-size: 0.8rem; }
+    .theme-switcher button { padding: 0.35rem 0.6rem; border: 1px solid #dadce0; border-radius: 4px; background: #fff; color: #5f6368; cursor: pointer; font-size: 0.8rem; }
+    body[data-theme="dark"] .theme-switcher button { border-color: #4a5568; background: #2d3748; color: #cbd5e0; }
+    .theme-switcher button.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+    body[data-theme="dark"] .theme-switcher button.active { background: #3182ce; border-color: #3182ce; }
+
+    .nav { padding: 0.5rem 1.25rem; border-bottom: 1px solid #e8eaed; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+    body[data-theme="dark"] .nav { border-color: #2d3748; }
+    .breadcrumb { font-size: 0.85rem; color: #5f6368; }
+    body[data-theme="dark"] .breadcrumb { color: #a0aec0; }
+    .breadcrumb span { margin: 0 0.25rem; }
+    .breadcrumb .sep { color: #9aa0a6; }
+    .tabs { display: flex; gap: 0.25rem; }
+    .tabs button { padding: 0.4rem 0.75rem; border: 1px solid #dadce0; border-radius: 4px; background: #fff; color: #5f6368; cursor: pointer; font-size: 0.85rem; }
+    body[data-theme="dark"] .tabs button { border-color: #4a5568; background: #2d3748; color: #cbd5e0; }
+    .tabs button.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+    body[data-theme="dark"] .tabs button.active { background: #3182ce; border-color: #3182ce; }
+
+    .main { display: flex; gap: 0; min-height: calc(100vh - 180px); }
+    @media (min-width: 768px) { .main { flex-direction: row; } }
+    @media (max-width: 767px) { .main { flex-direction: column; } }
+
+    .master { flex: 0 0 320px; min-width: 0; border-right: 1px solid #dadce0; display: flex; flex-direction: column; }
+    body[data-theme="dark"] .master { border-color: #2d3748; }
+    @media (max-width: 767px) { .master { flex: none; border-right: none; border-bottom: 1px solid #dadce0; max-height: 40vh; } body[data-theme="dark"] .master { border-color: #2d3748; } }
+    .master-header { padding: 0.75rem 1rem; border-bottom: 1px solid #e8eaed; }
+    body[data-theme="dark"] .master-header { border-color: #2d3748; }
+    .master-header label { font-size: 0.8rem; font-weight: 500; display: block; margin-bottom: 0.35rem; }
+    .master-header select { width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #dadce0; border-radius: 4px; font-size: 0.9rem; background: #fff; color: #202124; }
+    body[data-theme="dark"] .master-header select { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .tree-container { flex: 1; overflow-y: auto; padding: 0.5rem; }
+    .tree { list-style: none; margin: 0; padding: 0; }
+    .tree ul { list-style: none; margin: 0; padding-left: 1.25rem; }
+    .tree-node { display: flex; align-items: center; gap: 0.25rem; padding: 0.35rem 0.5rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
+    .tree-node:hover { background: #e8f0fe; }
+    body[data-theme="dark"] .tree-node:hover { background: #2d4a6f; }
+    .tree-node.selected { background: #c2e7ff; font-weight: 500; }
+    body[data-theme="dark"] .tree-node.selected { background: #2c5282; }
+    .tree-toggle { width: 1.2rem; text-align: center; user-select: none; font-size: 0.7rem; }
+    .tree-toggle.empty { visibility: hidden; }
+    .tree-label { flex: 1; }
+
+    .detail { flex: 1; min-width: 0; padding: 1rem 1.25rem; overflow-y: auto; }
+    .detail-placeholder { color: #5f6368; font-size: 0.9rem; }
+    body[data-theme="dark"] .detail-placeholder { color: #a0aec0; }
+    .detail-form { display: grid; gap: 0.75rem; max-width: 560px; }
+    .detail-form label { display: block; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .detail-form input, .detail-form textarea { width: 100%; padding: 0.5rem 0.6rem; border: 1px solid #dadce0; border-radius: 4px; font-size: 0.9rem; }
+    body[data-theme="dark"] .detail-form input, body[data-theme="dark"] .detail-form textarea { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .detail-form textarea { min-height: 60px; resize: vertical; }
+    .detail-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .detail-actions button { padding: 0.5rem 1rem; border-radius: 6px; border: none; cursor: pointer; font-size: 0.9rem; }
+    .btn-primary { background: #1a73e8; color: white; }
+    .btn-primary:hover { background: #1557b0; }
+    .btn-secondary { background: #e8eaed; color: #202124; }
+    body[data-theme="dark"] .btn-secondary { background: #4a5568; color: #cbd5e0; }
+    .btn-secondary:hover { background: #dadce0; }
+    body[data-theme="dark"] .btn-secondary:hover { background: #2d3748; }
+    .btn-danger { background: #ea4335; color: white; }
+    .btn-danger:hover { background: #c5221f; }
+    .detail-actions button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .search-panel { padding: 1rem; display: none; }
+    .search-panel.visible { display: block; }
+    .search-panel input { width: 100%; max-width: 400px; padding: 0.5rem 0.75rem; border: 1px solid #dadce0; border-radius: 4px; font-size: 0.9rem; margin-bottom: 0.75rem; }
+    body[data-theme="dark"] .search-panel input { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .search-results { list-style: none; margin: 0; padding: 0; }
+    .search-results li { padding: 0.5rem 0.75rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; border-bottom: 1px solid #e8eaed; }
+    body[data-theme="dark"] .search-results li { border-color: #2d3748; }
+    .search-results li:hover { background: #e8f0fe; }
+    body[data-theme="dark"] .search-results li:hover { background: #2d4a6f; }
+    .search-results .term-id { font-weight: 600; color: #1a73e8; }
+    body[data-theme="dark"] .search-results .term-id { color: #90cdf4; }
+
+    .main-content { flex: 1; }
+    .main-content.tree-view .search-panel { display: none; }
+    .main-content.search-view .tree-container { display: none; }
+    .main-content.search-view .master-header { display: none; }
+    .main-content.search-view .search-panel { display: block; }
+
+    .footer { padding: 0.5rem 1.25rem; font-size: 0.85rem; color: #5f6368; border-top: 1px solid #e8eaed; }
+    body[data-theme="dark"] .footer { border-color: #2d3748; color: #a0aec0; }
+    .footer .status-error { color: #c5221f; }
+    .footer .status-success { color: #137333; }
+    body[data-theme="dark"] .footer .status-success { color: #81e6d9; }
+
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: none; align-items: center; justify-content: center; z-index: 100; }
+    .modal-overlay.visible { display: flex; }
+    .modal { background: #fff; border-radius: 8px; padding: 1.25rem; max-width: 400px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    body[data-theme="dark"] .modal { background: #16213e; }
+    .modal h3 { margin: 0 0 0.75rem 0; font-size: 1rem; }
+    .modal p { margin: 0 0 1rem 0; font-size: 0.9rem; }
+    .modal-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+  </style>
+</head>
+<body data-theme="light">
+  <header class="header">
+    <h1>Gestion des taxonomies</h1>
+    <div class="theme-switcher">
+      <span>Thème</span>
+      <button type="button" id="btn-theme-light" class="active">Clair</button>
+      <button type="button" id="btn-theme-dark">Sombre</button>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="breadcrumb" id="breadcrumb">Taxonomie</div>
+    <div class="tabs">
+      <button type="button" id="tab-tree" class="active">Arbre</button>
+      <button type="button" id="tab-search">Recherche</button>
+    </div>
+  </nav>
+
+  <div class="main">
+    <aside class="master">
+      <div class="master-header">
+        <label for="vocab-select">Vocabulaire</label>
+        <select id="vocab-select"><option value="">Chargement…</option></select>
+      </div>
+      <div class="tree-container">
+        <ul class="tree" id="tree-root"></ul>
+      </div>
+      <div class="search-panel" id="search-panel">
+        <input type="text" id="search-input" placeholder="Rechercher (id, slug, libellé)…" aria-label="Recherche">
+        <ul class="search-results" id="search-results"></ul>
+      </div>
+    </aside>
+    <main class="main-content tree-view" id="main-content">
+      <section class="detail" id="detail">
+        <p class="detail-placeholder">Sélectionnez un terme dans l'arbre ou utilisez la recherche.</p>
+        <div class="detail-form" id="detail-form" style="display: none;">
+          <input type="hidden" id="field-vocabulary-id">
+          <div>
+            <label for="field-id">ID</label>
+            <input type="text" id="field-id" required readonly aria-readonly="true">
+          </div>
+          <div>
+            <label for="field-slug">Slug</label>
+            <input type="text" id="field-slug" aria-required="true">
+          </div>
+          <div>
+            <label for="field-name-fr">Nom (FR)</label>
+            <input type="text" id="field-name-fr">
+          </div>
+          <div>
+            <label for="field-name-en">Nom (EN)</label>
+            <input type="text" id="field-name-en">
+          </div>
+          <div>
+            <label for="field-name-ar">Nom (AR)</label>
+            <input type="text" id="field-name-ar">
+          </div>
+          <div>
+            <label for="field-desc-fr">Description (FR)</label>
+            <textarea id="field-desc-fr"></textarea>
+          </div>
+          <div>
+            <label for="field-weight">Poids (ordre)</label>
+            <input type="number" id="field-weight" min="0" value="0">
+          </div>
+          <div>
+            <label for="field-keywords">Mots-clés (séparés par des virgules)</label>
+            <input type="text" id="field-keywords" placeholder="mot1, mot2">
+          </div>
+          <div class="detail-actions">
+            <button type="button" id="btn-save" class="btn-primary">Enregistrer</button>
+            <button type="button" id="btn-add-child" class="btn-secondary">Ajouter un enfant</button>
+            <button type="button" id="btn-delete" class="btn-danger">Supprimer</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <span id="status" role="status">Prêt. Chargez la taxonomie.</span>
+  </footer>
+
+  <div class="modal-overlay" id="modal-delete" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="modal-delete-title">
+      <h3 id="modal-delete-title">Supprimer le terme ?</h3>
+      <p id="modal-delete-body">Cette action est irréversible.</p>
+      <div class="modal-actions">
+        <button type="button" id="modal-delete-cancel" class="btn-secondary">Annuler</button>
+        <button type="button" id="modal-delete-confirm" class="btn-danger">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const API_BASE = (window.location.protocol === 'file:') ? 'http://localhost:8000' : '';
+      const THEME_KEY = 'taxonomy_manage_theme';
+
+      let taxonomyData = null;
+      let selectedVocabId = '';
+      let selectedTermId = null;
+      let selectedParentId = null;
+      let formDirty = false;
+      let termsTree = [];
+
+      const treeRoot = document.getElementById('tree-root');
+      const vocabSelect = document.getElementById('vocab-select');
+      const detailForm = document.getElementById('detail-form');
+      const detailPlaceholder = document.querySelector('.detail-placeholder');
+      const breadcrumb = document.getElementById('breadcrumb');
+      const statusEl = document.getElementById('status');
+      const mainContent = document.getElementById('main-content');
+      const searchPanel = document.getElementById('search-panel');
+      const searchInput = document.getElementById('search-input');
+      const searchResults = document.getElementById('search-results');
+
+      function setStatus(msg, type) {
+        statusEl.textContent = msg;
+        statusEl.className = type === 'error' ? 'status-error' : type === 'success' ? 'status-success' : '';
+      }
+
+      function applyTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+        document.getElementById('btn-theme-light').classList.toggle('active', theme === 'light');
+        document.getElementById('btn-theme-dark').classList.toggle('active', theme === 'dark');
+        try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+      }
+      document.getElementById('btn-theme-light').addEventListener('click', () => applyTheme('light'));
+      document.getElementById('btn-theme-dark').addEventListener('click', () => applyTheme('dark'));
+      try {
+        const saved = localStorage.getItem(THEME_KEY);
+        if (saved === 'light' || saved === 'dark') applyTheme(saved);
+      } catch (_) {}
+
+      document.getElementById('tab-tree').addEventListener('click', () => {
+        mainContent.classList.add('tree-view');
+        mainContent.classList.remove('search-view');
+        document.getElementById('tab-tree').classList.add('active');
+        document.getElementById('tab-search').classList.remove('active');
+      });
+      document.getElementById('tab-search').addEventListener('click', () => {
+        mainContent.classList.add('search-view');
+        mainContent.classList.remove('tree-view');
+        document.getElementById('tab-search').classList.add('active');
+        document.getElementById('tab-tree').classList.remove('active');
+        searchInput.focus();
+      });
+
+      function expandAll(parentEl) {
+        parentEl.querySelectorAll('ul').forEach(ul => { ul.style.display = 'block'; });
+        parentEl.querySelectorAll('.tree-toggle').forEach(t => { if (t.textContent) t.textContent = '▼'; t.setAttribute('aria-expanded', 'true'); });
+      }
+
+      function renderTree(nodes, parentEl, level) {
+        parentEl.innerHTML = '';
+        if (!nodes || !nodes.length) return;
+        level = level || 0;
+        nodes.sort((a, b) => (a.weight || 0) - (b.weight || 0));
+        nodes.forEach(node => {
+          const li = document.createElement('li');
+          const hasChildren = node.children && node.children.length > 0;
+          const toggle = document.createElement('span');
+          toggle.className = 'tree-toggle' + (hasChildren ? '' : ' empty');
+          toggle.textContent = hasChildren ? '▶' : '';
+          toggle.setAttribute('aria-expanded', hasChildren ? 'false' : 'none');
+          const label = document.createElement('span');
+          label.className = 'tree-label';
+          label.textContent = node.name_fr || node.name_en || node.id || node.id;
+          const div = document.createElement('div');
+          div.className = 'tree-node';
+          div.dataset.termId = node.id;
+          div.dataset.vocabId = selectedVocabId;
+          div.appendChild(toggle);
+          div.appendChild(label);
+          li.appendChild(div);
+          if (hasChildren) {
+            const ul = document.createElement('ul');
+            ul.style.display = 'none';
+            renderTree(node.children, ul, level + 1);
+            li.appendChild(ul);
+            toggle.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const expanded = ul.style.display !== 'none';
+              ul.style.display = expanded ? 'none' : 'block';
+              toggle.textContent = expanded ? '▶' : '▼';
+              toggle.setAttribute('aria-expanded', !expanded);
+            });
+          }
+          div.addEventListener('click', (e) => {
+            if (e.target === toggle) return;
+            document.querySelectorAll('.tree-node.selected').forEach(n => n.classList.remove('selected'));
+            div.classList.add('selected');
+            selectTerm(node.id, selectedVocabId, node);
+          });
+          parentEl.appendChild(li);
+        });
+      }
+
+      function selectTerm(termId, vocabId, node) {
+        selectedTermId = termId;
+        selectedParentId = node && node.parent_id !== undefined ? node.parent_id : null;
+        formDirty = false;
+        updateBreadcrumb(vocabId, termId, node ? (node.name_fr || node.name_en || node.id) : '');
+        detailPlaceholder.style.display = 'none';
+        detailForm.style.display = 'block';
+        document.getElementById('field-vocabulary-id').value = vocabId;
+        document.getElementById('field-id').value = node ? node.id : '';
+        document.getElementById('field-slug').value = node ? node.slug : '';
+        document.getElementById('field-name-fr').value = node ? (node.name_fr || '') : '';
+        document.getElementById('field-name-en').value = node ? (node.name_en || '') : '';
+        document.getElementById('field-name-ar').value = node ? (node.name_ar || '') : '';
+        document.getElementById('field-desc-fr').value = node ? (node.description_fr || '') : '';
+        document.getElementById('field-weight').value = node ? (node.weight ?? 0) : 0;
+        document.getElementById('field-keywords').value = (node && node.keywords && node.keywords.length) ? node.keywords.join(', ') : '';
+        document.getElementById('field-id').readOnly = !!node;
+        loadTermDetail(vocabId, termId);
+      }
+
+      function loadTermDetail(vocabId, termId) {
+        fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(vocabId) + '/terms/' + encodeURIComponent(termId))
+          .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
+          .then(data => {
+            document.getElementById('field-desc-fr').value = data.description_fr || '';
+            document.getElementById('field-keywords').value = (data.keywords && data.keywords.length) ? data.keywords.join(', ') : '';
+            document.getElementById('field-weight').value = data.weight ?? 0;
+          })
+          .catch(() => {});
+      }
+
+      function updateBreadcrumb(vocabId, termId, termLabel) {
+        const v = taxonomyData && taxonomyData.vocabularies ? taxonomyData.vocabularies.find(v => v.id === vocabId) : null;
+        const vocabLabel = v ? (v.label_fr || v.label_en || v.id) : vocabId;
+        let html = 'Taxonomie <span class="sep">›</span> ' + (taxonomyData ? taxonomyData.label || taxonomyData.taxonomy_id : '') + ' <span class="sep">›</span> ' + vocabLabel;
+        if (termId && termLabel) html += ' <span class="sep">›</span> ' + termLabel + ' <span class="sep">(<span>' + termId + '</span>)</span>';
+        breadcrumb.innerHTML = html;
+      }
+
+      async function loadTaxonomy() {
+        setStatus('Chargement…');
+        try {
+          const r = await fetch(API_BASE + '/api/taxonomy');
+          if (!r.ok) throw new Error(r.status + ' ' + r.statusText);
+          taxonomyData = await r.json();
+          vocabSelect.innerHTML = '';
+          (taxonomyData.vocabularies || []).forEach(v => {
+            const opt = document.createElement('option');
+            opt.value = v.id;
+            opt.textContent = v.label_fr || v.label_en || v.id;
+            vocabSelect.appendChild(opt);
+          });
+          if (taxonomyData.vocabularies && taxonomyData.vocabularies.length) {
+            selectedVocabId = taxonomyData.vocabularies[0].id;
+            vocabSelect.value = selectedVocabId;
+            await loadVocabularyTerms();
+          }
+          setStatus('Taxonomie chargée.');
+        } catch (e) {
+          setStatus('Erreur : ' + e.message, 'error');
+          vocabSelect.innerHTML = '<option value="">Erreur API</option>';
+        }
+      }
+
+      async function loadVocabularyTerms() {
+        if (!selectedVocabId) return;
+        setStatus('Chargement des termes…');
+        try {
+          const r = await fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(selectedVocabId) + '/terms');
+          if (!r.ok) throw new Error(r.statusText);
+          const data = await r.json();
+          termsTree = data.terms || [];
+          renderTree(termsTree, treeRoot);
+          updateBreadcrumb(selectedVocabId, null, null);
+          setStatus('Termes chargés.');
+        } catch (e) {
+          setStatus('Erreur : ' + e.message, 'error');
+        }
+      }
+
+      vocabSelect.addEventListener('change', () => {
+        selectedVocabId = vocabSelect.value;
+        selectedTermId = null;
+        detailForm.style.display = 'none';
+        detailPlaceholder.style.display = 'block';
+        loadVocabularyTerms();
+      });
+
+      function getFormPayload(parentId) {
+        const keywordsEl = document.getElementById('field-keywords');
+        const kw = keywordsEl.value.split(/[,;]/).map(s => s.trim()).filter(Boolean);
+        return {
+          parent_id: parentId || null,
+          slug: document.getElementById('field-slug').value.trim() || document.getElementById('field-id').value.trim(),
+          name_fr: document.getElementById('field-name-fr').value.trim(),
+          name_en: document.getElementById('field-name-en').value.trim(),
+          name_ar: document.getElementById('field-name-ar').value.trim(),
+          description_fr: document.getElementById('field-desc-fr').value.trim(),
+          description_en: '',
+          description_ar: '',
+          weight: parseInt(document.getElementById('field-weight').value, 10) || 0,
+          keywords: kw,
+        };
+      }
+
+      document.getElementById('btn-save').addEventListener('click', async () => {
+        const vid = document.getElementById('field-vocabulary-id').value;
+        const tid = document.getElementById('field-id').value;
+        if (!vid || !tid) return;
+        const btn = document.getElementById('btn-save');
+        btn.disabled = true;
+        setStatus('Enregistrement…');
+        try {
+          const r = await fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(vid) + '/terms/' + encodeURIComponent(tid), {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(getFormPayload(selectedParentId)),
+          });
+          const body = await r.json().catch(() => ({}));
+          if (!r.ok) throw new Error(body.detail || r.statusText);
+          formDirty = false;
+          setStatus('Terme enregistré.', 'success');
+          loadVocabularyTerms();
+        } catch (e) {
+          setStatus('Erreur : ' + (e.message || e), 'error');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      document.getElementById('btn-add-child').addEventListener('click', () => {
+        const vid = document.getElementById('field-vocabulary-id').value;
+        const parentId = document.getElementById('field-id').value;
+        if (!vid) return;
+        const newId = 'nouveau_' + Date.now();
+        const payload = getFormPayload(parentId);
+        payload.id = newId;
+        payload.name_fr = '';
+        payload.name_en = '';
+        payload.name_ar = '';
+        payload.slug = newId;
+        const btn = document.getElementById('btn-add-child');
+        btn.disabled = true;
+        setStatus('Création…');
+        fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(vid) + '/terms', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+          .then(r => r.json().then(b => ({ ok: r.ok, body: b })))
+          .then(({ ok, body }) => {
+            if (!ok) throw new Error(body.detail?.message || body.detail || 'Erreur');
+            setStatus('Enfant créé. Modifiez le terme puis Enregistrer.', 'success');
+            loadVocabularyTerms().then(() => {
+              expandAll(treeRoot);
+              const node = document.querySelector('.tree-node[data-term-id="' + body.term_id + '"]');
+              if (node) node.click();
+            });
+          })
+          .catch(e => setStatus('Erreur : ' + (e.message || e), 'error'))
+          .finally(() => { btn.disabled = false; });
+      });
+
+      document.getElementById('btn-delete').addEventListener('click', () => {
+        const vid = document.getElementById('field-vocabulary-id').value;
+        const tid = document.getElementById('field-id').value;
+        if (!vid || !tid) return;
+        const overlay = document.getElementById('modal-delete');
+        const bodyEl = document.getElementById('modal-delete-body');
+        bodyEl.textContent = 'Supprimer le terme « ' + tid + ' » ? Cette action est irréversible.';
+        overlay.classList.add('visible');
+        overlay.setAttribute('aria-hidden', 'false');
+        const confirmBtn = document.getElementById('modal-delete-confirm');
+        const cancel = () => {
+          overlay.classList.remove('visible');
+          overlay.setAttribute('aria-hidden', 'true');
+          confirmBtn.onclick = null;
+          document.getElementById('modal-delete-cancel').onclick = null;
+        };
+        document.getElementById('modal-delete-cancel').onclick = cancel;
+        confirmBtn.onclick = () => {
+          confirmBtn.disabled = true;
+          fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(vid) + '/terms/' + encodeURIComponent(tid), { method: 'DELETE' })
+            .then(r => r.json().then(b => ({ status: r.status, body: b })))
+            .then(({ status, body }) => {
+              if (status === 409) {
+                const refs = body.detail?.references || body.detail?.children_count;
+                const msg = body.detail?.message || (refs ? 'Terme référencé ou ayant des enfants.' : 'Suppression refusée.');
+                bodyEl.textContent = msg + (typeof refs === 'object' ? ' Références : ' + JSON.stringify(refs) : '');
+                return;
+              }
+              if (status >= 400) throw new Error(body.detail?.message || body.detail || 'Erreur');
+              cancel();
+              detailForm.style.display = 'none';
+              detailPlaceholder.style.display = 'block';
+              selectedTermId = null;
+              setStatus('Terme supprimé.', 'success');
+              loadVocabularyTerms();
+            })
+            .catch(e => { bodyEl.textContent = 'Erreur : ' + (e.message || e); })
+            .finally(() => { confirmBtn.disabled = false; });
+        };
+      });
+
+      searchInput.addEventListener('input', () => {
+        const q = searchInput.value.trim();
+        if (q.length < 2) { searchResults.innerHTML = ''; return; }
+        const vid = mainContent.classList.contains('search-view') ? selectedVocabId : '';
+        const url = API_BASE + '/api/taxonomy/terms/search?q=' + encodeURIComponent(q) + (vid ? '&vocabulary_id=' + encodeURIComponent(vid) : '');
+        fetch(url)
+          .then(r => r.json())
+          .then(data => {
+            searchResults.innerHTML = '';
+            (data.results || []).forEach(term => {
+              const li = document.createElement('li');
+              li.innerHTML = '<span class="term-id">' + term.id + '</span> — ' + (term.name_fr || term.name_en || term.slug || '');
+              li.dataset.termId = term.id;
+              li.dataset.vocabId = term.vocabulary_id;
+              li.addEventListener('click', () => {
+                selectedVocabId = term.vocabulary_id;
+                vocabSelect.value = selectedVocabId;
+                mainContent.classList.add('tree-view');
+                mainContent.classList.remove('search-view');
+                document.getElementById('tab-tree').classList.add('active');
+                document.getElementById('tab-search').classList.remove('active');
+                loadVocabularyTerms().then(() => {
+                  expandAll(treeRoot);
+                  const node = document.querySelector('.tree-node[data-term-id="' + term.id + '"]');
+                  if (node) node.click();
+                  else selectTerm(term.id, term.vocabulary_id, term);
+                });
+              });
+              searchResults.appendChild(li);
+            });
+          })
+          .catch(() => { searchResults.innerHTML = '<li>Erreur de recherche</li>'; });
+      });
+
+      ['field-slug', 'field-name-fr', 'field-name-en', 'field-name-ar', 'field-desc-fr', 'field-weight', 'field-keywords'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', () => { formDirty = true; });
+      });
+
+      window.addEventListener('beforeunload', (e) => {
+        if (formDirty) { e.preventDefault(); return ''; }
+      });
+
+      loadTaxonomy();
+    })();
+  </script>
+</body>
+</html>

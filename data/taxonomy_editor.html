@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Éditeur Taxonomie universelle – Artiste Coloriage</title>
+  <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; margin: 0; padding: 0; transition: background 0.2s, color 0.2s; height: 100vh; overflow: hidden; }
+    body[data-theme="light"] { background: #f8f9fa; color: #202124; }
+    body[data-theme="dark"] { background: #1a1a2e; color: #f7fafc; }
+    .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+    .header h1 { font-size: 1.25rem; margin: 0; font-weight: 600; }
+    .theme-switcher { display: flex; align-items: center; gap: 0.25rem; }
+    .theme-switcher span { font-size: 0.8rem; }
+    .theme-switcher button { padding: 0.35rem 0.6rem; border: 1px solid #dadce0; border-radius: 4px; background: #fff; color: #5f6368; cursor: pointer; font-size: 0.8rem; }
+    body[data-theme="dark"] .theme-switcher button { border-color: #4a5568; background: #2d3748; color: #cbd5e0; }
+    .theme-switcher button.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+    body[data-theme="dark"] .theme-switcher button.active { background: #3182ce; border-color: #3182ce; color: #fff; }
+    .action-bar .filter-input { padding: 0.4rem 0.75rem; border: 1px solid #dadce0; border-radius: 6px; font-size: 0.85rem; }
+    body[data-theme="dark"] .action-bar .filter-input { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .action-bar input[type="file"] { display: none; }
+    .action-bar .btn-save--pending { border: 2px solid #ea4335; box-shadow: 0 0 0 1px #ea4335; }
+    body[data-theme="dark"] .action-bar .btn-save--pending { border-color: #fc8181; }
+    .unsaved-indicator { color: #ea4335; font-weight: 500; margin-right: 0.5rem; }
+    body[data-theme="dark"] .unsaved-indicator { color: #fc8181; }
+    .unsaved-indicator.hidden { display: none !important; }
+    .status { font-size: 0.85rem; margin-left: auto; }
+    body[data-theme="light"] .status { color: #5f6368; }
+    body[data-theme="dark"] .status { color: #cbd5e0; }
+    .app-wrap { display: flex; flex-direction: column; height: 100vh; overflow: hidden; padding: 0.75rem; }
+    .main-panel { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+    #table-container { border-radius: 8px; padding: 0.5rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: background 0.2s; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+    #table-container .tabulator { flex: 1; min-height: 0; overflow: hidden; }
+    body[data-theme="light"] #table-container { background: #fff; border: 1px solid #dadce0; }
+    body[data-theme="dark"] #table-container { background: #16213e; border: 1px solid #2d3748; }
+    .tabulator { font-size: 0.85rem; }
+    body[data-theme="light"] .tabulator-header .tabulator-col { background: #f8f9fa; color: #202124; border-color: #dadce0; }
+    body[data-theme="dark"] .tabulator-header .tabulator-col { background: #1a1a2e; color: #f7fafc; border-color: #2d3748; }
+    .tabulator { background: transparent; }
+    body[data-theme="light"] .tabulator-row.tabulator-row-even, body[data-theme="light"] .tabulator-row.tabulator-row-odd { background: #fff; }
+    body[data-theme="light"] .tabulator-row:hover { background: #e8f0fe !important; }
+    body[data-theme="light"] .tabulator-row.tabulator-selected { background: #c2e7ff !important; }
+    body[data-theme="dark"] .tabulator-row.tabulator-row-even, body[data-theme="dark"] .tabulator-row.tabulator-row-odd { background: #1e3a5f; }
+    body[data-theme="dark"] .tabulator-row:hover { background: #2d4a6f !important; }
+    body[data-theme="dark"] .tabulator-row.tabulator-selected { background: #2c5282 !important; }
+    .tabulator-row.row-editing { outline: 2px solid #1a73e8 !important; outline-offset: -2px; background: #f0f7ff !important; }
+    body[data-theme="dark"] .tabulator-row.row-editing { outline-color: #90cdf4 !important; background: #1a3a5f !important; }
+    body[data-theme="light"] .tabulator-cell { border-color: #e0e0e0 !important; color: #202124 !important; }
+    body[data-theme="dark"] .tabulator-cell { border-color: #2d3748 !important; color: #f7fafc !important; }
+    body[data-theme="light"] .tabulator-cell.tabulator-editing input, body[data-theme="light"] .tabulator-cell.tabulator-editing select { color: #202124; background: #fff; border: 1px solid #1a73e8; }
+    body[data-theme="dark"] .tabulator-cell.tabulator-editing input { color: #1a1a2e; background: #f7fafc; }
+    .tabulator .tabulator-cell[tabulator-field="id"] { font-weight: 600; }
+    .action-bar { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; align-items: center; }
+    .action-bar button, .action-bar label { padding: 0.4rem 0.75rem; border-radius: 6px; border: none; cursor: pointer; font-size: 0.85rem; }
+    .action-bar button.primary { background: #1a73e8; color: white; }
+    .action-bar button.primary:hover { background: #1557b0; }
+    .action-bar button.secondary { background: #e8eaed; color: #202124; }
+    body[data-theme="dark"] .action-bar button.secondary { background: #4a5568; color: #cbd5e0; }
+    .action-bar button.secondary:hover { background: #dadce0; }
+    body[data-theme="dark"] .action-bar button.secondary:hover { background: #2d3748; }
+    .action-bar button.secondary.active { background: #1a73e8; color: #fff; }
+    body[data-theme="dark"] .action-bar button.secondary.active { background: #3182ce; color: #fff; }
+    .action-bar button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .config-popover { position: relative; }
+    .config-popover .config-content { display: none; position: absolute; top: 100%; left: 0; margin-top: 4px; padding: 1rem; background: #fff; border: 1px solid #dadce0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 200; min-width: 260px; max-height: 80vh; overflow-y: auto; }
+    body[data-theme="dark"] .config-popover .config-content { background: #16213e; border-color: #2d3748; }
+    .config-popover.open .config-content { display: block; }
+    .config-section { margin-bottom: 1rem; }
+    .config-section:last-child { margin-bottom: 0; }
+    .config-section h4 { margin: 0 0 0.5rem 0; font-size: 0.9rem; font-weight: 600; }
+    .config-section .column-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0; cursor: pointer; }
+    .config-section .column-item:hover { background: #f1f3f4; border-radius: 4px; }
+    body[data-theme="dark"] .config-section .column-item:hover { background: #2d4a6f; }
+    .autosave-indicator { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; color: #1a73e8; }
+    body[data-theme="dark"] .autosave-indicator { color: #90cdf4; }
+    .autosave-indicator .spinner { width: 14px; height: 14px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .autosave-indicator.hidden { display: none !important; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .meta-bar { display: flex; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center; font-size: 0.85rem; }
+    .meta-bar span { color: #5f6368; }
+    body[data-theme="dark"] .meta-bar span { color: #a0aec0; }
+    .meta-bar strong { color: #202124; }
+    body[data-theme="dark"] .meta-bar strong { color: #f7fafc; }
+    .meta-bar select { padding: 0.25rem 0.5rem; border-radius: 4px; border: 1px solid #dadce0; background: #fff; font-size: 0.85rem; }
+    body[data-theme="dark"] .meta-bar select { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .form-panel { position: fixed; top: 0; right: 0; width: 380px; max-width: 100%; height: 100%; background: #fff; border-left: 1px solid #dadce0; box-shadow: -4px 0 12px rgba(0,0,0,0.1); z-index: 300; transform: translateX(100%); transition: transform 0.25s ease; overflow: hidden; display: flex; flex-direction: column; }
+    body[data-theme="dark"] .form-panel { background: #16213e; border-color: #2d3748; }
+    .form-panel.open { transform: translateX(0); }
+    .form-panel-inner { padding: 1rem; overflow-y: auto; flex: 1; }
+    .form-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .form-panel-header h2 { margin: 0; font-size: 1.1rem; }
+    .form-panel-close { background: none; border: none; font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0.25rem; color: #5f6368; }
+    body[data-theme="dark"] .form-panel-close { color: #cbd5e0; }
+    .term-form label { display: block; margin-bottom: 0.75rem; font-size: 0.85rem; }
+    .term-form input, .term-form textarea { width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #dadce0; border-radius: 4px; font-size: 0.9rem; box-sizing: border-box; }
+    body[data-theme="dark"] .term-form input, body[data-theme="dark"] .term-form textarea { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .form-panel-actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .form-panel-actions button { padding: 0.5rem 1rem; border-radius: 6px; border: none; cursor: pointer; font-size: 0.9rem; }
+    .form-panel-actions .primary { background: #1a73e8; color: #fff; }
+    .form-panel-actions .secondary { background: #e8eaed; color: #202124; }
+    body[data-theme="dark"] .form-panel-actions .secondary { background: #4a5568; color: #cbd5e0; }
+    .action-btns { display: flex; gap: 0.2rem; align-items: center; }
+    .action-btns button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; border: none; border-radius: 4px; cursor: pointer; background: #e8eaed; color: #5f6368; }
+    .action-btns button svg { width: 16px; height: 16px; fill: currentColor; pointer-events: none; }
+    body[data-theme="dark"] .action-btns button { background: #4a5568; color: #cbd5e0; }
+    .action-btns button:hover { background: #1a73e8; color: #fff; }
+    .action-btns button.delete:hover { background: #c53030; color: #fff; }
+    /* Barre de sélection contextuelle */
+    .selection-bar { display: none; align-items: center; gap: 0.5rem; padding: 0.4rem 0.75rem; margin-bottom: 0.4rem; border-radius: 6px; font-size: 0.875rem; background: #e8f0fe; border: 1px solid #c2d7f5; flex-wrap: wrap; }
+    body[data-theme="dark"] .selection-bar { background: #1e3a5f; border-color: #2c5282; }
+    .selection-bar.visible { display: flex; }
+    .selection-bar .sel-count { font-weight: 600; color: #1a73e8; white-space: nowrap; }
+    body[data-theme="dark"] .selection-bar .sel-count { color: #90cdf4; }
+    .selection-bar button { padding: 0.3rem 0.75rem; border-radius: 5px; border: none; cursor: pointer; font-size: 0.82rem; font-weight: 500; }
+    .selection-bar .sel-move { background: #1a73e8; color: #fff; }
+    .selection-bar .sel-move:hover { background: #1557b0; }
+    .selection-bar .sel-delete { background: #fff; color: #c53030; border: 1px solid #c53030; }
+    body[data-theme="dark"] .selection-bar .sel-delete { background: transparent; color: #fc8181; border-color: #fc8181; }
+    .selection-bar .sel-delete:hover { background: #c53030; color: #fff; }
+    body[data-theme="dark"] .selection-bar .sel-delete:hover { background: #c53030; color: #fff; border-color: #c53030; }
+    .selection-bar .sel-clear { background: none; border: none; color: #5f6368; font-size: 0.8rem; cursor: pointer; text-decoration: underline; }
+    body[data-theme="dark"] .selection-bar .sel-clear { color: #a0aec0; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 500; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal-dialog { background: #fff; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); max-width: 420px; width: 100%; padding: 1.25rem; }
+    body[data-theme="dark"] .modal-dialog { background: #16213e; border: 1px solid #2d3748; }
+    .modal-dialog h3 { margin: 0 0 0.75rem 0; font-size: 1.1rem; }
+    .modal-dialog p { margin: 0 0 1rem 0; font-size: 0.9rem; color: #5f6368; line-height: 1.4; }
+    body[data-theme="dark"] .modal-dialog p { color: #cbd5e0; }
+    .modal-actions { display: flex; gap: 0.5rem; justify-content: flex-end; flex-wrap: wrap; }
+    .modal-actions button { padding: 0.5rem 1rem; border-radius: 6px; border: none; cursor: pointer; font-size: 0.9rem; }
+    .modal-actions .primary { background: #1a73e8; color: #fff; }
+    .modal-actions .primary.danger { background: #c53030; color: #fff; }
+    .modal-actions .secondary { background: #e8eaed; color: #202124; }
+    body[data-theme="dark"] .modal-actions .secondary { background: #4a5568; color: #cbd5e0; }
+    /* Pick-parent modal */
+    .pick-parent-modal .modal-dialog { max-width: 480px; }
+    .pick-parent-search { width: 100%; padding: 0.4rem 0.75rem; border: 1px solid #dadce0; border-radius: 4px; font-size: 0.9rem; margin-bottom: 0.5rem; box-sizing: border-box; }
+    body[data-theme="dark"] .pick-parent-search { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .pick-parent-list { max-height: 300px; overflow-y: auto; border: 1px solid #dadce0; border-radius: 4px; }
+    body[data-theme="dark"] .pick-parent-list { border-color: #4a5568; }
+    .pick-parent-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.75rem; cursor: pointer; border-bottom: 1px solid #f1f3f4; user-select: none; }
+    body[data-theme="dark"] .pick-parent-item { border-color: #2d3748; }
+    .pick-parent-item:last-child { border-bottom: none; }
+    .pick-parent-item:hover:not(.disabled) { background: #e8f0fe; }
+    body[data-theme="dark"] .pick-parent-item:hover:not(.disabled) { background: #2d4a6f; }
+    .pick-parent-item.selected { background: #c2e7ff; font-weight: 600; }
+    body[data-theme="dark"] .pick-parent-item.selected { background: #2c5282; }
+    .pick-parent-item.disabled { opacity: 0.4; cursor: not-allowed; }
+    .pick-parent-item .item-name { font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+    .pick-parent-item .item-path { font-size: 0.75rem; color: #5f6368; margin-left: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+    body[data-theme="dark"] .pick-parent-item .item-path { color: #a0aec0; }
+    .pick-parent-item.root-item .item-name { font-style: italic; color: #5f6368; }
+    body[data-theme="dark"] .pick-parent-item.root-item .item-name { color: #a0aec0; }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="app-wrap">
+  <div class="header">
+    <h1>Éditeur Taxonomie universelle v0</h1>
+  </div>
+  <div class="meta-bar" id="meta-bar">
+    <span>ID: <strong id="meta-id">—</strong></span>
+    <span>Label: <strong id="meta-label">—</strong></span>
+    <span>Langues: <strong id="meta-langs">—</strong></span>
+    <span id="meta-vocab-wrap" style="display: none;">Vocabulaire: <select id="vocab-select" aria-label="Vocabulaire"></select></span>
+  </div>
+  <div class="action-bar">
+    <button type="button" id="btn-load-api" class="primary">Charger</button>
+    <label for="file-input" class="secondary" style="margin:0;">Fichier JSON</label>
+    <input type="file" id="file-input" accept=".json">
+    <button type="button" id="btn-save" class="secondary" disabled>Enregistrer</button>
+    <button type="button" id="btn-undo" class="secondary" title="Annuler">Undo</button>
+    <button type="button" id="btn-redo" class="secondary" title="Refaire">Redo</button>
+    <button type="button" id="btn-export-json" class="secondary">Exporter JSON</button>
+    <button type="button" id="btn-add-row" class="secondary">Ajouter un terme</button>
+    <div class="config-popover" id="config-popover">
+      <button type="button" id="btn-config" class="secondary">Config</button>
+      <div class="config-content" id="config-content">
+        <div class="config-section">
+          <h4>Affichage</h4>
+          <div class="theme-switcher" style="margin-bottom:0.5rem;">
+            <span style="font-size:0.85rem;">Thème :</span>
+            <button type="button" id="btn-theme-light" style="padding:0.25rem 0.5rem;font-size:0.8rem;">Clair</button>
+            <button type="button" id="btn-theme-dark" style="padding:0.25rem 0.5rem;font-size:0.8rem;">Sombre</button>
+          </div>
+          <div id="config-columns-list"></div>
+        </div>
+        <div class="config-section">
+          <h4>Auto-save</h4>
+          <label class="column-item"><input type="checkbox" id="config-autosave"> Activer l'auto-save</label>
+        </div>
+        <div class="config-section">
+          <h4>Actions en masse</h4>
+          <p style="font-size:0.8rem;color:#5f6368;margin:0;">Sélectionnez des lignes dans le tableau pour voir les actions de masse.</p>
+        </div>
+      </div>
+    </div>
+    <input type="text" id="filter-input" class="filter-input" placeholder="Rechercher…" style="max-width:180px;">
+    <span id="autosave-indicator" class="autosave-indicator hidden"><span class="spinner"></span> Enregistrement…</span>
+    <span id="unsaved-indicator" class="unsaved-indicator hidden">● Non enregistré</span>
+    <span class="status" id="status">Charger ou ouvrir un fichier JSON</span>
+  </div>
+  <div id="selection-bar" class="selection-bar" role="toolbar" aria-label="Actions sur la sélection">
+    <span class="sel-count" id="sel-count-label">0 sélectionné(s)</span>
+    <button type="button" class="sel-move" id="sel-btn-move">Déplacer vers…</button>
+    <button type="button" class="sel-delete" id="sel-btn-delete">Supprimer</button>
+    <button type="button" class="sel-clear" id="sel-btn-clear">Tout désélectionner</button>
+  </div>
+  <div class="main-panel">
+    <div id="table-container"></div>
+  </div>
+  <aside id="form-panel" class="form-panel" aria-hidden="true">
+    <div class="form-panel-inner">
+      <div class="form-panel-header">
+        <h2>Éditer le terme</h2>
+        <button type="button" id="form-panel-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <form id="term-form" class="term-form">
+        <label>ID <input type="text" id="form-id" required></label>
+        <label>Slug <input type="text" id="form-slug"></label>
+        <label>name_fr <input type="text" id="form-name_fr"></label>
+        <label>name_en <input type="text" id="form-name_en"></label>
+        <label>name_ar <input type="text" id="form-name_ar"></label>
+        <label>weight <input type="number" id="form-weight" value="0"></label>
+        <label>description_fr <textarea id="form-description_fr" rows="2"></textarea></label>
+        <label>description_en <textarea id="form-description_en" rows="2"></textarea></label>
+        <label>description_ar <textarea id="form-description_ar" rows="2"></textarea></label>
+        <label>keywords <input type="text" id="form-keywords" placeholder="mot1, mot2"></label>
+        <div class="form-panel-actions">
+          <button type="submit" class="primary">Enregistrer</button>
+          <button type="button" id="form-panel-cancel" class="secondary">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <div id="modal-confirm-delete" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-delete-title">
+    <div class="modal-dialog">
+      <h3 id="modal-confirm-delete-title">Supprimer le terme ?</h3>
+      <p id="modal-confirm-delete-message"></p>
+      <div class="modal-actions">
+        <button type="button" id="modal-confirm-delete-cancel" class="secondary">Annuler</button>
+        <button type="button" id="modal-confirm-delete-ok" class="primary danger">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-cascade-delete" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-cascade-delete-title">
+    <div class="modal-dialog">
+      <h3 id="modal-cascade-delete-title">Suppression refusée</h3>
+      <p id="modal-cascade-delete-message"></p>
+      <div class="modal-actions">
+        <button type="button" id="modal-cascade-delete-cancel" class="secondary">Annuler</button>
+        <button type="button" id="modal-cascade-delete-ok" class="primary danger">Supprimer en cascade (avec les enfants)</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-pick-parent" class="modal-overlay pick-parent-modal" role="dialog" aria-modal="true" aria-labelledby="modal-pick-parent-title">
+    <div class="modal-dialog">
+      <h3 id="modal-pick-parent-title">Déplacer vers…</h3>
+      <input type="text" id="pick-parent-search" class="pick-parent-search" placeholder="Rechercher un terme…" autocomplete="off">
+      <div id="pick-parent-list" class="pick-parent-list"></div>
+      <div class="modal-actions" style="margin-top:0.75rem;">
+        <button type="button" id="btn-pick-parent-cancel" class="secondary">Annuler</button>
+        <button type="button" id="btn-pick-parent-confirm" class="primary" disabled>Déplacer</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+  <script>
+    const THEME_KEY = 'taxonomy_editor_theme';
+    const COLUMNS_VISIBLE_KEY = 'taxonomy_editor_columns';
+    const AUTOSAVE_KEY = 'taxonomy_editor_autosave';
+    const FILTER_FIELDS = ['id', 'slug', 'name_fr', 'name_en', 'name_ar', 'description_fr', 'description_en', 'description_ar', 'keywords'];
+
+    const DATA_COLUMN_DEFS = [
+      { field: 'id', title: 'ID', width: 140, editor: 'input' },
+      { field: 'slug', title: 'Slug', width: 130, editor: 'input' },
+      { field: 'name_fr', title: 'name_fr', width: 140, editor: 'input' },
+      { field: 'name_en', title: 'name_en', width: 140, editor: 'input' },
+      { field: 'name_ar', title: 'name_ar', width: 120, editor: 'input' },
+      { field: 'weight', title: 'weight', width: 70, editor: 'number', hozAlign: 'center' },
+      { field: 'description_fr', title: 'description_fr', width: 220, minWidth: 120, editor: 'input' },
+      { field: 'description_en', title: 'description_en', width: 220, minWidth: 120, editor: 'input' },
+      { field: 'description_ar', title: 'description_ar', width: 180, minWidth: 120, editor: 'input' },
+      { field: 'keywords', title: 'keywords', width: 160, formatter: keywordsFormatter, editor: keywordsEditor },
+    ];
+
+    const iconEdit = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>';
+    const iconDelete = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>';
+    const iconDuplicate = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>';
+    const iconAddChild = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 7h-2v3H8v2h3v3h2v-3h3v-2h-3V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>';
+    const iconMove = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"/></svg>';
+
+    function actionsFormatter(cell) {
+      const row = cell.getRow();
+      const id = String(row.getData().id ?? '').trim();
+      const div = document.createElement('div');
+      div.className = 'action-btns';
+
+      const editBtn = document.createElement('button');
+      editBtn.type = 'button';
+      editBtn.className = 'edit';
+      editBtn.title = 'Ouvrir le formulaire d\'édition';
+      editBtn.innerHTML = iconEdit;
+      editBtn.dataset.termId = id;
+
+      const addChildBtn = document.createElement('button');
+      addChildBtn.type = 'button';
+      addChildBtn.className = 'add-child';
+      addChildBtn.title = 'Ajouter un terme enfant';
+      addChildBtn.innerHTML = iconAddChild;
+      addChildBtn.dataset.termId = id;
+
+      const moveBtn = document.createElement('button');
+      moveBtn.type = 'button';
+      moveBtn.className = 'move';
+      moveBtn.title = 'Déplacer vers un autre parent';
+      moveBtn.innerHTML = iconMove;
+      moveBtn.dataset.termId = id;
+
+      const delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'delete';
+      delBtn.title = 'Supprimer le terme';
+      delBtn.innerHTML = iconDelete;
+      delBtn.dataset.termId = id;
+
+      const dupBtn = document.createElement('button');
+      dupBtn.type = 'button';
+      dupBtn.className = 'duplicate';
+      dupBtn.title = 'Dupliquer le terme';
+      dupBtn.innerHTML = iconDuplicate;
+      dupBtn.dataset.termId = id;
+
+      div.appendChild(editBtn);
+      div.appendChild(addChildBtn);
+      div.appendChild(moveBtn);
+      div.appendChild(delBtn);
+      div.appendChild(dupBtn);
+
+      editBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openFormPanel(row); });
+      addChildBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openFormPanel(null, id); });
+      moveBtn.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        const excludeIds = getDescendantIds(id, table ? table.getData() : []);
+        excludeIds.add(id);
+        openPickParentModal('Déplacer « ' + (row.getData().name_fr || id) + ' » vers…', excludeIds, async (newParentId) => {
+          await moveTermToParent(id, newParentId);
+        });
+      });
+      delBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openConfirmDeleteModal(row); });
+      dupBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); duplicateByTermId(id); });
+      return div;
+    }
+
+    const ALL_COLUMN_DEFS = [
+      { formatter: 'rowSelection', title: '', width: 40, hozAlign: 'center', headerSort: false, frozen: true },
+      ...DATA_COLUMN_DEFS,
+      { title: 'Actions', width: 140, formatter: actionsFormatter, headerSort: false, frozen: true },
+    ];
+
+    const DEFAULT_VISIBLE = ['id', 'slug', 'name_fr', 'name_en', 'name_ar', 'weight', 'description_fr', 'keywords'];
+
+    function keywordsFormatter(cell) {
+      const v = cell.getValue();
+      if (Array.isArray(v)) return v.join(', ');
+      return v != null ? String(v) : '';
+    }
+
+    function keywordsEditor(cell, onRendered, success, cancel) {
+      const v = cell.getValue();
+      const str = Array.isArray(v) ? v.join(', ') : (v != null ? String(v) : '');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = str;
+      input.style.padding = '4px';
+      input.style.width = '100%';
+      input.style.boxSizing = 'border-box';
+      onRendered(function() {
+        input.focus();
+      });
+      function done() {
+        const val = input.value.split(/[,;]/).map(s => s.trim()).filter(Boolean);
+        success(val.length ? val : []);
+      }
+      input.addEventListener('blur', done);
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') done();
+        if (e.key === 'Escape') cancel();
+      });
+      return input;
+    }
+
+    let taxonomyMeta = { taxonomy_id: 'universal_v0', label: 'Taxonomie universelle v0', languages: ['fr', 'en', 'ar'] };
+    let currentVocabularies = [];
+    let currentVocabularyId = 'themes';
+    let dataSource = 'none';
+    let visibleColumns = [];
+    let modifiedTermIds = new Set();
+    const PUT_DEBOUNCE_MS = 500;
+    let putTermDebounceTimers = {};
+    let autosaveInProgress = false;
+    let editingRow = null;
+    let editingForcedParentId = undefined;
+    const formPanel = document.getElementById('form-panel');
+    const termForm = document.getElementById('term-form');
+    const configAutosaveEl = document.getElementById('config-autosave');
+    const undoStack = [];
+    const redoStack = [];
+    const MAX_UNDO = 100;
+
+    function pushUndo(op) {
+      undoStack.push(op);
+      if (undoStack.length > MAX_UNDO) undoStack.shift();
+      redoStack.length = 0;
+      updateUndoRedoButtons();
+    }
+
+    function updateUndoRedoButtons() {
+      const btnUndo = document.getElementById('btn-undo');
+      const btnRedo = document.getElementById('btn-redo');
+      if (btnUndo) btnUndo.disabled = undoStack.length === 0;
+      if (btnRedo) btnRedo.disabled = redoStack.length === 0;
+    }
+
+    async function doUndo() {
+      const op = undoStack.pop();
+      if (!op) return;
+      try {
+        if (op.type === 'cellEdit') {
+          const payload = await getTermForUndo(op.termId);
+          if (payload) {
+            payload[op.field] = op.oldValue;
+            await putTerm(payload);
+            redoStack.push({ type: 'cellEdit', termId: op.termId, field: op.field, oldValue: op.oldValue, newValue: op.newValue });
+            const terms = await fetchVocabularyTerms();
+            if (table) table.setData(terms);
+          }
+        } else if (op.type === 'add') {
+          await deleteTermApi(op.termPayload.id);
+          redoStack.push(op);
+          const terms = await fetchVocabularyTerms();
+          if (table) table.setData(terms);
+        } else if (op.type === 'delete') {
+          await postTerm(op.termPayload);
+          redoStack.push(op);
+          const terms = await fetchVocabularyTerms();
+          if (table) table.setData(terms);
+        }
+        setStatus('Annulé.');
+      } catch (err) {
+        setStatus('Undo : ' + err.message);
+        undoStack.push(op);
+      }
+      updateUndoRedoButtons();
+    }
+
+    async function doRedo() {
+      const op = redoStack.pop();
+      if (!op) return;
+      try {
+        if (op.type === 'cellEdit') {
+          const payload = await getTermForUndo(op.termId);
+          if (payload) {
+            payload[op.field] = op.newValue;
+            await putTerm(payload);
+            undoStack.push({ type: 'cellEdit', termId: op.termId, field: op.field, oldValue: op.newValue, newValue: op.oldValue });
+            const terms = await fetchVocabularyTerms();
+            if (table) table.setData(terms);
+          }
+        } else if (op.type === 'add') {
+          await postTerm(op.termPayload);
+          undoStack.push(op);
+          const terms = await fetchVocabularyTerms();
+          if (table) table.setData(terms);
+        } else if (op.type === 'delete') {
+          await deleteTermApi(op.termPayload.id);
+          undoStack.push(op);
+          const terms = await fetchVocabularyTerms();
+          if (table) table.setData(terms);
+        }
+        setStatus('Refait.');
+      } catch (err) {
+        setStatus('Redo : ' + err.message);
+        redoStack.push(op);
+      }
+      updateUndoRedoButtons();
+    }
+
+    async function getTermForUndo(termId) {
+      const treeData = table.getData();
+      const found = getTermDataFromTree(treeData, termId);
+      if (found) return buildTermPayload(found);
+      const res = await fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(currentVocabularyId) + '/terms/' + encodeURIComponent(termId));
+      if (!res.ok) return null;
+      const t = await res.json();
+      return buildTermPayload(t);
+    }
+
+    function loadVisibleColumns() {
+      try {
+        const saved = localStorage.getItem(COLUMNS_VISIBLE_KEY);
+        if (saved) {
+          const arr = JSON.parse(saved);
+          if (Array.isArray(arr) && arr.length) return arr;
+        }
+      } catch (_) {}
+      return [...DEFAULT_VISIBLE];
+    }
+
+    function getVisibleColumns() {
+      const v = loadVisibleColumns();
+      return v.length ? v : ['id', 'slug', 'name_fr'];
+    }
+
+    function saveVisibleColumns(cols) {
+      try { localStorage.setItem(COLUMNS_VISIBLE_KEY, JSON.stringify(cols)); } catch (_) {}
+    }
+
+    function applyTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      document.getElementById('btn-theme-light').classList.toggle('active', theme === 'light');
+      document.getElementById('btn-theme-dark').classList.toggle('active', theme === 'dark');
+      try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+    }
+    document.getElementById('btn-theme-light').addEventListener('click', () => applyTheme('light'));
+    document.getElementById('btn-theme-dark').addEventListener('click', () => applyTheme('dark'));
+    (function() {
+      try {
+        const saved = localStorage.getItem(THEME_KEY);
+        if (saved === 'light' || saved === 'dark') applyTheme(saved);
+      } catch (_) {}
+    })();
+
+    function loadAutosavePreference() {
+      try {
+        const saved = localStorage.getItem(AUTOSAVE_KEY);
+        autosaveEnabled = saved === 'true';
+      } catch (_) {
+        autosaveEnabled = false;
+      }
+    }
+
+    function updateAutosaveButton() {
+      if (typeof updateAutosaveUI === 'function') updateAutosaveUI();
+    }
+
+    function updateUnsavedIndicator() {
+      const el = document.getElementById('unsaved-indicator');
+      const btnSaveEl = document.getElementById('btn-save');
+      const h1 = document.querySelector('.header h1');
+      if (!el) return;
+      const show = hasUnsavedChanges && !autosaveEnabled;
+      el.classList.toggle('hidden', !show);
+      const saveBtn = document.getElementById('btn-save');
+      if (saveBtn) saveBtn.classList.toggle('btn-save--pending', show);
+      if (h1) {
+        const baseTitle = 'Éditeur Taxonomie universelle v0';
+        h1.textContent = show ? '● ' + baseTitle : baseTitle;
+      }
+    }
+
+    function onCellEdited(cell) {
+      const row = cell.getRow();
+      const data = row.getData();
+      const tid = (data.id || '').trim();
+      if (!tid) return;
+      const field = cell.getField();
+      const oldVal = typeof cell.getOldValue === 'function' ? cell.getOldValue() : undefined;
+      const newVal = cell.getValue();
+      if (field && oldVal !== undefined) pushUndo({ type: 'cellEdit', termId: tid, field, oldValue: oldVal, newValue: newVal });
+      if (row.getTreeParent) {
+        const parentRow = row.getTreeParent();
+        if (parentRow) data.parent_id = parentRow.getData().id;
+        else data.parent_id = null;
+      }
+      modifiedTermIds.add(tid);
+      hasUnsavedChanges = true;
+      updateUnsavedIndicator();
+      if (autosaveEnabled) {
+        if (putTermDebounceTimers[tid]) clearTimeout(putTermDebounceTimers[tid]);
+        putTermDebounceTimers[tid] = setTimeout(async function() {
+          putTermDebounceTimers[tid] = null;
+          setAutosaveIndicator(true);
+          try {
+            await putTerm(data);
+            setStatus('Terme « ' + tid + ' » enregistré.');
+          } catch (err) {
+            setStatus('Erreur : ' + err.message);
+          } finally {
+            setAutosaveIndicator(false);
+          }
+        }, PUT_DEBOUNCE_MS);
+      }
+    }
+
+    window.addEventListener('beforeunload', (e) => {
+      if (hasUnsavedChanges && !autosaveEnabled) {
+        e.preventDefault();
+        return '';
+      }
+    });
+
+    document.getElementById('btn-config').addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('config-popover').classList.toggle('open');
+    });
+    document.addEventListener('click', () => {
+      document.getElementById('config-popover').classList.remove('open');
+    });
+    document.getElementById('config-popover').addEventListener('click', (e) => e.stopPropagation());
+
+    if (configAutosaveEl) {
+      configAutosaveEl.addEventListener('change', function() {
+        autosaveEnabled = this.checked;
+        try { localStorage.setItem(AUTOSAVE_KEY, String(autosaveEnabled)); } catch (_) {}
+        updateAutosaveUI();
+        if (autosaveEnabled && modifiedTermIds.size > 0) saveModifiedTerms();
+      });
+    }
+    function updateAutosaveUI() {
+      if (configAutosaveEl) configAutosaveEl.checked = autosaveEnabled;
+    }
+
+    function updateMetaBar() {
+      document.getElementById('meta-id').textContent = taxonomyMeta.taxonomy_id || '—';
+      document.getElementById('meta-label').textContent = taxonomyMeta.label || '—';
+      document.getElementById('meta-langs').textContent = Array.isArray(taxonomyMeta.languages) ? taxonomyMeta.languages.join(', ') : '—';
+      const wrap = document.getElementById('meta-vocab-wrap');
+      const sel = document.getElementById('vocab-select');
+      if (currentVocabularies.length > 1 && wrap && sel) {
+        wrap.style.display = '';
+        sel.innerHTML = '';
+        currentVocabularies.forEach(function(v) {
+          const opt = document.createElement('option');
+          opt.value = v.id || 'themes';
+          opt.textContent = v.label_fr || v.id || opt.value;
+          sel.appendChild(opt);
+        });
+        sel.value = currentVocabularyId;
+      } else if (wrap) {
+        wrap.style.display = 'none';
+      }
+    }
+
+    function ensureKeywordsArray(obj) {
+      if (!obj) return;
+      if (typeof obj.keywords === 'string') {
+        obj.keywords = obj.keywords.split(/[,;]/).map(s => s.trim()).filter(Boolean);
+      }
+      if (obj.children && obj.children.length) {
+        obj.children.forEach(ensureKeywordsArray);
+      }
+    }
+
+    /** Ajoute parent_id à chaque nœud de l'arbre (pour les appels API). */
+    function normalizeTreeWithParentId(nodes, parentId = null) {
+      if (!nodes || !Array.isArray(nodes)) return;
+      nodes.forEach(function(n) {
+        n.parent_id = parentId;
+        if (n.children && n.children.length) normalizeTreeWithParentId(n.children, n.id);
+      });
+    }
+
+    function countTerms(terms) {
+      let n = 0;
+      function walk(t) {
+        n++;
+        (t.children || []).forEach(walk);
+      }
+      (terms || []).forEach(walk);
+      return n;
+    }
+
+    let table = null;
+    let currentFileName = 'taxonomy_universal_v0.json';
+    let autosaveEnabled = false;
+    let hasUnsavedChanges = false;
+    let pendingDeleteRow = null;
+    let pendingCascadeRow = null;
+
+    const API_BASE = (window.location.protocol === 'file:') ? 'http://localhost:8000' : '';
+    const fileInput = document.getElementById('file-input');
+    const btnLoadApi = document.getElementById('btn-load-api');
+    const btnSave = document.getElementById('btn-save');
+    const btnExportJson = document.getElementById('btn-export-json');
+    const btnAddRow = document.getElementById('btn-add-row');
+    const btnDeleteRow = document.getElementById('btn-delete-row');
+    const filterInput = document.getElementById('filter-input');
+    const statusEl = document.getElementById('status');
+
+    function setStatus(msg) { statusEl.textContent = msg; }
+
+    function setAutosaveIndicator(show) {
+      autosaveInProgress = show;
+      const el = document.getElementById('autosave-indicator');
+      if (el) el.classList.toggle('hidden', !show);
+    }
+
+    function _clearRowEditingHighlight() {
+      if (!table) return;
+      function clearRows(rows) {
+        rows.forEach(function(r) {
+          try { r.getElement().classList.remove('row-editing'); } catch (_) {}
+          var children = r.getTreeChildren ? r.getTreeChildren() : [];
+          if (children && children.length) clearRows(children);
+        });
+      }
+      clearRows(table.getRows());
+    }
+
+    function openFormPanel(row, forcedParentId) {
+      editingForcedParentId = forcedParentId;
+      // Retirer le highlight de l'ancienne ligne
+      _clearRowEditingHighlight();
+      if (row) {
+        editingRow = row;
+        const d = row.getData();
+        document.getElementById('form-id').value = d.id || '';
+        document.getElementById('form-slug').value = d.slug || '';
+        document.getElementById('form-name_fr').value = d.name_fr || '';
+        document.getElementById('form-name_en').value = d.name_en || '';
+        document.getElementById('form-name_ar').value = d.name_ar || '';
+        document.getElementById('form-weight').value = d.weight ?? 0;
+        document.getElementById('form-description_fr').value = d.description_fr || '';
+        document.getElementById('form-description_en').value = d.description_en || '';
+        document.getElementById('form-description_ar').value = d.description_ar || '';
+        document.getElementById('form-keywords').value = Array.isArray(d.keywords) ? d.keywords.join(', ') : (d.keywords || '');
+        const header = formPanel.querySelector('.form-panel-header h2');
+        if (header) header.textContent = 'Éditer le terme';
+        // Highlight la ligne active
+        try { row.getElement().classList.add('row-editing'); } catch (_) {}
+      } else {
+        // Nouveau terme enfant
+        editingRow = null;
+        document.getElementById('form-id').value = '';
+        document.getElementById('form-slug').value = '';
+        document.getElementById('form-name_fr').value = '';
+        document.getElementById('form-name_en').value = '';
+        document.getElementById('form-name_ar').value = '';
+        document.getElementById('form-weight').value = 0;
+        document.getElementById('form-description_fr').value = '';
+        document.getElementById('form-description_en').value = '';
+        document.getElementById('form-description_ar').value = '';
+        document.getElementById('form-keywords').value = '';
+        const header = formPanel.querySelector('.form-panel-header h2');
+        if (header) header.textContent = 'Nouveau terme enfant';
+      }
+      formPanel.classList.add('open');
+      formPanel.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeFormPanel() {
+      _clearRowEditingHighlight();
+      if (document.activeElement && formPanel.contains(document.activeElement)) {
+        var focusTarget = document.getElementById('filter-input') || document.getElementById('btn-load-api') || document.getElementById('vocab-select');
+        if (focusTarget) focusTarget.focus();
+      }
+      formPanel.classList.remove('open');
+      formPanel.setAttribute('aria-hidden', 'true');
+      editingRow = null;
+      editingForcedParentId = undefined;
+    }
+
+    function openConfirmDeleteModal(row) {
+      if (!row) return;
+      const d = row.getData();
+      const id = String(d.id ?? '').trim();
+      const label = (d.name_fr || d.name_en || d.id || id).trim();
+      pendingDeleteRow = row;
+      document.getElementById('modal-confirm-delete-message').textContent =
+        'Le terme « ' + (label || id) + ' » sera supprimé. Cette action est irréversible.';
+      document.getElementById('modal-confirm-delete').classList.add('open');
+    }
+
+    function closeConfirmDeleteModal() {
+      document.getElementById('modal-confirm-delete').classList.remove('open');
+      pendingDeleteRow = null;
+    }
+
+    function openCascadeDeleteModal(row, termIdStr, message) {
+      pendingCascadeRow = row;
+      document.getElementById('modal-cascade-delete-message').textContent = message;
+      document.getElementById('modal-cascade-delete').classList.add('open');
+    }
+
+    function closeCascadeDeleteModal() {
+      document.getElementById('modal-cascade-delete').classList.remove('open');
+      pendingCascadeRow = null;
+    }
+
+    async function doDeleteRow(row, cascade) {
+      if (!table || !row) return;
+      const termIdStr = String(row.getData().id ?? '').trim();
+      if (!termIdStr) {
+        setStatus('Impossible de supprimer : terme sans ID.');
+        return;
+      }
+      const termPayload = Object.assign({}, row.getData());
+      const parentRow = row.getTreeParent ? row.getTreeParent() : null;
+      const parentId = parentRow ? (parentRow.getData().id ?? null) : null;
+      try {
+        await deleteTermApi(termIdStr, !!cascade);
+        if (API_BASE) {
+          const terms = await fetchVocabularyTerms();
+          table.setData(terms);
+        } else {
+          row.delete();
+        }
+        pushUndo({ type: 'delete', termPayload, parentId });
+        setStatus('Terme « ' + termIdStr + ' » supprimé' + (cascade ? ' (en cascade).' : '.'));
+        closeCascadeDeleteModal();
+      } catch (err) {
+        setStatus('Suppression : ' + (err && err.message ? err.message : String(err)));
+      }
+    }
+
+    function deleteRowByTermId(row) {
+      if (!table || !row) return;
+      const termIdStr = String(row.getData().id ?? '').trim();
+      if (!termIdStr) {
+        setStatus('Impossible de supprimer : terme sans ID.');
+        return;
+      }
+      const termPayload = Object.assign({}, row.getData());
+      const parentRow = row.getTreeParent ? row.getTreeParent() : null;
+      const parentId = parentRow ? (parentRow.getData().id ?? null) : null;
+      (async () => {
+        try {
+          await deleteTermApi(termIdStr, false);
+          if (API_BASE) {
+            const terms = await fetchVocabularyTerms();
+            table.setData(terms);
+          } else {
+            row.delete();
+          }
+          pushUndo({ type: 'delete', termPayload, parentId });
+          setStatus('Terme « ' + termIdStr + ' » supprimé.');
+          closeConfirmDeleteModal();
+        } catch (err) {
+          if (err && err.canCascade) {
+            closeConfirmDeleteModal();
+            openCascadeDeleteModal(row, termIdStr, err.message + ' Voulez-vous supprimer ce terme et tous ses enfants ?');
+          } else {
+            setStatus('Suppression : ' + (err && err.message ? err.message : String(err)));
+          }
+        }
+      })();
+    }
+
+    /** Duplique un terme par son id en s'appuyant sur les données du tableau (évite référence row obsolète). */
+    async function duplicateByTermId(termId) {
+      if (!table) return;
+      const termIdStr = String(termId ?? '').trim();
+      if (!termIdStr) {
+        setStatus('Impossible de dupliquer : terme sans ID.');
+        return;
+      }
+      try {
+        const treeData = table.getData();
+        const d = getTermDataFromTree(treeData, termIdStr);
+        if (!d) {
+          setStatus('Terme « ' + termIdStr + ' » introuvable dans les données.');
+          return;
+        }
+        const parentId = d.parent_id !== undefined ? d.parent_id : null;
+        const newId = 'term_' + Date.now() + '_dup';
+        const payload = {
+          id: newId,
+          slug: (d.slug || '') + '_dup',
+          name_fr: d.name_fr || '',
+          name_en: d.name_en || '',
+          name_ar: d.name_ar || '',
+          description_fr: d.description_fr || '',
+          description_en: d.description_en || '',
+          description_ar: d.description_ar || '',
+          weight: parseInt(d.weight, 10) || 0,
+          keywords: Array.isArray(d.keywords) ? [...d.keywords] : [],
+          parent_id: parentId,
+        };
+        await postTerm(payload);
+        pushUndo({ type: 'add', termPayload: payload });
+        const terms = await fetchVocabularyTerms();
+        table.setData(terms);
+        setStatus('Terme dupliqué : « ' + newId + ' ».');
+      } catch (err) {
+        const msg = (err && err.message) ? err.message : String(err);
+        setStatus('Erreur duplication : ' + msg);
+      }
+    }
+
+    function buildTermPayload(rowData) {
+      const payload = {
+        id: rowData.id,
+        slug: rowData.slug || rowData.id || '',
+        name_fr: rowData.name_fr || '',
+        name_en: rowData.name_en || '',
+        name_ar: rowData.name_ar || '',
+        description_fr: rowData.description_fr || '',
+        description_en: rowData.description_en || '',
+        description_ar: rowData.description_ar || '',
+        weight: parseInt(rowData.weight, 10) || 0,
+        keywords: Array.isArray(rowData.keywords) ? rowData.keywords : (rowData.keywords ? String(rowData.keywords).split(/[,;]/).map(s => s.trim()).filter(Boolean) : []),
+        parent_id: rowData.parent_id !== undefined ? rowData.parent_id : null,
+      };
+      return payload;
+    }
+
+    async function putTerm(termData) {
+      const vid = currentVocabularyId;
+      const tid = (termData.id || '').trim();
+      if (!tid) return;
+      const payload = buildTermPayload(termData);
+      const res = await fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(vid) + '/terms/' + encodeURIComponent(tid), {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        const detail = typeof errBody.detail === 'string' ? errBody.detail : JSON.stringify(errBody.detail || res.statusText);
+        throw new Error(detail);
+      }
+      modifiedTermIds.delete(tid);
+      hasUnsavedChanges = modifiedTermIds.size > 0;
+      updateUnsavedIndicator();
+    }
+
+    async function postTerm(payload) {
+      const vid = currentVocabularyId;
+      const res = await fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(vid) + '/terms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        const detail = typeof errBody.detail === 'string' ? errBody.detail : JSON.stringify(errBody.detail || res.statusText);
+        throw new Error(detail);
+      }
+      return res.json();
+    }
+
+    async function deleteTermApi(termId, cascade) {
+      const vid = currentVocabularyId;
+      const url = API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(vid) + '/terms/' + encodeURIComponent(termId) + (cascade ? '?cascade=true' : '');
+      const res = await fetch(url, { method: 'DELETE' });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        const detail = errBody.detail;
+        let msg;
+        if (typeof detail === 'string') {
+          msg = detail;
+        } else if (detail && typeof detail.message === 'string') {
+          msg = detail.message;
+          if (detail.children_count != null) msg += ' (' + detail.children_count + ' enfant(s)).';
+          if (detail.references && typeof detail.references === 'object') msg += ' Références : ' + JSON.stringify(detail.references);
+        } else {
+          msg = res.status === 409 ? 'Suppression refusée (terme utilisé ou ayant des enfants).' : (res.statusText || 'Erreur ' + res.status);
+        }
+        const canCascade = res.status === 409 && detail && detail.children_count != null;
+        const err = new Error(msg);
+        err.canCascade = canCascade;
+        throw err;
+      }
+    }
+
+    async function fetchVocabularyTerms() {
+      const res = await fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(currentVocabularyId) + '/terms');
+      if (!res.ok) {
+        let detail = res.status + ' ' + res.statusText;
+        try {
+          const errBody = await res.json();
+          if (errBody.detail != null) detail = typeof errBody.detail === 'string' ? errBody.detail : JSON.stringify(errBody.detail);
+        } catch (_) {}
+        throw new Error(detail);
+      }
+      const data = await res.json();
+      const terms = (data.terms || []).map(function(t) { return Object.assign({}, t); });
+      normalizeTreeWithParentId(terms);
+      return terms;
+    }
+
+    async function loadVocabularyIntoTable() {
+      if (!table) return;
+      try {
+        if (dataSource === 'api') {
+          const terms = await fetchVocabularyTerms();
+          table.setData(terms);
+          setStatus('Vocabulaire « ' + currentVocabularyId + ' » chargé.');
+        } else {
+          const v = currentVocabularies.find(function(x) { return (x.id || 'themes') === currentVocabularyId; });
+          const terms = v && v.terms ? JSON.parse(JSON.stringify(v.terms)) : [];
+          normalizeTreeWithParentId(terms);
+          table.setData(terms);
+          setStatus('Vocabulaire « ' + currentVocabularyId + ' » affiché.');
+        }
+      } catch (err) {
+        setStatus('Erreur : ' + err.message);
+      }
+    }
+
+    function buildColumns() {
+      const vis = getVisibleColumns();
+      return ALL_COLUMN_DEFS.map(def => {
+        const isSelectionOrActions = def.formatter === 'rowSelection' || def.title === 'Actions';
+        const visible = isSelectionOrActions ? true : vis.includes(def.field);
+        return { ...def, visible };
+      });
+    }
+
+
+    // ─── Gestion hiérarchie : helpers ───────────────────────────────────────────
+
+    function flattenTreeWithDepth(nodes, depth, path, result) {
+      depth = depth || 0;
+      path = path || [];
+      result = result || [];
+      if (!Array.isArray(nodes)) return result;
+      nodes.forEach(function(node) {
+        var name = node.name_fr || node.name_en || node.id || '';
+        var currentPath = path.concat(name);
+        result.push({
+          id: node.id,
+          name_fr: name,
+          name_en: node.name_en || '',
+          depth: depth,
+          path: path.join(' › '),
+        });
+        if (Array.isArray(node.children) && node.children.length > 0) {
+          flattenTreeWithDepth(node.children, depth + 1, currentPath, result);
+        }
+      });
+      return result;
+    }
+
+    function getDescendantIds(termId, nodes) {
+      var result = new Set();
+      function walk(nodeList) {
+        if (!Array.isArray(nodeList)) return;
+        nodeList.forEach(function(node) {
+          if (String(node.id) === String(termId)) {
+            collectIds(node, result);
+          } else if (Array.isArray(node.children)) {
+            walk(node.children);
+          }
+        });
+      }
+      function collectIds(node, set) {
+        if (!node) return;
+        if (Array.isArray(node.children)) {
+          node.children.forEach(function(child) {
+            set.add(String(child.id));
+            collectIds(child, set);
+          });
+        }
+      }
+      walk(nodes);
+      return result;
+    }
+
+    // ─── Modal pick-parent ───────────────────────────────────────────────────────
+
+    var _pickParentExcludeIds = new Set();
+    var _pickParentSelectedId = undefined; // undefined = pas sélectionné, null = racine, string = id
+    var _pickParentOnConfirm = null;
+
+    function renderPickParentList(searchText) {
+      var listEl = document.getElementById('pick-parent-list');
+      if (!listEl) return;
+      var flat = flattenTreeWithDepth(table ? table.getData() : []);
+      var q = (searchText || '').trim().toLowerCase();
+
+      listEl.innerHTML = '';
+
+      // Item "Racine"
+      var rootItem = document.createElement('div');
+      rootItem.className = 'pick-parent-item root-item' + (_pickParentSelectedId === null ? ' selected' : '');
+      rootItem.dataset.parentId = '__root__';
+      rootItem.innerHTML = '<span class="item-name">— Racine (sans parent) —</span>';
+      rootItem.addEventListener('click', function() { selectPickParentItem(null); });
+      listEl.appendChild(rootItem);
+
+      flat.forEach(function(item) {
+        var name = item.name_fr || item.name_en || item.id || '';
+        if (q && !name.toLowerCase().includes(q) && !String(item.id).toLowerCase().includes(q)) return;
+        var isExcluded = _pickParentExcludeIds.has(String(item.id));
+        var isSelected = _pickParentSelectedId === item.id;
+        var el = document.createElement('div');
+        el.className = 'pick-parent-item' + (isExcluded ? ' disabled' : '') + (isSelected ? ' selected' : '');
+        el.dataset.parentId = item.id;
+        var indent = item.depth * 14;
+        el.innerHTML =
+          '<span class="item-name" style="padding-left:' + indent + 'px">' +
+            (item.depth > 0 ? '└ ' : '') + name +
+          '</span>' +
+          (item.path ? '<span class="item-path">' + item.path + '</span>' : '');
+        if (!isExcluded) {
+          el.addEventListener('click', function() { selectPickParentItem(item.id); });
+        }
+        listEl.appendChild(el);
+      });
+    }
+
+    function selectPickParentItem(id) {
+      _pickParentSelectedId = id; // null = racine, string = term id
+      var confirmBtn = document.getElementById('btn-pick-parent-confirm');
+      if (confirmBtn) confirmBtn.disabled = false;
+      // Mettre à jour la sélection visuelle
+      var listEl = document.getElementById('pick-parent-list');
+      if (!listEl) return;
+      listEl.querySelectorAll('.pick-parent-item').forEach(function(el) {
+        var pid = el.dataset.parentId;
+        var match = (id === null && pid === '__root__') || (id !== null && pid === String(id));
+        el.classList.toggle('selected', match);
+      });
+    }
+
+    function openPickParentModal(title, excludeIds, onConfirm) {
+      _pickParentExcludeIds = excludeIds || new Set();
+      _pickParentSelectedId = undefined;
+      _pickParentOnConfirm = onConfirm;
+      var titleEl = document.getElementById('modal-pick-parent-title');
+      if (titleEl) titleEl.textContent = title || 'Déplacer vers…';
+      var searchEl = document.getElementById('pick-parent-search');
+      if (searchEl) searchEl.value = '';
+      var confirmBtn = document.getElementById('btn-pick-parent-confirm');
+      if (confirmBtn) confirmBtn.disabled = true;
+      renderPickParentList('');
+      var modal = document.getElementById('modal-pick-parent');
+      if (modal) { modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); }
+      if (searchEl) setTimeout(function() { searchEl.focus(); }, 50);
+    }
+
+    function closePickParentModal() {
+      var modal = document.getElementById('modal-pick-parent');
+      if (modal) { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); }
+      _pickParentOnConfirm = null;
+      _pickParentSelectedId = undefined;
+    }
+
+    // ─── Déplacement de termes ───────────────────────────────────────────────────
+
+    async function moveTermToParent(termId, newParentId) {
+      if (!currentVocabularyId) return;
+      setStatus('Déplacement en cours…');
+      try {
+        setAutosaveIndicator(true);
+        // Construire le payload complet à partir des données actuelles
+        var allFlat = flattenTreeWithDepth(table ? table.getData() : []);
+        var termData = null;
+        function findInTree(nodes) {
+          if (!nodes) return null;
+          for (var i = 0; i < nodes.length; i++) {
+            if (String(nodes[i].id) === String(termId)) return nodes[i];
+            var found = findInTree(nodes[i].children);
+            if (found) return found;
+          }
+          return null;
+        }
+        termData = findInTree(table ? table.getData() : []);
+        if (!termData) throw new Error('Terme non trouvé dans la table');
+        var payload = {
+          id: termData.id,
+          slug: termData.slug || termData.id,
+          name_fr: termData.name_fr || '',
+          name_en: termData.name_en || '',
+          name_ar: termData.name_ar || '',
+          description_fr: termData.description_fr || '',
+          description_en: termData.description_en || '',
+          description_ar: termData.description_ar || '',
+          weight: termData.weight || 0,
+          keywords: termData.keywords || [],
+          parent_id: newParentId || null,
+        };
+        await putTerm(payload);
+        var terms = await fetchVocabularyTerms();
+        if (table) table.setData(terms);
+        setStatus('Terme « ' + termId + ' » déplacé.');
+      } catch (err) {
+        setStatus('Erreur déplacement : ' + (err && err.message ? err.message : String(err)));
+      } finally {
+        setAutosaveIndicator(false);
+      }
+    }
+
+    async function moveSelectionToParent(termIds, newParentId) {
+      if (!currentVocabularyId || !termIds || termIds.length === 0) return;
+      setStatus('Déplacement de ' + termIds.length + ' terme(s) en cours…');
+      try {
+        setAutosaveIndicator(true);
+        var treeData = table ? table.getData() : [];
+        function findInTree(nodes, id) {
+          if (!nodes) return null;
+          for (var i = 0; i < nodes.length; i++) {
+            if (String(nodes[i].id) === String(id)) return nodes[i];
+            var found = findInTree(nodes[i].children, id);
+            if (found) return found;
+          }
+          return null;
+        }
+        for (var i = 0; i < termIds.length; i++) {
+          var tid = termIds[i];
+          var termData = findInTree(treeData, tid);
+          if (!termData) continue;
+          var payload = {
+            id: termData.id,
+            slug: termData.slug || termData.id,
+            name_fr: termData.name_fr || '',
+            name_en: termData.name_en || '',
+            name_ar: termData.name_ar || '',
+            description_fr: termData.description_fr || '',
+            description_en: termData.description_en || '',
+            description_ar: termData.description_ar || '',
+            weight: termData.weight || 0,
+            keywords: termData.keywords || [],
+            parent_id: newParentId || null,
+          };
+          await putTerm(payload);
+        }
+        var terms = await fetchVocabularyTerms();
+        if (table) table.setData(terms);
+        setStatus(termIds.length + ' terme(s) déplacé(s).');
+      } catch (err) {
+        setStatus('Erreur déplacement sélection : ' + (err && err.message ? err.message : String(err)));
+      } finally {
+        setAutosaveIndicator(false);
+      }
+    }
+
+    // ────────────────────────────────────────────────────────────────────────────
+
+    function applyGeneralFilter() {
+      if (!table) return;
+      const q = (filterInput?.value || '').trim().toLowerCase();
+      if (!q) {
+        table.clearFilter();
+        return;
+      }
+      table.setFilter(function(data) {
+        return FILTER_FIELDS.some(function(f) {
+          const v = data[f];
+          if (Array.isArray(v)) return v.some(x => String(x).toLowerCase().includes(q));
+          return String(v || '').toLowerCase().includes(q);
+        });
+      });
+    }
+
+    function initTable(treeData = []) {
+      if (table) table.destroy();
+      visibleColumns = getVisibleColumns();
+      renderConfigColumns();
+      ensureKeywordsArray(treeData);
+      normalizeTreeWithParentId(treeData);
+
+      table = new Tabulator('#table-container', {
+        data: treeData,
+        height: '100%',
+        layout: 'fitData',
+        layoutColumnsOnNewData: true,
+        editTriggerEvent: 'dblclick',
+        dataTree: true,
+        dataTreeChildField: 'children',
+        dataTreeStartExpanded: [true, true],
+        dataTreeChildIndent: 15,
+        dataTreeElementColumn: 'id',
+        columns: buildColumns(),
+        selectable: true,
+      });
+      table.on('cellEdited', onCellEdited);
+      table.on('tableBuilt', function() {
+        applyGeneralFilter();
+      });
+      table.on('rowSelectionChanged', function(data, rows) {
+        updateSelectionBar(rows ? rows.length : 0);
+      });
+      table.on('rowClick', function(e, row) {
+        // Si le panneau d'édition est ouvert, basculer vers la ligne cliquée
+        if (formPanel.classList.contains('open') && editingForcedParentId === undefined) {
+          // Ne pas switcher si c'est déjà la même ligne
+          if (editingRow && editingRow.getData().id === row.getData().id) return;
+          openFormPanel(row);
+        }
+      });
+      btnSave.disabled = !currentVocabularyId;
+      modifiedTermIds.clear();
+      hasUnsavedChanges = false;
+      updateUnsavedIndicator();
+      const n = countTerms(treeData);
+      setStatus(n + ' terme(s). Double-clic pour éditer, bouton Edit pour le formulaire.');
+      updateMetaBar();
+      updateUndoRedoButtons();
+    }
+
+    filterInput.addEventListener('input', applyGeneralFilter);
+    filterInput.addEventListener('keydown', function(e) { if (e.key === 'Escape') { filterInput.value = ''; applyGeneralFilter(); filterInput.blur(); } });
+
+    document.getElementById('vocab-select').addEventListener('change', function() {
+      currentVocabularyId = this.value;
+      loadVocabularyIntoTable();
+    });
+
+    async function loadFromApi() {
+      setStatus('Chargement...');
+      try {
+        const res = await fetch(API_BASE + '/api/taxonomy');
+        if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+        const parsed = await res.json();
+        taxonomyMeta = {
+          taxonomy_id: parsed.taxonomy_id || 'universal_v0',
+          label: parsed.label || 'Taxonomie universelle v0',
+          languages: parsed.languages || ['fr', 'en', 'ar'],
+        };
+        currentVocabularies = parsed.vocabularies || [];
+        const firstVocab = currentVocabularies[0];
+        currentVocabularyId = firstVocab ? (firstVocab.id || 'themes') : 'themes';
+        dataSource = 'api';
+        const allTerms = firstVocab ? JSON.parse(JSON.stringify(firstVocab.terms || [])) : [];
+        initTable(allTerms);
+        setStatus(countTerms(allTerms) + ' terme(s) chargés depuis l\'API.');
+      } catch (err) {
+        setStatus('Erreur API : ' + err.message + ' — chargez un fichier JSON en secours.');
+      }
+    }
+
+    btnLoadApi.addEventListener('click', loadFromApi);
+
+    fileInput.addEventListener('change', function(e) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      currentFileName = file.name;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        try {
+          const json = ev.target && ev.target.result;
+          const parsed = JSON.parse(json);
+          taxonomyMeta = {
+            taxonomy_id: parsed.taxonomy_id || 'universal_v0',
+            label: parsed.label || 'Taxonomie universelle v0',
+            languages: parsed.languages || ['fr', 'en', 'ar'],
+          };
+          currentVocabularies = parsed.vocabularies || [];
+          const firstVocab = currentVocabularies[0];
+          currentVocabularyId = firstVocab ? (firstVocab.id || 'themes') : 'themes';
+          dataSource = 'file';
+          const allTerms = firstVocab ? JSON.parse(JSON.stringify(firstVocab.terms || [])) : [];
+          initTable(allTerms);
+          setStatus(countTerms(allTerms) + ' terme(s) chargés depuis le fichier.');
+        } catch (err) {
+          setStatus('Erreur : ' + err.message);
+        }
+      };
+      reader.readAsText(file, 'UTF-8');
+    });
+
+    function getTermDataFromTree(nodes, termId) {
+      if (!nodes || !Array.isArray(nodes)) return null;
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i].id === termId) return nodes[i];
+        const found = getTermDataFromTree(nodes[i].children, termId);
+        if (found) return found;
+      }
+      return null;
+    }
+
+    async function saveModifiedTerms() {
+      if (!table || modifiedTermIds.size === 0) return;
+      setStatus('Enregistrement des modifications...');
+      setAutosaveIndicator(true);
+      const treeData = table.getData();
+      const ids = Array.from(modifiedTermIds);
+      try {
+        for (let i = 0; i < ids.length; i++) {
+          const tid = ids[i];
+          const data = getTermDataFromTree(treeData, tid);
+          if (!data) continue;
+          await putTerm(data);
+        }
+        setStatus('Modifications enregistrées.');
+      } finally {
+        setAutosaveIndicator(false);
+      }
+    }
+
+    btnSave.addEventListener('click', function() {
+      saveModifiedTerms();
+    });
+
+    btnExportJson.addEventListener('click', () => {
+      if (!table) return;
+      const treeData = table.getData();
+      treeData.forEach(ensureKeywordsArray);
+      let vocabs;
+      if (currentVocabularies.length === 0) {
+        vocabs = [{ id: 'themes', label_fr: 'Thèmes', label_en: 'Themes', label_ar: 'المواضيع', terms: treeData }];
+      } else {
+        vocabs = currentVocabularies.map((v, idx) => ({
+          id: v.id,
+          label_fr: v.label_fr || v.id,
+          label_en: v.label_en || v.id,
+          label_ar: v.label_ar || v.id,
+          terms: idx === 0 ? treeData : (v.terms || []),
+        }));
+      }
+      const output = {
+        taxonomy_id: taxonomyMeta.taxonomy_id,
+        label: taxonomyMeta.label,
+        languages: taxonomyMeta.languages,
+        vocabularies: vocabs,
+      };
+      const blob = new Blob([JSON.stringify(output, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = currentFileName;
+      a.click();
+      URL.revokeObjectURL(a.href);
+      setStatus('JSON exporté.');
+    });
+
+    btnAddRow.addEventListener('click', async function() {
+      if (!table) return;
+      const selected = table.getSelectedRows();
+      const parentId = selected.length > 0 ? selected[0].getData().id : null;
+      const newId = 'term_' + Date.now();
+      const payload = {
+        id: newId,
+        slug: '',
+        name_fr: '',
+        name_en: '',
+        name_ar: '',
+        description_fr: '',
+        description_en: '',
+        description_ar: '',
+        weight: 0,
+        keywords: [],
+        parent_id: parentId,
+      };
+      setStatus('Ajout en cours...');
+      try {
+        await postTerm(payload);
+        pushUndo({ type: 'add', termPayload: payload });
+        const terms = await fetchVocabularyTerms();
+        table.setData(terms);
+        setStatus('Terme « ' + newId + ' » créé. Modifiez les champs si besoin.');
+      } catch (err) {
+        setStatus('Erreur : ' + err.message);
+      }
+    });
+
+    // btn-delete-row est conservé pour compatibilité (le Config n'affiche plus ces boutons)
+    if (btnDeleteRow) btnDeleteRow.addEventListener('click', function() {
+      const selBtn = document.getElementById('sel-btn-delete');
+      if (selBtn) selBtn.click();
+    });
+
+    document.getElementById('btn-undo').addEventListener('click', () => doUndo());
+    document.getElementById('btn-redo').addEventListener('click', () => doRedo());
+
+    document.getElementById('form-panel-close').addEventListener('click', closeFormPanel);
+    document.getElementById('form-panel-cancel').addEventListener('click', closeFormPanel);
+
+    document.getElementById('modal-confirm-delete-cancel').addEventListener('click', closeConfirmDeleteModal);
+    document.getElementById('modal-confirm-delete-ok').addEventListener('click', function() {
+      if (pendingDeleteRow) {
+        const row = pendingDeleteRow;
+        deleteRowByTermId(row);
+      }
+    });
+    document.getElementById('modal-confirm-delete').addEventListener('click', function(e) {
+      if (e.target === this) closeConfirmDeleteModal();
+    });
+
+    document.getElementById('modal-cascade-delete-cancel').addEventListener('click', closeCascadeDeleteModal);
+    document.getElementById('modal-cascade-delete-ok').addEventListener('click', function() {
+      if (pendingCascadeRow) {
+        const row = pendingCascadeRow;
+        doDeleteRow(row, true);
+      }
+    });
+    document.getElementById('modal-cascade-delete').addEventListener('click', function(e) {
+      if (e.target === this) closeCascadeDeleteModal();
+    });
+
+    // ─── Barre de sélection contextuelle ────────────────────────────────────────
+    function updateSelectionBar(count) {
+      const bar = document.getElementById('selection-bar');
+      const label = document.getElementById('sel-count-label');
+      if (!bar) return;
+      if (count > 0) {
+        bar.classList.add('visible');
+        if (label) label.textContent = count + ' sélectionné' + (count > 1 ? 's' : '');
+      } else {
+        bar.classList.remove('visible');
+      }
+    }
+
+    document.getElementById('sel-btn-clear').addEventListener('click', function() {
+      if (table) table.deselectRow();
+    });
+
+    document.getElementById('sel-btn-move').addEventListener('click', function() {
+      if (!table) return;
+      const selected = table.getSelectedRows();
+      if (selected.length === 0) { setStatus('Sélectionnez des termes à déplacer.'); return; }
+      const ids = selected.map(function(r) { return String(r.getData().id); });
+      const excludeIds = new Set(ids);
+      ids.forEach(function(id) {
+        getDescendantIds(id, table.getData()).forEach(function(did) { excludeIds.add(did); });
+      });
+      openPickParentModal('Déplacer ' + ids.length + ' terme(s) vers…', excludeIds, async function(newParentId) {
+        await moveSelectionToParent(ids, newParentId);
+      });
+    });
+
+    document.getElementById('sel-btn-delete').addEventListener('click', async function() {
+      if (!table) return;
+      const selected = table.getSelectedRows();
+      if (selected.length === 0) { setStatus('Sélectionnez des termes à supprimer.'); return; }
+      for (let i = 0; i < selected.length; i++) {
+        const row = selected[i];
+        const tid = row.getData().id;
+        const termPayload = Object.assign({}, row.getData());
+        const parentRow = row.getTreeParent ? row.getTreeParent() : null;
+        const parentId = parentRow ? (parentRow.getData().id || null) : null;
+        try {
+          await deleteTermApi(tid);
+          pushUndo({ type: 'delete', termPayload, parentId });
+        } catch (err) {
+          setStatus('Suppression « ' + tid + ' » : ' + err.message);
+          return;
+        }
+      }
+      if (API_BASE) {
+        try {
+          const terms = await fetchVocabularyTerms();
+          table.setData(terms);
+        } catch (err) {
+          setStatus('Rechargement après suppression : ' + err.message);
+          return;
+        }
+      } else {
+        selected.forEach(function(row) { try { row.delete(); } catch (_) {} });
+      }
+      setStatus(selected.length + ' terme(s) supprimé(s).');
+      updateUndoRedoButtons();
+      updateSelectionBar(0);
+    });
+
+    // ─── Modal pick-parent listeners ────────────────────────────────────────────
+    document.getElementById('btn-pick-parent-cancel').addEventListener('click', closePickParentModal);
+    document.getElementById('modal-pick-parent').addEventListener('click', function(e) {
+      if (e.target === this) closePickParentModal();
+    });
+    document.getElementById('pick-parent-search').addEventListener('input', function() {
+      renderPickParentList(this.value);
+    });
+    document.getElementById('btn-pick-parent-confirm').addEventListener('click', async function() {
+      if (_pickParentSelectedId === undefined) return;
+      const newParentId = _pickParentSelectedId; // null = racine, string = id
+      const callback = _pickParentOnConfirm;
+      closePickParentModal();
+      if (callback) await callback(newParentId);
+    });
+
+    // btn-move-selection (Config) délègue à sel-btn-move (barre contextuelle)
+    const btnMoveSelLegacy = document.getElementById('btn-move-selection');
+    if (btnMoveSelLegacy) btnMoveSelLegacy.addEventListener('click', function() {
+      const selBtn = document.getElementById('sel-btn-move');
+      if (selBtn) selBtn.click();
+    });
+
+    termForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const id = document.getElementById('form-id').value.trim();
+      const slug = document.getElementById('form-slug').value.trim();
+      const name_fr = document.getElementById('form-name_fr').value;
+      const name_en = document.getElementById('form-name_en').value;
+      const name_ar = document.getElementById('form-name_ar').value;
+      const weight = parseInt(document.getElementById('form-weight').value, 10) || 0;
+      const description_fr = document.getElementById('form-description_fr').value;
+      const description_en = document.getElementById('form-description_en').value;
+      const description_ar = document.getElementById('form-description_ar').value;
+      const kwStr = document.getElementById('form-keywords').value;
+      const keywords = kwStr.split(/[,;]/).map(s => s.trim()).filter(Boolean);
+
+      // Déterminer parent_id : forcedParentId si défini, sinon position dans l'arbre
+      let parent_id;
+      if (editingForcedParentId !== undefined) {
+        parent_id = editingForcedParentId || null;
+      } else if (editingRow) {
+        const parentRow = editingRow.getTreeParent ? editingRow.getTreeParent() : null;
+        parent_id = parentRow ? parentRow.getData().id : null;
+      } else {
+        parent_id = null;
+      }
+
+      const payload = { id, slug, name_fr, name_en, name_ar, description_fr, description_en, description_ar, weight, keywords, parent_id };
+      if (!id) { setStatus('L\'ID du terme est obligatoire.'); return; }
+
+      try {
+        setAutosaveIndicator(true);
+        if (!editingRow) {
+          // Nouveau terme enfant
+          await postTerm(payload);
+          pushUndo({ type: 'add', termPayload: payload });
+        } else {
+          await putTerm(payload);
+        }
+        try {
+          const terms = await fetchVocabularyTerms();
+          if (table) table.setData(terms);
+          setStatus(editingRow ? 'Terme enregistré.' : 'Terme enfant « ' + id + ' » créé.');
+        } catch (refreshErr) {
+          setStatus('Enregistré, rechargement échoué : ' + refreshErr.message);
+          if (table && editingRow) {
+            const rowData = editingRow.getData();
+            Object.assign(rowData, { slug, name_fr, name_en, name_ar, description_fr, description_en, description_ar, weight, keywords });
+            editingRow.update(rowData);
+          }
+        }
+        closeFormPanel();
+      } catch (err) {
+        setStatus('Erreur : ' + err.message);
+      } finally {
+        setAutosaveIndicator(false);
+      }
+    });
+
+    function renderConfigColumns() {
+      const configColumnsList = document.getElementById('config-columns-list');
+      if (!configColumnsList) return;
+      configColumnsList.innerHTML = '';
+      DATA_COLUMN_DEFS.forEach(def => {
+        const label = document.createElement('label');
+        label.className = 'column-item';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.dataset.field = def.field;
+        cb.checked = visibleColumns.includes(def.field);
+        cb.addEventListener('change', () => {
+          if (cb.checked) {
+            if (!visibleColumns.includes(def.field)) visibleColumns.push(def.field);
+          } else {
+            visibleColumns = visibleColumns.filter(f => f !== def.field);
+          }
+          saveVisibleColumns(visibleColumns);
+          if (table) {
+            const col = table.getColumn(def.field);
+            if (col) col.toggle(cb.checked);
+          }
+        });
+        label.appendChild(cb);
+        label.appendChild(document.createTextNode(def.title));
+        configColumnsList.appendChild(label);
+      });
+    }
+    updateMetaBar();
+    loadAutosavePreference();
+    if (configAutosaveEl) configAutosaveEl.checked = autosaveEnabled;
+    visibleColumns = loadVisibleColumns();
+    renderConfigColumns();
+
+    loadFromApi();
+  </script>
+</body>
+</html>

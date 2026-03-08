@@ -1,0 +1,54 @@
+---
+description: Champs NULL en base et API – tri, comparaison, sérialisation
+globs: "**/*.py"
+alwaysApply: false
+---
+
+# NULL-safe : base de données et API
+
+Les champs numériques ou texte en base peuvent être **NULL**. En Python, `dict.get("weight", 0)` renvoie `None` si la clé existe avec la valeur `None` (pas la valeur par défaut). Les tris et comparaisons avec `None` lèvent des erreurs.
+
+## Règle 1 : Tri par champ numérique
+
+Ne jamais utiliser directement `x.get("weight", 0)` comme clé de tri si la colonne peut être NULL en base.
+
+```python
+# ❌ BAD – TypeError si weight est None
+tree.sort(key=lambda t: t.get("weight", 0))
+
+# ✅ GOOD
+def _weight_key(t):
+    w = t.get("weight")
+    return int(w) if w is not None else 0
+tree.sort(key=_weight_key)
+# ou en une ligne :
+tree.sort(key=lambda t: t.get("weight") if t.get("weight") is not None else 0)
+```
+
+## Règle 2 : Valeurs exposées dans les réponses API
+
+Toujours normaliser les champs numériques (weight, count, etc.) avant de les mettre dans un nœud ou une réponse JSON : l’API doit renvoyer un nombre, pas `null`, pour les champs utilisés en tri ou en calcul côté client.
+
+```python
+# ✅ GOOD
+w = r.get("weight")
+node["weight"] = int(w) if w is not None else 0
+```
+
+## Règle 3 : Types JSON-serialisables en réponse
+
+DuckDB (et d'autres drivers) peuvent renvoyer des types non natifs (ex. `numpy.int64`). FastAPI sérialise les réponses en JSON : tout type non supporté provoque une 500. **Exiger** que toutes les valeurs renvoyées par l'API (depuis la base) soient converties en types natifs JSON-serialisables : `int`, `float`, `str`, `list`, `dict`, `bool`, `None`. Champs numériques : `int(w)` ou `float(x)`. Champs texte/id : `str(x)`. Faire cette normalisation dès la lecture (ex. `_term_row_to_dict`) ou dans la construction des nœuds.
+
+## Règle 4 : Vérification exhaustive
+
+Lors d’un correctif lié à un NULL :
+
+1. Chercher tous les usages de **tri** (`sort`, `sorted`) sur des données venant de la base.
+2. Chercher tous les champs **numériques** lus depuis la base et utilisés en comparaison ou en clé de tri.
+3. S'assurer que toutes les valeurs en réponse sont JSON-serialisables (règle 3).
+4. Ajouter un **test** (pytest) qui reproduit le cas et vérifie 200 et structure valide.
+
+## Référence
+
+- Tests : `tests/test_taxonomy_api.py` (tree avec `weight` NULL, GET terms, sérialisation JSON)
+- Exemple corrigé : `src/api/routes/taxonomy.py` (`_term_row_to_dict`, `_build_terms_tree`, `_insert_terms`, `_term_to_response`)

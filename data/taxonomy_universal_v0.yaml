@@ -1,0 +1,365 @@
+taxonomy_id: universal_v0
+label: "Taxonomie universelle v0"
+languages: [fr, en, ar]
+
+vocabularies:
+  - id: themes
+    label_fr: "Thèmes"
+    label_en: "Themes"
+    label_ar: "المواضيع"
+    terms:
+      # 1. Animaux
+      - id: animaux
+        slug: animals
+        name_fr: "Animaux"
+        name_en: "Animals"
+        name_ar: "الحيوانات"
+        description_fr: "Animaux de toutes sortes, domestiques, sauvages, marins et préhistoriques."
+        description_en: "All kinds of animals: domestic, wild, sea animals and prehistoric creatures."
+        description_ar: "كل أنواع الحيوانات: أليفة، برية، بحرية، وما قبل التاريخ."
+        weight: 0
+        keywords: [animaux, animals, حيوانات]
+        children:
+          - id: animaux_domestiques
+            slug: domestic-animals
+            name_fr: "Animaux domestiques"
+            name_en: "Domestic animals"
+            name_ar: "حيوانات أليفة"
+            weight: 0
+          - id: animaux_sauvages
+            slug: wild-animals
+            name_fr: "Animaux sauvages"
+            name_en: "Wild animals"
+            name_ar: "حيوانات برية"
+            weight: 1
+          - id: animaux_marins
+            slug: sea-animals
+            name_fr: "Animaux marins"
+            name_en: "Sea animals"
+            name_ar: "حيوانات بحرية"
+            weight: 2
+          - id: animaux_ferme
+            slug: farm-animals
+            name_fr: "Animaux de la ferme"
+            name_en: "Farm animals"
+            name_ar: "حيوانات المزرعة"
+            weight: 3
+          - id: dinosaures
+            slug: dinosaurs
+            name_fr: "Dinosaures"
+            name_en: "Dinosaurs"
+            name_ar: "الديناصورات"
+            weight: 4
+
+      # 2. Mandalas & motifs
+      - id: mandalas
+        slug: mandalas
+        name_fr: "Mandalas"
+        name_en: "Mandalas"
+        name_ar: "المندالات"
+        description_fr: "Mandalas et motifs géométriques, de simples à très complexes."
+        description_en: "Mandalas and geometric patterns, from simple to very complex."
+        description_ar: "مندالات وزخارف هندسية من البسيط إلى المعقد."
+        weight: 1
+        keywords: [mandala, motifs]
+        children:
+          - id: mandalas_faciles
+            slug: easy-mandalas
+            name_fr: "Mandalas faciles"
+            name_en: "Easy mandalas"
+            name_ar: "مندالات سهلة"
+            weight: 0
+          - id: mandalas_complexes
+            slug: complex-mandalas
+            name_fr: "Mandalas complexes"
+            name_en: "Complex mandalas"
+            name_ar: "مندالات معقدة"
+            weight: 1
+          - id: mandalas_animaux
+            slug: animal-mandalas
+            name_fr: "Mandalas animaux"
+            name_en: "Animal mandalas"
+            name_ar: "مندالات الحيوانات"
+            weight: 2
+          - id: mandalas_fleurs
+            slug: flower-mandalas
+            name_fr: "Mandalas fleurs"
+            name_en: "Flower mandalas"
+            name_ar: "مندالات الزهور"
+            weight: 3
+
+      # 3. Véhicules
+      - id: vehicules
+        slug: vehicles
+        name_fr: "Véhicules"
+        name_en: "Vehicles"
+        name_ar: "المركبات"
+        description_fr: "Tous types de véhicules : route, ciel, mer et rails."
+        description_en: "All kinds of vehicles: road, air, sea and rail."
+        description_ar: "كل أنواع المركبات: برية، جوية، بحرية وعلى السكك الحديدية."
+        weight: 2
+        children:
+          - id: voitures
+            slug: cars
+            name_fr: "Voitures"
+            name_en: "Cars"
+            name_ar: "السيارات"
+            weight: 0
+          - id: camions
+            slug: trucks
+            name_fr: "Camions"
+            name_en: "Trucks"
+            name_ar: "الشاحنات"
+            weight: 1
+          - id: motos
+            slug: motorbikes
+            name_fr: "Motos"
+            name_en: "Motorbikes"
+            name_ar: "الدراجات النارية"
+            weight: 2
+          - id: avions
+            slug: planes
+            name_fr: "Avions"
+            name_en: "Planes"
+            name_ar: "الطائرات"
+            weight: 3
+          - id: bateaux
+            slug: boats
+            name_fr: "Bateaux"
+            name_en: "Boats"
+            name_ar: "القوارب"
+            weight: 4
+          - id: trains
+            slug: trains
+            name_fr: "Trains"
+            name_en: "Trains"
+            name_ar: "القطارات"
+            weight: 5
+
+      # 4. Personnages
+      - id: personnages
+        slug: characters
+        name_fr: "Personnages"
+        name_en: "Characters"
+        name_ar: "الشخصيات"
+        description_fr: "Personnages du quotidien, métiers, héros originaux et univers fantasy."
+        description_en: "Everyday characters, jobs, original heroes and fantasy worlds."
+        description_ar: "شخصيات من الحياة اليومية، المهن، أبطال أصليون وعوالم خيالية."
+        weight: 3
+        children:
+          - id: metiers
+            slug: jobs
+            name_fr: "Métiers"
+            name_en: "Jobs"
+            name_ar: "المهن"
+            weight: 0
+          - id: super_heros_originaux
+            slug: original-heroes
+            name_fr: "Super-héros originaux"
+            name_en: "Original superheroes"
+            name_ar: "أبطال خارقون أصليون"
+            weight: 1
+          - id: fantasy
+            slug: fantasy
+            name_fr: "Fantasy"
+            name_en: "Fantasy"
+            name_ar: "فانتازيا"
+            weight: 2
+          - id: vie_quotidienne
+            slug: everyday-life
+            name_fr: "Vie quotidienne"
+            name_en: "Everyday life"
+            name_ar: "الحياة اليومية"
+            weight: 3
+
+      # 5. Saisons & événements
+      - id: saisons_evenements
+        slug: seasons-events
+        name_fr: "Saisons & événements"
+        name_en: "Seasons & events"
+        name_ar: "الفصول والمناسبات"
+        description_fr: "Saisons de l’année et grandes fêtes pour le coloriage."
+        description_en: "Year seasons and major events for coloring."
+        description_ar: "فصول السنة وأهم المناسبات للتلوين."
+        weight: 4
+        children:
+          - id: saisons
+            slug: seasons
+            name_fr: "Saisons"
+            name_en: "Seasons"
+            name_ar: "الفصول"
+            weight: 0
+            children:
+              - id: printemps
+                slug: spring
+                name_fr: "Printemps"
+                name_en: "Spring"
+                name_ar: "الربيع"
+                weight: 0
+              - id: ete
+                slug: summer
+                name_fr: "Été"
+                name_en: "Summer"
+                name_ar: "الصيف"
+                weight: 1
+              - id: automne
+                slug: autumn
+                name_fr: "Automne"
+                name_en: "Autumn"
+                name_ar: "الخريف"
+                weight: 2
+              - id: hiver
+                slug: winter
+                name_fr: "Hiver"
+                name_en: "Winter"
+                name_ar: "الشتاء"
+                weight: 3
+          - id: fetes
+            slug: events
+            name_fr: "Fêtes & événements"
+            name_en: "Holidays & events"
+            name_ar: "الأعياد والمناسبات"
+            weight: 1
+            children:
+              - id: noel
+                slug: christmas
+                name_fr: "Noël"
+                name_en: "Christmas"
+                name_ar: "عيد الميلاد"
+                weight: 0
+              - id: halloween
+                slug: halloween
+                name_fr: "Halloween"
+                name_en: "Halloween"
+                name_ar: "هالووين"
+                weight: 1
+              - id: paques
+                slug: easter
+                name_fr: "Pâques"
+                name_en: "Easter"
+                name_ar: "عيد الفصح"
+                weight: 2
+              - id: anniversaire
+                slug: birthday
+                name_fr: "Anniversaire"
+                name_en: "Birthday"
+                name_ar: "عيد ميلاد"
+                weight: 3
+              - id: aid
+                slug: aid
+                name_fr: "Aïd"
+                name_en: "Eid"
+                name_ar: "عيد"
+                weight: 4
+
+      # 6. Éducatif
+      - id: educatif
+        slug: educational
+        name_fr: "Éducatif"
+        name_en: "Educational"
+        name_ar: "تعليمي"
+        description_fr: "Coloriages pour apprendre les lettres, chiffres, formes, cartes et sciences."
+        description_en: "Coloring pages to learn letters, numbers, shapes, maps and science."
+        description_ar: "رسومات للتلوين لتعلم الحروف والأرقام والأشكال والخرائط والعلوم."
+        weight: 5
+        children:
+          - id: lettres
+            slug: letters
+            name_fr: "Lettres"
+            name_en: "Letters"
+            name_ar: "الحروف"
+            weight: 0
+          - id: chiffres
+            slug: numbers
+            name_fr: "Chiffres"
+            name_en: "Numbers"
+            name_ar: "الأرقام"
+            weight: 1
+          - id: formes
+            slug: shapes
+            name_fr: "Formes"
+            name_en: "Shapes"
+            name_ar: "الأشكال"
+            weight: 2
+          - id: cartes
+            slug: maps
+            name_fr: "Cartes"
+            name_en: "Maps"
+            name_ar: "الخرائط"
+            weight: 3
+          - id: science
+            slug: science
+            name_fr: "Science"
+            name_en: "Science"
+            name_ar: "العلوم"
+            weight: 4
+
+      # 7. Divers / extension
+      - id: divers
+        slug: misc
+        name_fr: "Divers"
+        name_en: "Miscellaneous"
+        name_ar: "متنوع"
+        description_fr: "Catégorie pour d'autres thèmes et futures extensions (ex. nourriture, bâtiments, motifs spécifiques)."
+        description_en: "Category for other themes and future extensions (e.g. food, buildings, specific patterns)."
+        description_ar: "فئة لمواضيع أخرى وتوسعات مستقبلية (مثل الطعام والمباني والزخارف الخاصة)."
+        weight: 6
+taxonomy_id: universal_v0
+label: "Taxonomie universelle v0"
+languages: [fr, en]
+
+vocabularies:
+  - id: themes
+    label_fr: "Thèmes"
+    label_en: "Themes"
+    terms:
+      - id: animaux
+        slug: animals
+        name_fr: "Animaux"
+        name_en: "Animals"
+        description_fr: "Animaux de toutes sortes, domestiques et sauvages."
+        description_en: "All kinds of animals, domestic and wild."
+        weight: 0
+        keywords: [animaux, animals]
+        children:
+          - id: animaux_foret
+            slug: forest-animals
+            name_fr: "Animaux de la forêt"
+            name_en: "Forest animals"
+            weight: 0
+          - id: animaux_ferme
+            slug: farm-animals
+            name_fr: "Animaux de la ferme"
+            name_en: "Farm animals"
+            weight: 1
+      - id: mandalas
+        slug: mandalas
+        name_fr: "Mandalas"
+        name_en: "Mandalas"
+        description_fr: "Mandalas simples à complexes."
+        description_en: "Mandalas from simple to complex."
+        weight: 1
+        keywords: [mandala]
+        children:
+          - id: mandalas_simples
+            slug: easy-mandalas
+            name_fr: "Mandalas faciles"
+            name_en: "Easy mandalas"
+            weight: 0
+          - id: mandalas_complexes
+            slug: complex-mandalas
+            name_fr: "Mandalas complexes"
+            name_en: "Complex mandalas"
+            weight: 1
+      - id: vehicules
+        slug: vehicles
+        name_fr: "Véhicules"
+        name_en: "Vehicles"
+        weight: 2
+        children:
+          - id: voitures_sport
+            slug: sport-cars
+            name_fr: "Voitures de sport"
+            name_en: "Sport cars"
+            weight: 0
+

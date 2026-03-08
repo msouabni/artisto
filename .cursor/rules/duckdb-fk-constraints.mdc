@@ -1,0 +1,57 @@
+---
+description: Contraintes FK DuckDB – ordre des suppressions et transactions
+globs: "**/*.py"
+alwaysApply: false
+---
+
+# DuckDB – Clés étrangères et transactions
+
+DuckDB valide les contraintes de clés étrangères **trop tôt** dans une même transaction. Une suppression d’une table parente peut échouer même si on a supprimé les lignes enfants dans la même transaction.
+
+## Règle 1 : Séparer suppressions et insertions
+
+Pour un remplacement complet (DELETE + INSERT) :
+
+1. **Suppressions** : exécuter sans `BEGIN` (chaque `DELETE` est auto-commité).
+2. **Insertions** : exécuter dans une transaction explicite (`BEGIN` / `COMMIT`).
+
+```python
+# ❌ BAD – erreur "still referenced by a foreign key"
+conn.execute("BEGIN")
+conn.execute("DELETE FROM term")
+conn.execute("DELETE FROM vocabulary")
+conn.execute("INSERT INTO vocabulary ...")
+conn.execute("COMMIT")
+
+# ✅ GOOD
+conn.execute("DELETE FROM term")
+conn.execute("DELETE FROM vocabulary")
+conn.execute("BEGIN")
+conn.execute("INSERT INTO vocabulary ...")
+conn.execute("COMMIT")
+```
+
+## Règle 2 : Ordre des suppressions (enfants → parents)
+
+Supprimer toujours les tables **enfants** avant les tables **parents** (référencées).
+
+Exemple pour taxonomy :
+
+1. `term` (réf. vocabulary)
+2. `export` (réf. collection)
+3. `collection_image` (réf. collection)
+4. `collection` (réf. taxonomy)
+5. `image_taxonomy_tag` (réf. taxonomy)
+6. `coverage_stats` (réf. taxonomy)
+7. `site_taxonomy` (réf. taxonomy)
+8. `vocabulary` (réf. taxonomy)
+9. `taxonomy`
+
+## Règle 3 : Attention aux effets de bord
+
+Un remplacement complet de la taxonomie supprime aussi `collection`, `collection_image`, `export`, `image_taxonomy_tag`, `coverage_stats`, `site_taxonomy`. Documenter ce comportement si l’API ou les scripts sont exposés.
+
+## Référence
+
+- Schéma : `data/schema.sql`
+- Exemple : `src/api/routes/taxonomy.py` (PUT), `scripts/import_taxonomy_json_to_db.py`

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Éditeur Use Cases – Artiste Coloriage</title>
+  <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; margin: 0; padding: 1rem; transition: background 0.2s, color 0.2s; }
+    body[data-theme="light"] { background: #f8f9fa; color: #202124; }
+    body[data-theme="dark"] { background: #1a1a2e; color: #f7fafc; }
+    .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+    .header h1 { font-size: 1.25rem; margin: 0; font-weight: 600; }
+    .theme-switcher { display: flex; align-items: center; gap: 0.25rem; }
+    .theme-switcher span { font-size: 0.8rem; }
+    .theme-switcher button { padding: 0.35rem 0.6rem; border: 1px solid #dadce0; border-radius: 4px; background: #fff; color: #5f6368; cursor: pointer; font-size: 0.8rem; }
+    body[data-theme="dark"] .theme-switcher button { border-color: #4a5568; background: #2d3748; color: #cbd5e0; }
+    .theme-switcher button.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+    body[data-theme="dark"] .theme-switcher button.active { background: #3182ce; border-color: #3182ce; color: #fff; }
+    .toolbar { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
+    .toolbar button, .toolbar label { padding: 0.5rem 1rem; border-radius: 6px; border: none; cursor: pointer; font-size: 0.9rem; }
+    .toolbar button { background: #1a73e8; color: white; }
+    .toolbar button:hover { background: #1557b0; }
+    .toolbar button.secondary { background: #e8eaed; color: #202124; }
+    body[data-theme="dark"] .toolbar button.secondary { background: #4a5568; color: #cbd5e0; }
+    .toolbar button.secondary:hover { background: #dadce0; }
+    body[data-theme="dark"] .toolbar button.secondary:hover { background: #2d3748; }
+    .toolbar label { background: #e8eaed; color: #202124; display: inline-block; }
+    body[data-theme="dark"] .toolbar label { background: #2d3748; color: #cbd5e0; }
+    .toolbar input[type="file"] { display: none; }
+    .toolbar .filter-input { padding: 0.4rem 0.75rem; border: 1px solid #dadce0; border-radius: 6px; font-size: 0.9rem; width: 200px; }
+    body[data-theme="dark"] .toolbar .filter-input { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .toolbar .filter-input::placeholder { color: #9ca3af; }
+    body[data-theme="dark"] .toolbar .filter-input::placeholder { color: #718096; }
+    .status { font-size: 0.85rem; margin-left: auto; }
+    body[data-theme="light"] .status { color: #5f6368; }
+    body[data-theme="dark"] .status { color: #cbd5e0; }
+    #table-container { border-radius: 8px; padding: 0.5rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: background 0.2s; height: calc(100vh - 180px); min-height: 300px; display: flex; flex-direction: column; }
+    #table-container .tabulator { flex: 1; min-height: 0; }
+    body[data-theme="light"] #table-container { background: #fff; border: 1px solid #dadce0; }
+    body[data-theme="dark"] #table-container { background: #16213e; border: 1px solid #2d3748; }
+    .tabulator { font-size: 0.9rem; }
+    body[data-theme="light"] .tabulator-header .tabulator-col { background: #f8f9fa; color: #202124; border-color: #dadce0; }
+    body[data-theme="dark"] .tabulator-header .tabulator-col { background: #1a1a2e; color: #f7fafc; border-color: #2d3748; }
+    .tabulator { background: transparent; }
+    body[data-theme="light"] .tabulator-row.tabulator-row-even, body[data-theme="light"] .tabulator-row.tabulator-row-odd { background: #fff; }
+    body[data-theme="light"] .tabulator-row.tabulator-row-even .tabulator-cell, body[data-theme="light"] .tabulator-row.tabulator-row-odd .tabulator-cell { color: #202124; }
+    body[data-theme="light"] .tabulator-row:hover { background: #e8f0fe !important; }
+    body[data-theme="light"] .tabulator-row.tabulator-selected { background: #c2e7ff !important; }
+    body[data-theme="light"] .tabulator-cell { border-color: #e0e0e0 !important; color: #202124 !important; }
+    body[data-theme="light"] .tabulator-cell .tabulator-cell-content, body[data-theme="light"] .tabulator-cell .tabulator-value { color: #202124; }
+    body[data-theme="light"] .tabulator-cell.tabulator-editing { background: #fff !important; }
+    body[data-theme="light"] .tabulator-cell.tabulator-editing input, body[data-theme="light"] .tabulator-cell.tabulator-editing select { color: #202124; background: #fff; border: 1px solid #1a73e8; }
+    body[data-theme="light"] .tabulator .tabulator-cell[tabulator-field="domain_id"] { font-weight: 600; color: #1a73e8 !important; }
+    body[data-theme="dark"] .tabulator-row.tabulator-row-even, body[data-theme="dark"] .tabulator-row.tabulator-row-odd { background: #1e3a5f; }
+    body[data-theme="dark"] .tabulator-row.tabulator-row-even .tabulator-cell, body[data-theme="dark"] .tabulator-row.tabulator-row-odd .tabulator-cell { color: #f7fafc; }
+    body[data-theme="dark"] .tabulator-row:hover { background: #2d4a6f !important; }
+    body[data-theme="dark"] .tabulator-row.tabulator-selected { background: #2c5282 !important; }
+    body[data-theme="dark"] .tabulator-cell { border-color: #2d3748 !important; color: #f7fafc !important; }
+    body[data-theme="dark"] .tabulator-cell .tabulator-cell-content, body[data-theme="dark"] .tabulator-cell .tabulator-value { color: #f7fafc; }
+    body[data-theme="dark"] .tabulator-cell.tabulator-editing { background: #2d3748 !important; }
+    body[data-theme="dark"] .tabulator-cell.tabulator-editing input, body[data-theme="dark"] .tabulator-cell.tabulator-editing select { color: #1a1a2e; background: #f7fafc; }
+    body[data-theme="dark"] .tabulator .tabulator-cell[tabulator-field="domain_id"] { font-weight: 600; color: #90cdf4 !important; }
+    .tabulator .tabulator-cell[tabulator-field="status"] { text-transform: uppercase; font-size: 0.8rem; }
+    .tabulator .tabulator-cell[tabulator-field="phase"] { text-align: center; }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="header">
+    <h1>Éditeur Use Cases – Artiste Coloriage</h1>
+    <div class="theme-switcher">
+      <span>Thème :</span>
+      <button type="button" id="btn-theme-light" class="active">Clair (Excel)</button>
+      <button type="button" id="btn-theme-dark">Sombre</button>
+    </div>
+  </div>
+  <div class="toolbar">
+    <label for="file-input">Charger un YAML</label>
+    <input type="file" id="file-input" accept=".yaml,.yml">
+    <button type="button" id="btn-save" disabled>Enregistrer (télécharger)</button>
+    <button type="button" id="btn-add-row" class="secondary">Ajouter une ligne</button>
+    <button type="button" id="btn-delete-row" class="secondary">Supprimer la sélection</button>
+    <input type="text" id="filter-input" class="filter-input" placeholder="Rechercher dans tout le tableau…" title="Filtre sur toutes les colonnes">
+    <span class="status" id="status">Chargez un fichier use_cases.yaml</span>
+  </div>
+  <div id="table-container"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+  <script>
+    const SEP = ' | ';
+    const THEME_KEY = 'use_cases_editor_theme';
+
+    function applyTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      document.getElementById('btn-theme-light').classList.toggle('active', theme === 'light');
+      document.getElementById('btn-theme-dark').classList.toggle('active', theme === 'dark');
+      try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+    }
+
+    document.getElementById('btn-theme-light').addEventListener('click', () => applyTheme('light'));
+    document.getElementById('btn-theme-dark').addEventListener('click', () => applyTheme('dark'));
+    (function() {
+      try {
+        const saved = localStorage.getItem(THEME_KEY);
+        if (saved === 'light' || saved === 'dark') applyTheme(saved);
+      } catch (_) {}
+    })();
+
+    function flattenDomains(domains) {
+      const rows = [];
+      for (const d of domains || []) {
+        for (const uc of d.use_cases || []) {
+          rows.push({
+            domain_id: d.id || '',
+            domain_label: d.label || '',
+            id: uc.id || '',
+            title: uc.title || '',
+            phase: uc.phase ?? '',
+            actors: Array.isArray(uc.actors) ? uc.actors.join(SEP) : (uc.actors || ''),
+            status: uc.status || 'planned',
+            description: uc.description || '',
+            related_files: Array.isArray(uc.related_files) ? uc.related_files.join(SEP) : (uc.related_files || ''),
+            related_taxonomy_terms: Array.isArray(uc.related_taxonomy_terms) ? uc.related_taxonomy_terms.join(SEP) : (uc.related_taxonomy_terms || ''),
+          });
+        }
+      }
+      return rows;
+    }
+
+    function unflattenToDomains(rows) {
+      const domainMap = new Map();
+      for (const r of rows) {
+        const did = r.domain_id || 'unknown';
+        if (!domainMap.has(did)) {
+          domainMap.set(did, { id: did, label: r.domain_label || did, use_cases: [] });
+        }
+        const d = domainMap.get(did);
+        const uc = {
+          id: r.id || '',
+          title: r.title || '',
+          phase: r.phase === '' ? 0 : Number(r.phase) || 0,
+          actors: (r.actors || '').split(SEP).map(s => s.trim()).filter(Boolean),
+          status: r.status || 'planned',
+          description: r.description || '',
+          related_files: (r.related_files || '').split(SEP).map(s => s.trim()).filter(Boolean),
+        };
+        const terms = (r.related_taxonomy_terms || '').split(SEP).map(s => s.trim()).filter(Boolean);
+        if (terms.length > 0) uc.related_taxonomy_terms = terms;
+        d.use_cases.push(uc);
+      }
+      return Array.from(domainMap.values()).sort((a, b) => a.id.localeCompare(b.id));
+    }
+
+    let table = null;
+    let currentFileName = 'use_cases.yaml';
+
+    const fileInput = document.getElementById('file-input');
+    const btnSave = document.getElementById('btn-save');
+    const btnAddRow = document.getElementById('btn-add-row');
+    const btnDeleteRow = document.getElementById('btn-delete-row');
+    const filterInput = document.getElementById('filter-input');
+    const statusEl = document.getElementById('status');
+
+    const FILTER_FIELDS = ['domain_id', 'domain_label', 'id', 'title', 'phase', 'actors', 'status', 'description', 'related_files', 'related_taxonomy_terms'];
+
+    function setStatus(msg) { statusEl.textContent = msg; }
+
+    function applyGeneralFilter() {
+      if (!table) return;
+      const q = (filterInput?.value || '').trim().toLowerCase();
+      if (!q) {
+        table.clearFilter();
+        return;
+      }
+      table.setFilter(function(data) {
+        return FILTER_FIELDS.some(function(f) {
+          return String(data[f] || '').toLowerCase().includes(q);
+        });
+      });
+    }
+
+    function initTable(data = []) {
+      if (table) table.destroy();
+      table = new Tabulator('#table-container', {
+        data,
+        height: '100%',
+        layout: 'fitColumns',
+        editTriggerEvent: 'click',
+        columns: [
+          { title: 'Domaine', field: 'domain_id', width: 110, editor: 'input' },
+          { title: 'Label domaine', field: 'domain_label', width: 180, editor: 'input' },
+          { title: 'ID', field: 'id', width: 180, editor: 'input' },
+          { title: 'Titre', field: 'title', width: 280, editor: 'input' },
+          { title: 'Phase', field: 'phase', width: 70, editor: 'number', hozAlign: 'center' },
+          { title: 'Acteurs', field: 'actors', width: 180, editor: 'input', formatter: 'textarea' },
+          { title: 'Status', field: 'status', width: 100, editor: 'list', editorParams: { values: ['planned', 'in_progress', 'done', 'deprecated'] } },
+          { title: 'Description', field: 'description', width: 300, minWidth: 150, editor: 'input', formatter: 'textarea' },
+          { title: 'Fichiers liés', field: 'related_files', width: 220, minWidth: 180, editor: 'input' },
+          { title: 'Termes taxo', field: 'related_taxonomy_terms', width: 150, minWidth: 120, editor: 'input' },
+        ],
+        selectable: true,
+        selectableRange: true,
+      });
+      btnSave.disabled = false;
+      setStatus(data.length + ' use case(s) chargé(s). Éditez puis cliquez sur Enregistrer.');
+      applyGeneralFilter();
+    }
+
+    filterInput.addEventListener('input', applyGeneralFilter);
+    filterInput.addEventListener('keydown', function(e) { if (e.key === 'Escape') { filterInput.value = ''; applyGeneralFilter(); filterInput.blur(); } });
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      currentFileName = file.name;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const yaml = ev.target?.result;
+          const parsed = jsyaml.load(yaml);
+          const rows = flattenDomains(parsed?.domains);
+          initTable(rows);
+        } catch (err) {
+          setStatus('Erreur : ' + err.message);
+        }
+      };
+      reader.readAsText(file, 'UTF-8');
+    });
+
+    btnSave.addEventListener('click', () => {
+      if (!table) return;
+      const rows = table.getData();
+      const domains = unflattenToDomains(rows);
+      const yaml = jsyaml.dump({ domains }, { lineWidth: -1, noRefs: true });
+      const blob = new Blob([yaml], { type: 'text/yaml' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = currentFileName;
+      a.click();
+      URL.revokeObjectURL(a.href);
+      setStatus('Fichier téléchargé. Remplacez le fichier source si nécessaire.');
+    });
+
+    btnAddRow.addEventListener('click', () => {
+      if (!table) return;
+      table.addRow({
+        domain_id: 'nouveau',
+        domain_label: '',
+        id: 'NEW_UC_' + Date.now(),
+        title: '',
+        phase: 1,
+        actors: 'admin_plateforme',
+        status: 'planned',
+        description: '',
+        related_files: '',
+        related_taxonomy_terms: '',
+      });
+      setStatus('Ligne ajoutée.');
+    });
+
+    btnDeleteRow.addEventListener('click', () => {
+      if (!table) return;
+      const selected = table.getSelectedRows();
+      if (selected.length === 0) {
+        setStatus('Sélectionnez des lignes à supprimer.');
+        return;
+      }
+      selected.forEach(r => r.delete());
+      setStatus(selected.length + ' ligne(s) supprimée(s).');
+    });
+  </script>
+</body>
+</html>

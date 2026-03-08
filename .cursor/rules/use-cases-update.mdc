@@ -1,0 +1,22 @@
+---
+description: Mettre à jour use_cases.yaml lors de l'implémentation d'un use case
+alwaysApply: true
+---
+
+# Mise à jour des use cases à l'implémentation
+
+Dès qu'un use case du référentiel est implémenté (code, éditeur, pipeline, etc.), **mettre à jour** `docs/use-cases/use_cases.yaml` :
+
+1. **Changer le status** du use case concerné :
+   - `planned` → `in_progress` : en cours d'implémentation
+   - `in_progress` → `done` : implémentation terminée et validée
+
+2. **Mettre à jour `related_files`** si de nouveaux fichiers ont été créés ou modifiés pour ce use case (ex. nouvel éditeur, nouveau module Python).
+
+3. **Identifier le use case** : chaque use case a un `id` (ex. `TAXO_ADD_TERM`, `GEN_CONCEPTS_FROM_THEME`). Vérifier dans use_cases.yaml quel(s) use case(s) correspondent à la fonctionnalité implémentée.
+
+## Référence
+
+- Fichier maître : `docs/use-cases/use_cases.yaml`
+- Éditeur visuel : `docs/use-cases/use_cases_editor.html`
+- Documentation : `docs/use-cases/README.md`

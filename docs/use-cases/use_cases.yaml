@@ -1,0 +1,243 @@
+domains:
+  - id: taxonomy
+    label: "Taxonomie universelle et dérivées"
+    use_cases:
+      - id: TAXO_CREATE_UNIVERSAL
+        title: "Créer et maintenir la taxonomie universelle v0 FR/EN/AR"
+        phase: 1
+        actors: ["admin_plateforme"]
+        status: done
+        description: "Définir et maintenir la hiérarchie des thèmes universels pour la base d’images."
+        related_files:
+          - "data/artiste_coloriage.duckdb"
+          - "data/taxonomy_editor.html"
+          - "data/schema.sql"
+          - "src/taxonomy.py"
+          - "src/api/"
+          - "docs/taxonomy_universal_v0.md"
+        related_taxonomy_terms:
+          - "animaux"
+          - "mandalas"
+          - "vehicules"
+      - id: TAXO_DERIVE_SITE_TAXONOMY
+        title: "Dériver une taxonomie simplifiée pour un site"
+        phase: 5
+        actors: ["admin_plateforme"]
+        status: planned
+        description: "Créer et maintenir une taxonomie de sortie adaptée à un site (langue/pays/audience) à partir de la taxonomie universelle."
+        related_files:
+          - "data/taxonomy_universal_v0.json"
+          - "architecture.md"
+      - id: TAXO_ADD_TERM
+        title: "Ajouter un terme à la taxonomie"
+        phase: 1
+        actors: ["admin_plateforme"]
+        status: done
+        description: "Ajouter un nouveau terme (racine ou enfant) avec id, slug, libellés FR/EN/AR et weight."
+        related_files:
+          - "data/taxonomy_universal_v0.json"
+          - "data/taxonomy_editor.html"
+          - "src/taxonomy.py"
+      - id: TAXO_MOVE_TERM
+        title: "Déplacer un terme (changer de parent)"
+        phase: 1
+        actors: ["admin_plateforme"]
+        status: in_progress
+        description: "Changer le parent d'un terme existant ou le promouvoir en racine."
+        related_files:
+          - "data/taxonomy_universal_v0.json"
+          - "data/taxonomy_editor.html"
+          - "src/taxonomy.py"
+      - id: TAXO_REORDER_TERMS
+        title: "Réordonner les termes (weight)"
+        phase: 1
+        actors: ["admin_plateforme"]
+        status: done
+        description: "Modifier l'ordre d'affichage des termes parmi leurs frères via le champ weight."
+        related_files:
+          - "data/taxonomy_universal_v0.json"
+          - "data/taxonomy_editor.html"
+          - "src/taxonomy.py"
+      - id: TAXO_RENAME_TERM
+        title: "Renommer un terme ou modifier ses libellés"
+        phase: 1
+        actors: ["admin_plateforme"]
+        status: done
+        description: "Modifier les libellés multilingues (name_fr, name_en, name_ar) d'un terme. L'id reste stable."
+        related_files:
+          - "data/taxonomy_universal_v0.json"
+          - "data/taxonomy_editor.html"
+          - "src/taxonomy.py"
+      - id: TAXO_UPDATE_SLUG
+        title: "Modifier le slug d'un terme"
+        phase: 1
+        actors: ["admin_plateforme"]
+        status: done
+        description: "Changer le slug d'un terme pour les URLs. Impact sur les exports et les sites dérivés."
+        related_files:
+          - "data/taxonomy_universal_v0.json"
+          - "data/taxonomy_editor.html"
+          - "src/taxonomy.py"
+      - id: TAXO_DELETE_TERM
+        title: "Supprimer ou déprécier un terme"
+        phase: 1
+        actors: ["admin_plateforme"]
+        status: done
+        description: "Supprimer un terme de la taxonomie ou le marquer comme déprécié. Vérifier les images et taxonomies de sortie impactées."
+        related_files:
+          - "data/taxonomy_universal_v0.json"
+          - "data/taxonomy_editor.html"
+          - "src/taxonomy.py"
+          - "architecture.md"
+      - id: TAXO_UPDATE_TRANSLATIONS
+        title: "Gérer les traductions d'un terme (FR/EN/AR)"
+        phase: 1
+        actors: ["admin_plateforme"]
+        status: done
+        description: "Ajouter ou modifier les champs name_* et description_* pour une ou plusieurs langues."
+        related_files:
+          - "data/taxonomy_universal_v0.json"
+          - "data/taxonomy_editor.html"
+          - "src/taxonomy.py"
+      - id: TAXO_AUDIT_TERM_REFERENCES
+        title: "Auditer les références avant modification/suppression"
+        phase: 1
+        actors: ["admin_plateforme"]
+        status: planned
+        description: "Lister les images, taxonomies de sortie et use cases référençant un terme avant de le modifier ou supprimer."
+        related_files:
+          - "src/taxonomy.py"
+          - "architecture.md"
+          - "docs/use-cases/use_cases.yaml"
+
+  - id: generation
+    label: "Génération de concepts, prompts et images"
+    use_cases:
+      - id: GEN_CONCEPTS_FROM_THEME
+        title: "Générer des concepts à partir d’un thème"
+        phase: 2
+        actors: ["admin_plateforme", "agent_systeme"]
+        status: planned
+        description: "À partir d’un thème saisi et de la taxonomie, produire une liste de concepts alignés."
+        related_files:
+          - "src/concepts.py"
+          - "specifications.md"
+      - id: GEN_PROMPTS_FROM_CONCEPTS
+        title: "Générer des prompts line art à partir de concepts"
+        phase: 2
+        actors: ["admin_plateforme", "agent_systeme"]
+        status: planned
+        description: "Transformer les concepts en prompts optimisés pour la génération de line art sans ombrage."
+        related_files:
+          - "src/concepts.py"
+      - id: GEN_IMAGES_FROM_PROMPTS
+        title: "Générer des images à partir de prompts"
+        phase: 3
+        actors: ["agent_systeme"]
+        status: planned
+        description: "Générer un lot d’images line art à partir de prompts, en local via Diffusers."
+        related_files:
+          - "src/image_generation.py"
+          - "architecture.md"
+
+  - id: postprocess
+    label: "Post-traitement des images"
+    use_cases:
+      - id: POST_CLEAN_LINEART
+        title: "Nettoyer les images pour obtenir un line art imprimable"
+        phase: 4
+        actors: ["agent_systeme"]
+        status: planned
+        description: "Appliquer binarisation, débruitage et renforcement de contours pour obtenir un line art propre."
+        related_files:
+          - "src/postprocess.py"
+      - id: POST_UPSCALE_FOR_PRINT
+        title: "Préparer les images pour l’impression"
+        phase: 4
+        actors: ["agent_systeme"]
+        status: planned
+        description: "Mettre à l’échelle et ajuster la résolution des images pour impression (300 DPI)."
+        related_files:
+          - "src/postprocess.py"
+
+  - id: export
+    label: "Export des collections"
+    use_cases:
+      - id: EXP_EXPORT_COLLECTION_FOLDER
+        title: "Exporter une collection dans un dossier"
+        phase: 4
+        actors: ["admin_plateforme", "agent_systeme"]
+        status: planned
+        description: "Regrouper les images d’un thème dans un dossier de collection prêt à être utilisé."
+        related_files:
+          - "src/pipeline.py"
+      - id: EXP_EXPORT_COLLECTION_PDF
+        title: "Exporter une collection en PDF"
+        phase: 4
+        actors: ["admin_plateforme"]
+        status: planned
+        description: "Générer un PDF regroupant les images d’une collection pour impression."
+        related_files:
+          - "src/pipeline.py"
+
+  - id: monitoring
+    label: "Monitoring et pilotage"
+    use_cases:
+      - id: MON_TRACK_JOBS
+        title: "Suivre les jobs de génération et post-traitement"
+        phase: 4
+        actors: ["admin_plateforme"]
+        status: planned
+        description: "Suivre l’état des jobs (en cours, réussi, en erreur) via les tables SQLite."
+        related_files:
+          - "architecture.md"
+      - id: MON_TAXONOMY_COVERAGE
+        title: "Mesurer la couverture de la taxonomie"
+        phase: 4
+        actors: ["admin_plateforme"]
+        status: planned
+        description: "Mesurer combien d’images existent par branche de la taxonomie pour identifier les manques."
+        related_files:
+          - "architecture.md"
+
+  - id: agent
+    label: "Agent de pilotage"
+    use_cases:
+      - id: AGENT_ORCHESTRATE_PIPELINE
+        title: "Orchestrer le pipeline via un agent"
+        phase: 6
+        actors: ["agent_systeme"]
+        status: planned
+        description: "Un agent pilote les outils (taxonomie, LLM, génération, post-traitement, export) en respectant les garde-fous."
+        related_files:
+          - "architecture.md"
+      - id: AGENT_SUGGEST_TOPICS_FROM_GAPS
+        title: "Proposer des thèmes à partir des gaps de couverture"
+        phase: 6
+        actors: ["agent_systeme", "admin_plateforme"]
+        status: planned
+        description: "Analyser la couverture de la taxonomie et proposer de nouveaux thèmes à générer."
+        related_files:
+          - "architecture.md"
+          - "docs/taxonomy_universal_v0.md"
+
+  - id: sites
+    label: "Portefeuille de sites"
+    use_cases:
+      - id: SITE_INIT_NEW_COLORING_SITE
+        title: "Initialiser un nouveau site de coloriage"
+        phase: 5
+        actors: ["admin_plateforme"]
+        status: planned
+        description: "Créer la structure initiale d’un nouveau site (taxonomie simplifiée, premières collections exportées)."
+        related_files:
+          - "architecture.md"
+      - id: SITE_SYNC_UPDATES
+        title: "Synchroniser les mises à jour vers un site existant"
+        phase: 5
+        actors: ["admin_plateforme", "agent_systeme"]
+        status: planned
+        description: "Mettre à jour un site existant avec les nouvelles images/collections sans écraser le contenu local."
+        related_files:
+          - "architecture.md"
+

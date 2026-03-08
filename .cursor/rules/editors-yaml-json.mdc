@@ -1,0 +1,29 @@
+---
+description: Créer un éditeur visuel pour chaque livrable YAML ou JSON
+alwaysApply: true
+---
+
+# Éditeurs pour livrables YAML/JSON
+
+Lors de la création ou livraison d'un fichier YAML ou JSON (taxonomie, use cases, config, registre de sites, etc.), **créer un éditeur HTML associé** qui :
+
+1. **Charge le fichier** via file picker (`<input type="file">`)
+2. **Affiche les données en tableau** éditable (Tabulator.js ou équivalent)
+3. **Permet l'édition inline** des cellules (editTriggerEvent: "click" ou "dblclick")
+4. **Télécharge le fichier modifié** (Blob + URL.createObjectURL + `<a download>`)
+
+## Fonctionnalités recommandées
+
+- Sélecteur de thème (clair type Excel / sombre)
+- Filtre de recherche général sur toutes les colonnes
+- En-tête fixe avec scroll vertical du corps du tableau
+- Section documentation optionnelle (schéma, champs, conventions) pour faciliter les mises à jour
+
+## Emplacement
+
+- À côté du fichier source ou dans le même dossier (ex. `use_cases_editor.html` pour `use_cases.yaml`)
+- Ou dans un dossier dédié (ex. `docs/use-cases/`)
+
+## Référence
+
+S'inspirer de `docs/use-cases/use_cases_editor.html` comme modèle (Tabulator, js-yaml, flatten/unflatten pour structures imbriquées).
