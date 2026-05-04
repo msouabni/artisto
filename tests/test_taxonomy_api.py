@@ -7,6 +7,12 @@ from fastapi.testclient import TestClient
 from api.routes.taxonomy import _build_terms_tree
 
 
+def _flatten_terms_tree(nodes, out):
+    for n in nodes or []:
+        out.append(n)
+        _flatten_terms_tree(n.get("children"), out)
+
+
 class TestBuildTermsTree:
     """Tests unitaires sur _build_terms_tree (tri, NULL)."""
 
@@ -53,6 +59,7 @@ class TestGetVocabularyTerms:
         # Le nœud renvoyé doit avoir weight entier (sérialisation JSON sûre)
         for node in terms:
             assert isinstance(node.get("weight"), int), f"weight should be int, got {type(node.get('weight'))}"
+            assert isinstance(node.get("subjects_count"), int)
 
     def test_get_terms_response_is_valid_json_and_weights_are_int(self, app_with_test_db, test_conn):
         """La réponse GET terms doit être du JSON valide avec weight de type int (pas numpy, etc.)."""
@@ -70,6 +77,7 @@ class TestGetVocabularyTerms:
         terms = data["terms"]
         for node in terms:
             assert isinstance(node.get("weight"), int), f"weight must be int for JSON, got {type(node.get('weight'))}"
+            assert isinstance(node.get("subjects_count"), int)
             assert isinstance(node.get("id"), str)
             assert isinstance(node.get("slug"), str)
 
@@ -96,5 +104,8 @@ class TestGetVocabularyTerms:
         assert "children" in parent
         children = parent["children"]
         assert any(c["id"] == "child_1" for c in children)
-        for node in terms:
+        flat = []
+        _flatten_terms_tree(terms, flat)
+        for node in flat:
             assert isinstance(node.get("weight"), int)
+            assert isinstance(node.get("subjects_count"), int)

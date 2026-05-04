@@ -1,0 +1,3432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Images — Artiste Coloriage</title>
+  <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css">
+  <link rel="stylesheet" href="/data/shared/nav.css">
+  <link rel="stylesheet" href="/data/shared/editor-core.css">
+  <style>
+    /* ── Status badges ────────────────────────────────────────────────────── */
+    .badge {
+      display: inline-block; padding: 0.15rem 0.55rem;
+      border-radius: 10px; font-size: 0.74rem; font-weight: 600;
+      white-space: nowrap; letter-spacing: 0.01em;
+    }
+    .badge-draft        { background: #f1f5f9; color: #64748b; }
+    .badge-prompt_ready { background: #fef9c3; color: #a16207; }
+    .badge-scheduled    { background: #ffedd5; color: #c2410c; }
+    .badge-generating   { background: #dbeafe; color: #1d4ed8; animation: pulse-bg 1.2s ease-in-out infinite; }
+    .badge-generated    { background: #e0f2fe; color: #0369a1; }
+    .badge-approved     { background: #dcfce7; color: #15803d; }
+    .badge-rejected     { background: #fee2e2; color: #b91c1c; }
+    .badge-published    { background: #ede9fe; color: #6d28d9; }
+
+    @keyframes pulse-bg {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.6; }
+    }
+
+    body[data-theme="dark"] .badge-draft        { background: #1e293b; color: #94a3b8; }
+    body[data-theme="dark"] .badge-prompt_ready { background: #422006; color: #fde68a; }
+    body[data-theme="dark"] .badge-scheduled    { background: #431407; color: #fdba74; }
+    body[data-theme="dark"] .badge-generating   { background: #1e3a5f; color: #93c5fd; }
+    body[data-theme="dark"] .badge-generated    { background: #0c2940; color: #7dd3fc; }
+    body[data-theme="dark"] .badge-approved     { background: #14532d; color: #86efac; }
+    body[data-theme="dark"] .badge-rejected     { background: #450a0a; color: #fca5a5; }
+    body[data-theme="dark"] .badge-published    { background: #2e1065; color: #c4b5fd; }
+
+    /* ── Filter toolbar extras ───────────────────────────────────────────── */
+    .filter-row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.4rem; font-size: 0.84rem; }
+    .filter-row label { display: flex; align-items: center; gap: 0.35rem; }
+    .filter-row select, .filter-row input[type="text"] {
+      padding: 0.3rem 0.5rem; border: 1px solid #dadce0;
+      border-radius: 4px; font-size: 0.84rem; background: #fff; color: #202124;
+    }
+    body[data-theme="dark"] .filter-row select,
+    body[data-theme="dark"] .filter-row input[type="text"] {
+      border-color: #4a5568; background: #2d3748; color: #f7fafc;
+    }
+    .filter-btn {
+      padding: 0.3rem 0.75rem; border-radius: 4px; border: 1px solid #dadce0;
+      cursor: pointer; font-size: 0.84rem; background: #fff; color: #202124;
+    }
+    body[data-theme="dark"] .filter-btn { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+
+    /* ── Outputs panel ───────────────────────────────────────────────────── */
+    .outputs-modal { display: none; position: fixed; inset: 0; z-index: 1100;
+      background: rgba(0,0,0,.45); align-items: center; justify-content: center; }
+    .outputs-modal.open { display: flex; }
+    .outputs-dialog {
+      background: #fff; border-radius: 10px; padding: 1.5rem 1.75rem;
+      min-width: 520px; max-width: 800px; max-height: 80vh;
+      display: flex; flex-direction: column; gap: 1rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    }
+    body[data-theme="dark"] .outputs-dialog { background: #1e293b; color: #f1f5f9; }
+    .outputs-dialog h3 { margin: 0 0 0.5rem; font-size: 1.1rem; }
+    .outputs-table { overflow-y: auto; flex: 1; }
+    .outputs-table table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .outputs-table th, .outputs-table td {
+      padding: 0.4rem 0.6rem; border-bottom: 1px solid #e2e8f0; text-align: left;
+    }
+    body[data-theme="dark"] .outputs-table th,
+    body[data-theme="dark"] .outputs-table td { border-color: #334155; }
+    .outputs-table th { font-weight: 600; background: #f8fafc; }
+    body[data-theme="dark"] .outputs-table th { background: #0f172a; }
+    .outputs-table tr.selected-output { background: #ecfdf5; }
+    body[data-theme="dark"] .outputs-table tr.selected-output { background: #064e3b; }
+    .output-select-btn {
+      padding: 0.2rem 0.5rem; font-size: 0.78rem; cursor: pointer;
+      border: 1px solid #15803d; background: transparent; color: #15803d;
+      border-radius: 4px;
+    }
+    .output-select-btn:hover { background: #dcfce7; }
+
+    /* Tags modal — arbre à checkboxes */
+    .tags-tree-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0; font-size: 0.9rem; cursor: pointer; }
+    .tags-tree-item:hover { background: #f1f5f9; border-radius: 4px; }
+    body[data-theme="dark"] .tags-tree-item:hover { background: #334155; }
+    .tags-tree-item input[type="checkbox"] { flex-shrink: 0; cursor: pointer; }
+    .tags-tree-children { margin-left: 1rem; border-left: 1px solid #e2e8f0; padding-left: 0.5rem; }
+    body[data-theme="dark"] #modal-tags .outputs-dialog #tags-tree-container { border-color: #334155; background: #0f172a; }
+    body[data-theme="dark"] .tags-tree-children { border-color: #334155; }
+
+    /* Output thumbnail (form) */
+    #output-thumbnail { border: 1px solid #e2e8f0; }
+    body[data-theme="dark"] #output-thumbnail { border-color: #334155; }
+    #job-output-image-wrap { cursor: pointer; }
+
+    /* Job status badges */
+    .badge-job-pending   { background: #f1f5f9; color: #64748b; }
+    .badge-job-running   { background: #dbeafe; color: #1d4ed8; animation: pulse-bg 1.2s ease-in-out infinite; }
+    .badge-job-completed { background: #dcfce7; color: #15803d; }
+    .badge-job-failed    { background: #fee2e2; color: #b91c1c; }
+    .badge-job-cancelled { background: #fef3c7; color: #b45309; }
+    .badge-job-awaiting_validation { background: #e0e7ff; color: #4338ca; }
+    body[data-theme="dark"] .badge-job-pending   { background: #1e293b; color: #94a3b8; }
+    body[data-theme="dark"] .badge-job-running   { background: #1e3a5f; color: #93c5fd; }
+    body[data-theme="dark"] .badge-job-completed { background: #14532d; color: #86efac; }
+    body[data-theme="dark"] .badge-job-failed    { background: #450a0a; color: #fca5a5; }
+    body[data-theme="dark"] .badge-job-cancelled { background: #422006; color: #fde68a; }
+    body[data-theme="dark"] .badge-job-awaiting_validation { background: #312e81; color: #a5b4fc; }
+    .output-text-content { max-height:120px; overflow-y:auto; font-size:0.8rem; white-space:pre-wrap; padding:0.5rem; background:#f8fafc; border-radius:6px; border:1px solid #e2e8f0; margin-top:0.5rem; }
+    body[data-theme="dark"] .output-text-content { background:#0f172a; border-color:#334155; }
+
+    /* Import diff modal */
+    .import-diff-modal .modal-dialog { max-width: 720px; max-height: 90vh; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+    .import-diff-header { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid #e8eaed; flex-shrink: 0; }
+    body[data-theme="dark"] .import-diff-header { border-color: #2d3748; }
+    .import-diff-header h3 { margin: 0; font-size: 1.05rem; flex: 1; }
+    .import-diff-body { flex: 1; overflow-y: auto; padding: 1rem 1.25rem; }
+    .import-diff-footer { padding: 0.75rem 1.25rem; border-top: 1px solid #e8eaed; display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center; flex-shrink: 0; }
+    body[data-theme="dark"] .import-diff-footer { border-color: #2d3748; }
+    #import-diff-textarea { width: 100%; height: 240px; font-family: monospace; font-size: 0.8rem; padding: 0.6rem 0.75rem; border: 1px solid #dadce0; border-radius: 6px; box-sizing: border-box; resize: vertical; line-height: 1.4; }
+    body[data-theme="dark"] #import-diff-textarea { border-color: #4a5568; background: #0f1923; color: #d1d5db; }
+    .import-diff-error { background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 0.6rem 1rem; color: #b91c1c; font-size: 0.85rem; margin-bottom: 0.75rem; display: none; }
+    body[data-theme="dark"] .import-diff-error { background: #2d1515; border-color: #7f1d1d; color: #fca5a5; }
+    .import-diff-summary { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.82rem; }
+    .diff-badge { display: inline-block; padding: 0.18rem 0.55rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+    .diff-badge--ready  { background: #dcfce7; color: #15803d; }
+    .diff-badge--update { background: #dbeafe; color: #1d4ed8; }
+    .diff-badge--conflict { background: #fef9c3; color: #854d0e; }
+    .diff-badge--error  { background: #fee2e2; color: #b91c1c; }
+    .diff-badge--skip   { background: #f1f5f9; color: #64748b; }
+    body[data-theme="dark"] .diff-badge--ready  { background: #14532d; color: #86efac; }
+    body[data-theme="dark"] .diff-badge--update { background: #1e3a5f; color: #93c5fd; }
+    body[data-theme="dark"] .diff-badge--conflict { background: #422006; color: #fde68a; }
+    body[data-theme="dark"] .diff-badge--error  { background: #450a0a; color: #fca5a5; }
+    body[data-theme="dark"] .diff-badge--skip   { background: #1e293b; color: #94a3b8; }
+    .diff-op { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; padding: 0.1rem 0.4rem; border-radius: 4px; font-family: monospace; background: #f1f5f9; color: #475569; }
+    body[data-theme="dark"] .diff-op { background: #1e293b; color: #94a3b8; }
+    body[data-theme="dark"] #form-prompt-ai-buttons { border-color: #334155; }
+    .import-diff-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .import-diff-table th { text-align: left; padding: 0.4rem 0.6rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #5f6368; border-bottom: 2px solid #e8eaed; }
+    body[data-theme="dark"] .import-diff-table th { color: #a0aec0; border-color: #2d3748; }
+    .import-diff-table td { padding: 0.45rem 0.6rem; border-bottom: 1px solid #f1f3f4; vertical-align: top; }
+    body[data-theme="dark"] .import-diff-table td { border-color: #1e293b; }
+    .diff-id-cell { font-family: monospace; font-weight: 600; font-size: 0.8rem; }
+    .diff-msg-cell { font-size: 0.78rem; color: #5f6368; max-width: 200px; }
+    body[data-theme="dark"] .diff-msg-cell { color: #a0aec0; }
+    .diff-detail-toggle { font-size: 0.75rem; color: #1a73e8; cursor: pointer; text-decoration: underline; }
+    .diff-changes { font-size: 0.78rem; font-family: monospace; background: #f8f9fa; border-radius: 4px; padding: 0.4rem 0.6rem; max-height: 120px; overflow-y: auto; }
+    body[data-theme="dark"] .diff-changes { background: #0f1923; color: #d1d5db; }
+    .diff-change-from { color: #b91c1c; text-decoration: line-through; }
+    .diff-change-to { color: #15803d; }
+    body[data-theme="dark"] .diff-change-from { color: #fca5a5; }
+    body[data-theme="dark"] .diff-change-to { color: #86efac; }
+    .import-diff-select-all { font-size: 0.8rem; color: #1a73e8; cursor: pointer; text-decoration: underline; margin-right: auto; }
+    body[data-theme="dark"] .import-diff-select-all { color: #90cdf4; }
+
+    /* ── Chips autocomplete (tags inline) ───────────────────────────────────── */
+    .chips-container { display: flex; flex-wrap: wrap; gap: 0.3rem; min-height: 1.5rem; margin-bottom: 0.35rem; }
+    .chip { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.15rem 0.5rem; border-radius: 12px; font-size: 0.78rem; background: #dbeafe; color: #1d4ed8; white-space: nowrap; }
+    .chip-remove { background: none; border: none; padding: 0; cursor: pointer; font-size: 0.8rem; line-height: 1; color: #1d4ed8; opacity: 0.7; }
+    .chip-remove:hover { opacity: 1; }
+    body[data-theme="dark"] .chip { background: #1e3a5f; color: #93c5fd; }
+    body[data-theme="dark"] .chip-remove { color: #93c5fd; }
+    .chips-input-wrap input { width: 100%; padding: 0.3rem 0.5rem; border: 1px solid #dadce0; border-radius: 4px; font-size: 0.84rem; background: #fff; color: #202124; }
+    body[data-theme="dark"] .chips-input-wrap input { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .chips-suggestions { position: absolute; top: 100%; left: 0; right: 0; z-index: 200; background: #fff; border: 1px solid #dadce0; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,.1); max-height: 180px; overflow-y: auto; display: none; }
+    body[data-theme="dark"] .chips-suggestions { background: #1e293b; border-color: #4a5568; }
+    .chips-suggestion-item { padding: 0.35rem 0.65rem; font-size: 0.84rem; cursor: pointer; }
+    .chips-suggestion-item:hover, .chips-suggestion-item.active { background: #e8f0fe; }
+    body[data-theme="dark"] .chips-suggestion-item:hover, body[data-theme="dark"] .chips-suggestion-item.active { background: #1e3a5f; }
+
+    /* ── Modal Générer concepts IA (stepper 3 étapes) ─────────────────────────── */
+    #modal-generate-concepts { display: none; position: fixed; inset: 0; z-index: 1100;
+      background: rgba(0,0,0,.45); align-items: center; justify-content: center; }
+    #modal-generate-concepts.open { display: flex; }
+    .gc-dialog {
+      background: #fff; border-radius: 10px; padding: 1.25rem 1.5rem;
+      min-width: 560px; max-width: 820px; max-height: 92vh;
+      display: flex; flex-direction: column; gap: 1rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.18);
+      /* Robust UX: allow global modal scrolling */
+      overflow: auto;
+    }
+    body[data-theme="dark"] .gc-dialog { background: #1e293b; color: #f1f5f9; }
+    .gc-stepper {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.85rem;
+    }
+    .gc-step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #e2e8f0; color: #64748b; font-weight: 600; font-size: 0.8rem;
+    }
+    .gc-step-num.active { background: #1d4ed8; color: #fff; }
+    .gc-step-num.done { background: #15803d; color: #fff; }
+    body[data-theme="dark"] .gc-step-num { background: #334155; color: #94a3b8; }
+    body[data-theme="dark"] .gc-step-num.active { background: #2563eb; color: #fff; }
+    body[data-theme="dark"] .gc-step-num.done { background: #15803d; color: #fff; }
+    .gc-step-label { color: #64748b; }
+    .gc-step-label.active { color: #1d4ed8; font-weight: 600; }
+    body[data-theme="dark"] .gc-step-label { color: #94a3b8; }
+    body[data-theme="dark"] .gc-step-label.active { color: #93c5fd; }
+    /* Panels: do not trap scroll; let modal scroll globally */
+    .gc-step-panel { display: none; flex-direction: column; gap: 0.75rem; flex: 0 0 auto; min-height: 0; overflow: visible; }
+    .gc-step-panel.active { display: flex; }
+    .gc-tree-container {
+      flex: 1 1 auto;
+      min-height: 260px;
+      max-height: none;
+      overflow-y: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px; padding: 0.5rem; background: #f8fafc;
+    }
+    body[data-theme="dark"] .gc-tree-container { border-color: #334155; background: #0f172a; }
+    .gc-config-row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+    .gc-config-row label { display: flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; }
+    .gc-config-row select, .gc-config-row input[type="number"] {
+      padding: 0.35rem 0.5rem; border: 1px solid #dadce0; border-radius: 4px;
+      font-size: 0.85rem; background: #fff; color: #202124;
+    }
+    body[data-theme="dark"] .gc-config-row select,
+    body[data-theme="dark"] .gc-config-row input[type="number"] {
+      border-color: #4a5568; background: #2d3748; color: #f7fafc;
+    }
+    .gc-textarea { width: 100%; min-height: 80px; padding: 0.5rem 0.6rem;
+      border: 1px solid #dadce0; border-radius: 6px; font-size: 0.83rem;
+      font-family: inherit; resize: vertical; box-sizing: border-box;
+    }
+    body[data-theme="dark"] .gc-textarea { border-color: #4a5568; background: #0f172a; color: #f7fafc; }
+    .gc-results-header { font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem; }
+    body[data-theme="dark"] .gc-results-header { color: #94a3b8; }
+    /* Tables: ensure minimum space + allow inner scrolling */
+    .gc-results-table { flex: 0 0 auto; min-height: 320px; overflow: auto; }
+    /* Tabulator root is mounted on the same element as gc-results-table.
+       IMPORTANT: Tabulator needs a computable height; auto-height can yield tableholder=0px
+       and crash (verticalFillMode null). */
+    .gc-results-table.tabulator { height: clamp(320px, 55vh, 560px); }
+    .gc-results-table.tabulator .tabulator-tableholder { overflow: auto; }
+    .gc-skeleton { height: 120px; background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: gc-skeleton 1.2s ease-in-out infinite; border-radius: 6px; }
+    body[data-theme="dark"] .gc-skeleton { background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%); background-size: 200% 100%; }
+    @keyframes gc-skeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .gc-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid #e2e8f0; flex-shrink: 0; }
+    body[data-theme="dark"] .gc-footer { border-color: #334155; }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="app-wrap">
+    <div class="header">
+      <h1>Concepts images</h1>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="status" id="status">Chargement…</span>
+        <div class="theme-switcher">
+          <span>Thème</span>
+          <button id="btn-theme-light" class="active">Clair</button>
+          <button id="btn-theme-dark">Sombre</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="primary" id="btn-add-row">+ Nouveau concept</button>
+      <button class="secondary" id="btn-generate-concepts-ai">Générer concepts IA</button>
+      <button class="secondary" id="btn-undo" disabled title="Annuler">↩ Annuler</button>
+      <button class="secondary" id="btn-redo" disabled title="Refaire">↪ Refaire</button>
+      <button class="secondary" id="btn-export-json">Exporter JSON</button>
+      <button class="secondary" id="btn-import-diff" title="Importer des modifications via un diff JSON">Import diff</button>
+      <input type="text" id="filter-input" class="filter-input" placeholder="Rechercher…" style="margin-left:auto;">
+    </div>
+
+    <!-- Filtres avancés -->
+    <div class="filter-row">
+      <label>
+        Statut
+        <select id="filter-status">
+          <option value="">Tous</option>
+          <option value="draft">draft — brouillon</option>
+          <option value="prompt_ready">prompt_ready — prêt</option>
+          <option value="scheduled">scheduled — planifié</option>
+          <option value="generating">generating — en cours</option>
+          <option value="generated">generated — généré</option>
+          <option value="approved">approved — approuvé</option>
+          <option value="rejected">rejected — rejeté</option>
+          <option value="published">published — publié</option>
+        </select>
+      </label>
+      <label>
+        Terme origine
+        <input type="text" id="filter-term" placeholder="ex: animaux_domestiques">
+      </label>
+      <label>
+        Batch ID
+        <input type="text" id="filter-batch" placeholder="ex: batch_001">
+      </label>
+      <button class="filter-btn" id="btn-apply-filters">Appliquer</button>
+      <button class="filter-btn" id="btn-reset-filters">Réinitialiser</button>
+    </div>
+
+    <div class="selection-bar" id="selection-bar">
+      <span class="sel-count" id="sel-count">0 sélectionné(s)</span>
+      <button class="sel-status" id="sel-btn-status">Statut…</button>
+      <button class="sel-prompts" id="sel-btn-prompts">Prompts IA</button>
+      <button class="sel-tags" id="sel-btn-tags">Tags…</button>
+      <button class="sel-gen-jobs" id="sel-btn-gen-jobs" title="Créer un job ComfyUI par concept (prompt_ready + prompt)">Jobs génération…</button>
+      <button class="sel-export" id="sel-btn-export">Exporter JSON</button>
+      <button class="sel-delete" id="sel-btn-delete">Supprimer</button>
+      <button class="sel-clear" id="sel-btn-clear">Désélectionner</button>
+    </div>
+
+    <div class="main-panel">
+      <div id="table-container"></div>
+    </div>
+  </div>
+
+  <!-- Form panel -->
+  <aside id="form-panel" class="form-panel" aria-hidden="true" role="complementary">
+    <div class="form-panel-inner">
+      <div class="form-panel-header">
+        <h2>Concept image</h2>
+        <button class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <form id="editor-form" class="editor-form" onsubmit="return false;">
+        <div class="form-panel-scroll">
+          <div id="editor-form-fields"></div>
+          <div class="form-prompt-keywords-block" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid #e2e8f0;">
+            <label class="form-field-label" for="ef-prompt-keywords">Mots-clés (création prompt v1)</label>
+            <input type="text" id="ef-prompt-keywords" placeholder="ex: ferme, vaches, tracteur, tournesols" style="width:100%;box-sizing:border-box;padding:0.4rem 0.5rem;margin-top:0.25rem;" autocomplete="off">
+            <p style="font-size:0.78rem;color:#64748b;margin:0.35rem 0 0;">Utilisé par « Créer depuis mots-clés » (pipeline planner → writer). Le titre et les tags enrichissent aussi le contexte.</p>
+          </div>
+          <div id="form-prompt-ai-buttons" class="form-prompt-ai-row" style="margin-top:0.5rem;padding-top:0.5rem;border-top:1px solid #e2e8f0;display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <button type="button" class="secondary" id="btn-generate-prompt" title="Créer un prompt structuré Z-Image à partir des mots-clés / titre / tags (Ollama)">Créer depuis mots-clés</button>
+            <button type="button" class="secondary" id="btn-suggest-prompt" title="Proposer des variantes à partir du prompt actuel (Ollama)">Améliorer prompt</button>
+            <button type="button" class="secondary" id="btn-validate-prompt" title="Valider le prompt (score et contrôles)">Valider prompt</button>
+          </div>
+          <div id="prompt-validation-result" style="display:none;margin-top:0.5rem;padding:0.5rem 0.65rem;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;font-size:0.82rem;color:#334155;" aria-live="polite"></div>
+          <div class="form-job-status-block" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid #e2e8f0;">
+            <span class="form-field-label">Statut du job</span>
+            <div id="job-status-display" style="font-size:0.85rem;color:#64748b;margin:0.25rem 0 0.5rem;">Aucun job</div>
+            <div id="job-output-display" style="margin-top:0.5rem;display:none;">
+              <div id="job-output-image-wrap" style="display:none;" title="Cliquer pour agrandir"><img id="job-output-image" src="" alt="" style="max-width:120px;max-height:120px;border-radius:6px;border:1px solid #e2e8f0;"></div>
+              <div id="job-output-text" class="output-text-content" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="form-output-select-block" style="display:none;"><!-- masqué : output via current job --></div>
+          <div class="form-tags-block" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid #e2e8f0;">
+            <span class="form-field-label">Tags taxonomiques</span>
+            <div id="form-tags-chips" class="chips-container"></div>
+            <div class="chips-input-wrap" style="position:relative;">
+              <input id="form-tags-input" type="text" autocomplete="off" placeholder="Ajouter un tag…" disabled>
+              <div id="form-tags-suggestions" class="chips-suggestions"></div>
+            </div>
+            <div id="tags-summary" style="display:none;"></div>
+            <button type="button" class="secondary" id="btn-manage-tags" disabled title="Enregistrez d'abord le concept pour gérer les tags" style="margin-top:0.4rem;">Gérer les tags…</button>
+          </div>
+          <div class="form-jobs-block" style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid #e2e8f0;">
+            <span class="form-field-label">Jobs associés</span>
+            <div id="jobs-summary" style="font-size:0.85rem;color:#64748b;margin:0.25rem 0 0.5rem;">Aucun job</div>
+            <button type="button" class="secondary" id="btn-manage-jobs" disabled title="Enregistrez d'abord le concept pour gérer les jobs">Gérer les jobs…</button>
+          </div>
+        </div>
+        <div class="form-panel-actions">
+          <button type="button" class="primary" id="btn-form-save">Enregistrer</button>
+          <button type="button" class="secondary" id="btn-form-cancel">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Import diff modal -->
+  <div id="modal-import-diff" class="modal-overlay import-diff-modal" role="dialog" aria-modal="true" aria-labelledby="import-diff-title">
+    <div class="modal-dialog">
+      <div class="import-diff-header">
+        <h3 id="import-diff-title">Import diff JSON</h3>
+        <button type="button" id="btn-import-diff-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <div class="import-diff-body">
+        <div id="import-diff-step-input">
+          <p style="font-size:0.85rem;color:#5f6368;margin:0 0 0.6rem;">Collez un tableau JSON d'opérations : add, upsert, update, remove.</p>
+          <textarea id="import-diff-textarea" spellcheck="false" placeholder='[{ "op": "add", "value": { "id": "img_001", "title": "Concept", "status": "draft", "prompt": "..." } }]'></textarea>
+          <div id="import-diff-parse-error" class="import-diff-error"></div>
+        </div>
+        <div id="import-diff-step-preview" style="display:none;">
+          <div class="import-diff-summary" id="import-diff-summary"></div>
+          <div id="import-diff-preview-error" class="import-diff-error"></div>
+          <table class="import-diff-table" id="import-diff-table">
+            <thead>
+              <tr>
+                <th style="width:32px;"><input type="checkbox" id="import-diff-check-all" title="Tout sélectionner"></th>
+                <th>Op</th>
+                <th>ID</th>
+                <th>Statut</th>
+                <th>Détails</th>
+              </tr>
+            </thead>
+            <tbody id="import-diff-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="import-diff-footer">
+        <span class="import-diff-select-all" id="import-diff-select-all-link" style="display:none;">Tout sélectionner / Désélectionner</span>
+        <button type="button" id="btn-import-diff-cancel" class="secondary">Annuler</button>
+        <button type="button" id="btn-import-diff-validate" class="secondary">Valider →</button>
+        <button type="button" id="btn-import-diff-back" class="secondary" style="display:none;">← Retour</button>
+        <button type="button" id="btn-import-diff-apply" class="primary" style="display:none;" disabled>Appliquer la sélection</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm delete modal -->
+  <div id="modal-confirm-delete" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <h3>Confirmer la suppression</h3>
+      <p id="modal-confirm-delete-message">Êtes-vous sûr ?</p>
+      <div class="modal-actions">
+        <button class="secondary" id="btn-confirm-delete-cancel">Annuler</button>
+        <button class="primary danger" id="btn-confirm-delete-ok">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal bulk statut -->
+  <div id="modal-bulk-status" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog" style="max-width:360px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+        <h3 style="margin:0;">Changer le statut</h3>
+        <button type="button" id="btn-bulk-status-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <p style="font-size:0.85rem;color:#5f6368;margin:0 0 0.75rem;">Nouveau statut pour <span id="bulk-status-count">0</span> concept(s) :</p>
+      <div id="bulk-status-radios" style="display:flex;flex-direction:column;gap:0.35rem;"></div>
+      <div style="display:flex;gap:0.5rem;margin-top:1rem;justify-content:flex-end;">
+        <button type="button" class="secondary" id="btn-bulk-status-cancel">Annuler</button>
+        <button type="button" class="primary" id="btn-bulk-status-apply">Appliquer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal bulk prompts IA (pipeline v1 Z-Image-Turbo : planner → writer) -->
+  <div id="modal-bulk-prompts" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog" style="max-width:640px;max-height:90vh;display:flex;flex-direction:column;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;flex-shrink:0;">
+        <h3 style="margin:0;">Créer prompts Z-Image (en masse)</h3>
+        <button type="button" id="btn-bulk-prompts-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:0.5rem;">
+        <p style="font-size:0.82rem;color:#64748b;margin:0;">Même pipeline que « Créer depuis mots-clés » : un plan JSON puis un prompt final par concept sélectionné (max 10). Le titre et les tags en base enrichissent le planner.</p>
+        <div class="gc-config-row">
+          <label>Modèle <select id="bulk-prompts-model"></select></label>
+          <label style="display:flex;align-items:center;gap:0.35rem;margin-left:0.5rem;"><input type="checkbox" id="bulk-prompts-validate"> Valider chaque prompt (score)</label>
+        </div>
+        <div id="bulk-prompts-step-generate" style="display:flex;gap:0.5rem;flex-shrink:0;">
+          <button type="button" class="primary" id="btn-bulk-prompts-generate">Générer</button>
+        </div>
+        <div id="bulk-prompts-step-results" style="display:none;flex:1;min-height:0;flex-direction:column;">
+          <p style="font-size:0.85rem;color:#64748b;margin:0 0 0.25rem;">Résultats — cochez ceux à appliquer :</p>
+          <div id="bulk-prompts-table" style="flex:1;min-height:180px;overflow:auto;"></div>
+          <div style="display:flex;gap:0.5rem;margin-top:0.5rem;flex-shrink:0;">
+            <button type="button" class="secondary" id="btn-bulk-prompts-back">← Retour</button>
+            <button type="button" class="primary" id="btn-bulk-prompts-apply">Appliquer les prompts sélectionnés</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal bulk tags -->
+  <div id="modal-bulk-tags" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog" style="max-width:480px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <h3 style="margin:0;">Tags taxonomiques en masse</h3>
+        <button type="button" id="btn-bulk-tags-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <p style="font-size:0.85rem;color:#5f6368;margin:0 0 0.5rem;">Mode :</p>
+      <div style="display:flex;gap:0.75rem;margin-bottom:0.75rem;">
+        <label><input type="radio" name="bulk-tags-mode" value="add" checked> Ajouter aux tags existants</label>
+        <label><input type="radio" name="bulk-tags-mode" value="replace"> Remplacer tous les tags</label>
+      </div>
+      <label class="form-field-label">Termes à appliquer à <span id="bulk-tags-count">0</span> concept(s) :</label>
+      <input type="text" id="bulk-tags-filter" placeholder="Filtrer…" style="margin-bottom:0.5rem;padding:0.35rem 0.5rem;width:100%;box-sizing:border-box;">
+      <div id="bulk-tags-tree" class="gc-tree-container" style="max-height:240px;"></div>
+      <div id="bulk-tags-term-count" style="font-size:0.85rem;color:#64748b;margin-top:0.5rem;">0 terme(s) sélectionné(s)</div>
+      <div style="display:flex;gap:0.5rem;margin-top:1rem;justify-content:flex-end;">
+        <button type="button" class="secondary" id="btn-bulk-tags-cancel">Annuler</button>
+        <button type="button" class="primary" id="btn-bulk-tags-apply">Appliquer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal bulk : créer jobs génération d'image -->
+  <div id="modal-bulk-gen-jobs" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog" style="max-width:520px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <h3 style="margin:0;">Créer les jobs de génération</h3>
+        <button type="button" id="btn-bulk-gen-jobs-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <p style="font-size:0.85rem;color:#5f6368;margin:0 0 0.5rem;">Pour <strong id="bulk-gen-jobs-count">0</strong> concept(s) sélectionné(s). L’API crée un job <code>image_generation</code> seulement si le statut est <code>prompt_ready</code>, le prompt est non vide, et aucun job pending/running du même type n’existe déjà. Maximum 25 par requête.</p>
+      <p style="font-size:0.82rem;color:#64748b;margin:0 0 0.5rem;">Les tags et le prompt négatif viennent de la base. Les champs du panneau <strong>Paramètres avancés (ComfyUI)</strong> (modal Jobs) sont fusionnés s’ils sont renseignés.</p>
+      <pre id="bulk-gen-jobs-results" style="display:none;max-height:200px;overflow:auto;margin:0.5rem 0 0;padding:0.5rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;font-size:0.78rem;white-space:pre-wrap;word-break:break-word;"></pre>
+      <div style="display:flex;gap:0.5rem;margin-top:1rem;justify-content:flex-end;">
+        <button type="button" class="secondary" id="btn-bulk-gen-jobs-cancel">Annuler</button>
+        <button type="button" class="primary" id="btn-bulk-gen-jobs-apply">Créer les jobs</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jobs modal : liste des jobs + formulaire nouveau job -->
+  <div id="modal-jobs" class="outputs-modal" role="dialog" aria-modal="true">
+    <div class="outputs-dialog" style="min-width:560px;max-width:720px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <h3 style="margin:0;">Jobs — <span id="jobs-modal-image-id"></span></h3>
+        <button type="button" id="btn-jobs-modal-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <div id="jobs-modal-table-wrap" class="outputs-table" style="max-height:280px;margin-bottom:0.75rem;">
+        <p style="color:#94a3b8;">Chargement…</p>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+        <button type="button" class="primary" id="btn-jobs-new">+ Nouveau job</button>
+        <button type="button" class="primary" id="btn-jobs-save">Enregistrer</button>
+        <button type="button" class="secondary" id="btn-jobs-close">Fermer</button>
+      </div>
+      <div id="jobs-new-form" style="display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid #e2e8f0;">
+        <span class="form-field-label">Nouveau job (prompt + tags de l'image)</span>
+        <p style="font-size:0.85rem;color:#64748b;margin:0.25rem 0 0.5rem;">Utilise le prompt et les tags actuels du concept.</p>
+        <div style="display:flex;gap:0.5rem;margin-top:0.5rem;">
+          <button type="button" class="primary" id="btn-jobs-submit">Créer le job</button>
+          <button type="button" class="secondary" id="btn-jobs-cancel">Annuler</button>
+        </div>
+        <details id="jobs-gen-adv-details" style="margin-top:0.75rem;">
+          <summary class="form-field-label" style="cursor:pointer;user-select:none;">Paramètres avancés (ComfyUI)</summary>
+          <p style="font-size:0.8rem;color:#64748b;margin:0.35rem 0 0.5rem;">Laissez vide pour les valeurs par défaut du projet (défaut workflow <strong>Ernie Image Turbo Q8</strong> : <code>steps=8</code>, etc. ; workflow <strong>Z-Image Turbo</strong> disponible dans la liste). Si votre Comfy diffère, saisissez les valeurs réelles. Voir <code>docs/tuning-guide.md</code>.</p>
+          <div style="margin-bottom:0.5rem;">
+            <button type="button" class="secondary" id="btn-gen-adv-comfy-preset" style="font-size:0.85rem;">Appliquer le preset ComfyUI (Z-Image-Turbo)</button>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.85rem;margin-bottom:0.5rem;">Workflow ComfyUI (<code>data/workflows/*.json</code>)
+            <select id="gen-adv-workflow" style="padding:0.35rem;"><option value="">Chargement…</option></select>
+          </label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.35rem;align-items:end;">
+            <label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.85rem;">Sampler
+              <select id="gen-adv-sampler" style="padding:0.35rem;"><option value="">(défaut)</option></select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.85rem;">Scheduler
+              <select id="gen-adv-scheduler" style="padding:0.35rem;"><option value="">(défaut)</option></select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.85rem;">CFG
+              <input type="number" id="gen-adv-cfg" step="0.1" min="0" max="15" placeholder="1.0" style="padding:0.35rem;">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.85rem;">Steps
+              <input type="number" id="gen-adv-steps" min="1" max="50" placeholder="4" style="padding:0.35rem;">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.85rem;">Shift (AuraFlow)
+              <input type="number" id="gen-adv-shift" step="0.1" min="0.5" max="10" placeholder="3" style="padding:0.35rem;">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.85rem;">Denoise
+              <input type="number" id="gen-adv-denoise" step="0.05" min="0" max="1" placeholder="1.0" style="padding:0.35rem;">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:0.2rem;font-size:0.85rem;grid-column:1 / -1;">Seed (vide = aléatoire)
+              <input type="number" id="gen-adv-seed" min="0" placeholder="ex: 42" style="padding:0.35rem;">
+            </label>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal output (détail d'un output de job completed) -->
+  <div id="modal-job-output" class="outputs-modal" role="dialog" aria-modal="true">
+    <div class="outputs-dialog" style="min-width:400px;max-width:560px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <h3 style="margin:0;">Output — <span id="job-output-modal-job-id"></span></h3>
+        <button type="button" id="btn-job-output-modal-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <div id="job-output-modal-content" style="font-size:0.9rem;">
+        <p style="color:#94a3b8;">Chargement…</p>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:1rem;">
+        <button type="button" class="secondary" id="btn-job-output-close">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Concepts → Prompts (manuel / assisté / masse) -->
+  <div id="modal-generate-concepts" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="gc-modal-title">
+    <div class="gc-dialog">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <h3 id="gc-modal-title" style="margin:0;">Concepts → Prompts (Z-Image)</h3>
+        <button type="button" id="btn-gc-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <div class="gc-config-row" style="margin-top:0.75rem;">
+        <div class="gc-mode-tabs" style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <button type="button" class="secondary" id="gc-mode-manual">Manuel</button>
+          <button type="button" class="secondary" id="gc-mode-ai">Assisté (IA)</button>
+          <button type="button" class="secondary" id="gc-mode-bulk">Masse (Prompts)</button>
+        </div>
+        <span style="flex:1;"></span>
+        <div id="gc-mode-hint" style="font-size:0.85rem;color:#64748b;">Ajoutez des concepts (manuel ou IA), puis générez des prompts Z-Image en masse.</div>
+      </div>
+
+      <!-- Panel: Manuel -->
+      <div id="gc-panel-manual" class="gc-step-panel active">
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:flex-end;">
+          <label style="display:flex;flex-direction:column;gap:0.25rem;font-size:0.85rem;min-width:180px;flex:0 0 180px;">
+            ID (optionnel)
+            <input type="text" id="gc-manual-id" placeholder="ex: cat_library" style="padding:0.35rem 0.5rem;border:1px solid #e2e8f0;border-radius:6px;">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:0.25rem;font-size:0.85rem;flex:1;min-width:240px;">
+            Title (scène, idéalement EN: SUBJECT + SETTING)
+            <input type="text" id="gc-manual-title" placeholder="ex: Cat in a Library" style="padding:0.35rem 0.5rem;border:1px solid #e2e8f0;border-radius:6px;">
+          </label>
+          <button type="button" class="primary" id="btn-gc-manual-add">Ajouter au staging</button>
+        </div>
+        <div style="font-size:0.83rem;color:#64748b;">
+          Astuce: un bon title décrit une scène avec décor (ex: “Fox in a Forest”, “Tractor on a Farm”). Les titles vagues donnent des prompts moins stables.
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;">
+          <div id="gc-staging-header" class="gc-results-header">0 concept(s) en staging</div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <button type="button" class="secondary" id="btn-gc-staging-remove">Retirer sélection</button>
+            <button type="button" class="secondary" id="btn-gc-staging-clear">Vider</button>
+            <button type="button" class="secondary" id="btn-gc-go-bulk">Aller à “Masse” →</button>
+          </div>
+        </div>
+        <div id="gc-staging-table" class="gc-results-table"></div>
+      </div>
+
+      <!-- Panel: Assisté (IA) -->
+      <div id="gc-panel-ai" class="gc-step-panel">
+        <div class="gc-config-row">
+          <label>Vocabulaire
+            <select id="gc-vocabulary" style="padding:0.35rem 0.5rem;">
+              <option value="themes">themes</option>
+            </select>
+          </label>
+          <label>Modèle <select id="gc-model"></select></label>
+          <label>Concepts par terme <input type="number" id="gc-count" min="1" max="15" value="3" style="width:60px;"></label>
+          <span style="flex:1;"></span>
+          <button type="button" class="primary" id="btn-gc-generate">Générer</button>
+        </div>
+
+        <label class="form-field-label">Termes (sélectionnez au moins un)</label>
+        <input type="text" id="gc-filter-terms" placeholder="Filtrer…" style="margin-bottom:0.5rem;padding:0.35rem 0.5rem;width:100%;box-sizing:border-box;">
+        <div id="gc-tree-container" class="gc-tree-container">
+          <p style="color:#94a3b8;margin:0;">Chargement…</p>
+        </div>
+        <div id="gc-term-count" style="font-size:0.85rem;color:#64748b;">0 terme(s) sélectionné(s)</div>
+
+        <details>
+          <summary style="cursor:pointer;color:#64748b;">Options IA (prompts)</summary>
+          <div style="margin-top:0.5rem;">
+            <label class="form-field-label">Prompt système (éditable)</label>
+            <textarea id="gc-system-prompt" class="gc-textarea" rows="4"></textarea>
+            <label class="form-field-label">Prompt utilisateur (éditable)</label>
+            <textarea id="gc-user-prompt" class="gc-textarea" rows="5"></textarea>
+          </div>
+        </details>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;">
+          <div id="gc-results-header" class="gc-results-header"></div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <button type="button" class="secondary" id="btn-gc-add-to-staging" disabled>Ajouter sélection au staging</button>
+            <button type="button" class="secondary" id="btn-gc-go-staging">Voir staging →</button>
+          </div>
+        </div>
+        <div id="gc-results-table" class="gc-results-table"></div>
+      </div>
+
+      <!-- Panel: Masse (Prompts) -->
+      <div id="gc-panel-bulk" class="gc-step-panel">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;">
+          <div>
+            <div class="gc-results-header" id="gc-bulk-header">Sélectionnez des concepts en staging</div>
+            <div style="font-size:0.83rem;color:#64748b;">Limite API: 10 concepts par lot (chunk automatique).</div>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <button type="button" class="secondary" id="btn-gc-bulk-remove">Retirer sélection</button>
+            <button type="button" class="primary" id="btn-gc-bulk-generate">Générer prompts (bulk)</button>
+          </div>
+        </div>
+        <div id="gc-staging-table-bulk" class="gc-results-table"></div>
+
+        <div id="gc-bulk-progress" style="font-size:0.85rem;color:#64748b;margin-top:0.5rem;"></div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem;">
+          <div class="gc-results-header" id="gc-prompts-header"></div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <button type="button" class="secondary" id="btn-gc-retry-failed" disabled>Relancer échecs</button>
+            <button type="button" class="secondary" id="btn-gc-copy-duplicates" disabled>Copier doublons</button>
+            <button type="button" class="secondary" id="btn-gc-export-json" disabled>Export JSON</button>
+            <button type="button" class="secondary" id="btn-gc-export-csv" disabled>Export CSV</button>
+            <button type="button" class="primary" id="btn-gc-save-db" disabled>Sauvegarder en base</button>
+          </div>
+        </div>
+        <div id="gc-prompts-results" class="gc-results-table"></div>
+      </div>
+
+      <div class="gc-footer">
+        <div style="font-size:0.85rem;color:#64748b;" id="gc-footer-status"></div>
+        <span style="flex:1;"></span>
+        <button type="button" class="secondary" id="btn-gc-close-2">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tags modal (arbre à cases à cocher) -->
+  <div id="modal-tags" class="outputs-modal" role="dialog" aria-modal="true">
+    <div class="outputs-dialog" style="min-width:420px;max-width:520px;">
+      <h3>Tags taxonomiques — <span id="tags-modal-image-id"></span></h3>
+      <label class="form-field-label" style="margin-bottom:0.25rem;">Vocabulaire</label>
+      <select id="tags-modal-vocabulary" style="width:100%;margin-bottom:0.75rem;padding:0.4rem;">
+        <option value="themes">themes</option>
+      </select>
+      <label class="form-field-label" style="margin-bottom:0.25rem;">Termes</label>
+      <div id="tags-tree-container" style="max-height:320px;overflow-y:auto;border:1px solid #e2e8f0;border-radius:6px;padding:0.5rem;background:#f8fafc;">
+        <p style="color:#94a3b8;margin:0;">Chargement…</p>
+      </div>
+      <div id="tags-modal-count" style="font-size:0.85rem;color:#64748b;margin-top:0.5rem;">0 terme(s) sélectionné(s)</div>
+      <div style="display:flex;justify-content:flex-end;gap:0.5rem;margin-top:1rem;">
+        <button class="secondary" id="btn-tags-modal-close">Fermer</button>
+        <button class="primary" id="btn-tags-modal-save">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+  <script src="/data/shared/utils.js"></script>
+  <script src="/data/shared/editor-core.js"></script>
+  <script src="/data/shared/nav.js"></script>
+  <script src="/data/shared/image-review-modal.js"></script>
+  <script src="/data/shared/jobs_poll.js"></script>
+  <script>
+    // ── Status badges ──────────────────────────────────────────────────────────
+    const STATUS_LABELS = {
+      draft:        'Brouillon',
+      prompt_ready: 'Prêt',
+      scheduled:    'Planifié',
+      generating:   'En cours',
+      generated:    'Généré',
+      approved:     'Approuvé',
+      rejected:     'Rejeté',
+      published:    'Publié',
+    };
+
+    function statusFormatter(cell) {
+      const v = String(cell.getValue() || 'draft');
+      const label = STATUS_LABELS[v] || v;
+      return `<span class="badge badge-${EditorUtils.escHtml(v)}">${EditorUtils.escHtml(label)}</span>`;
+    }
+
+    // ── EditorCore init ────────────────────────────────────────────────────────
+    const editor = new EditorCore({
+      title: 'Concepts images',
+      apiBase: EditorUtils.apiBase(8000),
+      apiPrefix: '/api/images',
+      pk: 'id',
+      storagePrefix: 'images_editor',
+      deleteForce: true,
+
+      columns: [
+        { field: 'id',              title: 'ID',              width: 160, editor: false },
+        { field: 'title',           title: 'Titre',           width: 240 },
+        { field: 'status',          title: 'Statut',          width: 120, formatter: statusFormatter },
+        { field: 'origin_term_id',  title: 'Terme origine',   width: 175 },
+        { field: 'origin_type',     title: 'Origine',         width: 90 },
+        { field: 'prompt',          title: 'Prompt',          width: 240 },
+        { field: 'created_at',      title: 'Créé le',         width: 165 },
+      ],
+
+      formFields: [
+        { field: 'id',                label: 'Identifiant (auto si vide)' },
+        { field: 'title',             label: 'Titre du concept' },
+        {
+          field: 'status', label: 'Statut', type: 'select',
+          options: [
+            { value: 'draft',        label: 'draft — brouillon' },
+            { value: 'prompt_ready', label: 'prompt_ready — prompt prêt' },
+            { value: 'scheduled',    label: 'scheduled — planifié' },
+            { value: 'generating',   label: 'generating — génération en cours' },
+            { value: 'generated',    label: 'generated — généré' },
+            { value: 'approved',     label: 'approved — approuvé' },
+            { value: 'rejected',     label: 'rejected — rejeté' },
+            { value: 'published',    label: 'published — publié' },
+          ],
+        },
+        { field: 'prompt',            label: 'Prompt de génération',    type: 'textarea' },
+        { field: 'negative_prompt',   label: 'Prompt négatif',          type: 'textarea' },
+        {
+          field: 'origin_type', label: 'Type d\'origine', type: 'select',
+          options: [
+            { value: 'manual', label: 'manual — saisi manuellement' },
+            { value: 'batch',  label: 'batch — généré par campagne' },
+          ],
+          readonly: true,
+        },
+        { field: 'origin_batch_id', label: 'Batch source', readonly: true },
+      ],
+    });
+
+    editor.init();
+
+    // ─── Polling UI pour images generating/scheduled (A6) ─────────────────────
+    var imagesPollingInterval = null;
+    var imagesPollingWasActive = false;
+
+    function hasImagesInProgress(data) {
+      if (!data || !Array.isArray(data)) return false;
+      return data.some(function (r) {
+        var s = (r.status || '').toLowerCase();
+        return s === 'generating' || s === 'scheduled';
+      });
+    }
+
+    function stopImagesPolling() {
+      if (imagesPollingInterval) {
+        clearInterval(imagesPollingInterval);
+        imagesPollingInterval = null;
+      }
+    }
+
+    function pollImagesInProgress() {
+      if (document.hidden) {
+        imagesPollingWasActive = true;
+        stopImagesPolling();
+        return;
+      }
+      var url = editor._url() + '?status_in=generating,scheduled&limit=10';
+      fetch(url)
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (items) {
+          var arr = Array.isArray(items) ? items : (items.items || items.results || items.data || []);
+          if (arr.length === 0) {
+            stopImagesPolling();
+            imagesPollingWasActive = false;
+            editor.reload();
+          }
+        })
+        .catch(function () {});
+    }
+
+    function startImagesPollingIfNeeded() {
+      if (document.hidden) return;
+      stopImagesPolling();
+      var data = editor.table ? editor.table.getData() : [];
+      if (!hasImagesInProgress(data)) return;
+      imagesPollingInterval = setInterval(pollImagesInProgress, 5000);
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        stopImagesPolling();
+        imagesPollingWasActive = true;
+      } else if (imagesPollingWasActive) {
+        imagesPollingWasActive = false;
+        var url = editor._url() + '?status_in=generating,scheduled&limit=10';
+        fetch(url)
+          .then(function (r) { return r.ok ? r.json() : []; })
+          .then(function (items) {
+            var arr = Array.isArray(items) ? items : (items.items || items.results || items.data || []);
+            if (arr.length > 0) imagesPollingInterval = setInterval(pollImagesInProgress, 5000);
+          })
+          .catch(function () {});
+      }
+    });
+
+    (function () {
+      var orig = editor.reload.bind(editor);
+      editor.reload = async function () {
+        await orig();
+        startImagesPollingIfNeeded();
+      };
+    })();
+    startImagesPollingIfNeeded();
+
+    // ─── Actions en masse ────────────────────────────────────────────────────
+    function getSelectedData() { return editor.table ? editor.table.getSelectedData() : []; }
+    function getSelectedRows() { return editor.table ? editor.table.getSelectedRows() : []; }
+
+    document.getElementById('sel-btn-clear').addEventListener('click', function() {
+      if (editor.table) editor.table.deselectRow();
+    });
+
+    var _bulkDeletePending = null;
+    var _originalDoDelete = editor._doDelete.bind(editor);
+    editor._doDelete = async function() {
+      if (_bulkDeletePending && _bulkDeletePending.length) {
+        var ids = _bulkDeletePending;
+        _bulkDeletePending = null;
+        editor._closeDeleteModal();
+        var base = getApiBase();
+        var ok = 0;
+        for (var i = 0; i < ids.length; i++) {
+          try {
+            var r = await fetch(base + '/api/images/' + encodeURIComponent(ids[i]) + '?force=true', { method: 'DELETE' });
+            if (r.ok) ok++;
+          } catch (e) {}
+        }
+        editor.reload();
+        editor.setStatus(ok + ' concept(s) supprimé(s).');
+        return;
+      }
+      _originalDoDelete();
+    };
+
+    document.getElementById('sel-btn-delete').addEventListener('click', function() {
+      var data = getSelectedData();
+      if (!data.length) { editor.setStatus('Sélectionnez au moins un concept.'); return; }
+      _bulkDeletePending = data.map(function(r) { return r.id; });
+      var msg = document.getElementById('modal-confirm-delete-message');
+      if (msg) msg.textContent = 'Supprimer ' + _bulkDeletePending.length + ' concept(s) et toutes leurs données liées ?';
+      document.getElementById('modal-confirm-delete').classList.add('open');
+    });
+
+    var bulkStatusModal = document.getElementById('modal-bulk-status');
+    var bulkStatusRadios = document.getElementById('bulk-status-radios');
+    var STATUS_OPTIONS = [
+      { value: 'draft', label: 'draft — brouillon' },
+      { value: 'prompt_ready', label: 'prompt_ready — prêt' },
+      { value: 'scheduled', label: 'scheduled — planifié' },
+      { value: 'generating', label: 'generating — en cours' },
+      { value: 'generated', label: 'generated — généré' },
+      { value: 'approved', label: 'approved — approuvé' },
+      { value: 'rejected', label: 'rejected — rejeté' },
+      { value: 'published', label: 'published — publié' }
+    ];
+    function openBulkStatusModal() {
+      var data = getSelectedData();
+      if (!data.length) { editor.setStatus('Sélectionnez au moins un concept.'); return; }
+      document.getElementById('bulk-status-count').textContent = data.length;
+      bulkStatusRadios.innerHTML = '';
+      STATUS_OPTIONS.forEach(function(opt, i) {
+        var label = document.createElement('label');
+        label.style.cursor = 'pointer';
+        var radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'bulk-status';
+        radio.value = opt.value;
+        radio.id = 'bulk-status-r' + i;
+        if (i === 0) radio.checked = true;
+        label.appendChild(radio);
+        label.appendChild(document.createTextNode(' ' + opt.label));
+        label.htmlFor = 'bulk-status-r' + i;
+        bulkStatusRadios.appendChild(label);
+      });
+      bulkStatusModal.classList.add('open');
+    }
+    function closeBulkStatusModal() { bulkStatusModal.classList.remove('open'); }
+    document.getElementById('sel-btn-status').addEventListener('click', openBulkStatusModal);
+    document.getElementById('btn-bulk-status-close').addEventListener('click', closeBulkStatusModal);
+    document.getElementById('btn-bulk-status-cancel').addEventListener('click', closeBulkStatusModal);
+    bulkStatusModal.addEventListener('click', function(e) { if (e.target === bulkStatusModal) closeBulkStatusModal(); });
+    document.getElementById('btn-bulk-status-apply').addEventListener('click', async function() {
+      var data = getSelectedData();
+      if (!data.length) return;
+      var radio = document.querySelector('input[name="bulk-status"]:checked');
+      var status = radio ? radio.value : 'draft';
+      var base = getApiBase();
+      closeBulkStatusModal();
+      var ok = 0;
+      for (var i = 0; i < data.length; i++) {
+        try {
+          var r = await fetch(base + '/api/images/' + encodeURIComponent(data[i].id), {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: data[i].id, title: data[i].title || '', status: status, prompt: data[i].prompt || '', negative_prompt: data[i].negative_prompt || '', origin_type: data[i].origin_type || 'manual', origin_batch_id: data[i].origin_batch_id || null, origin_term_id: data[i].origin_term_id || null })
+          });
+          if (r.ok) ok++;
+        } catch (e) {}
+      }
+      editor.reload();
+      editor.setStatus(ok + ' concept(s) mis à jour.');
+    });
+
+    document.getElementById('sel-btn-export').addEventListener('click', function() {
+      var data = getSelectedData();
+      if (!data.length) { editor.setStatus('Sélectionnez au moins un concept.'); return; }
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'concepts_' + new Date().toISOString().slice(0,10) + '.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      editor.setStatus(data.length + ' concept(s) exporté(s).');
+    });
+
+    var BULK_LINEART_NEGATIVE = 'shading, gradients, gray tones, shadows, color fills, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature';
+    var bulkPromptsModal = document.getElementById('modal-bulk-prompts');
+    var bulkPromptsStepGenerate = document.getElementById('bulk-prompts-step-generate');
+    var bulkPromptsStepResults = document.getElementById('bulk-prompts-step-results');
+    var bulkPromptsTableEl = document.getElementById('bulk-prompts-table');
+    var bulkPromptsResults = [];
+    var bulkPromptsTableInstance = null;
+    function openBulkPromptsModal() {
+      var data = getSelectedData();
+      if (!data.length) { editor.setStatus('Sélectionnez au moins un concept.'); return; }
+      bulkPromptsStepGenerate.style.display = 'flex';
+      bulkPromptsStepResults.style.display = 'none';
+      bulkPromptsResults = [];
+      bulkPromptsModal.classList.add('open');
+      var base = getApiBase();
+      fetch(base + '/api/ai/status').then(function(r) { return r.ok ? r.json() : {}; }).then(function(d) {
+        var sel = document.getElementById('bulk-prompts-model');
+        sel.innerHTML = '';
+        (d.models || []).forEach(function(m) {
+          var o = document.createElement('option');
+          o.value = m;
+          o.textContent = m;
+          sel.appendChild(o);
+        });
+        var fallback = (d.configured_model || 'qwen2.5:7b');
+        if (!sel.options.length) {
+          var o = document.createElement('option');
+          o.value = fallback;
+          o.textContent = fallback;
+          sel.appendChild(o);
+        }
+        if (d.configured_model) {
+          var found = false;
+          for (var i = 0; i < sel.options.length; i++) { if (sel.options[i].value === d.configured_model) { found = true; break; } }
+          if (found) sel.value = d.configured_model;
+        }
+      });
+    }
+    function closeBulkPromptsModal() { bulkPromptsModal.classList.remove('open'); }
+    document.getElementById('sel-btn-prompts').addEventListener('click', openBulkPromptsModal);
+    document.getElementById('btn-bulk-prompts-close').addEventListener('click', closeBulkPromptsModal);
+    bulkPromptsModal.addEventListener('click', function(e) { if (e.target === bulkPromptsModal) closeBulkPromptsModal(); });
+    document.getElementById('btn-bulk-prompts-generate').addEventListener('click', async function() {
+      var data = getSelectedData();
+      if (!data.length) return;
+      if (data.length > 10) {
+        editor.setStatus('Seuls les 10 premiers concepts sélectionnés seront traités (limite serveur).');
+      }
+      var slice = data.slice(0, 10);
+      var base = getApiBase();
+      var modelSel = document.getElementById('bulk-prompts-model').value;
+      var model = modelSel ? modelSel : null;
+      var validate = document.getElementById('bulk-prompts-validate').checked;
+      var items = slice.map(function(r) {
+        return { image_id: r.id, title: r.title || '', keywords: '', tags_context: '' };
+      });
+      try {
+        editor.setStatus('Génération v1 (planner → writer) en cours…');
+        var out = await _aiCall('/api/ai/create-prompts-bulk',
+          { items: items, validate_prompts: validate, model: model, temperature: null },
+          { maxWaitMs: 300000 }
+        );
+        var apiResults = (out && out.results) || [];
+        var summary = (out && out.summary) || {};
+        bulkPromptsResults = apiResults.map(function(entry, idx) {
+          var row = slice[idx] || {};
+          var id = (entry.image_id || row.id || '').toString();
+          return {
+            id: id,
+            title: entry.title || row.title || id,
+            prompt: entry.ok ? (entry.prompt || '') : '',
+            negative_prompt: entry.ok ? ((entry.negative_prompt || '').trim() || BULK_LINEART_NEGATIVE) : '',
+            validation_score: entry.validation != null ? entry.validation.score : null,
+            _error: entry.ok ? '' : (entry.error || 'Erreur'),
+            _row: row
+          };
+        });
+        bulkPromptsStepGenerate.style.display = 'none';
+        bulkPromptsStepResults.style.display = 'flex';
+        bulkPromptsTableEl.innerHTML = '';
+        bulkPromptsTableInstance = null;
+        if (typeof Tabulator !== 'undefined' && bulkPromptsResults.length) {
+          bulkPromptsTableInstance = new Tabulator(bulkPromptsTableEl, {
+            data: bulkPromptsResults,
+            layout: 'fitDataFill',
+            columns: [
+              { formatter: 'rowSelection', titleFormatter: 'rowSelection', hozAlign: 'center', width: 40, headerSort: false },
+              { field: 'id', title: 'ID', width: 120 },
+              { field: 'title', title: 'Titre', width: 130 },
+              { field: 'validation_score', title: 'Score', width: 56, hozAlign: 'center', formatter: function(cell) { var v = cell.getValue(); return v != null && v !== '' ? String(v) : '—'; } },
+              { field: '_error', title: 'Erreur', width: 100, formatter: function(cell) { var e = cell.getValue(); return e ? EditorUtils.escHtml(e) : ''; } },
+              { field: 'prompt', title: 'Prompt', minWidth: 200 }
+            ],
+            rowSelection: true,
+            selectable: true
+          });
+        } else {
+          var tbl = document.createElement('table');
+          tbl.style.width = '100%';
+          tbl.style.fontSize = '0.83rem';
+          tbl.innerHTML = '<thead><tr><th><input type="checkbox" id="bp-select-all" checked></th><th>ID</th><th>Titre</th><th>Score</th><th>Erreur</th><th>Prompt</th></tr></thead><tbody></tbody>';
+          var tbody = tbl.querySelector('tbody');
+          bulkPromptsResults.forEach(function(r, i) {
+            var tr = document.createElement('tr');
+            var sc = r.validation_score != null ? String(r.validation_score) : '—';
+            tr.innerHTML = '<td><input type="checkbox" class="bp-row-cb" ' + (r.prompt ? 'checked' : '') + ' data-idx="' + i + '"></td><td>' + EditorUtils.escHtml(r.id) + '</td><td>' + EditorUtils.escHtml(r.title) + '</td><td>' + EditorUtils.escHtml(sc) + '</td><td>' + EditorUtils.escHtml(r._error || '') + '</td><td>' + EditorUtils.escHtml((r.prompt || '').slice(0, 80)) + '</td>';
+            tbody.appendChild(tr);
+          });
+          bulkPromptsTableEl.appendChild(tbl);
+          document.getElementById('bp-select-all').addEventListener('change', function() {
+            bulkPromptsTableEl.querySelectorAll('.bp-row-cb').forEach(function(cb) { cb.checked = this.checked; }.bind(this));
+          });
+        }
+        editor.setStatus((summary.success != null ? summary.success : 0) + ' prompt(s) OK, ' + (summary.failed != null ? summary.failed : 0) + ' erreur(s).');
+      } catch (err) {
+        editor.setStatus('Erreur : ' + err.message);
+      }
+    });
+    document.getElementById('btn-bulk-prompts-back').addEventListener('click', function() {
+      bulkPromptsStepResults.style.display = 'none';
+      bulkPromptsStepGenerate.style.display = 'flex';
+    });
+    document.getElementById('btn-bulk-prompts-apply').addEventListener('click', async function() {
+      var toApply = [];
+      if (bulkPromptsTableInstance && bulkPromptsTableInstance.getSelectedData) {
+        toApply = bulkPromptsTableInstance.getSelectedData();
+      }
+      if (!toApply.length && bulkPromptsResults.length) {
+        bulkPromptsTableEl.querySelectorAll('.bp-row-cb:checked').forEach(function(cb) {
+          var i = parseInt(cb.dataset.idx, 10);
+          if (!isNaN(i) && bulkPromptsResults[i]) toApply.push(bulkPromptsResults[i]);
+        });
+      }
+      if (!toApply.length) { editor.setStatus('Sélectionnez au moins un résultat.'); return; }
+      var base = getApiBase();
+      closeBulkPromptsModal();
+      var ok = 0;
+      for (var i = 0; i < toApply.length; i++) {
+        var r = toApply[i];
+        if (!r.prompt || !String(r.prompt).trim()) continue;
+        var row = r._row || {};
+        try {
+          var putRes = await fetch(base + '/api/images/' + encodeURIComponent(r.id), {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: r.id, title: row.title || r.title || r.id, status: 'prompt_ready',
+              prompt: r.prompt || '', negative_prompt: r.negative_prompt || '',
+              origin_type: row.origin_type || 'manual', origin_batch_id: row.origin_batch_id || null, origin_term_id: row.origin_term_id || null
+            })
+          });
+          if (putRes.ok) ok++;
+        } catch (e) {}
+      }
+      editor.reload();
+      editor.setStatus(ok + ' prompt(s) appliqué(s).');
+    });
+
+    var bulkTagsModal = document.getElementById('modal-bulk-tags');
+    var bulkTagsTree = document.getElementById('bulk-tags-tree');
+    function updateBulkTagsTermCount() {
+      var n = document.querySelectorAll('#bulk-tags-tree input[type="checkbox"]:checked').length;
+      document.getElementById('bulk-tags-term-count').textContent = n + ' terme(s) sélectionné(s)';
+    }
+    function _bulkTagsRenderTree(container, terms, selectedIds, taxonomyId, level) {
+      level = level || 0;
+      if (!terms || !terms.length) return;
+      terms.forEach(function(t) {
+        var id = t.id;
+        if (!id) return;
+        var name = (t.name_fr || t.name_en || t.id || '').trim();
+        var checked = selectedIds.indexOf(id) !== -1;
+        var wrap = document.createElement('div');
+        wrap.className = 'tags-tree-item';
+        wrap.style.marginLeft = (level * 16) + 'px';
+        var cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.dataset.termId = id;
+        cb.dataset.taxonomyId = taxonomyId;
+        cb.checked = checked;
+        cb.id = 'bt-cb-' + id;
+        cb.addEventListener('change', updateBulkTagsTermCount);
+        var label = document.createElement('label');
+        label.htmlFor = 'bt-cb-' + id;
+        label.textContent = name;
+        label.style.cursor = 'pointer';
+        label.style.flex = '1';
+        wrap.appendChild(cb);
+        wrap.appendChild(label);
+        container.appendChild(wrap);
+        if (t.children && t.children.length) {
+          var childBox = document.createElement('div');
+          childBox.className = 'tags-tree-children';
+          container.appendChild(childBox);
+          _bulkTagsRenderTree(childBox, t.children, selectedIds, taxonomyId, level + 1);
+        }
+        wrap.addEventListener('click', function(e) { if (e.target !== cb) { cb.checked = !cb.checked; updateBulkTagsTermCount(); } });
+      });
+    }
+    function collectBulkTagsChecked() {
+      var list = [];
+      document.querySelectorAll('#bulk-tags-tree input[type="checkbox"]:checked').forEach(function(cb) {
+        var tid = cb.dataset.termId;
+        var tax = cb.dataset.taxonomyId || TAXONOMY_ID;
+        if (tid && tax) list.push({ taxonomy_id: tax, term_id: tid });
+      });
+      return list;
+    }
+    function openBulkTagsModal() {
+      var data = getSelectedData();
+      if (!data.length) { editor.setStatus('Sélectionnez au moins un concept.'); return; }
+      document.getElementById('bulk-tags-count').textContent = data.length;
+      bulkTagsTree.innerHTML = '<p style="color:#94a3b8;margin:0;">Chargement…</p>';
+      bulkTagsModal.classList.add('open');
+      var base = getApiBase();
+      fetch(base + '/api/taxonomy/vocabularies/themes/terms').then(function(r) { return r.json(); }).then(function(d) {
+        var termsTree = d.terms || [];
+        bulkTagsTree.innerHTML = '';
+        _bulkTagsRenderTree(bulkTagsTree, termsTree, [], TAXONOMY_ID, 0);
+        updateBulkTagsTermCount();
+      }).catch(function() {
+        bulkTagsTree.innerHTML = '<p style="color:#b91c1c;">Erreur chargement termes.</p>';
+      });
+    }
+    function closeBulkTagsModal() { bulkTagsModal.classList.remove('open'); }
+    document.getElementById('sel-btn-tags').addEventListener('click', openBulkTagsModal);
+    document.getElementById('btn-bulk-tags-close').addEventListener('click', closeBulkTagsModal);
+    document.getElementById('btn-bulk-tags-cancel').addEventListener('click', closeBulkTagsModal);
+    bulkTagsModal.addEventListener('click', function(e) { if (e.target === bulkTagsModal) closeBulkTagsModal(); });
+    document.getElementById('bulk-tags-filter').addEventListener('input', EditorUtils.debounce(function() {
+      var q = (this.value || '').trim().toLowerCase();
+      document.querySelectorAll('#bulk-tags-tree .tags-tree-item').forEach(function(row) {
+        var text = (row.textContent || '').toLowerCase();
+        row.style.display = !q || text.indexOf(q) !== -1 ? '' : 'none';
+      });
+    }, 200));
+    document.getElementById('btn-bulk-tags-apply').addEventListener('click', async function() {
+      var data = getSelectedData();
+      if (!data.length) return;
+      var tagsToApply = collectBulkTagsChecked();
+      if (!tagsToApply.length) { editor.setStatus('Sélectionnez au moins un terme.'); return; }
+      var mode = document.querySelector('input[name="bulk-tags-mode"]:checked');
+      var isReplace = mode && mode.value === 'replace';
+      var base = getApiBase();
+      closeBulkTagsModal();
+      var ok = 0;
+      for (var i = 0; i < data.length; i++) {
+        try {
+          var finalTags = tagsToApply;
+          if (!isReplace) {
+            var tagsRes = await fetch(base + '/api/images/' + encodeURIComponent(data[i].id) + '/tags');
+            var existing = [];
+            if (tagsRes.ok) {
+              var tagsData = await tagsRes.json();
+              existing = (tagsData.tags || []).map(function(t) { return { taxonomy_id: t.taxonomy_id, term_id: t.term_id }; });
+            }
+            var seen = {};
+            existing.forEach(function(t) { seen[t.taxonomy_id + ':' + t.term_id] = true; });
+            tagsToApply.forEach(function(t) {
+              var k = t.taxonomy_id + ':' + t.term_id;
+              if (!seen[k]) { existing.push(t); seen[k] = true; }
+            });
+            finalTags = existing;
+          }
+          var putRes = await fetch(base + '/api/images/' + encodeURIComponent(data[i].id) + '/tags', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ tags: finalTags })
+          });
+          if (putRes.ok) ok++;
+        } catch (e) {}
+      }
+      editor.reload();
+      editor.setStatus(ok + ' concept(s) mis à jour.');
+    });
+
+    var bulkGenJobsModal = document.getElementById('modal-bulk-gen-jobs');
+    var bulkGenJobsResults = document.getElementById('bulk-gen-jobs-results');
+    var btnBulkGenJobsApply = document.getElementById('btn-bulk-gen-jobs-apply');
+    function openBulkGenJobsModal() {
+      var data = getSelectedData();
+      if (!data.length) { editor.setStatus('Sélectionnez au moins un concept.'); return; }
+      if (data.length > 25) { editor.setStatus('Maximum 25 concepts par lot pour les jobs de génération.'); return; }
+      document.getElementById('bulk-gen-jobs-count').textContent = String(data.length);
+      bulkGenJobsResults.style.display = 'none';
+      bulkGenJobsResults.textContent = '';
+      bulkGenJobsModal.classList.add('open');
+    }
+    function closeBulkGenJobsModal() { bulkGenJobsModal.classList.remove('open'); }
+    document.getElementById('sel-btn-gen-jobs').addEventListener('click', openBulkGenJobsModal);
+    document.getElementById('btn-bulk-gen-jobs-close').addEventListener('click', closeBulkGenJobsModal);
+    document.getElementById('btn-bulk-gen-jobs-cancel').addEventListener('click', closeBulkGenJobsModal);
+    bulkGenJobsModal.addEventListener('click', function(e) { if (e.target === bulkGenJobsModal) closeBulkGenJobsModal(); });
+    document.getElementById('btn-bulk-gen-jobs-apply').addEventListener('click', async function() {
+      var data = getSelectedData();
+      if (!data.length) return;
+      if (data.length > 25) { editor.setStatus('Maximum 25 concepts par lot.'); return; }
+      var base = getApiBase();
+      var imageIds = data.map(function(r) { return r.id; });
+      btnBulkGenJobsApply.disabled = true;
+      try {
+        await ensureGenerationPresets();
+        var body = { image_ids: imageIds };
+        var adv = collectAdvancedGenerationParams();
+        Object.keys(adv).forEach(function(k) { body[k] = adv[k]; });
+        var res = await fetch(base + '/api/images/bulk-create-generation-jobs', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        var out = await res.json().catch(function() { return {}; });
+        if (!res.ok) {
+          var det = out.detail;
+          var msg = typeof det === 'string' ? det : (det && JSON.stringify(det)) || res.statusText;
+          throw new Error(msg);
+        }
+        var sum = out.summary || {};
+        var lines = ['Résumé : ' + (sum.success != null ? sum.success : '?') + ' OK, ' + (sum.failed != null ? sum.failed : '?') + ' refus / erreur(s).'];
+        (out.results || []).forEach(function(row) {
+          if (row.ok) lines.push(row.image_id + ' → job ' + (row.job_id || ''));
+          else lines.push(row.image_id + ' → ' + (row.error || 'erreur'));
+        });
+        bulkGenJobsResults.textContent = lines.join('\n');
+        bulkGenJobsResults.style.display = 'block';
+        editor.reload();
+        editor.setStatus('Jobs génération : ' + (sum.success || 0) + ' créé(s), ' + (sum.failed || 0) + ' ignoré(s).');
+      } catch (err) {
+        editor.setStatus('Erreur : ' + err.message);
+      } finally {
+        btnBulkGenJobsApply.disabled = false;
+      }
+    });
+
+    // ─── Import diff ─────────────────────────────────────────────────────────
+    const API_BASE_IMG = (editor.cfg.apiBase || '').replace(/\/$/, '') || (window.location ? window.location.origin : '');
+    const importDiffModal = document.getElementById('modal-import-diff');
+    const importDiffTextarea = document.getElementById('import-diff-textarea');
+    const importDiffParseErr = document.getElementById('import-diff-parse-error');
+    const importDiffPrevErr = document.getElementById('import-diff-preview-error');
+    const importDiffStepInput = document.getElementById('import-diff-step-input');
+    const importDiffStepPreview = document.getElementById('import-diff-step-preview');
+    const importDiffSummaryEl = document.getElementById('import-diff-summary');
+    const importDiffTbody = document.getElementById('import-diff-tbody');
+    const btnImportDiffValidate = document.getElementById('btn-import-diff-validate');
+    const btnImportDiffBack = document.getElementById('btn-import-diff-back');
+    const btnImportDiffApply = document.getElementById('btn-import-diff-apply');
+    const btnImportDiffCancel = document.getElementById('btn-import-diff-cancel');
+    const importDiffSelectAll = document.getElementById('import-diff-select-all-link');
+    const importDiffCheckAll = document.getElementById('import-diff-check-all');
+
+    let _importDiffOps = [];
+
+    function _escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function _importDiffStatusBadge(status) {
+      const labels = { ready: 'Prêt', update: 'Mise à jour', conflict: 'Conflit', error: 'Erreur', skip: 'Ignoré' };
+      return '<span class="diff-badge diff-badge--' + status + '">' + (labels[status] || status) + '</span>';
+    }
+
+    function _importDiffOpBadge(op) {
+      return '<span class="diff-op">' + op + '</span>';
+    }
+
+    function _importDiffRenderChanges(diff) {
+      if (!diff || !Object.keys(diff).length) return '';
+      let html = '<div class="diff-changes">';
+      for (const [field, ch] of Object.entries(diff)) {
+        const from = JSON.stringify(ch.from);
+        const to = JSON.stringify(ch.to);
+        html += '<div class="diff-change-field"><strong>' + _escHtml(field) + '</strong>: '
+          + '<span class="diff-change-from">' + _escHtml(from) + '</span>'
+          + ' → <span class="diff-change-to">' + _escHtml(to) + '</span></div>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    function _importDiffRenderTable(ops) {
+      importDiffTbody.innerHTML = '';
+      ops.forEach(function(op, idx) {
+        const canSelect = op.status === 'ready' || op.status === 'update';
+        const tr = document.createElement('tr');
+        tr.className = 'diff-row' + (canSelect ? '' : ' diff-row--disabled');
+        tr.dataset.idx = idx;
+        const hasDetail = (op.diff && Object.keys(op.diff).length > 0) || op.message;
+        const detailId = 'diff-detail-img-' + idx;
+        tr.innerHTML = '<td><input type="checkbox" class="diff-row-cb" data-idx="' + idx + '" '
+          + (canSelect ? '' : 'disabled ') + (canSelect ? 'checked' : '') + '></td>'
+          + '<td>' + _importDiffOpBadge(op.op) + '</td>'
+          + '<td class="diff-id-cell">' + _escHtml(op.image_id || '—') + '</td>'
+          + '<td>' + _importDiffStatusBadge(op.status) + '</td>'
+          + '<td class="diff-msg-cell">'
+            + (hasDetail ? '<span class="diff-detail-toggle" data-target="' + detailId + '">▶ détails</span>' : '')
+            + (!op.diff && op.message ? '<span>' + _escHtml(op.message) + '</span>' : '')
+          + '</td>';
+        importDiffTbody.appendChild(tr);
+        if (hasDetail) {
+          const trDetail = document.createElement('tr');
+          trDetail.className = 'diff-detail-row';
+          trDetail.id = detailId;
+          trDetail.style.display = 'none';
+          let detailContent = '';
+          if (op.message) detailContent += '<p style="font-size:0.8rem;margin:0 0 0.3rem;color:#5f6368;">' + _escHtml(op.message) + '</p>';
+          if (op.diff) detailContent += _importDiffRenderChanges(op.diff);
+          trDetail.innerHTML = '<td></td><td colspan="4">' + detailContent + '</td>';
+          importDiffTbody.appendChild(trDetail);
+        }
+      });
+      importDiffTbody.querySelectorAll('.diff-detail-toggle').forEach(function(el) {
+        el.addEventListener('click', function() {
+          const target = document.getElementById(el.dataset.target);
+          if (!target) return;
+          const open = target.style.display !== 'none';
+          target.style.display = open ? 'none' : '';
+          el.textContent = open ? '▶ détails' : '▼ détails';
+        });
+      });
+    }
+
+    function _importDiffSummaryHtml(summary) {
+      const parts = [];
+      if (summary.ready) parts.push('<span class="diff-badge diff-badge--ready">' + summary.ready + ' à ajouter</span>');
+      if (summary.update) parts.push('<span class="diff-badge diff-badge--update">' + summary.update + ' à mettre à jour</span>');
+      if (summary.conflict) parts.push('<span class="diff-badge diff-badge--conflict">' + summary.conflict + ' conflit(s)</span>');
+      if (summary.error) parts.push('<span class="diff-badge diff-badge--error">' + summary.error + ' erreur(s)</span>');
+      if (summary.skip) parts.push('<span class="diff-badge diff-badge--skip">' + summary.skip + ' ignoré(s)</span>');
+      return parts.join(' ');
+    }
+
+    function _importDiffShowStep(step) {
+      importDiffStepInput.style.display = step === 'input' ? '' : 'none';
+      importDiffStepPreview.style.display = step === 'preview' ? '' : 'none';
+      btnImportDiffValidate.style.display = step === 'input' ? '' : 'none';
+      btnImportDiffBack.style.display = step === 'preview' ? '' : 'none';
+      btnImportDiffApply.style.display = step === 'preview' ? '' : 'none';
+      importDiffSelectAll.style.display = step === 'preview' ? '' : 'none';
+    }
+
+    function _importDiffCountSelected() {
+      return importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled):checked').length;
+    }
+
+    function _importDiffUpdateApplyBtn() {
+      btnImportDiffApply.disabled = _importDiffCountSelected() === 0;
+    }
+
+    function openImportDiffModal() {
+      importDiffParseErr.style.display = 'none';
+      importDiffPrevErr.style.display = 'none';
+      _importDiffOps = [];
+      _importDiffShowStep('input');
+      importDiffModal.classList.add('open');
+      setTimeout(function() { importDiffTextarea.focus(); }, 50);
+    }
+
+    function closeImportDiffModal() {
+      importDiffModal.classList.remove('open');
+      btnImportDiffApply.disabled = true;
+      btnImportDiffApply.textContent = 'Appliquer la sélection';
+    }
+
+    document.getElementById('btn-import-diff').addEventListener('click', openImportDiffModal);
+    btnImportDiffCancel.addEventListener('click', closeImportDiffModal);
+    document.getElementById('btn-import-diff-close').addEventListener('click', closeImportDiffModal);
+    btnImportDiffBack.addEventListener('click', function() {
+      _importDiffShowStep('input');
+      btnImportDiffApply.disabled = true;
+      btnImportDiffApply.textContent = 'Appliquer la sélection';
+    });
+
+    importDiffSelectAll.addEventListener('click', function() {
+      const cbs = importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled)');
+      const allChecked = Array.from(cbs).every(function(cb) { return cb.checked; });
+      cbs.forEach(function(cb) { cb.checked = !allChecked; });
+      importDiffCheckAll.checked = !allChecked;
+      _importDiffUpdateApplyBtn();
+    });
+    importDiffCheckAll.addEventListener('change', function() {
+      importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled)').forEach(function(cb) {
+        cb.checked = importDiffCheckAll.checked;
+      });
+      _importDiffUpdateApplyBtn();
+    });
+    importDiffTbody.addEventListener('change', function(e) {
+      if (e.target.classList.contains('diff-row-cb')) _importDiffUpdateApplyBtn();
+    });
+
+    async function _importDiffValidate() {
+      importDiffParseErr.style.display = 'none';
+      const raw = importDiffTextarea.value.trim();
+      if (!raw) {
+        importDiffParseErr.textContent = 'Veuillez coller un tableau JSON d\'opérations.';
+        importDiffParseErr.style.display = 'block';
+        return;
+      }
+      let ops;
+      try {
+        ops = JSON.parse(raw);
+        if (!Array.isArray(ops)) throw new Error('La valeur doit être un tableau JSON.');
+        ops = ops.map(function(o) {
+          const n = Object.assign({}, o);
+          if (n.op === 'replace') n.op = 'upsert';
+          return n;
+        });
+      } catch (err) {
+        importDiffParseErr.textContent = 'JSON invalide : ' + err.message;
+        importDiffParseErr.style.display = 'block';
+        return;
+      }
+      btnImportDiffValidate.disabled = true;
+      btnImportDiffValidate.textContent = 'Validation…';
+      try {
+        const res = await fetch(API_BASE_IMG + '/api/images/import/diff?dry_run=true', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(ops)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          importDiffParseErr.textContent = 'Erreur API : ' + (data.detail || res.statusText);
+          importDiffParseErr.style.display = 'block';
+          return;
+        }
+        _importDiffOps = data.operations || [];
+        importDiffSummaryEl.innerHTML = _importDiffSummaryHtml(data.summary || {});
+        _importDiffRenderTable(_importDiffOps);
+        _importDiffShowStep('preview');
+        _importDiffUpdateApplyBtn();
+      } catch (err) {
+        importDiffParseErr.textContent = 'Erreur réseau : ' + err.message;
+        importDiffParseErr.style.display = 'block';
+      } finally {
+        btnImportDiffValidate.disabled = false;
+        btnImportDiffValidate.textContent = 'Valider →';
+      }
+    }
+
+    btnImportDiffValidate.addEventListener('click', _importDiffValidate);
+
+    btnImportDiffApply.addEventListener('click', async function() {
+      const selectedIdxs = new Set();
+      importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled):checked').forEach(function(cb) {
+        selectedIdxs.add(Number(cb.dataset.idx));
+      });
+      if (!selectedIdxs.size) {
+        editor.setStatus('Aucune opération sélectionnée.');
+        return;
+      }
+      const selectedOps = _importDiffOps
+        .filter(function(_, i) { return selectedIdxs.has(i); })
+        .map(function(op) { return { op: op.op, value: op.incoming }; });
+
+      btnImportDiffApply.disabled = true;
+      btnImportDiffApply.textContent = 'Application en cours…';
+      importDiffPrevErr.style.display = 'none';
+
+      try {
+        const res = await fetch(API_BASE_IMG + '/api/images/import/diff?dry_run=false', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(selectedOps)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          importDiffPrevErr.textContent = 'Erreur API : ' + (data.detail || res.statusText);
+          importDiffPrevErr.style.display = 'block';
+          return;
+        }
+        editor.setStatus('Rechargement…');
+        await editor.reload();
+        editor.setStatus(data.applied_count + ' opération(s) appliquée(s).');
+        closeImportDiffModal();
+      } catch (err) {
+        importDiffPrevErr.textContent = 'Erreur réseau : ' + err.message;
+        importDiffPrevErr.style.display = 'block';
+      } finally {
+        if (importDiffModal.classList.contains('open')) {
+          btnImportDiffApply.disabled = false;
+          btnImportDiffApply.textContent = 'Appliquer la sélection';
+        }
+      }
+    });
+
+    function getApiBase() {
+      var base = (editor.cfg.apiBase || '').replace(/\/$/, '');
+      return base || (typeof window !== 'undefined' && window.location ? window.location.origin : '');
+    }
+
+    /**
+     * Appelle un endpoint /api/ai/* POST et gère automatiquement le mode async (HTTP 202)
+     * en démarrant un polling jusqu'à completion du job.
+     * Compatible mode sync (HTTP 200) : retourne directement le JSON.
+     * @param {string} url  — ex. '/api/ai/create-prompt'
+     * @param {Object} body — corps JSON
+     * @param {Object} [pollOpts] — options pour JobsPoller (onProgress, maxWaitMs, etc.)
+     * @returns {Promise<Object>} — résultat JSON (mode sync) ou proposal extrait de job.result (mode async)
+     */
+    async function _aiCall(url, body, pollOpts) {
+      var base = getApiBase();
+      var res = await fetch(base + url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) {
+        var errData = await res.json().catch(function() { return {}; });
+        var detail = errData.detail;
+        if (typeof detail === 'string') throw new Error(detail);
+        if (detail) throw new Error(JSON.stringify(detail));
+        throw new Error(res.statusText || 'Erreur HTTP ' + res.status);
+      }
+      var data = await res.json();
+      if (res.status === 202 && data.job_id) {
+        // Mode async : polling
+        return await new Promise(function(resolve, reject) {
+          if (typeof JobsPoller === 'undefined') { reject(new Error('JobsPoller non chargé')); return; }
+          var opts = Object.assign({ apiBase: base, pollIntervalMs: 2000, maxWaitMs: 180000 }, pollOpts || {});
+          opts.onDone = function(job) {
+            var result = null;
+            if (job.result) {
+              try {
+                var artifact = typeof job.result === 'string' ? JSON.parse(job.result) : job.result;
+                result = artifact.proposal !== undefined ? artifact.proposal : artifact;
+              } catch (_) { result = job.result; }
+            }
+            resolve(result || job);
+          };
+          opts.onError = function(msg) { reject(new Error(msg)); };
+          JobsPoller.start(data.job_id, opts);
+        });
+      }
+      return data;
+    }
+
+    var imageReviewModal =
+      typeof mountImageReviewModal === 'function'
+        ? mountImageReviewModal('', {
+            getApiBase: getApiBase,
+            onAfterAction: function () {
+              var id = editor._editingId;
+              if (id) {
+                loadJobStatusAndOutput(id);
+                var js = document.getElementById('jobs-summary');
+                if (js) loadJobsSummary(id, js);
+                editor.reload().catch(function () {});
+              }
+            },
+          })
+        : null;
+
+    // Activer/désactiver tags, jobs summary, lancer génération ; charger données à l'ouverture
+    var _origOpenForm = editor.openForm.bind(editor);
+    editor.openForm = async function(id) {
+      await _origOpenForm(id);
+      var btnTags = document.getElementById('btn-manage-tags');
+      var summaryEl = document.getElementById('tags-summary');
+      var btnJobs = document.getElementById('btn-manage-jobs');
+      var jobsSummary = document.getElementById('jobs-summary');
+      if (btnTags) {
+        btnTags.disabled = !id;
+        btnTags.title = id ? 'Gérer les tags taxonomiques' : 'Enregistrez d\'abord le concept pour gérer les tags';
+      }
+      var chipsInput = document.getElementById('form-tags-input');
+      if (chipsInput) chipsInput.disabled = !id;
+      if (btnJobs) {
+        btnJobs.disabled = !id;
+        btnJobs.title = id ? 'Voir les jobs et en ajouter' : 'Enregistrez d\'abord le concept';
+      }
+      if (id) loadTagsChips(id);
+      else { _tagsChipsData = []; _renderChips(); }
+      if (id && summaryEl) loadTagsSummary(id, summaryEl);
+      else if (summaryEl) summaryEl.textContent = 'Aucun tag';
+      if (id && jobsSummary) loadJobsSummary(id, jobsSummary);
+      else if (jobsSummary) jobsSummary.textContent = 'Aucun job';
+      if (id) loadJobStatusAndOutput(id);
+      else updateJobStatusDisplay(null, null);
+    };
+
+    async function fetchTagsContextForPrompt(imageId) {
+      var base = getApiBase();
+      if (!imageId) return '';
+      try {
+        var res = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/tags');
+        if (!res.ok) return '';
+        var data = await res.json();
+        var tags = data.tags || [];
+        return tags.map(function(t) { return (t.name_fr || t.name_en || t.term_id || '').trim(); }).filter(Boolean).join(', ');
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function renderPromptValidation(data) {
+      var box = document.getElementById('prompt-validation-result');
+      if (!box) return;
+      var score = typeof data.score === 'number' ? data.score : 0;
+      var checks = data.checks || [];
+      var rec = data.recommendations || [];
+      var html = '<strong>Score : ' + score + ' / 100</strong>';
+      if (checks.length) {
+        html += '<ul style="margin:0.4rem 0 0 1rem;padding:0;">';
+        checks.forEach(function(c) {
+          var ok = false;
+          var label = '';
+          if (c && typeof c === 'object') {
+            ok = c.pass === true || c.ok === true || c.passed === true;
+            label = (c.name || c.id || c.label || '') + (c.message ? ' — ' + c.message : '');
+            if (!label.trim()) label = JSON.stringify(c);
+          } else {
+            label = String(c);
+          }
+          var mark = ok ? '✓' : '✗';
+          html += '<li style="margin:0.15rem 0;"><span style="color:' + (ok ? '#15803d' : '#b91c1c') + ';">' + mark + '</span> ' + EditorUtils.escHtml(label) + '</li>';
+        });
+        html += '</ul>';
+      }
+      if (rec.length) {
+        html += '<div style="margin-top:0.35rem;"><em>Recommandations</em><ul style="margin:0.25rem 0 0 1rem;">';
+        rec.forEach(function(r) {
+          html += '<li>' + EditorUtils.escHtml(String(r)) + '</li>';
+        });
+        html += '</ul></div>';
+      }
+      box.innerHTML = html;
+      box.style.display = 'block';
+    }
+
+    // ─── Créer depuis mots-clés (v1 : POST /api/ai/create-prompt) ─────────────
+    var btnGeneratePrompt = document.getElementById('btn-generate-prompt');
+    if (btnGeneratePrompt) {
+      btnGeneratePrompt.addEventListener('click', async function() {
+        var editingId = editor._editingId;
+        var promptEl = document.getElementById('ef-prompt');
+        var negPromptEl = document.getElementById('ef-negative_prompt');
+        var kwEl = document.getElementById('ef-prompt-keywords');
+        if (!promptEl || !negPromptEl) return;
+        var keywords = (kwEl && kwEl.value) ? kwEl.value.trim() : '';
+        var title = (document.getElementById('ef-title') && document.getElementById('ef-title').value) || '';
+        title = (title || '').trim();
+        if (!keywords && !title) {
+          EditorUtils.setStatus('Renseignez des mots-clés ou un titre pour créer un prompt.', 'status');
+          return;
+        }
+        var valBox = document.getElementById('prompt-validation-result');
+        if (valBox) { valBox.style.display = 'none'; valBox.innerHTML = ''; }
+        btnGeneratePrompt.disabled = true;
+        btnGeneratePrompt.textContent = 'Création…';
+        var base = getApiBase();
+        try {
+          var tags_context = await fetchTagsContextForPrompt(editingId);
+          var data = await _aiCall('/api/ai/create-prompt', {
+            keywords: keywords, title: title, tags_context: tags_context, profile: 'kids_coloring_lineart_v1'
+          });
+          var p = ((data && data.prompt) || '').trim();
+          if (p) {
+            promptEl.value = p;
+            if (editingId) {
+              var payload = editor._collectForm();
+              payload.status = (payload.status === 'draft' ? 'prompt_ready' : payload.status) || 'prompt_ready';
+              var putRes = await fetch(base + '/api/images/' + encodeURIComponent(editingId), {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+              });
+              if (putRes.ok) {
+                editor.reload();
+                EditorUtils.setStatus('Prompt créé (planner→writer) et sauvegardé.', 'status');
+              } else {
+                EditorUtils.setStatus('Prompt créé appliqué (non sauvegardé).', 'status');
+              }
+            } else {
+              EditorUtils.setStatus('Prompt créé (planner→writer).', 'status');
+            }
+          } else {
+            EditorUtils.setStatus('Réponse vide du writer.', 'status');
+          }
+        } catch (e) {
+          EditorUtils.setStatus('Erreur : ' + e.message, 'status');
+        } finally {
+          btnGeneratePrompt.disabled = false;
+          btnGeneratePrompt.textContent = 'Créer depuis mots-clés';
+        }
+      });
+    }
+
+    // ─── Améliorer prompt (v1 : POST /api/ai/improve-prompt) ───────────────────
+    var btnSuggestPrompt = document.getElementById('btn-suggest-prompt');
+    if (btnSuggestPrompt) {
+      btnSuggestPrompt.addEventListener('click', async function() {
+        var editingId = editor._editingId;
+        var promptEl = document.getElementById('ef-prompt');
+        var negPromptEl = document.getElementById('ef-negative_prompt');
+        if (!promptEl || !negPromptEl) return;
+        var title = (document.getElementById('ef-title') && document.getElementById('ef-title').value) || '';
+        var prompt = promptEl.value || '';
+        btnSuggestPrompt.disabled = true;
+        btnSuggestPrompt.textContent = 'Amélioration…';
+        var base = getApiBase();
+        try {
+          var tags_context = editingId ? await fetchTagsContextForPrompt(editingId) : '';
+          var improveBody = { count: 2, title: title, prompt: prompt, tags_context: tags_context };
+          if (editingId) improveBody.image_id = editingId;
+          var data = await _aiCall('/api/ai/improve-prompt', improveBody);
+          var suggestions = (data && data.suggestions) || [];
+          if (suggestions.length > 0) {
+            var s = suggestions[0];
+            promptEl.value = s.prompt || '';
+            if (s.negative_prompt) negPromptEl.value = s.negative_prompt;
+            if (editingId) {
+              var payload = editor._collectForm();
+              payload.status = (payload.status === 'draft' ? 'prompt_ready' : payload.status) || 'prompt_ready';
+              var putRes = await fetch(base + '/api/images/' + encodeURIComponent(editingId), {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+              });
+              if (putRes.ok) {
+                editor.reload();
+                EditorUtils.setStatus('Variante appliquée et sauvegardée.', 'status');
+              } else {
+                EditorUtils.setStatus('Variante appliquée (non sauvegardée).', 'status');
+              }
+            } else {
+              EditorUtils.setStatus('Variante appliquée.', 'status');
+            }
+          } else {
+            EditorUtils.setStatus('Aucune variante reçue.', 'status');
+          }
+        } catch (e) {
+          EditorUtils.setStatus('Erreur : ' + e.message, 'status');
+        } finally {
+          btnSuggestPrompt.disabled = false;
+          btnSuggestPrompt.textContent = 'Améliorer prompt';
+        }
+      });
+    }
+
+    // ─── Valider prompt (v1 : POST /api/ai/validate-prompt) ────────────────────
+    var btnValidatePrompt = document.getElementById('btn-validate-prompt');
+    if (btnValidatePrompt) {
+      btnValidatePrompt.addEventListener('click', async function() {
+        var promptEl = document.getElementById('ef-prompt');
+        if (!promptEl) return;
+        var prompt = (promptEl.value || '').trim();
+        if (!prompt) {
+          EditorUtils.setStatus('Renseignez un prompt à valider.', 'status');
+          return;
+        }
+        btnValidatePrompt.disabled = true;
+        btnValidatePrompt.textContent = 'Validation…';
+        var base = getApiBase();
+        try {
+          var data = await _aiCall('/api/ai/validate-prompt', { prompt: prompt, profile: 'kids_coloring_lineart_v1' });
+          renderPromptValidation(data || {});
+          EditorUtils.setStatus('Validation terminée (score ' + ((data && data.score) != null ? data.score : '?') + '/100).', 'status');
+        } catch (e) {
+          var box = document.getElementById('prompt-validation-result');
+          if (box) { box.style.display = 'none'; box.innerHTML = ''; }
+          EditorUtils.setStatus('Erreur : ' + e.message, 'status');
+        } finally {
+          btnValidatePrompt.disabled = false;
+          btnValidatePrompt.textContent = 'Valider prompt';
+        }
+      });
+    }
+
+    async function loadJobsSummary(imageId, summaryEl) {
+      var base = getApiBase();
+      try {
+        var res = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/jobs');
+        if (!res.ok) { summaryEl.textContent = 'Erreur'; return; }
+        var jobs = await res.json();
+        if (jobs.length === 0) summaryEl.textContent = 'Aucun job associé';
+        else {
+          var current = jobs[0];
+          summaryEl.textContent = jobs.length + ' job(s) — dernier : ' + (current.id || '') + ' (' + (current.status || '') + ')';
+        }
+      } catch (e) {
+        summaryEl.textContent = 'Erreur';
+      }
+    }
+
+    async function loadJobStatusAndOutput(imageId) {
+      var base = getApiBase();
+      try {
+        var res = await fetch(base + '/api/images/' + encodeURIComponent(imageId));
+        if (!res.ok) { updateJobStatusDisplay(null, null); return; }
+        var data = await res.json();
+        updateJobStatusDisplay(data.current_job || null, data.current_job_output || null);
+      } catch (e) {
+        updateJobStatusDisplay(null, null);
+      }
+    }
+
+    var _formCurrentJobOutput = { job: null, output: null };
+
+    function updateJobStatusDisplay(currentJob, currentJobOutput) {
+      var statusEl = document.getElementById('job-status-display');
+      var outputWrap = document.getElementById('job-output-display');
+      var imgWrap = document.getElementById('job-output-image-wrap');
+      var imgEl = document.getElementById('job-output-image');
+      var textEl = document.getElementById('job-output-text');
+      if (!statusEl) return;
+      if (!currentJob) {
+        _formCurrentJobOutput.job = null;
+        _formCurrentJobOutput.output = null;
+        statusEl.innerHTML = 'Aucun job';
+        if (outputWrap) outputWrap.style.display = 'none';
+        return;
+      }
+      var status = (currentJob.status || '').toLowerCase();
+      var badgeClass = 'badge-job-pending';
+      if (status === 'completed') badgeClass = 'badge-job-completed';
+      else if (status === 'running') badgeClass = 'badge-job-running';
+      else if (status === 'failed') badgeClass = 'badge-job-failed';
+      else if (status === 'awaiting_validation') badgeClass = 'badge-job-awaiting_validation';
+      var jobType = (currentJob.type || '').toLowerCase();
+      var showReviewBtn =
+        status === 'awaiting_validation' && jobType === 'image_generation' && imageReviewModal && currentJob.id;
+      statusEl.innerHTML =
+        '<span class="badge ' + badgeClass + '">' + EditorUtils.escHtml(status) + '</span> ' +
+        (currentJob.id ? '<span style="font-size:0.8rem;color:#64748b;">' + EditorUtils.escHtml(currentJob.id) + '</span>' : '') +
+        (showReviewBtn
+          ? '<div style="margin-top:0.4rem;"><button type="button" class="output-select-btn" id="btn-open-image-review-status">Revue & validation</button></div>'
+          : '');
+      if (currentJob.error_message) {
+        statusEl.innerHTML += '<div style="margin-top:0.25rem;font-size:0.8rem;color:#b91c1c;">' + EditorUtils.escHtml(currentJob.error_message) + '</div>';
+      }
+      if (showReviewBtn) {
+        var br = document.getElementById('btn-open-image-review-status');
+        if (br) {
+          br.onclick = function () {
+            imageReviewModal.open(currentJob.id);
+          };
+        }
+      }
+      if (outputWrap) {
+        if (currentJob.status === 'completed' && currentJobOutput && (currentJobOutput.file_path || currentJobOutput.text_content)) {
+          _formCurrentJobOutput.job = currentJob;
+          _formCurrentJobOutput.output = currentJobOutput;
+          outputWrap.style.display = '';
+          var base = getApiBase();
+          if (currentJobOutput.file_path) {
+            imgWrap.style.display = '';
+            imgEl.src = base + '/data/' + (currentJobOutput.file_path || '').replace(/^\/+/, '');
+            imgEl.onerror = function() { imgWrap.style.display = 'none'; };
+          } else {
+            imgWrap.style.display = 'none';
+          }
+          if (currentJobOutput.text_content) {
+            textEl.style.display = '';
+            textEl.textContent = currentJobOutput.text_content;
+          } else {
+            textEl.style.display = 'none';
+          }
+        } else {
+          _formCurrentJobOutput.job = null;
+          _formCurrentJobOutput.output = null;
+          outputWrap.style.display = 'none';
+        }
+      }
+    }
+
+    document.getElementById('job-output-image-wrap').addEventListener('click', function() {
+      if (_formCurrentJobOutput.job && _formCurrentJobOutput.output && editor._editingId) {
+        openJobOutputModal(editor._editingId, _formCurrentJobOutput.job.id, _formCurrentJobOutput.output);
+      }
+    });
+
+    var generationPresetsLoaded = false;
+    async function ensureGenerationPresets() {
+      if (generationPresetsLoaded) return;
+      var base = getApiBase();
+      try {
+        var res = await fetch(base + '/api/generation/presets');
+        if (!res.ok) return;
+        var data = await res.json();
+        var samp = document.getElementById('gen-adv-sampler');
+        var sch = document.getElementById('gen-adv-scheduler');
+        if (samp) {
+          samp.innerHTML = '<option value="">(défaut)</option>';
+          (data.sampler_names || []).forEach(function(name) {
+            var opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = name;
+            samp.appendChild(opt);
+          });
+        }
+        if (sch) {
+          sch.innerHTML = '<option value="">(défaut)</option>';
+          (data.schedulers || []).forEach(function(name) {
+            var opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = name;
+            sch.appendChild(opt);
+          });
+        }
+        var wfSel = document.getElementById('gen-adv-workflow');
+        if (wfSel) {
+          wfSel.innerHTML = '';
+          var tmpl = data.workflow_templates || [];
+          var defWf = data.default_workflow_template || '';
+          if (tmpl.length === 0) {
+            var o0 = document.createElement('option');
+            o0.value = '';
+            o0.textContent = '(aucun template)';
+            wfSel.appendChild(o0);
+          } else {
+            tmpl.forEach(function(name) {
+              var wopt = document.createElement('option');
+              wopt.value = name;
+              wopt.textContent = name;
+              wfSel.appendChild(wopt);
+            });
+            if (defWf && tmpl.indexOf(defWf) >= 0) wfSel.value = defWf;
+            else wfSel.value = tmpl[0];
+          }
+        }
+        window.__generationPresetsPayload = data;
+        generationPresetsLoaded = true;
+      } catch (e) { /* ignore — champs restent (défaut) */ }
+    }
+
+    function applyComfyBlueprintGenerationPreset() {
+      var data = window.__generationPresetsPayload || {};
+      var wfSel = document.getElementById('gen-adv-workflow');
+      var wf = wfSel && wfSel.value ? String(wfSel.value) : '';
+      var bp;
+      var label;
+      if (wf.indexOf('ernie') >= 0 && data.comfy_blueprint_ernie_image_turbo_q8_api) {
+        bp = data.comfy_blueprint_ernie_image_turbo_q8_api;
+        label = 'Ernie Image Turbo Q8';
+      } else {
+        bp = data.comfy_blueprint_text_to_image_z_image_turbo || data.defaults || {};
+        label = 'Z-Image-Turbo';
+      }
+      var samp = document.getElementById('gen-adv-sampler');
+      var sch = document.getElementById('gen-adv-scheduler');
+      if (samp && bp.sampler_name) samp.value = bp.sampler_name;
+      if (sch && bp.scheduler) sch.value = bp.scheduler;
+      function setNum(id, v) {
+        var el = document.getElementById(id);
+        if (el && v !== undefined && v !== null) el.value = String(v);
+      }
+      setNum('gen-adv-cfg', bp.cfg);
+      setNum('gen-adv-steps', bp.steps);
+      setNum('gen-adv-shift', bp.shift);
+      setNum('gen-adv-denoise', bp.denoise);
+      var seedEl = document.getElementById('gen-adv-seed');
+      if (seedEl) seedEl.value = '';
+      var det = document.getElementById('jobs-gen-adv-details');
+      if (det) det.open = true;
+      EditorUtils.setStatus('Preset ComfyUI appliqué (' + label + ').', 'status');
+    }
+
+    function collectAdvancedGenerationParams() {
+      var o = {};
+      var samp = document.getElementById('gen-adv-sampler');
+      if (samp && samp.value) o.sampler_name = samp.value;
+      var sch = document.getElementById('gen-adv-scheduler');
+      if (sch && sch.value) o.scheduler = sch.value;
+      function num(id, key, intOnly) {
+        var el = document.getElementById(id);
+        if (!el || !String(el.value).trim()) return;
+        var n = intOnly ? parseInt(el.value, 10) : parseFloat(el.value);
+        if (!isNaN(n)) o[key] = n;
+      }
+      num('gen-adv-cfg', 'cfg', false);
+      num('gen-adv-steps', 'steps', true);
+      num('gen-adv-shift', 'shift', false);
+      num('gen-adv-denoise', 'denoise', false);
+      num('gen-adv-seed', 'seed', true);
+      var wfEl = document.getElementById('gen-adv-workflow');
+      if (wfEl && String(wfEl.value || '').trim()) o.workflow_template = String(wfEl.value).trim();
+      return o;
+    }
+
+    async function launchGeneration(imageId) {
+      var base = getApiBase();
+      try {
+        await ensureGenerationPresets();
+        var imgRes = await fetch(base + '/api/images/' + encodeURIComponent(imageId));
+        if (!imgRes.ok) throw new Error(await EditorUtils.parseApiError(imgRes));
+        var imgData = await imgRes.json();
+        var tagsRes = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/tags');
+        var tags = [];
+        if (tagsRes.ok) {
+          var tagsData = await tagsRes.json();
+          tags = (tagsData.tags || []).map(function(t) { return { taxonomy_id: t.taxonomy_id, term_id: t.term_id }; });
+        }
+        var prompt = imgData.prompt || '';
+        if (!prompt.trim()) {
+          EditorUtils.setStatus('Saisissez un prompt avant de lancer la génération.', 'status');
+          return;
+        }
+        var body = { prompt: prompt, tags: tags };
+        var adv = collectAdvancedGenerationParams();
+        Object.keys(adv).forEach(function(k) { body[k] = adv[k]; });
+        var res = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/jobs', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) throw new Error(await EditorUtils.parseApiError(res));
+        loadJobsSummary(imageId, document.getElementById('jobs-summary'));
+        loadJobStatusAndOutput(imageId);
+        editor.reload();
+        EditorUtils.setStatus('Job créé. Génération en attente.', 'status');
+      } catch (err) {
+        EditorUtils.setStatus('Erreur : ' + err.message, 'status');
+      }
+    }
+
+    async function loadTagsSummary(imageId, summaryEl) {
+      var base = getApiBase();
+      try {
+        var res = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/tags');
+        if (!res.ok) { summaryEl.textContent = 'Erreur chargement'; return; }
+        var data = await res.json();
+        var tags = data.tags || [];
+        if (tags.length === 0) summaryEl.textContent = 'Aucun tag';
+        else if (tags.length <= 3) summaryEl.textContent = tags.length + ' tag(s) : ' + tags.map(function(t) { return t.name_fr || t.term_id; }).join(', ');
+        else summaryEl.textContent = tags.length + ' tag(s) : ' + (tags.slice(0, 2).map(function(t) { return t.name_fr || t.term_id; }).join(', ')) + ', …';
+      } catch (e) {
+        summaryEl.textContent = 'Erreur';
+      }
+    }
+
+    // ── Tags chips + autocomplete (inline) ────────────────────────────────────
+    var TAXONOMY_ID = 'universal_v0';
+    var _tagsTermsFlat = [];      // cache terms list for autocomplete
+    var _tagsChipsData = [];      // current chips [{taxonomy_id, term_id, name_fr}]
+    var _chipsSuggActiveIdx = -1;
+
+    async function _loadTermsCache() {
+      if (_tagsTermsFlat.length) return;
+      try {
+        var base = getApiBase();
+        var res = await fetch(base + '/api/taxonomy/vocabularies/themes/terms');
+        if (!res.ok) return;
+        var data = await res.json();
+        function flatten(terms) {
+          (terms || []).forEach(function(t) {
+            _tagsTermsFlat.push(t);
+            if (t.children && t.children.length) flatten(t.children);
+          });
+        }
+        flatten(data.terms || []);
+      } catch (e) { /* silencieux */ }
+    }
+
+    function _renderChips() {
+      var container = document.getElementById('form-tags-chips');
+      if (!container) return;
+      container.innerHTML = '';
+      _tagsChipsData.forEach(function(tag) {
+        var chip = document.createElement('span');
+        chip.className = 'chip';
+        var label = document.createTextNode(tag.name_fr || tag.name_en || tag.term_id);
+        var btn = document.createElement('button');
+        btn.className = 'chip-remove';
+        btn.type = 'button';
+        btn.title = 'Retirer';
+        btn.textContent = '×';
+        btn.setAttribute('data-term-id', tag.term_id);
+        btn.addEventListener('click', function() { _removeChip(tag.term_id); });
+        chip.appendChild(label);
+        chip.appendChild(btn);
+        container.appendChild(chip);
+      });
+    }
+
+    async function _saveChips(imageId) {
+      if (!imageId) return;
+      var base = getApiBase();
+      var payload = { tags: _tagsChipsData.map(function(t) { return { taxonomy_id: t.taxonomy_id, term_id: t.term_id }; }) };
+      try {
+        var res = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/tags', {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+        });
+        if (!res.ok) EditorUtils.setStatus('Erreur sauvegarde tags.', 'status');
+      } catch (e) { EditorUtils.setStatus('Erreur réseau tags.', 'status'); }
+    }
+
+    function _removeChip(termId) {
+      var id = editor._editingId;
+      _tagsChipsData = _tagsChipsData.filter(function(t) { return t.term_id !== termId; });
+      _renderChips();
+      _saveChips(id);
+    }
+
+    function _addChip(term) {
+      var id = editor._editingId;
+      if (_tagsChipsData.some(function(t) { return t.term_id === term.id; })) return;
+      _tagsChipsData.push({ taxonomy_id: TAXONOMY_ID, term_id: term.id, name_fr: term.name_fr || term.name_en || term.id });
+      _renderChips();
+      _saveChips(id);
+    }
+
+    function _hideSuggestions() {
+      var box = document.getElementById('form-tags-suggestions');
+      if (box) { box.style.display = 'none'; box.innerHTML = ''; }
+      _chipsSuggActiveIdx = -1;
+    }
+
+    function _showSuggestions(terms) {
+      var box = document.getElementById('form-tags-suggestions');
+      if (!box) return;
+      if (!terms.length) { _hideSuggestions(); return; }
+      box.innerHTML = '';
+      _chipsSuggActiveIdx = -1;
+      terms.forEach(function(t, i) {
+        var item = document.createElement('div');
+        item.className = 'chips-suggestion-item';
+        item.textContent = t.name_fr || t.name_en || t.id;
+        item.addEventListener('mousedown', function(e) { e.preventDefault(); _addChipFromSuggestion(t); });
+        box.appendChild(item);
+      });
+      box.style.display = 'block';
+    }
+
+    function _addChipFromSuggestion(term) {
+      _addChip(term);
+      var inp = document.getElementById('form-tags-input');
+      if (inp) inp.value = '';
+      _hideSuggestions();
+    }
+
+    async function loadTagsChips(imageId) {
+      _tagsChipsData = [];
+      _renderChips();
+      if (!imageId) return;
+      await _loadTermsCache();
+      var base = getApiBase();
+      try {
+        var res = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/tags');
+        if (!res.ok) return;
+        var data = await res.json();
+        (data.tags || []).forEach(function(t) {
+          var term = _tagsTermsFlat.find(function(x) { return x.id === t.term_id; });
+          _tagsChipsData.push({ taxonomy_id: t.taxonomy_id, term_id: t.term_id, name_fr: t.name_fr || (term && (term.name_fr || term.name_en)) || t.term_id });
+        });
+        _renderChips();
+      } catch (e) { /* silencieux */ }
+    }
+
+    var _chipsInputEl = document.getElementById('form-tags-input');
+    if (_chipsInputEl) {
+      _chipsInputEl.addEventListener('input', EditorUtils.debounce(async function() {
+        var q = (this.value || '').trim().toLowerCase();
+        if (!q) { _hideSuggestions(); return; }
+        await _loadTermsCache();
+        var already = _tagsChipsData.map(function(t) { return t.term_id; });
+        var matches = _tagsTermsFlat.filter(function(t) {
+          if (already.indexOf(t.id) !== -1) return false;
+          var n = ((t.name_fr || '') + ' ' + (t.name_en || '') + ' ' + t.id).toLowerCase();
+          return n.indexOf(q) !== -1;
+        }).slice(0, 8);
+        _showSuggestions(matches);
+      }, 180));
+
+      _chipsInputEl.addEventListener('keydown', function(e) {
+        var box = document.getElementById('form-tags-suggestions');
+        var items = box ? box.querySelectorAll('.chips-suggestion-item') : [];
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          _chipsSuggActiveIdx = Math.min(_chipsSuggActiveIdx + 1, items.length - 1);
+          items.forEach(function(el, i) { el.classList.toggle('active', i === _chipsSuggActiveIdx); });
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          _chipsSuggActiveIdx = Math.max(_chipsSuggActiveIdx - 1, 0);
+          items.forEach(function(el, i) { el.classList.toggle('active', i === _chipsSuggActiveIdx); });
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (_chipsSuggActiveIdx >= 0 && items[_chipsSuggActiveIdx]) {
+            items[_chipsSuggActiveIdx].dispatchEvent(new MouseEvent('mousedown'));
+          } else if (items.length === 1) {
+            items[0].dispatchEvent(new MouseEvent('mousedown'));
+          }
+        } else if (e.key === 'Backspace' && !this.value && _tagsChipsData.length) {
+          _removeChip(_tagsChipsData[_tagsChipsData.length - 1].term_id);
+        } else if (e.key === 'Escape') {
+          _hideSuggestions();
+        }
+      });
+
+      _chipsInputEl.addEventListener('blur', function() {
+        setTimeout(_hideSuggestions, 150);
+      });
+    }
+
+    // ── Tags modal ─────────────────────────────────────────────────────────────
+    var tagsModal = document.getElementById('modal-tags');
+    var tagsModalImageId = document.getElementById('tags-modal-image-id');
+    var tagsTreeContainer = document.getElementById('tags-tree-container');
+    var tagsModalCount = document.getElementById('tags-modal-count');
+    var currentTagsSelected = new Set();
+
+    document.getElementById('btn-manage-tags').addEventListener('click', function() {
+      var id = editor._editingId;
+      if (id) openTagsModal(id);
+    });
+
+    document.getElementById('btn-manage-jobs').addEventListener('click', function() {
+      var id = editor._editingId;
+      if (id) openJobsModal(id);
+    });
+
+    document.getElementById('btn-tags-modal-close').addEventListener('click', function() { tagsModal.classList.remove('open'); });
+    tagsModal.addEventListener('click', function(e) { if (e.target === tagsModal) tagsModal.classList.remove('open'); });
+
+    function updateTagsModalCount() {
+      var n = document.querySelectorAll('#tags-tree-container input[type="checkbox"]:checked').length;
+      tagsModalCount.textContent = n + ' terme(s) sélectionné(s)';
+    }
+
+    function renderTagsTreeRecursive(container, terms, selectedIds, taxonomyId, level) {
+      level = level || 0;
+      if (!terms || !terms.length) return;
+      terms.forEach(function(t) {
+        var id = t.id;
+        if (!id) return;
+        var name = (t.name_fr || t.name_en || t.id || '').trim();
+        var checked = selectedIds.indexOf(id) !== -1;
+        var wrap = document.createElement('div');
+        wrap.className = 'tags-tree-item';
+        wrap.style.marginLeft = (level * 16) + 'px';
+        var cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.dataset.termId = id;
+        cb.dataset.taxonomyId = taxonomyId;
+        cb.checked = checked;
+        cb.id = 'tag-cb-' + id;
+        cb.addEventListener('change', function() { updateTagsModalCount(); });
+        var label = document.createElement('label');
+        label.htmlFor = 'tag-cb-' + id;
+        label.textContent = name;
+        label.style.cursor = 'pointer';
+        label.style.flex = '1';
+        wrap.appendChild(cb);
+        wrap.appendChild(label);
+        container.appendChild(wrap);
+        if (t.children && t.children.length) {
+          var childBox = document.createElement('div');
+          childBox.className = 'tags-tree-children';
+          container.appendChild(childBox);
+          renderTagsTreeRecursive(childBox, t.children, selectedIds, taxonomyId, level + 1);
+        }
+        wrap.addEventListener('click', function(e) { if (e.target !== cb) cb.checked = !cb.checked; updateTagsModalCount(); });
+      });
+    }
+
+    function collectCheckedTags() {
+      var list = [];
+      document.querySelectorAll('#tags-tree-container input[type="checkbox"]:checked').forEach(function(cb) {
+        var tid = cb.dataset.termId;
+        var tax = cb.dataset.taxonomyId || TAXONOMY_ID;
+        if (tid && tax) list.push({ taxonomy_id: tax, term_id: tid });
+      });
+      return list;
+    }
+
+    async function openTagsModal(imageId) {
+      tagsModalImageId.textContent = imageId;
+      tagsTreeContainer.innerHTML = '<p style="color:#94a3b8;margin:0;">Chargement…</p>';
+      tagsModal.classList.add('open');
+      var base = getApiBase();
+      var vocab = document.getElementById('tags-modal-vocabulary').value || 'themes';
+      try {
+        var termsRes = await fetch(base + '/api/taxonomy/vocabularies/' + encodeURIComponent(vocab) + '/terms');
+        if (!termsRes.ok) throw new Error('Termes non chargés');
+        var termsData = await termsRes.json();
+        var termsTree = termsData.terms || [];
+
+        var tagsRes = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/tags');
+        var selectedIds = [];
+        if (tagsRes.ok) {
+          var tagsData = await tagsRes.json();
+          (tagsData.tags || []).forEach(function(t) { selectedIds.push(t.term_id); });
+        }
+
+        tagsTreeContainer.innerHTML = '';
+        renderTagsTreeRecursive(tagsTreeContainer, termsTree, selectedIds, TAXONOMY_ID, 0);
+        updateTagsModalCount();
+      } catch (err) {
+        tagsTreeContainer.innerHTML = '<p style="color:#b91c1c;">' + EditorUtils.escHtml(err.message) + '</p>';
+      }
+    }
+
+    document.getElementById('btn-tags-modal-save').addEventListener('click', async function() {
+      var imageId = tagsModalImageId.textContent.trim();
+      if (!imageId) return;
+      var payload = { tags: collectCheckedTags() };
+      var base = getApiBase();
+      try {
+        var res = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/tags', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error(await EditorUtils.parseApiError(res));
+        tagsModal.classList.remove('open');
+        var summaryEl = document.getElementById('tags-summary');
+        if (summaryEl) loadTagsSummary(imageId, summaryEl);
+        loadTagsChips(imageId);
+        EditorUtils.setStatus('Tags enregistrés.', 'status');
+      } catch (err) {
+        EditorUtils.setStatus('Erreur tags : ' + err.message, 'status');
+      }
+    });
+
+    // ── Modal Concepts → Prompts (manuel / assisté / masse) ────────────────────
+    var gcModal = document.getElementById('modal-generate-concepts');
+    var gcTreeContainer = document.getElementById('gc-tree-container');
+    var gcTermsTreeCache = [];
+    var gcResultsTable = null;       // IA results table
+    var gcStagingTable = null;       // staging table (manual/ai)
+    var gcStagingTableBulk = null;   // staging table (bulk view)
+    var gcPromptsTable = null;       // prompts results table
+    var gcAiGeneratedConcepts = [];
+    var gcStagingConcepts = [];
+    var gcBulkLastFailed = [];
+    var gcBulkLastResults = [];      // last rendered bulk rows (id/title/ok/prompt/error)
+    var gcBulkLastDuplicates = [];   // ids skipped because already existing in DB
+    var gcMode = 'manual';
+
+    function _gcEsc(v) { return EditorUtils.escHtml(String(v || '')); }
+
+    function updateGcTermCount() {
+      var n = document.querySelectorAll('#gc-tree-container input[type="checkbox"]:checked').length;
+      var el = document.getElementById('gc-term-count');
+      if (el) el.textContent = n + ' terme(s) sélectionné(s)';
+    }
+
+    function _gcSnakeCaseFromTitle(title) {
+      var s = String(title || '').trim().toLowerCase();
+      s = s.replace(/['"]/g, '');
+      s = s.replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      if (!s) s = 'concept';
+      return s.slice(0, 64);
+    }
+
+    function _gcIsReadyZImageTitle(title) {
+      var t = String(title || '').trim().toLowerCase();
+      if (!t) return false;
+      if (/\b(in|on|at|under|inside|near|by|with)\b/.test(t)) return true;
+      return t.split(/\s+/).filter(Boolean).length >= 3;
+    }
+
+    function _gcSetMode(mode) {
+      gcMode = mode;
+      document.getElementById('gc-panel-manual').classList.toggle('active', mode === 'manual');
+      document.getElementById('gc-panel-ai').classList.toggle('active', mode === 'ai');
+      document.getElementById('gc-panel-bulk').classList.toggle('active', mode === 'bulk');
+
+      var btnManual = document.getElementById('gc-mode-manual');
+      var btnAi = document.getElementById('gc-mode-ai');
+      var btnBulk = document.getElementById('gc-mode-bulk');
+      [btnManual, btnAi, btnBulk].forEach(function(b) { if (b) b.classList.remove('primary'); });
+      if (mode === 'manual') btnManual.classList.add('primary');
+      if (mode === 'ai') btnAi.classList.add('primary');
+      if (mode === 'bulk') btnBulk.classList.add('primary');
+
+      if (mode === 'bulk' || mode === 'manual') _gcRenderStagingTables();
+      var foot = document.getElementById('gc-footer-status');
+      if (foot) foot.textContent = '';
+
+      _gcAfterLayoutRedraw();
+    }
+
+    function _gcAfterLayoutRedraw() {
+      // Tabulator can compute 0px heights if drawn while hidden.
+      // Use double rAF to wait for layout + paint, then redraw.
+      var redrawIfVisible = function(tbl) {
+        try {
+          if (!tbl || !tbl.redraw) return;
+          var el = (typeof tbl.getElement === 'function') ? tbl.getElement() : null;
+          if (!el) return;
+          // Only redraw if element is in layout flow (visible)
+          if (el.offsetParent === null) return;
+          tbl.redraw(true);
+        } catch (e) {}
+      };
+
+      var redrawAll = function() {
+        redrawIfVisible(gcStagingTable);
+        redrawIfVisible(gcStagingTableBulk);
+        redrawIfVisible(gcResultsTable);
+        redrawIfVisible(gcPromptsTable);
+
+        // Safety: if any tableholder ended up at 0px, retry shortly after.
+        try {
+          var holders = gcModal ? gcModal.querySelectorAll('.tabulator-tableholder') : [];
+          var needsRetry = false;
+          holders.forEach(function(h) {
+            var hh = h.getBoundingClientRect ? h.getBoundingClientRect().height : 0;
+            if (hh <= 1) needsRetry = true;
+          });
+          if (needsRetry) {
+            setTimeout(function() {
+              try { if (gcStagingTable && gcStagingTable.redraw) gcStagingTable.redraw(true); } catch (e) {}
+              try { if (gcStagingTableBulk && gcStagingTableBulk.redraw) gcStagingTableBulk.redraw(true); } catch (e) {}
+              try { if (gcResultsTable && gcResultsTable.redraw) gcResultsTable.redraw(true); } catch (e) {}
+              try { if (gcPromptsTable && gcPromptsTable.redraw) gcPromptsTable.redraw(true); } catch (e) {}
+            }, 200);
+          }
+        } catch (e) {}
+      };
+
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(function() {
+          requestAnimationFrame(redrawAll);
+        });
+      } else {
+        setTimeout(redrawAll, 200);
+      }
+    }
+
+    function _gcRenderTree(container, terms, selectedIds, taxonomyId, level) {
+      level = level || 0;
+      if (!terms || !terms.length) return;
+      terms.forEach(function(t) {
+        var id = t.id;
+        if (!id) return;
+        var name = (t.name_en || t.name_fr || t.id || '').trim();
+        var checked = selectedIds.indexOf(id) !== -1;
+        var wrap = document.createElement('div');
+        wrap.className = 'tags-tree-item';
+        wrap.style.marginLeft = (level * 16) + 'px';
+        var cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.dataset.termId = id;
+        cb.dataset.taxonomyId = taxonomyId;
+        cb.dataset.nameEn = name;
+        cb.checked = checked;
+        cb.id = 'gc-cb-' + id;
+        cb.addEventListener('change', updateGcTermCount);
+        var label = document.createElement('label');
+        label.htmlFor = 'gc-cb-' + id;
+        label.textContent = name;
+        label.style.cursor = 'pointer';
+        label.style.flex = '1';
+        wrap.appendChild(cb);
+        wrap.appendChild(label);
+        container.appendChild(wrap);
+        if (t.children && t.children.length) {
+          var childBox = document.createElement('div');
+          childBox.className = 'tags-tree-children';
+          container.appendChild(childBox);
+          _gcRenderTree(childBox, t.children, selectedIds, taxonomyId, level + 1);
+        }
+        wrap.addEventListener('click', function(e) { if (e.target !== cb) { cb.checked = !cb.checked; updateGcTermCount(); } });
+      });
+    }
+
+    function collectCheckedGcTerms() {
+      var list = [];
+      var vocab = (document.getElementById('gc-vocabulary') && document.getElementById('gc-vocabulary').value) || 'themes';
+      document.querySelectorAll('#gc-tree-container input[type="checkbox"]:checked').forEach(function(cb) {
+        var tid = cb.dataset.termId;
+        var nameEn = cb.dataset.nameEn || cb.dataset.nameFr || '';
+        if (tid) list.push({ term_id: tid, vocabulary_id: vocab, name_en: nameEn });
+      });
+      return list;
+    }
+
+    function _gcRenderStagingTables() {
+      var header = document.getElementById('gc-staging-header');
+      if (header) header.textContent = gcStagingConcepts.length + ' concept(s) en staging';
+
+      var data = gcStagingConcepts.map(function(x) {
+        return {
+          id: x.id,
+          title: x.title,
+          source: x.source || 'manual',
+          ready: _gcIsReadyZImageTitle(x.title) ? 'yes' : 'no'
+        };
+      });
+
+      function readyFmt(cell) {
+        var v = String(cell.getValue() || 'no');
+        var isOk = v === 'yes';
+        var label = isOk ? 'Ready' : 'À améliorer';
+        var bg = isOk ? '#15803d' : '#b45309';
+        return '<span class="badge" style="background:' + bg + ';color:#fff;border-radius:999px;padding:0.1rem 0.5rem;font-size:0.75rem;">' + _gcEsc(label) + '</span>';
+      }
+
+      var el1 = document.getElementById('gc-staging-table');
+      var el2 = document.getElementById('gc-staging-table-bulk');
+
+      if (typeof Tabulator !== 'undefined') {
+        if (!gcStagingTable) {
+          gcStagingTable = new Tabulator(el1, {
+            data: data,
+            layout: 'fitDataFill',
+            columns: [
+              { formatter: 'rowSelection', titleFormatter: 'rowSelection', hozAlign: 'center', width: 40, headerSort: false },
+              { field: 'id', title: 'ID', width: 160 },
+              { field: 'title', title: 'Title', width: 260, editor: 'input' },
+              { field: 'source', title: 'Source', width: 90 },
+              { field: 'ready', title: 'Z-Image', width: 110, formatter: readyFmt }
+            ],
+            rowSelection: true,
+            selectable: true,
+            selectableRangeMode: 'click',
+          });
+          gcStagingTable.on('cellEdited', function(cell) {
+            var row = cell.getRow().getData();
+            var idx = gcStagingConcepts.findIndex(function(z) { return z.id === row.id; });
+            if (idx >= 0) {
+              gcStagingConcepts[idx].title = String(row.title || '').trim();
+              _gcRenderStagingTables();
+            }
+          });
+        } else {
+          gcStagingTable.replaceData(data);
+        }
+
+        if (!gcStagingTableBulk) {
+          gcStagingTableBulk = new Tabulator(el2, {
+            data: data,
+            layout: 'fitDataFill',
+            columns: [
+              { formatter: 'rowSelection', titleFormatter: 'rowSelection', hozAlign: 'center', width: 40, headerSort: false },
+              { field: 'id', title: 'ID', width: 160 },
+              { field: 'title', title: 'Title', width: 320 },
+              { field: 'ready', title: 'Z-Image', width: 110, formatter: readyFmt }
+            ],
+            rowSelection: true,
+            selectable: true,
+            selectableRangeMode: 'click',
+          });
+        } else {
+          gcStagingTableBulk.replaceData(data);
+        }
+      } else {
+        function renderSimple(targetEl) {
+          targetEl.innerHTML = '';
+          if (!data.length) {
+            targetEl.innerHTML = '<p style="color:#94a3b8;margin:0;">Aucun concept en staging.</p>';
+            return;
+          }
+          var tbl = document.createElement('table');
+          tbl.style.width = '100%';
+          tbl.style.fontSize = '0.83rem';
+          tbl.innerHTML = '<thead><tr><th></th><th>ID</th><th>Title</th><th>Source</th><th>Z-Image</th></tr></thead><tbody></tbody>';
+          var tbody = tbl.querySelector('tbody');
+          data.forEach(function(r, idx) {
+            var tr = document.createElement('tr');
+            tr.dataset.idx = idx;
+            tr.innerHTML =
+              '<td><input type="checkbox" class="gc-staging-cb" data-idx="' + idx + '"></td>' +
+              '<td>' + _gcEsc(r.id) + '</td>' +
+              '<td>' + _gcEsc(r.title) + '</td>' +
+              '<td>' + _gcEsc(r.source) + '</td>' +
+              '<td>' + _gcEsc(r.ready) + '</td>';
+            tbody.appendChild(tr);
+          });
+          targetEl.appendChild(tbl);
+        }
+        renderSimple(el1);
+        renderSimple(el2);
+      }
+    }
+
+    function _gcGetSelectedStagingIds(table) {
+      if (table && typeof table.getSelectedData === 'function') {
+        return table.getSelectedData().map(function(r) { return r.id; });
+      }
+      var ids = [];
+      document.querySelectorAll('.gc-staging-cb:checked').forEach(function(cb) {
+        var idx = parseInt(cb.dataset.idx, 10);
+        if (!isNaN(idx) && gcStagingConcepts[idx]) ids.push(gcStagingConcepts[idx].id);
+      });
+      return ids;
+    }
+
+    function _gcRemoveStagingSelection(fromBulk) {
+      var ids = _gcGetSelectedStagingIds(fromBulk ? gcStagingTableBulk : gcStagingTable);
+      if (!ids.length) {
+        EditorUtils.setStatus('Sélectionnez au moins un concept.', 'status');
+        return;
+      }
+      gcStagingConcepts = gcStagingConcepts.filter(function(x) { return ids.indexOf(x.id) === -1; });
+      _gcRenderStagingTables();
+    }
+
+    async function _gcLoadAiDefaults() {
+      var base = getApiBase();
+      document.getElementById('gc-model').innerHTML = '<option>Chargement…</option>';
+      document.getElementById('gc-system-prompt').value = '';
+      document.getElementById('gc-user-prompt').value = '';
+      try {
+        var statusRes = await fetch(base + '/api/ai/status');
+        var statusData = statusRes.ok ? await statusRes.json() : {};
+        var models = statusData.models || [];
+        var modelSelect = document.getElementById('gc-model');
+        modelSelect.innerHTML = '';
+        if (models.length) {
+          models.forEach(function(m) {
+            var opt = document.createElement('option');
+            opt.value = m;
+            opt.textContent = m;
+            modelSelect.appendChild(opt);
+          });
+        } else {
+          var def = document.createElement('option');
+          var fb = statusData.configured_model || 'qwen2.5:7b';
+          def.value = fb;
+          def.textContent = fb + ' (défaut)';
+          modelSelect.appendChild(def);
+        }
+        if (statusData.configured_model) {
+          for (var gi = 0; gi < modelSelect.options.length; gi++) {
+            if (modelSelect.options[gi].value === statusData.configured_model) { modelSelect.value = statusData.configured_model; break; }
+          }
+        }
+        var promptRes = await fetch(base + '/api/ai/prompts/generate_concepts');
+        if (promptRes.ok) {
+          var promptData = await promptRes.json();
+          document.getElementById('gc-system-prompt').value = promptData.system_text || '';
+          document.getElementById('gc-user-prompt').value = promptData.user_text || '';
+        }
+      } catch (err) {
+        EditorUtils.setStatus('Erreur config : ' + err.message, 'status');
+      }
+    }
+
+    async function openGenerateConceptsModal() {
+      gcAiGeneratedConcepts = [];
+      document.getElementById('gc-results-header').textContent = '';
+      document.getElementById('gc-results-table').innerHTML = '';
+      document.getElementById('btn-gc-add-to-staging').disabled = true;
+      gcTreeContainer.innerHTML = '<p style="color:#94a3b8;margin:0;">Chargement…</p>';
+      gcModal.classList.add('open');
+      _gcSetMode('manual');
+      _gcRenderStagingTables();
+
+      var base = getApiBase();
+      var vocab = document.getElementById('gc-vocabulary').value || 'themes';
+      try {
+        var termsRes = await fetch(base + '/api/taxonomy/vocabularies/' + encodeURIComponent(vocab) + '/terms');
+        if (!termsRes.ok) throw new Error('Termes non chargés');
+        var termsData = await termsRes.json();
+        var termsTree = termsData.terms || [];
+        gcTermsTreeCache = termsTree;
+        gcTreeContainer.innerHTML = '';
+        _gcRenderTree(gcTreeContainer, termsTree, [], TAXONOMY_ID, 0);
+        updateGcTermCount();
+      } catch (err) {
+        gcTreeContainer.innerHTML = '<p style="color:#b91c1c;">' + EditorUtils.escHtml(err.message) + '</p>';
+      }
+      _gcLoadAiDefaults().catch(function() {});
+    }
+
+    async function _gcGenerate() {
+      var base = getApiBase();
+      var terms = collectCheckedGcTerms();
+      if (!terms.length) {
+        EditorUtils.setStatus('Sélectionnez au moins un terme.', 'status');
+        return;
+      }
+      var model = document.getElementById('gc-model').value || 'qwen2.5:7b';
+      var count = parseInt(document.getElementById('gc-count').value, 10) || 3;
+      count = Math.max(1, Math.min(15, count));
+      var customSystem = document.getElementById('gc-system-prompt').value.trim();
+      var customPrompt = document.getElementById('gc-user-prompt').value.trim();
+      var vocab = document.getElementById('gc-vocabulary').value || 'themes';
+
+      document.getElementById('gc-results-header').textContent = 'Génération en cours…';
+      document.getElementById('gc-results-table').innerHTML = '<div class="gc-skeleton"></div>';
+      document.getElementById('btn-gc-add-to-staging').disabled = true;
+
+      function findTermAndChildren(tree, termId) {
+        for (var i = 0; i < tree.length; i++) {
+          var n = tree[i];
+          if (n.id === termId) return [n].concat(n.children || []);
+          if (n.children && n.children.length) {
+            var found = findTermAndChildren(n.children, termId);
+            if (found.length) return found;
+          }
+        }
+        return [];
+      }
+      function buildTaxonomyContext(termId) {
+        var branch = findTermAndChildren(gcTermsTreeCache, termId);
+        if (!branch.length) return 'No taxonomy anchor provided.';
+        return 'Taxonomy context (anchor) — parent term and existing children:\n' + JSON.stringify(branch.map(function(x) { return { id: x.id, name_en: x.name_en || x.name_fr, name_fr: x.name_fr }; }), null, 2);
+      }
+
+      var allConcepts = [];
+      // Clé par (terme parent, id concept) : évite de rejeter tous les doublons entre termes
+      // quand le LLM réutilise les mêmes slugs/scènes pour chaque appel.
+      var seenIds = {};
+      for (var i = 0; i < terms.length; i++) {
+        var t = terms[i];
+        var theme = t.name_en || t.name_fr || t.term_id || 'Theme';
+        var taxonomyCtx = buildTaxonomyContext(t.term_id);
+        var userPrompt = (customPrompt && customPrompt.trim()) ? customPrompt.trim() : null;
+        if (userPrompt) {
+          userPrompt = userPrompt.replace(/\{theme\}/g, theme).replace(/\{count\}/g, String(count)).replace(/\{taxonomy_context\}/g, taxonomyCtx);
+        }
+        var body = {
+          theme: theme,
+          term_id: t.term_id,
+          vocabulary_id: vocab,
+          count: count,
+          model: model,
+          custom_system: (customSystem && customSystem.trim()) ? customSystem.trim() : null,
+          custom_prompt: userPrompt
+        };
+        try {
+          var data = await _aiCall('/api/ai/generate-concepts', body);
+          var concepts = (data && (data.concepts || data.suggestions)) || [];
+          concepts.forEach(function(c) {
+            var id = (c.id || '').toString().trim();
+            var dedupeKey = t.term_id + '::' + id;
+            if (id && !seenIds[dedupeKey]) {
+              seenIds[dedupeKey] = true;
+              allConcepts.push({
+                id: id,
+                name_fr: (c.name_fr || '').trim(),
+                name_en: (c.name_en || '').trim(),
+                description_fr: (c.description_fr || '').trim(),
+                description_en: (c.description_en || '').trim(),
+                _term_id: t.term_id
+              });
+            }
+          });
+        } catch (err) {
+          EditorUtils.setStatus('Erreur génération pour ' + theme + ' : ' + err.message, 'status');
+        }
+      }
+
+      gcAiGeneratedConcepts = allConcepts;
+      document.getElementById('gc-results-header').textContent = allConcepts.length + ' concept(s) généré(s) depuis ' + terms.length + ' terme(s)';
+
+      var tableEl = document.getElementById('gc-results-table');
+      tableEl.innerHTML = '';
+      gcResultsTable = null;
+      if (typeof Tabulator !== 'undefined' && allConcepts.length) {
+        gcResultsTable = new Tabulator(tableEl, {
+          data: allConcepts,
+          layout: 'fitDataFill',
+          columns: [
+            { formatter: 'rowSelection', titleFormatter: 'rowSelection', hozAlign: 'center', width: 40, headerSort: false },
+            { field: 'id', title: 'ID', width: 140 },
+            { field: 'name_en', title: 'Title EN', width: 220 },
+            { field: 'name_fr', title: 'Nom FR', width: 180 },
+            { field: 'description_en', title: 'Description EN', width: 220 }
+          ],
+          rowSelection: true,
+          selectable: true,
+          selectableRangeMode: 'click'
+        });
+      } else if (allConcepts.length) {
+        var tbl = document.createElement('table');
+        tbl.style.width = '100%';
+        tbl.style.fontSize = '0.83rem';
+        tbl.innerHTML = '<thead><tr><th><input type="checkbox" id="gc-select-all" checked></th><th>ID</th><th>Title EN</th><th>Nom FR</th><th>Description EN</th></tr></thead><tbody></tbody>';
+        var tbody = tbl.querySelector('tbody');
+        allConcepts.forEach(function(c, idx) {
+          var tr = document.createElement('tr');
+          tr.dataset.idx = idx;
+          tr.innerHTML = '<td><input type="checkbox" class="gc-row-cb" checked data-idx="' + idx + '"></td><td>' + EditorUtils.escHtml(c.id) + '</td><td>' + EditorUtils.escHtml(c.name_en) + '</td><td>' + EditorUtils.escHtml(c.name_fr) + '</td><td>' + EditorUtils.escHtml((c.description_en || '').slice(0, 90)) + '</td>';
+          tbody.appendChild(tr);
+        });
+        tableEl.appendChild(tbl);
+        document.getElementById('gc-select-all').addEventListener('change', function() {
+          tableEl.querySelectorAll('.gc-row-cb').forEach(function(cb) { cb.checked = this.checked; }.bind(this));
+        });
+      }
+      document.getElementById('btn-gc-add-to-staging').disabled = !allConcepts.length;
+    }
+
+    function _gcDownloadText(filename, content, mime) {
+      var blob = new Blob([content], { type: mime || 'text/plain;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
+    }
+
+    function _gcToCsv(rows) {
+      var cols = ['id', 'title', 'ok', 'prompt', 'error'];
+      var out = [];
+      out.push(cols.join(','));
+      rows.forEach(function(r) {
+        var vals = cols.map(function(k) {
+          var v = r[k];
+          if (v === null || v === undefined) v = '';
+          v = String(v).replace(/"/g, '""');
+          return '"' + v + '"';
+        });
+        out.push(vals.join(','));
+      });
+      return out.join('\n');
+    }
+
+    async function _gcRunBulk(items) {
+      return await _aiCall('/api/ai/create-prompts-bulk', { items: items, validate_prompts: false }, { maxWaitMs: 300000 });
+    }
+
+    function _gcRenderPromptsResults(rows, summaryText) {
+      gcBulkLastResults = Array.isArray(rows) ? rows.slice() : [];
+      document.getElementById('gc-prompts-header').textContent = summaryText || '';
+      var el = document.getElementById('gc-prompts-results');
+      el.innerHTML = '';
+      gcPromptsTable = null;
+
+      var hasAny = rows && rows.length;
+      document.getElementById('btn-gc-export-json').disabled = !hasAny;
+      document.getElementById('btn-gc-export-csv').disabled = !hasAny;
+      document.getElementById('btn-gc-retry-failed').disabled = !(gcBulkLastFailed && gcBulkLastFailed.length);
+      document.getElementById('btn-gc-save-db').disabled = !hasAny || !rows.some(function(r) { return r && r.ok; });
+      document.getElementById('btn-gc-copy-duplicates').disabled = !(gcBulkLastDuplicates && gcBulkLastDuplicates.length);
+
+      if (!hasAny) {
+        el.innerHTML = '<p style="color:#94a3b8;margin:0;">Aucun résultat.</p>';
+        return;
+      }
+
+      if (typeof Tabulator !== 'undefined') {
+        gcPromptsTable = new Tabulator(el, {
+          data: rows,
+          layout: 'fitDataFill',
+          columns: [
+            { field: 'id', title: 'ID', width: 160 },
+            { field: 'title', title: 'Title', width: 240 },
+            { field: 'ok', title: 'OK', width: 70, formatter: function(cell) {
+                return cell.getValue() ? '<span style="color:#15803d;font-weight:600;">OK</span>' : '<span style="color:#b91c1c;font-weight:600;">ERR</span>';
+              }
+            },
+            { field: 'prompt', title: 'Prompt', width: 520, formatter: function(cell) {
+                var v = String(cell.getValue() || '');
+                if (!v) return '';
+                return '<div style="white-space:normal;word-break:break-word;">' + _gcEsc(v) + '</div>';
+              }
+            },
+            { field: 'error', title: 'Erreur', width: 260, formatter: function(cell) {
+                var v = String(cell.getValue() || '');
+                if (!v) return '';
+                return '<div style="white-space:normal;word-break:break-word;color:#b91c1c;">' + _gcEsc(v) + '</div>';
+              }
+            }
+          ],
+        });
+      } else {
+        var tbl = document.createElement('table');
+        tbl.style.width = '100%';
+        tbl.style.fontSize = '0.83rem';
+        tbl.innerHTML = '<thead><tr><th>ID</th><th>Title</th><th>OK</th><th>Prompt</th><th>Erreur</th></tr></thead><tbody></tbody>';
+        var tbody = tbl.querySelector('tbody');
+        rows.forEach(function(r) {
+          var tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td>' + _gcEsc(r.id) + '</td>' +
+            '<td>' + _gcEsc(r.title) + '</td>' +
+            '<td>' + (r.ok ? 'OK' : 'ERR') + '</td>' +
+            '<td style="max-width:520px;white-space:normal;word-break:break-word;">' + _gcEsc(r.prompt || '') + '</td>' +
+            '<td style="color:#b91c1c;">' + _gcEsc(r.error || '') + '</td>';
+          tbody.appendChild(tr);
+        });
+        el.appendChild(tbl);
+      }
+    }
+
+    async function _gcBulkGenerate(retryFailedOnly) {
+      if (!gcStagingConcepts.length) {
+        EditorUtils.setStatus('Ajoutez au moins un concept en staging.', 'status');
+        return;
+      }
+      var selectedIds = _gcGetSelectedStagingIds(gcStagingTableBulk);
+      var candidates = retryFailedOnly ? (gcBulkLastFailed || []) : gcStagingConcepts;
+      if (!retryFailedOnly && selectedIds.length) {
+        candidates = gcStagingConcepts.filter(function(x) { return selectedIds.indexOf(x.id) !== -1; });
+      }
+      if (!candidates.length) {
+        EditorUtils.setStatus('Sélectionnez au moins un concept.', 'status');
+        return;
+      }
+
+      var items = candidates.map(function(c) {
+        return { image_id: '', keywords: '', title: String(c.title || '').trim(), tags_context: '', profile: 'kids_coloring_lineart_v1' };
+      });
+
+      var allRows = [];
+      gcBulkLastFailed = [];
+      document.getElementById('gc-bulk-progress').textContent = 'Démarrage…';
+      for (var i = 0; i < items.length; i += 10) {
+        var chunk = items.slice(i, i + 10);
+        document.getElementById('gc-bulk-progress').textContent =
+          'Lot ' + (Math.floor(i / 10) + 1) + ' / ' + (Math.ceil(items.length / 10)) + ' (' + chunk.length + ' item(s))…';
+        try {
+          var data = await _gcRunBulk(chunk);
+          (data.results || []).forEach(function(r, idx) {
+            var c = candidates[i + idx] || {};
+            var row = {
+              id: c.id || '',
+              title: r.title || c.title || '',
+              ok: !!r.ok,
+              prompt: r.prompt || '',
+              error: r.ok ? '' : (r.error || '')
+            };
+            allRows.push(row);
+            if (!row.ok) gcBulkLastFailed.push({ id: row.id, title: row.title });
+          });
+        } catch (err) {
+          chunk.forEach(function(it, idx2) {
+            var c2 = candidates[i + idx2] || {};
+            allRows.push({ id: c2.id || '', title: c2.title || '', ok: false, prompt: '', error: err.message || String(err) });
+            gcBulkLastFailed.push({ id: c2.id || '', title: c2.title || '' });
+          });
+        }
+      }
+      document.getElementById('gc-bulk-progress').textContent = 'Terminé. ' + allRows.filter(function(r) { return r.ok; }).length + ' OK / ' + allRows.filter(function(r) { return !r.ok; }).length + ' erreurs.';
+      _gcRenderPromptsResults(allRows, 'Prompts générés: ' + allRows.length + ' (OK: ' + allRows.filter(function(r) { return r.ok; }).length + ', erreurs: ' + allRows.filter(function(r) { return !r.ok; }).length + ')');
+      _gcSetMode('bulk');
+    }
+
+    async function _gcSaveBulkToDb() {
+      var rows = gcPromptsTable ? gcPromptsTable.getData() : (gcBulkLastResults || []);
+      if (!rows || !rows.length) {
+        EditorUtils.setStatus('Aucun résultat à sauvegarder.', 'status');
+        return;
+      }
+      var okRows = rows.filter(function(r) { return r && r.ok && (r.id || '').toString().trim() && (r.prompt || '').toString().trim(); });
+      if (!okRows.length) {
+        EditorUtils.setStatus('Aucun prompt OK à sauvegarder.', 'status');
+        return;
+      }
+
+      var base = getApiBase();
+      var created = 0;
+      var duplicates = [];
+      var errors = [];
+      gcBulkLastDuplicates = [];
+      document.getElementById('gc-bulk-progress').textContent = 'Sauvegarde en base…';
+      document.getElementById('btn-gc-save-db').disabled = true;
+
+      for (var i = 0; i < okRows.length; i++) {
+        var r = okRows[i];
+        var id = (r.id || '').toString().trim();
+        var title = (r.title || id).toString().trim();
+        var prompt = (r.prompt || '').toString();
+        try {
+          var res = await fetch(base + '/api/images', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: id,
+              title: title,
+              status: 'prompt_ready',
+              prompt: prompt,
+              negative_prompt: '',
+              origin_type: 'batch'
+            })
+          });
+          if (res.ok) {
+            created++;
+          } else if (res.status === 409) {
+            duplicates.push(id);
+          } else {
+            errors.push({ id: id, error: await EditorUtils.parseApiError(res) });
+          }
+        } catch (err) {
+          errors.push({ id: id, error: err.message || String(err) });
+        }
+      }
+
+      gcBulkLastDuplicates = duplicates.slice();
+      document.getElementById('btn-gc-copy-duplicates').disabled = !duplicates.length;
+
+      var recap = 'Sauvegarde: ' + created + ' créé(s), ' + duplicates.length + ' doublon(s) ignoré(s), ' + errors.length + ' erreur(s).';
+      document.getElementById('gc-footer-status').textContent = recap;
+      document.getElementById('gc-bulk-progress').textContent = recap + ' Fermeture et rechargement dans 4s…';
+
+      // Mention duplicates in header (read-only)
+      if (duplicates.length) {
+        var head = document.getElementById('gc-prompts-header');
+        head.textContent = (head.textContent || '') + ' — doublons ignorés: ' + duplicates.length;
+      }
+
+      // Allow user to copy before closing
+      setTimeout(function() {
+        try { gcModal.classList.remove('open'); } catch (e) {}
+        try { window.location.reload(); } catch (e) {}
+      }, 4000);
+    }
+
+    // Events wiring
+    document.getElementById('btn-generate-concepts-ai').addEventListener('click', openGenerateConceptsModal);
+    document.getElementById('btn-gc-close').addEventListener('click', function() { gcModal.classList.remove('open'); });
+    document.getElementById('btn-gc-close-2').addEventListener('click', function() { gcModal.classList.remove('open'); });
+    gcModal.addEventListener('click', function(e) { if (e.target === gcModal) gcModal.classList.remove('open'); });
+
+    document.getElementById('gc-vocabulary').addEventListener('change', function() { openGenerateConceptsModal(); });
+    document.getElementById('gc-filter-terms').addEventListener('input', EditorUtils.debounce(function() {
+      var q = (this.value || '').trim().toLowerCase();
+      document.querySelectorAll('#gc-tree-container .tags-tree-item').forEach(function(row) {
+        var text = (row.textContent || '').toLowerCase();
+        row.style.display = !q || text.indexOf(q) !== -1 ? '' : 'none';
+      });
+    }, 200));
+
+    document.getElementById('gc-mode-manual').addEventListener('click', function() { _gcSetMode('manual'); });
+    document.getElementById('gc-mode-ai').addEventListener('click', function() { _gcSetMode('ai'); });
+    document.getElementById('gc-mode-bulk').addEventListener('click', function() { _gcSetMode('bulk'); });
+    document.getElementById('btn-gc-go-bulk').addEventListener('click', function() { _gcSetMode('bulk'); });
+    document.getElementById('btn-gc-go-staging').addEventListener('click', function() { _gcSetMode('manual'); });
+
+    document.getElementById('btn-gc-manual-add').addEventListener('click', function() {
+      var idIn = (document.getElementById('gc-manual-id').value || '').trim();
+      var title = (document.getElementById('gc-manual-title').value || '').trim();
+      if (!title) { EditorUtils.setStatus('Veuillez renseigner un title.', 'status'); return; }
+      var id = idIn || _gcSnakeCaseFromTitle(title);
+      var baseId = id;
+      var n = 1;
+      while (gcStagingConcepts.some(function(x) { return x.id === id; })) id = baseId + '_' + (n++);
+      gcStagingConcepts.push({ id: id, title: title, source: 'manual' });
+      document.getElementById('gc-manual-id').value = '';
+      document.getElementById('gc-manual-title').value = '';
+      _gcRenderStagingTables();
+      document.getElementById('gc-footer-status').textContent = 'Ajouté: ' + id;
+    });
+
+    document.getElementById('btn-gc-staging-remove').addEventListener('click', function() { _gcRemoveStagingSelection(false); });
+    document.getElementById('btn-gc-bulk-remove').addEventListener('click', function() { _gcRemoveStagingSelection(true); });
+    document.getElementById('btn-gc-staging-clear').addEventListener('click', function() { gcStagingConcepts = []; _gcRenderStagingTables(); });
+
+    document.getElementById('btn-gc-generate').addEventListener('click', function() { _gcGenerate(); });
+
+    document.getElementById('btn-gc-add-to-staging').addEventListener('click', function() {
+      var selected = [];
+      if (gcResultsTable) selected = gcResultsTable.getSelectedData();
+      else {
+        document.querySelectorAll('#gc-results-table .gc-row-cb:checked').forEach(function(cb) {
+          var idx = parseInt(cb.dataset.idx, 10);
+          if (!isNaN(idx) && gcAiGeneratedConcepts[idx]) selected.push(gcAiGeneratedConcepts[idx]);
+        });
+      }
+      if (!selected.length) { EditorUtils.setStatus('Sélectionnez au moins un concept IA.', 'status'); return; }
+      var added = 0;
+      selected.forEach(function(c) {
+        var id = String(c.id || '').trim();
+        if (!id) return;
+        if (gcStagingConcepts.some(function(x) { return x.id === id; })) return;
+        var title = String(c.name_en || c.name_fr || c.id || '').trim();
+        gcStagingConcepts.push({ id: id, title: title, source: 'ai' });
+        added++;
+      });
+      _gcRenderStagingTables();
+      document.getElementById('gc-footer-status').textContent = added + ' ajouté(s) au staging';
+    });
+
+    document.getElementById('btn-gc-bulk-generate').addEventListener('click', function() { _gcBulkGenerate(false); });
+    document.getElementById('btn-gc-retry-failed').addEventListener('click', function() { _gcBulkGenerate(true); });
+    document.getElementById('btn-gc-save-db').addEventListener('click', function() { _gcSaveBulkToDb(); });
+    document.getElementById('btn-gc-copy-duplicates').addEventListener('click', async function() {
+      if (!gcBulkLastDuplicates || !gcBulkLastDuplicates.length) return;
+      var text = gcBulkLastDuplicates.join('\n');
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+          document.getElementById('gc-footer-status').textContent = 'Doublons copiés (' + gcBulkLastDuplicates.length + ').';
+        } else {
+          _gcDownloadText('duplicates_ids.txt', text, 'text/plain;charset=utf-8');
+          document.getElementById('gc-footer-status').textContent = 'Doublons exportés (' + gcBulkLastDuplicates.length + ').';
+        }
+      } catch (err) {
+        _gcDownloadText('duplicates_ids.txt', text, 'text/plain;charset=utf-8');
+        document.getElementById('gc-footer-status').textContent = 'Doublons exportés (' + gcBulkLastDuplicates.length + ').';
+      }
+    });
+
+    document.getElementById('btn-gc-export-json').addEventListener('click', function() {
+      var rows = gcPromptsTable ? gcPromptsTable.getData() : [];
+      if (!rows.length) return;
+      _gcDownloadText('zimage_prompts.json', JSON.stringify(rows, null, 2), 'application/json;charset=utf-8');
+    });
+    document.getElementById('btn-gc-export-csv').addEventListener('click', function() {
+      var rows = gcPromptsTable ? gcPromptsTable.getData() : [];
+      if (!rows.length) return;
+      _gcDownloadText('zimage_prompts.csv', _gcToCsv(rows), 'text/csv;charset=utf-8');
+    });
+
+    // ── Jobs modal ─────────────────────────────────────────────────────────────
+    var jobsModal = document.getElementById('modal-jobs');
+    var jobsModalImageId = document.getElementById('jobs-modal-image-id');
+    var jobsTableWrap = document.getElementById('jobs-modal-table-wrap');
+    var jobsNewForm = document.getElementById('jobs-new-form');
+    var jobsModalState = { currentJobId: null, pendingCurrentJobId: null, pendingCancelIds: new Set(), jobs: [], outputByJob: {} };
+
+    function closeJobsModal() {
+      jobsModal.classList.remove('open');
+      if (jobsNewForm) jobsNewForm.style.display = 'none';
+      jobsModalState.pendingCurrentJobId = null;
+      jobsModalState.pendingCancelIds.clear();
+    }
+    document.getElementById('btn-jobs-close').addEventListener('click', closeJobsModal);
+    document.getElementById('btn-jobs-modal-close').addEventListener('click', closeJobsModal);
+    jobsModal.addEventListener('click', function(e) {
+      if (e.target === jobsModal) closeJobsModal();
+    });
+
+    document.getElementById('btn-jobs-new').addEventListener('click', function() {
+      if (jobsNewForm) jobsNewForm.style.display = jobsNewForm.style.display === 'none' ? 'block' : 'none';
+    });
+    document.getElementById('btn-jobs-cancel').addEventListener('click', function() {
+      if (jobsNewForm) jobsNewForm.style.display = 'none';
+    });
+
+    var btnGenAdvComfy = document.getElementById('btn-gen-adv-comfy-preset');
+    if (btnGenAdvComfy) {
+      btnGenAdvComfy.addEventListener('click', async function() {
+        await ensureGenerationPresets();
+        applyComfyBlueprintGenerationPreset();
+      });
+    }
+
+    document.getElementById('btn-jobs-submit').addEventListener('click', async function() {
+      var imageId = jobsModalImageId.textContent.trim();
+      if (!imageId) return;
+      await launchGeneration(imageId);
+      if (jobsNewForm) jobsNewForm.style.display = 'none';
+      openJobsModal(imageId);
+      var summaryEl = document.getElementById('jobs-summary');
+      if (summaryEl) loadJobsSummary(imageId, summaryEl);
+      loadJobStatusAndOutput(imageId);
+      editor.reload();
+    });
+
+    async function openJobsModal(imageId) {
+      await ensureGenerationPresets();
+      jobsModalImageId.textContent = imageId;
+      jobsTableWrap.innerHTML = '<p style="color:#94a3b8;">Chargement…</p>';
+      jobsModal.classList.add('open');
+      if (jobsNewForm) jobsNewForm.style.display = 'none';
+      jobsModalState.pendingCurrentJobId = null;
+      jobsModalState.pendingCancelIds.clear();
+      var base = getApiBase();
+      try {
+        var [imgRes, jobsRes, outputsRes] = await Promise.all([
+          fetch(base + '/api/images/' + encodeURIComponent(imageId)),
+          fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/jobs'),
+          fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/outputs'),
+        ]);
+        if (!jobsRes.ok) throw new Error(await EditorUtils.parseApiError(jobsRes));
+        var imgData = imgRes.ok ? await imgRes.json() : {};
+        var jobs = await jobsRes.json();
+        var outputs = outputsRes.ok ? await outputsRes.json() : [];
+        var outputByJob = {};
+        outputs.forEach(function(o) { if (o.job_id) outputByJob[o.job_id] = o; });
+        jobsModalState.currentJobId = (imgData.current_job && imgData.current_job.id) || (jobs[0] && jobs[0].id) || null;
+        jobsModalState.jobs = jobs;
+        jobsModalState.outputByJob = outputByJob;
+        if (!jobs.length) {
+          jobsTableWrap.innerHTML = '<p style="color:#94a3b8;">Aucun job. Cliquez sur "Nouveau job" pour en créer un.</p>';
+          return;
+        }
+        renderJobsTable(imageId, jobs, outputByJob);
+      } catch (err) {
+        jobsTableWrap.innerHTML = '<p style="color:#b91c1c;">' + EditorUtils.escHtml(err.message) + '</p>';
+      }
+    }
+
+    function getEffectiveCurrentJobId() {
+      return jobsModalState.pendingCurrentJobId !== null ? jobsModalState.pendingCurrentJobId : jobsModalState.currentJobId;
+    }
+
+    function renderJobsTable(imageId, jobs, outputByJob) {
+      var effectiveCurrent = getEffectiveCurrentJobId();
+      var html = '<table style="width:100%;font-size:0.85rem;"><thead><tr><th>Current</th><th>ID</th><th>Type</th><th>Statut</th><th>Démarré</th><th>Terminé</th><th>Erreur</th><th>Actions</th></tr></thead><tbody>';
+      jobs.forEach(function(j) {
+        var status = (j.status || '').toLowerCase();
+        var isCurrent = effectiveCurrent === j.id;
+        var isCancelled = status === 'cancelled' || jobsModalState.pendingCancelIds.has(j.id);
+        var canCancel = (status === 'pending' || status === 'running') && !isCancelled;
+        var canSetCurrent = status === 'completed' && outputByJob[j.id];
+        var currentCell = isCurrent ? '<span class="badge badge-job-completed">Current</span>' : (canSetCurrent ? '<button type="button" class="output-select-btn btn-set-current" data-job-id="' + EditorUtils.escHtml(j.id) + '">Définir</button>' : '—');
+        var err = j.error_message ? EditorUtils.escHtml(j.error_message) : '—';
+        var out = outputByJob[j.id];
+        var voirBtn = (status === 'completed' && out) ? '<button type="button" class="output-select-btn btn-view-output" data-job-id="' + EditorUtils.escHtml(j.id) + '" data-image-id="' + EditorUtils.escHtml(imageId) + '">Voir</button>' : '';
+        var jtype = (j.type || '').toLowerCase();
+        var reviewBtn =
+          status === 'awaiting_validation' && jtype === 'image_generation' && imageReviewModal
+            ? '<button type="button" class="output-select-btn btn-open-image-review" data-job-id="' +
+              EditorUtils.escHtml(j.id) +
+              '">Revue</button> '
+            : '';
+        var cancelBtn = canCancel ? '<button type="button" class="btn-cancel-job" data-job-id="' + EditorUtils.escHtml(j.id) + '" style="margin-left:0.25rem;padding:0.2rem 0.5rem;font-size:0.78rem;cursor:pointer;border:1px solid #b91c1c;background:transparent;color:#b91c1c;border-radius:4px;">Annuler</button>' : '';
+        var statusDisplay = isCancelled ? 'cancelled' : status;
+        var badgeClass = 'badge-job-' + (statusDisplay === 'cancelled' ? 'cancelled' : statusDisplay) || 'badge-job-pending';
+        html += '<tr data-job-id="' + EditorUtils.escHtml(j.id) + '"><td>' + currentCell + '</td>';
+        html += '<td>' + EditorUtils.escHtml(j.id || '') + '</td>';
+        html += '<td>' + EditorUtils.escHtml(j.type || '—') + '</td>';
+        html += '<td><span class="badge ' + badgeClass + '">' + EditorUtils.escHtml(isCancelled ? 'cancelled' : (j.status || '—')) + '</span></td>';
+        html += '<td>' + EditorUtils.escHtml((j.started_at || '').slice(0, 16)) + '</td>';
+        html += '<td>' + EditorUtils.escHtml((j.finished_at || '').slice(0, 16)) + '</td>';
+        html += '<td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;" title="' + err + '">' + err + '</td>';
+        html += '<td>' + reviewBtn + voirBtn + cancelBtn + '</td></tr>';
+      });
+      html += '</tbody></table>';
+      jobsTableWrap.innerHTML = html;
+      jobsTableWrap.querySelectorAll('.btn-open-image-review').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          if (imageReviewModal) imageReviewModal.open(btn.dataset.jobId);
+        });
+      });
+      jobsTableWrap.querySelectorAll('.btn-view-output').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          openJobOutputModal(btn.dataset.imageId, btn.dataset.jobId, outputByJob[btn.dataset.jobId]);
+        });
+      });
+      jobsTableWrap.querySelectorAll('.btn-set-current').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          jobsModalState.pendingCurrentJobId = btn.dataset.jobId;
+          renderJobsTable(jobsModalImageId.textContent, jobsModalState.jobs, jobsModalState.outputByJob);
+        });
+      });
+      jobsTableWrap.querySelectorAll('.btn-cancel-job').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          jobsModalState.pendingCancelIds.add(btn.dataset.jobId);
+          renderJobsTable(jobsModalImageId.textContent, jobsModalState.jobs, jobsModalState.outputByJob);
+        });
+      });
+    }
+
+    document.getElementById('btn-jobs-save').addEventListener('click', async function() {
+      var imageId = jobsModalImageId.textContent.trim();
+      if (!imageId) return;
+      var base = getApiBase();
+      var payload = {
+        current_job_id: getEffectiveCurrentJobId(),
+        cancel_job_ids: Array.from(jobsModalState.pendingCancelIds),
+      };
+      try {
+        var res = await fetch(base + '/api/images/' + encodeURIComponent(imageId) + '/jobs', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error(await EditorUtils.parseApiError(res));
+        closeJobsModal();
+        var summaryEl = document.getElementById('jobs-summary');
+        if (summaryEl) loadJobsSummary(imageId, summaryEl);
+        loadJobStatusAndOutput(imageId);
+        if (editor._editingId === imageId) {
+          editor._getItem(imageId).then(function(item) { editor._populateForm(item); }).catch(function() {});
+        }
+        editor.reload();
+        EditorUtils.setStatus('Jobs enregistrés.', 'status');
+      } catch (err) {
+        EditorUtils.setStatus('Erreur : ' + err.message, 'status');
+      }
+    });
+
+    var jobOutputModal = document.getElementById('modal-job-output');
+    var jobOutputModalJobId = document.getElementById('job-output-modal-job-id');
+    var jobOutputModalContent = document.getElementById('job-output-modal-content');
+
+    function closeJobOutputModal() {
+      jobOutputModal.classList.remove('open');
+    }
+    document.getElementById('btn-job-output-close').addEventListener('click', closeJobOutputModal);
+    document.getElementById('btn-job-output-modal-close').addEventListener('click', closeJobOutputModal);
+    jobOutputModal.addEventListener('click', function(e) { if (e.target === jobOutputModal) closeJobOutputModal(); });
+
+    function openJobOutputModal(imageId, jobId, output) {
+      jobOutputModalJobId.textContent = jobId;
+      var base = getApiBase();
+      var html = '';
+      if (output && output.file_path) {
+        var imgUrl = base + '/data/' + (output.file_path || '').replace(/^\/+/, '');
+        html += '<div style="margin-bottom:0.75rem;"><img src="' + EditorUtils.escHtml(imgUrl) + '" alt="Output" style="max-width:100%;max-height:240px;border-radius:6px;border:1px solid #e2e8f0;" onerror="this.style.display=\'none\'"></div>';
+      }
+      if (output) {
+        html += '<dl style="margin:0;font-size:0.85rem;display:grid;grid-template-columns:auto 1fr;gap:0.25rem 1rem;">';
+        if (output.file_path) html += '<dt>Fichier</dt><dd style="margin:0;word-break:break-all;">' + EditorUtils.escHtml(output.file_path) + '</dd>';
+        if (output.file_format) html += '<dt>Format</dt><dd style="margin:0;">' + EditorUtils.escHtml(output.file_format) + '</dd>';
+        if (output.width || output.height) html += '<dt>Dimensions</dt><dd style="margin:0;">' + (output.width || '') + ' × ' + (output.height || '') + '</dd>';
+        if (output.quality_score != null) html += '<dt>Qualité</dt><dd style="margin:0;">' + EditorUtils.escHtml(String(output.quality_score)) + '</dd>';
+        if (output.model_name) html += '<dt>Modèle</dt><dd style="margin:0;">' + EditorUtils.escHtml(output.model_name) + '</dd>';
+        if (output.created_at) html += '<dt>Créé le</dt><dd style="margin:0;">' + EditorUtils.escHtml((output.created_at || '').slice(0, 19)) + '</dd>';
+        if (output.text_content) html += '<dt>Texte</dt><dd style="margin:0;white-space:pre-wrap;">' + EditorUtils.escHtml(output.text_content) + '</dd>';
+        html += '</dl>';
+      } else {
+        html = '<p style="color:#94a3b8;">Aucun output pour ce job.</p>';
+      }
+      jobOutputModalContent.innerHTML = html;
+      jobOutputModal.classList.add('open');
+    }
+
+    // ── Filtres avancés ────────────────────────────────────────────────────────
+    const API_BASE = EditorUtils.apiBase(8000);
+
+    async function applyAdvancedFilters() {
+      const status  = document.getElementById('filter-status').value;
+      const term    = document.getElementById('filter-term').value.trim();
+      const batch   = document.getElementById('filter-batch').value.trim();
+      const params  = new URLSearchParams();
+      if (status) params.set('status', status);
+      if (term)   params.set('origin_term_id', term);
+      if (batch)  params.set('origin_batch_id', batch);
+      params.set('limit', '500');
+      try {
+        EditorUtils.setStatus('Filtrage…', 'status');
+        const res = await fetch(API_BASE + '/api/images?' + params.toString());
+        if (!res.ok) throw new Error(await EditorUtils.parseApiError(res));
+        const items = await res.json();
+        if (editor.table) editor.table.setData(items);
+        EditorUtils.setStatus(items.length + ' concept(s) affiché(s).', 'status');
+      } catch (err) {
+        EditorUtils.setStatus('Erreur filtrage : ' + err.message, 'status');
+      }
+    }
+
+    document.getElementById('btn-apply-filters').addEventListener('click', applyAdvancedFilters);
+    document.getElementById('btn-reset-filters').addEventListener('click', function () {
+      document.getElementById('filter-status').value = '';
+      document.getElementById('filter-term').value  = '';
+      document.getElementById('filter-batch').value = '';
+      editor.reload();
+    });
+    document.getElementById('filter-term').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') applyAdvancedFilters();
+    });
+    document.getElementById('filter-batch').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') applyAdvancedFilters();
+    });
+
+    // Filtre textuel (recherche locale dans Tabulator)
+    document.getElementById('filter-input').addEventListener('input', EditorUtils.debounce(function (e) {
+      const q = e.target.value.trim().toLowerCase();
+      if (!editor.table) return;
+      if (!q) { editor.table.clearFilter(); return; }
+      editor.table.setFilter(function (data) {
+        return ['id', 'title', 'status', 'origin_term_id', 'prompt'].some(function (f) {
+          return String(data[f] || '').toLowerCase().includes(q);
+        });
+      });
+    }, 250));
+
+  </script>
+</body>
+</html>

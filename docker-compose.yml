@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: artiste-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: artiste_coloriage
+      POSTGRES_USER: artiste
+      POSTGRES_PASSWORD: artiste
+    ports:
+      - "5432:5432"
+    volumes:
+      - artiste_pg_data:/var/lib/postgresql/data
+
+volumes:
+  artiste_pg_data:

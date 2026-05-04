@@ -1,75 +1,259 @@
-"""Connexion DuckDB et helpers.
-
-Architecture : connexion unique partagée (thread-safe via DuckDB).
-DuckDB gère en interne les lectures concurrentes.
-"""
+"""SQLAlchemy DB layer + adapter for legacy SQL call sites."""
 from __future__ import annotations
 
-import logging
-import threading
+import os
+import re
+from collections.abc import Generator
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Generator
+from typing import Any
 
-import duckdb
-
-logger = logging.getLogger(__name__)
+from sqlalchemy import create_engine, text
+from sqlalchemy.engine import Result
+from sqlalchemy.orm import Session, sessionmaker
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
-DB_PATH = DATA_DIR / "artiste_coloriage.duckdb"
 
-# Connexion partagée : DuckDB supporte les connexions multiples sur le même fichier.
-# On utilise un lock threading pour sérialiser les écritures concurrentes.
-_db_lock = threading.Lock()
-_shared_conn: duckdb.DuckDBPyConnection | None = None
+DATABASE_URL = os.environ.get(
+    "DATABASE_URL",
+    "postgresql+psycopg://artiste:artiste@127.0.0.1:5432/artiste_coloriage",
+)
+
+ENGINE = create_engine(DATABASE_URL, pool_pre_ping=True, future=True)
+SessionLocal = sessionmaker(bind=ENGINE, autoflush=False, autocommit=False, future=True)
+
+DEFAULT_JOB_TYPES = (
+    {
+        "type": "image_generation",
+        "label": "Generation image (ComfyUI)",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Generation d'images via diffusion",
+        "category": "image",
+    },
+    {
+        "type": "text_enrichment",
+        "label": "Enrichissement texte (Ollama)",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Enrichissement taxonomies, images, etc.",
+        "category": "text",
+    },
+    {
+        "type": "taxonomy_enrich_term",
+        "label": "Taxonomie : enrichir un terme",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Suggestions de champs pour un terme (revue)",
+        "category": "text",
+    },
+    {
+        "type": "taxonomy_enrich_terms_batch",
+        "label": "Taxonomie : enrichir plusieurs termes",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Lot de termes (revue)",
+        "category": "text",
+    },
+    {
+        "type": "taxonomy_enrich_keywords",
+        "label": "Taxonomie : mots-cles",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Mots-cles SEO pour un terme",
+        "category": "text",
+    },
+    {
+        "type": "taxonomy_suggest_children",
+        "label": "Taxonomie : suggerer des enfants",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Nouveaux termes enfants (import)",
+        "category": "text",
+    },
+    {
+        "type": "taxonomy_generate_vocabulary",
+        "label": "Taxonomie : generer un vocabulaire",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Arborescence proposee (import)",
+        "category": "text",
+    },
+    {
+        "type": "image_prompt_create",
+        "label": "Prompt image : creation (planner+writer)",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Pipeline Z-Image pour une image",
+        "category": "text",
+    },
+    {
+        "type": "image_prompt_improve",
+        "label": "Prompt image : amelioration",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Variantes de prompt",
+        "category": "text",
+    },
+    {
+        "type": "image_prompt_validate",
+        "label": "Prompt image : validation score",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Score et checks",
+        "category": "text",
+    },
+    {
+        "type": "image_generate_concepts",
+        "label": "Concepts image (themes / sous-themes)",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Generation de concepts line-art ; revue puis creation en base",
+        "category": "text",
+    },
+    {
+        "type": "image_generate_prompts",
+        "label": "Prompts image : generation depuis concepts",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Genere des prompts line-art a partir d'une liste de concepts ou d'un terme taxonomique",
+        "category": "text",
+    },
+    {
+        "type": "image_prompt_suggest",
+        "label": "Prompt image : suggestion",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Suggere un nouveau prompt pour une image (contexte image_id ou titre/tags direct)",
+        "category": "text",
+    },
+    {
+        "type": "image_prompts_bulk",
+        "label": "Prompts image : generation bulk (planner+writer)",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Pipeline planner->writer pour plusieurs concepts ; validation optionnelle",
+        "category": "text",
+    },
+)
 
 
-def _get_shared_conn() -> duckdb.DuckDBPyConnection:
-    global _shared_conn
-    if _shared_conn is None:
-        logger.info("Opening DuckDB connection: %s", DB_PATH)
-        _shared_conn = duckdb.connect(str(DB_PATH), read_only=False)
-    return _shared_conn
+def _now() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def get_db() -> Generator[duckdb.DuckDBPyConnection, None, None]:
-    """Dependency FastAPI : connexion DuckDB partagée avec lock."""
-    with _db_lock:
-        conn = _get_shared_conn()
-        try:
-            yield conn
-        except Exception:
-            # Si la connexion est corrompue, la réinitialiser
-            global _shared_conn
-            try:
-                conn.close()
-            except Exception:
-                pass
-            _shared_conn = None
-            raise
+class SqlResult:
+    def __init__(self, result: Result[Any]) -> None:
+        self._r = result
+
+    def fetchall(self):
+        return self._r.fetchall()
+
+    def fetchone(self):
+        return self._r.fetchone()
 
 
-def get_db_sync() -> duckdb.DuckDBPyConnection:
-    """Connexion synchrone (hors FastAPI)."""
-    return duckdb.connect(str(DB_PATH), read_only=False)
+def _qmark_to_named(sql: str, params: list[Any] | tuple[Any, ...] | None) -> tuple[str, dict[str, Any]]:
+    if not params:
+        return sql, {}
+    idx = 0
+
+    def repl(_: re.Match[str]) -> str:
+        nonlocal idx
+        token = f"p{idx}"
+        idx += 1
+        return f":{token}"
+
+    converted = re.sub(r"\?", repl, sql)
+    bind = {f"p{i}": v for i, v in enumerate(params)}
+    return converted, bind
+
+
+class DBConnAdapter:
+    """Adapter wrapping a SQLAlchemy Session with a duckdb-compatible execute/fetchall interface."""
+
+    def __init__(self, session: Session) -> None:
+        self.session = session
+
+    def execute(self, sql: str, params: list[Any] | tuple[Any, ...] | None = None) -> SqlResult:
+        converted, bind = _qmark_to_named(sql, params)
+        res = self.session.execute(text(converted), bind)
+        return SqlResult(res)
+
+    def close(self) -> None:
+        self.session.close()
+
+
+def get_db_read() -> Generator[DBConnAdapter, None, None]:
+    session = SessionLocal()
+    try:
+        yield DBConnAdapter(session)
+    finally:
+        session.close()
+
+
+def get_db_write() -> Generator[DBConnAdapter, None, None]:
+    session = SessionLocal()
+    try:
+        adapter = DBConnAdapter(session)
+        yield adapter
+        session.commit()
+    except Exception:
+        session.rollback()
+        raise
+    finally:
+        session.close()
+
+
+def get_db() -> Generator[DBConnAdapter, None, None]:
+    yield from get_db_write()
+
+
+def get_db_sync(read_only: bool = False, db_path: Path | None = None) -> DBConnAdapter:
+    _ = read_only
+    _ = db_path
+    return DBConnAdapter(SessionLocal())
+
+
+def ensure_default_job_types(session: Session) -> None:
+    """Seed idempotent des types de jobs requis par l'UI et les workers."""
+    from api.models import JobTypeConfig
+
+    existing_rows = session.query(JobTypeConfig).all()
+    existing = {row.type: row for row in existing_rows}
+    now = _now()
+    changed = False
+
+    for spec in DEFAULT_JOB_TYPES:
+        if spec["type"] in existing:
+            row = existing[spec["type"]]
+            row.label = row.label or spec["label"]
+            row.max_concurrent = row.max_concurrent or spec["max_concurrent"]
+            row.description = row.description or spec["description"]
+            row.category = row.category or spec["category"]
+            if not row.updated_at:
+                row.updated_at = now
+            continue
+
+        session.add(JobTypeConfig(updated_at=now, **spec))
+        changed = True
+
+    if changed:
+        session.flush()
 
 
 def init_db(path: Path | None = None) -> None:
-    """Initialise la base avec le schéma."""
-    path = path or DB_PATH
-    schema_path = DATA_DIR / "schema.sql"
-    if not schema_path.exists():
-        raise FileNotFoundError(f"Schema not found: {schema_path}")
+    _ = path
+    from api.models import Base
 
-    conn = duckdb.connect(str(path))
-    schema_sql = schema_path.read_text(encoding="utf-8")
-    for stmt in schema_sql.split(";"):
-        stmt = stmt.strip()
-        if not stmt or stmt.startswith("--"):
-            continue
-        try:
-            conn.execute(stmt)
-        except duckdb.Error as e:
-            if "already exists" not in str(e).lower():
-                raise
-    conn.close()
+    Base.metadata.create_all(bind=ENGINE)
+    session = SessionLocal()
+    try:
+        ensure_default_job_types(session)
+        session.commit()
+    except Exception:
+        session.rollback()
+        raise
+    finally:
+        session.close()

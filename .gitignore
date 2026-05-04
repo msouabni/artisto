@@ -1,6 +1,9 @@
 # Fichier WAL temporaire DuckDB (créé pendant les transactions)
 data/*.duckdb.wal
 
+# Fichier de staging des suggestions IA (généré localement, non versionné)
+data/ai_suggestions.json
+
 # Python
 __pycache__/
 *.py[cod]
@@ -11,6 +14,9 @@ venv/
 *.egg-info/
 dist/
 build/
+
+# Logs runtime (API + workers)
+logs/
 
 # Pytest
 .pytest_cache/

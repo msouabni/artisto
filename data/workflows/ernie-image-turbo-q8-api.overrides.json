@@ -1,0 +1,34 @@
+{
+  "description": "Contrat public du workflow Ernie safe. Pas de shift ni de negative_prompt public sur cette variante.",
+  "contract_version": "workflow_contract_v1",
+  "public_inputs": {
+    "positive_prompt": ["14", "text"],
+    "seed": ["16", "seed"],
+    "steps": ["16", "steps"],
+    "cfg": ["16", "cfg"],
+    "width": ["13", "width"],
+    "height": ["13", "height"],
+    "batch_size": ["13", "batch_size"],
+    "sampler_name": ["16", "sampler_name"],
+    "scheduler": ["16", "scheduler"],
+    "denoise": ["16", "denoise"]
+  },
+  "capabilities": {
+    "positive_prompt": "required",
+    "negative_prompt": "unsupported",
+    "seed": "optional",
+    "steps": "optional",
+    "cfg": "optional",
+    "width": "optional",
+    "height": "optional",
+    "batch_size": "optional",
+    "sampler_name": "optional",
+    "scheduler": "optional",
+    "denoise": "optional",
+    "shift": "unsupported"
+  },
+  "notes": [
+    "Variante pilote safe du contrat workflow v1.",
+    "Le graphe utilise ConditioningZeroOut à la place d'un CLIP négatif dédié pour limiter la VRAM."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "description": "Contrat public du workflow Z-Image Turbo v1.",
+  "contract_version": "workflow_contract_v1",
+  "public_inputs": {
+    "positive_prompt": ["6", "text"],
+    "seed": ["3", "seed"],
+    "steps": ["3", "steps"],
+    "cfg": ["3", "cfg"],
+    "width": ["5", "width"],
+    "height": ["5", "height"],
+    "batch_size": ["5", "batch_size"],
+    "sampler_name": ["3", "sampler_name"],
+    "scheduler": ["3", "scheduler"],
+    "denoise": ["3", "denoise"],
+    "shift": ["2", "shift"]
+  },
+  "capabilities": {
+    "positive_prompt": "required",
+    "negative_prompt": "unsupported",
+    "seed": "optional",
+    "steps": "optional",
+    "cfg": "optional",
+    "width": "optional",
+    "height": "optional",
+    "batch_size": "optional",
+    "sampler_name": "optional",
+    "scheduler": "optional",
+    "denoise": "optional",
+    "shift": "optional"
+  },
+  "notes": [
+    "Variante opérationnelle par défaut.",
+    "Le workflow gère déjà un negative conditioning interne via ConditioningZeroOut."
+  ]
+}

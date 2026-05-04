@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sites — Artiste Coloriage</title>
+  <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css">
+  <link rel="stylesheet" href="/data/shared/nav.css">
+  <link rel="stylesheet" href="/data/shared/editor-core.css">
+  <style>
+    /* Styles spécifiques à l'éditeur sites */
+    .badge-active   { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.75rem; font-weight: 600; background: #dcfce7; color: #15803d; }
+    .badge-inactive { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.75rem; font-weight: 600; background: #f1f5f9; color: #64748b; }
+    body[data-theme="dark"] .badge-active   { background: #14532d; color: #86efac; }
+    body[data-theme="dark"] .badge-inactive { background: #1e293b; color: #94a3b8; }
+    /* Import diff modal */
+    .import-diff-modal .modal-dialog { max-width: 720px; max-height: 90vh; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+    .import-diff-header { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid #e8eaed; flex-shrink: 0; }
+    body[data-theme="dark"] .import-diff-header { border-color: #2d3748; }
+    .import-diff-header h3 { margin: 0; font-size: 1.05rem; flex: 1; }
+    .import-diff-body { flex: 1; overflow-y: auto; padding: 1rem 1.25rem; }
+    .import-diff-footer { padding: 0.75rem 1.25rem; border-top: 1px solid #e8eaed; display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center; flex-shrink: 0; }
+    body[data-theme="dark"] .import-diff-footer { border-color: #2d3748; }
+    #import-diff-textarea { width: 100%; height: 240px; font-family: monospace; font-size: 0.8rem; padding: 0.6rem 0.75rem; border: 1px solid #dadce0; border-radius: 6px; box-sizing: border-box; resize: vertical; line-height: 1.4; }
+    body[data-theme="dark"] #import-diff-textarea { border-color: #4a5568; background: #0f1923; color: #d1d5db; }
+    .import-diff-error { background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 0.6rem 1rem; color: #b91c1c; font-size: 0.85rem; margin-bottom: 0.75rem; display: none; }
+    body[data-theme="dark"] .import-diff-error { background: #2d1515; border-color: #7f1d1d; color: #fca5a5; }
+    .import-diff-summary { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.82rem; }
+    .diff-badge { display: inline-block; padding: 0.18rem 0.55rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+    .diff-badge--ready  { background: #dcfce7; color: #15803d; }
+    .diff-badge--update { background: #dbeafe; color: #1d4ed8; }
+    .diff-badge--conflict { background: #fef9c3; color: #854d0e; }
+    .diff-badge--error  { background: #fee2e2; color: #b91c1c; }
+    .diff-badge--skip   { background: #f1f5f9; color: #64748b; }
+    body[data-theme="dark"] .diff-badge--ready  { background: #14532d; color: #86efac; }
+    body[data-theme="dark"] .diff-badge--update { background: #1e3a5f; color: #93c5fd; }
+    body[data-theme="dark"] .diff-badge--conflict { background: #422006; color: #fde68a; }
+    body[data-theme="dark"] .diff-badge--error  { background: #450a0a; color: #fca5a5; }
+    body[data-theme="dark"] .diff-badge--skip   { background: #1e293b; color: #94a3b8; }
+    .diff-op { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; padding: 0.1rem 0.4rem; border-radius: 4px; font-family: monospace; background: #f1f5f9; color: #475569; }
+    body[data-theme="dark"] .diff-op { background: #1e293b; color: #94a3b8; }
+    .import-diff-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .import-diff-table th { text-align: left; padding: 0.4rem 0.6rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #5f6368; border-bottom: 2px solid #e8eaed; }
+    body[data-theme="dark"] .import-diff-table th { color: #a0aec0; border-color: #2d3748; }
+    .import-diff-table td { padding: 0.45rem 0.6rem; border-bottom: 1px solid #f1f3f4; vertical-align: top; }
+    body[data-theme="dark"] .import-diff-table td { border-color: #1e293b; }
+    .diff-id-cell { font-family: monospace; font-weight: 600; font-size: 0.8rem; }
+    .diff-msg-cell { font-size: 0.78rem; color: #5f6368; max-width: 200px; }
+    body[data-theme="dark"] .diff-msg-cell { color: #a0aec0; }
+    .diff-detail-toggle { font-size: 0.75rem; color: #1a73e8; cursor: pointer; text-decoration: underline; }
+    .diff-changes { font-size: 0.78rem; font-family: monospace; background: #f8f9fa; border-radius: 4px; padding: 0.4rem 0.6rem; max-height: 120px; overflow-y: auto; }
+    body[data-theme="dark"] .diff-changes { background: #0f1923; color: #d1d5db; }
+    .diff-change-from { color: #b91c1c; text-decoration: line-through; }
+    .diff-change-to { color: #15803d; }
+    body[data-theme="dark"] .diff-change-from { color: #fca5a5; }
+    body[data-theme="dark"] .diff-change-to { color: #86efac; }
+    .import-diff-select-all { font-size: 0.8rem; color: #1a73e8; cursor: pointer; text-decoration: underline; margin-right: auto; }
+    body[data-theme="dark"] .import-diff-select-all { color: #90cdf4; }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="app-wrap">
+    <div class="header">
+      <h1>Sites de publication</h1>
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span class="status" id="status">Chargement…</span>
+        <div class="theme-switcher">
+          <span>Thème</span>
+          <button id="btn-theme-light" class="active">Clair</button>
+          <button id="btn-theme-dark">Sombre</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="primary" id="btn-add-row">+ Ajouter un site</button>
+      <button class="secondary" id="btn-undo" disabled title="Annuler">↩ Annuler</button>
+      <button class="secondary" id="btn-redo" disabled title="Refaire">↪ Refaire</button>
+      <button class="secondary" id="btn-export-json">Exporter JSON</button>
+      <button class="secondary" id="btn-import-diff" title="Importer des modifications via un diff JSON">Import diff</button>
+      <input type="text" id="filter-input" class="filter-input" placeholder="Filtrer…" style="margin-left:auto;">
+    </div>
+
+    <div class="selection-bar" id="selection-bar">
+      <span class="sel-count" id="sel-count">0 sélectionné(s)</span>
+      <button class="sel-delete" id="sel-btn-delete">Supprimer la sélection</button>
+      <button class="sel-clear" id="sel-btn-clear">Désélectionner</button>
+    </div>
+
+    <div class="main-panel">
+      <div id="table-container"></div>
+    </div>
+  </div>
+
+  <!-- Form panel -->
+  <aside id="form-panel" class="form-panel" aria-hidden="true" role="complementary">
+    <div class="form-panel-inner">
+      <div class="form-panel-header">
+        <h2>Site</h2>
+        <button class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <form id="editor-form" class="editor-form" onsubmit="return false;">
+        <div class="form-panel-scroll">
+          <div id="editor-form-fields"></div>
+        </div>
+        <div class="form-panel-actions">
+          <button type="button" class="primary" id="btn-form-save">Enregistrer</button>
+          <button type="button" class="secondary" id="btn-form-cancel">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </aside>
+
+  <!-- Import diff modal -->
+  <div id="modal-import-diff" class="modal-overlay import-diff-modal" role="dialog" aria-modal="true" aria-labelledby="import-diff-title">
+    <div class="modal-dialog">
+      <div class="import-diff-header">
+        <h3 id="import-diff-title">Import diff JSON</h3>
+        <button type="button" id="btn-import-diff-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <div class="import-diff-body">
+        <div id="import-diff-step-input">
+          <p style="font-size:0.85rem;color:#5f6368;margin:0 0 0.6rem;">Collez un tableau JSON d'opérations : add, upsert, update, remove.</p>
+          <textarea id="import-diff-textarea" spellcheck="false" placeholder='[{ "op": "add", "value": { "id": "site_fr", "name_fr": "Site FR", "base_url": "https://example.com" } }]'></textarea>
+          <div id="import-diff-parse-error" class="import-diff-error"></div>
+        </div>
+        <div id="import-diff-step-preview" style="display:none;">
+          <div class="import-diff-summary" id="import-diff-summary"></div>
+          <div id="import-diff-preview-error" class="import-diff-error"></div>
+          <table class="import-diff-table" id="import-diff-table">
+            <thead>
+              <tr>
+                <th style="width:32px;"><input type="checkbox" id="import-diff-check-all" title="Tout sélectionner"></th>
+                <th>Op</th>
+                <th>ID</th>
+                <th>Statut</th>
+                <th>Détails</th>
+              </tr>
+            </thead>
+            <tbody id="import-diff-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="import-diff-footer">
+        <span class="import-diff-select-all" id="import-diff-select-all-link" style="display:none;">Tout sélectionner / Désélectionner</span>
+        <button type="button" id="btn-import-diff-cancel" class="secondary">Annuler</button>
+        <button type="button" id="btn-import-diff-validate" class="secondary">Valider →</button>
+        <button type="button" id="btn-import-diff-back" class="secondary" style="display:none;">← Retour</button>
+        <button type="button" id="btn-import-diff-apply" class="primary" style="display:none;" disabled>Appliquer la sélection</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm delete modal -->
+  <div id="modal-confirm-delete" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <h3>Confirmer la suppression</h3>
+      <p id="modal-confirm-delete-message">Êtes-vous sûr ?</p>
+      <div class="modal-actions">
+        <button class="secondary" id="btn-confirm-delete-cancel">Annuler</button>
+        <button class="primary danger" id="btn-confirm-delete-ok">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+  <script src="/data/shared/utils.js"></script>
+  <script src="/data/shared/editor-core.js"></script>
+  <script src="/data/shared/nav.js"></script>
+  <script>
+    function activeFormatter(cell) {
+      const v = cell.getValue();
+      return v ? '<span class="badge-active">Actif</span>' : '<span class="badge-inactive">Inactif</span>';
+    }
+
+    const editor = new EditorCore({
+      title: 'Sites',
+      apiBase: EditorUtils.apiBase(8000),
+      apiPrefix: '/api/sites',
+      pk: 'id',
+      storagePrefix: 'sites_editor',
+
+      columns: [
+        { field: 'id',             title: 'ID',             width: 150, editor: false },
+        { field: 'name_fr',        title: 'Nom (FR)',        width: 160 },
+        { field: 'name_en',        title: 'Nom (EN)',        width: 140 },
+        { field: 'base_url',       title: 'URL',             width: 200, formatter: 'link', formatterParams: { urlPrefix: '', labelField: 'base_url', target: '_blank' } },
+        { field: 'default_locale', title: 'Locale',          width: 80,  hozAlign: 'center' },
+        { field: 'country',        title: 'Pays',            width: 80,  hozAlign: 'center' },
+        { field: 'audience',       title: 'Audience',        width: 110 },
+        { field: 'active',         title: 'Statut',          width: 90,  hozAlign: 'center', formatter: activeFormatter },
+        { field: 'updated_at',     title: 'Mis à jour',      width: 160 },
+      ],
+
+      formFields: [
+        { field: 'id',                   label: 'Identifiant (slug)' },
+        { field: 'name_fr',              label: 'Nom français' },
+        { field: 'name_en',              label: 'Nom anglais' },
+        { field: 'name_ar',              label: 'Nom arabe' },
+        { field: 'base_url',             label: 'URL de base',      type: 'url' },
+        { field: 'default_locale',       label: 'Locale par défaut', type: 'select', options: [
+            { value: 'fr', label: 'Français (fr)' },
+            { value: 'en', label: 'Anglais (en)' },
+            { value: 'ar', label: 'Arabe (ar)' },
+          ]
+        },
+        { field: 'country',              label: 'Pays (code ISO)' },
+        { field: 'audience',             label: 'Audience cible' },
+        { field: 'taxonomy_config_path', label: 'Chemin config taxonomie' },
+        { field: 'active',               label: 'Actif (0/1)',   type: 'number' },
+      ],
+    });
+
+    editor.init();
+
+    // ─── Import diff ─────────────────────────────────────────────────────────
+    const API_BASE = editor.cfg.apiBase || '';
+    const importDiffModal = document.getElementById('modal-import-diff');
+    const importDiffTextarea = document.getElementById('import-diff-textarea');
+    const importDiffParseErr = document.getElementById('import-diff-parse-error');
+    const importDiffPrevErr = document.getElementById('import-diff-preview-error');
+    const importDiffStepInput = document.getElementById('import-diff-step-input');
+    const importDiffStepPreview = document.getElementById('import-diff-step-preview');
+    const importDiffSummaryEl = document.getElementById('import-diff-summary');
+    const importDiffTbody = document.getElementById('import-diff-tbody');
+    const btnImportDiffValidate = document.getElementById('btn-import-diff-validate');
+    const btnImportDiffBack = document.getElementById('btn-import-diff-back');
+    const btnImportDiffApply = document.getElementById('btn-import-diff-apply');
+    const btnImportDiffCancel = document.getElementById('btn-import-diff-cancel');
+    const importDiffSelectAll = document.getElementById('import-diff-select-all-link');
+    const importDiffCheckAll = document.getElementById('import-diff-check-all');
+
+    let _importDiffOps = [];
+
+    function _escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function _importDiffStatusBadge(status) {
+      const labels = { ready: 'Prêt', update: 'Mise à jour', conflict: 'Conflit', error: 'Erreur', skip: 'Ignoré' };
+      return '<span class="diff-badge diff-badge--' + status + '">' + (labels[status] || status) + '</span>';
+    }
+
+    function _importDiffOpBadge(op) {
+      return '<span class="diff-op">' + op + '</span>';
+    }
+
+    function _importDiffRenderChanges(diff) {
+      if (!diff || !Object.keys(diff).length) return '';
+      let html = '<div class="diff-changes">';
+      for (const [field, ch] of Object.entries(diff)) {
+        const from = JSON.stringify(ch.from);
+        const to = JSON.stringify(ch.to);
+        html += '<div class="diff-change-field"><strong>' + _escHtml(field) + '</strong>: '
+          + '<span class="diff-change-from">' + _escHtml(from) + '</span>'
+          + ' → <span class="diff-change-to">' + _escHtml(to) + '</span></div>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    function _importDiffRenderTable(ops) {
+      importDiffTbody.innerHTML = '';
+      ops.forEach(function(op, idx) {
+        const canSelect = op.status === 'ready' || op.status === 'update';
+        const tr = document.createElement('tr');
+        tr.className = 'diff-row' + (canSelect ? '' : ' diff-row--disabled');
+        tr.dataset.idx = idx;
+        const hasDetail = (op.diff && Object.keys(op.diff).length > 0) || op.message;
+        const detailId = 'diff-detail-' + idx;
+        tr.innerHTML = '<td><input type="checkbox" class="diff-row-cb" data-idx="' + idx + '" '
+          + (canSelect ? '' : 'disabled ') + (canSelect ? 'checked' : '') + '></td>'
+          + '<td>' + _importDiffOpBadge(op.op) + '</td>'
+          + '<td class="diff-id-cell">' + _escHtml(op.site_id || '—') + '</td>'
+          + '<td>' + _importDiffStatusBadge(op.status) + '</td>'
+          + '<td class="diff-msg-cell">'
+            + (hasDetail ? '<span class="diff-detail-toggle" data-target="' + detailId + '">▶ détails</span>' : '')
+            + (!op.diff && op.message ? '<span>' + _escHtml(op.message) + '</span>' : '')
+          + '</td>';
+        importDiffTbody.appendChild(tr);
+        if (hasDetail) {
+          const trDetail = document.createElement('tr');
+          trDetail.className = 'diff-detail-row';
+          trDetail.id = detailId;
+          trDetail.style.display = 'none';
+          let detailContent = '';
+          if (op.message) detailContent += '<p style="font-size:0.8rem;margin:0 0 0.3rem;color:#5f6368;">' + _escHtml(op.message) + '</p>';
+          if (op.diff) detailContent += _importDiffRenderChanges(op.diff);
+          trDetail.innerHTML = '<td></td><td colspan="4">' + detailContent + '</td>';
+          importDiffTbody.appendChild(trDetail);
+        }
+      });
+      importDiffTbody.querySelectorAll('.diff-detail-toggle').forEach(function(el) {
+        el.addEventListener('click', function() {
+          const target = document.getElementById(el.dataset.target);
+          if (!target) return;
+          const open = target.style.display !== 'none';
+          target.style.display = open ? 'none' : '';
+          el.textContent = open ? '▶ détails' : '▼ détails';
+        });
+      });
+    }
+
+    function _importDiffSummaryHtml(summary) {
+      const parts = [];
+      if (summary.ready) parts.push('<span class="diff-badge diff-badge--ready">' + summary.ready + ' à ajouter</span>');
+      if (summary.update) parts.push('<span class="diff-badge diff-badge--update">' + summary.update + ' à mettre à jour</span>');
+      if (summary.conflict) parts.push('<span class="diff-badge diff-badge--conflict">' + summary.conflict + ' conflit(s)</span>');
+      if (summary.error) parts.push('<span class="diff-badge diff-badge--error">' + summary.error + ' erreur(s)</span>');
+      if (summary.skip) parts.push('<span class="diff-badge diff-badge--skip">' + summary.skip + ' ignoré(s)</span>');
+      return parts.join(' ');
+    }
+
+    function _importDiffShowStep(step) {
+      importDiffStepInput.style.display = step === 'input' ? '' : 'none';
+      importDiffStepPreview.style.display = step === 'preview' ? '' : 'none';
+      btnImportDiffValidate.style.display = step === 'input' ? '' : 'none';
+      btnImportDiffBack.style.display = step === 'preview' ? '' : 'none';
+      btnImportDiffApply.style.display = step === 'preview' ? '' : 'none';
+      importDiffSelectAll.style.display = step === 'preview' ? '' : 'none';
+    }
+
+    function _importDiffCountSelected() {
+      return importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled):checked').length;
+    }
+
+    function _importDiffUpdateApplyBtn() {
+      btnImportDiffApply.disabled = _importDiffCountSelected() === 0;
+    }
+
+    function openImportDiffModal() {
+      importDiffParseErr.style.display = 'none';
+      importDiffPrevErr.style.display = 'none';
+      _importDiffOps = [];
+      _importDiffShowStep('input');
+      importDiffModal.classList.add('open');
+      setTimeout(function() { importDiffTextarea.focus(); }, 50);
+    }
+
+    function closeImportDiffModal() {
+      importDiffModal.classList.remove('open');
+      btnImportDiffApply.disabled = true;
+      btnImportDiffApply.textContent = 'Appliquer la sélection';
+    }
+
+    document.getElementById('btn-import-diff').addEventListener('click', openImportDiffModal);
+    btnImportDiffCancel.addEventListener('click', closeImportDiffModal);
+    document.getElementById('btn-import-diff-close').addEventListener('click', closeImportDiffModal);
+    btnImportDiffBack.addEventListener('click', function() {
+      _importDiffShowStep('input');
+      btnImportDiffApply.disabled = true;
+      btnImportDiffApply.textContent = 'Appliquer la sélection';
+    });
+
+    importDiffSelectAll.addEventListener('click', function() {
+      const cbs = importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled)');
+      const allChecked = Array.from(cbs).every(function(cb) { return cb.checked; });
+      cbs.forEach(function(cb) { cb.checked = !allChecked; });
+      importDiffCheckAll.checked = !allChecked;
+      _importDiffUpdateApplyBtn();
+    });
+    importDiffCheckAll.addEventListener('change', function() {
+      importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled)').forEach(function(cb) {
+        cb.checked = importDiffCheckAll.checked;
+      });
+      _importDiffUpdateApplyBtn();
+    });
+    importDiffTbody.addEventListener('change', function(e) {
+      if (e.target.classList.contains('diff-row-cb')) _importDiffUpdateApplyBtn();
+    });
+
+    async function _importDiffValidate() {
+      importDiffParseErr.style.display = 'none';
+      const raw = importDiffTextarea.value.trim();
+      if (!raw) {
+        importDiffParseErr.textContent = 'Veuillez coller un tableau JSON d\'opérations.';
+        importDiffParseErr.style.display = 'block';
+        return;
+      }
+      let ops;
+      try {
+        ops = JSON.parse(raw);
+        if (!Array.isArray(ops)) throw new Error('La valeur doit être un tableau JSON.');
+        ops = ops.map(function(o) {
+          const n = Object.assign({}, o);
+          if (n.op === 'replace') n.op = 'upsert';
+          return n;
+        });
+      } catch (err) {
+        importDiffParseErr.textContent = 'JSON invalide : ' + err.message;
+        importDiffParseErr.style.display = 'block';
+        return;
+      }
+      btnImportDiffValidate.disabled = true;
+      btnImportDiffValidate.textContent = 'Validation…';
+      try {
+        const res = await fetch(API_BASE + '/api/sites/import/diff?dry_run=true', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(ops)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          importDiffParseErr.textContent = 'Erreur API : ' + (data.detail || res.statusText);
+          importDiffParseErr.style.display = 'block';
+          return;
+        }
+        _importDiffOps = data.operations || [];
+        importDiffSummaryEl.innerHTML = _importDiffSummaryHtml(data.summary || {});
+        _importDiffRenderTable(_importDiffOps);
+        _importDiffShowStep('preview');
+        _importDiffUpdateApplyBtn();
+      } catch (err) {
+        importDiffParseErr.textContent = 'Erreur réseau : ' + err.message;
+        importDiffParseErr.style.display = 'block';
+      } finally {
+        btnImportDiffValidate.disabled = false;
+        btnImportDiffValidate.textContent = 'Valider →';
+      }
+    }
+
+    btnImportDiffValidate.addEventListener('click', _importDiffValidate);
+
+    btnImportDiffApply.addEventListener('click', async function() {
+      const selectedIdxs = new Set();
+      importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled):checked').forEach(function(cb) {
+        selectedIdxs.add(Number(cb.dataset.idx));
+      });
+      if (!selectedIdxs.size) {
+        editor.setStatus('Aucune opération sélectionnée.');
+        return;
+      }
+      const selectedOps = _importDiffOps
+        .filter(function(_, i) { return selectedIdxs.has(i); })
+        .map(function(op) { return { op: op.op, value: op.incoming }; });
+
+      btnImportDiffApply.disabled = true;
+      btnImportDiffApply.textContent = 'Application en cours…';
+      importDiffPrevErr.style.display = 'none';
+
+      try {
+        const res = await fetch(API_BASE + '/api/sites/import/diff?dry_run=false', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(selectedOps)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          importDiffPrevErr.textContent = 'Erreur API : ' + (data.detail || res.statusText);
+          importDiffPrevErr.style.display = 'block';
+          return;
+        }
+        editor.setStatus('Rechargement…');
+        await editor.reload();
+        editor.setStatus(data.applied_count + ' opération(s) appliquée(s).');
+        closeImportDiffModal();
+      } catch (err) {
+        importDiffPrevErr.textContent = 'Erreur réseau : ' + err.message;
+        importDiffPrevErr.style.display = 'block';
+      } finally {
+        if (importDiffModal.classList.contains('open')) {
+          btnImportDiffApply.disabled = false;
+          btnImportDiffApply.textContent = 'Appliquer la sélection';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobs — Artiste Coloriage</title>
+  <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css">
+  <link rel="stylesheet" href="/data/shared/nav.css">
+  <link rel="stylesheet" href="/data/shared/editor-core.css">
+  <style>
+    /* ── Badges statut ────────────────────────────────────────── */
+    .badge { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 10px; font-size: 0.74rem; font-weight: 600; white-space: nowrap; }
+    .badge-pending            { background: #f1f5f9; color: #64748b; }
+    .badge-running            { background: #dbeafe; color: #1d4ed8; animation: pulse-bg 1.2s ease-in-out infinite; }
+    .badge-completed          { background: #dcfce7; color: #15803d; }
+    .badge-failed             { background: #fee2e2; color: #b91c1c; }
+    .badge-cancelled          { background: #fef3c7; color: #b45309; }
+    .badge-awaiting_validation{ background: #e0e7ff; color: #4338ca; }
+    .badge-applied            { background: #d1fae5; color: #047857; }
+    .badge-rejected           { background: #fce7f3; color: #be185d; }
+    @keyframes pulse-bg { 0%,100%{opacity:1}50%{opacity:.6} }
+    body[data-theme="dark"] .badge-pending            { background: #1e293b; color: #94a3b8; }
+    body[data-theme="dark"] .badge-running            { background: #1e3a5f; color: #93c5fd; }
+    body[data-theme="dark"] .badge-completed          { background: #14532d; color: #86efac; }
+    body[data-theme="dark"] .badge-failed             { background: #450a0a; color: #fca5a5; }
+    body[data-theme="dark"] .badge-cancelled          { background: #422006; color: #fde68a; }
+    body[data-theme="dark"] .badge-awaiting_validation{ background: #312e81; color: #a5b4fc; }
+    body[data-theme="dark"] .badge-applied            { background: #064e3b; color: #6ee7b7; }
+    body[data-theme="dark"] .badge-rejected           { background: #831843; color: #f9a8d4; }
+
+    /* ── Type cards (compact grid + collapsible wrap) ───────────── */
+    .type-cards-wrap { margin-bottom: .75rem; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; padding: 0 .35rem .35rem; }
+    body[data-theme="dark"] .type-cards-wrap { background: #0f172a; border-color: #334155; }
+    .type-cards-wrap > summary {
+      list-style: none; cursor: pointer; padding: .45rem .5rem; font-size: .88rem; font-weight: 600;
+      display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; user-select: none;
+    }
+    .type-cards-wrap > summary::-webkit-details-marker { display: none; }
+    .type-cards-wrap > summary::before { content: '▶'; font-size: .65rem; opacity: .7; transition: transform .15s; }
+    .type-cards-wrap[open] > summary::before { content: '▼'; }
+    .type-cards-summary-stats { font-weight: 500; color: #64748b; font-size: .78rem; }
+    body[data-theme="dark"] .type-cards-summary-stats { color: #94a3b8; }
+    .type-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: .4rem;
+    }
+    .type-card {
+      padding: .4rem .55rem; border-radius: 6px; border: 1px solid #e2e8f0;
+      background: #fff; cursor: pointer; transition: box-shadow .15s, border-color .15s;
+      display: grid; grid-template-columns: 1fr auto; grid-template-areas: 'title toggle' 'counts counts';
+      gap: .2rem .4rem; font-size: .78rem; line-height: 1.2;
+    }
+    body[data-theme="dark"] .type-card { background: #1e293b; border-color: #334155; }
+    .type-card:hover { border-color: #94a3b8; }
+    body[data-theme="dark"] .type-card:hover { border-color: #64748b; }
+    .type-card.active { border-color: #1a73e8; box-shadow: 0 0 0 2px rgba(26,115,232,.2); }
+    body[data-theme="dark"] .type-card.active { border-color: #3182ce; }
+    .type-card h3 { grid-area: title; margin: 0; font-size: .86rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .type-card .meta { display: none; }
+    .type-card .counts {
+      grid-area: counts; display: flex; gap: .35rem; font-size: .72rem; flex-wrap: wrap;
+    }
+    .type-card .counts span { color: #64748b; }
+    body[data-theme="dark"] .type-card .counts span { color: #94a3b8; }
+    .type-card .counts .n { font-weight: 600; color: #202124; }
+    body[data-theme="dark"] .type-card .counts .n { color: #f7fafc; }
+    .type-card .counts .zero { display: none; }
+    .type-toggle { grid-area: toggle; display: flex; align-items: center; }
+    .type-toggle label { display: none; }
+    .type-toggle input[type="checkbox"] { width: 14px; height: 14px; cursor: pointer; margin: 0; }
+
+    /* ── Filters ────────────────────────────────────────────────── */
+    .filter-row { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; margin-bottom: .75rem; font-size: .84rem; }
+    .filter-row select, .filter-row input { padding: .35rem .6rem; border: 1px solid #dadce0; border-radius: 4px; font-size: .84rem; }
+    body[data-theme="dark"] .filter-row select,
+    body[data-theme="dark"] .filter-row input { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .filter-row .sep { color: #94a3b8; }
+
+    /* ── Auto-refresh indicator ─────────────────────────────────── */
+    #refresh-indicator {
+      display: inline-flex; align-items: center; gap: .4rem; font-size: .8rem;
+      color: #64748b; padding: .25rem .6rem; border-radius: 4px;
+      border: 1px solid #e2e8f0; background: #f8fafc;
+    }
+    body[data-theme="dark"] #refresh-indicator { background: #1e293b; border-color: #334155; color: #94a3b8; }
+    #refresh-dot { width: 8px; height: 8px; border-radius: 50%; background: #94a3b8; flex-shrink: 0; transition: background .3s; }
+    #refresh-dot.active { background: #22c55e; animation: pulse-dot 1s ease-in-out infinite; }
+    #refresh-dot.paused { background: #f59e0b; animation: pulse-dot 1.6s ease-in-out infinite; }
+    #refresh-indicator.paused { border-color: #fbbf24; background: #fffbeb; color: #92400e; }
+    body[data-theme="dark"] #refresh-indicator.paused { background: #422006; border-color: #b45309; color: #fde68a; }
+    #refresh-label { font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    @keyframes pulse-dot { 0%,100%{opacity:1}50%{opacity:.4} }
+
+    /* Selection bar (editor-core.css) — masqué sans sélection */
+    #selection-bar { display: none; }
+    #selection-bar.visible { display: flex; }
+    #selection-bar .sel-breakdown { font-size: .78rem; color: #64748b; max-width: 42vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    body[data-theme="dark"] #selection-bar .sel-breakdown { color: #94a3b8; }
+    #selection-bar button:disabled { opacity: .45; cursor: not-allowed; }
+    .bulk-modal-field { margin: .75rem 0; font-size: .88rem; }
+    .bulk-modal-field label { display: block; margin-bottom: .25rem; font-weight: 600; color: #64748b; }
+    body[data-theme="dark"] .bulk-modal-field label { color: #94a3b8; }
+
+    /* ── Table container ────────────────────────────────────────── */
+    #table-container {
+      flex: none;
+      height: calc(100vh - 340px);
+      min-height: 280px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    body[data-theme="light"] #table-container { background: #fff; border: 1px solid #e2e8f0; }
+    body[data-theme="dark"]  #table-container { background: #1e293b; border: 1px solid #334155; }
+
+    /*
+     * editor-core.css impose body/app-wrap en 100vh + overflow:hidden et #table-container en flex:1.
+     * Avec ~10 cartes de types, la zone du haut est rognée sans scroll : les toggles (ex. génération image) disparaissent.
+     */
+    body {
+      height: auto;
+      min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    .app-wrap {
+      height: auto;
+      min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: visible;
+    }
+    .type-cards-wrap,
+    .filter-row,
+    #selection-bar { flex-shrink: 0; }
+
+    /* ── Row details ────────────────────────────────────────────── */
+    .job-details { padding: .75rem 1rem; background: #f8fafc; border-top: 1px solid #e2e8f0; font-size: .8rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    body[data-theme="dark"] .job-details { background: #0f172a; border-color: #334155; }
+    .job-details pre { margin: 0; white-space: pre-wrap; word-break: break-all; flex: 1; min-width: 200px; }
+    .job-details .job-thumb { flex-shrink: 0; }
+    .job-details .job-thumb img { max-width: 180px; max-height: 180px; border-radius: 6px; border: 1px solid #e2e8f0; display: block; }
+    body[data-theme="dark"] .job-details .job-thumb img { border-color: #334155; }
+    .job-details .job-thumb .no-img { color: #94a3b8; font-style: italic; font-size: .8rem; }
+    .job-details .meta-block { display: flex; flex-direction: column; gap: .25rem; font-size: .8rem; min-width: 160px; }
+    .job-details .meta-block dt { font-weight: 600; color: #64748b; }
+    body[data-theme="dark"] .job-details .meta-block dt { color: #94a3b8; }
+    .job-details .meta-block dd { margin: 0; }
+
+    /* ── Progress bar ───────────────────────────────────────────── */
+    .progress-bar-wrap { position: relative; height: 14px; border-radius: 7px; background: #e2e8f0; overflow: hidden; min-width: 80px; }
+    body[data-theme="dark"] .progress-bar-wrap { background: #334155; }
+    .progress-bar-fill { position: absolute; left: 0; top: 0; height: 100%; border-radius: 7px; background: #1a73e8; transition: width .4s; }
+    .progress-bar-fill.done { background: #22c55e; }
+    .progress-bar-fill.fail { background: #d93025; }
+    .progress-bar-text { position: absolute; right: 4px; top: 0; height: 100%; display: flex; align-items: center; font-size: .7rem; font-weight: 700; color: #fff; mix-blend-mode: difference; }
+
+    /* ── Diff modal ─────────────────────────────────────────────── */
+    .diff-modal { display: none; position: fixed; inset: 0; z-index: 1100; background: rgba(0,0,0,.45); align-items: center; justify-content: center; }
+    .diff-modal.open { display: flex; }
+    .diff-dialog { background: #fff; border-radius: 10px; padding: 1.5rem; min-width: 560px; max-width: 90vw; max-height: 85vh; display: flex; flex-direction: column; box-shadow: 0 8px 32px rgba(0,0,0,.18); }
+    body[data-theme="dark"] .diff-dialog { background: #1e293b; color: #f1f5f9; }
+    .diff-dialog h3 { margin: 0 0 1rem; }
+    .diff-table { overflow-y: auto; flex: 1; font-size: .85rem; }
+    .diff-table table { width: 100%; border-collapse: collapse; }
+    .diff-table th, .diff-table td { padding: .5rem .75rem; border-bottom: 1px solid #e2e8f0; text-align: left; }
+    body[data-theme="dark"] .diff-table th,
+    body[data-theme="dark"] .diff-table td { border-color: #334155; }
+    .diff-table th { font-weight: 600; background: #f8fafc; }
+    body[data-theme="dark"] .diff-table th { background: #0f172a; }
+    .diff-val-old { background: #fee2e2; }
+    body[data-theme="dark"] .diff-val-old { background: #450a0a; }
+    .diff-val-new { background: #dcfce7; }
+    body[data-theme="dark"] .diff-val-new { background: #064e3b; }
+    /* ── Diff cards (concepts / taxonomy import) ─────────────── */
+    .diff-summary { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: .85rem; font-size: .82rem; font-weight: 600; }
+    .diff-summary-new  { background: #dcfce7; color: #15803d; padding: .2rem .6rem; border-radius: 10px; }
+    .diff-summary-dup  { background: #f1f5f9; color: #64748b; padding: .2rem .6rem; border-radius: 10px; }
+    .diff-summary-upd  { background: #fef3c7; color: #b45309; padding: .2rem .6rem; border-radius: 10px; }
+    body[data-theme="dark"] .diff-summary-new { background: #14532d; color: #86efac; }
+    body[data-theme="dark"] .diff-summary-dup { background: #1e293b; color: #94a3b8; }
+    body[data-theme="dark"] .diff-summary-upd { background: #422006; color: #fde68a; }
+    .diff-meta { font-size: .8rem; color: #64748b; margin: 0 0 .6rem; }
+    body[data-theme="dark"] .diff-meta { color: #94a3b8; }
+    .diff-cards { display: flex; flex-direction: column; gap: .45rem; }
+    .diff-card { border: 1px solid #e2e8f0; border-radius: 7px; padding: .55rem .8rem; background: #f8fafc; }
+    .diff-card-dup { opacity: .55; }
+    body[data-theme="dark"] .diff-card { background: #0f172a; border-color: #334155; }
+    .diff-card-head { display: flex; align-items: center; gap: .45rem; font-size: .88rem; }
+    .diff-card-id { font-size: .76rem; color: #64748b; margin-top: .2rem; }
+    body[data-theme="dark"] .diff-card-id { color: #94a3b8; }
+    .diff-card-sub { font-size: .8rem; color: #64748b; margin-left: .3rem; }
+    .diff-card-exist { font-size: .76rem; color: #b45309; margin-left: .5rem; }
+    body[data-theme="dark"] .diff-card-exist { color: #fde68a; }
+    .diff-badge { font-size: .72rem; font-weight: 700; padding: .15rem .45rem; border-radius: 8px; white-space: nowrap; }
+    .diff-badge-new { background: #dcfce7; color: #15803d; }
+    .diff-badge-dup { background: #f1f5f9; color: #64748b; }
+    .diff-badge-upd { background: #fef3c7; color: #b45309; }
+    body[data-theme="dark"] .diff-badge-new { background: #14532d; color: #86efac; }
+    body[data-theme="dark"] .diff-badge-dup { background: #1e293b; color: #94a3b8; }
+    body[data-theme="dark"] .diff-badge-upd { background: #422006; color: #fde68a; }
+    .diff-footer { display: flex; gap: .5rem; justify-content: flex-end; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; }
+    body[data-theme="dark"] .diff-footer { border-color: #334155; }
+    .diff-footer button { padding: .5rem 1rem; border-radius: 6px; border: none; cursor: pointer; font-size: .9rem; }
+    .diff-footer .btn-apply  { background: #15803d; color: #fff; }
+    .diff-footer .btn-reject { background: #b91c1c; color: #fff; }
+    .diff-footer .btn-close  { background: #e2e8f0; color: #202124; }
+    body[data-theme="dark"] .diff-footer .btn-close { background: #4a5568; color: #f7fafc; }
+
+    /* ── Row action buttons ─────────────────────────────────────── */
+    .btn-reschedule, .btn-row-cancel, .btn-diff {
+      padding: .2rem .5rem; font-size: .78rem; cursor: pointer; border-radius: 4px; border: 1px solid; margin-right: .25rem;
+    }
+    .btn-reschedule { background: #dcfce7; border-color: #15803d; color: #15803d; }
+    .btn-row-cancel { background: #fee2e2; border-color: #b91c1c; color: #b91c1c; }
+    .btn-diff       { background: #e0e7ff; border-color: #4338ca; color: #4338ca; }
+    .btn-view       { background: #e0f2fe; border-color: #0284c7; color: #0284c7; }
+    .expand-btn     { cursor: pointer; font-size: .8rem; padding: 0 .25rem; user-select: none; }
+
+    /* ── Job detail modal ─────────────────────────────────────── */
+    .job-detail-modal { display: none; position: fixed; inset: 0; z-index: 1100; background: rgba(0,0,0,.5); align-items: center; justify-content: center; overflow-y: auto; }
+    .job-detail-modal.open { display: flex; }
+    .job-detail-dialog { background: #fff; border-radius: 10px; padding: 1.5rem; max-width: 95vw; max-height: 95vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,.2); }
+    body[data-theme="dark"] .job-detail-dialog { background: #1e293b; color: #f1f5f9; }
+    .job-detail-dialog h3 { margin: 0 0 1rem; }
+    .job-detail-body { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .job-detail-img { flex-shrink: 0; }
+    .job-detail-img img { max-width: 480px; max-height: 480px; border-radius: 8px; border: 1px solid #e2e8f0; display: block; }
+    body[data-theme="dark"] .job-detail-img img { border-color: #334155; }
+    .job-detail-img .no-img { color: #94a3b8; font-style: italic; font-size: .9rem; }
+    .job-detail-info { flex: 1; min-width: 280px; font-size: .9rem; }
+    .job-detail-info dl { margin: 0; display: grid; gap: .35rem; }
+    .job-detail-info dt { font-weight: 600; color: #64748b; }
+    body[data-theme="dark"] .job-detail-info dt { color: #94a3b8; }
+    .job-detail-info dd { margin: 0; word-break: break-word; }
+    .job-detail-prompt { margin-top: .75rem; padding: .75rem; background: #f1f5f9; border-radius: 6px; font-size: .85rem; white-space: pre-wrap; }
+    body[data-theme="dark"] .job-detail-prompt { background: #0f172a; }
+    .job-detail-footer { margin-top: 1rem; display: flex; justify-content: flex-end; }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="app-wrap">
+  <div class="header">
+    <h1>Gestion des Jobs — Artiste Coloriage</h1>
+    <div class="theme-switcher">
+      <span>Thème :</span>
+      <button type="button" id="btn-theme-light" class="active">Clair</button>
+      <button type="button" id="btn-theme-dark">Sombre</button>
+    </div>
+  </div>
+
+  <details class="type-cards-wrap" id="type-cards-wrap">
+    <summary>
+      <span>Types de jobs</span>
+      <span class="type-cards-summary-stats" id="type-cards-summary-stats"></span>
+    </summary>
+    <section class="type-cards" id="type-cards"></section>
+  </details>
+
+  <!-- Filters -->
+  <div class="filter-row">
+    <label>Type :</label>
+    <select id="filter-type"><option value="">Tous</option></select>
+    <label>Statut :</label>
+    <select id="filter-status">
+      <option value="">Tous</option>
+      <option value="pending">pending</option>
+      <option value="running">running</option>
+      <option value="completed">completed</option>
+      <option value="failed">failed</option>
+      <option value="cancelled">cancelled</option>
+      <option value="awaiting_validation">awaiting_validation</option>
+      <option value="applied">applied</option>
+      <option value="rejected">rejected</option>
+    </select>
+    <label>Entité :</label>
+    <input type="text" id="filter-entity" placeholder="entity_id…" style="width:140px">
+    <span class="sep">|</span>
+    <label>Priorité :</label>
+    <input type="number" id="filter-priority-min" placeholder="Min" style="width:70px">
+    <span>–</span>
+    <input type="number" id="filter-priority-max" placeholder="Max" style="width:70px">
+    <span class="sep">|</span>
+    <button type="button" id="btn-refresh">Actualiser</button>
+    <div id="refresh-indicator" title="Auto-refresh">
+      <span id="refresh-dot"></span>
+      <span class="refresh-label" id="refresh-label"></span>
+      <select id="auto-refresh-select" style="border:none;background:transparent;font-size:.8rem;color:inherit;cursor:pointer;padding:0">
+        <option value="0">Manuel</option>
+        <option value="5">5 s</option>
+        <option value="10" selected>10 s</option>
+        <option value="30">30 s</option>
+        <option value="60">1 min</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="selection-bar" id="selection-bar">
+    <span class="sel-count" id="sel-count">0 sélectionné(s)</span>
+    <span class="sel-breakdown" id="sel-breakdown"></span>
+    <button type="button" class="sel-status" id="sel-btn-cancel">Annuler…</button>
+    <button type="button" class="sel-status" id="sel-btn-reschedule">Replanifier…</button>
+    <button type="button" class="sel-status" id="sel-btn-priority">Priorité…</button>
+    <button type="button" class="sel-status" id="sel-btn-validate">Valider…</button>
+    <button type="button" class="sel-status" id="sel-btn-reject">Rejeter…</button>
+    <button type="button" class="sel-export" id="sel-btn-export">Exporter JSON</button>
+    <button type="button" class="sel-export" id="sel-btn-copy-ids">Copier IDs</button>
+    <button type="button" class="sel-delete" id="sel-btn-delete">Supprimer…</button>
+    <button type="button" class="sel-clear" id="sel-btn-clear">Désélectionner</button>
+  </div>
+
+  <div id="table-container"></div>
+
+  <!-- Diff modal -->
+  <div class="diff-modal" id="diff-modal">
+    <div class="diff-dialog">
+      <h3 id="diff-title">Diff — Job</h3>
+      <div class="diff-table" id="diff-table"></div>
+      <div class="diff-footer">
+        <button type="button" class="btn-apply"  id="diff-apply">Appliquer sélection</button>
+        <button type="button" class="btn-reject" id="diff-reject">Rejeter</button>
+        <button type="button" class="btn-close"  id="diff-close">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job detail modal (image + détails) -->
+  <div class="job-detail-modal" id="job-detail-modal">
+    <div class="job-detail-dialog">
+      <h3 id="job-detail-title">Détails du job</h3>
+      <div class="job-detail-body" id="job-detail-body"></div>
+      <div class="job-detail-footer">
+        <button type="button" class="btn-row-cancel" id="job-detail-cancel" style="display:none">Annuler</button>
+        <button type="button" class="btn-close" id="job-detail-close">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal confirm (annuler / supprimer en masse) -->
+  <div class="diff-modal" id="modal-confirm-danger">
+    <div class="diff-dialog" style="min-width:360px;max-width:480px;">
+      <h3 id="modal-confirm-danger-title">Confirmer</h3>
+      <p id="modal-confirm-danger-msg" style="font-size:.88rem;margin:0 0 .5rem;line-height:1.4;"></p>
+      <div class="diff-footer">
+        <button type="button" class="btn-close" id="modal-confirm-danger-cancel">Annuler</button>
+        <button type="button" class="btn-reject" id="modal-confirm-danger-ok">Confirmer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal priorité en masse -->
+  <div class="diff-modal" id="modal-bulk-priority">
+    <div class="diff-dialog" style="min-width:320px;max-width:420px;">
+      <h3>Changer la priorité</h3>
+      <p style="font-size:.82rem;color:#64748b;margin:0 0 .5rem;">Uniquement les jobs <code>pending</code> sélectionnés.</p>
+      <div class="bulk-modal-field">
+        <label for="bulk-priority-input">Priorité (1–100)</label>
+        <input type="number" id="bulk-priority-input" min="1" max="100" value="50" style="width:100%;padding:.4rem;box-sizing:border-box;border:1px solid #e2e8f0;border-radius:4px;">
+      </div>
+      <div class="diff-footer">
+        <button type="button" class="btn-close" id="modal-bulk-priority-cancel">Annuler</button>
+        <button type="button" class="btn-apply" id="modal-bulk-priority-ok">Appliquer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal replanifier en masse -->
+  <div class="diff-modal" id="modal-bulk-reschedule">
+    <div class="diff-dialog" style="min-width:320px;max-width:440px;">
+      <h3>Replanifier</h3>
+      <p style="font-size:.82rem;color:#64748b;margin:0 0 .5rem;">Jobs <code>failed</code> uniquement.</p>
+      <div class="bulk-modal-field">
+        <label style="display:flex;align-items:center;gap:.4rem;font-weight:500;cursor:pointer;">
+          <input type="checkbox" id="bulk-reschedule-reset-retry" checked>
+          Réinitialiser le compteur de retries
+        </label>
+      </div>
+      <div class="diff-footer">
+        <button type="button" class="btn-close" id="modal-bulk-reschedule-cancel">Annuler</button>
+        <button type="button" class="btn-apply" id="modal-bulk-reschedule-ok">Replanifier</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal valider / rejeter en masse -->
+  <div class="diff-modal" id="modal-bulk-validate">
+    <div class="diff-dialog" style="min-width:340px;max-width:480px;">
+      <h3>Validation en masse</h3>
+      <p style="font-size:.82rem;color:#64748b;margin:0 0 .5rem;">
+        Jobs concernés (<code>awaiting_validation</code>) : <strong id="bulk-validate-count">0</strong>
+      </p>
+      <div class="bulk-modal-field">
+        <label style="display:flex;align-items:center;gap:.35rem;margin-bottom:.35rem;cursor:pointer;">
+          <input type="radio" name="bulk-validate-action" value="apply" checked>
+          Appliquer les propositions
+        </label>
+        <label style="display:flex;align-items:center;gap:.35rem;cursor:pointer;">
+          <input type="radio" name="bulk-validate-action" value="reject">
+          Rejeter
+        </label>
+      </div>
+      <div class="diff-footer">
+        <button type="button" class="btn-close" id="modal-bulk-validate-cancel">Annuler</button>
+        <button type="button" class="btn-apply" id="modal-bulk-validate-ok">Exécuter</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
+  </div>
+  <script src="/data/shared/nav.js"></script>
+  <script src="/data/shared/image-review-modal.js"></script>
+  <script>
+    /* Même logique que EditorUtils.apiBase : file:// → localhost, sinon origine ou override. */
+    const API = (function () {
+      try {
+        var s = localStorage.getItem('ARTISTE_API_BASE');
+        if (s) return String(s).replace(/\/$/, '');
+      } catch (_) {}
+      if (typeof window !== 'undefined' && window.ARTISTE_API_BASE)
+        return String(window.ARTISTE_API_BASE).replace(/\/$/, '');
+      if (typeof window !== 'undefined' && window.location) {
+        if (window.location.protocol === 'file:')
+          return 'http://127.0.0.1:' + (window.ARTISTE_API_PORT || 8000);
+      }
+      return '';
+    })();
+    const THEME_KEY = 'jobs_editor_theme';
+
+    /* ── Theme ───────────────────────────────────────────────── */
+    function applyTheme(t) {
+      document.body.setAttribute('data-theme', t);
+      document.getElementById('btn-theme-light').classList.toggle('active', t === 'light');
+      document.getElementById('btn-theme-dark').classList.toggle('active', t === 'dark');
+      try { localStorage.setItem(THEME_KEY, t); } catch (_) {}
+    }
+    document.getElementById('btn-theme-light').addEventListener('click', () => applyTheme('light'));
+    document.getElementById('btn-theme-dark').addEventListener('click', () => applyTheme('dark'));
+    try { const s = localStorage.getItem(THEME_KEY); if (s === 'light' || s === 'dark') applyTheme(s); } catch (_) {}
+
+    /* ── State ───────────────────────────────────────────────── */
+    let table = null;
+    let typeConfigs = [];
+    let stats = {};
+    let currentDiffJobId = null;
+    let diffFields = [];
+    let autoRefreshTimer = null;
+    let isRefreshing = false;
+    const TYPE_CARDS_OPEN_KEY = 'jobs_type_cards_open';
+
+    /* ── Auto-refresh (pause si sélection / modale) ───────────── */
+    const refreshDot = document.getElementById('refresh-dot');
+    const refreshIndicator = document.getElementById('refresh-indicator');
+    const refreshLabel = document.getElementById('refresh-label');
+    const autoRefreshSelect = document.getElementById('auto-refresh-select');
+
+    function isInteractionActive() {
+      if (table && table.getSelectedRows().length > 0) return true;
+      return !!document.querySelector(
+        '#diff-modal.open, #job-detail-modal.open, .irm-overlay.open, #modal-confirm-danger.open, #modal-bulk-priority.open, #modal-bulk-reschedule.open, #modal-bulk-validate.open'
+      );
+    }
+
+    function currentAutoRefreshSeconds() {
+      return parseInt(autoRefreshSelect.value, 10) || 0;
+    }
+
+    function updateRefreshIndicator() {
+      if (!refreshDot || !refreshIndicator) return;
+      const seconds = currentAutoRefreshSeconds();
+      const paused = seconds > 0 && isInteractionActive();
+      refreshDot.classList.toggle('active', seconds > 0 && !paused);
+      refreshDot.classList.toggle('paused', paused);
+      refreshIndicator.classList.toggle('paused', paused);
+      if (paused) {
+        const n = table ? table.getSelectedRows().length : 0;
+        const reason = n > 0
+          ? n + ' ligne(s) sélectionnée(s) — auto-refresh en pause pour protéger la sélection. Utilisez « Actualiser » pour rafraîchir manuellement.'
+          : 'Fenêtre modale ouverte — auto-refresh en pause. Fermez-la pour reprendre.';
+        refreshIndicator.title = reason;
+        if (refreshLabel) refreshLabel.textContent = 'Pause';
+      } else if (seconds > 0) {
+        refreshIndicator.title = 'Auto-refresh actif (toutes les ' + seconds + ' s)';
+        if (refreshLabel) refreshLabel.textContent = '';
+      } else {
+        refreshIndicator.title = 'Auto-refresh manuel';
+        if (refreshLabel) refreshLabel.textContent = '';
+      }
+    }
+
+    function startAutoRefresh(seconds) {
+      clearInterval(autoRefreshTimer);
+      autoRefreshTimer = null;
+      if (seconds > 0) {
+        autoRefreshTimer = setInterval(() => {
+          if (isRefreshing) return;
+          if (isInteractionActive()) {
+            updateRefreshIndicator();
+            return;
+          }
+          refreshAll(false);
+        }, seconds * 1000);
+      }
+      updateRefreshIndicator();
+    }
+
+    autoRefreshSelect.addEventListener('change', () => {
+      startAutoRefresh(currentAutoRefreshSeconds());
+    });
+    startAutoRefresh(currentAutoRefreshSeconds());
+
+    (function initTypeCardsWrapPersistence() {
+      const wrap = document.getElementById('type-cards-wrap');
+      if (!wrap) return;
+      try {
+        if (localStorage.getItem(TYPE_CARDS_OPEN_KEY) === '0') wrap.removeAttribute('open');
+      } catch (_) {}
+      wrap.addEventListener('toggle', () => {
+        try { localStorage.setItem(TYPE_CARDS_OPEN_KEY, wrap.open ? '1' : '0'); } catch (_) {}
+      });
+    })();
+
+    const imageReviewModal = typeof mountImageReviewModal === 'function'
+      ? mountImageReviewModal(API, { onAfterAction: () => refreshAll(false) })
+      : null;
+
+    function attachRefreshModalObservers() {
+      const sel = '#diff-modal, #job-detail-modal, #modal-confirm-danger, #modal-bulk-priority, #modal-bulk-reschedule, #modal-bulk-validate, .irm-overlay';
+      document.querySelectorAll(sel).forEach(el => {
+        if (el._jobsRefreshObs) return;
+        el._jobsRefreshObs = true;
+        new MutationObserver(() => updateRefreshIndicator()).observe(el, {
+          attributes: true,
+          attributeFilter: ['class'],
+        });
+      });
+    }
+    attachRefreshModalObservers();
+
+    /* ── API helpers ─────────────────────────────────────────── */
+    async function fetchTypes() {
+      const r = await fetch(API + '/api/jobs/types');
+      if (!r.ok) throw new Error('Types: ' + r.status);
+      typeConfigs = await r.json();
+    }
+
+    async function fetchStats() {
+      const r = await fetch(API + '/api/jobs/stats');
+      if (!r.ok) throw new Error('Stats: ' + r.status);
+      stats = await r.json();
+    }
+
+    async function fetchJobs(params = {}) {
+      const q = new URLSearchParams();
+      if (params.type)         q.set('type[]', params.type);
+      if (params.status)       q.set('status[]', params.status);
+      if (params.entity_id)    q.set('entity_id', params.entity_id);
+      if (params.priority_min != null) q.set('priority_min', params.priority_min);
+      if (params.priority_max != null) q.set('priority_max', params.priority_max);
+      q.set('page_size', params.page_size || 100);
+      const r = await fetch(API + '/api/jobs?' + q.toString());
+      if (!r.ok) throw new Error('Jobs: ' + r.status);
+      return r.json();
+    }
+
+    async function updateTypeEnabled(jobType, enabled) {
+      const r = await fetch(API + '/api/jobs/types/' + encodeURIComponent(jobType), {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ enabled }),
+      });
+      if (!r.ok) throw new Error('Update type: ' + r.status);
+    }
+
+    /* ── Type cards ──────────────────────────────────────────── */
+    function escAttr(s) {
+      return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    }
+
+    function renderTypeCards() {
+      const container = document.getElementById('type-cards');
+      const filterType = document.getElementById('filter-type');
+      const currentFilter = filterType.value;
+      filterType.innerHTML = '<option value="">Tous</option>';
+      typeConfigs.forEach(t => {
+        filterType.innerHTML += `<option value="${t.type}">${t.label || t.type}</option>`;
+      });
+      if (currentFilter) filterType.value = currentFilter;
+
+      let gPending = 0, gRunning = 0, gFailed = 0, gAwaiting = 0, gCompleted = 0;
+      typeConfigs.forEach(t => {
+        const s = stats[t.type] || {};
+        gPending += s.pending || 0;
+        gRunning += s.running || 0;
+        gFailed += s.failed || 0;
+        gAwaiting += s.awaiting_validation || 0;
+        gCompleted += s.completed || 0;
+      });
+      const sumEl = document.getElementById('type-cards-summary-stats');
+      if (sumEl) {
+        sumEl.textContent = `⏳${gPending} ▶${gRunning} ✓${gCompleted} ✗${gFailed}` + (gAwaiting ? ` ⚠${gAwaiting}` : '');
+      }
+
+      container.innerHTML = typeConfigs.map(t => {
+        const s = stats[t.type] || {};
+        const pending   = s.pending   || 0;
+        const running   = s.running   || 0;
+        const failed    = s.failed    || 0;
+        const awaiting  = s.awaiting_validation || 0;
+        const completed = s.completed || 0;
+        const tip = escAttr([t.category, t.description].filter(Boolean).join(' — ')) || escAttr(t.label || t.type);
+        const z = (n) => (n ? '' : ' zero');
+        return `
+          <div class="type-card ${filterType.value === t.type ? 'active' : ''}" data-type="${t.type}" title="${tip}">
+            <h3>${t.label || t.type}</h3>
+            <div class="counts">
+              <span class="${z(pending)}" title="En attente">⏳<span class="n">${pending}</span></span>
+              <span class="${z(running)}" title="En cours">▶<span class="n">${running}</span></span>
+              <span class="${z(completed)}" title="Terminés">✓<span class="n">${completed}</span></span>
+              <span class="${z(failed)}" title="Échecs">✗<span class="n">${failed}</span></span>
+              <span class="${z(awaiting)}" title="À valider">⚠<span class="n">${awaiting}</span></span>
+            </div>
+            <div class="type-toggle" title="Activer ou désactiver l'exécution pour ce type">
+              <input type="checkbox" id="toggle-${t.type}" ${t.enabled ? 'checked' : ''}>
+              <label for="toggle-${t.type}">Activer l'exécution</label>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      container.querySelectorAll('.type-card').forEach(card => {
+        card.addEventListener('click', e => {
+          if (e.target.type === 'checkbox') return;
+          const type = card.dataset.type;
+          filterType.value = type;
+          document.querySelectorAll('.type-card').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          loadJobs();
+        });
+      });
+      container.querySelectorAll('.type-toggle input').forEach(cb => {
+        cb.addEventListener('change', async e => {
+          const type = e.target.id.replace('toggle-', '');
+          try {
+            await updateTypeEnabled(type, e.target.checked);
+            await refreshAll();
+          } catch (err) {
+            alert('Erreur: ' + err.message);
+            e.target.checked = !e.target.checked;
+          }
+        });
+      });
+    }
+
+    /* ── Table helpers ───────────────────────────────────────── */
+    function normalizeStatus(raw) {
+      const s = String(raw || '').trim().toLowerCase();
+      if (!s) return 'pending';
+      // Tolerance for Postgres/worker variants
+      const map = {
+        queued: 'pending',
+        enqueued: 'pending',
+        waiting: 'pending',
+        in_progress: 'running',
+        processing: 'running',
+        working: 'running',
+        done: 'completed',
+        success: 'completed',
+        succeeded: 'completed',
+        error: 'failed',
+      };
+      return map[s] || s;
+    }
+
+    function normalizeType(raw) {
+      const t = String(raw || '').trim().toLowerCase();
+      if (!t) return '';
+      // Allow versioned variants like image_generation_v1
+      if (t.startsWith('image_generation')) return 'image_generation';
+      if (t.startsWith('text_enrichment')) return 'text_enrichment';
+      return t;
+    }
+
+    function isCancellableStatus(status) {
+      const s = normalizeStatus(status);
+      return ['pending', 'running'].includes(s);
+    }
+
+    function badgeHtml(status) {
+      const normalized = normalizeStatus(status);
+      const c = normalized.replace(/[^a-z_]/g, '');
+      return `<span class="badge badge-${c || 'pending'}">${normalized || 'pending'}</span>`;
+    }
+
+    function progressHtml(progress, status) {
+      const s = normalizeStatus(status);
+      if (progress == null && s !== 'running') return '';
+      const pct = Math.max(0, Math.min(100, parseInt(progress, 10) || 0));
+      let cls = '';
+      if (s === 'completed' || s === 'awaiting_validation' || s === 'applied') cls = 'done';
+      if (s === 'failed')    cls = 'fail';
+      return `
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill ${cls}" style="width:${pct}%"></div>
+          <span class="progress-bar-text">${pct}%</span>
+        </div>`;
+    }
+
+    /* ── Row detail expander ─────────────────────────────────── */
+    function buildDetailHtml(job) {
+      let configObj = {};
+      try { configObj = JSON.parse(job.config || '{}'); } catch(_) {}
+
+      const isImage = normalizeType(job.type) === 'image_generation';
+      let thumbHtml = '';
+      if (isImage && job.id) {
+        const s = normalizeStatus(job.status);
+        const imgSrc = (s === 'completed' || s === 'awaiting_validation' || s === 'applied' || s === 'failed')
+          ? (API + '/api/jobs/' + encodeURIComponent(job.id) + '/output-image')
+          : (job.entity_id ? (API + '/api/images/' + encodeURIComponent(job.entity_id) + '/latest-output-thumb') : '');
+        if (imgSrc) {
+          thumbHtml = `
+          <div class="job-thumb">
+            <img src="${imgSrc}" alt="aperçu" title="Cliquer sur Voir pour agrandir"
+                 onerror="this.parentElement.innerHTML='<span class=\\'no-img\\'>Pas d\\'image</span>'"
+                 loading="lazy" style="cursor:pointer" data-job-view="${job.id}">
+          </div>`;
+        }
+      }
+
+      const metaItems = [];
+      if (job.external_ref_id) metaItems.push(['ComfyUI ref', job.external_ref_id]);
+      if (job.worker_id)       metaItems.push(['Worker', job.worker_id]);
+      if (job.batch_ref)       metaItems.push(['Batch', job.batch_ref]);
+      if (job.started_at)      metaItems.push(['Démarré', job.started_at]);
+      if (job.finished_at)     metaItems.push(['Terminé', job.finished_at]);
+      if (job.progress_message)metaItems.push(['Message', job.progress_message]);
+      if (job.error_message)   metaItems.push(['Erreur', job.error_message]);
+
+      const metaHtml = metaItems.length
+        ? `<dl class="meta-block">${metaItems.map(([k,v]) => `<dt>${k}</dt><dd>${String(v).replace(/</g,'&lt;')}</dd>`).join('')}</dl>`
+        : '';
+
+      return `
+        <div class="job-details">
+          ${thumbHtml}
+          ${metaHtml}
+          <pre>${JSON.stringify(configObj, null, 2).replace(/</g, '&lt;')}</pre>
+        </div>`;
+    }
+
+    /* ── Init table ──────────────────────────────────────────── */
+    function updateSelectionUI(data) {
+      const bar = document.getElementById('selection-bar');
+      if (!bar) return;
+      bar.classList.toggle('visible', data.length > 0);
+      const selCount = document.getElementById('sel-count');
+      if (selCount) selCount.textContent = data.length + ' sélectionné(s)';
+      const counts = {};
+      data.forEach(row => {
+        const s = normalizeStatus(row.status);
+        counts[s] = (counts[s] || 0) + 1;
+      });
+      const bd = document.getElementById('sel-breakdown');
+      if (bd) {
+        bd.textContent = Object.keys(counts).length
+          ? ' · ' + Object.entries(counts).map(([k, v]) => v + ' ' + k).join(' · ')
+          : '';
+      }
+      const any = statuses => data.some(r => statuses.includes(normalizeStatus(r.status)));
+      const setDis = (id, dis) => { const el = document.getElementById(id); if (el) el.disabled = dis; };
+      setDis('sel-btn-cancel', !any(['pending', 'running']));
+      setDis('sel-btn-reschedule', !any(['failed']));
+      setDis('sel-btn-priority', !any(['pending']));
+      setDis('sel-btn-validate', !any(['awaiting_validation']));
+      setDis('sel-btn-reject', !any(['awaiting_validation']));
+      setDis('sel-btn-export', data.length === 0);
+      setDis('sel-btn-copy-ids', data.length === 0);
+      setDis('sel-btn-delete', !any(['completed', 'failed', 'cancelled', 'applied', 'rejected']));
+      setDis('sel-btn-clear', data.length === 0);
+    }
+
+    function getSelectedJobIds() {
+      return table ? table.getSelectedData().map(r => r.id).filter(Boolean) : [];
+    }
+
+    function initTable(initialData) {
+      table = new Tabulator('#table-container', {
+        data: initialData,
+        index: 'id',
+        layout: 'fitColumns',
+        selectable: true,
+        rowSelection: true,
+        rowFormatter: function(row) {
+          const job = row.getData();
+          const detailsEl = document.createElement('div');
+          detailsEl.style.display = 'none';
+          detailsEl.innerHTML = buildDetailHtml(job);
+          row.getElement().appendChild(detailsEl);
+        },
+        columns: [
+          {
+            formatter: 'rowSelection', titleFormatter: 'rowSelection', width: 40, hozAlign: 'center',
+            headerSort: false, frozen: true,
+          },
+          {
+            title: '', width: 36, hozAlign: 'center',
+            formatter: () => '<span class="expand-btn">▶</span>',
+            cellClick: (e, cell) => {
+              const row = cell.getRow();
+              const el  = row.getElement();
+              const det = el.querySelector('.job-details');
+              const btn = cell.getElement().querySelector('.expand-btn');
+              if (det && btn) {
+                const open = det.style.display === 'none';
+                det.style.display = open ? 'block' : 'none';
+                btn.textContent   = open ? '▼' : '▶';
+                if (open) {
+                  det.innerHTML = buildDetailHtml(row.getData());
+                }
+              }
+            }
+          },
+          { title: 'Priorité', field: 'priority', width: 80,  sorter: 'number' },
+          { title: 'Type',     field: 'type',     width: 150 },
+          {
+            title: 'Statut', field: 'status', width: 160,
+            formatter: c => badgeHtml(c.getValue()),
+          },
+          {
+            title: 'Progression', field: 'progress', width: 130,
+            formatter: c => {
+              const row = c.getRow().getData();
+              return progressHtml(c.getValue(), row.status);
+            },
+          },
+          { title: 'Entité',   field: 'entity_id',   width: 160 },
+          { title: 'Créé',     field: 'created_at',  width: 160, sorter: 'string' },
+          { title: 'Planifié', field: 'scheduled_at', width: 160 },
+          { title: 'Retries',  field: 'retry_count',  width: 70 },
+          {
+            title: 'Erreur', field: 'error_message', width: 200,
+            formatter: c => { const v = c.getValue(); return v ? (v.length > 60 ? v.slice(0, 60) + '…' : v) : ''; }
+          },
+          {
+            title: '', width: 180, headerSort: false,
+            formatter: (c) => {
+              const j      = c.getRow().getData();
+              const id     = j.id;
+              const status = normalizeStatus(j.status);
+              const type   = normalizeType(j.type);
+              let btns = '';
+              btns += `<button class="btn-view" data-id="${id}">Détails</button> `;
+              if (status === 'failed' || status === 'cancelled')
+                btns += `<button class="btn-reschedule" data-id="${id}">Replanifier</button> `;
+              // L'annulation se fait dans le modal "Détails" (bouton unique).
+              if (status === 'awaiting_validation')
+                btns += type === 'image_generation'
+                  ? `<button class="btn-diff" data-id="${id}">Revue image</button>`
+                  : `<button class="btn-diff" data-id="${id}">Voir diff</button>`;
+              return btns;
+            },
+          },
+        ],
+        rowSelectionChanged: (data) => {
+          updateSelectionUI(data);
+          updateRefreshIndicator();
+        },
+        rowClick: (e, row) => {
+          if (e.target.closest('button, input, .expand-btn')) return;
+          if (e.target.closest('input[type="checkbox"]')) return;
+          openJobDetailModal(row.getData());
+        },
+      });
+
+      document.getElementById('table-container').addEventListener('click', async e => {
+        const id = e.target.dataset?.id;
+        if (!id) return;
+        if (e.target.classList.contains('btn-view')) {
+          const row = table.getRows().find(r => r.getData().id === id);
+          if (row) openJobDetailModal(row.getData());
+          return;
+        }
+        if (e.target.classList.contains('btn-reschedule')) {
+          try {
+            await fetch(API + '/api/jobs/' + id + '/reschedule', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}',
+            });
+            await refreshAll(false);
+          } catch (err) { alert('Erreur: ' + err.message); }
+        } else if (e.target.classList.contains('btn-diff')) {
+          currentDiffJobId = id;
+          try {
+            const rj = await fetch(API + '/api/jobs/' + encodeURIComponent(id));
+            if (rj.ok) {
+              const jobRow = await rj.json();
+              if (normalizeType(jobRow.type) === 'image_generation' && imageReviewModal) {
+                imageReviewModal.open(id);
+                return;
+              }
+            }
+          } catch (_) {}
+          const r = await fetch(API + '/api/jobs/' + id + '/diff');
+          if (!r.ok) { alert('Erreur diff: ' + r.status); return; }
+          const data = await r.json();
+          if (data.redirect_to === 'review' && imageReviewModal) {
+            imageReviewModal.open(id);
+            return;
+          }
+          diffFields = data.fields || [];
+          renderDiffModal(data);
+          document.getElementById('diff-modal').classList.add('open');
+        }
+      });
+    }
+
+    /* ── Load jobs ───────────────────────────────────────────── */
+    function loadJobs() {
+      const selectedIds = getSelectedJobIds();
+      const type        = document.getElementById('filter-type').value;
+      const status      = document.getElementById('filter-status').value;
+      const entityId    = document.getElementById('filter-entity').value.trim();
+      const priorityMin = document.getElementById('filter-priority-min').value;
+      const priorityMax = document.getElementById('filter-priority-max').value;
+      const params = {};
+      if (type)            params.type         = type;
+      if (status)          params.status       = status;
+      if (entityId)        params.entity_id    = entityId;
+      if (priorityMin !== '') params.priority_min = parseInt(priorityMin, 10);
+      if (priorityMax !== '') params.priority_max = parseInt(priorityMax, 10);
+      params.page_size = 100;
+
+      fetchJobs(params).then(data => {
+        const jobs = data.jobs || [];
+        if (table) {
+          table.setData(jobs).then(() => {
+            if (selectedIds.length) {
+              const present = selectedIds.filter(id => jobs.some(j => j.id === id));
+              if (present.length) table.selectRow(present);
+            }
+            updateSelectionUI(table.getSelectedData());
+            updateRefreshIndicator();
+          });
+        } else initTable(jobs);
+      }).catch(err => console.error('Erreur jobs:', err));
+    }
+
+    /* ── Job detail modal ────────────────────────────────────── */
+    async function openJobDetailModal(job) {
+      const jobId = job?.id;
+      if (!jobId) return;
+      document.getElementById('job-detail-title').textContent = 'Détails — Job ' + jobId;
+      const body = document.getElementById('job-detail-body');
+      const btnCancel = document.getElementById('job-detail-cancel');
+      btnCancel.style.display = 'none';
+      btnCancel.dataset.id = jobId;
+
+      // Charger la version la plus fraîche depuis l'API
+      let fresh = null;
+      try {
+        const r = await fetch(API + '/api/jobs/' + encodeURIComponent(jobId));
+        if (r.ok) fresh = await r.json();
+      } catch (_) {}
+      const j = fresh || job;
+
+      let configObj = {};
+      try { configObj = JSON.parse(j.config || '{}'); } catch(_) {}
+      const prompt = configObj.prompt || '';
+      const type = normalizeType(j.type);
+      const status = normalizeStatus(j.status);
+      const imgUrl = type === 'image_generation' ? (API + '/api/jobs/' + encodeURIComponent(jobId) + '/output-image') : '';
+      const meta = [
+        ['Type', j.type],
+        ['Statut', status],
+        ['Entité', j.entity_id || '—'],
+        ['Créé', j.created_at || '—'],
+        ['Démarré', j.started_at || '—'],
+        ['Terminé', j.finished_at || '—'],
+        ['Priorité', j.priority],
+        ['Retries', (j.retry_count || 0) + '/' + (j.max_retries || 3)],
+      ];
+      if (j.external_ref_id) meta.push(['ComfyUI ref', j.external_ref_id]);
+      if (j.worker_id) meta.push(['Worker', j.worker_id]);
+      if (j.progress_message) meta.push(['Message', j.progress_message]);
+      if (j.error_message) meta.push(['Erreur', j.error_message]);
+      let imgHtml = '';
+      if (imgUrl) {
+        imgHtml = `<div class="job-detail-img"><img src="${imgUrl}" alt="Output" onerror="this.parentElement.innerHTML='<span class=\\'no-img\\'>Image non disponible</span>'"></div>`;
+      }
+      body.innerHTML = `
+        ${imgHtml}
+        <div class="job-detail-info">
+          <dl>${meta.map(([k,v]) => `<dt>${k}</dt><dd>${String(v).replace(/</g,'&lt;')}</dd>`).join('')}</dl>
+          ${prompt ? `<div class="job-detail-prompt"><strong>Prompt :</strong><br>${prompt.replace(/</g,'&lt;')}</div>` : ''}
+        </div>`;
+
+      if (isCancellableStatus(status)) {
+        btnCancel.style.display = '';
+      }
+      document.getElementById('job-detail-modal').classList.add('open');
+    }
+
+    document.getElementById('job-detail-cancel').addEventListener('click', async (e) => {
+      const id = e.target.dataset?.id;
+      if (!id) return;
+      try {
+        await fetch(API + '/api/jobs/' + encodeURIComponent(id) + '/cancel', { method: 'POST' });
+        document.getElementById('job-detail-modal').classList.remove('open');
+        await refreshAll(false);
+      } catch (err) {
+        alert('Erreur: ' + err.message);
+      }
+    });
+    document.getElementById('job-detail-close').addEventListener('click', () => {
+      document.getElementById('job-detail-modal').classList.remove('open');
+    });
+    document.getElementById('job-detail-modal').addEventListener('click', e => {
+      if (e.target.id === 'job-detail-modal') document.getElementById('job-detail-modal').classList.remove('open');
+    });
+    document.getElementById('table-container').addEventListener('click', e => {
+      const jobId = e.target.closest('[data-job-view]')?.dataset?.jobView;
+      if (jobId && table) {
+        const row = table.getRows().find(r => r.getData().id === jobId);
+        if (row) openJobDetailModal(row.getData());
+      }
+    });
+
+    /* ── Diff modal ──────────────────────────────────────────── */
+    function renderDiffModal(data) {
+      document.getElementById('diff-title').textContent = 'Diff — Job ' + currentDiffJobId;
+      const container = document.getElementById('diff-table');
+      const vt = data.view_type || 'field_table';
+      if (vt === 'concepts_cards') { renderConceptsCards(container, data); return; }
+      if (vt === 'taxonomy_import') { renderTaxonomyImport(container, data); return; }
+      renderFieldTable(container, data.fields || []);
+    }
+
+    function renderFieldTable(container, fields) {
+      if (fields.length === 0) { container.innerHTML = '<p>Aucune différence.</p>'; return; }
+      container.innerHTML = `
+        <table>
+          <thead><tr><th>Champ</th><th>Actuel</th><th>Proposé</th><th>Appliquer</th></tr></thead>
+          <tbody>
+            ${fields.map((f, i) => `
+              <tr>
+                <td><code>${f.path}</code></td>
+                <td class="${f.current != null ? 'diff-val-old' : ''}">${fmtVal(f.current)}</td>
+                <td class="${f.proposed != null ? 'diff-val-new' : ''}">${fmtVal(f.proposed)}</td>
+                <td><input type="checkbox" data-index="${i}" checked ${f.proposed == null ? 'disabled' : ''}></td>
+              </tr>`).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    function renderConceptsCards(container, data) {
+      const concepts = data.concepts || [];
+      const s = data.summary || {};
+      const anchor = data.anchor;
+      const anchorHtml = anchor
+        ? `<p class="diff-meta">Ancrage taxonomique : <code>${anchor.term_id}</code> (vocab <code>${anchor.vocabulary_id}</code>)</p>`
+        : '';
+      const summaryHtml = `
+        <div class="diff-summary">
+          <span class="diff-summary-new">${s.new || 0} nouveau${(s.new || 0) > 1 ? 'x' : ''}</span>
+          ${(s.duplicate || 0) > 0 ? `<span class="diff-summary-dup">${s.duplicate} déjà existant${s.duplicate > 1 ? 's' : ''} (ignoré${s.duplicate > 1 ? 's' : ''})</span>` : ''}
+        </div>`;
+      const cardsHtml = concepts.map(c => {
+        const badge = c.is_new
+          ? `<span class="diff-badge diff-badge-new">nouveau</span>`
+          : `<span class="diff-badge diff-badge-dup">doublon</span>`;
+        const sub = c.name_fr && c.name_fr !== c.title ? `<span class="diff-card-sub">${fmtVal(c.name_fr)}</span>` : '';
+        const existNote = !c.is_new && c.existing_title
+          ? `<span class="diff-card-exist">Titre actuel : ${fmtVal(c.existing_title)}</span>` : '';
+        return `<div class="diff-card ${c.is_new ? '' : 'diff-card-dup'}">
+          <div class="diff-card-head">${badge} <strong>${fmtVal(c.title)}</strong>${sub}</div>
+          <div class="diff-card-id"><code>${c.id}</code>${existNote}</div>
+        </div>`;
+      }).join('');
+      container.innerHTML = anchorHtml + summaryHtml + `<div class="diff-cards">${cardsHtml || '<p>Aucun concept.</p>'}</div>`;
+    }
+
+    function renderTaxonomyImport(container, data) {
+      const ops = data.operations || [];
+      const s = data.summary || {};
+      if (ops.length === 0) { container.innerHTML = '<p>Aucune opération.</p>'; return; }
+      const summaryHtml = `
+        <div class="diff-summary">
+          ${(s.add || 0) > 0 ? `<span class="diff-summary-new">${s.add} ajout${s.add > 1 ? 's' : ''}</span>` : ''}
+          ${(s.update || 0) > 0 ? `<span class="diff-summary-upd">${s.update} mise${s.update > 1 ? 's' : ''} à jour</span>` : ''}
+        </div>`;
+      const rows = ops.map(o => {
+        const opBadge = o.op === 'add'
+          ? `<span class="diff-badge diff-badge-new">add</span>`
+          : `<span class="diff-badge diff-badge-upd">update</span>`;
+        const parent = o.parent_id ? ` <span class="diff-card-sub">↳ ${o.parent_id}</span>` : '';
+        return `<div class="diff-card">
+          <div class="diff-card-head">${opBadge} <strong>${fmtVal(o.name_fr || o.name_en || o.id)}</strong>${parent}</div>
+          <div class="diff-card-id"><code>${o.id}</code>${o.name_en ? ` — ${fmtVal(o.name_en)}` : ''}</div>
+        </div>`;
+      }).join('');
+      container.innerHTML = summaryHtml + `<div class="diff-cards">${rows}</div>`;
+    }
+
+    function fmtVal(v) {
+      if (v == null) return '—';
+      if (typeof v === 'object') return JSON.stringify(v);
+      return String(v).replace(/</g, '&lt;');
+    }
+
+    document.getElementById('diff-close').addEventListener('click', () =>
+      document.getElementById('diff-modal').classList.remove('open'));
+
+    document.getElementById('diff-reject').addEventListener('click', async () => {
+      if (!currentDiffJobId) return;
+      try {
+        await fetch(API + '/api/jobs/' + currentDiffJobId + '/validate', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'reject' }),
+        });
+        document.getElementById('diff-modal').classList.remove('open');
+        await refreshAll(false);
+      } catch (err) { alert('Erreur: ' + err.message); }
+    });
+
+    document.getElementById('diff-apply').addEventListener('click', async () => {
+      if (!currentDiffJobId) return;
+      const checked = [...document.querySelectorAll('#diff-table input[type=checkbox]:checked')]
+        .map(c => diffFields[parseInt(c.dataset.index, 10)].path);
+      try {
+        await fetch(API + '/api/jobs/' + currentDiffJobId + '/validate', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'apply', fields: checked.length ? checked : diffFields.map(f => f.path) }),
+        });
+        document.getElementById('diff-modal').classList.remove('open');
+        await refreshAll(false);
+      } catch (err) { alert('Erreur: ' + err.message); }
+    });
+
+    /* ── Modales bulk / confirm ───────────────────────────────── */
+    let confirmDangerAction = null;
+
+    function openModal(elId) {
+      const el = document.getElementById(elId);
+      if (el) el.classList.add('open');
+      updateRefreshIndicator();
+    }
+    function closeModal(elId) {
+      const el = document.getElementById(elId);
+      if (el) el.classList.remove('open');
+      updateRefreshIndicator();
+    }
+
+    function openConfirmDanger(title, msg, onConfirm) {
+      document.getElementById('modal-confirm-danger-title').textContent = title;
+      document.getElementById('modal-confirm-danger-msg').textContent = msg;
+      confirmDangerAction = onConfirm;
+      openModal('modal-confirm-danger');
+    }
+
+    async function postBulk(body) {
+      const r = await fetch(API + '/api/jobs/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!r.ok) {
+        let detail = 'HTTP ' + r.status;
+        try {
+          const j = await r.json();
+          if (j.detail) detail = typeof j.detail === 'string' ? j.detail : JSON.stringify(j.detail);
+        } catch (_) {}
+        throw new Error(detail);
+      }
+      return r.json();
+    }
+
+    document.getElementById('modal-confirm-danger-cancel').addEventListener('click', () => {
+      confirmDangerAction = null;
+      closeModal('modal-confirm-danger');
+    });
+    document.getElementById('modal-confirm-danger').addEventListener('click', e => {
+      if (e.target.id === 'modal-confirm-danger') {
+        confirmDangerAction = null;
+        closeModal('modal-confirm-danger');
+      }
+    });
+    document.getElementById('modal-confirm-danger-ok').addEventListener('click', async () => {
+      const fn = confirmDangerAction;
+      confirmDangerAction = null;
+      closeModal('modal-confirm-danger');
+      if (typeof fn === 'function') {
+        try {
+          await fn();
+          await refreshAll(false);
+        } catch (e) {
+          alert('Erreur: ' + e.message);
+        }
+      }
+    });
+
+    document.getElementById('modal-bulk-priority-cancel').addEventListener('click', () => closeModal('modal-bulk-priority'));
+    document.getElementById('modal-bulk-priority').addEventListener('click', e => {
+      if (e.target.id === 'modal-bulk-priority') closeModal('modal-bulk-priority');
+    });
+    document.getElementById('modal-bulk-priority-ok').addEventListener('click', async () => {
+      const pr = parseInt(document.getElementById('bulk-priority-input').value, 10);
+      if (isNaN(pr) || pr < 1 || pr > 100) {
+        alert('Priorité entre 1 et 100');
+        return;
+      }
+      const ids = table.getSelectedData()
+        .filter(r => normalizeStatus(r.status) === 'pending')
+        .map(r => r.id);
+      if (!ids.length) {
+        closeModal('modal-bulk-priority');
+        return;
+      }
+      try {
+        await postBulk({ action: 'set_priority', ids, priority: pr });
+        closeModal('modal-bulk-priority');
+        await refreshAll(false);
+      } catch (e) {
+        alert('Erreur: ' + e.message);
+      }
+    });
+
+    document.getElementById('modal-bulk-reschedule-cancel').addEventListener('click', () => closeModal('modal-bulk-reschedule'));
+    document.getElementById('modal-bulk-reschedule').addEventListener('click', e => {
+      if (e.target.id === 'modal-bulk-reschedule') closeModal('modal-bulk-reschedule');
+    });
+    document.getElementById('modal-bulk-reschedule-ok').addEventListener('click', async () => {
+      const ids = table.getSelectedData()
+        .filter(r => normalizeStatus(r.status) === 'failed')
+        .map(r => r.id);
+      if (!ids.length) {
+        closeModal('modal-bulk-reschedule');
+        return;
+      }
+      const resetRetry = document.getElementById('bulk-reschedule-reset-retry').checked;
+      try {
+        await postBulk({ action: 'reschedule', ids, reset_retry: resetRetry });
+        closeModal('modal-bulk-reschedule');
+        await refreshAll(false);
+      } catch (e) {
+        alert('Erreur: ' + e.message);
+      }
+    });
+
+    document.getElementById('modal-bulk-validate-cancel').addEventListener('click', () => closeModal('modal-bulk-validate'));
+    document.getElementById('modal-bulk-validate').addEventListener('click', e => {
+      if (e.target.id === 'modal-bulk-validate') closeModal('modal-bulk-validate');
+    });
+    document.getElementById('modal-bulk-validate-ok').addEventListener('click', async () => {
+      const v = document.querySelector('input[name="bulk-validate-action"]:checked').value;
+      const ids = table.getSelectedData()
+        .filter(r => normalizeStatus(r.status) === 'awaiting_validation')
+        .map(r => r.id);
+      if (!ids.length) {
+        closeModal('modal-bulk-validate');
+        return;
+      }
+      try {
+        const out = await postBulk({ action: 'validate', ids, validate_action: v, fields: [] });
+        closeModal('modal-bulk-validate');
+        if (out.errors && out.errors.length) {
+          const msg = out.errors.map(er => er.id + ': ' + er.message).join('\n');
+          alert('Certains jobs n\'ont pas pu être traités:\n' + msg);
+        }
+        await refreshAll(false);
+      } catch (e) {
+        alert('Erreur: ' + e.message);
+      }
+    });
+
+    /* ── Barre sélection ─────────────────────────────────────── */
+    document.getElementById('sel-btn-cancel').addEventListener('click', () => {
+      const rows = table.getSelectedData();
+      const ids = rows.filter(r => ['pending', 'running'].includes(normalizeStatus(r.status))).map(r => r.id);
+      if (!ids.length) return;
+      openConfirmDanger(
+        'Annuler les jobs',
+        'Annuler ' + ids.length + ' job(s) en pending ou running ?',
+        async () => { await postBulk({ action: 'cancel', ids }); }
+      );
+    });
+
+    document.getElementById('sel-btn-reschedule').addEventListener('click', () => {
+      const n = table.getSelectedData().filter(r => normalizeStatus(r.status) === 'failed').length;
+      if (!n) return;
+      document.getElementById('bulk-reschedule-reset-retry').checked = true;
+      openModal('modal-bulk-reschedule');
+    });
+
+    document.getElementById('sel-btn-priority').addEventListener('click', () => {
+      const n = table.getSelectedData().filter(r => normalizeStatus(r.status) === 'pending').length;
+      if (!n) return;
+      openModal('modal-bulk-priority');
+    });
+
+    document.getElementById('sel-btn-validate').addEventListener('click', () => {
+      const ids = table.getSelectedData()
+        .filter(r => normalizeStatus(r.status) === 'awaiting_validation')
+        .map(r => r.id);
+      if (!ids.length) return;
+      document.getElementById('bulk-validate-count').textContent = String(ids.length);
+      const ra = document.querySelector('input[name="bulk-validate-action"][value="apply"]');
+      if (ra) ra.checked = true;
+      openModal('modal-bulk-validate');
+    });
+
+    document.getElementById('sel-btn-reject').addEventListener('click', () => {
+      const ids = table.getSelectedData()
+        .filter(r => normalizeStatus(r.status) === 'awaiting_validation')
+        .map(r => r.id);
+      if (!ids.length) return;
+      openConfirmDanger(
+        'Rejeter en masse',
+        'Rejeter ' + ids.length + ' job(s) en attente de validation ?',
+        async () => { await postBulk({ action: 'validate', ids, validate_action: 'reject' }); }
+      );
+    });
+
+    document.getElementById('sel-btn-export').addEventListener('click', () => {
+      const rows = table.getSelectedData();
+      if (!rows.length) return;
+      const blob = new Blob([JSON.stringify(rows, null, 2)], { type: 'application/json;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'jobs-selection-' + new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-') + '.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    document.getElementById('sel-btn-copy-ids').addEventListener('click', async () => {
+      const ids = table.getSelectedData().map(r => r.id).join('\n');
+      if (!ids) return;
+      try {
+        await navigator.clipboard.writeText(ids);
+        const btn = document.getElementById('sel-btn-copy-ids');
+        const old = btn.textContent;
+        btn.textContent = 'Copié ✓';
+        setTimeout(() => { btn.textContent = old; }, 1500);
+      } catch (e) {
+        alert('Copie impossible: ' + e.message);
+      }
+    });
+
+    document.getElementById('sel-btn-delete').addEventListener('click', () => {
+      const rows = table.getSelectedData();
+      const ids = rows.filter(r =>
+        ['completed', 'failed', 'cancelled', 'applied', 'rejected'].includes(normalizeStatus(r.status))
+      ).map(r => r.id);
+      if (!ids.length) return;
+      openConfirmDanger(
+        'Supprimer les jobs',
+        'Supprimer définitivement ' + ids.length + ' job(s) terminés ? Cette action est irréversible.',
+        async () => { await postBulk({ action: 'delete', ids }); }
+      );
+    });
+
+    document.getElementById('sel-btn-clear').addEventListener('click', () => {
+      if (table) table.deselectRow();
+      updateSelectionUI([]);
+      updateRefreshIndicator();
+    });
+
+    /* ── Global refresh ──────────────────────────────────────── */
+    document.getElementById('btn-refresh').addEventListener('click', () => refreshAll(true));
+
+    async function refreshAll(showError = true) {
+      if (isRefreshing) return;
+      isRefreshing = true;
+      try {
+        await Promise.all([fetchTypes(), fetchStats()]);
+        renderTypeCards();
+        loadJobs();
+      } catch (err) {
+        if (showError) alert('Erreur: ' + err.message);
+        else console.error('Auto-refresh:', err);
+      } finally {
+        isRefreshing = false;
+        attachRefreshModalObservers();
+        updateRefreshIndicator();
+      }
+    }
+
+    /* ── Keyboard filter shortcuts ───────────────────────────── */
+    document.getElementById('filter-entity').addEventListener('keydown', e => {
+      if (e.key === 'Enter') loadJobs();
+    });
+    ['filter-type','filter-status'].forEach(id =>
+      document.getElementById(id).addEventListener('change', () => loadJobs())
+    );
+
+    refreshAll(true);
+  </script>
+</body>
+</html>

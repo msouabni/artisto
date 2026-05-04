@@ -7,30 +7,12 @@ from typing import Any
 
 logger = logging.getLogger(__name__)
 
-from fastapi import APIRouter, Depends, HTTPException
-from fastapi.responses import Response
-import duckdb
+from fastapi import APIRouter, Body, Depends, HTTPException
 
-from api.db import get_db
+from api.db import DBConnAdapter, get_db_read, get_db_write
+from api.helpers import get_i18n, json_response, to_i18n, to_json_safe, transaction
 
 router = APIRouter(prefix="/api/taxonomy", tags=["taxonomy"])
-
-
-def _to_json_safe(obj: Any) -> Any:
-    """Convertit récursivement toute structure en types JSON-sérialisables (évite numpy, bytes, etc.)."""
-    if obj is None:
-        return None
-    if hasattr(obj, "item"):  # numpy scalar (int64, float64, etc.)
-        return obj.item()
-    if isinstance(obj, bytes):
-        return obj.decode("utf-8", errors="replace")
-    if isinstance(obj, (str, int, float, bool)):
-        return obj
-    if isinstance(obj, dict):
-        return {str(k): _to_json_safe(v) for k, v in obj.items()}
-    if isinstance(obj, (list, tuple)):
-        return [_to_json_safe(v) for v in obj]
-    return str(obj)
 
 
 def _term_row_to_dict(row: tuple, cols: list[str]) -> dict[str, Any]:
@@ -41,12 +23,15 @@ def _term_row_to_dict(row: tuple, cols: list[str]) -> dict[str, Any]:
             d["keywords"] = json.loads(d["keywords"]) if d["keywords"] else []
         except json.JSONDecodeError:
             d["keywords"] = []
-    # Normaliser types pour sérialisation JSON (DuckDB peut renvoyer numpy.int64, etc.)
     for key in ("id", "vocabulary_id", "parent_id", "slug", "slug_i18n"):
         if key in d and d[key] is not None:
             d[key] = str(d[key])
     w = d.get("weight")
     d["weight"] = int(w) if w is not None else 0
+    sc = d.get("subjects_count")
+    d["subjects_count"] = int(sc) if sc is not None else 0
+    cc = d.get("concept_count")
+    d["concept_count"] = int(cc) if cc is not None else 0
     return d
 
 
@@ -62,18 +47,24 @@ def _build_terms_tree(rows: list[dict], parent_id: str | None = None) -> list[di
         children = _build_terms_tree(rows, term_id)
         w = r.get("weight")
         weight = int(w) if w is not None else 0
+        sc = r.get("subjects_count")
+        subjects_count = int(sc) if sc is not None else 0
+        cc = r.get("concept_count")
+        concept_count = int(cc) if cc is not None else 0
         node = {
             "id": str(term_id),
             "slug": str(r.get("slug") or term_id),
             "parent_id": r.get("parent_id") if r.get("parent_id") is None else str(r.get("parent_id")),
-            "name_fr": _get_i18n(r.get("name_i18n"), "fr"),
-            "name_en": _get_i18n(r.get("name_i18n"), "en"),
-            "name_ar": _get_i18n(r.get("name_i18n"), "ar"),
-            "description_fr": _get_i18n(r.get("description_i18n"), "fr"),
-            "description_en": _get_i18n(r.get("description_i18n"), "en"),
-            "description_ar": _get_i18n(r.get("description_i18n"), "ar"),
+            "name_fr": get_i18n(r.get("name_i18n"), "fr"),
+            "name_en": get_i18n(r.get("name_i18n"), "en"),
+            "name_ar": get_i18n(r.get("name_i18n"), "ar"),
+            "description_fr": get_i18n(r.get("description_i18n"), "fr"),
+            "description_en": get_i18n(r.get("description_i18n"), "en"),
+            "description_ar": get_i18n(r.get("description_i18n"), "ar"),
             "weight": weight,
             "keywords": r.get("keywords") or [],
+            "subjects_count": subjects_count,
+            "concept_count": concept_count,
         }
         if children:
             node["children"] = children
@@ -82,30 +73,11 @@ def _build_terms_tree(rows: list[dict], parent_id: str | None = None) -> list[di
     return tree
 
 
-def _get_i18n(val: str | None, key: str) -> str:
-    if not val:
-        return ""
-    try:
-        data = json.loads(val) if isinstance(val, str) else val
-        out = data.get(key, "") or ""
-        return str(out) if out is not None else ""
-    except (json.JSONDecodeError, TypeError):
-        return ""
 
-
-def _to_i18n(fr: str = "", en: str = "", ar: str = "") -> str:
-    d = {}
-    if fr:
-        d["fr"] = fr
-    if en:
-        d["en"] = en
-    if ar:
-        d["ar"] = ar
-    return json.dumps(d, ensure_ascii=False) if d else "{}"
-
+# get_i18n, to_i18n, to_json_safe, json_response, transaction → importés depuis api.helpers
 
 @router.get("")
-def get_taxonomy(conn: duckdb.DuckDBPyConnection = Depends(get_db)) -> dict:
+def get_taxonomy(conn: DBConnAdapter = Depends(get_db_read)) -> dict:
     """Taxonomie complète (format éditeur : name_fr, name_en, name_ar)."""
     tx = conn.execute(
         "SELECT taxonomy_id, label_i18n, languages FROM taxonomy LIMIT 1"
@@ -114,7 +86,7 @@ def get_taxonomy(conn: duckdb.DuckDBPyConnection = Depends(get_db)) -> dict:
         raise HTTPException(status_code=404, detail="Taxonomie non trouvée")
 
     taxonomy_id, label_i18n, languages = tx
-    label = _get_i18n(label_i18n, "fr") or _get_i18n(label_i18n, "en") or taxonomy_id
+    label = get_i18n(label_i18n, "fr") or get_i18n(label_i18n, "en") or taxonomy_id
     langs = json.loads(languages) if isinstance(languages, str) else ["fr", "en", "ar"]
 
     vocabs = []
@@ -123,34 +95,15 @@ def get_taxonomy(conn: duckdb.DuckDBPyConnection = Depends(get_db)) -> dict:
         [taxonomy_id],
     ).fetchall():
         vid, _, vlabel_i18n = v
-        terms_rows = conn.execute(
-            """
-            SELECT id, vocabulary_id, parent_id, slug, slug_i18n, name_i18n, description_i18n, weight, keywords
-            FROM term WHERE vocabulary_id = ?
-            ORDER BY weight
-            """,
-            [vid],
-        ).fetchall()
-        cols = [
-            "id",
-            "vocabulary_id",
-            "parent_id",
-            "slug",
-            "slug_i18n",
-            "name_i18n",
-            "description_i18n",
-            "weight",
-            "keywords",
-        ]
-        rows = [_term_row_to_dict(list(r), cols) for r in terms_rows]
+        rows = _get_terms_flat(conn, vid)
         tree = _build_terms_tree(rows, None)
 
         vocabs.append(
             {
                 "id": vid,
-                "label_fr": _get_i18n(vlabel_i18n, "fr"),
-                "label_en": _get_i18n(vlabel_i18n, "en"),
-                "label_ar": _get_i18n(vlabel_i18n, "ar"),
+                "label_fr": get_i18n(vlabel_i18n, "fr"),
+                "label_en": get_i18n(vlabel_i18n, "en"),
+                "label_ar": get_i18n(vlabel_i18n, "ar"),
                 "terms": tree,
             }
         )
@@ -166,7 +119,7 @@ def get_taxonomy(conn: duckdb.DuckDBPyConnection = Depends(get_db)) -> dict:
 @router.put("")
 def put_taxonomy(
     payload: dict,
-    conn: duckdb.DuckDBPyConnection = Depends(get_db),
+    conn: DBConnAdapter = Depends(get_db_write),
 ) -> dict:
     """Remplace la taxonomie complète (payload format éditeur)."""
     taxonomy_id = payload.get("taxonomy_id", "universal_v0")
@@ -174,12 +127,9 @@ def put_taxonomy(
     languages = payload.get("languages", ["fr", "en", "ar"])
     vocabularies = payload.get("vocabularies", [])
 
-    label_i18n = _to_i18n(fr=label, en=label, ar=label)
+    label_i18n = to_i18n(fr=label, en=label, ar=label)
     languages_json = json.dumps(languages)
 
-    # DuckDB valide les FK trop tôt dans une même transaction.
-    # Suppressions sans transaction (auto-commit), ordre enfants → parents.
-    # Voir .cursor/rules/duckdb-fk-constraints.mdc
     try:
         conn.execute("DELETE FROM term")
         conn.execute("DELETE FROM export")
@@ -193,16 +143,14 @@ def put_taxonomy(
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
-    try:
-        conn.execute("BEGIN")
+    with transaction(conn):
         conn.execute(
             "INSERT INTO taxonomy (taxonomy_id, label_i18n, languages) VALUES (?, ?, ?)",
             [taxonomy_id, label_i18n, languages_json],
         )
-
         for v in vocabularies:
             vid = v.get("id", "themes")
-            vlabel_i18n = _to_i18n(
+            vlabel_i18n = to_i18n(
                 fr=v.get("label_fr", ""),
                 en=v.get("label_en", ""),
                 ar=v.get("label_ar", ""),
@@ -213,16 +161,11 @@ def put_taxonomy(
             )
             _insert_terms(conn, vid, v.get("terms", []), None)
 
-        conn.execute("COMMIT")
-    except Exception as e:
-        conn.execute("ROLLBACK")
-        raise HTTPException(status_code=500, detail=str(e)) from e
-
     return {"status": "ok", "taxonomy_id": taxonomy_id}
 
 
 def _insert_terms(
-    conn: duckdb.DuckDBPyConnection,
+    conn: DBConnAdapter,
     vocabulary_id: str,
     terms: list[dict],
     parent_id: str | None,
@@ -237,12 +180,12 @@ def _insert_terms(
             raise ValueError(f"Terme sans id valide (parent_id={parent_id})")
         tid = str(tid).strip()
         slug = t.get("slug") or tid
-        name_i18n = _to_i18n(
+        name_i18n = to_i18n(
             fr=t.get("name_fr", ""),
             en=t.get("name_en", ""),
             ar=t.get("name_ar", ""),
         )
-        desc_i18n = _to_i18n(
+        desc_i18n = to_i18n(
             fr=t.get("description_fr", ""),
             en=t.get("description_en", ""),
             ar=t.get("description_ar", ""),
@@ -263,19 +206,40 @@ def _insert_terms(
             _insert_terms(conn, vocabulary_id, children, tid)
 
 
-def _get_terms_flat(conn: duckdb.DuckDBPyConnection, vocabulary_id: str) -> list[dict]:
+def _get_terms_flat(conn: DBConnAdapter, vocabulary_id: str) -> list[dict]:
     """Retourne les termes d'un vocabulaire en liste plate (avec parent_id)."""
     terms_rows = conn.execute(
         """
-        SELECT id, vocabulary_id, parent_id, slug, slug_i18n, name_i18n, description_i18n, weight, keywords
-        FROM term WHERE vocabulary_id = ?
-        ORDER BY weight
+        SELECT
+            t.id,
+            t.vocabulary_id,
+            t.parent_id,
+            t.slug,
+            t.slug_i18n,
+            t.name_i18n,
+            t.description_i18n,
+            t.weight,
+            t.keywords,
+            COALESCE((
+                SELECT COUNT(DISTINCT it.image_id)
+                FROM image_taxonomy_tag it
+                WHERE it.term_id = t.id AND it.taxonomy_id = v.taxonomy_id
+            ), 0) AS subjects_count,
+            COALESCE((
+                SELECT COUNT(*)
+                FROM image ic
+                WHERE ic.origin_term_id = t.id
+            ), 0) AS concept_count
+        FROM term t
+        JOIN vocabulary v ON v.id = t.vocabulary_id
+        WHERE t.vocabulary_id = ?
+        ORDER BY t.weight
         """,
         [vocabulary_id],
     ).fetchall()
     cols = [
         "id", "vocabulary_id", "parent_id", "slug", "slug_i18n",
-        "name_i18n", "description_i18n", "weight", "keywords",
+        "name_i18n", "description_i18n", "weight", "keywords", "subjects_count", "concept_count",
     ]
     return [_term_row_to_dict(list(r), cols) for r in terms_rows]
 
@@ -284,23 +248,27 @@ def _term_to_response(r: dict) -> dict[str, Any]:
     """Transforme une ligne term en format API (name_fr, name_en, etc.)."""
     w = r.get("weight")
     weight = int(w) if w is not None else 0
+    sc = r.get("subjects_count")
+    cc = r.get("concept_count")
     return {
         "id": r["id"],
         "slug": r["slug"],
         "parent_id": r.get("parent_id"),
-        "name_fr": _get_i18n(r.get("name_i18n"), "fr"),
-        "name_en": _get_i18n(r.get("name_i18n"), "en"),
-        "name_ar": _get_i18n(r.get("name_i18n"), "ar"),
-        "description_fr": _get_i18n(r.get("description_i18n"), "fr"),
-        "description_en": _get_i18n(r.get("description_i18n"), "en"),
-        "description_ar": _get_i18n(r.get("description_i18n"), "ar"),
+        "name_fr": get_i18n(r.get("name_i18n"), "fr"),
+        "name_en": get_i18n(r.get("name_i18n"), "en"),
+        "name_ar": get_i18n(r.get("name_i18n"), "ar"),
+        "description_fr": get_i18n(r.get("description_i18n"), "fr"),
+        "description_en": get_i18n(r.get("description_i18n"), "en"),
+        "description_ar": get_i18n(r.get("description_i18n"), "ar"),
         "weight": weight,
         "keywords": r.get("keywords") or [],
+        "subjects_count": int(sc) if sc is not None else 0,
+        "concept_count": int(cc) if cc is not None else 0,
     }
 
 
 def _get_term_references(
-    conn: duckdb.DuckDBPyConnection, taxonomy_id: str, term_id: str
+    conn: DBConnAdapter, taxonomy_id: str, term_id: str
 ) -> dict[str, int]:
     """Compte les références à un terme (collections, tags, coverage_stats)."""
     refs: dict[str, int] = {}
@@ -325,7 +293,7 @@ def _get_term_references(
     return refs
 
 
-def _ensure_vocabulary_exists(conn: duckdb.DuckDBPyConnection, vocabulary_id: str) -> str:
+def _ensure_vocabulary_exists(conn: DBConnAdapter, vocabulary_id: str) -> str:
     """Vérifie que le vocabulaire existe et retourne taxonomy_id."""
     row = conn.execute(
         "SELECT taxonomy_id FROM vocabulary WHERE id = ?",
@@ -339,7 +307,7 @@ def _ensure_vocabulary_exists(conn: duckdb.DuckDBPyConnection, vocabulary_id: st
 @router.get("/vocabularies/{vocabulary_id}/terms")
 def get_vocabulary_terms(
     vocabulary_id: str,
-    conn: duckdb.DuckDBPyConnection = Depends(get_db),
+    conn: DBConnAdapter = Depends(get_db_read),
 ):
     """Liste des termes d'un vocabulaire (arbre).
     Sérialise en bytes UTF-8 nous-mêmes : évite tout UnicodeEncodeError Windows
@@ -348,10 +316,7 @@ def get_vocabulary_terms(
         _ensure_vocabulary_exists(conn, vocabulary_id)
         rows = _get_terms_flat(conn, vocabulary_id)
         tree = _build_terms_tree(rows, None)
-        out = {"vocabulary_id": vocabulary_id, "terms": tree}
-        out = _to_json_safe(out)
-        body_bytes: bytes = json.dumps(out, ensure_ascii=False).encode("utf-8")
-        return Response(content=body_bytes, media_type="application/json; charset=utf-8")
+        return json_response({"vocabulary_id": vocabulary_id, "terms": tree})
     except HTTPException:
         raise
     except (TypeError, ValueError, UnicodeEncodeError) as e:
@@ -366,7 +331,7 @@ def get_vocabulary_terms(
 def get_term(
     vocabulary_id: str,
     term_id: str,
-    conn: duckdb.DuckDBPyConnection = Depends(get_db),
+    conn: DBConnAdapter = Depends(get_db_read),
 ) -> dict[str, Any]:
     """Détail d'un terme. Tables lues : term."""
     _ensure_vocabulary_exists(conn, vocabulary_id)
@@ -384,7 +349,7 @@ def put_term(
     vocabulary_id: str,
     term_id: str,
     payload: dict,
-    conn: duckdb.DuckDBPyConnection = Depends(get_db),
+    conn: DBConnAdapter = Depends(get_db_write),
 ) -> dict[str, Any]:
     """Crée ou met à jour un terme (upsert). Tables modifiées : term."""
     taxonomy_id = _ensure_vocabulary_exists(conn, vocabulary_id)
@@ -393,12 +358,12 @@ def put_term(
         raise HTTPException(status_code=400, detail="term_id vide")
 
     slug = (payload.get("slug") or term_id).strip() or term_id
-    name_i18n = _to_i18n(
+    name_i18n = to_i18n(
         fr=payload.get("name_fr", ""),
         en=payload.get("name_en", ""),
         ar=payload.get("name_ar", ""),
     )
-    desc_i18n = _to_i18n(
+    desc_i18n = to_i18n(
         fr=payload.get("description_fr", ""),
         en=payload.get("description_en", ""),
         ar=payload.get("description_ar", ""),
@@ -408,8 +373,7 @@ def put_term(
     keywords_json = json.dumps(keywords) if keywords else "[]"
     parent_id = payload.get("parent_id")  # None pour racine
 
-    conn.execute("BEGIN")
-    try:
+    with transaction(conn):
         existing = conn.execute(
             "SELECT 1 FROM term WHERE id = ? AND vocabulary_id = ?",
             [term_id, vocabulary_id],
@@ -430,10 +394,6 @@ def put_term(
                 """,
                 [term_id, vocabulary_id, parent_id, slug, name_i18n, desc_i18n, weight, keywords_json],
             )
-        conn.execute("COMMIT")
-    except Exception as e:
-        conn.execute("ROLLBACK")
-        raise HTTPException(status_code=500, detail=str(e)) from e
 
     return {"status": "ok", "vocabulary_id": vocabulary_id, "term_id": term_id}
 
@@ -442,7 +402,7 @@ def put_term(
 def post_term(
     vocabulary_id: str,
     payload: dict,
-    conn: duckdb.DuckDBPyConnection = Depends(get_db),
+    conn: DBConnAdapter = Depends(get_db_write),
 ) -> dict[str, Any]:
     """Crée un terme. Tables modifiées : term. Body doit contenir id (ou généré)."""
     _ensure_vocabulary_exists(conn, vocabulary_id)
@@ -451,12 +411,12 @@ def post_term(
         import time
         term_id = f"term_{int(time.time() * 1000)}"
     slug = (payload.get("slug") or term_id).strip() or term_id
-    name_i18n = _to_i18n(
+    name_i18n = to_i18n(
         fr=payload.get("name_fr", ""),
         en=payload.get("name_en", ""),
         ar=payload.get("name_ar", ""),
     )
-    desc_i18n = _to_i18n(
+    desc_i18n = to_i18n(
         fr=payload.get("description_fr", ""),
         en=payload.get("description_en", ""),
         ar=payload.get("description_ar", ""),
@@ -466,26 +426,28 @@ def post_term(
     keywords_json = json.dumps(keywords) if keywords else "[]"
     parent_id = payload.get("parent_id")
 
-    conn.execute("BEGIN")
     try:
-        conn.execute(
-            """
-            INSERT INTO term (id, vocabulary_id, parent_id, slug, name_i18n, description_i18n, weight, keywords)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            [term_id, vocabulary_id, parent_id, slug, name_i18n, desc_i18n, weight, keywords_json],
-        )
-        conn.execute("COMMIT")
-    except Exception as e:
-        conn.execute("ROLLBACK")
-        if "constraint" in str(e).lower() or "duplicate" in str(e).lower() or "unique" in str(e).lower():
+        with transaction(conn):
+            conn.execute(
+                """
+                INSERT INTO term (id, vocabulary_id, parent_id, slug, name_i18n, description_i18n, weight, keywords)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                [term_id, vocabulary_id, parent_id, slug, name_i18n, desc_i18n, weight, keywords_json],
+            )
+    except HTTPException as e:
+        if e.status_code == 500 and (
+            "constraint" in str(e.detail).lower()
+            or "duplicate" in str(e.detail).lower()
+            or "unique" in str(e.detail).lower()
+        ):
             raise HTTPException(status_code=409, detail=f"Terme '{term_id}' existe déjà") from None
-        raise HTTPException(status_code=500, detail=str(e)) from e
+        raise
 
     return {"status": "created", "vocabulary_id": vocabulary_id, "term_id": term_id}
 
 
-def _delete_term_cascade(conn: duckdb.DuckDBPyConnection, vocabulary_id: str, term_id: str) -> None:
+def _delete_term_cascade(conn: DBConnAdapter, vocabulary_id: str, term_id: str) -> None:
     """Supprime un terme et récursivement tous ses enfants (sans vérifier les refs sur les enfants)."""
     children = conn.execute(
         "SELECT id FROM term WHERE vocabulary_id = ? AND parent_id = ?",
@@ -502,7 +464,7 @@ def delete_term(
     vocabulary_id: str,
     term_id: str,
     cascade: bool = False,
-    conn: duckdb.DuckDBPyConnection = Depends(get_db),
+    conn: DBConnAdapter = Depends(get_db_write),
 ) -> dict[str, Any]:
     """Supprime un terme. 409 si le terme est référencé ou a des enfants (sauf si cascade=true).
     cascade=true : supprime le terme et tous ses descendants. Tables modifiées : term uniquement."""
@@ -530,24 +492,11 @@ def delete_term(
             },
         )
 
-    try:
-        if cascade and has_children:
-            conn.execute("BEGIN")
-            try:
-                _delete_term_cascade(conn, vocabulary_id, term_id)
-                conn.execute("COMMIT")
-            except Exception as e:
-                conn.execute("ROLLBACK")
-                raise HTTPException(
-                    status_code=500,
-                    detail={"message": "Erreur lors de la suppression en cascade", "error": str(e)},
-                ) from e
-        else:
-            conn.execute("DELETE FROM term WHERE id = ? AND vocabulary_id = ?", [term_id, vocabulary_id])
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail={"message": "Erreur suppression terme", "error": str(e)}) from e
+    if cascade and has_children:
+        with transaction(conn):
+            _delete_term_cascade(conn, vocabulary_id, term_id)
+    else:
+        conn.execute("DELETE FROM term WHERE id = ? AND vocabulary_id = ?", [term_id, vocabulary_id])
     return {"status": "deleted", "vocabulary_id": vocabulary_id, "term_id": term_id}
 
 
@@ -555,7 +504,7 @@ def delete_term(
 def search_terms(
     q: str = "",
     vocabulary_id: str | None = None,
-    conn: duckdb.DuckDBPyConnection = Depends(get_db),
+    conn: DBConnAdapter = Depends(get_db_read),
 ) -> dict[str, Any]:
     """Recherche de termes par id, slug ou libellés. Tables lues : term, vocabulary."""
     if not (q or "").strip():
@@ -589,8 +538,8 @@ def search_terms(
     results = []
     for r in rows:
         row_dict = dict(zip(cols, r))
-        name_fr = _get_i18n(row_dict.get("name_i18n"), "fr")
-        name_en = _get_i18n(row_dict.get("name_i18n"), "en")
+        name_fr = get_i18n(row_dict.get("name_i18n"), "fr")
+        name_en = get_i18n(row_dict.get("name_i18n"), "en")
         results.append({
             "id": row_dict["id"],
             "vocabulary_id": row_dict["vocabulary_id"],
@@ -603,6 +552,373 @@ def search_terms(
 
 
 @router.get("/export/json")
-def export_taxonomy_json(conn: duckdb.DuckDBPyConnection = Depends(get_db)) -> dict:
+def export_taxonomy_json(conn: DBConnAdapter = Depends(get_db_read)) -> dict:
     """Export JSON (même format que GET)."""
     return get_taxonomy(conn)
+
+
+# ─── Import diff ────────────────────────────────────────────────────────────
+
+_DIFF_FIELDS = [
+    "slug", "parent_id",
+    "name_fr", "name_en", "name_ar",
+    "description_fr", "description_en", "description_ar",
+    "weight", "keywords",
+]
+
+_VALID_OPS = {"add", "upsert", "update", "remove"}
+
+
+def _normalize_diff_op(raw_op: dict) -> dict:
+    """Normalise une opération diff (supporte le format JSON Patch avec 'path')."""
+    op = raw_op.get("op", "")
+    value = raw_op.get("value") or {}
+    # Compatibilité JSON Patch : le champ 'path' est ignoré (vocabulary vient du endpoint).
+    # Si op == "replace" (JSON Patch), on mappe vers "upsert".
+    if op == "replace":
+        op = "upsert"
+    return {"op": op, "value": value}
+
+
+def _term_to_flat(r: dict) -> dict:
+    """Convertit une ligne DB (name_i18n, etc.) en dict plat pour la comparaison."""
+    return {
+        "id": r.get("id", ""),
+        "slug": r.get("slug", ""),
+        "parent_id": r.get("parent_id"),
+        "name_fr": get_i18n(r.get("name_i18n"), "fr"),
+        "name_en": get_i18n(r.get("name_i18n"), "en"),
+        "name_ar": get_i18n(r.get("name_i18n"), "ar"),
+        "description_fr": get_i18n(r.get("description_i18n"), "fr"),
+        "description_en": get_i18n(r.get("description_i18n"), "en"),
+        "description_ar": get_i18n(r.get("description_i18n"), "ar"),
+        "weight": int(r.get("weight") or 0),
+        "keywords": r.get("keywords") or [],
+    }
+
+
+def _compute_diff(current: dict, incoming: dict) -> dict:
+    """Retourne les champs modifiés entre current et incoming.
+    N'inclut que les champs explicitement fournis dans incoming (évite d'afficher
+    slug→"" etc. quand l'enrichissement IA n'envoie que name_fr, name_en, name_ar)."""
+    diff: dict[str, dict] = {}
+    for field in _DIFF_FIELDS:
+        if field not in incoming:
+            continue
+        cur_val = current.get(field)
+        inc_val = incoming.get(field)
+        # Normaliser les valeurs comparables
+        if field == "weight":
+            cur_val = int(cur_val) if cur_val is not None else 0
+            inc_val = int(inc_val) if inc_val is not None else 0
+        elif field == "keywords":
+            cur_val = sorted(cur_val or [])
+            inc_val = sorted(inc_val or [])
+        elif field == "parent_id":
+            cur_val = cur_val or None
+            inc_val = inc_val if inc_val is not None and str(inc_val).strip() else None
+        else:
+            cur_val = (cur_val or "").strip()
+            inc_val = (inc_val or "").strip()
+        if cur_val != inc_val:
+            diff[field] = {"from": cur_val, "to": inc_val}
+    return diff
+
+
+def _validate_diff_operations(
+    operations: list[dict],
+    existing_ids: set[str],
+    vocab_id: str,
+) -> list[dict]:
+    """
+    Valide chaque opération et retourne la liste enrichie avec status, message, diff.
+    existing_ids : set des term_id actuellement en DB pour ce vocabulaire.
+    """
+    # IDs des termes qui seront ajoutés dans ce batch (pour résolution intra-batch)
+    batch_added_ids: set[str] = set()
+    results: list[dict] = []
+
+    for i, raw_op in enumerate(operations):
+        normalized = _normalize_diff_op(raw_op)
+        op = normalized["op"]
+        value = normalized["value"]
+
+        term_id = str(value.get("id") or "").strip()
+        parent_id = value.get("parent_id") or None
+        if parent_id:
+            parent_id = str(parent_id).strip() or None
+
+        result: dict[str, Any] = {
+            "index": i,
+            "op": op,
+            "term_id": term_id,
+            "status": "ready",
+            "message": None,
+            "incoming": value,
+            "current": None,
+            "diff": None,
+        }
+
+        # Validation op
+        if op not in _VALID_OPS:
+            result["status"] = "error"
+            result["message"] = f"Opération inconnue : '{op}'. Valeurs acceptées : {', '.join(sorted(_VALID_OPS))}"
+            results.append(result)
+            continue
+
+        # Validation id
+        if not term_id:
+            result["status"] = "error"
+            result["message"] = "Champ 'id' manquant ou vide"
+            results.append(result)
+            continue
+
+        # Validation slug pour add/upsert
+        slug = str(value.get("slug") or "").strip()
+        if op in ("add", "upsert") and not slug:
+            # slug par défaut = id, on note mais pas bloquant
+            result["message"] = f"Champ 'slug' absent, sera déduit de l'id : '{term_id}'"
+
+        # Validation parent_id : doit exister en DB ou dans le batch courant
+        if parent_id and parent_id not in existing_ids and parent_id not in batch_added_ids:
+            result["status"] = "error"
+            result["message"] = f"parent_id '{parent_id}' introuvable (ni en DB ni dans ce batch)"
+            results.append(result)
+            continue
+
+        exists = term_id in existing_ids
+
+        if op == "add":
+            if exists:
+                result["status"] = "conflict"
+                result["message"] = f"Terme '{term_id}' existe déjà (utilisez 'upsert' pour mettre à jour)"
+            else:
+                result["status"] = "ready"
+                batch_added_ids.add(term_id)
+
+        elif op == "upsert":
+            if exists:
+                result["status"] = "update"
+                # Diff calculé côté apply (current chargé depuis DB)
+            else:
+                result["status"] = "ready"
+                batch_added_ids.add(term_id)
+
+        elif op == "update":
+            if not exists:
+                result["status"] = "error"
+                result["message"] = f"Terme '{term_id}' n'existe pas (utilisez 'add' ou 'upsert')"
+            else:
+                result["status"] = "update"
+
+        elif op == "remove":
+            if not exists:
+                result["status"] = "skip"
+                result["message"] = f"Terme '{term_id}' introuvable, suppression ignorée"
+            else:
+                result["status"] = "ready"
+
+        results.append(result)
+
+    return results
+
+
+@router.post("/vocabularies/{vocabulary_id}/import/diff")
+def import_diff(
+    vocabulary_id: str,
+    operations: list = Body(...),
+    dry_run: bool = True,
+    conn: DBConnAdapter = Depends(get_db_write),
+) -> Any:
+    """
+    Import de diffs JSON pour un vocabulaire.
+    dry_run=true (défaut) : retourne le preview sans appliquer.
+    dry_run=false : applique les opérations sélectionnées dans une transaction unique.
+    Supporte le format JSON Patch (avec 'path') et le format simplifié.
+    """
+    _ensure_vocabulary_exists(conn, vocabulary_id)
+
+    # Charger tous les termes existants en une passe
+    existing_rows = _get_terms_flat(conn, vocabulary_id)
+    existing_map: dict[str, dict] = {r["id"]: r for r in existing_rows}
+    existing_ids: set[str] = set(existing_map.keys())
+
+    # Validation de toutes les opérations
+    validated = _validate_diff_operations(operations, existing_ids, vocabulary_id)
+
+    # Enrichir avec le diff réel pour les updates (upsert/update sur terme existant)
+    for op_result in validated:
+        if op_result["status"] == "update":
+            current_row = existing_map.get(op_result["term_id"])
+            if current_row:
+                current_flat = _term_to_flat(current_row)
+                op_result["current"] = current_flat
+                op_result["diff"] = _compute_diff(current_flat, op_result["incoming"])
+                if not op_result["diff"]:
+                    op_result["status"] = "skip"
+                    op_result["message"] = "Aucune modification détectée"
+
+    # Résumé
+    summary: dict[str, int] = {"ready": 0, "update": 0, "conflict": 0, "error": 0, "skip": 0}
+    for r in validated:
+        s = r["status"]
+        summary[s] = summary.get(s, 0) + 1
+
+    # Réponse dry_run
+    if dry_run:
+        return json_response({
+            "vocabulary_id": vocabulary_id,
+            "dry_run": True,
+            "summary": summary,
+            "operations": validated,
+        })
+
+    out = apply_taxonomy_import_operations(conn, vocabulary_id, operations)
+    return json_response(out)
+
+
+def apply_taxonomy_import_operations(
+    conn: DBConnAdapter,
+    vocabulary_id: str,
+    operations: list[dict],
+) -> dict[str, Any]:
+    """
+    Applique des opérations import/diff (même logique que POST import/diff avec dry_run=false).
+    Utilisable depuis la validation d'un job (artefact taxonomy_import_ops).
+    """
+    _ensure_vocabulary_exists(conn, vocabulary_id)
+
+    existing_rows = _get_terms_flat(conn, vocabulary_id)
+    existing_map: dict[str, dict] = {r["id"]: r for r in existing_rows}
+    existing_ids: set[str] = set(existing_map.keys())
+
+    validated = _validate_diff_operations(operations, existing_ids, vocabulary_id)
+
+    for op_result in validated:
+        if op_result["status"] == "update":
+            current_row = existing_map.get(op_result["term_id"])
+            if current_row:
+                current_flat = _term_to_flat(current_row)
+                op_result["current"] = current_flat
+                op_result["diff"] = _compute_diff(current_flat, op_result["incoming"])
+                if not op_result["diff"]:
+                    op_result["status"] = "skip"
+                    op_result["message"] = "Aucune modification détectée"
+
+    summary: dict[str, int] = {"ready": 0, "update": 0, "conflict": 0, "error": 0, "skip": 0}
+    for r in validated:
+        s = r["status"]
+        summary[s] = summary.get(s, 0) + 1
+
+    applied: list[str] = []
+    errors: list[str] = []
+
+    with transaction(conn):
+        for op_result in validated:
+            op = op_result["op"]
+            term_id = op_result["term_id"]
+            status = op_result["status"]
+            value = op_result["incoming"]
+
+            if status in ("skip", "conflict", "error"):
+                continue
+
+            if op in ("add", "upsert") and status in ("ready", "update"):
+                if term_id in existing_ids and op == "upsert":
+                    current_row = existing_map.get(term_id)
+                    current_flat = _term_to_flat(current_row) if current_row else {}
+                    merged = dict(current_flat)
+                    for field in _DIFF_FIELDS:
+                        if field in value:
+                            merged[field] = value[field]
+                    value = merged
+
+                slug = (str(value.get("slug") or term_id)).strip() or term_id
+                name_i18n = to_i18n(
+                    fr=value.get("name_fr", ""),
+                    en=value.get("name_en", ""),
+                    ar=value.get("name_ar", ""),
+                )
+                desc_i18n = to_i18n(
+                    fr=value.get("description_fr", ""),
+                    en=value.get("description_en", ""),
+                    ar=value.get("description_ar", ""),
+                )
+                weight = int(value.get("weight", 0))
+                keywords = value.get("keywords", [])
+                keywords_json = json.dumps(keywords) if keywords else "[]"
+                parent_id = value.get("parent_id") or None
+                if parent_id:
+                    parent_id = str(parent_id).strip() or None
+
+                if term_id in existing_ids and op == "upsert":
+                    conn.execute(
+                        """
+                        UPDATE term SET slug=?, name_i18n=?, description_i18n=?,
+                            weight=?, keywords=?, parent_id=?
+                        WHERE id=? AND vocabulary_id=?
+                        """,
+                        [slug, name_i18n, desc_i18n, weight, keywords_json,
+                         parent_id, term_id, vocabulary_id],
+                    )
+                else:
+                    conn.execute(
+                        """
+                        INSERT INTO term
+                            (id, vocabulary_id, parent_id, slug, name_i18n, description_i18n, weight, keywords)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                        """,
+                        [term_id, vocabulary_id, parent_id, slug,
+                         name_i18n, desc_i18n, weight, keywords_json],
+                    )
+                existing_ids.add(term_id)
+                applied.append(term_id)
+
+            elif op == "update" and status == "update":
+                current_row = existing_map.get(term_id)
+                current_flat = _term_to_flat(current_row) if current_row else {}
+                value_merged = dict(current_flat)
+                for field in _DIFF_FIELDS:
+                    if field in value:
+                        value_merged[field] = value[field]
+                slug = (str(value_merged.get("slug") or term_id)).strip() or term_id
+                name_i18n = to_i18n(
+                    fr=value_merged.get("name_fr", ""),
+                    en=value_merged.get("name_en", ""),
+                    ar=value_merged.get("name_ar", ""),
+                )
+                desc_i18n = to_i18n(
+                    fr=value_merged.get("description_fr", ""),
+                    en=value_merged.get("description_en", ""),
+                    ar=value_merged.get("description_ar", ""),
+                )
+                weight = int(value_merged.get("weight", 0))
+                keywords = value_merged.get("keywords", [])
+                keywords_json = json.dumps(keywords) if keywords else "[]"
+                parent_id = value_merged.get("parent_id") or None
+                conn.execute(
+                    """
+                    UPDATE term SET slug=?, name_i18n=?, description_i18n=?,
+                        weight=?, keywords=?, parent_id=?
+                    WHERE id=? AND vocabulary_id=?
+                    """,
+                    [slug, name_i18n, desc_i18n, weight, keywords_json,
+                     parent_id, term_id, vocabulary_id],
+                )
+                applied.append(term_id)
+
+            elif op == "remove" and status == "ready":
+                conn.execute(
+                    "DELETE FROM term WHERE id=? AND vocabulary_id=?",
+                    [term_id, vocabulary_id],
+                )
+                applied.append(term_id)
+
+    return {
+        "vocabulary_id": vocabulary_id,
+        "dry_run": False,
+        "applied_count": len(applied),
+        "applied": applied,
+        "errors": errors,
+        "summary": summary,
+    }

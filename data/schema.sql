@@ -77,35 +77,100 @@ CREATE TABLE IF NOT EXISTS job (
   id TEXT PRIMARY KEY,
   type TEXT NOT NULL,
   status TEXT NOT NULL DEFAULT 'pending',
+  image_id TEXT,                    -- FK logique → image(id), déprécié : préférer entity_type/entity_id
   config TEXT,
   started_at TEXT,
   finished_at TEXT,
   error_message TEXT,
-  created_at TEXT
+  created_at TEXT,
+  priority INTEGER DEFAULT 5,
+  retry_count INTEGER DEFAULT 0,
+  max_retries INTEGER DEFAULT 3,
+  scheduled_at TEXT,
+  entity_type TEXT,
+  entity_id TEXT,
+  result TEXT,
+  external_ref_id TEXT,
+  progress INTEGER DEFAULT 0,
+  progress_message TEXT,
+  worker_id TEXT,
+  last_heartbeat_at TEXT,
+  batch_ref TEXT
 );
 
-CREATE INDEX IF NOT EXISTS idx_job_type ON job(type);
-CREATE INDEX IF NOT EXISTS idx_job_status ON job(status);
+CREATE TABLE IF NOT EXISTS job_type_config (
+  type TEXT PRIMARY KEY,
+  label TEXT,
+  enabled INTEGER DEFAULT 0,
+  max_concurrent INTEGER DEFAULT 1,
+  description TEXT,
+  category TEXT,
+  updated_at TEXT
+);
+
+-- Index désactivés : DuckDB bug #20246 (même que image)
+-- CREATE INDEX IF NOT EXISTS idx_job_type ON job(type);
+-- CREATE INDEX IF NOT EXISTS idx_job_status ON job(status);
+-- CREATE INDEX IF NOT EXISTS idx_job_image ON job(image_id);
 
 -- Images
+-- La table image représente le concept/idée d'image (indépendant du fichier généré).
+-- Les fichiers générés sont stockés dans image_output.
+-- Les colonnes fichier (file_path, etc.) sont conservées pour compatibilité descendante.
 CREATE TABLE IF NOT EXISTS image (
   id TEXT PRIMARY KEY,
-  file_path TEXT NOT NULL,
+  -- Concept
+  title TEXT,
+  prompt TEXT,
+  negative_prompt TEXT,
+  -- Status pipeline: draft | prompt_ready | scheduled | generating | generated | approved | rejected | published
+  status TEXT DEFAULT 'draft',
+  -- Output sélectionné (validé)
+  selected_output_id TEXT,      -- FK → image_output (résolu après creation de image_output)
+  current_job_id TEXT,          -- job dont on affiche l'output ; si NULL = dernier créé
+  -- Traçabilité origine
+  origin_type TEXT DEFAULT 'manual',    -- 'manual' | 'batch'
+  origin_batch_id TEXT,                 -- FK → generation_batch
+  origin_term_id TEXT,                  -- terme taxonomie source
+  origin_taxonomy_id TEXT,              -- taxonomie source
+  -- Colonnes legacy (conservées pour compatibilité, données migrées vers image_output)
+  file_path TEXT,
   file_format TEXT,
   width INTEGER,
   height INTEGER,
-  status TEXT DEFAULT 'raw',
   quality_score REAL,
   prompt_used TEXT,
-  negative_prompt TEXT,
   model_name TEXT,
-  job_id TEXT REFERENCES job(id),
+  job_id TEXT,                      -- déprécié : utiliser job.image_id
   created_at TEXT,
   updated_at TEXT
 );
 
-CREATE INDEX IF NOT EXISTS idx_image_status ON image(status);
-CREATE INDEX IF NOT EXISTS idx_image_job ON image(job_id);
+-- Index désactivés : DuckDB bug #20246 — UPDATE sur colonne indexée déclenche
+-- fausse violation FK "still referenced". Utiliser migration_v5 pour bases existantes.
+-- CREATE INDEX IF NOT EXISTS idx_image_status ON image(status);
+-- CREATE INDEX IF NOT EXISTS idx_image_batch ON image(origin_batch_id);
+-- CREATE INDEX IF NOT EXISTS idx_image_term ON image(origin_term_id);
+
+-- Outputs de génération : chaque tentative de job produit un output rattaché au concept
+-- file_path et/ou text_content (au moins un pour job completed)
+CREATE TABLE IF NOT EXISTS image_output (
+  id TEXT PRIMARY KEY,
+  image_id TEXT NOT NULL REFERENCES image(id),
+  job_id TEXT REFERENCES job(id),
+  file_path TEXT NOT NULL,           -- '' si output texte-only
+  text_content TEXT,                -- contenu texte (log, erreur, etc.)
+  file_format TEXT,
+  width INTEGER,
+  height INTEGER,
+  quality_score REAL,
+  model_name TEXT,
+  model_config TEXT,   -- JSON snapshot des paramètres du job au moment de la génération
+  created_at TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_image_output_image ON image_output(image_id);
+CREATE INDEX IF NOT EXISTS idx_image_output_job ON image_output(job_id);
 
 CREATE TABLE IF NOT EXISTS image_taxonomy_tag (
   image_id TEXT NOT NULL REFERENCES image(id),
@@ -163,6 +228,29 @@ CREATE TABLE IF NOT EXISTS site_publication (
   PRIMARY KEY (image_id, site_id)
 );
 
+-- Batch de génération : campagne couvrant N termes taxonomiques
+CREATE TABLE IF NOT EXISTS generation_batch (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  scope_type TEXT DEFAULT 'terms',          -- 'terms' | 'subtree'
+  prompt_strategy TEXT DEFAULT 'ai_ollama', -- 'manual' | 'ai_ollama' | 'template'
+  images_per_term INTEGER DEFAULT 5,
+  auto_approve_threshold REAL,              -- NULL = validation manuelle, ex 7.5 = auto si score >= 7.5
+  status TEXT DEFAULT 'pending',            -- pending | prompts_ready | scheduled | running | done
+  created_at TEXT,
+  updated_at TEXT
+);
+
+CREATE TABLE IF NOT EXISTS generation_batch_term (
+  batch_id TEXT NOT NULL REFERENCES generation_batch(id),
+  term_id TEXT NOT NULL,
+  taxonomy_id TEXT NOT NULL REFERENCES taxonomy(taxonomy_id),
+  include_subtree INTEGER DEFAULT 0,        -- 0 = terme seul, 1 = terme + tous ses enfants
+  PRIMARY KEY (batch_id, term_id, taxonomy_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_gen_batch_status ON generation_batch(status);
+
 -- Phase 2: Concepts et prompts
 CREATE TABLE IF NOT EXISTS concept_batch (
   id TEXT PRIMARY KEY,
@@ -183,6 +271,16 @@ CREATE TABLE IF NOT EXISTS prompt_template (
   description TEXT,
   active INTEGER DEFAULT 1,
   created_at TEXT,
+  updated_at TEXT
+);
+
+-- Prompts IA Ollama (surcharge DuckDB > fallback taxonomy_prompts.yaml)
+CREATE TABLE IF NOT EXISTS ai_prompt_template (
+  key TEXT PRIMARY KEY,      -- enrich_term | suggest_children | generate_vocabulary | enrich_keywords
+  system_text TEXT NOT NULL,
+  user_text TEXT NOT NULL,
+  model TEXT,
+  temperature REAL,
   updated_at TEXT
 );
 

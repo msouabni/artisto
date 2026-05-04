@@ -3,27 +3,51 @@ from __future__ import annotations
 
 import logging
 import traceback
+from contextlib import asynccontextmanager
 from pathlib import Path
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, Request
+
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+
+from artiste_logging import setup_logging
+
+setup_logging("api")
+
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from api.routes import taxonomy
+from api.routes import ai, generation, images, jobs, sites, taxonomy
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-)
 logger = logging.getLogger("api.main")
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    """Synchronise ``job_type_config`` (types manquants après migration / DB vide)."""
+    from api.db import SessionLocal, ensure_default_job_types
+
+    session = SessionLocal()
+    try:
+        ensure_default_job_types(session)
+        session.commit()
+    except Exception as e:
+        logger.warning("Synchronisation job_type_config au démarrage ignorée : %s", e)
+        session.rollback()
+    finally:
+        session.close()
+    yield
+
 
 app = FastAPI(
     title="Artiste Coloriage API",
     description="API pour la taxonomie, images, collections et exports",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -67,6 +91,11 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 
 app.include_router(taxonomy.router)
+app.include_router(ai.router)
+app.include_router(generation.router)
+app.include_router(images.router)
+app.include_router(jobs.router)
+app.include_router(sites.router)
 
 if DATA_DIR.exists():
     app.mount("/data", StaticFiles(directory=str(DATA_DIR), html=True), name="data")
@@ -79,4 +108,11 @@ def root():
         "docs": "/docs",
         "taxonomy": "/api/taxonomy",
         "editor": "/data/taxonomy_editor.html",
+        "admin": "/data/admin.html",
+        "jobs_editor": "/data/jobs_editor.html",
+        "ai_status": "/api/ai/status",
+        "images": "/api/images",
+        "jobs": "/api/jobs",
+        "sites": "/api/sites",
+        "generation_presets": "/api/generation/presets",
     }

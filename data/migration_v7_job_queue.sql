@@ -1,0 +1,8 @@
+-- Migration v7 — Job Queue (priorité, retry, entity générique, job_type_config)
+-- À appliquer UNE SEULE FOIS sur artiste_coloriage.duckdb
+-- Commande : python scripts/run_migration_v7.py
+--
+-- Changements :
+-- 1. job : priority, retry_count, max_retries, scheduled_at, entity_type, entity_id, result, external_ref_id, progress, progress_message, worker_id, last_heartbeat_at
+-- 2. Migration données : entity_type='image', entity_id=image_id pour jobs existants
+-- 3. job_type_config : table + seed image_generation, text_enrichment

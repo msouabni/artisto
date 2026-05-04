@@ -1,0 +1,12 @@
+-- =============================================================================
+-- Migration v3 — Image / Job refonte
+-- À appliquer UNE SEULE FOIS sur artiste_coloriage.duckdb
+-- Commande : python scripts/run_migration_v3.py
+-- =============================================================================
+--
+-- Changements :
+-- 1. job : ajout image_id (nullable)
+-- 2. image_output : ajout text_content, file_path nullable
+-- 3. Migration données : job.image_id depuis image_output
+-- 4. image : suppression job_id
+--

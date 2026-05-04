@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Importe taxonomy_universal_v0.json dans la base DuckDB.
-Usage: python scripts/import_taxonomy_json_to_db.py [chemin_json] [chemin_db]
+Importe taxonomy_universal_v0.json dans PostgreSQL.
+Usage: python scripts/import_taxonomy_json_to_db.py [chemin_json]
 """
 from __future__ import annotations
 
@@ -56,9 +56,11 @@ def _insert_terms(conn, vocabulary_id: str, terms: list[dict], parent_id: str | 
             _insert_terms(conn, vocabulary_id, children, tid)
 
 
-def import_json(json_path: Path, db_path: Path) -> None:
-    """Importe le JSON dans DuckDB."""
-    import duckdb
+def import_json(json_path: Path, db_path: Path | None = None) -> None:
+    """Importe le JSON dans PostgreSQL."""
+    _ = db_path
+    sys.path.insert(0, str(PROJECT_ROOT / "src"))
+    from api.db import get_db_sync, init_db
 
     if not json_path.exists():
         raise FileNotFoundError(f"JSON not found: {json_path}")
@@ -72,24 +74,9 @@ def import_json(json_path: Path, db_path: Path) -> None:
     label_i18n = _to_i18n(fr=label, en=label, ar=label)
     languages_json = json.dumps(languages)
 
-    # Init schéma si nécessaire
-    schema_path = DATA_DIR / "schema.sql"
-    if schema_path.exists():
-        conn = duckdb.connect(str(db_path))
-        for stmt in schema_path.read_text(encoding="utf-8").split(";"):
-            stmt = stmt.strip()
-            if stmt and not stmt.startswith("--"):
-                try:
-                    conn.execute(stmt)
-                except Exception:
-                    pass  # ignore "already exists"
-        conn.close()
+    init_db()
+    conn = get_db_sync(read_only=False)
 
-    conn = duckdb.connect(str(db_path))
-
-    # DuckDB valide les FK trop tôt dans une même transaction.
-    # Suppressions sans transaction (auto-commit), ordre enfants → parents.
-    # Voir .cursor/rules/duckdb-fk-constraints.mdc
     try:
         conn.execute("DELETE FROM term")
         conn.execute("DELETE FROM export")
@@ -100,11 +87,9 @@ def import_json(json_path: Path, db_path: Path) -> None:
         conn.execute("DELETE FROM site_taxonomy")
         conn.execute("DELETE FROM vocabulary")
         conn.execute("DELETE FROM taxonomy")
-    except Exception as e:
+    except Exception:
         conn.close()
         raise
-
-    conn.execute("BEGIN")
     try:
         conn.execute(
             "INSERT INTO taxonomy (taxonomy_id, label_i18n, languages) VALUES (?, ?, ?)",
@@ -124,10 +109,10 @@ def import_json(json_path: Path, db_path: Path) -> None:
             )
             _insert_terms(conn, vid, v.get("terms", []), None)
 
-        conn.execute("COMMIT")
-        print(f"Importé: {taxonomy_id} ({len(vocabularies)} vocabulaire(s)) -> {db_path}")
-    except Exception as e:
-        conn.execute("ROLLBACK")
+        conn.session.commit()
+        print(f"Importé: {taxonomy_id} ({len(vocabularies)} vocabulaire(s))")
+    except Exception:
+        conn.session.rollback()
         raise
     finally:
         conn.close()
@@ -135,5 +120,4 @@ def import_json(json_path: Path, db_path: Path) -> None:
 
 if __name__ == "__main__":
     json_path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_JSON
-    db_path = Path(sys.argv[2]) if len(sys.argv) > 2 else DEFAULT_DB
-    import_json(json_path, db_path)
+    import_json(json_path, None)

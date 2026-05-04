@@ -122,56 +122,57 @@ def _build_terms_tree(
 
 
 def load_taxonomy_from_db(path: Path = DEFAULT_DB_PATH) -> Taxonomy:
-    """Charge la taxonomie depuis DuckDB."""
-    if not path.exists():
-        raise FileNotFoundError(f"Database not found at {path}")
+    """Charge la taxonomie depuis la base applicative courante.
 
-    import duckdb
+    ``path`` est conservé pour compatibilité d'API, mais n'est plus utilisé
+    maintenant que l'accès direct via ``duckdb.connect`` est désactivé.
+    """
+    _ = path
+    from api.db import get_db_sync
 
-    conn = duckdb.connect(str(path))
-    tx = conn.execute(
-        "SELECT taxonomy_id, label_i18n, languages FROM taxonomy LIMIT 1"
-    ).fetchone()
-    if not tx:
-        conn.close()
-        raise ValueError("Taxonomie non trouvée dans la base")
-
-    taxonomy_id, label_i18n, languages = tx
-    label = taxonomy_id
+    conn = get_db_sync(read_only=True)
     try:
-        import json
+        tx = conn.execute(
+            "SELECT taxonomy_id, label_i18n, languages FROM taxonomy LIMIT 1"
+        ).fetchone()
+        if not tx:
+            raise ValueError("Taxonomie non trouvée dans la base")
 
-        if label_i18n:
-            data = json.loads(label_i18n) if isinstance(label_i18n, str) else label_i18n
-            label = data.get("fr") or data.get("en") or taxonomy_id
-        langs = json.loads(languages) if isinstance(languages, str) else ["fr", "en", "ar"]
-    except Exception:
-        langs = ["fr", "en", "ar"]
-
-    vocabularies: List[Vocabulary] = []
-    for v in conn.execute(
-        "SELECT id, taxonomy_id, label_i18n FROM vocabulary WHERE taxonomy_id = ?",
-        [taxonomy_id],
-    ).fetchall():
-        vid, _, vlabel_i18n = v
-        terms_data = _fetch_terms_from_db(conn, vid, None)
-        vocab_terms = _build_terms_tree(terms_data, parent_id=None)
-        label_fr = label_en = vid
-        label_ar = None
+        taxonomy_id, label_i18n, languages = tx
+        label = taxonomy_id
         try:
-            if vlabel_i18n:
-                data = json.loads(vlabel_i18n) if isinstance(vlabel_i18n, str) else vlabel_i18n
-                label_fr = data.get("fr", vid)
-                label_en = data.get("en", vid)
-                label_ar = data.get("ar")
+            if label_i18n:
+                data = json.loads(label_i18n) if isinstance(label_i18n, str) else label_i18n
+                label = data.get("fr") or data.get("en") or taxonomy_id
+            langs = json.loads(languages) if isinstance(languages, str) else ["fr", "en", "ar"]
         except Exception:
-            pass
-        vocabularies.append(
-            Vocabulary(id=vid, label_fr=label_fr, label_en=label_en, label_ar=label_ar, terms=vocab_terms)
-        )
+            langs = ["fr", "en", "ar"]
 
-    conn.close()
-    return Taxonomy(taxonomy_id=taxonomy_id, label=label, languages=langs, vocabularies=vocabularies)
+        vocabularies: List[Vocabulary] = []
+        for v in conn.execute(
+            "SELECT id, taxonomy_id, label_i18n FROM vocabulary WHERE taxonomy_id = ?",
+            [taxonomy_id],
+        ).fetchall():
+            vid, _, vlabel_i18n = v
+            terms_data = _fetch_terms_from_db(conn, vid, None)
+            vocab_terms = _build_terms_tree(terms_data, parent_id=None)
+            label_fr = label_en = vid
+            label_ar = None
+            try:
+                if vlabel_i18n:
+                    data = json.loads(vlabel_i18n) if isinstance(vlabel_i18n, str) else vlabel_i18n
+                    label_fr = data.get("fr", vid)
+                    label_en = data.get("en", vid)
+                    label_ar = data.get("ar")
+            except Exception:
+                pass
+            vocabularies.append(
+                Vocabulary(id=vid, label_fr=label_fr, label_en=label_en, label_ar=label_ar, terms=vocab_terms)
+            )
+
+        return Taxonomy(taxonomy_id=taxonomy_id, label=label, languages=langs, vocabularies=vocabularies)
+    finally:
+        conn.close()
 
 
 def _fetch_terms_from_db(
@@ -230,11 +231,12 @@ def _fetch_terms_from_db(
 def get_taxonomy() -> Taxonomy:
     """
     Charger la taxonomie universelle par défaut.
-    Utilise DuckDB si la base existe, sinon le fichier JSON.
+    Utilise la base applicative si elle est disponible, sinon le fichier JSON.
     """
-    if DEFAULT_DB_PATH.exists():
+    try:
         return load_taxonomy_from_db()
-    return load_taxonomy()
+    except Exception:
+        return load_taxonomy()
 
 
 def get_terms_for_branch(

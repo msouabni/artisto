@@ -1,0 +1,141 @@
+/*
+ * nav.css — barre de navigation partagée pour les pages /data/*.html
+ * Inclure avec : <link rel="stylesheet" href="/data/shared/nav.css">
+ */
+
+:root {
+  --ac-nav-height: 52px;
+}
+
+/* Laisse de la place à la barre sticky */
+body[data-ac-nav-mounted="1"] {
+  padding-top: var(--ac-nav-height);
+}
+
+/* Pages plein écran (éditeurs) : la plupart utilisent .app-wrap { height: 100vh }.
+   On réduit la hauteur pour compenser le padding-top du body. */
+body[data-ac-nav-mounted="1"] .app-wrap {
+  height: calc(100vh - var(--ac-nav-height));
+}
+
+.ac-topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--ac-nav-height);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0.9rem;
+  border-bottom: 1px solid #dadce0;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+body[data-theme="dark"] .ac-topnav {
+  border-color: #2d3748;
+  background: rgba(22,33,62,0.92);
+}
+
+.ac-topnav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: #1a73e8;
+  white-space: nowrap;
+}
+
+body[data-theme="dark"] .ac-topnav__brand {
+  color: #90cdf4;
+}
+
+.ac-topnav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.ac-topnav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: #374151;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  user-select: none;
+}
+
+body[data-theme="dark"] .ac-topnav__link {
+  color: #e2e8f0;
+}
+
+.ac-topnav__link:hover {
+  background: #e8f0fe;
+  border-color: #c2d7f5;
+}
+
+body[data-theme="dark"] .ac-topnav__link:hover {
+  background: #1e3a5f;
+  border-color: #2c5282;
+}
+
+.ac-topnav__link[aria-current="page"] {
+  background: #1a73e8;
+  color: #fff;
+  border-color: #1a73e8;
+}
+
+body[data-theme="dark"] .ac-topnav__link[aria-current="page"] {
+  background: #3182ce;
+  border-color: #3182ce;
+}
+
+.ac-topnav__right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 0 0 auto;
+}
+
+.ac-topnav__right a {
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: #1a73e8;
+}
+body[data-theme="dark"] .ac-topnav__right a { color: #90cdf4; }
+
+/* Focus visible (accessibilité) */
+.ac-topnav a:focus-visible {
+  outline: 2px solid #1a73e8;
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+body[data-theme="dark"] .ac-topnav a:focus-visible { outline-color: #90cdf4; }
+
+/* Mobile: laisse les liens wrap si besoin */
+@media (max-width: 680px) {
+  :root { --ac-nav-height: 60px; }
+  .ac-topnav {
+    height: var(--ac-nav-height);
+    align-items: flex-start;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+  .ac-topnav__links {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+

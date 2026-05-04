@@ -1,0 +1,248 @@
+# Prompts Ollama pour l'enrichissement de la taxonomie Artiste Coloriage
+# ─────────────────────────────────────────────────────────────────────────────
+# Variables : {variable} — substituées par Python (.format()) avant envoi.
+# Accolades littérales dans les exemples JSON → {{ et }}.
+# Les champs model/temperature sont surchargeables via le body de l'API.
+# ─────────────────────────────────────────────────────────────────────────────
+
+defaults:
+  model: qwen2.5:7b
+  temperature: 0.3
+  # Aligné avec OLLAMA_TIMEOUT côté API ; évite les 504 sur enrich-term (Ollama distant).
+  timeout: 600
+
+prompts:
+
+  # ── 1. Enrichissement d'un terme ──────────────────────────────────────────
+  enrich_term:
+    description: "Complète les champs manquants d'un terme (traductions, descriptions)."
+    model: qwen2.5:7b
+    temperature: 0.3
+    system: |
+      You are a taxonomy and SEO expert for children's coloring websites.
+      The taxonomy is multilingual: French (FR), English (EN), Modern Standard Arabic (AR / fusha / MSA).
+      Your role: complete only the missing fields of a term naturally, relevant to coloring, and SEO-optimized.
+      Quality constraints:
+      - name_fr / name_en / name_ar : 1 to 4 words, natural, coloring-appropriate
+      - description_fr / description_en : exactly 20 to 35 words, SEO-friendly, include "coloriage" or "coloring"
+      - description_ar : exactly 15 to 30 words in Modern Standard Arabic (fusha), no dialect
+      - NEVER invent generic missing data — each term must be distinct
+      IMPORTANT: Reply ONLY with the requested JSON. No prior thinking, no introduction, no markdown, no explanation. Raw JSON only.
+    user: |
+      Existing taxonomy term (coloring website):
+      {term_json}
+
+      Fields to generate (only those listed here):
+      {missing_fields}
+
+      Generation rules:
+      - name_fr / name_en / name_ar : short name (1-4 words), distinctive, coloring-appropriate
+      - description_fr / description_en : 20-35 words, must mention "coloriage" or "colorier" (FR) / "coloring" or "color" (EN)
+      - description_ar : 15-30 words, Modern Standard Arabic only (fusha/MSA), no dialect
+      - Do NOT modify already filled fields
+      - Return ONLY the requested fields in a flat JSON object
+
+      Format examples (if requesting name_en and description_fr):
+      {{"name_en": "Farm Animals", "description_fr": "Découvrez nos coloriages d'animaux de la ferme : vaches, moutons et poulets à colorier pour les enfants."}}
+
+      Correct description_ar example (fusha):
+      {{"description_ar": "صفحات تلوين الحيوانات للأطفال، تشمل مجموعة متنوعة من الحيوانات البرية والأليفة."}}
+    output_schema:
+      name_fr: "string — Nom court (1-4 mots) en français"
+      name_en: "string — Nom court (1-4 mots) en anglais"
+      name_ar: "string — Nom court (1-4 mots) en arabe standard"
+      description_fr: "string — Description SEO en français (20-35 mots)"
+      description_en: "string — Description SEO en anglais (20-35 mots)"
+      description_ar: "string — Description SEO en arabe standard (15-30 mots)"
+
+  # ── 1b. Enrichissement en masse (plusieurs termes, un seul prompt) ───────────
+  enrich_terms_batch:
+    description: "Complète les champs manquants de plusieurs termes en un seul appel."
+    model: qwen2.5:7b
+    temperature: 0.3
+    system: |
+      You are a taxonomy and SEO expert for children's coloring websites.
+      The taxonomy is multilingual: French (FR), English (EN), Modern Standard Arabic (AR / fusha / MSA).
+      Your role: complete only the missing fields of EACH term naturally, relevant to coloring, and SEO-optimized.
+      Quality constraints:
+      - name_fr / name_en / name_ar : 1 to 4 words, natural, coloring-appropriate
+      - description_fr / description_en : exactly 20 to 35 words, SEO-friendly, include "coloriage" or "coloring"
+      - description_ar : exactly 15 to 30 words in Modern Standard Arabic (fusha), no dialect
+      - Output JSON keys MUST be exactly the IDs of the terms provided
+      IMPORTANT: Reply ONLY with the requested JSON. No prior thinking, no introduction, no markdown, no explanation. Raw JSON only.
+    user: |
+      Existing taxonomy terms (coloring website) — exact IDs to use as keys in your response:
+      {terms_json}
+
+      Fields to generate for EACH term (only those listed here):
+      {missing_fields}
+
+      Generation rules:
+      - Each term must have its own entry in the output JSON
+      - Output JSON keys = exactly the IDs of the terms as provided above
+      - name_fr / name_en / name_ar : short name (1-4 words), distinctive, coloring-appropriate
+      - description_fr / description_en : 20-35 words, must mention "coloriage" (FR) / "coloring" (EN)
+      - description_ar : 15-30 words, Modern Standard Arabic only (fusha/MSA)
+      - Do NOT modify already filled fields
+      - If a term needs no modification, still include its ID with an empty object {{}}
+
+      Expected format (object: term_id → fields to generate):
+      {{
+        "animaux": {{"name_en": "Animals", "description_fr": "Coloriages d'animaux pour enfants, du chat au lion en passant par les animaux de la ferme."}},
+        "vehicules": {{"name_en": "Vehicles", "description_ar": "صفحات تلوين السيارات والمركبات للأطفال، تشمل السيارات والشاحنات والطائرات."}}
+      }}
+    output_schema:
+      "term_id": "object — champs à générer pour ce terme (name_fr, name_en, name_ar, description_fr, description_en, description_ar)"
+
+  # ── 2. Suggestion de termes enfants ───────────────────────────────────────
+  suggest_children:
+    description: "Propose de nouveaux sous-termes pertinents pour un terme parent."
+    model: qwen2.5:7b
+    temperature: 0.5
+    system: |
+      You are a taxonomy expert for children's coloring websites.
+      You propose relevant, popular and varied sub-categories for coloring pages.
+      Quality criteria for a good child term:
+      - Directly related to coloring (must make sense as a category of coloring pages)
+      - Popular and searched by children / parents (SEO value)
+      - Distinct from existing terms (no duplicate, no near-synonym)
+      - Concrete and visual (avoid abstractions impossible to draw)
+      - Short, clear and natural name (1-4 words)
+      IMPORTANT: Reply ONLY with the requested JSON array. No prior thinking, no introduction, no markdown, no explanation. Raw JSON only.
+    user: |
+      Parent term: "{parent_name_en}" (FR: "{parent_name_fr}", ID: "{parent_id}")
+      Vocabulary: "{vocabulary_id}"
+      Context: children's and family coloring website
+
+      {existing_context}
+
+      Generate exactly {count} distinct, relevant and popular new child terms.
+      For each term, provide ALL of the following fields:
+      - id : snake_case unique identifier, no spaces, no accents
+             Convention: if parent ID is ≤ 25 chars, start with "{parent_id}_" + short suffix
+             Example: parent "animals" → "animals_cat", "animals_lion", "animals_snake"
+      - slug : kebab-case URL slug in English (e.g. "farm-animals", "wild-cats")
+      - name_en : English name, short (1-4 words)
+      - name_fr : French name, short (1-4 words)
+      - name_ar : Modern Standard Arabic name (fusha/MSA), short (1-4 words)
+      - description_en : 20-30 words, SEO-friendly, must mention "coloring" or "color"
+      - description_fr : 20-30 words, SEO-friendly, must mention "coloriage" or "colorier"
+      - weight : display order (0 for 1st, 1 for 2nd, etc.)
+
+      Expected JSON array format:
+      [
+        {{"id": "animals_birds", "slug": "birds", "name_en": "Birds", "name_fr": "Oiseaux",
+          "name_ar": "الطيور", "description_en": "Bird coloring pages for kids featuring eagles, parrots and colorful exotic species.", "description_fr": "Coloriages d'oiseaux pour enfants : aigle, perroquet et mésange à colorier.", "weight": 0}},
+        ...
+      ]
+    output_schema:
+      type: array
+      items:
+        id: "string — snake_case identifier (convention: parent_id + '_' + suffix)"
+        slug: "string — kebab-case English slug"
+        name_en: "string — 1-4 words in English"
+        name_fr: "string — 1-4 words in French"
+        name_ar: "string — 1-4 words in Standard Arabic"
+        description_en: "string — 20-30 words, SEO, mention coloring"
+        description_fr: "string — 20-30 words, SEO, mention coloriage"
+        weight: "integer — display order"
+
+  # ── 3. Génération d'un vocabulaire complet ────────────────────────────────
+  generate_vocabulary:
+    description: "Génère une liste de termes racines avec sous-termes pour un thème donné."
+    model: qwen2.5:7b
+    temperature: 0.5
+    system: |
+      You are a taxonomy expert for children's coloring websites.
+      You create hierarchical, balanced and SEO-optimized taxonomic structures.
+      Quality criteria:
+      - Each term must correspond to a real coloring page category
+      - Names are short (1-4 words), natural and popular
+      - Descriptions are 20-30 words, SEO-friendly, mention "coloriage" / "coloring"
+      - IDs are snake_case without accents, slugs are kebab-case English
+      - Child terms are more specific than their parent (no redundancy)
+      - Keywords are short words or phrases (2-5 words max) in 3 languages
+      IMPORTANT: Reply ONLY with the requested JSON object. No prior thinking, no introduction, no markdown, no explanation. Raw JSON only.
+      CRITICAL: The JSON must be valid and complete. Check commas and braces.
+    user: |
+      Generate a list of root terms for the theme: "{theme}"
+      Context: children's and family coloring website
+      Languages: French, English, Modern Standard Arabic (fusha/MSA)
+
+      Parameters:
+      - Number of root terms: {root_count}
+      - Number of child terms per root: {children_per_root}
+
+      For each term (root AND child), provide:
+      - id : snake_case unique identifier, no accents
+      - slug : kebab-case URL slug in English
+      - name_fr, name_en, name_ar : short multilingual names (1-4 words)
+      - description_fr, description_en : short descriptions (20-30 words), SEO, mention coloriage/coloring
+      - weight : display order (0, 1, 2...)
+
+      For ROOT terms only, also add:
+      - keywords : array of 5 to 8 short expressions (2-5 words max each), multilingual (FR + EN + AR mixed)
+
+      Expected format:
+      {{
+        "terms": [
+          {{
+            "id": "...", "slug": "...", "name_fr": "...", "name_en": "...", "name_ar": "...",
+            "description_fr": "...", "description_en": "...", "keywords": ["...", "..."], "weight": 0,
+            "children": [
+              {{"id": "...", "slug": "...", "name_fr": "...", "name_en": "...", "name_ar": "...",
+               "description_fr": "...", "description_en": "...", "weight": 0}}
+            ]
+          }}
+        ]
+      }}
+    output_schema:
+      terms:
+        type: array
+        items:
+          id: "string"
+          slug: "string"
+          name_fr: "string — 1-4 mots"
+          name_en: "string — 1-4 mots"
+          name_ar: "string — 1-4 mots en arabe standard"
+          description_fr: "string — 20-30 mots, mention coloriage"
+          description_en: "string — 20-30 mots, mention coloring"
+          keywords: "array de 5-8 strings (racines uniquement)"
+          weight: "integer"
+          children: "array de term objects (sans keywords)"
+
+  # ── 4. Enrichissement des mots-clés SEO ───────────────────────────────────
+  enrich_keywords:
+    description: "Génère des mots-clés SEO multilingues pour un terme de taxonomie."
+    model: qwen2.5:7b
+    temperature: 0.4
+    system: |
+      You are an SEO and taxonomy expert for children's coloring websites.
+      You generate relevant, varied and multilingual keywords to improve organic search ranking.
+      Keyword quality criteria:
+      - Each keyword: 1 to 5 words maximum (no full sentences)
+      - Content: singular AND plural, synonyms, related terms, typical children and parent queries
+      - Balanced distribution: minimum 30% French, 30% English, 20% Arabic keywords
+      - Arabic: Modern Standard Arabic (fusha/MSA) only, no dialect
+      - No duplicates, no near-synonyms
+      - Focus on long-tail SEO: "coloriage chat enfant", not just "chat"
+      IMPORTANT: Reply ONLY with the requested JSON object. No prior thinking, no introduction, no markdown, no explanation. Raw JSON only.
+    user: |
+      Taxonomy term (coloring context):
+      {term_json}
+
+      Generate a list of SEO keywords for this term, considering the "coloring" context.
+      Respect language distribution: min. 30% FR, min. 30% EN, min. 20% AR (Standard Arabic).
+      Include:
+      - Simple terms (singular and plural) in all 3 languages
+      - Variants with "coloriage" / "coloring" / "تلوين"
+      - Typical long-tail queries from children and parents (e.g. "coloriage chat gratuit", "free cat coloring page")
+      - Synonyms and related terms
+      Each keyword = 1 to 5 words maximum.
+
+      Target count: between {min_keywords} and {max_keywords} keywords total.
+
+      Expected format:
+      {{"keywords": ["coloriage animaux enfants", "animal coloring page", "coloriages gratuits animaux", "حيوانات للتلوين", "free animal coloring", "تلوين حيوانات للأطفال", ...]}}
+    output_schema:
+      keywords: "array de strings — mots-clés multilingues SEO (1-5 mots chacun, min 30% FR + 30% EN + 20% AR)"

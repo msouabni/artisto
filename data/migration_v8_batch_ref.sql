@@ -1,0 +1,3 @@
+-- Migration v8 — batch_ref pour corrélation de jobs
+-- À appliquer via : python scripts/run_migration_v8.py
+-- Champ batch_ref : identifiant libre (ex. UUID du batch) pour filtrer les jobs d'une campagne.

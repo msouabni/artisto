@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administration — Artiste Coloriage</title>
+  <link rel="stylesheet" href="/data/shared/nav.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      margin: 0; min-height: 100vh;
+      background: #f8f9fa; color: #202124;
+      transition: background 0.2s, color 0.2s;
+    }
+    body[data-theme="dark"] { background: #1a1a2e; color: #f7fafc; }
+
+    .app-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: #fff; border-bottom: 1px solid #dadce0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    body[data-theme="dark"] .app-header { background: #16213e; border-color: #2d3748; }
+
+    .app-header h1 { margin: 0; font-size: 1.3rem; font-weight: 700; color: #1a73e8; }
+    body[data-theme="dark"] .app-header h1 { color: #90cdf4; }
+
+    .theme-switcher { display: flex; align-items: center; gap: 0.35rem; }
+    .theme-switcher button { padding: 0.3rem 0.65rem; border: 1px solid #dadce0; border-radius: 4px; background: #fff; color: #5f6368; cursor: pointer; font-size: 0.8rem; }
+    body[data-theme="dark"] .theme-switcher button { border-color: #4a5568; background: #2d3748; color: #cbd5e0; }
+    .theme-switcher button.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+
+    .main { max-width: 1100px; margin: 2rem auto; padding: 0 1.5rem; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 2.5rem; }
+    .section-title {
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: #9ca3af; margin-bottom: 1rem;
+    }
+
+    /* ── Editor cards grid ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+    .card {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      padding: 1.25rem 1.5rem;
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+      cursor: pointer;
+    }
+    body[data-theme="dark"] .card { background: #16213e; border-color: #2d3748; }
+    .card:hover { box-shadow: 0 4px 16px rgba(26,115,232,0.15); border-color: #1a73e8; transform: translateY(-2px); }
+    body[data-theme="dark"] .card:hover { border-color: #60a5fa; }
+
+    .card-icon { font-size: 1.75rem; line-height: 1; }
+    .card-title { font-weight: 700; font-size: 1rem; }
+    .card-desc { font-size: 0.83rem; color: #6b7280; line-height: 1.4; }
+    body[data-theme="dark"] .card-desc { color: #9ca3af; }
+    .card-badge {
+      align-self: flex-start; padding: 0.15rem 0.55rem;
+      border-radius: 10px; font-size: 0.72rem; font-weight: 600;
+      background: #e0f2fe; color: #0369a1; margin-top: 0.25rem;
+    }
+    body[data-theme="dark"] .card-badge { background: #0c4a6e; color: #7dd3fc; }
+    .card-badge.wip { background: #fef3c7; color: #92400e; }
+    body[data-theme="dark"] .card-badge.wip { background: #451a03; color: #fcd34d; }
+
+    /* ── Status panel ── */
+    .status-panel {
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    body[data-theme="dark"] .status-panel { background: #16213e; border-color: #2d3748; }
+
+    .status-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
+    .status-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .status-label { font-size: 0.78rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; }
+    body[data-theme="dark"] .status-label { color: #9ca3af; }
+    .status-value { font-size: 0.92rem; font-weight: 600; }
+    .status-value.ok  { color: #15803d; }
+    .status-value.err { color: #b91c1c; }
+    body[data-theme="dark"] .status-value.ok  { color: #86efac; }
+    body[data-theme="dark"] .status-value.err { color: #fca5a5; }
+    .status-value.loading { color: #6b7280; font-style: italic; font-weight: 400; }
+
+    .model-list { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem; }
+    .model-tag { padding: 0.15rem 0.5rem; border-radius: 8px; font-size: 0.75rem; background: #f1f5f9; color: #475569; }
+    body[data-theme="dark"] .model-tag { background: #1e293b; color: #94a3b8; }
+
+    /* ── Quick links ── */
+    .links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .link-chip {
+      padding: 0.35rem 0.75rem; border-radius: 20px;
+      background: #f1f5f9; color: #374151;
+      font-size: 0.83rem; text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      border: 1px solid #e5e7eb;
+    }
+    body[data-theme="dark"] .link-chip { background: #1e293b; color: #cbd5e0; border-color: #2d3748; }
+    .link-chip:hover { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+  </style>
+</head>
+<body data-theme="light">
+
+  <header class="app-header">
+    <h1>🎨 Artiste Coloriage — Administration</h1>
+    <div class="theme-switcher">
+      <span style="font-size:0.8rem;color:#6b7280;">Thème</span>
+      <button id="btn-theme-light" class="active">Clair</button>
+      <button id="btn-theme-dark">Sombre</button>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Éditeurs disponibles -->
+    <div class="section">
+      <div class="section-title">Éditeurs de données</div>
+      <div class="cards">
+
+        <a href="/data/taxonomy_editor.html" class="card">
+          <div class="card-icon">🏷️</div>
+          <div class="card-title">Taxonomie universelle</div>
+          <div class="card-desc">Gestion hiérarchique des termes et vocabulaires multilingues (FR/EN/AR). Enrichissement IA via Ollama.</div>
+          <span class="card-badge">Opérationnel</span>
+        </a>
+
+        <a href="/data/sites_editor.html" class="card">
+          <div class="card-icon">🌐</div>
+          <div class="card-title">Sites de publication</div>
+          <div class="card-desc">Gestion du portefeuille de sites de coloriage (URL, locale, pays, audience).</div>
+          <span class="card-badge">Nouveau</span>
+        </a>
+
+        <a href="/data/images_editor.html" class="card">
+          <div class="card-icon">🖼️</div>
+          <div class="card-title">Images</div>
+          <div class="card-desc">Base d'images organisée par taxonomie. Génération locale via Diffusers/SDXL/Flux.</div>
+          <span class="card-badge">Nouveau</span>
+        </a>
+
+        <div class="card" style="opacity:0.65;cursor:default;">
+          <div class="card-icon">📦</div>
+          <div class="card-title">Collections</div>
+          <div class="card-desc">Regroupement d'images par thème ou saison pour les exports.</div>
+          <span class="card-badge wip">À venir</span>
+        </div>
+
+        <div class="card" style="opacity:0.65;cursor:default;">
+          <div class="card-icon">📤</div>
+          <div class="card-title">Exports</div>
+          <div class="card-desc">Gestion des exports vers les sites — initialisation et mises à jour incrémentielles.</div>
+          <span class="card-badge wip">À venir</span>
+        </div>
+
+        <div class="card" style="opacity:0.65;cursor:default;">
+          <div class="card-icon">⚙️</div>
+          <div class="card-title">Jobs</div>
+          <div class="card-desc">Suivi des tâches de génération et publication (queue, logs, statuts).</div>
+          <span class="card-badge wip">À venir</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Statut API & Ollama -->
+    <div class="section">
+      <div class="section-title">Statut de l'API</div>
+      <div class="status-panel">
+        <div class="status-grid">
+          <div class="status-item">
+            <span class="status-label">API FastAPI</span>
+            <span class="status-value loading" id="api-status">Vérification…</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">Ollama (LLM local)</span>
+            <span class="status-value loading" id="ollama-status">Vérification…</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">Modèle par défaut</span>
+            <span class="status-value loading" id="ollama-default-model">—</span>
+          </div>
+        </div>
+        <div id="ollama-models-wrap" style="margin-top:0.75rem;display:none;">
+          <div class="status-label" style="margin-bottom:0.35rem;">Modèles disponibles</div>
+          <div class="model-list" id="ollama-models"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liens rapides -->
+    <div class="section">
+      <div class="section-title">Liens rapides</div>
+      <div class="links">
+        <a href="/docs" class="link-chip" target="_blank">📚 API Docs (Swagger)</a>
+        <a href="/api/ai/status" class="link-chip" target="_blank">🤖 Statut Ollama (JSON)</a>
+        <a href="/api/images" class="link-chip" target="_blank">🖼️ API Images (JSON)</a>
+        <a href="/api/sites" class="link-chip" target="_blank">🌐 API Sites (JSON)</a>
+        <a href="/api/taxonomy" class="link-chip" target="_blank">🏷️ API Taxonomie (JSON)</a>
+        <a href="/api/taxonomy/vocabularies/themes/terms" class="link-chip" target="_blank">📋 Termes vocabulary=themes</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:8000' : '';
+    const THEME_KEY = 'admin_theme';
+
+    // ── Theme ────────────────────────────────────────────────────────────────
+    function applyTheme(t) {
+      document.body.setAttribute('data-theme', t);
+      document.getElementById('btn-theme-light').classList.toggle('active', t === 'light');
+      document.getElementById('btn-theme-dark').classList.toggle('active', t === 'dark');
+      try { localStorage.setItem(THEME_KEY, t); } catch (_) {}
+    }
+    (function () {
+      try {
+        const s = localStorage.getItem(THEME_KEY);
+        if (s === 'light' || s === 'dark') applyTheme(s);
+      } catch (_) {}
+    })();
+    document.getElementById('btn-theme-light').addEventListener('click', () => applyTheme('light'));
+    document.getElementById('btn-theme-dark').addEventListener('click', () => applyTheme('dark'));
+
+    // ── API status ───────────────────────────────────────────────────────────
+    async function checkStatus() {
+      const apiEl    = document.getElementById('api-status');
+      const ollamaEl = document.getElementById('ollama-status');
+      const modelEl  = document.getElementById('ollama-default-model');
+      const modelsEl = document.getElementById('ollama-models');
+      const modelsWrap = document.getElementById('ollama-models-wrap');
+
+      try {
+        const res = await fetch(API_BASE + '/api/ai/status', { signal: AbortSignal.timeout(5000) });
+        if (res.ok) {
+          apiEl.textContent = '✅ En ligne';
+          apiEl.className = 'status-value ok';
+          const data = await res.json();
+          if (data.ollama_available) {
+            ollamaEl.textContent = '✅ Connecté (' + data.ollama_url + ')';
+            ollamaEl.className = 'status-value ok';
+            modelEl.textContent = data.default_model || '—';
+            modelEl.className = 'status-value ok';
+            if (data.models && data.models.length) {
+              modelsWrap.style.display = '';
+              modelsEl.innerHTML = data.models.map(m =>
+                '<span class="model-tag">' + escHtml(m) + '</span>'
+              ).join('');
+            }
+          } else {
+            ollamaEl.textContent = '⚠️ Non disponible';
+            ollamaEl.className = 'status-value err';
+            modelEl.textContent = '—';
+            modelEl.className = 'status-value err';
+          }
+        } else {
+          throw new Error('HTTP ' + res.status);
+        }
+      } catch (err) {
+        apiEl.textContent = '❌ Hors ligne (' + err.message + ')';
+        apiEl.className = 'status-value err';
+        ollamaEl.textContent = '—';
+        ollamaEl.className = 'status-value err';
+        modelEl.textContent = '—';
+        modelEl.className = 'status-value err';
+      }
+    }
+
+    function escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    checkStatus();
+  </script>
+  <script src="/data/shared/nav.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Éditeur Taxonomie universelle – Artiste Coloriage</title>
   <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/data/shared/nav.css">
   <style>
     * { box-sizing: border-box; }
     body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; margin: 0; padding: 0; transition: background 0.2s, color 0.2s; height: 100vh; overflow: hidden; }
@@ -101,6 +102,21 @@
     .form-panel-actions .primary { background: #1a73e8; color: #fff; }
     .form-panel-actions .secondary { background: #e8eaed; color: #202124; }
     body[data-theme="dark"] .form-panel-actions .secondary { background: #4a5568; color: #cbd5e0; }
+    /* Onglets de traduction dans le formulaire */
+    .lang-tabs { display: flex; gap: 0; border-bottom: 2px solid #dadce0; margin-bottom: 0.75rem; }
+    body[data-theme="dark"] .lang-tabs { border-color: #4a5568; }
+    .lang-tab { padding: 0.4rem 1rem; border: none; background: none; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: #5f6368; border-bottom: 2px solid transparent; margin-bottom: -2px; border-radius: 4px 4px 0 0; transition: color 0.15s, border-color 0.15s; }
+    body[data-theme="dark"] .lang-tab { color: #a0aec0; }
+    .lang-tab:hover { color: #1a73e8; background: #f1f3f4; }
+    body[data-theme="dark"] .lang-tab:hover { background: #2d3748; color: #90cdf4; }
+    .lang-tab.active { color: #1a73e8; border-bottom-color: #1a73e8; }
+    body[data-theme="dark"] .lang-tab.active { color: #90cdf4; border-bottom-color: #90cdf4; }
+    .lang-panel { display: none; }
+    .lang-panel.active { display: block; }
+    .form-divider { border: none; border-top: 1px solid #e0e0e0; margin: 0.75rem 0; }
+    body[data-theme="dark"] .form-divider { border-color: #2d3748; }
+    .form-field-label { font-size: 0.78rem; font-weight: 600; color: #5f6368; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.25rem; display: block; }
+    body[data-theme="dark"] .form-field-label { color: #a0aec0; }
     .action-btns { display: flex; gap: 0.2rem; align-items: center; }
     .action-btns button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; border: none; border-radius: 4px; cursor: pointer; background: #e8eaed; color: #5f6368; }
     .action-btns button svg { width: 16px; height: 16px; fill: currentColor; pointer-events: none; }
@@ -116,6 +132,9 @@
     .selection-bar button { padding: 0.3rem 0.75rem; border-radius: 5px; border: none; cursor: pointer; font-size: 0.82rem; font-weight: 500; }
     .selection-bar .sel-move { background: #1a73e8; color: #fff; }
     .selection-bar .sel-move:hover { background: #1557b0; }
+    .selection-bar .sel-enrich { background: linear-gradient(135deg,#6366f1,#8b5cf6); color: #fff; border: none; }
+    .selection-bar .sel-enrich:hover { opacity: 0.9; }
+    body[data-theme="dark"] .selection-bar .sel-enrich { background: linear-gradient(135deg,#6366f1,#8b5cf6); }
     .selection-bar .sel-delete { background: #fff; color: #c53030; border: 1px solid #c53030; }
     body[data-theme="dark"] .selection-bar .sel-delete { background: transparent; color: #fc8181; border-color: #fc8181; }
     .selection-bar .sel-delete:hover { background: #c53030; color: #fff; }
@@ -154,6 +173,229 @@
     body[data-theme="dark"] .pick-parent-item .item-path { color: #a0aec0; }
     .pick-parent-item.root-item .item-name { font-style: italic; color: #5f6368; }
     body[data-theme="dark"] .pick-parent-item.root-item .item-name { color: #a0aec0; }
+
+    /* ─── AI dropdown (toolbar) ─────────────────────────────────────────── */
+    .ai-dropdown-wrap { position: relative; }
+    #btn-ai-toolbar { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; border: none; }
+    #btn-ai-toolbar:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+    .ai-dropdown-menu { position: absolute; top: 100%; left: 0; margin-top: 4px; background: #fff; border: 1px solid #dadce0; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); z-index: 250; min-width: 220px; padding: 0.4rem 0; }
+    body[data-theme="dark"] .ai-dropdown-menu { background: #16213e; border-color: #2d3748; }
+    .ai-menu-section { padding: 0.25rem 0; }
+    .ai-menu-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; padding: 0.3rem 0.85rem 0.15rem; }
+    .ai-dropdown-menu button { display: block; width: 100%; text-align: left; padding: 0.45rem 0.85rem; border: none; background: none; cursor: pointer; font-size: 0.85rem; color: #202124; }
+    body[data-theme="dark"] .ai-dropdown-menu button { color: #f7fafc; }
+    .ai-dropdown-menu button:hover { background: #f1f3f4; }
+    body[data-theme="dark"] .ai-dropdown-menu button:hover { background: #2d3748; }
+    .ai-menu-divider { border-top: 1px solid #e8eaed; margin: 0.25rem 0; }
+    body[data-theme="dark"] .ai-menu-divider { border-color: #2d3748; }
+
+    /* ─── AI modal ──────────────────────────────────────────────────────── */
+    .ai-modal .modal-dialog { max-width: 580px; max-height: 90vh; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+    .ai-modal-header { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid #e8eaed; flex-shrink: 0; }
+    body[data-theme="dark"] .ai-modal-header { border-color: #2d3748; }
+    .ai-modal-header h3 { margin: 0; font-size: 1.05rem; flex: 1; }
+    .ai-modal-meta { font-size: 0.75rem; color: #9ca3af; white-space: nowrap; }
+    .ai-model-controls { display: flex; align-items: center; gap: 0.4rem; flex-shrink: 0; }
+    .ai-model-select { font-size: 0.78rem; padding: 0.2rem 0.35rem; border: 1px solid #dadce0; border-radius: 4px; background: #fff; color: #374151; max-width: 140px; cursor: pointer; }
+    body[data-theme="dark"] .ai-model-select { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .ai-temp-label { display: flex; align-items: center; gap: 0.2rem; font-size: 0.75rem; color: #9ca3af; white-space: nowrap; cursor: default; }
+    .ai-temp-input { width: 46px; font-size: 0.78rem; padding: 0.2rem 0.3rem; border: 1px solid #dadce0; border-radius: 4px; background: #fff; color: #374151; text-align: center; }
+    body[data-theme="dark"] .ai-temp-input { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .ai-modal-body { flex: 1; overflow-y: auto; padding: 1rem 1.25rem; }
+    .ai-modal-footer { padding: 0.75rem 1.25rem; border-top: 1px solid #e8eaed; display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center; flex-shrink: 0; }
+    body[data-theme="dark"] .ai-modal-footer { border-color: #2d3748; }
+    .ai-modal-loading { text-align: center; padding: 2.5rem 1rem; }
+    .ai-modal-loading .spinner { width: 36px; height: 36px; border-width: 3px; margin: 0 auto 1rem; }
+    .ai-modal-loading p { color: #5f6368; font-size: 0.9rem; margin: 0; }
+    body[data-theme="dark"] .ai-modal-loading p { color: #a0aec0; }
+    .ai-modal-error { background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 0.75rem 1rem; color: #b91c1c; font-size: 0.875rem; margin-bottom: 0.5rem; }
+    body[data-theme="dark"] .ai-modal-error { background: #2d1515; border-color: #7f1d1d; color: #fca5a5; }
+
+    /* Champs enrichissement (enrich-term / enrich-keywords) */
+    .ai-field-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.6rem; border: 1px solid #e8eaed; border-radius: 6px; margin-bottom: 0.5rem; }
+    body[data-theme="dark"] .ai-field-item { border-color: #2d3748; }
+    .ai-field-item input[type="checkbox"] { margin-top: 0.35rem; flex-shrink: 0; cursor: pointer; width: 15px; height: 15px; }
+    .ai-field-item-content { flex: 1; }
+    .ai-field-label { font-size: 0.78rem; font-weight: 700; color: #5f6368; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.3rem; }
+    body[data-theme="dark"] .ai-field-label { color: #a0aec0; }
+    .ai-field-input { width: 100%; padding: 0.35rem 0.5rem; border: 1px solid #dadce0; border-radius: 4px; font-size: 0.875rem; box-sizing: border-box; resize: vertical; }
+    body[data-theme="dark"] .ai-field-input { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .ai-field-input[dir="rtl"] { text-align: right; }
+    .ai-enrich-current-value { width: 100%; padding: 0.35rem 0.5rem; border: 1px solid #e8eaed; border-radius: 4px; font-size: 0.875rem; box-sizing: border-box; resize: vertical; background: #f8f9fa; color: #5f6368; }
+    body[data-theme="dark"] .ai-enrich-current-value { border-color: #2d3748; background: #1a202c; color: #a0aec0; }
+    .ai-enrich-current-value[dir="rtl"] { text-align: right; }
+    .ai-batch-term-section { border: 1px solid #e8eaed; border-radius: 6px; margin-bottom: 0.5rem; overflow: hidden; }
+    body[data-theme="dark"] .ai-batch-term-section { border-color: #2d3748; }
+    .ai-batch-term-header { padding: 0.5rem 0.75rem; background: #f8f9fa; font-weight: 600; font-size: 0.9rem; }
+    body[data-theme="dark"] .ai-batch-term-header { background: #2d3748; }
+
+    /* Cartes termes enfants (suggest-children) */
+    .ai-child-card { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.65rem; border: 1px solid #e8eaed; border-radius: 6px; margin-bottom: 0.45rem; }
+    body[data-theme="dark"] .ai-child-card { border-color: #2d3748; }
+    .ai-child-card input[type="checkbox"] { margin-top: 0.3rem; flex-shrink: 0; cursor: pointer; width: 15px; height: 15px; }
+    .ai-child-info { flex: 1; }
+    .ai-child-id { font-size: 0.75rem; font-family: monospace; color: #5f6368; }
+    body[data-theme="dark"] .ai-child-id { color: #a0aec0; }
+    .ai-child-names { font-size: 0.875rem; font-weight: 600; margin: 0.2rem 0; }
+    .ai-child-desc { font-size: 0.8rem; color: #5f6368; }
+    body[data-theme="dark"] .ai-child-desc { color: #a0aec0; }
+
+    /* Aperçu vocabulaire (generate-vocabulary) */
+    .ai-vocab-root { border: 1px solid #e8eaed; border-radius: 6px; margin-bottom: 0.5rem; overflow: hidden; }
+    body[data-theme="dark"] .ai-vocab-root { border-color: #2d3748; }
+    .ai-vocab-root-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.75rem; background: #f8f9fa; }
+    body[data-theme="dark"] .ai-vocab-root-header { background: #1e3a5f; }
+    .ai-vocab-root-header input[type="checkbox"] { flex-shrink: 0; cursor: pointer; width: 15px; height: 15px; }
+    .ai-vocab-root-label { font-weight: 600; font-size: 0.875rem; flex: 1; }
+    .ai-vocab-children { padding: 0.25rem 0.5rem; }
+    .ai-vocab-child-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.5rem; font-size: 0.83rem; }
+    .ai-vocab-child-row input[type="checkbox"] { flex-shrink: 0; cursor: pointer; }
+
+    /* Tags keywords */
+    .ai-keywords-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+    .ai-kw-tag { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.6rem; border: 1px solid #c7d2fe; border-radius: 20px; font-size: 0.8rem; background: #eef2ff; color: #3730a3; cursor: pointer; user-select: none; }
+    body[data-theme="dark"] .ai-kw-tag { background: #1e1b4b; border-color: #4338ca; color: #a5b4fc; }
+    .ai-kw-tag.selected { background: #6366f1; color: #fff; border-color: #6366f1; }
+    body[data-theme="dark"] .ai-kw-tag.selected { background: #4f46e5; border-color: #4f46e5; color: #fff; }
+
+    /* Select-all link */
+    .ai-select-all-link { font-size: 0.8rem; color: #6366f1; cursor: pointer; text-decoration: underline; margin-right: auto; }
+    body[data-theme="dark"] .ai-select-all-link { color: #a5b4fc; }
+
+    /* Generate-vocab form */
+    .ai-gen-form { display: flex; flex-direction: column; gap: 0.75rem; }
+    .ai-gen-form label { font-size: 0.85rem; }
+    .ai-gen-form input, .ai-gen-form select { width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #dadce0; border-radius: 4px; font-size: 0.9rem; box-sizing: border-box; }
+    body[data-theme="dark"] .ai-gen-form input, body[data-theme="dark"] .ai-gen-form select { border-color: #4a5568; background: #2d3748; color: #f7fafc; }
+    .ai-gen-form .form-row { display: flex; gap: 0.5rem; }
+    .ai-gen-form .form-row label { flex: 1; }
+
+    /* Bouton édition prompt */
+    .ai-edit-prompt-btn { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; padding: 0; border: 1px solid #dadce0; border-radius: 4px; background: #fff; color: #5f6368; font-size: 0.95rem; cursor: pointer; flex-shrink: 0; transition: background 0.15s, color 0.15s; }
+    .ai-edit-prompt-btn:hover { background: #f3f4f6; color: #1a73e8; border-color: #1a73e8; }
+    body[data-theme="dark"] .ai-edit-prompt-btn { border-color: #4a5568; background: #2d3748; color: #a0aec0; }
+    body[data-theme="dark"] .ai-edit-prompt-btn:hover { background: #1e3a5f; color: #93c5fd; border-color: #4299e1; }
+    .ai-edit-prompt-btn.custom-active { background: #fef3c7; color: #b45309; border-color: #f59e0b; }
+    body[data-theme="dark"] .ai-edit-prompt-btn.custom-active { background: #451a03; color: #fcd34d; border-color: #d97706; }
+
+    /* Onglets multi-modèles */
+    .ai-model-tabs-bar { display: flex; gap: 0.3rem; padding: 0.5rem 1.25rem 0; background: transparent; flex-shrink: 0; overflow-x: auto; border-bottom: 1px solid #e8eaed; }
+    body[data-theme="dark"] .ai-model-tabs-bar { border-color: #2d3748; }
+    .ai-model-tab { padding: 0.3rem 0.65rem; font-size: 0.78rem; border: 1px solid #dadce0; border-bottom: none; border-radius: 4px 4px 0 0; background: #f8f9fa; color: #5f6368; cursor: pointer; white-space: nowrap; margin-bottom: -1px; }
+    body[data-theme="dark"] .ai-model-tab { border-color: #4a5568; background: #1a202c; color: #a0aec0; }
+    .ai-model-tab:hover { background: #e8eaed; color: #202124; }
+    body[data-theme="dark"] .ai-model-tab:hover { background: #2d3748; color: #f7fafc; }
+    .ai-model-tab.active { background: #fff; color: #1a73e8; border-color: #e8eaed; font-weight: 600; z-index: 1; }
+    body[data-theme="dark"] .ai-model-tab.active { background: #1e293b; color: #60a5fa; border-color: #2d3748; }
+
+    /* Éditeur de prompt inline */
+    .ai-prompt-editor { border: 1px solid #e8eaed; border-radius: 8px; padding: 1rem; background: #fafafa; }
+    body[data-theme="dark"] .ai-prompt-editor { border-color: #2d3748; background: #0f1923; }
+    .ai-prompt-editor h4 { margin: 0 0 0.75rem; font-size: 0.88rem; color: #374151; }
+    body[data-theme="dark"] .ai-prompt-editor h4 { color: #e2e8f0; }
+    .ai-prompt-editor label { display: block; font-size: 0.78rem; font-weight: 600; color: #5f6368; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.25rem; }
+    body[data-theme="dark"] .ai-prompt-editor label { color: #a0aec0; }
+    .ai-prompt-editor textarea { width: 100%; font-family: monospace; font-size: 0.8rem; padding: 0.5rem 0.65rem; border: 1px solid #dadce0; border-radius: 4px; box-sizing: border-box; resize: vertical; line-height: 1.45; background: #fff; color: #202124; margin-bottom: 0.75rem; }
+    body[data-theme="dark"] .ai-prompt-editor textarea { border-color: #4a5568; background: #1a202c; color: #d1d5db; }
+    .ai-prompt-editor-note { font-size: 0.76rem; color: #9ca3af; margin-bottom: 0.75rem; }
+    .ai-prompt-editor-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+
+    /* Modal gestion des prompts */
+    .prompt-manager-dialog { max-width: 780px; width: 95vw; max-height: 90vh; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+    .prompt-manager-header { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid #e8eaed; flex-shrink: 0; }
+    body[data-theme="dark"] .prompt-manager-header { border-color: #2d3748; }
+    .prompt-manager-header h3 { margin: 0; font-size: 1.05rem; flex: 1; }
+    .prompt-manager-body { flex: 1; display: flex; overflow: hidden; }
+    .prompt-manager-list { width: 200px; flex-shrink: 0; border-right: 1px solid #e8eaed; padding: 0.75rem 0; overflow-y: auto; }
+    body[data-theme="dark"] .prompt-manager-list { border-color: #2d3748; }
+    .prompt-manager-item { display: flex; flex-direction: column; padding: 0.6rem 1rem; cursor: pointer; border-left: 3px solid transparent; }
+    .prompt-manager-item:hover { background: #f3f4f6; }
+    body[data-theme="dark"] .prompt-manager-item:hover { background: #1a202c; }
+    .prompt-manager-item.active { background: #eff6ff; border-left-color: #1a73e8; }
+    body[data-theme="dark"] .prompt-manager-item.active { background: #1e3a5f; border-left-color: #60a5fa; }
+    .prompt-manager-item-name { font-size: 0.85rem; font-weight: 600; }
+    .prompt-manager-item-desc { font-size: 0.75rem; color: #9ca3af; margin-top: 0.15rem; }
+    .prompt-manager-item-badge { font-size: 0.68rem; margin-top: 0.2rem; padding: 0.1rem 0.35rem; border-radius: 10px; background: #fef3c7; color: #92400e; display: inline-block; }
+    body[data-theme="dark"] .prompt-manager-item-badge { background: #451a03; color: #fcd34d; }
+    .prompt-manager-form { flex: 1; padding: 1rem 1.25rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .prompt-manager-form label { font-size: 0.78rem; font-weight: 600; color: #5f6368; text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 0.25rem; }
+    body[data-theme="dark"] .prompt-manager-form label { color: #a0aec0; }
+    .prompt-manager-form textarea, .prompt-manager-form input[type="text"], .prompt-manager-form input[type="number"] { width: 100%; font-family: monospace; font-size: 0.82rem; padding: 0.5rem 0.65rem; border: 1px solid #dadce0; border-radius: 4px; box-sizing: border-box; resize: vertical; background: #fff; color: #202124; }
+    body[data-theme="dark"] .prompt-manager-form textarea, body[data-theme="dark"] .prompt-manager-form input[type="text"], body[data-theme="dark"] .prompt-manager-form input[type="number"] { border-color: #4a5568; background: #1a202c; color: #d1d5db; }
+    .prompt-manager-form .form-row { display: flex; gap: 0.5rem; }
+    .prompt-manager-form .form-row > div { flex: 1; }
+    .prompt-manager-empty { display: flex; align-items: center; justify-content: center; flex: 1; color: #9ca3af; font-size: 0.9rem; }
+    .prompt-manager-footer { padding: 0.75rem 1.25rem; border-top: 1px solid #e8eaed; display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center; flex-shrink: 0; }
+    body[data-theme="dark"] .prompt-manager-footer { border-color: #2d3748; }
+
+    /* ─── Import diff modal ─────────────────────────────────────────────── */
+    .import-diff-modal .modal-dialog { max-width: 720px; max-height: 90vh; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+    .import-diff-header { display: flex; align-items: center; gap: 0.5rem; padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid #e8eaed; flex-shrink: 0; }
+    body[data-theme="dark"] .import-diff-header { border-color: #2d3748; }
+    .import-diff-header h3 { margin: 0; font-size: 1.05rem; flex: 1; }
+    .import-diff-body { flex: 1; overflow-y: auto; padding: 1rem 1.25rem; }
+    .import-diff-footer { padding: 0.75rem 1.25rem; border-top: 1px solid #e8eaed; display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center; flex-shrink: 0; }
+    body[data-theme="dark"] .import-diff-footer { border-color: #2d3748; }
+    #import-diff-textarea { width: 100%; height: 240px; font-family: monospace; font-size: 0.8rem; padding: 0.6rem 0.75rem; border: 1px solid #dadce0; border-radius: 6px; box-sizing: border-box; resize: vertical; line-height: 1.4; }
+    body[data-theme="dark"] #import-diff-textarea { border-color: #4a5568; background: #0f1923; color: #d1d5db; }
+    #import-diff-textarea:focus { outline: none; border-color: #1a73e8; }
+    .import-diff-error { background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 0.6rem 1rem; color: #b91c1c; font-size: 0.85rem; margin-bottom: 0.75rem; display: none; }
+    body[data-theme="dark"] .import-diff-error { background: #2d1515; border-color: #7f1d1d; color: #fca5a5; }
+    .import-diff-summary { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.82rem; align-items: center; }
+    .import-diff-summary span { font-size: 0.8rem; color: #5f6368; }
+    body[data-theme="dark"] .import-diff-summary span { color: #a0aec0; }
+    /* Status badges */
+    .diff-badge { display: inline-block; padding: 0.18rem 0.55rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+    .diff-badge--ready  { background: #dcfce7; color: #15803d; }
+    .diff-badge--update { background: #dbeafe; color: #1d4ed8; }
+    .diff-badge--conflict { background: #fef9c3; color: #854d0e; }
+    .diff-badge--error  { background: #fee2e2; color: #b91c1c; }
+    .diff-badge--skip   { background: #f1f5f9; color: #64748b; }
+    body[data-theme="dark"] .diff-badge--ready  { background: #14532d; color: #86efac; }
+    body[data-theme="dark"] .diff-badge--update { background: #1e3a5f; color: #93c5fd; }
+    body[data-theme="dark"] .diff-badge--conflict { background: #422006; color: #fde68a; }
+    body[data-theme="dark"] .diff-badge--error  { background: #450a0a; color: #fca5a5; }
+    body[data-theme="dark"] .diff-badge--skip   { background: #1e293b; color: #94a3b8; }
+    /* Op badges */
+    .diff-op { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.1rem 0.4rem; border-radius: 4px; font-family: monospace; background: #f1f5f9; color: #475569; }
+    body[data-theme="dark"] .diff-op { background: #1e293b; color: #94a3b8; }
+    /* Diff table */
+    .import-diff-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .import-diff-table th { text-align: left; padding: 0.4rem 0.6rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #5f6368; border-bottom: 2px solid #e8eaed; white-space: nowrap; }
+    body[data-theme="dark"] .import-diff-table th { color: #a0aec0; border-color: #2d3748; }
+    .import-diff-table td { padding: 0.45rem 0.6rem; border-bottom: 1px solid #f1f3f4; vertical-align: top; }
+    body[data-theme="dark"] .import-diff-table td { border-color: #1e293b; }
+    .import-diff-table tr:hover td { background: #f8f9fa; }
+    body[data-theme="dark"] .import-diff-table tr:hover td { background: #1e293b; }
+    .import-diff-table tr.diff-row--disabled td { opacity: 0.45; }
+    .diff-id-cell { font-family: monospace; font-weight: 600; font-size: 0.8rem; }
+    .diff-parent-cell { font-family: monospace; font-size: 0.78rem; color: #5f6368; }
+    body[data-theme="dark"] .diff-parent-cell { color: #a0aec0; }
+    .diff-msg-cell { font-size: 0.78rem; color: #5f6368; max-width: 200px; }
+    body[data-theme="dark"] .diff-msg-cell { color: #a0aec0; }
+    .diff-detail-toggle { font-size: 0.75rem; color: #1a73e8; cursor: pointer; text-decoration: underline; white-space: nowrap; }
+    .diff-detail-toggle:hover { color: #1557b0; }
+    .diff-detail-row td { padding: 0 0.6rem 0.5rem; }
+    .diff-changes { font-size: 0.78rem; font-family: monospace; background: #f8f9fa; border-radius: 4px; padding: 0.4rem 0.6rem; color: #374151; max-height: 120px; overflow-y: auto; }
+    body[data-theme="dark"] .diff-changes { background: #0f1923; color: #d1d5db; }
+    .diff-change-field { margin-bottom: 0.2rem; }
+    .diff-change-from { color: #b91c1c; text-decoration: line-through; }
+    .diff-change-to { color: #15803d; }
+    body[data-theme="dark"] .diff-change-from { color: #fca5a5; }
+    body[data-theme="dark"] .diff-change-to { color: #86efac; }
+    .import-diff-select-all { font-size: 0.8rem; color: #1a73e8; cursor: pointer; text-decoration: underline; margin-right: auto; }
+    body[data-theme="dark"] .import-diff-select-all { color: #90cdf4; }
+
+    /* Debug panel dans le modal IA */
+    .ai-debug-toggle { font-size: 0.78rem; color: #9ca3af; cursor: pointer; padding: 0.5rem 1.25rem 0; display: block; text-decoration: underline; }
+    .ai-debug-toggle:hover { color: #6366f1; }
+    .ai-debug-panel { display: none; padding: 0 1.25rem 0.5rem; }
+    .ai-debug-panel.open { display: block; }
+    .ai-debug-block { background: #f8f9fa; border: 1px solid #e8eaed; border-radius: 4px; padding: 0.5rem 0.75rem; margin-bottom: 0.5rem; }
+    body[data-theme="dark"] .ai-debug-block { background: #0f1923; border-color: #2d3748; }
+    .ai-debug-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #6366f1; margin-bottom: 0.3rem; }
+    .ai-debug-pre { font-size: 0.75rem; white-space: pre-wrap; word-break: break-word; max-height: 180px; overflow-y: auto; color: #374151; font-family: monospace; margin: 0; }
+    body[data-theme="dark"] .ai-debug-pre { color: #d1d5db; }
   </style>
 </head>
 <body data-theme="light">
@@ -175,7 +417,24 @@
     <button type="button" id="btn-undo" class="secondary" title="Annuler">Undo</button>
     <button type="button" id="btn-redo" class="secondary" title="Refaire">Redo</button>
     <button type="button" id="btn-export-json" class="secondary">Exporter JSON</button>
+    <button type="button" id="btn-import-diff" class="secondary" title="Importer des modifications via un diff JSON">Import diff</button>
     <button type="button" id="btn-add-row" class="secondary">Ajouter un terme</button>
+    <div class="ai-dropdown-wrap" id="ai-dropdown-wrap">
+      <button type="button" id="btn-ai-toolbar" title="Actions IA (Ollama)">✨ IA</button>
+      <div id="ai-dropdown-menu" class="ai-dropdown-menu" style="display:none;">
+        <div class="ai-menu-section">
+          <div class="ai-menu-label">Terme en cours / sélectionné</div>
+          <button type="button" id="ai-menu-enrich">Enrichir ce terme</button>
+          <button type="button" id="ai-menu-suggest-children">Suggérer des enfants…</button>
+          <button type="button" id="ai-menu-keywords">Enrichir les mots-clés</button>
+        </div>
+        <div class="ai-menu-divider"></div>
+        <div class="ai-menu-section">
+          <div class="ai-menu-label">Génération</div>
+          <button type="button" id="ai-menu-generate-vocab">Générer des termes par thème…</button>
+        </div>
+      </div>
+    </div>
     <div class="config-popover" id="config-popover">
       <button type="button" id="btn-config" class="secondary">Config</button>
       <div class="config-content" id="config-content">
@@ -196,6 +455,10 @@
           <h4>Actions en masse</h4>
           <p style="font-size:0.8rem;color:#5f6368;margin:0;">Sélectionnez des lignes dans le tableau pour voir les actions de masse.</p>
         </div>
+        <div class="config-section">
+          <h4>Prompts IA</h4>
+          <button type="button" id="btn-open-prompt-manager" class="secondary" style="width:100%;font-size:0.82rem;">Gérer les prompts…</button>
+        </div>
       </div>
     </div>
     <input type="text" id="filter-input" class="filter-input" placeholder="Rechercher…" style="max-width:180px;">
@@ -206,6 +469,7 @@
   <div id="selection-bar" class="selection-bar" role="toolbar" aria-label="Actions sur la sélection">
     <span class="sel-count" id="sel-count-label">0 sélectionné(s)</span>
     <button type="button" class="sel-move" id="sel-btn-move">Déplacer vers…</button>
+    <button type="button" class="sel-enrich" id="sel-btn-enrich" title="Enrichir les champs manquants avec l'IA">Enrichir la sélection</button>
     <button type="button" class="sel-delete" id="sel-btn-delete">Supprimer</button>
     <button type="button" class="sel-clear" id="sel-btn-clear">Tout désélectionner</button>
   </div>
@@ -219,16 +483,30 @@
         <button type="button" id="form-panel-close" class="form-panel-close" aria-label="Fermer">×</button>
       </div>
       <form id="term-form" class="term-form">
-        <label>ID <input type="text" id="form-id" required></label>
-        <label>Slug <input type="text" id="form-slug"></label>
-        <label>name_fr <input type="text" id="form-name_fr"></label>
-        <label>name_en <input type="text" id="form-name_en"></label>
-        <label>name_ar <input type="text" id="form-name_ar"></label>
-        <label>weight <input type="number" id="form-weight" value="0"></label>
-        <label>description_fr <textarea id="form-description_fr" rows="2"></textarea></label>
-        <label>description_en <textarea id="form-description_en" rows="2"></textarea></label>
-        <label>description_ar <textarea id="form-description_ar" rows="2"></textarea></label>
-        <label>keywords <input type="text" id="form-keywords" placeholder="mot1, mot2"></label>
+        <label><span class="form-field-label">ID</span><input type="text" id="form-id" required></label>
+        <label><span class="form-field-label">Slug</span><input type="text" id="form-slug"></label>
+        <div style="display:flex;gap:0.5rem;">
+          <label style="flex:1;"><span class="form-field-label">Weight</span><input type="number" id="form-weight" value="0"></label>
+          <label style="flex:2;"><span class="form-field-label">Keywords</span><input type="text" id="form-keywords" placeholder="mot1, mot2"></label>
+        </div>
+        <hr class="form-divider">
+        <div class="lang-tabs" role="tablist">
+          <button type="button" class="lang-tab active" role="tab" aria-selected="true"  data-lang="fr" aria-controls="lang-panel-fr">🇫🇷 FR</button>
+          <button type="button" class="lang-tab"        role="tab" aria-selected="false" data-lang="en" aria-controls="lang-panel-en">🇬🇧 EN</button>
+          <button type="button" class="lang-tab"        role="tab" aria-selected="false" data-lang="ar" aria-controls="lang-panel-ar">🇸🇦 AR</button>
+        </div>
+        <div id="lang-panel-fr" class="lang-panel active" role="tabpanel">
+          <label><span class="form-field-label">Nom (FR)</span><input type="text" id="form-name_fr"></label>
+          <label><span class="form-field-label">Description (FR)</span><textarea id="form-description_fr" rows="3"></textarea></label>
+        </div>
+        <div id="lang-panel-en" class="lang-panel" role="tabpanel">
+          <label><span class="form-field-label">Nom (EN)</span><input type="text" id="form-name_en"></label>
+          <label><span class="form-field-label">Description (EN)</span><textarea id="form-description_en" rows="3"></textarea></label>
+        </div>
+        <div id="lang-panel-ar" class="lang-panel" role="tabpanel" dir="rtl">
+          <label><span class="form-field-label">Nom (AR)</span><input type="text" id="form-name_ar"></label>
+          <label><span class="form-field-label">Description (AR)</span><textarea id="form-description_ar" rows="3"></textarea></label>
+        </div>
         <div class="form-panel-actions">
           <button type="submit" class="primary">Enregistrer</button>
           <button type="button" id="form-panel-cancel" class="secondary">Annuler</button>
@@ -270,13 +548,226 @@
       </div>
     </div>
   </div>
+
+  <!-- ─── Modal Import Diff ──────────────────────────────────────────────── -->
+  <div id="modal-import-diff" class="modal-overlay import-diff-modal" role="dialog" aria-modal="true" aria-labelledby="import-diff-title">
+    <div class="modal-dialog">
+      <div class="import-diff-header">
+        <h3 id="import-diff-title">⬆ Import diff JSON</h3>
+        <button type="button" id="btn-import-diff-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <div class="import-diff-body">
+        <!-- Étape 1 : Saisie -->
+        <div id="import-diff-step-input">
+          <p style="font-size:0.85rem;color:#5f6368;margin:0 0 0.6rem;">
+            Collez un tableau JSON d'opérations. Opérateurs supportés :
+            <code>add</code>, <code>upsert</code>, <code>update</code>, <code>remove</code>.
+          </p>
+          <textarea id="import-diff-textarea" spellcheck="false" placeholder='[&#10;  { "op": "add", "value": { "id": "nature", "slug": "nature", "parent_id": null, "name_fr": "Nature", "name_en": "Nature", "name_ar": "الطبيعة" } },&#10;  { "op": "upsert", "value": { "id": "animaux", "weight": 5 } }&#10;]'></textarea>
+          <div id="import-diff-parse-error" class="import-diff-error"></div>
+        </div>
+        <!-- Étape 2 : Preview -->
+        <div id="import-diff-step-preview" style="display:none;">
+          <div class="import-diff-summary" id="import-diff-summary"></div>
+          <div id="import-diff-preview-error" class="import-diff-error"></div>
+          <table class="import-diff-table" id="import-diff-table">
+            <thead>
+              <tr>
+                <th style="width:32px;"><input type="checkbox" id="import-diff-check-all" title="Tout sélectionner"></th>
+                <th>Op</th>
+                <th>ID</th>
+                <th>Parent</th>
+                <th>Statut</th>
+                <th>Détails</th>
+              </tr>
+            </thead>
+            <tbody id="import-diff-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="import-diff-footer">
+        <span class="import-diff-select-all" id="import-diff-select-all-link" style="display:none;">Tout sélectionner / Désélectionner</span>
+        <button type="button" id="btn-import-diff-cancel" class="secondary">Annuler</button>
+        <button type="button" id="btn-import-diff-validate" class="secondary">Valider →</button>
+        <button type="button" id="btn-import-diff-back" class="secondary" style="display:none;">← Retour</button>
+        <button type="button" id="btn-import-diff-apply" class="primary" style="display:none;" disabled>Appliquer la sélection</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Modal IA : suggestions Ollama ──────────────────────────────────── -->
+  <div id="modal-ai-suggestions" class="modal-overlay ai-modal" role="dialog" aria-modal="true" aria-labelledby="ai-modal-title">
+    <div class="modal-dialog ai-modal-dialog">
+      <div class="ai-modal-header">
+        <h3 id="ai-modal-title">Suggestions IA</h3>
+        <div class="ai-model-controls">
+          <select id="ai-model-select" title="Modèle Ollama" class="ai-model-select">
+            <option value="qwen2.5:7b">qwen2.5:7b</option>
+          </select>
+          <label class="ai-temp-label" title="Température (créativité)">
+            temp
+            <input type="number" id="ai-temp-input" value="0.3" min="0" max="1" step="0.1" class="ai-temp-input">
+          </label>
+          <button type="button" id="btn-ai-edit-prompt" class="ai-edit-prompt-btn" title="Éditer le prompt avant envoi">✎</button>
+        </div>
+        <button type="button" id="btn-ai-modal-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <div id="ai-model-tabs" style="display:none;" class="ai-model-tabs-bar"></div>
+      <div class="ai-modal-body">
+        <!-- Éditeur de prompt inline -->
+        <div id="ai-prompt-editor" style="display:none;" class="ai-prompt-editor">
+          <h4>Éditer le prompt</h4>
+          <p class="ai-prompt-editor-note">Les modifications s'appliquent uniquement à cet envoi. Pour sauvegarder définitivement, utilisez "Gérer les prompts" dans Config.</p>
+          <label for="ai-prompt-system-ta">Prompt système</label>
+          <textarea id="ai-prompt-system-ta" rows="4" placeholder="Instruction système pour le modèle…"></textarea>
+          <label for="ai-prompt-user-ta">Prompt utilisateur</label>
+          <textarea id="ai-prompt-user-ta" rows="8" placeholder="Prompt envoyé au modèle (variables {term_json} etc. déjà substituées)…"></textarea>
+          <div class="ai-prompt-editor-actions">
+            <button type="button" id="btn-ai-prompt-cancel" class="secondary">Annuler</button>
+            <button type="button" id="btn-ai-prompt-apply" class="primary">Utiliser ce prompt ✓</button>
+          </div>
+        </div>
+        <div id="ai-modal-loading" class="ai-modal-loading">
+          <div class="spinner autosave-indicator" style="display:inline-block;"></div>
+          <p>Génération en cours avec Ollama…</p>
+          <p style="font-size:0.8rem;margin-top:0.25rem;">Cela peut prendre 10 à 60 secondes selon le modèle.</p>
+        </div>
+        <div id="ai-modal-error" class="ai-modal-error" style="display:none;"></div>
+        <!-- Vue : formulaire enrichissement en masse (enrich-term-batch phase 1) -->
+        <div id="ai-view-enrich-batch-form" style="display:none;">
+          <p id="ai-view-enrich-batch-intro" style="font-size:0.85rem;color:#5f6368;margin:0 0 0.75rem;"></p>
+          <div id="ai-enrich-batch-terms-list"></div>
+          <div id="ai-enrich-batch-fields-list"></div>
+        </div>
+        <!-- Vue : résultats enrichissement en masse (enrich-term-batch phase 2) -->
+        <div id="ai-view-enrich-batch-results" style="display:none;">
+          <p id="ai-view-enrich-batch-results-intro" style="font-size:0.85rem;color:#5f6368;margin:0 0 0.75rem;"></p>
+          <div id="ai-enrich-batch-results-list"></div>
+        </div>
+        <!-- Vue : formulaire sélection champs à enrichir (enrich-term phase 1) -->
+        <div id="ai-view-enrich-form" style="display:none;">
+          <p id="ai-view-enrich-form-intro" style="font-size:0.85rem;color:#5f6368;margin:0 0 0.75rem;">Sélectionnez les champs à générer par l'IA. Les champs vides sont pré-cochés.</p>
+          <div id="ai-enrich-form-list"></div>
+        </div>
+        <!-- Vue : enrichissement champs (enrich-term phase 2 - résultats) -->
+        <div id="ai-view-fields" style="display:none;">
+          <p id="ai-view-fields-intro" style="font-size:0.85rem;color:#5f6368;margin:0 0 0.75rem;"></p>
+          <div id="ai-fields-list"></div>
+        </div>
+        <!-- Vue : mots-clés (enrich-keywords) -->
+        <div id="ai-view-keywords" style="display:none;">
+          <p id="ai-view-kw-intro" style="font-size:0.85rem;color:#5f6368;margin:0 0 0.75rem;"></p>
+          <div class="ai-keywords-wrap" id="ai-keywords-list"></div>
+        </div>
+        <!-- Vue : termes enfants (suggest-children) -->
+        <div id="ai-view-children" style="display:none;">
+          <p id="ai-view-children-intro" style="font-size:0.85rem;color:#5f6368;margin:0 0 0.75rem;"></p>
+          <div id="ai-children-list"></div>
+        </div>
+        <!-- Vue : formulaire génération de vocabulaire -->
+        <div id="ai-view-gen-form" style="display:none;">
+          <div class="ai-gen-form">
+            <label>
+              <span class="form-field-label">Thème</span>
+              <input type="text" id="ai-gen-theme" placeholder="ex: sports, fêtes, nature, science…">
+            </label>
+            <div class="form-row">
+              <label>
+                <span class="form-field-label">Termes racines</span>
+                <input type="number" id="ai-gen-root-count" value="5" min="1" max="15">
+              </label>
+              <label>
+                <span class="form-field-label">Enfants par racine</span>
+                <input type="number" id="ai-gen-children-count" value="3" min="0" max="10">
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- Vue : résultats génération vocabulaire -->
+        <div id="ai-view-vocab" style="display:none;">
+          <p id="ai-view-vocab-intro" style="font-size:0.85rem;color:#5f6368;margin:0 0 0.75rem;"></p>
+          <div id="ai-vocab-list"></div>
+        </div>
+      </div>
+      <!-- Debug panel (prompt + réponse brute) -->
+      <span id="ai-debug-toggle" class="ai-debug-toggle" style="display:none;">▶ Voir le prompt et la réponse brute</span>
+      <div id="ai-debug-panel" class="ai-debug-panel">
+        <div class="ai-debug-block">
+          <div class="ai-debug-label">Prompt envoyé</div>
+          <pre id="ai-debug-prompt" class="ai-debug-pre">—</pre>
+        </div>
+        <div class="ai-debug-block">
+          <div class="ai-debug-label">Réponse brute Ollama</div>
+          <pre id="ai-debug-raw" class="ai-debug-pre">—</pre>
+        </div>
+      </div>
+
+      <div class="ai-modal-footer">
+        <span id="ai-select-all-link" class="ai-select-all-link" style="display:none;">Tout sélectionner / Désélectionner</span>
+        <button type="button" id="btn-ai-modal-cancel" class="secondary modal-actions">Fermer</button>
+        <button type="button" id="btn-ai-modal-generate" class="primary" style="display:none; background: linear-gradient(135deg,#6366f1,#8b5cf6); border:none;">✨ Générer</button>
+        <button type="button" id="btn-ai-modal-apply" class="primary" style="display:none;">Appliquer la sélection</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ─── Modal gestion des prompts IA ────────────────────────────────────── -->
+  <div id="modal-prompt-manager" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+    <div class="modal-dialog prompt-manager-dialog">
+      <div class="prompt-manager-header">
+        <h3 id="pm-title">Gestion des prompts IA</h3>
+        <button type="button" id="btn-pm-close" class="form-panel-close" aria-label="Fermer">×</button>
+      </div>
+      <div class="prompt-manager-body">
+        <div class="prompt-manager-list" id="pm-list"></div>
+        <div class="prompt-manager-form" id="pm-form" style="display:none;">
+          <div>
+            <label for="pm-system-ta">Prompt système</label>
+            <textarea id="pm-system-ta" rows="5"></textarea>
+          </div>
+          <div>
+            <label for="pm-user-ta">Prompt utilisateur</label>
+            <textarea id="pm-user-ta" rows="10"></textarea>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="pm-model-input">Modèle par défaut</label>
+              <input type="text" id="pm-model-input" placeholder="ex: qwen2.5:7b">
+            </div>
+            <div>
+              <label for="pm-temp-input">Température</label>
+              <input type="number" id="pm-temp-input" min="0" max="2" step="0.1" style="font-family:inherit;resize:none;">
+            </div>
+          </div>
+          <div id="pm-save-status" style="font-size:0.82rem;color:#15803d;display:none;"></div>
+        </div>
+        <div class="prompt-manager-empty" id="pm-empty">Sélectionnez un prompt dans la liste.</div>
+      </div>
+      <div class="prompt-manager-footer">
+        <button type="button" id="btn-pm-reset" class="secondary" style="display:none;" title="Revenir au prompt YAML d'origine">Réinitialiser</button>
+        <button type="button" id="btn-pm-cancel" class="secondary">Fermer</button>
+        <button type="button" id="btn-pm-save" class="primary" style="display:none;">Sauvegarder</button>
+      </div>
+    </div>
   </div>
 
   <script src="https://unpkg.com/tabulator-tables@6.3.1/dist/js/tabulator.min.js"></script>
   <script>
-    const THEME_KEY = 'taxonomy_editor_theme';
-    const COLUMNS_VISIBLE_KEY = 'taxonomy_editor_columns';
-    const AUTOSAVE_KEY = 'taxonomy_editor_autosave';
+    // ── Configuration de l'éditeur (à surcharger pour d'autres vocabulaires) ─
+    const EDITOR_CONFIG = {
+      vocabularyId: 'themes',
+      taxonomyId: 'universal_v0',
+      languages: ['fr', 'en', 'ar'],
+      undoMax: 100,
+      debouncePut: 500,
+      localPort: 8000,          // port de dev (accès fichier:// local)
+      storagePrefix: 'taxonomy_editor',
+    };
+
+    const THEME_KEY = EDITOR_CONFIG.storagePrefix + '_theme';
+    const COLUMNS_VISIBLE_KEY = EDITOR_CONFIG.storagePrefix + '_columns';
+    const AUTOSAVE_KEY = EDITOR_CONFIG.storagePrefix + '_autosave';
     const FILTER_FIELDS = ['id', 'slug', 'name_fr', 'name_en', 'name_ar', 'description_fr', 'description_en', 'description_ar', 'keywords'];
 
     const DATA_COLUMN_DEFS = [
@@ -286,6 +777,7 @@
       { field: 'name_en', title: 'name_en', width: 140, editor: 'input' },
       { field: 'name_ar', title: 'name_ar', width: 120, editor: 'input' },
       { field: 'weight', title: 'weight', width: 70, editor: 'number', hozAlign: 'center' },
+      { field: 'subjects_count', title: 'Sujets', width: 90, hozAlign: 'center', sorter: 'number' },
       { field: 'description_fr', title: 'description_fr', width: 220, minWidth: 120, editor: 'input' },
       { field: 'description_en', title: 'description_en', width: 220, minWidth: 120, editor: 'input' },
       { field: 'description_ar', title: 'description_ar', width: 180, minWidth: 120, editor: 'input' },
@@ -297,6 +789,7 @@
     const iconDuplicate = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>';
     const iconAddChild = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 7h-2v3H8v2h3v3h2v-3h3v-2h-3V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>';
     const iconMove = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"/></svg>';
+    const iconAI = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z"/></svg>';
 
     function actionsFormatter(cell) {
       const row = cell.getRow();
@@ -339,9 +832,19 @@
       dupBtn.innerHTML = iconDuplicate;
       dupBtn.dataset.termId = id;
 
+      const aiBtn = document.createElement('button');
+      aiBtn.type = 'button';
+      aiBtn.className = 'ai-enrich';
+      aiBtn.title = 'Enrichir avec l\'IA (Ollama)';
+      aiBtn.innerHTML = iconAI;
+      aiBtn.dataset.termId = id;
+      aiBtn.style.background = 'linear-gradient(135deg,#6366f1,#8b5cf6)';
+      aiBtn.style.color = '#fff';
+
       div.appendChild(editBtn);
       div.appendChild(addChildBtn);
       div.appendChild(moveBtn);
+      div.appendChild(aiBtn);
       div.appendChild(delBtn);
       div.appendChild(dupBtn);
 
@@ -355,6 +858,16 @@
           await moveTermToParent(id, newParentId);
         });
       });
+      aiBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const termIds = _aiGetSelectedTermIds();
+        if (termIds.length > 1) {
+          openAiModal('enrich-term-batch', { termIds: termIds });
+        } else {
+          openAiModal('enrich-term', { termId: id });
+        }
+      });
       delBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openConfirmDeleteModal(row); });
       dupBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); duplicateByTermId(id); });
       return div;
@@ -363,10 +876,10 @@
     const ALL_COLUMN_DEFS = [
       { formatter: 'rowSelection', title: '', width: 40, hozAlign: 'center', headerSort: false, frozen: true },
       ...DATA_COLUMN_DEFS,
-      { title: 'Actions', width: 140, formatter: actionsFormatter, headerSort: false, frozen: true },
+      { title: 'Actions', width: 165, formatter: actionsFormatter, headerSort: false, frozen: true },
     ];
 
-    const DEFAULT_VISIBLE = ['id', 'slug', 'name_fr', 'name_en', 'name_ar', 'weight', 'description_fr', 'keywords'];
+    const DEFAULT_VISIBLE = ['id', 'slug', 'name_fr', 'name_en', 'name_ar', 'weight', 'subjects_count', 'description_fr', 'keywords'];
 
     function keywordsFormatter(cell) {
       const v = cell.getValue();
@@ -398,13 +911,13 @@
       return input;
     }
 
-    let taxonomyMeta = { taxonomy_id: 'universal_v0', label: 'Taxonomie universelle v0', languages: ['fr', 'en', 'ar'] };
+    let taxonomyMeta = { taxonomy_id: EDITOR_CONFIG.taxonomyId, label: 'Taxonomie universelle v0', languages: EDITOR_CONFIG.languages };
     let currentVocabularies = [];
-    let currentVocabularyId = 'themes';
+    let currentVocabularyId = EDITOR_CONFIG.vocabularyId;
     let dataSource = 'none';
     let visibleColumns = [];
     let modifiedTermIds = new Set();
-    const PUT_DEBOUNCE_MS = 500;
+    const PUT_DEBOUNCE_MS = EDITOR_CONFIG.debouncePut;
     let putTermDebounceTimers = {};
     let autosaveInProgress = false;
     let editingRow = null;
@@ -414,7 +927,7 @@
     const configAutosaveEl = document.getElementById('config-autosave');
     const undoStack = [];
     const redoStack = [];
-    const MAX_UNDO = 100;
+    const MAX_UNDO = EDITOR_CONFIG.undoMax;
 
     function pushUndo(op) {
       undoStack.push(op);
@@ -440,19 +953,16 @@
             payload[op.field] = op.oldValue;
             await putTerm(payload);
             redoStack.push({ type: 'cellEdit', termId: op.termId, field: op.field, oldValue: op.oldValue, newValue: op.newValue });
-            const terms = await fetchVocabularyTerms();
-            if (table) table.setData(terms);
+            await _reloadTable();
           }
         } else if (op.type === 'add') {
           await deleteTermApi(op.termPayload.id);
           redoStack.push(op);
-          const terms = await fetchVocabularyTerms();
-          if (table) table.setData(terms);
+          await _reloadTable();
         } else if (op.type === 'delete') {
           await postTerm(op.termPayload);
           redoStack.push(op);
-          const terms = await fetchVocabularyTerms();
-          if (table) table.setData(terms);
+          await _reloadTable();
         }
         setStatus('Annulé.');
       } catch (err) {
@@ -472,19 +982,16 @@
             payload[op.field] = op.newValue;
             await putTerm(payload);
             undoStack.push({ type: 'cellEdit', termId: op.termId, field: op.field, oldValue: op.newValue, newValue: op.oldValue });
-            const terms = await fetchVocabularyTerms();
-            if (table) table.setData(terms);
+            await _reloadTable();
           }
         } else if (op.type === 'add') {
           await postTerm(op.termPayload);
           undoStack.push(op);
-          const terms = await fetchVocabularyTerms();
-          if (table) table.setData(terms);
+          await _reloadTable();
         } else if (op.type === 'delete') {
           await deleteTermApi(op.termPayload.id);
           undoStack.push(op);
-          const terms = await fetchVocabularyTerms();
-          if (table) table.setData(terms);
+          await _reloadTable();
         }
         setStatus('Refait.');
       } catch (err) {
@@ -665,6 +1172,7 @@
       if (!nodes || !Array.isArray(nodes)) return;
       nodes.forEach(function(n) {
         n.parent_id = parentId;
+        if (n.subjects_count === undefined || n.subjects_count === null) n.subjects_count = 0;
         if (n.children && n.children.length) normalizeTreeWithParentId(n.children, n.id);
       });
     }
@@ -686,7 +1194,7 @@
     let pendingDeleteRow = null;
     let pendingCascadeRow = null;
 
-    const API_BASE = (window.location.protocol === 'file:') ? 'http://localhost:8000' : '';
+    const API_BASE = (window.location.protocol === 'file:') ? ('http://localhost:' + EDITOR_CONFIG.localPort) : '';
     const fileInput = document.getElementById('file-input');
     const btnLoadApi = document.getElementById('btn-load-api');
     const btnSave = document.getElementById('btn-save');
@@ -716,41 +1224,31 @@
       clearRows(table.getRows());
     }
 
+    function _populateForm(d) {
+      document.getElementById('form-id').value = d.id || '';
+      document.getElementById('form-slug').value = d.slug || '';
+      document.getElementById('form-name_fr').value = d.name_fr || '';
+      document.getElementById('form-name_en').value = d.name_en || '';
+      document.getElementById('form-name_ar').value = d.name_ar || '';
+      document.getElementById('form-weight').value = d.weight ?? 0;
+      document.getElementById('form-description_fr').value = d.description_fr || '';
+      document.getElementById('form-description_en').value = d.description_en || '';
+      document.getElementById('form-description_ar').value = d.description_ar || '';
+      document.getElementById('form-keywords').value = Array.isArray(d.keywords) ? d.keywords.join(', ') : (d.keywords || '');
+    }
+
     function openFormPanel(row, forcedParentId) {
       editingForcedParentId = forcedParentId;
-      // Retirer le highlight de l'ancienne ligne
       _clearRowEditingHighlight();
+      const header = formPanel.querySelector('.form-panel-header h2');
       if (row) {
         editingRow = row;
-        const d = row.getData();
-        document.getElementById('form-id').value = d.id || '';
-        document.getElementById('form-slug').value = d.slug || '';
-        document.getElementById('form-name_fr').value = d.name_fr || '';
-        document.getElementById('form-name_en').value = d.name_en || '';
-        document.getElementById('form-name_ar').value = d.name_ar || '';
-        document.getElementById('form-weight').value = d.weight ?? 0;
-        document.getElementById('form-description_fr').value = d.description_fr || '';
-        document.getElementById('form-description_en').value = d.description_en || '';
-        document.getElementById('form-description_ar').value = d.description_ar || '';
-        document.getElementById('form-keywords').value = Array.isArray(d.keywords) ? d.keywords.join(', ') : (d.keywords || '');
-        const header = formPanel.querySelector('.form-panel-header h2');
+        _populateForm(row.getData());
         if (header) header.textContent = 'Éditer le terme';
-        // Highlight la ligne active
         try { row.getElement().classList.add('row-editing'); } catch (_) {}
       } else {
-        // Nouveau terme enfant
         editingRow = null;
-        document.getElementById('form-id').value = '';
-        document.getElementById('form-slug').value = '';
-        document.getElementById('form-name_fr').value = '';
-        document.getElementById('form-name_en').value = '';
-        document.getElementById('form-name_ar').value = '';
-        document.getElementById('form-weight').value = 0;
-        document.getElementById('form-description_fr').value = '';
-        document.getElementById('form-description_en').value = '';
-        document.getElementById('form-description_ar').value = '';
-        document.getElementById('form-keywords').value = '';
-        const header = formPanel.querySelector('.form-panel-header h2');
+        _populateForm({});
         if (header) header.textContent = 'Nouveau terme enfant';
       }
       formPanel.classList.add('open');
@@ -809,8 +1307,7 @@
       try {
         await deleteTermApi(termIdStr, !!cascade);
         if (API_BASE) {
-          const terms = await fetchVocabularyTerms();
-          table.setData(terms);
+          await _reloadTable();
         } else {
           row.delete();
         }
@@ -836,8 +1333,7 @@
         try {
           await deleteTermApi(termIdStr, false);
           if (API_BASE) {
-            const terms = await fetchVocabularyTerms();
-            table.setData(terms);
+            await _reloadTable();
           } else {
             row.delete();
           }
@@ -887,13 +1383,25 @@
         };
         await postTerm(payload);
         pushUndo({ type: 'add', termPayload: payload });
-        const terms = await fetchVocabularyTerms();
-        table.setData(terms);
+        await _reloadTable();
         setStatus('Terme dupliqué : « ' + newId + ' ».');
       } catch (err) {
         const msg = (err && err.message) ? err.message : String(err);
         setStatus('Erreur duplication : ' + msg);
       }
+    }
+
+    async function _parseApiError(res) {
+      const errBody = await res.json().catch(() => ({}));
+      const detail = errBody.detail;
+      if (typeof detail === 'string') return detail;
+      if (detail && typeof detail.message === 'string') {
+        let msg = detail.message;
+        if (detail.children_count != null) msg += ' (' + detail.children_count + ' enfant(s)).';
+        if (detail.references && typeof detail.references === 'object') msg += ' Références : ' + JSON.stringify(detail.references);
+        return msg;
+      }
+      return JSON.stringify(detail || errBody || res.statusText || 'Erreur ' + res.status);
     }
 
     function buildTermPayload(rowData) {
@@ -923,11 +1431,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) {
-        const errBody = await res.json().catch(() => ({}));
-        const detail = typeof errBody.detail === 'string' ? errBody.detail : JSON.stringify(errBody.detail || res.statusText);
-        throw new Error(detail);
-      }
+      if (!res.ok) throw new Error(await _parseApiError(res));
       modifiedTermIds.delete(tid);
       hasUnsavedChanges = modifiedTermIds.size > 0;
       updateUnsavedIndicator();
@@ -940,11 +1444,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) {
-        const errBody = await res.json().catch(() => ({}));
-        const detail = typeof errBody.detail === 'string' ? errBody.detail : JSON.stringify(errBody.detail || res.statusText);
-        throw new Error(detail);
-      }
+      if (!res.ok) throw new Error(await _parseApiError(res));
       return res.json();
     }
 
@@ -955,17 +1455,8 @@
       if (!res.ok) {
         const errBody = await res.json().catch(() => ({}));
         const detail = errBody.detail;
-        let msg;
-        if (typeof detail === 'string') {
-          msg = detail;
-        } else if (detail && typeof detail.message === 'string') {
-          msg = detail.message;
-          if (detail.children_count != null) msg += ' (' + detail.children_count + ' enfant(s)).';
-          if (detail.references && typeof detail.references === 'object') msg += ' Références : ' + JSON.stringify(detail.references);
-        } else {
-          msg = res.status === 409 ? 'Suppression refusée (terme utilisé ou ayant des enfants).' : (res.statusText || 'Erreur ' + res.status);
-        }
         const canCascade = res.status === 409 && detail && detail.children_count != null;
+        const msg = await _parseApiError({ json: () => Promise.resolve(errBody), status: res.status, statusText: res.statusText });
         const err = new Error(msg);
         err.canCascade = canCascade;
         throw err;
@@ -988,12 +1479,19 @@
       return terms;
     }
 
+    async function _reloadTable() {
+      const terms = await fetchVocabularyTerms();
+      if (table) {
+        table.setData(terms);
+        table.redraw(true);
+      }
+    }
+
     async function loadVocabularyIntoTable() {
       if (!table) return;
       try {
         if (dataSource === 'api') {
-          const terms = await fetchVocabularyTerms();
-          table.setData(terms);
+          await _reloadTable();
           setStatus('Vocabulaire « ' + currentVocabularyId + ' » chargé.');
         } else {
           const v = currentVocabularies.find(function(x) { return (x.id || 'themes') === currentVocabularyId; });
@@ -1146,6 +1644,16 @@
       _pickParentSelectedId = undefined;
     }
 
+    function _findInTree(nodes, id) {
+      if (!nodes) return null;
+      for (var i = 0; i < nodes.length; i++) {
+        if (String(nodes[i].id) === String(id)) return nodes[i];
+        var found = _findInTree(nodes[i].children, id);
+        if (found) return found;
+      }
+      return null;
+    }
+
     // ─── Déplacement de termes ───────────────────────────────────────────────────
 
     async function moveTermToParent(termId, newParentId) {
@@ -1153,19 +1661,7 @@
       setStatus('Déplacement en cours…');
       try {
         setAutosaveIndicator(true);
-        // Construire le payload complet à partir des données actuelles
-        var allFlat = flattenTreeWithDepth(table ? table.getData() : []);
-        var termData = null;
-        function findInTree(nodes) {
-          if (!nodes) return null;
-          for (var i = 0; i < nodes.length; i++) {
-            if (String(nodes[i].id) === String(termId)) return nodes[i];
-            var found = findInTree(nodes[i].children);
-            if (found) return found;
-          }
-          return null;
-        }
-        termData = findInTree(table ? table.getData() : []);
+        var termData = _findInTree(table ? table.getData() : [], termId);
         if (!termData) throw new Error('Terme non trouvé dans la table');
         var payload = {
           id: termData.id,
@@ -1181,8 +1677,7 @@
           parent_id: newParentId || null,
         };
         await putTerm(payload);
-        var terms = await fetchVocabularyTerms();
-        if (table) table.setData(terms);
+        await _reloadTable();
         setStatus('Terme « ' + termId + ' » déplacé.');
       } catch (err) {
         setStatus('Erreur déplacement : ' + (err && err.message ? err.message : String(err)));
@@ -1197,18 +1692,9 @@
       try {
         setAutosaveIndicator(true);
         var treeData = table ? table.getData() : [];
-        function findInTree(nodes, id) {
-          if (!nodes) return null;
-          for (var i = 0; i < nodes.length; i++) {
-            if (String(nodes[i].id) === String(id)) return nodes[i];
-            var found = findInTree(nodes[i].children, id);
-            if (found) return found;
-          }
-          return null;
-        }
         for (var i = 0; i < termIds.length; i++) {
           var tid = termIds[i];
-          var termData = findInTree(treeData, tid);
+          var termData = _findInTree(treeData, tid);
           if (!termData) continue;
           var payload = {
             id: termData.id,
@@ -1225,8 +1711,7 @@
           };
           await putTerm(payload);
         }
-        var terms = await fetchVocabularyTerms();
-        if (table) table.setData(terms);
+        await _reloadTable();
         setStatus(termIds.length + ' terme(s) déplacé(s).');
       } catch (err) {
         setStatus('Erreur déplacement sélection : ' + (err && err.message ? err.message : String(err)));
@@ -1361,13 +1846,7 @@
     });
 
     function getTermDataFromTree(nodes, termId) {
-      if (!nodes || !Array.isArray(nodes)) return null;
-      for (let i = 0; i < nodes.length; i++) {
-        if (nodes[i].id === termId) return nodes[i];
-        const found = getTermDataFromTree(nodes[i].children, termId);
-        if (found) return found;
-      }
-      return null;
+      return _findInTree(nodes, termId);
     }
 
     async function saveModifiedTerms() {
@@ -1424,6 +1903,284 @@
       setStatus('JSON exporté.');
     });
 
+    // ─── Import Diff ─────────────────────────────────────────────────────────
+
+    const importDiffModal     = document.getElementById('modal-import-diff');
+    const importDiffTextarea  = document.getElementById('import-diff-textarea');
+    const importDiffParseErr  = document.getElementById('import-diff-parse-error');
+    const importDiffPrevErr   = document.getElementById('import-diff-preview-error');
+    const importDiffStepInput   = document.getElementById('import-diff-step-input');
+    const importDiffStepPreview = document.getElementById('import-diff-step-preview');
+    const importDiffSummaryEl  = document.getElementById('import-diff-summary');
+    const importDiffTbody      = document.getElementById('import-diff-tbody');
+    const btnImportDiffValidate = document.getElementById('btn-import-diff-validate');
+    const btnImportDiffBack     = document.getElementById('btn-import-diff-back');
+    const btnImportDiffApply    = document.getElementById('btn-import-diff-apply');
+    const btnImportDiffCancel   = document.getElementById('btn-import-diff-cancel');
+    const importDiffSelectAll   = document.getElementById('import-diff-select-all-link');
+    const importDiffCheckAll    = document.getElementById('import-diff-check-all');
+
+    let _importDiffOps = [];   // résultats validés courants
+
+    function _importDiffStatusBadge(status) {
+      const labels = { ready: 'Prêt', update: 'Mise à jour', conflict: 'Conflit', error: 'Erreur', skip: 'Ignoré' };
+      return '<span class="diff-badge diff-badge--' + status + '">' + (labels[status] || status) + '</span>';
+    }
+
+    function _importDiffOpBadge(op) {
+      return '<span class="diff-op">' + op + '</span>';
+    }
+
+    function _importDiffRenderChanges(diff) {
+      if (!diff || !Object.keys(diff).length) return '';
+      let html = '<div class="diff-changes">';
+      for (const [field, ch] of Object.entries(diff)) {
+        const from = JSON.stringify(ch.from);
+        const to   = JSON.stringify(ch.to);
+        html += '<div class="diff-change-field"><strong>' + field + '</strong>: '
+              + '<span class="diff-change-from">' + _escHtml(from) + '</span>'
+              + ' → <span class="diff-change-to">' + _escHtml(to) + '</span></div>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    function _escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function _importDiffRenderTable(ops) {
+      importDiffTbody.innerHTML = '';
+      ops.forEach(function(op, idx) {
+        const canSelect = op.status === 'ready' || op.status === 'update';
+        const tr = document.createElement('tr');
+        tr.className = 'diff-row' + (canSelect ? '' : ' diff-row--disabled');
+        tr.dataset.idx = idx;
+
+        const hasDetail = (op.diff && Object.keys(op.diff).length > 0) || op.message;
+        const detailId = 'diff-detail-' + idx;
+
+        tr.innerHTML = '<td><input type="checkbox" class="diff-row-cb" data-idx="' + idx + '" '
+          + (canSelect ? '' : 'disabled ') + (canSelect ? 'checked' : '') + '></td>'
+          + '<td>' + _importDiffOpBadge(op.op) + '</td>'
+          + '<td class="diff-id-cell">' + _escHtml(op.term_id || '—') + '</td>'
+          + '<td class="diff-parent-cell">' + _escHtml((op.incoming && op.incoming.parent_id) || '—') + '</td>'
+          + '<td>' + _importDiffStatusBadge(op.status) + '</td>'
+          + '<td class="diff-msg-cell">'
+            + (hasDetail ? '<span class="diff-detail-toggle" data-target="' + detailId + '">▶ détails</span>' : '')
+            + (!op.diff && op.message ? '<span>' + _escHtml(op.message) + '</span>' : '')
+          + '</td>';
+        importDiffTbody.appendChild(tr);
+
+        if (hasDetail) {
+          const trDetail = document.createElement('tr');
+          trDetail.className = 'diff-detail-row';
+          trDetail.id = detailId;
+          trDetail.style.display = 'none';
+          let detailContent = '';
+          if (op.message) detailContent += '<p style="font-size:0.8rem;margin:0 0 0.3rem;color:#5f6368;">' + _escHtml(op.message) + '</p>';
+          if (op.diff)    detailContent += _importDiffRenderChanges(op.diff);
+          trDetail.innerHTML = '<td></td><td colspan="5">' + detailContent + '</td>';
+          importDiffTbody.appendChild(trDetail);
+        }
+      });
+
+      // Toggle détail
+      importDiffTbody.querySelectorAll('.diff-detail-toggle').forEach(function(el) {
+        el.addEventListener('click', function() {
+          const target = document.getElementById(el.dataset.target);
+          if (!target) return;
+          const open = target.style.display !== 'none';
+          target.style.display = open ? 'none' : '';
+          el.textContent = open ? '▶ détails' : '▼ détails';
+        });
+      });
+    }
+
+    function _importDiffSummaryHtml(summary) {
+      const parts = [];
+      if (summary.ready)    parts.push('<span class="diff-badge diff-badge--ready">' + summary.ready + ' à ajouter</span>');
+      if (summary.update)   parts.push('<span class="diff-badge diff-badge--update">' + summary.update + ' à mettre à jour</span>');
+      if (summary.conflict) parts.push('<span class="diff-badge diff-badge--conflict">' + summary.conflict + ' conflit(s)</span>');
+      if (summary.error)    parts.push('<span class="diff-badge diff-badge--error">' + summary.error + ' erreur(s)</span>');
+      if (summary.skip)     parts.push('<span class="diff-badge diff-badge--skip">' + summary.skip + ' ignoré(s)</span>');
+      return parts.join(' ');
+    }
+
+    function _importDiffShowStep(step) {
+      importDiffStepInput.style.display   = step === 'input'   ? '' : 'none';
+      importDiffStepPreview.style.display = step === 'preview' ? '' : 'none';
+      btnImportDiffValidate.style.display = step === 'input'   ? '' : 'none';
+      btnImportDiffBack.style.display     = step === 'preview' ? '' : 'none';
+      btnImportDiffApply.style.display    = step === 'preview' ? '' : 'none';
+      importDiffSelectAll.style.display   = step === 'preview' ? '' : 'none';
+    }
+
+    function _importDiffCountSelected() {
+      return importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled):checked').length;
+    }
+
+    function _importDiffUpdateApplyBtn() {
+      btnImportDiffApply.disabled = _importDiffCountSelected() === 0;
+    }
+
+    function openImportDiffModal() {
+      importDiffParseErr.style.display = 'none';
+      importDiffPrevErr.style.display  = 'none';
+      _importDiffOps = [];
+      _importDiffShowStep('input');
+      importDiffModal.classList.add('open');
+      setTimeout(function() { importDiffTextarea.focus(); }, 50);
+    }
+
+    function closeImportDiffModal() {
+      importDiffModal.classList.remove('open');
+      btnImportDiffApply.disabled = true;
+      btnImportDiffApply.textContent = 'Appliquer la sélection';
+    }
+
+    document.getElementById('btn-import-diff').addEventListener('click', openImportDiffModal);
+    btnImportDiffCancel.addEventListener('click', closeImportDiffModal);
+    document.getElementById('btn-import-diff-close').addEventListener('click', closeImportDiffModal);
+
+    // "Retour" → revenir à l'étape saisie
+    btnImportDiffBack.addEventListener('click', function() {
+      _importDiffShowStep('input');
+      btnImportDiffApply.disabled = true;
+      btnImportDiffApply.textContent = 'Appliquer la sélection';
+    });
+
+    // Sélectionner / désélectionner tout
+    importDiffSelectAll.addEventListener('click', function() {
+      const cbs = importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled)');
+      const allChecked = Array.from(cbs).every(function(cb) { return cb.checked; });
+      cbs.forEach(function(cb) { cb.checked = !allChecked; });
+      importDiffCheckAll.checked = !allChecked;
+      _importDiffUpdateApplyBtn();
+    });
+    importDiffCheckAll.addEventListener('change', function() {
+      importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled)').forEach(function(cb) {
+        cb.checked = importDiffCheckAll.checked;
+      });
+      _importDiffUpdateApplyBtn();
+    });
+    importDiffTbody.addEventListener('change', function(e) {
+      if (e.target.classList.contains('diff-row-cb')) _importDiffUpdateApplyBtn();
+    });
+
+    // Logique de validation extraite (réutilisable par le bouton ET par _openImportDiffWithOps)
+    async function _importDiffValidate() {
+      importDiffParseErr.style.display = 'none';
+      const raw = importDiffTextarea.value.trim();
+      if (!raw) {
+        importDiffParseErr.textContent = 'Veuillez coller un tableau JSON d\'opérations.';
+        importDiffParseErr.style.display = 'block';
+        return;
+      }
+      let ops;
+      try {
+        ops = JSON.parse(raw);
+        if (!Array.isArray(ops)) throw new Error('La valeur doit être un tableau JSON.');
+        // Compatibilité JSON Patch : normaliser "replace" → "upsert", ignorer "path"
+        ops = ops.map(function(o) {
+          var normalized = Object.assign({}, o);
+          if (normalized.op === 'replace') normalized.op = 'upsert';
+          return normalized;
+        });
+      } catch (err) {
+        importDiffParseErr.textContent = 'JSON invalide : ' + err.message;
+        importDiffParseErr.style.display = 'block';
+        return;
+      }
+
+      btnImportDiffValidate.disabled = true;
+      btnImportDiffValidate.textContent = 'Validation…';
+
+      try {
+        const res = await fetch(
+          API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(currentVocabularyId) + '/import/diff?dry_run=true',
+          { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(ops) }
+        );
+        const data = await res.json();
+        if (!res.ok) {
+          importDiffParseErr.textContent = 'Erreur API : ' + (data.detail || res.statusText);
+          importDiffParseErr.style.display = 'block';
+          return;
+        }
+        _importDiffOps = data.operations || [];
+        importDiffSummaryEl.innerHTML = _importDiffSummaryHtml(data.summary || {});
+        _importDiffRenderTable(_importDiffOps);
+        _importDiffShowStep('preview');
+        _importDiffUpdateApplyBtn();
+      } catch (err) {
+        importDiffParseErr.textContent = 'Erreur réseau : ' + err.message;
+        importDiffParseErr.style.display = 'block';
+      } finally {
+        btnImportDiffValidate.disabled = false;
+        btnImportDiffValidate.textContent = 'Valider →';
+      }
+    }
+
+    // Ouvre le modal import diff pré-rempli depuis les suggestions IA et lance la validation auto
+    async function _openImportDiffWithOps(ops) {
+      closeAiModal();
+      importDiffParseErr.style.display = 'none';
+      importDiffPrevErr.style.display = 'none';
+      importDiffTextarea.value = JSON.stringify(ops, null, 2);
+      _importDiffOps = [];
+      _importDiffShowStep('input');
+      importDiffModal.classList.add('open');
+      // Déclencher la validation automatiquement sans attendre le clic sur "Valider"
+      await _importDiffValidate();
+    }
+
+    // Étape 1 → Valider : délègue à la fonction extraite
+    btnImportDiffValidate.addEventListener('click', _importDiffValidate);
+
+    // Étape 2 → Appliquer la sélection : filtre les ops cochées, appel API dry_run=false
+    btnImportDiffApply.addEventListener('click', async function() {
+      const selectedIdxs = new Set();
+      importDiffTbody.querySelectorAll('.diff-row-cb:not(:disabled):checked').forEach(function(cb) {
+        selectedIdxs.add(Number(cb.dataset.idx));
+      });
+      if (!selectedIdxs.size) { setStatus('Aucune opération sélectionnée.'); return; }
+
+      const selectedOps = _importDiffOps
+        .filter(function(_, i) { return selectedIdxs.has(i); })
+        .map(function(op) { return { op: op.op, value: op.incoming }; });
+
+      btnImportDiffApply.disabled = true;
+      btnImportDiffApply.textContent = 'Application en cours…';
+      importDiffPrevErr.style.display = 'none';
+
+      try {
+        const res = await fetch(
+          API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(currentVocabularyId) + '/import/diff?dry_run=false',
+          { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(selectedOps) }
+        );
+        const data = await res.json();
+        if (!res.ok) {
+          importDiffPrevErr.textContent = 'Erreur API : ' + (data.detail || res.statusText);
+          importDiffPrevErr.style.display = 'block';
+          return;
+        }
+        setStatus('Rechargement…');
+        await _reloadTable();
+        setStatus(data.applied_count + ' opération(s) appliquée(s).');
+        closeImportDiffModal();
+      } catch (err) {
+        importDiffPrevErr.textContent = 'Erreur réseau : ' + err.message;
+        importDiffPrevErr.style.display = 'block';
+      } finally {
+        if (importDiffModal.classList.contains('open')) {
+          btnImportDiffApply.disabled = false;
+          btnImportDiffApply.textContent = 'Appliquer la sélection';
+        }
+      }
+    });
+
+    // ─── Fin Import Diff ──────────────────────────────────────────────────────
+
     btnAddRow.addEventListener('click', async function() {
       if (!table) return;
       const selected = table.getSelectedRows();
@@ -1446,8 +2203,7 @@
       try {
         await postTerm(payload);
         pushUndo({ type: 'add', termPayload: payload });
-        const terms = await fetchVocabularyTerms();
-        table.setData(terms);
+        await _reloadTable();
         setStatus('Terme « ' + newId + ' » créé. Modifiez les champs si besoin.');
       } catch (err) {
         setStatus('Erreur : ' + err.message);
@@ -1465,6 +2221,20 @@
 
     document.getElementById('form-panel-close').addEventListener('click', closeFormPanel);
     document.getElementById('form-panel-cancel').addEventListener('click', closeFormPanel);
+
+    // ─── Onglets de traduction ───────────────────────────────────────────────────
+    document.querySelectorAll('.lang-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var lang = tab.dataset.lang;
+        document.querySelectorAll('.lang-tab').forEach(function(t) {
+          t.classList.toggle('active', t.dataset.lang === lang);
+          t.setAttribute('aria-selected', t.dataset.lang === lang ? 'true' : 'false');
+        });
+        document.querySelectorAll('.lang-panel').forEach(function(p) {
+          p.classList.toggle('active', p.id === 'lang-panel-' + lang);
+        });
+      });
+    });
 
     document.getElementById('modal-confirm-delete-cancel').addEventListener('click', closeConfirmDeleteModal);
     document.getElementById('modal-confirm-delete-ok').addEventListener('click', function() {
@@ -1505,6 +2275,13 @@
       if (table) table.deselectRow();
     });
 
+    document.getElementById('sel-btn-enrich').addEventListener('click', function() {
+      if (!table) return;
+      const termIds = _aiGetSelectedTermIds();
+      if (termIds.length === 0) { setStatus('Sélectionnez des termes à enrichir.'); return; }
+      openAiModal('enrich-term-batch', { termIds: termIds });
+    });
+
     document.getElementById('sel-btn-move').addEventListener('click', function() {
       if (!table) return;
       const selected = table.getSelectedRows();
@@ -1539,8 +2316,7 @@
       }
       if (API_BASE) {
         try {
-          const terms = await fetchVocabularyTerms();
-          table.setData(terms);
+          await _reloadTable();
         } catch (err) {
           setStatus('Rechargement après suppression : ' + err.message);
           return;
@@ -1614,8 +2390,7 @@
           await putTerm(payload);
         }
         try {
-          const terms = await fetchVocabularyTerms();
-          if (table) table.setData(terms);
+          await _reloadTable();
           setStatus(editingRow ? 'Terme enregistré.' : 'Terme enfant « ' + id + ' » créé.');
         } catch (refreshErr) {
           setStatus('Enregistré, rechargement échoué : ' + refreshErr.message);
@@ -1667,7 +2442,1180 @@
     visibleColumns = loadVisibleColumns();
     renderConfigColumns();
 
+    // ─── IA : état et helpers ────────────────────────────────────────────────
+
+    let _aiState = {
+      mode: null,       // 'enrich-term' | 'suggest-children' | 'generate-vocabulary' | 'enrich-keywords'
+      termId: null,
+      vocabularyId: null,
+      result: null,     // Pointe vers le run actif (run.result) pour compat ascendante
+      runs: [],         // [{model, temperature, result, ts}]
+      activeRun: -1,
+      customSystem: null,   // Surcharge du prompt système pour cet envoi
+      customPrompt: null,   // Surcharge du prompt utilisateur pour cet envoi
+    };
+
+    const aiModal = document.getElementById('modal-ai-suggestions');
+
+    function _aiShowView(viewId) {
+      ['ai-view-enrich-batch-form', 'ai-view-enrich-batch-results', 'ai-view-enrich-form', 'ai-view-fields', 'ai-view-keywords', 'ai-view-children', 'ai-view-gen-form', 'ai-view-vocab'].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = id === viewId ? '' : 'none';
+      });
+    }
+
+    function _aiRenderTabs() {
+      const bar = document.getElementById('ai-model-tabs');
+      bar.innerHTML = '';
+      if (!_aiState.runs.length) { bar.style.display = 'none'; return; }
+      bar.style.display = '';
+      _aiState.runs.forEach(function(run, idx) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'ai-model-tab' + (idx === _aiState.activeRun ? ' active' : '');
+        const d = new Date(run.ts);
+        const ts = d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+        btn.textContent = run.model + ' ' + ts;
+        btn.title = 'Modèle : ' + run.model + ' — Temp : ' + run.temperature + ' — ' + ts;
+        btn.addEventListener('click', function() { _aiSwitchRun(idx); });
+        bar.appendChild(btn);
+      });
+    }
+
+    function _aiSwitchRun(idx) {
+      if (idx < 0 || idx >= _aiState.runs.length) return;
+      _aiState.activeRun = idx;
+      const run = _aiState.runs[idx];
+      _aiState.result = run.result;
+      _aiRenderTabs();
+      _aiSetLoading(false, null);
+      _aiShowDebug(run.result.prompt_used || '', run.result.raw_response || '');
+      const mode = _aiState.mode;
+      if (mode === 'enrich-term') {
+        const suggestions = run.result.suggestions || {};
+        const fields = run.result.fields_requested || [];
+        _aiShowView('ai-view-fields');
+        _aiRenderFields(suggestions, fields);
+        document.getElementById('btn-ai-modal-apply').style.display = '';
+      } else if (mode === 'enrich-term-batch') {
+        const suggestions = run.result.suggestions || {};
+        const fields = run.result.fields_requested || [];
+        _aiShowView('ai-view-enrich-batch-results');
+        _aiRenderEnrichBatchResults(suggestions, fields, _aiState.batchTermsData || {});
+        document.getElementById('btn-ai-modal-apply').style.display = '';
+        document.getElementById('ai-select-all-link').style.display = '';
+      } else if (mode === 'enrich-keywords') {
+        _aiShowView('ai-view-keywords');
+        _aiRenderKeywords(run.result.suggestions || [], run.result.existing_keywords || []);
+        document.getElementById('btn-ai-modal-apply').style.display = '';
+      } else if (mode === 'suggest-children') {
+        _aiShowView('ai-view-children');
+        _aiRenderChildren(run.result.suggestions || [], run.result.parent_name);
+        document.getElementById('btn-ai-modal-apply').style.display = '';
+      } else if (mode === 'generate-vocabulary') {
+        _aiShowView('ai-view-vocab');
+        _aiRenderVocab(run.result.suggestions || [], run.result.theme || '');
+        document.getElementById('btn-ai-modal-apply').style.display = '';
+      }
+    }
+
+    function _aiSetLoading(loading, errorMsg) {
+      document.getElementById('ai-modal-loading').style.display = loading ? '' : 'none';
+      const errEl = document.getElementById('ai-modal-error');
+      if (errorMsg) {
+        errEl.textContent = '✗ ' + errorMsg;
+        errEl.style.display = '';
+      } else {
+        errEl.style.display = 'none';
+      }
+      // Show/hide action buttons
+      document.getElementById('btn-ai-modal-apply').style.display = 'none';
+      document.getElementById('ai-select-all-link').style.display = 'none';
+      const btnGenerate = document.getElementById('btn-ai-modal-generate');
+      if (!loading && !errorMsg) {
+        if (_aiState.runs && _aiState.runs.length > 0) {
+          btnGenerate.textContent = '↻ Régénérer';
+          btnGenerate.style.display = '';
+        } else if (_aiState.mode === 'generate-vocabulary' || _aiState.mode === 'enrich-term' || _aiState.mode === 'enrich-term-batch') {
+          btnGenerate.textContent = (_aiState.mode === 'enrich-term' || _aiState.mode === 'enrich-term-batch') ? 'Générer' : '✨ Générer';
+          btnGenerate.style.display = '';
+        } else {
+          btnGenerate.style.display = 'none';
+        }
+      } else {
+        btnGenerate.style.display = 'none';
+      }
+      // Reset debug panel and apply button on new call
+      if (loading) {
+        document.getElementById('ai-debug-toggle').style.display = 'none';
+        document.getElementById('ai-debug-panel').classList.remove('open');
+        document.getElementById('ai-debug-prompt').textContent = '—';
+        document.getElementById('ai-debug-raw').textContent = '—';
+        // Ensure button is in clean state before any render function shows it
+        const btnApply = document.getElementById('btn-ai-modal-apply');
+        btnApply.disabled = false;
+        btnApply.textContent = 'Appliquer la sélection';
+      }
+    }
+
+    function _aiShowDebug(promptText, rawText) {
+      document.getElementById('ai-debug-prompt').textContent = promptText || '—';
+      document.getElementById('ai-debug-raw').textContent = rawText || '—';
+      document.getElementById('ai-debug-toggle').style.display = '';
+    }
+
+    // Cache des modèles disponibles (chargé une fois depuis /api/ai/status)
+    let _aiModelsCache = null;
+
+    async function _aiLoadModels() {
+      const sel = document.getElementById('ai-model-select');
+      if (_aiModelsCache) return;
+      try {
+        const res = await fetch(API_BASE + '/api/ai/status');
+        if (!res.ok) return;
+        const data = await res.json();
+        const models = data.models || [];
+        if (!models.length) return;
+        _aiModelsCache = models;
+        const current = sel.value;
+        sel.innerHTML = '';
+        models.forEach(function(m) {
+          const opt = document.createElement('option');
+          opt.value = m; opt.textContent = m;
+          sel.appendChild(opt);
+        });
+        // Sélectionner qwen2.5:7b par défaut si disponible, sinon conserver la valeur courante
+        const preferred = 'qwen2.5:7b';
+        if (models.includes(preferred)) {
+          sel.value = preferred;
+        } else if (models.includes(current)) {
+          sel.value = current;
+        }
+      } catch (_) { /* Ollama peut être absent, on garde le fallback */ }
+    }
+
+    function _aiGetModelParams() {
+      return {
+        model: document.getElementById('ai-model-select').value || 'qwen2.5:7b',
+        temperature: parseFloat(document.getElementById('ai-temp-input').value) || 0.3,
+      };
+    }
+
+    async function _aiCallApi(endpoint, payload) {
+      const res = await fetch(API_BASE + endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        const detail = typeof errBody.detail === 'string' ? errBody.detail : JSON.stringify(errBody.detail || res.statusText);
+        throw new Error(detail);
+      }
+      const data = await res.json();
+      // Mode async (HTTP 202) : polling jusqu'à completion
+      if (res.status === 202 && data.job_id) {
+        return await _aiPollJob(data.job_id);
+      }
+      return data;
+    }
+
+    /**
+     * Attend la fin d'un job IA via polling et retourne le résultat parsé.
+     * Compatible avec les artefacts v1 (job.result JSON).
+     */
+    async function _aiPollJob(jobId) {
+      return new Promise(function(resolve, reject) {
+        if (typeof JobsPoller === 'undefined') {
+          reject(new Error('JobsPoller non chargé'));
+          return;
+        }
+        JobsPoller.start(jobId, {
+          apiBase: API_BASE,
+          pollIntervalMs: 2000,
+          maxWaitMs: 180000,
+          onProgress: function(job) {
+            // Optionnel : afficher la progression
+            console.debug('[AI poll] job', jobId, 'status:', job.status, 'progress:', job.progress);
+          },
+          onDone: function(job) {
+            // Extraire le résultat depuis job.result (artefact v1) ou directement
+            let result = null;
+            if (job.result) {
+              try {
+                const artifact = typeof job.result === 'string' ? JSON.parse(job.result) : job.result;
+                // Artefact v1 : { artifact_type, proposal, ... }
+                result = artifact.proposal !== undefined ? artifact : artifact;
+              } catch (_) {
+                result = job.result;
+              }
+            }
+            resolve(result || job);
+          },
+          onError: function(msg, job) {
+            reject(new Error(msg || 'Job échoué'));
+          },
+        });
+      });
+    }
+
+    function _aiGetCurrentTermId() {
+      if (editingRow) return editingRow.getData().id || null;
+      if (table) {
+        const sel = table.getSelectedRows();
+        if (sel.length > 0) return sel[0].getData().id || null;
+      }
+      return null;
+    }
+
+    function _aiGetSelectedTermIds() {
+      if (!table) return [];
+      return table.getSelectedRows().map(function(r) { return r.getData().id || null; }).filter(Boolean);
+    }
+
+    // ─── Rendu des vues ──────────────────────────────────────────────────────
+
+    const ENRICH_TEXT_FIELDS = ['name_fr', 'name_en', 'name_ar', 'description_fr', 'description_en', 'description_ar'];
+    const ENRICH_AR_FIELDS = ['name_ar', 'description_ar'];
+    const ENRICH_FIELD_LABELS = {
+      name_fr: 'Nom (FR)', name_en: 'Nom (EN)', name_ar: 'Nom (AR)',
+      description_fr: 'Description (FR)', description_en: 'Description (EN)', description_ar: 'Description (AR)',
+    };
+
+    function _aiRenderEnrichForm(termData) {
+      const list = document.getElementById('ai-enrich-form-list');
+      list.innerHTML = '';
+      ENRICH_TEXT_FIELDS.forEach(function(field) {
+        const val = (termData && termData[field] != null) ? String(termData[field]).trim() : '';
+        const isEmpty = !val;
+        const item = document.createElement('div');
+        item.className = 'ai-field-item';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.id = 'ai-enrich-cb-' + field;
+        cb.checked = isEmpty;
+        cb.dataset.field = field;
+        const content = document.createElement('div');
+        content.className = 'ai-field-item-content';
+        const lbl = document.createElement('label');
+        lbl.className = 'ai-field-label';
+        lbl.htmlFor = 'ai-enrich-cb-' + field;
+        lbl.textContent = ENRICH_FIELD_LABELS[field] || field;
+        const isTextarea = field.startsWith('description_');
+        const display = isTextarea ? document.createElement('textarea') : document.createElement('input');
+        display.className = 'ai-enrich-current-value';
+        display.readOnly = true;
+        display.value = val || '(vide)';
+        if (!isTextarea) display.type = 'text';
+        if (isTextarea) { display.rows = 2; }
+        if (ENRICH_AR_FIELDS.includes(field)) display.setAttribute('dir', 'rtl');
+        content.appendChild(lbl);
+        content.appendChild(display);
+        item.appendChild(cb);
+        item.appendChild(content);
+        list.appendChild(item);
+      });
+    }
+
+    function _aiRenderEnrichBatchForm(termIds) {
+      const intro = document.getElementById('ai-view-enrich-batch-intro');
+      if (intro) intro.textContent = termIds.length + ' terme(s) sélectionné(s). Choisissez les champs à générer (champs vides pré-cochés).';
+      const termsList = document.getElementById('ai-enrich-batch-terms-list');
+      termsList.innerHTML = '';
+      const treeData = table ? table.getData() : [];
+      const missingUnion = new Set();
+      const termsData = {};
+      termIds.forEach(function(tid) {
+        const data = getTermDataFromTree(treeData, tid);
+        const payload = data ? buildTermPayload(data) : { id: tid };
+        termsData[tid] = payload;
+        ENRICH_TEXT_FIELDS.forEach(function(f) {
+          const v = payload[f];
+          if (!(v != null && String(v).trim())) missingUnion.add(f);
+        });
+      });
+      _aiState.batchTermsData = termsData;
+      const termsWrap = document.createElement('div');
+      termsWrap.className = 'ai-batch-terms-wrap';
+      termsWrap.style.cssText = 'font-size:0.85rem;margin-bottom:0.75rem;max-height:120px;overflow-y:auto;';
+      const ul = document.createElement('ul');
+      ul.style.cssText = 'margin:0;padding-left:1.2rem;';
+      termIds.forEach(function(tid) {
+        const d = termsData[tid];
+        const name = (d && (d.name_fr || d.name_en)) ? (d.name_fr || d.name_en) : tid;
+        const li = document.createElement('li');
+        li.textContent = tid + (name !== tid ? ' — ' + name : '');
+        ul.appendChild(li);
+      });
+      termsWrap.appendChild(ul);
+      termsList.appendChild(termsWrap);
+      const fieldsList = document.getElementById('ai-enrich-batch-fields-list');
+      fieldsList.innerHTML = '';
+      ENRICH_TEXT_FIELDS.forEach(function(field) {
+        const isEmptyForAny = missingUnion.has(field);
+        const item = document.createElement('div');
+        item.className = 'ai-field-item';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.id = 'ai-enrich-batch-cb-' + field;
+        cb.checked = isEmptyForAny;
+        cb.dataset.field = field;
+        const lbl = document.createElement('label');
+        lbl.htmlFor = 'ai-enrich-batch-cb-' + field;
+        lbl.className = 'ai-field-label';
+        lbl.textContent = ENRICH_FIELD_LABELS[field] || field;
+        item.appendChild(cb);
+        item.appendChild(lbl);
+        fieldsList.appendChild(item);
+      });
+    }
+
+    async function _aiRunEnrichTerm() {
+      const selectedFields = [];
+      document.querySelectorAll('#ai-enrich-form-list input[type="checkbox"]:checked').forEach(function(cb) {
+        const f = cb.dataset.field;
+        if (f) selectedFields.push(f);
+      });
+      if (!selectedFields.length) {
+        setStatus('Sélectionnez au moins un champ à générer.');
+        return;
+      }
+      const termId = _aiState.termId;
+      const vocabId = _aiState.vocabularyId;
+      const { model, temperature } = _aiGetModelParams();
+      const customPayload = {};
+      if (_aiState.customSystem !== null) customPayload.custom_system = _aiState.customSystem;
+      if (_aiState.customPrompt !== null) customPayload.custom_prompt = _aiState.customPrompt;
+      _aiShowView(null);
+      _aiSetLoading(true, null);
+      try {
+        const result = await _aiCallApi('/api/ai/enrich-term', Object.assign({ term_id: termId, vocabulary_id: vocabId, fields: selectedFields, model, temperature }, customPayload));
+        _aiState.runs.push({ model, temperature, result, ts: new Date().toISOString() });
+        _aiState.activeRun = _aiState.runs.length - 1;
+        _aiState.result = result;
+        _aiSetLoading(false, null);
+        _aiRenderTabs();
+        _aiShowDebug(result.prompt_used || '', result.raw_response || '');
+        const suggestions = result.suggestions || {};
+        const fields = result.fields_requested || selectedFields;
+        if (!Object.keys(suggestions).length) {
+          _aiSetLoading(false, result.message || 'Aucune suggestion générée.');
+          _aiShowDebug(result.prompt_used || '', result.raw_response || '');
+          _aiShowView('ai-view-enrich-form');
+          _aiRenderEnrichForm(_aiState.currentTermData);
+          return;
+        }
+        _aiShowView('ai-view-fields');
+        const intro = document.getElementById('ai-view-fields-intro');
+        if (intro) intro.textContent = Object.keys(suggestions).length + ' champ(s) enrichi(s) pour « ' + termId + ' ». Cochez les valeurs à appliquer.';
+        _aiRenderFields(suggestions, fields);
+        document.getElementById('btn-ai-modal-apply').style.display = '';
+      } catch (err) {
+        _aiSetLoading(false, err.message || String(err));
+        _aiShowView('ai-view-enrich-form');
+        _aiRenderEnrichForm(_aiState.currentTermData);
+      }
+    }
+
+    async function _aiRunEnrichTermsBatch() {
+      const selectedFields = [];
+      document.querySelectorAll('#ai-enrich-batch-fields-list input[type="checkbox"]:checked').forEach(function(cb) {
+        const f = cb.dataset.field;
+        if (f) selectedFields.push(f);
+      });
+      if (!selectedFields.length) {
+        setStatus('Sélectionnez au moins un champ à générer.');
+        return;
+      }
+      const termIds = _aiState.termIds || [];
+      const vocabId = _aiState.vocabularyId;
+      const { model, temperature } = _aiGetModelParams();
+      const customPayload = {};
+      if (_aiState.customSystem !== null) customPayload.custom_system = _aiState.customSystem;
+      if (_aiState.customPrompt !== null) customPayload.custom_prompt = _aiState.customPrompt;
+      _aiShowView(null);
+      _aiSetLoading(true, null);
+      try {
+        const result = await _aiCallApi('/api/ai/enrich-terms-batch', Object.assign({ term_ids: termIds, vocabulary_id: vocabId, fields: selectedFields, model, temperature }, customPayload));
+        _aiState.runs.push({ model, temperature, result, ts: new Date().toISOString() });
+        _aiState.activeRun = _aiState.runs.length - 1;
+        _aiState.result = result;
+        _aiSetLoading(false, null);
+        _aiRenderTabs();
+        _aiShowDebug(result.prompt_used || '', result.raw_response || '');
+        const suggestions = result.suggestions || {};
+        const fields = result.fields_requested || selectedFields;
+        if (!Object.keys(suggestions).length) {
+          _aiSetLoading(false, result.message || 'Aucune suggestion générée.');
+          _aiShowDebug(result.prompt_used || '', result.raw_response || '');
+          _aiShowView('ai-view-enrich-batch-form');
+          _aiRenderEnrichBatchForm(termIds);
+          return;
+        }
+        _aiShowView('ai-view-enrich-batch-results');
+        const intro = document.getElementById('ai-view-enrich-batch-results-intro');
+        if (intro) intro.textContent = Object.keys(suggestions).length + ' terme(s) enrichi(s). Cochez les valeurs à appliquer.';
+        _aiRenderEnrichBatchResults(suggestions, fields, _aiState.batchTermsData || {});
+        document.getElementById('btn-ai-modal-apply').style.display = '';
+        document.getElementById('ai-select-all-link').style.display = '';
+      } catch (err) {
+        _aiSetLoading(false, err.message || String(err));
+        _aiShowView('ai-view-enrich-batch-form');
+        _aiRenderEnrichBatchForm(termIds);
+      }
+    }
+
+    function _aiRenderEnrichBatchResults(suggestions, fields, termsData) {
+      const list = document.getElementById('ai-enrich-batch-results-list');
+      list.innerHTML = '';
+      Object.keys(suggestions).forEach(function(tid) {
+        const sugs = suggestions[tid];
+        if (!sugs || !Object.keys(sugs).length) return;
+        const section = document.createElement('div');
+        section.className = 'ai-batch-term-section';
+        const header = document.createElement('div');
+        header.className = 'ai-batch-term-header';
+        const termName = (termsData[tid] && (termsData[tid].name_fr || termsData[tid].name_en)) ? (termsData[tid].name_fr || termsData[tid].name_en) : tid;
+        header.textContent = tid + (termName !== tid ? ' — ' + termName : '');
+        header.dataset.termId = tid;
+        const body = document.createElement('div');
+        body.className = 'ai-batch-term-body';
+        body.style.cssText = 'padding:0.5rem 0.75rem;';
+        Object.keys(sugs).forEach(function(field) {
+          const val = sugs[field];
+          const item = document.createElement('div');
+          item.className = 'ai-field-item';
+          const cb = document.createElement('input');
+          cb.type = 'checkbox';
+          cb.checked = true;
+          cb.dataset.termId = tid;
+          cb.dataset.field = field;
+          const content = document.createElement('div');
+          content.className = 'ai-field-item-content';
+          const lbl = document.createElement('label');
+          lbl.className = 'ai-field-label';
+          lbl.textContent = ENRICH_FIELD_LABELS[field] || field;
+          const input = document.createElement(field.startsWith('description_') ? 'textarea' : 'input');
+          input.className = 'ai-field-input';
+          input.dataset.field = field;
+          input.dataset.termId = tid;
+          if (input.tagName === 'INPUT') input.type = 'text';
+          else input.rows = 2;
+          input.value = val || '';
+          if (ENRICH_AR_FIELDS.includes(field)) input.setAttribute('dir', 'rtl');
+          content.appendChild(lbl);
+          content.appendChild(input);
+          item.appendChild(cb);
+          item.appendChild(content);
+          body.appendChild(item);
+        });
+        section.appendChild(header);
+        section.appendChild(body);
+        list.appendChild(section);
+      });
+    }
+
+    function _aiRenderFields(suggestions, fields) {
+      const list = document.getElementById('ai-fields-list');
+      list.innerHTML = '';
+      const TEXT_FIELDS = ['name_fr','name_en','name_ar','description_fr','description_en','description_ar'];
+      const AR_FIELDS = ['name_ar','description_ar'];
+      const FIELD_LABELS = {
+        name_fr:'Nom (FR)', name_en:'Nom (EN)', name_ar:'Nom (AR)',
+        description_fr:'Description (FR)', description_en:'Description (EN)', description_ar:'Description (AR)',
+      };
+      (fields || Object.keys(suggestions)).forEach(function(field) {
+        const val = suggestions[field];
+        if (!val && val !== '') return;
+        const item = document.createElement('div');
+        item.className = 'ai-field-item';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.id = 'ai-field-cb-' + field;
+        cb.checked = true;
+        cb.dataset.field = field;
+        const content = document.createElement('div');
+        content.className = 'ai-field-item-content';
+        const lbl = document.createElement('label');
+        lbl.className = 'ai-field-label';
+        lbl.htmlFor = 'ai-field-cb-' + field;
+        lbl.textContent = FIELD_LABELS[field] || field;
+        const isTextarea = field.startsWith('description_');
+        const input = isTextarea ? document.createElement('textarea') : document.createElement('input');
+        input.className = 'ai-field-input';
+        input.dataset.field = field;
+        input.value = val || '';
+        if (!isTextarea) input.type = 'text';
+        if (isTextarea) { input.rows = 3; }
+        if (AR_FIELDS.includes(field)) input.setAttribute('dir', 'rtl');
+        content.appendChild(lbl);
+        content.appendChild(input);
+        item.appendChild(cb);
+        item.appendChild(content);
+        list.appendChild(item);
+      });
+      if (!list.children.length) {
+        list.textContent = 'Aucun champ à afficher.';
+      }
+      document.getElementById('ai-select-all-link').style.display = '';
+      document.getElementById('btn-ai-modal-apply').style.display = '';
+    }
+
+    function _aiRenderKeywords(suggestions, existing) {
+      const kwList = document.getElementById('ai-keywords-list');
+      kwList.innerHTML = '';
+      (suggestions || []).forEach(function(kw) {
+        const tag = document.createElement('span');
+        tag.className = 'ai-kw-tag selected';
+        tag.textContent = kw;
+        tag.dataset.kw = kw;
+        tag.addEventListener('click', function() { tag.classList.toggle('selected'); });
+        kwList.appendChild(tag);
+      });
+      const intro = document.getElementById('ai-view-kw-intro');
+      if (intro) intro.textContent = (existing && existing.length ? 'Mots-clés existants : ' + existing.join(', ') + '. ' : '') + 'Cliquez sur un tag pour le désélectionner.';
+      document.getElementById('ai-select-all-link').style.display = '';
+      document.getElementById('btn-ai-modal-apply').style.display = '';
+    }
+
+    function _aiRenderChildren(suggestions, parentName) {
+      const list = document.getElementById('ai-children-list');
+      list.innerHTML = '';
+      const intro = document.getElementById('ai-view-children-intro');
+      if (intro) intro.textContent = suggestions.length + ' terme(s) enfant(s) suggéré(s) pour « ' + (parentName || _aiState.termId) + ' ». Sélectionnez ceux à créer.';
+      (suggestions || []).forEach(function(child) {
+        const card = document.createElement('div');
+        card.className = 'ai-child-card';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.checked = true;
+        cb.dataset.childId = child.id;
+        cb.dataset.child = JSON.stringify(child);
+        const info = document.createElement('div');
+        info.className = 'ai-child-info';
+        info.innerHTML = '<div class="ai-child-id">' + (child.id || '') + ' · slug: ' + (child.slug || '') + '</div>'
+          + '<div class="ai-child-names">' + [child.name_fr, child.name_en, child.name_ar].filter(Boolean).join(' / ') + '</div>'
+          + (child.description_fr ? '<div class="ai-child-desc">' + child.description_fr + '</div>' : '');
+        card.appendChild(cb);
+        card.appendChild(info);
+        list.appendChild(card);
+      });
+      if (!list.children.length) list.textContent = 'Aucune suggestion.';
+      document.getElementById('ai-select-all-link').style.display = '';
+      document.getElementById('btn-ai-modal-apply').style.display = '';
+    }
+
+    function _aiRenderVocab(suggestions, theme) {
+      const list = document.getElementById('ai-vocab-list');
+      list.innerHTML = '';
+      const intro = document.getElementById('ai-view-vocab-intro');
+      if (intro) intro.textContent = suggestions.length + ' terme(s) racine(s) générés pour le thème « ' + theme + ' ». Sélectionnez ceux à créer dans le vocabulaire courant.';
+      (suggestions || []).forEach(function(root) {
+        const block = document.createElement('div');
+        block.className = 'ai-vocab-root';
+        const header = document.createElement('div');
+        header.className = 'ai-vocab-root-header';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.checked = true;
+        cb.dataset.rootId = root.id;
+        cb.dataset.root = JSON.stringify(root);
+        const lbl = document.createElement('span');
+        lbl.className = 'ai-vocab-root-label';
+        lbl.textContent = (root.name_fr || root.id) + (root.name_en ? ' / ' + root.name_en : '');
+        header.appendChild(cb);
+        header.appendChild(lbl);
+        block.appendChild(header);
+        const children = root.children || [];
+        if (children.length) {
+          const childWrap = document.createElement('div');
+          childWrap.className = 'ai-vocab-children';
+          children.forEach(function(child) {
+            const row = document.createElement('div');
+            row.className = 'ai-vocab-child-row';
+            const ccb = document.createElement('input');
+            ccb.type = 'checkbox';
+            ccb.checked = true;
+            ccb.dataset.childId = child.id;
+            ccb.dataset.parentId = root.id;
+            ccb.dataset.child = JSON.stringify(child);
+            const clbl = document.createElement('span');
+            clbl.textContent = (child.name_fr || child.id) + (child.name_en ? ' / ' + child.name_en : '');
+            row.appendChild(ccb);
+            row.appendChild(clbl);
+            childWrap.appendChild(row);
+          });
+          block.appendChild(childWrap);
+        }
+        list.appendChild(block);
+      });
+      if (!list.children.length) list.textContent = 'Aucun terme généré.';
+      document.getElementById('ai-select-all-link').style.display = '';
+      document.getElementById('btn-ai-modal-apply').style.display = '';
+    }
+
+    // ─── Ouverture du modal ──────────────────────────────────────────────────
+
+    async function openAiModal(mode, context) {
+      context = context || {};
+      const termIds = context.termIds || (context.termId ? [context.termId] : []);
+      const termId = termIds[0] || context.termId || _aiGetCurrentTermId();
+      const vocabId = currentVocabularyId;
+
+      _aiState = { mode, termId, termIds: termIds.length ? termIds : (termId ? [termId] : []), vocabularyId: vocabId, context: context || {}, result: null, runs: [], activeRun: -1, customSystem: null, customPrompt: null };
+
+      // Titre et vue
+      const titles = {
+        'enrich-term': '✨ Enrichissement du terme',
+        'enrich-term-batch': '✨ Enrichissement en masse',
+        'enrich-keywords': '✨ Enrichissement des mots-clés',
+        'suggest-children': '✨ Suggérer des termes enfants',
+        'generate-vocabulary': '✨ Générer des termes par thème',
+      };
+      document.getElementById('ai-modal-title').textContent = titles[mode] || '✨ Suggestions IA';
+      _aiShowView(null);
+      _aiSetLoading(true, null);
+      aiModal.classList.add('open');
+
+      // Charger la liste des modèles disponibles (non-bloquant, met à jour le select)
+      _aiLoadModels();
+
+      if (mode === 'generate-vocabulary') {
+        // Mode formulaire : afficher le formulaire d'abord
+        _aiSetLoading(false, null);
+        _aiShowView('ai-view-gen-form');
+        document.getElementById('btn-ai-modal-generate').style.display = '';
+        document.getElementById('ai-gen-theme').focus();
+        return;
+      }
+
+      if (mode === 'enrich-term-batch') {
+        const ids = _aiState.termIds || [];
+        if (ids.length === 0) {
+          _aiSetLoading(false, 'Aucun terme sélectionné.');
+          return;
+        }
+        _aiSetLoading(false, null);
+        _aiShowView('ai-view-enrich-batch-form');
+        _aiRenderEnrichBatchForm(ids);
+        document.getElementById('btn-ai-modal-generate').style.display = '';
+        document.getElementById('btn-ai-modal-generate').textContent = 'Générer';
+        document.getElementById('ai-select-all-link').style.display = '';
+        return;
+      }
+
+      if (!termId) {
+        _aiSetLoading(false, 'Aucun terme sélectionné. Cliquez sur un terme dans le tableau d\'abord.');
+        return;
+      }
+
+      if (mode === 'enrich-term') {
+        // Phase 1 : afficher le formulaire de sélection des champs, pas d'appel API immédiat
+        _aiSetLoading(false, null);
+        let termData = table ? getTermDataFromTree(table.getData(), termId) : null;
+        if (!termData) {
+          try {
+            const res = await fetch(API_BASE + '/api/taxonomy/vocabularies/' + encodeURIComponent(vocabId) + '/terms/' + encodeURIComponent(termId));
+            if (res.ok) termData = await res.json();
+          } catch (_) {}
+        }
+        termData = termData ? buildTermPayload(termData) : { id: termId, name_fr: '', name_en: '', name_ar: '', description_fr: '', description_en: '', description_ar: '' };
+        _aiState.currentTermData = termData;
+        _aiShowView('ai-view-enrich-form');
+        _aiRenderEnrichForm(termData);
+        document.getElementById('btn-ai-modal-generate').style.display = '';
+        document.getElementById('btn-ai-modal-generate').textContent = 'Générer';
+        document.getElementById('ai-select-all-link').style.display = '';
+        return;
+      }
+
+      // Appel API avec model/temperature du sélecteur
+      try {
+        const { model, temperature } = _aiGetModelParams();
+        const customPayload = {};
+        if (_aiState.customSystem !== null) customPayload.custom_system = _aiState.customSystem;
+        if (_aiState.customPrompt !== null) customPayload.custom_prompt = _aiState.customPrompt;
+        let result;
+        if (mode === 'enrich-keywords') {
+          result = await _aiCallApi('/api/ai/enrich-keywords', Object.assign({ term_id: termId, vocabulary_id: vocabId, model, temperature }, customPayload));
+        } else if (mode === 'suggest-children') {
+          const count = context.count || 5;
+          result = await _aiCallApi('/api/ai/suggest-children', Object.assign({ term_id: termId, vocabulary_id: vocabId, count, model, temperature }, customPayload));
+        }
+        _aiState.runs.push({ model, temperature, result, ts: new Date().toISOString() });
+        _aiState.activeRun = _aiState.runs.length - 1;
+        _aiState.result = result;
+        _aiSetLoading(false, null);
+        _aiRenderTabs();
+
+        // Toujours peupler le panel de debug
+        _aiShowDebug(result.prompt_used || '', result.raw_response || '');
+
+        if (mode === 'enrich-keywords') {
+          const kws = result.suggestions || [];
+          _aiShowView('ai-view-keywords');
+          _aiRenderKeywords(kws, result.existing_keywords || []);
+        } else if (mode === 'suggest-children') {
+          const children = result.suggestions || [];
+          _aiShowView('ai-view-children');
+          _aiRenderChildren(children, result.parent_name);
+        }
+      } catch (err) {
+        _aiSetLoading(false, err.message || String(err));
+      }
+    }
+
+    function _aiResetApplyButton() {
+      const btn = document.getElementById('btn-ai-modal-apply');
+      btn.disabled = false;
+      btn.textContent = 'Appliquer la sélection';
+    }
+
+    function closeAiModal() {
+      _aiResetApplyButton();
+      aiModal.classList.remove('open');
+      // Masquer l'éditeur de prompt inline
+      document.getElementById('ai-prompt-editor').style.display = 'none';
+      document.getElementById('ai-model-tabs').style.display = 'none';
+      document.getElementById('ai-model-tabs').innerHTML = '';
+      _aiState = { mode: null, termId: null, vocabularyId: null, result: null, runs: [], activeRun: -1, customSystem: null, customPrompt: null };
+      // Réinitialiser l'indicateur du bouton d'édition
+      document.getElementById('btn-ai-edit-prompt').classList.remove('custom-active');
+    }
+
+    // ─── Application des suggestions → construit un diff JSON → modal import diff ─
+
+    async function applyAiSuggestions() {
+      const mode = _aiState.mode;
+      const termId = _aiState.termId;
+      if (!mode) return;
+
+      const ops = [];
+
+      if (mode === 'enrich-term') {
+        // Champs cochés avec leur valeur éditée → op "update" partielle
+        const updates = {};
+        document.querySelectorAll('#ai-fields-list .ai-field-item input[type="checkbox"]:checked').forEach(function(cb) {
+          const field = cb.dataset.field;
+          const input = document.querySelector('#ai-fields-list [data-field="' + field + '"].ai-field-input');
+          if (field && input) updates[field] = input.value;
+        });
+        if (!Object.keys(updates).length) { setStatus('Aucun champ sélectionné.'); return; }
+        ops.push({ op: 'update', value: Object.assign({ id: termId }, updates) });
+
+      } else if (mode === 'enrich-term-batch') {
+        const byTerm = {};
+        document.querySelectorAll('#ai-enrich-batch-results-list .ai-field-item input[type="checkbox"]:checked').forEach(function(cb) {
+          const tid = cb.dataset.termId;
+          const field = cb.dataset.field;
+          if (!tid || !field) return;
+          const input = document.querySelector('#ai-enrich-batch-results-list [data-term-id="' + tid + '"][data-field="' + field + '"].ai-field-input');
+          if (input) {
+            if (!byTerm[tid]) byTerm[tid] = {};
+            byTerm[tid][field] = input.value;
+          }
+        });
+        Object.keys(byTerm).forEach(function(tid) {
+          if (Object.keys(byTerm[tid]).length) ops.push({ op: 'update', value: Object.assign({ id: tid }, byTerm[tid]) });
+        });
+        if (!ops.length) { setStatus('Aucun champ sélectionné.'); return; }
+
+      } else if (mode === 'enrich-keywords') {
+        const selected = [];
+        document.querySelectorAll('#ai-keywords-list .ai-kw-tag.selected').forEach(function(tag) {
+          selected.push(tag.dataset.kw);
+        });
+        if (!selected.length) { setStatus('Aucun mot-clé sélectionné.'); return; }
+        const existing = (_aiState.result && _aiState.result.existing_keywords) || [];
+        const merged = Array.from(new Set([...existing, ...selected]));
+        ops.push({ op: 'update', value: { id: termId, keywords: merged } });
+
+      } else if (mode === 'suggest-children') {
+        document.querySelectorAll('#ai-children-list .ai-child-card input[type="checkbox"]:checked').forEach(function(cb) {
+          try {
+            const child = JSON.parse(cb.dataset.child);
+            ops.push({ op: 'add', value: Object.assign({}, child, { parent_id: termId }) });
+          } catch (_) {}
+        });
+        if (!ops.length) { setStatus('Aucun enfant sélectionné.'); return; }
+
+      } else if (mode === 'generate-vocabulary') {
+        document.querySelectorAll('#ai-vocab-list .ai-vocab-root').forEach(function(block) {
+          const rootCb = block.querySelector('.ai-vocab-root-header input[type="checkbox"]');
+          if (!rootCb || !rootCb.checked) return;
+          let root;
+          try { root = JSON.parse(rootCb.dataset.root); } catch (_) { return; }
+          const rootVal = Object.assign({}, root, { parent_id: null });
+          delete rootVal.children;
+          ops.push({ op: 'add', value: rootVal });
+          block.querySelectorAll('.ai-vocab-child-row input[type="checkbox"]:checked').forEach(function(ccb) {
+            try {
+              const child = JSON.parse(ccb.dataset.child);
+              ops.push({ op: 'add', value: Object.assign({}, child, { parent_id: root.id }) });
+            } catch (_) {}
+          });
+        });
+        if (!ops.length) { setStatus('Aucun terme sélectionné.'); return; }
+      }
+
+      if (!ops.length) return;
+      // Transférer vers le modal import diff (ferme l'IA, ouvre le diff, valide auto)
+      await _openImportDiffWithOps(ops);
+    }
+
+    // ─── Select all / deselect all ───────────────────────────────────────────
+
+    document.getElementById('ai-select-all-link').addEventListener('click', function() {
+      const mode = _aiState.mode;
+      if (mode === 'enrich-term') {
+        const enrichForm = document.getElementById('ai-view-enrich-form');
+        const selector = (enrichForm && enrichForm.style.display !== 'none') ? '#ai-enrich-form-list input[type="checkbox"]' : '#ai-fields-list input[type="checkbox"]';
+        const cbs = document.querySelectorAll(selector);
+        const allChecked = Array.from(cbs).every(function(cb) { return cb.checked; });
+        cbs.forEach(function(cb) { cb.checked = !allChecked; });
+      } else if (mode === 'enrich-term-batch') {
+        const batchForm = document.getElementById('ai-view-enrich-batch-form');
+        const batchResults = document.getElementById('ai-view-enrich-batch-results');
+        const selector = (batchForm && batchForm.style.display !== 'none') ? '#ai-enrich-batch-fields-list input[type="checkbox"]' : '#ai-enrich-batch-results-list input[type="checkbox"]';
+        const cbs = document.querySelectorAll(selector);
+        const allChecked = Array.from(cbs).every(function(cb) { return cb.checked; });
+        cbs.forEach(function(cb) { cb.checked = !allChecked; });
+      } else if (mode === 'enrich-keywords') {
+        const tags = document.querySelectorAll('#ai-keywords-list .ai-kw-tag');
+        const allSelected = Array.from(tags).every(function(t) { return t.classList.contains('selected'); });
+        tags.forEach(function(t) { t.classList.toggle('selected', !allSelected); });
+      } else if (mode === 'suggest-children') {
+        const cbs = document.querySelectorAll('#ai-children-list input[type="checkbox"]');
+        const allChecked = Array.from(cbs).every(function(cb) { return cb.checked; });
+        cbs.forEach(function(cb) { cb.checked = !allChecked; });
+      } else if (mode === 'generate-vocabulary') {
+        const cbs = document.querySelectorAll('#ai-vocab-list input[type="checkbox"]');
+        const allChecked = Array.from(cbs).every(function(cb) { return cb.checked; });
+        cbs.forEach(function(cb) { cb.checked = !allChecked; });
+      }
+    });
+
+    // ─── Event listeners modal IA ────────────────────────────────────────────
+
+    document.getElementById('btn-ai-modal-close').addEventListener('click', closeAiModal);
+    document.getElementById('btn-ai-modal-cancel').addEventListener('click', closeAiModal);
+    aiModal.addEventListener('click', function(e) { if (e.target === this) closeAiModal(); });
+    document.getElementById('btn-ai-modal-apply').addEventListener('click', applyAiSuggestions);
+
+    // ─── Éditeur de prompt inline ────────────────────────────────────────────
+
+    const _promptEditorPanel = document.getElementById('ai-prompt-editor');
+    const _promptEditorSystemTa = document.getElementById('ai-prompt-system-ta');
+    const _promptEditorUserTa = document.getElementById('ai-prompt-user-ta');
+
+    const _AI_MODE_TO_KEY = {
+      'enrich-term': 'enrich_term',
+      'enrich-term-batch': 'enrich_terms_batch',
+      'suggest-children': 'suggest_children',
+      'generate-vocabulary': 'generate_vocabulary',
+      'enrich-keywords': 'enrich_keywords',
+    };
+
+    document.getElementById('btn-ai-edit-prompt').addEventListener('click', async function() {
+      const isOpen = _promptEditorPanel.style.display !== 'none';
+      if (isOpen) {
+        _promptEditorPanel.style.display = 'none';
+        return;
+      }
+      const key = _AI_MODE_TO_KEY[_aiState.mode];
+      if (!key) { return; }
+      try {
+        const res = await fetch(API_BASE + '/api/ai/prompts/' + key);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        _promptEditorSystemTa.value = _aiState.customSystem !== null ? _aiState.customSystem : (data.system_text || '');
+        _promptEditorUserTa.value = _aiState.customPrompt !== null ? _aiState.customPrompt : (data.user_text || '');
+      } catch (e) {
+        _promptEditorSystemTa.value = _aiState.customSystem || '';
+        _promptEditorUserTa.value = _aiState.customPrompt || '';
+      }
+      _promptEditorPanel.style.display = '';
+    });
+
+    document.getElementById('btn-ai-prompt-cancel').addEventListener('click', function() {
+      _promptEditorPanel.style.display = 'none';
+    });
+
+    document.getElementById('btn-ai-prompt-apply').addEventListener('click', function() {
+      _aiState.customSystem = _promptEditorSystemTa.value;
+      _aiState.customPrompt = _promptEditorUserTa.value;
+      _promptEditorPanel.style.display = 'none';
+      const btn = document.getElementById('btn-ai-edit-prompt');
+      btn.classList.add('custom-active');
+      btn.title = 'Prompt personnalisé actif — cliquez pour modifier';
+    });
+
+    document.getElementById('ai-debug-toggle').addEventListener('click', function() {
+      const panel = document.getElementById('ai-debug-panel');
+      const open = panel.classList.toggle('open');
+      this.textContent = (open ? '▼' : '▶') + ' Voir le prompt et la réponse brute';
+    });
+
+    document.getElementById('btn-ai-modal-generate').addEventListener('click', async function() {
+      const mode = _aiState.mode;
+      const { model, temperature } = _aiGetModelParams();
+      const customPayload = {};
+      if (_aiState.customSystem !== null) customPayload.custom_system = _aiState.customSystem;
+      if (_aiState.customPrompt !== null) customPayload.custom_prompt = _aiState.customPrompt;
+
+      if (mode === 'enrich-term' && (!_aiState.runs || _aiState.runs.length === 0)) {
+        await _aiRunEnrichTerm();
+        return;
+      }
+
+      if (mode === 'enrich-term-batch' && (!_aiState.runs || _aiState.runs.length === 0)) {
+        await _aiRunEnrichTermsBatch();
+        return;
+      }
+
+      if (mode === 'generate-vocabulary') {
+        const theme = document.getElementById('ai-gen-theme').value.trim();
+        if (!theme) { document.getElementById('ai-gen-theme').focus(); return; }
+        const rootCount = parseInt(document.getElementById('ai-gen-root-count').value) || 5;
+        const childrenCount = parseInt(document.getElementById('ai-gen-children-count').value) || 3;
+        _aiShowView(null);
+        _aiSetLoading(true, null);
+        try {
+          const result = await _aiCallApi('/api/ai/generate-vocabulary', Object.assign({
+            theme, root_count: rootCount, children_per_root: childrenCount, model, temperature,
+          }, customPayload));
+          _aiState.runs.push({ model, temperature, result, ts: new Date().toISOString() });
+          _aiState.activeRun = _aiState.runs.length - 1;
+          _aiState.result = result;
+          _aiSetLoading(false, null);
+          _aiRenderTabs();
+          _aiShowDebug(result.prompt_used || '', result.raw_response || '');
+          _aiShowView('ai-view-vocab');
+          _aiRenderVocab(result.suggestions || [], theme);
+        } catch (err) {
+          _aiSetLoading(false, err.message || String(err));
+        }
+      } else {
+        // Régénérer pour enrich-term, enrich-term-batch, enrich-keywords, suggest-children
+        const termId = _aiState.termId;
+        const termIds = _aiState.termIds || [];
+        const vocabId = _aiState.vocabularyId;
+        if (mode === 'enrich-term-batch' ? !termIds.length : !termId) return;
+        _aiShowView(null);
+        _aiSetLoading(true, null);
+        try {
+          let result;
+          if (mode === 'enrich-term') {
+            const lastFields = (_aiState.result && _aiState.result.fields_requested) || [];
+            result = await _aiCallApi('/api/ai/enrich-term', Object.assign({ term_id: termId, vocabulary_id: vocabId, fields: lastFields, model, temperature }, customPayload));
+          } else if (mode === 'enrich-term-batch') {
+            const lastFields = (_aiState.result && _aiState.result.fields_requested) || [];
+            result = await _aiCallApi('/api/ai/enrich-terms-batch', Object.assign({ term_ids: termIds, vocabulary_id: vocabId, fields: lastFields, model, temperature }, customPayload));
+          } else if (mode === 'enrich-keywords') {
+            result = await _aiCallApi('/api/ai/enrich-keywords', Object.assign({ term_id: termId, vocabulary_id: vocabId, model, temperature }, customPayload));
+          } else if (mode === 'suggest-children') {
+            const count = (_aiState.context && _aiState.context.count) || 5;
+            result = await _aiCallApi('/api/ai/suggest-children', Object.assign({ term_id: termId, vocabulary_id: vocabId, count, model, temperature }, customPayload));
+          } else {
+            _aiSetLoading(false, 'Mode non supporté : ' + mode);
+            return;
+          }
+          _aiState.runs.push({ model, temperature, result, ts: new Date().toISOString() });
+          _aiState.activeRun = _aiState.runs.length - 1;
+          _aiState.result = result;
+          _aiSetLoading(false, null);
+          _aiRenderTabs();
+          _aiShowDebug(result.prompt_used || '', result.raw_response || '');
+          if (mode === 'enrich-term') {
+            _aiShowView('ai-view-fields');
+            _aiRenderFields(result.suggestions || {}, result.fields_requested || []);
+          } else if (mode === 'enrich-term-batch') {
+            _aiShowView('ai-view-enrich-batch-results');
+            const intro = document.getElementById('ai-view-enrich-batch-results-intro');
+            if (intro) intro.textContent = Object.keys(result.suggestions || {}).length + ' terme(s) enrichi(s). Cochez les valeurs à appliquer.';
+            _aiRenderEnrichBatchResults(result.suggestions || {}, result.fields_requested || [], _aiState.batchTermsData || {});
+          } else if (mode === 'enrich-keywords') {
+            _aiShowView('ai-view-keywords');
+            _aiRenderKeywords(result.suggestions || [], result.existing_keywords || []);
+          } else if (mode === 'suggest-children') {
+            _aiShowView('ai-view-children');
+            _aiRenderChildren(result.suggestions || [], result.parent_name);
+          }
+        } catch (err) {
+          _aiSetLoading(false, err.message || String(err));
+        }
+      }
+    });
+
+    // ─── Event listeners toolbar IA dropdown ─────────────────────────────────
+
+    const aiDropdownMenu = document.getElementById('ai-dropdown-menu');
+    document.getElementById('btn-ai-toolbar').addEventListener('click', function(e) {
+      e.stopPropagation();
+      const open = aiDropdownMenu.style.display === '';
+      aiDropdownMenu.style.display = open ? 'none' : '';
+    });
+    document.addEventListener('click', function() { aiDropdownMenu.style.display = 'none'; });
+    document.getElementById('ai-dropdown-wrap').addEventListener('click', function(e) { e.stopPropagation(); });
+
+    document.getElementById('ai-menu-enrich').addEventListener('click', function() {
+      aiDropdownMenu.style.display = 'none';
+      const termId = _aiGetCurrentTermId();
+      if (!termId) { setStatus('Sélectionnez un terme dans le tableau d\'abord.'); return; }
+      openAiModal('enrich-term', { termId });
+    });
+    document.getElementById('ai-menu-suggest-children').addEventListener('click', function() {
+      aiDropdownMenu.style.display = 'none';
+      const termId = _aiGetCurrentTermId();
+      if (!termId) { setStatus('Sélectionnez un terme dans le tableau d\'abord.'); return; }
+      const count = parseInt(prompt('Nombre de termes enfants à suggérer ?', '5')) || 5;
+      openAiModal('suggest-children', { termId, count });
+    });
+    document.getElementById('ai-menu-keywords').addEventListener('click', function() {
+      aiDropdownMenu.style.display = 'none';
+      const termId = _aiGetCurrentTermId();
+      if (!termId) { setStatus('Sélectionnez un terme dans le tableau d\'abord.'); return; }
+      openAiModal('enrich-keywords', { termId });
+    });
+    document.getElementById('ai-menu-generate-vocab').addEventListener('click', function() {
+      aiDropdownMenu.style.display = 'none';
+      openAiModal('generate-vocabulary', {});
+    });
+
+    // ─── Gestion des prompts IA (modal Config) ───────────────────────────────
+
+    const pmModal = document.getElementById('modal-prompt-manager');
+    const pmList = document.getElementById('pm-list');
+    const pmForm = document.getElementById('pm-form');
+    const pmEmpty = document.getElementById('pm-empty');
+    const pmSystemTa = document.getElementById('pm-system-ta');
+    const pmUserTa = document.getElementById('pm-user-ta');
+    const pmModelInput = document.getElementById('pm-model-input');
+    const pmTempInput = document.getElementById('pm-temp-input');
+    const pmSaveStatus = document.getElementById('pm-save-status');
+
+    const PM_KEY_LABELS = {
+      enrich_term: 'Enrichir un terme',
+      suggest_children: 'Suggérer des enfants',
+      generate_vocabulary: 'Générer un vocabulaire',
+      enrich_keywords: 'Mots-clés SEO',
+    };
+
+    let _pmCurrentKey = null;
+    let _pmPromptsData = null;
+
+    async function _pmLoadList() {
+      try {
+        const res = await fetch(API_BASE + '/api/ai/prompts');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        _pmPromptsData = await res.json();
+        pmList.innerHTML = '';
+        Object.keys(PM_KEY_LABELS).forEach(function(key) {
+          const data = _pmPromptsData[key] || {};
+          const item = document.createElement('div');
+          item.className = 'prompt-manager-item' + (_pmCurrentKey === key ? ' active' : '');
+          item.dataset.key = key;
+          item.innerHTML = '<div class="prompt-manager-item-name">' + PM_KEY_LABELS[key] + '</div>'
+            + '<div class="prompt-manager-item-desc">' + (data.description || '') + '</div>'
+            + (data.overridden_in_db ? '<span class="prompt-manager-item-badge">Modifié</span>' : '');
+          item.addEventListener('click', function() { _pmSelectKey(key); });
+          pmList.appendChild(item);
+        });
+      } catch (e) {
+        pmList.innerHTML = '<div style="padding:0.75rem;font-size:0.82rem;color:#b91c1c;">Erreur chargement : ' + e.message + '</div>';
+      }
+    }
+
+    function _pmSelectKey(key) {
+      _pmCurrentKey = key;
+      // Mettre à jour la sélection visuelle
+      pmList.querySelectorAll('.prompt-manager-item').forEach(function(el) {
+        el.classList.toggle('active', el.dataset.key === key);
+      });
+      const data = (_pmPromptsData || {})[key] || {};
+      pmSystemTa.value = data.system_text || '';
+      pmUserTa.value = data.user_text || '';
+      pmModelInput.value = data.model || '';
+      pmTempInput.value = data.temperature !== undefined ? data.temperature : 0.3;
+      pmSaveStatus.style.display = 'none';
+      pmEmpty.style.display = 'none';
+      pmForm.style.display = '';
+      document.getElementById('btn-pm-save').style.display = '';
+      document.getElementById('btn-pm-reset').style.display = data.overridden_in_db ? '' : 'none';
+    }
+
+    function openPromptManager() {
+      pmModal.classList.add('open');
+      pmForm.style.display = 'none';
+      pmEmpty.style.display = '';
+      document.getElementById('btn-pm-save').style.display = 'none';
+      document.getElementById('btn-pm-reset').style.display = 'none';
+      _pmCurrentKey = null;
+      _pmLoadList();
+    }
+
+    function closePromptManager() {
+      pmModal.classList.remove('open');
+    }
+
+    document.getElementById('btn-open-prompt-manager').addEventListener('click', function() {
+      // Fermer le config popover
+      document.getElementById('config-content').style.display = 'none';
+      openPromptManager();
+    });
+
+    document.getElementById('btn-pm-close').addEventListener('click', closePromptManager);
+    document.getElementById('btn-pm-cancel').addEventListener('click', closePromptManager);
+    pmModal.addEventListener('click', function(e) { if (e.target === pmModal) closePromptManager(); });
+
+    document.getElementById('btn-pm-save').addEventListener('click', async function() {
+      if (!_pmCurrentKey) return;
+      const body = {
+        system_text: pmSystemTa.value,
+        user_text: pmUserTa.value,
+        model: pmModelInput.value.trim() || null,
+        temperature: parseFloat(pmTempInput.value) || 0.3,
+      };
+      try {
+        const res = await fetch(API_BASE + '/api/ai/prompts/' + _pmCurrentKey, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(err.detail || 'HTTP ' + res.status); }
+        pmSaveStatus.textContent = '✓ Sauvegardé en base de données.';
+        pmSaveStatus.style.display = '';
+        _pmLoadList();
+        document.getElementById('btn-pm-reset').style.display = '';
+      } catch (e) {
+        pmSaveStatus.textContent = '✗ Erreur : ' + e.message;
+        pmSaveStatus.style.color = '#b91c1c';
+        pmSaveStatus.style.display = '';
+      }
+    });
+
+    document.getElementById('btn-pm-reset').addEventListener('click', async function() {
+      if (!_pmCurrentKey) return;
+      if (!confirm('Réinitialiser « ' + (PM_KEY_LABELS[_pmCurrentKey] || _pmCurrentKey) + ' » vers le YAML d\'origine ?')) return;
+      try {
+        const res = await fetch(API_BASE + '/api/ai/prompts/' + _pmCurrentKey + '/reset', { method: 'POST' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        pmSaveStatus.textContent = '✓ Réinitialisé. Source : YAML.';
+        pmSaveStatus.style.color = '#15803d';
+        pmSaveStatus.style.display = '';
+        await _pmLoadList();
+        _pmSelectKey(_pmCurrentKey);
+        document.getElementById('btn-pm-reset').style.display = 'none';
+      } catch (e) {
+        pmSaveStatus.textContent = '✗ Erreur : ' + e.message;
+        pmSaveStatus.style.color = '#b91c1c';
+        pmSaveStatus.style.display = '';
+      }
+    });
+
     loadFromApi();
   </script>
+  <script src="/data/shared/nav.js"></script>
+  <script src="/data/shared/jobs_poll.js"></script>
 </body>
 </html>

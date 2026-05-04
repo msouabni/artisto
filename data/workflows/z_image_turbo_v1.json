@@ -1,0 +1,109 @@
+{
+  "__meta__": {
+    "description": "z_image_turbo_bf16 (UNET-only) — génération image rapide sans negative prompt",
+    "negative_prompt_policy": {
+      "mode": "ignore",
+      "default_text": ""
+    },
+    "model_file": "z_image_turbo_bf16.safetensors",
+    "clip_file": "qwen_3_4b.safetensors",
+    "vae_file": "ae.safetensors",
+    "notes": [
+      "UNETLoader au lieu de CheckpointLoaderSimple",
+      "ModelSamplingAuraFlow obligatoire",
+      "EmptySD3LatentImage recommandée",
+      "ConditioningZeroOut (nœud 7) : pas de 2e CLIP négatif (évite OOM VRAM sur ce graphe)."
+    ],
+    "overrides": {
+      "positive_prompt": ["6", "text"],
+      "seed": ["3", "seed"],
+      "steps": ["3", "steps"],
+      "cfg": ["3", "cfg"],
+      "width": ["5", "width"],
+      "height": ["5", "height"],
+      "batch_size": ["5", "batch_size"],
+      "sampler_name": ["3", "sampler_name"],
+      "scheduler": ["3", "scheduler"],
+      "denoise": ["3", "denoise"],
+      "shift": ["2", "shift"]
+    }
+  },
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "z_image_turbo_bf16.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "ModelSamplingAuraFlow",
+    "inputs": {
+      "model": ["1", 0],
+      "shift": 3
+    }
+  },
+  "4": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "lumina2",
+      "device": "default"
+    }
+  },
+  "5": {
+    "class_type": "EmptySD3LatentImage",
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": ["4", 0],
+      "text": ""
+    }
+  },
+  "7": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": ["6", 0]
+    }
+  },
+  "8": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    }
+  },
+  "3": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": ["2", 0],
+      "positive": ["6", 0],
+      "negative": ["7", 0],
+      "latent_image": ["5", 0],
+      "seed": 42,
+      "steps": 4,
+      "cfg": 1.0,
+      "sampler_name": "res_multistep",
+      "scheduler": "simple",
+      "denoise": 1.0
+    }
+  },
+  "9": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": ["3", 0],
+      "vae": ["8", 0]
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["9", 0],
+      "filename_prefix": "artiste_coloriage"
+    }
+  }
+}
