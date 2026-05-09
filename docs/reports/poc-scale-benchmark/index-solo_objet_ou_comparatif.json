@@ -1,0 +1,150 @@
+{
+  "source": "workflow_class='Solo objet ou comparatif' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet ou comparatif",
+  "subjects": [
+    {
+      "filename": "vegetable_garden_at_home_1024x1024_euler8s.png",
+      "name_en": "Vegetable Garden at Home",
+      "leaf_id": "vegetable_garden_at_home",
+      "tier": "Solo objet ou comparatif",
+      "workflow_class": "Solo objet ou comparatif",
+      "technique": "Solo objet OU before/after (X4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows vegetable garden at home in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10659
+    },
+    {
+      "filename": "electric_car_charging_1024x1024_euler8s.png",
+      "name_en": "Electric Car Charging",
+      "leaf_id": "electric_car_charging",
+      "tier": "Solo objet ou comparatif",
+      "workflow_class": "Solo objet ou comparatif",
+      "technique": "Solo objet OU before/after (X4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows electric car charging in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10666
+    },
+    {
+      "filename": "reusable_shopping_tote_bag_1024x1024_euler8s.png",
+      "name_en": "Reusable Shopping Tote Bag",
+      "leaf_id": "reusable_shopping_tote_bag",
+      "tier": "Solo objet ou comparatif",
+      "workflow_class": "Solo objet ou comparatif",
+      "technique": "Solo objet OU before/after (X4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows reusable shopping tote bag in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10673
+    },
+    {
+      "filename": "eco_friendly_house_with_panels_1024x1024_euler8s.png",
+      "name_en": "Eco Friendly House with Panels",
+      "leaf_id": "eco_friendly_house_with_panels",
+      "tier": "Solo objet ou comparatif",
+      "workflow_class": "Solo objet ou comparatif",
+      "technique": "Solo objet OU before/after (X4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows eco friendly house with panels in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10680
+    },
+    {
+      "filename": "zero_waste_kitchen_1024x1024_euler8s.png",
+      "name_en": "Zero Waste Kitchen",
+      "leaf_id": "zero_waste_kitchen",
+      "tier": "Solo objet ou comparatif",
+      "workflow_class": "Solo objet ou comparatif",
+      "technique": "Solo objet OU before/after (X4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows zero waste kitchen in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10687
+    },
+    {
+      "filename": "bike_to_work_commute_1024x1024_euler8s.png",
+      "name_en": "Bike to Work Commute",
+      "leaf_id": "bike_to_work_commute",
+      "tier": "Solo objet ou comparatif",
+      "workflow_class": "Solo objet ou comparatif",
+      "technique": "Solo objet OU before/after (X4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows bike to work commute in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10694
+    },
+    {
+      "filename": "kids_picking_up_litter_1024x1024_euler8s.png",
+      "name_en": "Kids Picking Up Litter",
+      "leaf_id": "kids_picking_up_litter",
+      "tier": "Solo objet ou comparatif",
+      "workflow_class": "Solo objet ou comparatif",
+      "technique": "Solo objet OU before/after (X4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows kids picking up litter in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10701
+    },
+    {
+      "filename": "reusable_water_bottle_1024x1024_euler8s.png",
+      "name_en": "Reusable Water Bottle",
+      "leaf_id": "reusable_water_bottle",
+      "tier": "Solo objet ou comparatif",
+      "workflow_class": "Solo objet ou comparatif",
+      "technique": "Solo objet OU before/after (X4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows reusable water bottle in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10708
+    }
+  ]
+}

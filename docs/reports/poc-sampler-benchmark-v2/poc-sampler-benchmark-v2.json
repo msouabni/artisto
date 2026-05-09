@@ -1,0 +1,2223 @@
+{
+  "poc": "sampler-benchmark-v2",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "vision_model": "qwen3.5:9b",
+  "fixed_params": {
+    "cfg": 1.0,
+    "denoise": 1.0
+  },
+  "grid": {
+    "steps": [
+      8,
+      12,
+      20
+    ],
+    "scheduler": [
+      "normal"
+    ],
+    "sampler": [
+      "euler",
+      "dpm_2m",
+      "dpm_2m_sde"
+    ]
+  },
+  "concepts": {
+    "soccer": {
+      "seed": 1038277875074319,
+      "source": "chain_v2",
+      "match_keyword": "soccer ball on a field"
+    },
+    "refrigerator": {
+      "seed": 42002,
+      "source": "chain_v2",
+      "match_keyword": "refrigerator in a kitchen"
+    },
+    "dragon": {
+      "seed": 42003,
+      "source": "chain_v2",
+      "match_keyword": "dragon in a castle"
+    },
+    "cat": {
+      "seed": 42004,
+      "source": "chain_v2",
+      "match_keyword": "cat in a library"
+    },
+    "hammer": {
+      "seed": 42005,
+      "source": "chain_v2",
+      "match_keyword": "hammer on a workbench"
+    },
+    "astronaut": {
+      "seed": 42006,
+      "source": "chain_v2",
+      "match_keyword": "astronaut on a space station"
+    },
+    "bicycle": {
+      "seed": 42007,
+      "source": "inline",
+      "category": "vehicule"
+    },
+    "guitar": {
+      "seed": 42008,
+      "source": "inline",
+      "category": "instrument"
+    }
+  },
+  "soccer_prompt_variants": [
+    "prompt_v1",
+    "prompt_v2",
+    "prompt_v3"
+  ],
+  "results": {
+    "soccer_08s_normal_euler_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 22.28,
+      "comfy_prompt_id": "1520b283-69e5-4272-818c-01f728a2ac5d",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00151,
+        "white_ratio": 0.80505,
+        "ink_ratio": 0.12503,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 7.67
+      }
+    },
+    "soccer_12s_normal_euler_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.2,
+      "comfy_prompt_id": "75279986-0603-4e2c-8c39-b4eb8a938130",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00172,
+        "white_ratio": 0.79754,
+        "ink_ratio": 0.12795,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.53
+      }
+    },
+    "soccer_20s_normal_euler_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.29,
+      "comfy_prompt_id": "ccf27bcc-de45-453a-8a17-d961049765fc",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00141,
+        "white_ratio": 0.75523,
+        "ink_ratio": 0.12175,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.76
+      }
+    },
+    "refrigerator_08s_normal_euler_cfg10_42002.png": {
+      "concept_key": "refrigerator",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.14,
+      "comfy_prompt_id": "9e5d0ce5-c426-42f3-8ccb-d83153119f0a",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.03978,
+        "white_ratio": 0.84095,
+        "ink_ratio": 0.08324,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "poor",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 100,
+        "latency_s": 3.92
+      }
+    },
+    "refrigerator_12s_normal_euler_cfg10_42002.png": {
+      "concept_key": "refrigerator",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "1510a2a7-c3f8-4402-a997-963eb43ea9ec",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04359,
+        "white_ratio": 0.75095,
+        "ink_ratio": 0.09901,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.91
+      }
+    },
+    "refrigerator_20s_normal_euler_cfg10_42002.png": {
+      "concept_key": "refrigerator",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.17,
+      "comfy_prompt_id": "25035878-87b6-407e-8f91-1e8fcc858954",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.01806,
+        "white_ratio": 0.7093,
+        "ink_ratio": 0.08798,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.64
+      }
+    },
+    "dragon_08s_normal_euler_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.14,
+      "comfy_prompt_id": "f5fa352c-e655-40bb-8260-9e696b4dbc6a",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02602,
+        "white_ratio": 0.79105,
+        "ink_ratio": 0.1318,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.64
+      }
+    },
+    "dragon_12s_normal_euler_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.25,
+      "comfy_prompt_id": "0e796545-591f-48d8-811c-7959ccf21f95",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.02164,
+        "white_ratio": 0.79861,
+        "ink_ratio": 0.12751,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.78
+      }
+    },
+    "dragon_20s_normal_euler_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.27,
+      "comfy_prompt_id": "6004aa2d-c8c8-4fec-b624-aafd1d1d078c",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00249,
+        "white_ratio": 0.7945,
+        "ink_ratio": 0.13073,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.56
+      }
+    },
+    "cat_08s_normal_euler_cfg10_42004.png": {
+      "concept_key": "cat",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42004,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.13,
+      "comfy_prompt_id": "a411d340-7821-44cc-8d04-a1e9e5a38bad",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00168,
+        "white_ratio": 0.79353,
+        "ink_ratio": 0.15149,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.59
+      }
+    },
+    "cat_12s_normal_euler_cfg10_42004.png": {
+      "concept_key": "cat",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42004,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.21,
+      "comfy_prompt_id": "578e3382-ee57-4e2e-8a9b-d3702a31d1fc",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00173,
+        "white_ratio": 0.70357,
+        "ink_ratio": 0.16011,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.62
+      }
+    },
+    "cat_20s_normal_euler_cfg10_42004.png": {
+      "concept_key": "cat",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42004,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.25,
+      "comfy_prompt_id": "910c64b6-4e49-423e-b7b9-cf51ca45a2cf",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00152,
+        "white_ratio": 0.65409,
+        "ink_ratio": 0.16446,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.56
+      }
+    },
+    "hammer_08s_normal_euler_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42005,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.16,
+      "comfy_prompt_id": "a212551a-640c-4bfe-9bb1-7e39d48c9335",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0022,
+        "white_ratio": 0.79233,
+        "ink_ratio": 0.15651,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.58
+      }
+    },
+    "hammer_12s_normal_euler_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42005,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.12,
+      "comfy_prompt_id": "2d6caddc-1b77-476a-b17e-f2a8e7b1105f",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00231,
+        "white_ratio": 0.79006,
+        "ink_ratio": 0.15766,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.58
+      }
+    },
+    "hammer_20s_normal_euler_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42005,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.21,
+      "comfy_prompt_id": "0f21de69-f6ef-46fd-9582-d12d94e43b94",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00249,
+        "white_ratio": 0.79637,
+        "ink_ratio": 0.15191,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.64
+      }
+    },
+    "astronaut_08s_normal_euler_cfg10_42006.png": {
+      "concept_key": "astronaut",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42006,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "410f7357-bef4-4d56-b180-f378c94e5462",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00458,
+        "white_ratio": 0.76531,
+        "ink_ratio": 0.15912,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.83
+      }
+    },
+    "astronaut_12s_normal_euler_cfg10_42006.png": {
+      "concept_key": "astronaut",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42006,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.22,
+      "comfy_prompt_id": "3461a479-3e50-49bc-839d-df5150c01596",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00521,
+        "white_ratio": 0.76865,
+        "ink_ratio": 0.15396,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.67
+      }
+    },
+    "astronaut_20s_normal_euler_cfg10_42006.png": {
+      "concept_key": "astronaut",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42006,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 32.24,
+      "comfy_prompt_id": "886ef6a3-b581-47c0-b1e3-d8af9c6e1de4",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00585,
+        "white_ratio": 0.73068,
+        "ink_ratio": 0.1607,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.81
+      }
+    },
+    "bicycle_08s_normal_euler_cfg10_42007.png": {
+      "concept_key": "bicycle",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42007,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.12,
+      "comfy_prompt_id": "ff7ab6d3-7893-4011-b1e2-598d6b52528b",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00154,
+        "white_ratio": 0.83621,
+        "ink_ratio": 0.12914,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.56
+      }
+    },
+    "bicycle_12s_normal_euler_cfg10_42007.png": {
+      "concept_key": "bicycle",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42007,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.27,
+      "comfy_prompt_id": "a0745b7e-827e-43b2-967e-8ac01b86b09b",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00164,
+        "white_ratio": 0.82297,
+        "ink_ratio": 0.12431,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.53
+      }
+    },
+    "bicycle_20s_normal_euler_cfg10_42007.png": {
+      "concept_key": "bicycle",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42007,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.24,
+      "comfy_prompt_id": "46ff591f-2718-409b-ab32-a6c5820c6719",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00143,
+        "white_ratio": 0.84561,
+        "ink_ratio": 0.11979,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.54
+      }
+    },
+    "guitar_08s_normal_euler_cfg10_42008.png": {
+      "concept_key": "guitar",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42008,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.18,
+      "comfy_prompt_id": "dffb61b8-e046-4987-ba0c-b4078347b680",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00084,
+        "white_ratio": 0.82506,
+        "ink_ratio": 0.13788,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.55
+      }
+    },
+    "guitar_12s_normal_euler_cfg10_42008.png": {
+      "concept_key": "guitar",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42008,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.19,
+      "comfy_prompt_id": "62908635-cd4c-440c-a406-0e100718c809",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00082,
+        "white_ratio": 0.83737,
+        "ink_ratio": 0.12691,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.59
+      }
+    },
+    "guitar_20s_normal_euler_cfg10_42008.png": {
+      "concept_key": "guitar",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42008,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.18,
+      "comfy_prompt_id": "cfcdf3a2-3680-4d71-b7a7-b5dac28c6f78",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0011,
+        "white_ratio": 0.84029,
+        "ink_ratio": 0.123,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.63
+      }
+    },
+    "soccer_prompt_v1_08s_normal_euler_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "prompt_variant",
+      "variant": "prompt_v1",
+      "prompt_chars": 780,
+      "ok": true,
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "121a2173-c1be-4159-8010-722fd3999116",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00151,
+        "white_ratio": 0.80505,
+        "ink_ratio": 0.12503,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.57
+      }
+    },
+    "soccer_prompt_v2_08s_normal_euler_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "prompt_variant",
+      "variant": "prompt_v2",
+      "prompt_chars": 244,
+      "ok": true,
+      "comfy_latency_s": 18.18,
+      "comfy_prompt_id": "cee49fb7-d6ee-4159-81da-5a5fb5a7354a",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00106,
+        "white_ratio": 0.88851,
+        "ink_ratio": 0.09214,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.6
+      }
+    },
+    "soccer_prompt_v3_08s_normal_euler_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "prompt_variant",
+      "variant": "prompt_v3",
+      "prompt_chars": 705,
+      "ok": true,
+      "comfy_latency_s": 18.16,
+      "comfy_prompt_id": "8cea6176-7fd6-4cd2-9215-af649d9517a0",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00182,
+        "white_ratio": 0.81354,
+        "ink_ratio": 0.12453,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.57
+      }
+    },
+    "soccer_08s_normal_dpmpp_2m_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.21,
+      "comfy_prompt_id": "83d7d348-8046-4db3-93c8-2e6f0605301d",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00341,
+        "white_ratio": 0.79378,
+        "ink_ratio": 0.12218,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.64
+      }
+    },
+    "soccer_08s_normal_dpmpp_2m_sde_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 16.17,
+      "comfy_prompt_id": "8aca863c-8f2a-4011-bcf0-9fc8015d5518",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00382,
+        "white_ratio": 0.81933,
+        "ink_ratio": 0.12822,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.58
+      }
+    },
+    "soccer_12s_normal_dpmpp_2m_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.19,
+      "comfy_prompt_id": "8cf7164b-6161-4017-abd7-7e45ce2a9b5f",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00197,
+        "white_ratio": 0.79951,
+        "ink_ratio": 0.12207,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.62
+      }
+    },
+    "soccer_12s_normal_dpmpp_2m_sde_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 24.23,
+      "comfy_prompt_id": "accd9bdf-9b86-466d-afd3-71c86c824182",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.05335,
+        "white_ratio": 0.65114,
+        "ink_ratio": 0.12987,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.67
+      }
+    },
+    "soccer_20s_normal_dpmpp_2m_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 32.25,
+      "comfy_prompt_id": "825c1b3c-be15-41c5-bbcc-80d1481ecead",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00198,
+        "white_ratio": 0.7469,
+        "ink_ratio": 0.12359,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.58
+      }
+    },
+    "soccer_20s_normal_dpmpp_2m_sde_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 40.36,
+      "comfy_prompt_id": "4d1add9b-eeec-4f4b-a88c-f4b5efe0a16f",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.14758,
+        "white_ratio": 0.57467,
+        "ink_ratio": 0.11279,
+        "flags": [
+          "strong_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.68
+      }
+    },
+    "refrigerator_08s_normal_dpmpp_2m_cfg10_42002.png": {
+      "concept_key": "refrigerator",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.2,
+      "comfy_prompt_id": "5607ffe5-319a-461c-af30-b6484bcb32b3",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.06762,
+        "white_ratio": 0.62028,
+        "ink_ratio": 0.08778,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.61
+      }
+    },
+    "refrigerator_08s_normal_dpmpp_2m_sde_cfg10_42002.png": {
+      "concept_key": "refrigerator",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 16.16,
+      "comfy_prompt_id": "a5f79414-defa-4494-9aa8-9f9c7deca5ef",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04422,
+        "white_ratio": 0.7708,
+        "ink_ratio": 0.09913,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.94
+      }
+    },
+    "refrigerator_12s_normal_dpmpp_2m_cfg10_42002.png": {
+      "concept_key": "refrigerator",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.2,
+      "comfy_prompt_id": "ff2bc03c-18b5-4434-bde4-21b890f69135",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04709,
+        "white_ratio": 0.60019,
+        "ink_ratio": 0.10961,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 4.01
+      }
+    },
+    "refrigerator_12s_normal_dpmpp_2m_sde_cfg10_42002.png": {
+      "concept_key": "refrigerator",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 24.23,
+      "comfy_prompt_id": "5bc52e5a-91cf-4ea3-a521-bc9297424e69",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.06856,
+        "white_ratio": 0.66295,
+        "ink_ratio": 0.08849,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.89
+      }
+    },
+    "refrigerator_20s_normal_dpmpp_2m_cfg10_42002.png": {
+      "concept_key": "refrigerator",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 32.25,
+      "comfy_prompt_id": "8467cdb5-a6bd-4283-846b-ac60dd7891b8",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.01721,
+        "white_ratio": 0.65844,
+        "ink_ratio": 0.08787,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.69
+      }
+    },
+    "refrigerator_20s_normal_dpmpp_2m_sde_cfg10_42002.png": {
+      "concept_key": "refrigerator",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 38.34,
+      "comfy_prompt_id": "86125399-06c3-4f4e-9ec0-7bc9b0218c75",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.08459,
+        "white_ratio": 0.54489,
+        "ink_ratio": 0.09864,
+        "flags": [
+          "strong_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.97
+      }
+    },
+    "dragon_08s_normal_dpmpp_2m_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.16,
+      "comfy_prompt_id": "ba6d3db4-ce5a-43ed-8963-99b634772fca",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.03054,
+        "white_ratio": 0.76285,
+        "ink_ratio": 0.13217,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.94
+      }
+    },
+    "dragon_08s_normal_dpmpp_2m_sde_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 16.15,
+      "comfy_prompt_id": "3f1ce25e-d4db-44c0-bcd3-81522fa06ab0",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02506,
+        "white_ratio": 0.7732,
+        "ink_ratio": 0.12726,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.82
+      }
+    },
+    "dragon_12s_normal_dpmpp_2m_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.17,
+      "comfy_prompt_id": "9492fc5c-2661-4bea-a58b-959ff37c4beb",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.02215,
+        "white_ratio": 0.7929,
+        "ink_ratio": 0.13329,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.8
+      }
+    },
+    "dragon_12s_normal_dpmpp_2m_sde_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 24.23,
+      "comfy_prompt_id": "8efc72c7-8fb0-420c-82fc-d096a57b247f",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.07308,
+        "white_ratio": 0.61357,
+        "ink_ratio": 0.11854,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.99
+      }
+    },
+    "dragon_20s_normal_dpmpp_2m_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.24,
+      "comfy_prompt_id": "840027cf-a586-48d6-a2f3-188cd8c40b5d",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00255,
+        "white_ratio": 0.77643,
+        "ink_ratio": 0.13165,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.52
+      }
+    },
+    "dragon_20s_normal_dpmpp_2m_sde_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 38.3,
+      "comfy_prompt_id": "6ff45827-ef08-4d73-9085-19099a7e38eb",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.05678,
+        "white_ratio": 0.74379,
+        "ink_ratio": 0.12422,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 4.13
+      }
+    },
+    "cat_08s_normal_dpmpp_2m_cfg10_42004.png": {
+      "concept_key": "cat",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42004,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.15,
+      "comfy_prompt_id": "3083c783-bfce-419d-aa66-b5b706744f8f",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00612,
+        "white_ratio": 0.78009,
+        "ink_ratio": 0.15089,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.87
+      }
+    },
+    "cat_08s_normal_dpmpp_2m_sde_cfg10_42004.png": {
+      "concept_key": "cat",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42004,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 16.18,
+      "comfy_prompt_id": "10094fd0-c267-44a1-8cbb-e20b593de9bc",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00497,
+        "white_ratio": 0.79323,
+        "ink_ratio": 0.1276,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.94
+      }
+    },
+    "cat_12s_normal_dpmpp_2m_cfg10_42004.png": {
+      "concept_key": "cat",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42004,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.24,
+      "comfy_prompt_id": "835e90b3-b675-49e3-9927-081feedacf66",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0024,
+        "white_ratio": 0.68955,
+        "ink_ratio": 0.1661,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.9
+      }
+    },
+    "cat_12s_normal_dpmpp_2m_sde_cfg10_42004.png": {
+      "concept_key": "cat",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42004,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 24.3,
+      "comfy_prompt_id": "a4c0e1c6-cfb6-471c-9f3b-f7bd90aa975f",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00998,
+        "white_ratio": 0.78242,
+        "ink_ratio": 0.13323,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.87
+      }
+    },
+    "cat_20s_normal_dpmpp_2m_cfg10_42004.png": {
+      "concept_key": "cat",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42004,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.31,
+      "comfy_prompt_id": "77ef4497-ffdd-41eb-a3fc-972b3c9dcdbf",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00391,
+        "white_ratio": 0.65012,
+        "ink_ratio": 0.15495,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.81
+      }
+    },
+    "cat_20s_normal_dpmpp_2m_sde_cfg10_42004.png": {
+      "concept_key": "cat",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42004,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 38.28,
+      "comfy_prompt_id": "454a6d3e-06ad-4cd9-b427-8b3d2c2bbda8",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.01632,
+        "white_ratio": 0.59747,
+        "ink_ratio": 0.13312,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.93
+      }
+    },
+    "hammer_08s_normal_dpmpp_2m_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42005,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "152d99d7-d2d3-4f6f-bea1-7c77fe209d3c",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.01722,
+        "white_ratio": 0.77122,
+        "ink_ratio": 0.15411,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.71
+      }
+    },
+    "hammer_08s_normal_dpmpp_2m_sde_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42005,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 16.15,
+      "comfy_prompt_id": "e3cfb28e-b317-487a-afd0-1c2b5f48a363",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00343,
+        "white_ratio": 0.80595,
+        "ink_ratio": 0.13222,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.64
+      }
+    },
+    "hammer_12s_normal_dpmpp_2m_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42005,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.17,
+      "comfy_prompt_id": "177740b8-60f3-457c-98a7-fc70b7d8fe95",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00363,
+        "white_ratio": 0.77801,
+        "ink_ratio": 0.16503,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.65
+      }
+    },
+    "hammer_12s_normal_dpmpp_2m_sde_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42005,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 24.28,
+      "comfy_prompt_id": "90094b98-3b01-4eb9-b9d9-5205d6507b98",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00307,
+        "white_ratio": 0.78538,
+        "ink_ratio": 0.14377,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.75
+      }
+    },
+    "hammer_20s_normal_dpmpp_2m_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42005,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.27,
+      "comfy_prompt_id": "5fa5b86f-a463-4d62-9275-034ff20affe9",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00254,
+        "white_ratio": 0.79509,
+        "ink_ratio": 0.15007,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.66
+      }
+    },
+    "hammer_20s_normal_dpmpp_2m_sde_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42005,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 38.3,
+      "comfy_prompt_id": "551747b7-f32d-4ea6-b613-7ae6a84157f6",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00318,
+        "white_ratio": 0.76491,
+        "ink_ratio": 0.15101,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.65
+      }
+    },
+    "astronaut_08s_normal_dpmpp_2m_cfg10_42006.png": {
+      "concept_key": "astronaut",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42006,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.14,
+      "comfy_prompt_id": "45a25386-75db-4f2f-9b5f-14b94d8fd564",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.01628,
+        "white_ratio": 0.42117,
+        "ink_ratio": 0.16301,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 4.03
+      }
+    },
+    "astronaut_08s_normal_dpmpp_2m_sde_cfg10_42006.png": {
+      "concept_key": "astronaut",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42006,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 16.09,
+      "comfy_prompt_id": "2adeb430-3acc-4815-b1b5-4eae7ca12cc7",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00666,
+        "white_ratio": 0.74305,
+        "ink_ratio": 0.17644,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.91
+      }
+    },
+    "astronaut_12s_normal_dpmpp_2m_cfg10_42006.png": {
+      "concept_key": "astronaut",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42006,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.15,
+      "comfy_prompt_id": "22eb6e65-85e5-4812-894b-e025f64fc1f8",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00749,
+        "white_ratio": 0.6506,
+        "ink_ratio": 0.15749,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.87
+      }
+    },
+    "astronaut_12s_normal_dpmpp_2m_sde_cfg10_42006.png": {
+      "concept_key": "astronaut",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42006,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 24.24,
+      "comfy_prompt_id": "8272480c-78a3-4247-a3f1-f7692b128a34",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00773,
+        "white_ratio": 0.71856,
+        "ink_ratio": 0.20181,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.78
+      }
+    },
+    "astronaut_20s_normal_dpmpp_2m_cfg10_42006.png": {
+      "concept_key": "astronaut",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42006,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 32.3,
+      "comfy_prompt_id": "68421182-29aa-435f-8b2d-1459e6d83deb",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0059,
+        "white_ratio": 0.71175,
+        "ink_ratio": 0.16132,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.97
+      }
+    },
+    "astronaut_20s_normal_dpmpp_2m_sde_cfg10_42006.png": {
+      "concept_key": "astronaut",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42006,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 40.29,
+      "comfy_prompt_id": "343ef7d0-936e-499a-9290-064c3e2743d5",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00489,
+        "white_ratio": 0.63507,
+        "ink_ratio": 0.18431,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 4.04
+      }
+    },
+    "bicycle_08s_normal_dpmpp_2m_cfg10_42007.png": {
+      "concept_key": "bicycle",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42007,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.21,
+      "comfy_prompt_id": "aae69732-68f0-4cd1-aeb0-7736ee1d3da3",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.02149,
+        "white_ratio": 0.77445,
+        "ink_ratio": 0.12679,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.97
+      }
+    },
+    "bicycle_08s_normal_dpmpp_2m_sde_cfg10_42007.png": {
+      "concept_key": "bicycle",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42007,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 16.17,
+      "comfy_prompt_id": "5f29329f-3e87-40ab-8508-18459f78ff23",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00308,
+        "white_ratio": 0.78463,
+        "ink_ratio": 0.13392,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.66
+      }
+    },
+    "bicycle_12s_normal_dpmpp_2m_cfg10_42007.png": {
+      "concept_key": "bicycle",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42007,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.2,
+      "comfy_prompt_id": "9a0a7a39-14cb-4032-be83-c2b9b677ae08",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00293,
+        "white_ratio": 0.82472,
+        "ink_ratio": 0.11848,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.67
+      }
+    },
+    "bicycle_12s_normal_dpmpp_2m_sde_cfg10_42007.png": {
+      "concept_key": "bicycle",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42007,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 24.21,
+      "comfy_prompt_id": "d896072d-fac4-4997-bd4f-93b57134da72",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00271,
+        "white_ratio": 0.78977,
+        "ink_ratio": 0.13479,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.89
+      }
+    },
+    "bicycle_20s_normal_dpmpp_2m_cfg10_42007.png": {
+      "concept_key": "bicycle",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42007,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.25,
+      "comfy_prompt_id": "4addec2c-46aa-490d-81cd-18cc281f9d6c",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00251,
+        "white_ratio": 0.83298,
+        "ink_ratio": 0.11885,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.81
+      }
+    },
+    "bicycle_20s_normal_dpmpp_2m_sde_cfg10_42007.png": {
+      "concept_key": "bicycle",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42007,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 38.28,
+      "comfy_prompt_id": "4d6df546-fa2b-4c71-93e8-096049b0ef1d",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00219,
+        "white_ratio": 0.80052,
+        "ink_ratio": 0.13539,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.58
+      }
+    },
+    "guitar_08s_normal_dpmpp_2m_cfg10_42008.png": {
+      "concept_key": "guitar",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42008,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "cac710b2-23e6-4f96-8152-8fa396a30186",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00535,
+        "white_ratio": 0.81411,
+        "ink_ratio": 0.13472,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.76
+      }
+    },
+    "guitar_08s_normal_dpmpp_2m_sde_cfg10_42008.png": {
+      "concept_key": "guitar",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42008,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 16.16,
+      "comfy_prompt_id": "4b510231-efba-489b-b0d4-35815869a2aa",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00141,
+        "white_ratio": 0.82804,
+        "ink_ratio": 0.12858,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.69
+      }
+    },
+    "guitar_12s_normal_dpmpp_2m_cfg10_42008.png": {
+      "concept_key": "guitar",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42008,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 20.14,
+      "comfy_prompt_id": "dfe89caf-32fc-45b3-a5bc-98dd7ef8c1b4",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00163,
+        "white_ratio": 0.83816,
+        "ink_ratio": 0.12388,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.75
+      }
+    },
+    "guitar_12s_normal_dpmpp_2m_sde_cfg10_42008.png": {
+      "concept_key": "guitar",
+      "steps": 12,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42008,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 24.2,
+      "comfy_prompt_id": "d44ca3d2-69f0-4342-b388-ab208d76c5b9",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00175,
+        "white_ratio": 0.83264,
+        "ink_ratio": 0.11927,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.6
+      }
+    },
+    "guitar_20s_normal_dpmpp_2m_cfg10_42008.png": {
+      "concept_key": "guitar",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42008,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 30.26,
+      "comfy_prompt_id": "7e68ea17-997d-4385-82ed-023b23fec516",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00112,
+        "white_ratio": 0.84467,
+        "ink_ratio": 0.12295,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.98
+      }
+    },
+    "guitar_20s_normal_dpmpp_2m_sde_cfg10_42008.png": {
+      "concept_key": "guitar",
+      "steps": 20,
+      "scheduler": "normal",
+      "sampler_name": "dpmpp_2m_sde",
+      "cfg": 1.0,
+      "denoise": 1.0,
+      "seed": 42008,
+      "negative_chars": 158,
+      "kind": "grid",
+      "ok": true,
+      "comfy_latency_s": 40.31,
+      "comfy_prompt_id": "74b39701-ad20-4eca-9d12-34624912e209",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00315,
+        "white_ratio": 0.82088,
+        "ink_ratio": 0.12757,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.85
+      }
+    }
+  }
+}

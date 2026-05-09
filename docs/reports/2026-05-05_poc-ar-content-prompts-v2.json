@@ -1,0 +1,563 @@
+{
+  "poc": "ar-content-prompts-v2",
+  "date": "2026-05-05",
+  "model": "qwen2.5:7b",
+  "temperature": 0.0,
+  "concepts_count": 10,
+  "concepts": [
+    "lion in the savanna",
+    "cat in a library",
+    "colorful butterfly",
+    "elephant with its babies",
+    "fish in the ocean",
+    "fox in the forest",
+    "white rabbit",
+    "bird on a branch",
+    "turtle on a rock",
+    "jumping dolphin"
+  ],
+  "prompt_a": "You generate editorial content in Arabic for a children's coloring website (ages 4-10).\nTarget audience: young children. Use simple, clear, modern Arabic. No vowel diacritics. No Latin characters.\n\nConcept: \"{concept}\"\n\nGenerate JSON only:\n{{\n  \"title\": \"Arabic title between 40 and 60 characters\",\n  \"title_card\": \"Short Arabic title, maximum 30 characters\",\n  \"description\": \"Arabic description in plain prose, between 80 and 130 characters, no markdown\",\n  \"keywords\": [\"keyword1\", \"keyword2\", \"keyword3\"]\n}}",
+  "prompt_b": "You generate Arabic content for a children's coloring website. Simple Arabic for ages 4-10. No diacritics. No Latin.\n\nExample for \"lion in the savanna\":\n{{\n  \"title\": \"استمتع برسم أسد يمشي في السافانا الجميلة مع أشجارها\",\n  \"title_card\": \"الأسد في السافانا\",\n  \"description\": \"أسد قوي يتجول في السافانا بين الأشجار الطويلة تحت الشمس الدافئة، رائع للتلوين\",\n  \"keywords\": [\"تلوين أسد\", \"حيوانات أفريقيا\", \"السافانا\"]\n}}\n\nNow generate for: \"{concept}\"",
+  "summary": {
+    "A": {
+      "json_ok": 10,
+      "title_in_bounds": 0,
+      "title_card_in_bounds": 10,
+      "description_in_bounds": 0,
+      "harakat": 1,
+      "latin": 6,
+      "avg_latency_s": 7.4
+    },
+    "B": {
+      "json_ok": 10,
+      "title_in_bounds": 8,
+      "title_card_in_bounds": 10,
+      "description_in_bounds": 0,
+      "harakat": 0,
+      "latin": 1,
+      "avg_latency_s": 5.07
+    }
+  },
+  "results": [
+    {
+      "concept": "lion in the savanna",
+      "id": 1,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"أسد في الغابة الخضراء\",\n  \"title_card\": \"أسد\",\n  \"description\": \"لون مع الأسد الجميل في الغابة الخضراء.\",\n  \"keywords\": [\"أسد\", \"غابة\", \"لون\"]\n}",
+        "parsed": {
+          "title": "أسد في الغابة الخضراء",
+          "title_card": "أسد",
+          "description": "لون مع الأسد الجميل في الغابة الخضراء.",
+          "keywords": [
+            "أسد",
+            "غابة",
+            "لون"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 36.359012842178345,
+        "title_len": 21,
+        "title_in_bounds": false,
+        "title_card_len": 3,
+        "title_card_in_bounds": true,
+        "description_len": 38,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم أسد يمشي في السافانا الجميلة مع أشجارها\",\n  \"title_card\": \"الأسد في السافانا\",\n  \"description\": \"أسد قوي يتجول في السافانا بين الأشجار الطويلة تحت الشمس الدافئة، رائع للتلوين\",\n  \"keywords\": [\"تلوين أسد\", \"حيوانات أفريقيا\", \"السافانا\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم أسد يمشي في السافانا الجميلة مع أشجارها",
+          "title_card": "الأسد في السافانا",
+          "description": "أسد قوي يتجول في السافانا بين الأشجار الطويلة تحت الشمس الدافئة، رائع للتلوين",
+          "keywords": [
+            "تلوين أسد",
+            "حيوانات أفريقيا",
+            "السافانا"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 5.143801689147949,
+        "title_len": 51,
+        "title_in_bounds": true,
+        "title_card_len": 17,
+        "title_card_in_bounds": true,
+        "description_len": 77,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      }
+    },
+    {
+      "concept": "cat in a library",
+      "id": 2,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"قطة في مكتبة\",\n  \"title_card\": \"قطة ومكتبة\",\n  \"description\": \"تستكشف القطط المكتبة وتكتشف الكتب الجديدة.\",\n  \"keywords\": [\"قطة\", \"مكتبة\", \"كتب\"]\n}",
+        "parsed": {
+          "title": "قطة في مكتبة",
+          "title_card": "قطة ومكتبة",
+          "description": "تستكشف القطط المكتبة وتكتشف الكتب الجديدة.",
+          "keywords": [
+            "قطة",
+            "مكتبة",
+            "كتب"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 3.6410415172576904,
+        "title_len": 12,
+        "title_in_bounds": false,
+        "title_card_len": 10,
+        "title_card_in_bounds": true,
+        "description_len": 42,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم قطة تلعب في المكتبة الجميلة مع الكتب\",\n  \"title_card\": \"القطة في المكتبة\",\n  \"description\": \"قطة صغيرة تتجول بين الأرفف مليئة بالكتب تحت ضوء الشمس، رائع للتلوين\",\n  \"keywords\": [\"تلوين قطة\", \"المكتبات\", \"حيوانات أليفة\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم قطة تلعب في المكتبة الجميلة مع الكتب",
+          "title_card": "القطة في المكتبة",
+          "description": "قطة صغيرة تتجول بين الأرفف مليئة بالكتب تحت ضوء الشمس، رائع للتلوين",
+          "keywords": [
+            "تلوين قطة",
+            "المكتبات",
+            "حيوانات أليفة"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.75980544090271,
+        "title_len": 48,
+        "title_in_bounds": true,
+        "title_card_len": 16,
+        "title_card_in_bounds": true,
+        "description_len": 67,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      }
+    },
+    {
+      "concept": "colorful butterfly",
+      "id": 3,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"زهور الطيور الملونة\",\n  \"title_card\": \"طيور ملونة\",\n  \"description\": \" coloring page طائر ملون يحلق فيarden مع زهور مشرقة\",\n  \"keywords\": [\"طيور\", \"ملونة\", \"زهور\"]\n}",
+        "parsed": {
+          "title": "زهور الطيور الملونة",
+          "title_card": "طيور ملونة",
+          "description": " coloring page طائر ملون يحلق فيarden مع زهور مشرقة",
+          "keywords": [
+            "طيور",
+            "ملونة",
+            "زهور"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.057945251464844,
+        "title_len": 19,
+        "title_in_bounds": false,
+        "title_card_len": 10,
+        "title_card_in_bounds": true,
+        "description_len": 51,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": true
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم فراشة ملونة تحلق في الهواء\",\n  \"title_card\": \"الفراشة الملونة\",\n  \"description\": \"فراشة جميلة مليئة باللون تحلق بين الزهور في الهواء الطلق، رائعة للتلوين\",\n  \"keywords\": [\"تلوين فراشة\", \"حشرات ملونة\", \"الزهور\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم فراشة ملونة تحلق في الهواء",
+          "title_card": "الفراشة الملونة",
+          "description": "فراشة جميلة مليئة باللون تحلق بين الزهور في الهواء الطلق، رائعة للتلوين",
+          "keywords": [
+            "تلوين فراشة",
+            "حشرات ملونة",
+            "الزهور"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 5.103472948074341,
+        "title_len": 38,
+        "title_in_bounds": false,
+        "title_card_len": 15,
+        "title_card_in_bounds": true,
+        "description_len": 71,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      }
+    },
+    {
+      "concept": "elephant with its babies",
+      "id": 4,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"أفيون وصغاره\",\n  \"title_card\": \"أفيون وصغاره\",\n  \"description\": \"رسم أفيون مع صغاره للاطفال\",\n  \"keywords\": [\"أفيون\", \"صغاره\", \"رسم\"]\n}",
+        "parsed": {
+          "title": "أفيون وصغاره",
+          "title_card": "أفيون وصغاره",
+          "description": "رسم أفيون مع صغاره للاطفال",
+          "keywords": [
+            "أفيون",
+            "صغاره",
+            "رسم"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 3.778557062149048,
+        "title_len": 12,
+        "title_in_bounds": false,
+        "title_card_len": 12,
+        "title_card_in_bounds": true,
+        "description_len": 26,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم أسد بابا مع صغاره في الغابة الخضراء\",\n  \"title_card\": \"أسد بابا وصغاره\",\n  \"description\": \"أسد كبير يمشي مع صغاره في غابة خضراء تحت الأشجار الضخمة، رائع للتلوين\",\n  \"keywords\": [\"تلوين أسد\", \"حيوانات الغابة\", \"أسد بابا وصغاره\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم أسد بابا مع صغاره في الغابة الخضراء",
+          "title_card": "أسد بابا وصغاره",
+          "description": "أسد كبير يمشي مع صغاره في غابة خضراء تحت الأشجار الضخمة، رائع للتلوين",
+          "keywords": [
+            "تلوين أسد",
+            "حيوانات الغابة",
+            "أسد بابا وصغاره"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 5.3751654624938965,
+        "title_len": 47,
+        "title_in_bounds": true,
+        "title_card_len": 15,
+        "title_card_in_bounds": true,
+        "description_len": 69,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      }
+    },
+    {
+      "concept": "fish in the ocean",
+      "id": 5,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"أسمااء الأسماك في المحيط\",\n  \"title_card\": \"أسماك المحيط\",\n  \"description\": \"اكتشف أنواع مختلفة من الأسماك وتعلم أسماؤها في المحيط.\",\n  \"keywords\": [\"أسماك\", \"محيط\", \"ال coloring\"]\n}",
+        "parsed": {
+          "title": "أسمااء الأسماك في المحيط",
+          "title_card": "أسماك المحيط",
+          "description": "اكتشف أنواع مختلفة من الأسماك وتعلم أسماؤها في المحيط.",
+          "keywords": [
+            "أسماك",
+            "محيط",
+            "ال coloring"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.261441707611084,
+        "title_len": 24,
+        "title_in_bounds": false,
+        "title_card_len": 12,
+        "title_card_in_bounds": true,
+        "description_len": 54,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": true
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم سمكة تسبح في المحيط الواسع مع الأصدقاء الأسماك\",\n  \"title_card\": \"السمكة في المحيط\",\n  \"description\": \"سمكة صغيرة تسبح بين الحواجز الصخرية تحت الماء، مثالية للتلوين\",\n  \"keywords\": [\"تلوين سمكة\", \"المحيطات\", \"أسماك\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم سمكة تسبح في المحيط الواسع مع الأصدقاء الأسماك",
+          "title_card": "السمكة في المحيط",
+          "description": "سمكة صغيرة تسبح بين الحواجز الصخرية تحت الماء، مثالية للتلوين",
+          "keywords": [
+            "تلوين سمكة",
+            "المحيطات",
+            "أسماك"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.902731418609619,
+        "title_len": 58,
+        "title_in_bounds": true,
+        "title_card_len": 16,
+        "title_card_in_bounds": true,
+        "description_len": 61,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      }
+    },
+    {
+      "concept": "fox in the forest",
+      "id": 6,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"الفأر في الغابة\",\n  \"title_card\": \"الفأر والغابة\",\n  \"description\": \"تستكشف الغابة مع الفأر الصديق وتجد الحيوانات الأخرى.\",\n  \"keywords\": [\"فأر\", \"غابة\", \" coloring\"]\n}",
+        "parsed": {
+          "title": "الفأر في الغابة",
+          "title_card": "الفأر والغابة",
+          "description": "تستكشف الغابة مع الفأر الصديق وتجد الحيوانات الأخرى.",
+          "keywords": [
+            "فأر",
+            "غابة",
+            " coloring"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.030618667602539,
+        "title_len": 15,
+        "title_in_bounds": false,
+        "title_card_len": 13,
+        "title_card_in_bounds": true,
+        "description_len": 52,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": true
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم فهد يمشي في الغابة الخضراء مع الأشجار الكثيفة\",\n  \"title_card\": \"الفهد في الغابة\",\n  \"description\": \"فهد ذكي يتجول بين أشجار الغابة الخضراء تحت ضوء الشمس، رائع للتلوين\",\n  \"keywords\": [\"تلوين فهد\", \"حيوانات الغابة\", \"الغابة\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم فهد يمشي في الغابة الخضراء مع الأشجار الكثيفة",
+          "title_card": "الفهد في الغابة",
+          "description": "فهد ذكي يتجول بين أشجار الغابة الخضراء تحت ضوء الشمس، رائع للتلوين",
+          "keywords": [
+            "تلوين فهد",
+            "حيوانات الغابة",
+            "الغابة"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 5.159045696258545,
+        "title_len": 57,
+        "title_in_bounds": true,
+        "title_card_len": 15,
+        "title_card_in_bounds": true,
+        "description_len": 66,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      }
+    },
+    {
+      "concept": "white rabbit",
+      "id": 7,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"صغيرة مع خفيف الألوان الفأر الأبيض\",\n  \"title_card\": \"خفيف الألوان الفأر\",\n  \"description\": \" coloring مع صورة فأر أبيض للاستمتاع بملء ألوانه الجميلة\",\n  \"keywords\": [\"فأر أبيض\", \"الرسم باللون\", \"الattivitàات للأطفال\"]\n}",
+        "parsed": {
+          "title": "صغيرة مع خفيف الألوان الفأر الأبيض",
+          "title_card": "خفيف الألوان الفأر",
+          "description": " coloring مع صورة فأر أبيض للاستمتاع بملء ألوانه الجميلة",
+          "keywords": [
+            "فأر أبيض",
+            "الرسم باللون",
+            "الattivitàات للأطفال"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.865729093551636,
+        "title_len": 34,
+        "title_in_bounds": false,
+        "title_card_len": 18,
+        "title_card_in_bounds": true,
+        "description_len": 56,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": true
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم فئران أبيض يمشي في الحديقة الخضراء\",\n  \"title_card\": \"الفأرة البيضاء\",\n  \"description\": \"فئران أبيض صغير يتجول في حديقة خضراء مليئة بالزهور والأشجار، رائع للتلوين\",\n  \"keywords\": [\"تلوين فئران\", \"الفئران البيضاء\", \"الحديقة الخضراء\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم فئران أبيض يمشي في الحديقة الخضراء",
+          "title_card": "الفأرة البيضاء",
+          "description": "فئران أبيض صغير يتجول في حديقة خضراء مليئة بالزهور والأشجار، رائع للتلوين",
+          "keywords": [
+            "تلوين فئران",
+            "الفئران البيضاء",
+            "الحديقة الخضراء"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 5.334287881851196,
+        "title_len": 46,
+        "title_in_bounds": true,
+        "title_card_len": 14,
+        "title_card_in_bounds": true,
+        "description_len": 73,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      }
+    },
+    {
+      "concept": "bird on a branch",
+      "id": 8,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"طير على فرع شجرة\",\n  \"title_card\": \"طير وفرع\",\n  \"description\": \" coloring page طير جميل على فرع شجرة خضراء\",\n  \"keywords\": [\"طير\", \"فرع\", \"شجرة\"]\n}",
+        "parsed": {
+          "title": "طير على فرع شجرة",
+          "title_card": "طير وفرع",
+          "description": " coloring page طير جميل على فرع شجرة خضراء",
+          "keywords": [
+            "طير",
+            "فرع",
+            "شجرة"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 3.986880302429199,
+        "title_len": 16,
+        "title_in_bounds": false,
+        "title_card_len": 8,
+        "title_card_in_bounds": true,
+        "description_len": 42,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": true
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم طائر على فرع شجرة\",\n  \"title_card\": \"الطير في الفرع\",\n  \"description\": \"طائر جميل يقف على فرع شجرة خضراء، مثالي للتلوين\",\n  \"keywords\": [\"تلوين الطيور\", \"الشجرة والطير\", \" natuurة الحيوانات\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم طائر على فرع شجرة",
+          "title_card": "الطير في الفرع",
+          "description": "طائر جميل يقف على فرع شجرة خضراء، مثالي للتلوين",
+          "keywords": [
+            "تلوين الطيور",
+            "الشجرة والطير",
+            " natuurة الحيوانات"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.756140232086182,
+        "title_len": 29,
+        "title_in_bounds": false,
+        "title_card_len": 14,
+        "title_card_in_bounds": true,
+        "description_len": 47,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": true
+      }
+    },
+    {
+      "concept": "turtle on a rock",
+      "id": 9,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"طفلة تلوّن فقيرتها الصغيرة على حجر\",\n  \"title_card\": \"قرد صغير على حجر\",\n  \"description\": \"تلوّن بجوار صديقك الصغير وابدأ رحلة لون ممتعة مع قرد يرتاح على حجر.\",\n  \"keywords\": [\"قرد\", \"حجر\", \"تلويح\"]\n}",
+        "parsed": {
+          "title": "طفلة تلوّن فقيرتها الصغيرة على حجر",
+          "title_card": "قرد صغير على حجر",
+          "description": "تلوّن بجوار صديقك الصغير وابدأ رحلة لون ممتعة مع قرد يرتاح على حجر.",
+          "keywords": [
+            "قرد",
+            "حجر",
+            "تلويح"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.974811792373657,
+        "title_len": 34,
+        "title_in_bounds": false,
+        "title_card_len": 16,
+        "title_card_in_bounds": true,
+        "description_len": 67,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": true,
+        "latin_anywhere": false
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم تنين يقف على حجر في الطبيعة الجميلة\",\n  \"title_card\": \"التنين على الحجر\",\n  \"description\": \"تنين صغير يقف بثقة على حجر كبير بين النباتات الخضراء، مثالي للتلوين\",\n  \"keywords\": [\"تلوين تنين\", \"حيوانات البحر الأبيض المتوسط\", \"الطبيعة\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم تنين يقف على حجر في الطبيعة الجميلة",
+          "title_card": "التنين على الحجر",
+          "description": "تنين صغير يقف بثقة على حجر كبير بين النباتات الخضراء، مثالي للتلوين",
+          "keywords": [
+            "تلوين تنين",
+            "حيوانات البحر الأبيض المتوسط",
+            "الطبيعة"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 5.163402080535889,
+        "title_len": 47,
+        "title_in_bounds": true,
+        "title_card_len": 16,
+        "title_card_in_bounds": true,
+        "description_len": 67,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      }
+    },
+    {
+      "concept": "jumping dolphin",
+      "id": 10,
+      "prompt_a": {
+        "raw": "{\n  \"title\": \"دolphin يقفز في الماء\",\n  \"title_card\": \"قفز الدolphin\",\n  \"description\": \"شاهد كيف يلعب الدolphin ويفعل ما يحب في الماء\",\n  \"keywords\": [\"دolphin\", \"قفز\", \"مائي\"]\n}",
+        "parsed": {
+          "title": "دolphin يقفز في الماء",
+          "title_card": "قفز الدolphin",
+          "description": "شاهد كيف يلعب الدolphin ويفعل ما يحب في الماء",
+          "keywords": [
+            "دolphin",
+            "قفز",
+            "مائي"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.039815664291382,
+        "title_len": 21,
+        "title_in_bounds": false,
+        "title_card_len": 13,
+        "title_card_in_bounds": true,
+        "description_len": 45,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": true
+      },
+      "prompt_b": {
+        "raw": "{\n  \"title\": \"استمتع برسم دبكة تلعب في الماء الجميل مع الأمواج\",\n  \"title_card\": \"الدبكة في البحر\",\n  \"description\": \"دبكة ذكي يقفز في الماء بين الأمواج تحت السماء الزرقاء، رائع للتلوين\",\n  \"keywords\": [\"تلوين دبكة\", \"حيوانات البحر\", \"القفز في الماء\"]\n}",
+        "parsed": {
+          "title": "استمتع برسم دبكة تلعب في الماء الجميل مع الأمواج",
+          "title_card": "الدبكة في البحر",
+          "description": "دبكة ذكي يقفز في الماء بين الأمواج تحت السماء الزرقاء، رائع للتلوين",
+          "keywords": [
+            "تلوين دبكة",
+            "حيوانات البحر",
+            "القفز في الماء"
+          ]
+        },
+        "json_ok": true,
+        "latency_s": 4.973021507263184,
+        "title_len": 48,
+        "title_in_bounds": true,
+        "title_card_len": 15,
+        "title_card_in_bounds": true,
+        "description_len": 67,
+        "description_in_bounds": false,
+        "keywords_count": 3,
+        "harakat_anywhere": false,
+        "latin_anywhere": false
+      }
+    }
+  ]
+}

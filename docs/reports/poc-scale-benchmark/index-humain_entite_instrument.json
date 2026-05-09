@@ -1,0 +1,168 @@
+{
+  "source": "workflow_class='Humain + entité (instrument)' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Humain + entité (instrument)",
+  "subjects": [
+    {
+      "filename": "kid_using_microscope_1024x1024_euler8s.png",
+      "name_en": "Kid Using Microscope",
+      "leaf_id": "kid_using_microscope",
+      "tier": "Humain + entité (instrument)",
+      "workflow_class": "Humain + entité (instrument)",
+      "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of kid using microscope, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9224
+    },
+    {
+      "filename": "child_with_test_tubes_1024x1024_euler8s.png",
+      "name_en": "Child with Test Tubes",
+      "leaf_id": "child_with_test_tubes",
+      "tier": "Humain + entité (instrument)",
+      "workflow_class": "Humain + entité (instrument)",
+      "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of child with test tubes, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9231
+    },
+    {
+      "filename": "bubbling_volcano_experiment_1024x1024_euler8s.png",
+      "name_en": "Bubbling Volcano Experiment",
+      "leaf_id": "bubbling_volcano_experiment",
+      "tier": "Humain + entité (instrument)",
+      "workflow_class": "Humain + entité (instrument)",
+      "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of bubbling volcano experiment, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9238
+    },
+    {
+      "filename": "rainbow_prism_experiment_1024x1024_euler8s.png",
+      "name_en": "Rainbow Prism Experiment",
+      "leaf_id": "rainbow_prism_experiment",
+      "tier": "Humain + entité (instrument)",
+      "workflow_class": "Humain + entité (instrument)",
+      "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of rainbow prism experiment, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9245
+    },
+    {
+      "filename": "magnet_attracting_iron_1024x1024_euler8s.png",
+      "name_en": "Magnet Attracting Iron",
+      "leaf_id": "magnet_attracting_iron",
+      "tier": "Humain + entité (instrument)",
+      "workflow_class": "Humain + entité (instrument)",
+      "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of magnet attracting iron, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9252
+    },
+    {
+      "filename": "lab_beakers_and_flasks_1024x1024_euler8s.png",
+      "name_en": "Lab Beakers and Flasks",
+      "leaf_id": "lab_beakers_and_flasks",
+      "tier": "Humain + entité (instrument)",
+      "workflow_class": "Humain + entité (instrument)",
+      "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of lab beakers and flasks, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9259
+    },
+    {
+      "filename": "kid_using_telescope_1024x1024_euler8s.png",
+      "name_en": "Kid Using Telescope",
+      "leaf_id": "kid_using_telescope",
+      "tier": "Humain + entité (instrument)",
+      "workflow_class": "Humain + entité (instrument)",
+      "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of kid using telescope, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9266
+    },
+    {
+      "filename": "plant_growing_from_seed_1024x1024_euler8s.png",
+      "name_en": "Plant Growing from Seed",
+      "leaf_id": "plant_growing_from_seed",
+      "tier": "Humain + entité (instrument)",
+      "workflow_class": "Humain + entité (instrument)",
+      "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of plant growing from seed, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9273
+    },
+    {
+      "filename": "battery_circuit_lighting_bulb_1024x1024_euler8s.png",
+      "name_en": "Battery Circuit Lighting Bulb",
+      "leaf_id": "battery_circuit_lighting_bulb",
+      "tier": "Humain + entité (instrument)",
+      "workflow_class": "Humain + entité (instrument)",
+      "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of battery circuit lighting bulb, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9280
+    }
+  ]
+}

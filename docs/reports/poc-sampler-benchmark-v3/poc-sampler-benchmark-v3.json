@@ -1,0 +1,1054 @@
+{
+  "poc": "sampler-benchmark-v3",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "vision_model": "qwen3.5:9b",
+  "axes": {
+    "cfg": {
+      "concepts": [
+        "hammer",
+        "cat",
+        "soccer",
+        "dragon"
+      ],
+      "cfg_values": [
+        1.0,
+        1.5,
+        2.0,
+        3.0
+      ],
+      "fixed": {
+        "steps": 8,
+        "scheduler": "normal",
+        "sampler_name": "euler",
+        "width": 1024,
+        "height": 1024
+      }
+    },
+    "resolution": {
+      "concepts": [
+        "cat",
+        "soccer",
+        "dragon"
+      ],
+      "values": [
+        [
+          512,
+          512
+        ],
+        [
+          768,
+          768
+        ],
+        [
+          1024,
+          1024
+        ]
+      ],
+      "fixed": {
+        "steps": 8,
+        "scheduler": "normal",
+        "sampler_name": "euler",
+        "cfg": 1.0
+      }
+    },
+    "new_concepts": {
+      "concepts": [
+        "flower",
+        "fish",
+        "castle",
+        "train",
+        "lion",
+        "house"
+      ],
+      "fixed": {
+        "steps": 8,
+        "scheduler": "normal",
+        "sampler_name": "euler",
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024
+      }
+    }
+  },
+  "concepts": {
+    "soccer": {
+      "seed": 1038277875074319,
+      "source": "chain_v2",
+      "match_keyword": "soccer ball on a field",
+      "negative": "anatomy"
+    },
+    "dragon": {
+      "seed": 42003,
+      "source": "chain_v2",
+      "match_keyword": "dragon in a castle",
+      "negative": "baseline"
+    },
+    "cat": {
+      "seed": 42004,
+      "source": "chain_v2",
+      "match_keyword": "cat in a library",
+      "negative": "baseline"
+    },
+    "hammer": {
+      "seed": 42005,
+      "source": "chain_v2",
+      "match_keyword": "hammer on a workbench",
+      "negative": "baseline"
+    },
+    "flower": {
+      "seed": 43001,
+      "source": "inline",
+      "category": "nature",
+      "negative": "baseline"
+    },
+    "fish": {
+      "seed": 43002,
+      "source": "inline",
+      "category": "animaux",
+      "negative": "baseline"
+    },
+    "castle": {
+      "seed": 43003,
+      "source": "inline",
+      "category": "architecture",
+      "negative": "baseline"
+    },
+    "train": {
+      "seed": 43004,
+      "source": "inline",
+      "category": "vehicule",
+      "negative": "baseline"
+    },
+    "lion": {
+      "seed": 43005,
+      "source": "inline",
+      "category": "animaux",
+      "negative": "baseline"
+    },
+    "house": {
+      "seed": 43006,
+      "source": "inline",
+      "category": "architecture",
+      "negative": "baseline"
+    }
+  },
+  "results": {
+    "hammer_08s_normal_euler_cfg10_42005.png": {
+      "concept_key": "hammer",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42005,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 20.15,
+      "comfy_prompt_id": "cdaac032-0dcd-4b61-ba75-eb87cea6c6ce",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0022,
+        "white_ratio": 0.79233,
+        "ink_ratio": 0.15651,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 7.78
+      }
+    },
+    "hammer_08s_normal_euler_cfg15_42005.png": {
+      "concept_key": "hammer",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.5,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42005,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 24.27,
+      "comfy_prompt_id": "3d1d66c2-798c-4ee7-9130-4724457f6527",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00288,
+        "white_ratio": 0.79401,
+        "ink_ratio": 0.15948,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.67
+      }
+    },
+    "hammer_08s_normal_euler_cfg20_42005.png": {
+      "concept_key": "hammer",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 2.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42005,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 24.15,
+      "comfy_prompt_id": "3133a548-68e0-4227-8381-6fad6ad00cdd",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00324,
+        "white_ratio": 0.79679,
+        "ink_ratio": 0.15911,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.54
+      }
+    },
+    "hammer_08s_normal_euler_cfg30_42005.png": {
+      "concept_key": "hammer",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 3.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42005,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 24.19,
+      "comfy_prompt_id": "cf1a90b0-33e8-4375-94b9-52ee6b883a23",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00755,
+        "white_ratio": 0.79044,
+        "ink_ratio": 0.15709,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.54
+      }
+    },
+    "cat_08s_normal_euler_cfg10_42004.png": {
+      "concept_key": "cat",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42004,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.23,
+      "comfy_prompt_id": "a10ce568-ff48-42a4-bfbe-64e335912405",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00168,
+        "white_ratio": 0.79353,
+        "ink_ratio": 0.15149,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.59
+      }
+    },
+    "cat_08s_normal_euler_cfg15_42004.png": {
+      "concept_key": "cat",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.5,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42004,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 24.25,
+      "comfy_prompt_id": "de8a1967-6d5a-429d-af60-652781671af5",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00278,
+        "white_ratio": 0.77988,
+        "ink_ratio": 0.15971,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.57
+      }
+    },
+    "cat_08s_normal_euler_cfg20_42004.png": {
+      "concept_key": "cat",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 2.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42004,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 24.17,
+      "comfy_prompt_id": "970819cf-36bc-4c92-8c9f-46b73282d11f",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00385,
+        "white_ratio": 0.77933,
+        "ink_ratio": 0.15958,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.72
+      }
+    },
+    "cat_08s_normal_euler_cfg30_42004.png": {
+      "concept_key": "cat",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 3.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42004,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 24.25,
+      "comfy_prompt_id": "4cbf77fe-c11c-420b-af75-faa9a4cbb50d",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.02109,
+        "white_ratio": 0.76125,
+        "ink_ratio": 0.16547,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.65
+      }
+    },
+    "soccer_08s_normal_euler_cfg10_074319.png": {
+      "concept_key": "soccer",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 18.17,
+      "comfy_prompt_id": "3a0aec9a-70a0-4304-a0bc-0daaa58eff39",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00151,
+        "white_ratio": 0.80505,
+        "ink_ratio": 0.12503,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.51
+      }
+    },
+    "soccer_08s_normal_euler_cfg15_074319.png": {
+      "concept_key": "soccer",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.5,
+      "width": 1024,
+      "height": 1024,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 24.21,
+      "comfy_prompt_id": "2a446694-4ab5-4f89-b5f2-283d0d603850",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00255,
+        "white_ratio": 0.8049,
+        "ink_ratio": 0.13935,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.58
+      }
+    },
+    "soccer_08s_normal_euler_cfg20_074319.png": {
+      "concept_key": "soccer",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 2.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 24.26,
+      "comfy_prompt_id": "af2cf001-755e-4202-b125-acda3579cd8f",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0031,
+        "white_ratio": 0.80384,
+        "ink_ratio": 0.13885,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.66
+      }
+    },
+    "soccer_08s_normal_euler_cfg30_074319.png": {
+      "concept_key": "soccer",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 3.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 24.27,
+      "comfy_prompt_id": "51c10a86-1972-4aed-8f5d-ed6c8033c83e",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00758,
+        "white_ratio": 0.78582,
+        "ink_ratio": 0.14754,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.56
+      }
+    },
+    "dragon_08s_normal_euler_cfg10_42003.png": {
+      "concept_key": "dragon",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.14,
+      "comfy_prompt_id": "de986e79-3b63-48ec-8091-3b37d17e7324",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02602,
+        "white_ratio": 0.79105,
+        "ink_ratio": 0.1318,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.67
+      }
+    },
+    "dragon_08s_normal_euler_cfg15_42003.png": {
+      "concept_key": "dragon",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.5,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 24.2,
+      "comfy_prompt_id": "66140123-db12-45dc-b872-3a519626dd0e",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02905,
+        "white_ratio": 0.78655,
+        "ink_ratio": 0.13543,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.6
+      }
+    },
+    "dragon_08s_normal_euler_cfg20_42003.png": {
+      "concept_key": "dragon",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 2.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 24.27,
+      "comfy_prompt_id": "538b0401-38fd-4315-8ce1-b2524e9c4108",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02945,
+        "white_ratio": 0.78183,
+        "ink_ratio": 0.13794,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.73
+      }
+    },
+    "dragon_08s_normal_euler_cfg30_42003.png": {
+      "concept_key": "dragon",
+      "axis": "cfg",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 3.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 24.21,
+      "comfy_prompt_id": "bd61e739-5187-4065-931a-ad5b0236fa1a",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.05587,
+        "white_ratio": 0.75765,
+        "ink_ratio": 0.14743,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.9
+      }
+    },
+    "cat_08s_normal_euler_cfg10_512x512_42004.png": {
+      "concept_key": "cat",
+      "axis": "resolution",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 512,
+      "height": 512,
+      "seed": 42004,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 8.22,
+      "comfy_prompt_id": "ac645bd6-a110-483a-8278-b0f19034aa37",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.01377,
+        "white_ratio": 0.75997,
+        "ink_ratio": 0.12761,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 1.56
+      }
+    },
+    "cat_08s_normal_euler_cfg10_768x768_42004.png": {
+      "concept_key": "cat",
+      "axis": "resolution",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 768,
+      "height": 768,
+      "seed": 42004,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 8.13,
+      "comfy_prompt_id": "caacd10a-bf56-4605-a18a-6c96a6c540a0",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00446,
+        "white_ratio": 0.79418,
+        "ink_ratio": 0.13483,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 1.86
+      }
+    },
+    "cat_08s_normal_euler_cfg10_1024x1024_42004.png": {
+      "concept_key": "cat",
+      "axis": "resolution",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42004,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 14.13,
+      "comfy_prompt_id": "8117bc14-1dfd-48a7-8250-38a8382d272a",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00168,
+        "white_ratio": 0.79353,
+        "ink_ratio": 0.15149,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.26
+      }
+    },
+    "soccer_08s_normal_euler_cfg10_512x512_074319.png": {
+      "concept_key": "soccer",
+      "axis": "resolution",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 512,
+      "height": 512,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 8.13,
+      "comfy_prompt_id": "467a0a35-99bb-40ae-bc31-dd26ecfc6696",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00752,
+        "white_ratio": 0.76802,
+        "ink_ratio": 0.15865,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 1.48
+      }
+    },
+    "soccer_08s_normal_euler_cfg10_768x768_074319.png": {
+      "concept_key": "soccer",
+      "axis": "resolution",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 768,
+      "height": 768,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 8.14,
+      "comfy_prompt_id": "de577f8e-53b2-4682-b389-606c48aa135e",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04013,
+        "white_ratio": 0.5746,
+        "ink_ratio": 0.15224,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.12
+      }
+    },
+    "soccer_08s_normal_euler_cfg10_1024x1024_074319.png": {
+      "concept_key": "soccer",
+      "axis": "resolution",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 14.13,
+      "comfy_prompt_id": "8fc19124-0399-4b10-89f6-5b1b4016311c",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00151,
+        "white_ratio": 0.80505,
+        "ink_ratio": 0.12503,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.27
+      }
+    },
+    "dragon_08s_normal_euler_cfg10_512x512_42003.png": {
+      "concept_key": "dragon",
+      "axis": "resolution",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 512,
+      "height": 512,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 8.24,
+      "comfy_prompt_id": "4a0510b5-4679-493d-be60-778d43a8e293",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.1045,
+        "white_ratio": 0.70408,
+        "ink_ratio": 0.13774,
+        "flags": [
+          "strong_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 1.47
+      }
+    },
+    "dragon_08s_normal_euler_cfg10_768x768_42003.png": {
+      "concept_key": "dragon",
+      "axis": "resolution",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 768,
+      "height": 768,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 8.08,
+      "comfy_prompt_id": "6ebf2229-e540-4efa-9144-c651b32fd782",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02834,
+        "white_ratio": 0.77825,
+        "ink_ratio": 0.13591,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.06
+      }
+    },
+    "dragon_08s_normal_euler_cfg10_1024x1024_42003.png": {
+      "concept_key": "dragon",
+      "axis": "resolution",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 14.12,
+      "comfy_prompt_id": "b9635cf1-c30e-4e63-8a89-a91fcdb855a4",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02602,
+        "white_ratio": 0.79105,
+        "ink_ratio": 0.1318,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.28
+      }
+    },
+    "flower_08s_normal_euler_cfg10_43001.png": {
+      "concept_key": "flower",
+      "axis": "new",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 43001,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "97434b47-3e56-41d5-adb8-b84775b55ea5",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00091,
+        "white_ratio": 0.89566,
+        "ink_ratio": 0.09097,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.47
+      }
+    },
+    "fish_08s_normal_euler_cfg10_43002.png": {
+      "concept_key": "fish",
+      "axis": "new",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 43002,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.13,
+      "comfy_prompt_id": "e0aa8f72-0519-44ed-94c4-7cfe838884cd",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00122,
+        "white_ratio": 0.86431,
+        "ink_ratio": 0.10859,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.46
+      }
+    },
+    "castle_08s_normal_euler_cfg10_43003.png": {
+      "concept_key": "castle",
+      "axis": "new",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 43003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.21,
+      "comfy_prompt_id": "c998c308-03cd-4159-a4b1-56d976b73221",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00175,
+        "white_ratio": 0.81541,
+        "ink_ratio": 0.14061,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.52
+      }
+    },
+    "train_08s_normal_euler_cfg10_43004.png": {
+      "concept_key": "train",
+      "axis": "new",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 43004,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.17,
+      "comfy_prompt_id": "0a54d691-7b1e-4a0d-be4d-793164bc2fe6",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00084,
+        "white_ratio": 0.83462,
+        "ink_ratio": 0.1371,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.49
+      }
+    },
+    "lion_08s_normal_euler_cfg10_43005.png": {
+      "concept_key": "lion",
+      "axis": "new",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 43005,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.17,
+      "comfy_prompt_id": "408e5e36-46a5-4c44-8c6d-0b67ac830a13",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00092,
+        "white_ratio": 0.84384,
+        "ink_ratio": 0.13551,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.65
+      }
+    },
+    "house_08s_normal_euler_cfg10_43006.png": {
+      "concept_key": "house",
+      "axis": "new",
+      "steps": 8,
+      "scheduler": "normal",
+      "sampler_name": "euler",
+      "cfg": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "seed": 43006,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.14,
+      "comfy_prompt_id": "f623be47-a800-4c68-ae3e-c63fa0d8c47c",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0017,
+        "white_ratio": 0.82016,
+        "ink_ratio": 0.14183,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.54
+      }
+    }
+  }
+}

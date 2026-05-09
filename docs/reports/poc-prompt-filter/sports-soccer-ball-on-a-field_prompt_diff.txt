@@ -1,0 +1,12 @@
+# Soccer Ball on a Field
+# Issue: anatomie (3 jambes en mode action kicking)
+
+## ORIGINAL PROMPT
+A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.
+
+## FILTERED PROMPT
+A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, grass rendered as simple shapes, a goal net with clear mesh patterns, stadium stands in the background, a sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring. Note: simple static pose, character standing or sitting calmly, no motion blur, no action lines, anatomically correct with exactly two legs and two arms visible.
+
+## RULES TRIGGERED (2)
+- {"rule_id": "anatomy_static_pose", "action": "append", "triggered_by": "kicking", "before_len": 780, "after_len": 942}
+- {"rule_id": "strip_color_nouns", "action": "regex", "pattern": "\\b(red|blue|green|yellow|orange|purple|pink|brown|golden|grey|gray|white|black)\\s+(\\w+)", "n_matches": 3, "examples": ["green grass", "white goal", "blue sky"]}

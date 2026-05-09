@@ -1,0 +1,132 @@
+{
+  "source": "workflow_class='Imagier différencié OU Solo' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Imagier différencié OU Solo",
+  "subjects": [
+    {
+      "filename": "balanced_lunch_plate_1024x1024_euler8s.png",
+      "name_en": "Balanced Lunch Plate",
+      "leaf_id": "balanced_lunch_plate",
+      "tier": "Imagier différencié OU Solo",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to balanced lunch plate, each item clearly distinct from the others, every cell contains exactly one item, the title \"BALANCED\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9546
+    },
+    {
+      "filename": "food_pyramid_for_kids_1024x1024_euler8s.png",
+      "name_en": "Food Pyramid for Kids",
+      "leaf_id": "food_pyramid_for_kids",
+      "tier": "Imagier différencié OU Solo",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to food pyramid for kids, each item clearly distinct from the others, every cell contains exactly one item, the title \"FOOD\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9553
+    },
+    {
+      "filename": "rainbow_fruit_plate_1024x1024_euler8s.png",
+      "name_en": "Rainbow Fruit Plate",
+      "leaf_id": "rainbow_fruit_plate",
+      "tier": "Imagier différencié OU Solo",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to rainbow fruit plate, each item clearly distinct from the others, every cell contains exactly one item, the title \"RAINBOW\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9560
+    },
+    {
+      "filename": "healthy_snack_basket_1024x1024_euler8s.png",
+      "name_en": "Healthy Snack Basket",
+      "leaf_id": "healthy_snack_basket",
+      "tier": "Imagier différencié OU Solo",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to healthy snack basket, each item clearly distinct from the others, every cell contains exactly one item, the title \"HEALTHY\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9567
+    },
+    {
+      "filename": "vegetable_garden_basket_1024x1024_euler8s.png",
+      "name_en": "Vegetable Garden Basket",
+      "leaf_id": "vegetable_garden_basket",
+      "tier": "Imagier différencié OU Solo",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to vegetable garden basket, each item clearly distinct from the others, every cell contains exactly one item, the title \"VEGETABLE\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9574
+    },
+    {
+      "filename": "healthy_breakfast_plate_1024x1024_euler8s.png",
+      "name_en": "Healthy Breakfast Plate",
+      "leaf_id": "healthy_breakfast_plate",
+      "tier": "Imagier différencié OU Solo",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to healthy breakfast plate, each item clearly distinct from the others, every cell contains exactly one item, the title \"HEALTHY\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9581
+    },
+    {
+      "filename": "child_drinking_water_1024x1024_euler8s.png",
+      "name_en": "Child Drinking Water",
+      "leaf_id": "child_drinking_water",
+      "tier": "Imagier différencié OU Solo",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to child drinking water, each item clearly distinct from the others, every cell contains exactly one item, the title \"CHILD\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9588
+    }
+  ]
+}

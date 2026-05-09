@@ -1,0 +1,166 @@
+{
+  "source": "workflow_class='Frise narrative 1×N (pattern X2)' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Frise narrative 1×N (pattern X2)",
+  "subjects": [
+    {
+      "filename": "teenager_with_backpack_1376x768_euler8s.png",
+      "name_en": "Teenager with Backpack",
+      "leaf_id": "teenager_with_backpack",
+      "tier": "Frise narrative 1×N (pattern X2)",
+      "workflow_class": "Frise narrative 1×N (pattern X2)",
+      "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois entre cases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal row of 4 empty rectangular cells drawn with thick black lines, all cells the same size and clearly separated by vertical lines, the row of cells fills the entire panoramic page width, each cell shows one stage or moment of teenager with backpack, the rightmost cell shows the final stage with detailed elements, balanced composition, simple ground line beneath each cell",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9070
+    },
+    {
+      "filename": "child_at_school_age_1376x768_euler8s.png",
+      "name_en": "Child at School Age",
+      "leaf_id": "child_at_school_age",
+      "tier": "Frise narrative 1×N (pattern X2)",
+      "workflow_class": "Frise narrative 1×N (pattern X2)",
+      "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois entre cases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal row of 4 empty rectangular cells drawn with thick black lines, all cells the same size and clearly separated by vertical lines, the row of cells fills the entire panoramic page width, each cell shows one stage or moment of child at school age, the rightmost cell shows the final stage with detailed elements, balanced composition, simple ground line beneath each cell",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9077
+    },
+    {
+      "filename": "life_cycle_full_poster_1376x768_euler8s.png",
+      "name_en": "Life Cycle Full Poster",
+      "leaf_id": "life_cycle_full_poster",
+      "tier": "Frise narrative 1×N (pattern X2)",
+      "workflow_class": "Frise narrative 1×N (pattern X2)",
+      "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois entre cases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal row of 4 empty rectangular cells drawn with thick black lines, all cells the same size and clearly separated by vertical lines, the row of cells fills the entire panoramic page width, each cell shows one stage or moment of life cycle full poster, the rightmost cell shows the final stage with detailed elements, balanced composition, simple ground line beneath each cell",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9084
+    },
+    {
+      "filename": "toddler_learning_to_walk_1376x768_euler8s.png",
+      "name_en": "Toddler Learning to Walk",
+      "leaf_id": "toddler_learning_to_walk",
+      "tier": "Frise narrative 1×N (pattern X2)",
+      "workflow_class": "Frise narrative 1×N (pattern X2)",
+      "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois entre cases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal row of 4 empty rectangular cells drawn with thick black lines, all cells the same size and clearly separated by vertical lines, the row of cells fills the entire panoramic page width, each cell shows one stage or moment of toddler learning to walk, the rightmost cell shows the final stage with detailed elements, balanced composition, simple ground line beneath each cell",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9091
+    },
+    {
+      "filename": "parent_with_child_1376x768_euler8s.png",
+      "name_en": "Parent with Child",
+      "leaf_id": "parent_with_child",
+      "tier": "Frise narrative 1×N (pattern X2)",
+      "workflow_class": "Frise narrative 1×N (pattern X2)",
+      "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois entre cases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal row of 4 empty rectangular cells drawn with thick black lines, all cells the same size and clearly separated by vertical lines, the row of cells fills the entire panoramic page width, each cell shows one stage or moment of parent with child, the rightmost cell shows the final stage with detailed elements, balanced composition, simple ground line beneath each cell",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9098
+    },
+    {
+      "filename": "baby_first_year_1376x768_euler8s.png",
+      "name_en": "Baby First Year",
+      "leaf_id": "baby_first_year",
+      "tier": "Frise narrative 1×N (pattern X2)",
+      "workflow_class": "Frise narrative 1×N (pattern X2)",
+      "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois entre cases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal row of 4 empty rectangular cells drawn with thick black lines, all cells the same size and clearly separated by vertical lines, the row of cells fills the entire panoramic page width, each cell shows one stage or moment of baby first year, the rightmost cell shows the final stage with detailed elements, balanced composition, simple ground line beneath each cell",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9105
+    },
+    {
+      "filename": "grandparent_with_grandchild_1376x768_euler8s.png",
+      "name_en": "Grandparent with Grandchild",
+      "leaf_id": "grandparent_with_grandchild",
+      "tier": "Frise narrative 1×N (pattern X2)",
+      "workflow_class": "Frise narrative 1×N (pattern X2)",
+      "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois entre cases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal row of 4 empty rectangular cells drawn with thick black lines, all cells the same size and clearly separated by vertical lines, the row of cells fills the entire panoramic page width, each cell shows one stage or moment of grandparent with grandchild, the rightmost cell shows the final stage with detailed elements, balanced composition, simple ground line beneath each cell",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9112
+    },
+    {
+      "filename": "young_adult_at_work_1376x768_euler8s.png",
+      "name_en": "Young Adult at Work",
+      "leaf_id": "young_adult_at_work",
+      "tier": "Frise narrative 1×N (pattern X2)",
+      "workflow_class": "Frise narrative 1×N (pattern X2)",
+      "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois entre cases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal row of 4 empty rectangular cells drawn with thick black lines, all cells the same size and clearly separated by vertical lines, the row of cells fills the entire panoramic page width, each cell shows one stage or moment of young adult at work, the rightmost cell shows the final stage with detailed elements, balanced composition, simple ground line beneath each cell",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9119
+    }
+  ]
+}

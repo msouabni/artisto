@@ -1,0 +1,197 @@
+{
+  "poc": "qwen35-vision",
+  "date": "2026-05-05",
+  "model": "qwen3.5:9b",
+  "ollama_base_url": "http://100.65.24.35:11434",
+  "phase1_probe": {
+    "capability_detected": true,
+    "probe_image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+    "raw": "A blank coloring book page with text describing a cute cat illustration.",
+    "reason": "visual_keywords detected",
+    "latency_s": 9.546231031417847
+  },
+  "phase2_results": [
+    {
+      "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+      "ground_truth": "poor",
+      "expected_issues": [
+        "incomplete",
+        "not_line_art"
+      ],
+      "raw": "{\n  \"quality\": \"poor\",\n  \"issues\": [\n    \"not_line_art\",\n    \"incomplete\"\n  ],\n  \"confidence\": 100\n}",
+      "parsed": {
+        "quality": "poor",
+        "issues": [
+          "not_line_art",
+          "incomplete"
+        ],
+        "confidence": 100
+      },
+      "latency_s": 1.5273890495300293,
+      "json_ok": true,
+      "verdict": "poor",
+      "verdict_correct": true,
+      "issues_returned": [
+        "not_line_art",
+        "incomplete"
+      ],
+      "issues_overlap": 1.0,
+      "confidence": 100
+    },
+    {
+      "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+      "ground_truth": "poor",
+      "expected_issues": [
+        "has_color"
+      ],
+      "raw": "{\n  \"quality\": \"good\",\n  \"issues\": [],\n  \"confidence\": 95\n}",
+      "parsed": {
+        "quality": "good",
+        "issues": [],
+        "confidence": 95
+      },
+      "latency_s": 2.6044809818267822,
+      "json_ok": true,
+      "verdict": "good",
+      "verdict_correct": false,
+      "issues_returned": [],
+      "issues_overlap": 0.0,
+      "confidence": 95
+    },
+    {
+      "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+      "ground_truth": "good",
+      "expected_issues": [],
+      "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+      "parsed": {
+        "quality": "good",
+        "issues": [],
+        "confidence": 100
+      },
+      "latency_s": 2.309744358062744,
+      "json_ok": true,
+      "verdict": "good",
+      "verdict_correct": true,
+      "issues_returned": [],
+      "issues_overlap": 1.0,
+      "confidence": 100
+    },
+    {
+      "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+      "ground_truth": "good",
+      "expected_issues": [],
+      "raw": "{\n  \"quality\": \"good\",\n  \"issues\": [],\n  \"confidence\": 100\n}",
+      "parsed": {
+        "quality": "good",
+        "issues": [],
+        "confidence": 100
+      },
+      "latency_s": 2.4659066200256348,
+      "json_ok": true,
+      "verdict": "good",
+      "verdict_correct": true,
+      "issues_returned": [],
+      "issues_overlap": 1.0,
+      "confidence": 100
+    },
+    {
+      "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+      "ground_truth": "good",
+      "expected_issues": [],
+      "raw": "{\n  \"quality\": \"good\",\n  \"issues\": [],\n  \"confidence\": 100\n}",
+      "parsed": {
+        "quality": "good",
+        "issues": [],
+        "confidence": 100
+      },
+      "latency_s": 2.415598154067993,
+      "json_ok": true,
+      "verdict": "good",
+      "verdict_correct": true,
+      "issues_returned": [],
+      "issues_overlap": 1.0,
+      "confidence": 100
+    },
+    {
+      "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+      "ground_truth": "good",
+      "expected_issues": [],
+      "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+      "parsed": {
+        "quality": "good",
+        "issues": [],
+        "confidence": 100
+      },
+      "latency_s": 2.4320201873779297,
+      "json_ok": true,
+      "verdict": "good",
+      "verdict_correct": true,
+      "issues_returned": [],
+      "issues_overlap": 1.0,
+      "confidence": 100
+    }
+  ],
+  "phase2_summary": {
+    "n_images": 6,
+    "json_ok": 6,
+    "verdict_correct": 5,
+    "avg_latency_s": 2.29,
+    "avg_issues_overlap": 0.83
+  },
+  "comparison_vs_gemma4": [
+    {
+      "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+      "ground_truth": "poor",
+      "verdict_qwen35_9b": "poor",
+      "verdict_gemma4_26b": "poor",
+      "qwen_correct": true,
+      "gemma_correct": true,
+      "agree": true
+    },
+    {
+      "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+      "ground_truth": "poor",
+      "verdict_qwen35_9b": "good",
+      "verdict_gemma4_26b": "poor",
+      "qwen_correct": false,
+      "gemma_correct": true,
+      "agree": false
+    },
+    {
+      "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+      "ground_truth": "good",
+      "verdict_qwen35_9b": "good",
+      "verdict_gemma4_26b": "good",
+      "qwen_correct": true,
+      "gemma_correct": true,
+      "agree": true
+    },
+    {
+      "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+      "ground_truth": "good",
+      "verdict_qwen35_9b": "good",
+      "verdict_gemma4_26b": "good",
+      "qwen_correct": true,
+      "gemma_correct": true,
+      "agree": true
+    },
+    {
+      "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+      "ground_truth": "good",
+      "verdict_qwen35_9b": "good",
+      "verdict_gemma4_26b": "good",
+      "qwen_correct": true,
+      "gemma_correct": true,
+      "agree": true
+    },
+    {
+      "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+      "ground_truth": "good",
+      "verdict_qwen35_9b": "good",
+      "verdict_gemma4_26b": "good",
+      "qwen_correct": true,
+      "gemma_correct": true,
+      "agree": true
+    }
+  ]
+}

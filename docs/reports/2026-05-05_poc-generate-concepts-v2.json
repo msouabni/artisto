@@ -1,0 +1,2278 @@
+{
+  "poc": "generate-concepts-v2",
+  "date": "2026-05-05",
+  "model": "qwen3.5:4b",
+  "count_per_leaf": 5,
+  "targets": [
+    [
+      "hand_tools",
+      "Outils",
+      "Setting plausibility"
+    ],
+    [
+      "security_and_emergency",
+      "Professions",
+      "FR translation quality"
+    ],
+    [
+      "disney_universe",
+      "Personnages",
+      "Subject+Setting strict"
+    ],
+    [
+      "english_alphabet_illustrated",
+      "Alphabet",
+      "Subject+Setting strict"
+    ]
+  ],
+  "leaves": [
+    {
+      "id": "claw_hammer",
+      "parent_id": "hand_tools",
+      "name_en": "Claw Hammer",
+      "name_fr": "Marteau arrache-clou",
+      "name_ar": "المطرقة",
+      "_category": "Outils",
+      "_focus": "Setting plausibility"
+    },
+    {
+      "id": "firefighter_with_hose",
+      "parent_id": "security_and_emergency",
+      "name_en": "Firefighter with Hose",
+      "name_fr": "Pompier avec lance à eau",
+      "name_ar": "إطفائي بخرطوم",
+      "_category": "Professions",
+      "_focus": "FR translation quality"
+    },
+    {
+      "id": "elsa_from_frozen",
+      "parent_id": "disney_universe",
+      "name_en": "Elsa from Frozen",
+      "name_fr": "Elsa de La Reine des Neiges",
+      "name_ar": "إلسا من فروزن",
+      "_category": "Personnages",
+      "_focus": "Subject+Setting strict"
+    },
+    {
+      "id": "letter_a_with_apple",
+      "parent_id": "english_alphabet_illustrated",
+      "name_en": "Letter A with Apple",
+      "name_fr": "Lettre A avec une pomme",
+      "name_ar": "حرف A مع تفاحة",
+      "_category": "Alphabet",
+      "_focus": "Subject+Setting strict"
+    }
+  ],
+  "results_v2": [
+    {
+      "leaf": {
+        "id": "claw_hammer",
+        "parent_id": "hand_tools",
+        "name_en": "Claw Hammer",
+        "name_fr": "Marteau arrache-clou",
+        "name_ar": "المطرقة",
+        "_category": "Outils",
+        "_focus": "Setting plausibility"
+      },
+      "raw": "[\n  {\n    \"id\": \"tools_hammer_in_workshop\",\n    \"slug\": \"hammer-in-workshop\",\n    \"name_en\": \"Claw Hammer on a Workbench\",\n    \"name_fr\": \"Marteau à griffe sur un établi\",\n    \"name_ar\": \"مطرقة على ورشة عمل\",\n    \"description_en\": \"A detailed claw hammer resting on a wooden workbench, perfect for a construction-themed coloring activity.\",\n    \"description_fr\": \"Un marteau à griffe détaillé reposant sur un établi en bois, parfait pour une activité de coloriage sur le thème de la construction.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"tools_hammer_in_garage\",\n    \"slug\": \"hammer-in-garage\",\n    \"name_en\": \"Claw Hammer in a Garage\",\n    \"name_fr\": \"Marteau à griffe dans un garage\",\n    \"name_ar\": \"مطرقة في гараج\",\n    \"description_en\": \"A sturdy claw hammer hanging on a peg in a cluttered garage, ready for DIY projects, coloring fun.\",\n    \"description_fr\": \"Un marteau à griffe robuste accroché sur un crochet dans un garage encombré, prêt pour des projets DIY, divertissant à colorier.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"tools_hammer_in_kitchen\",\n    \"slug\": \"hammer-in-kitchen\",\n    \"name_en\": \"Claw Hammer on a Kitchen Counter\",\n    \"name_fr\": \"Marteau à griffe sur un comptoir de cuisine\",\n    \"name_ar\": \"مطرقة على طاولة المطبخ\",\n    \"description_en\": \"A small claw hammer placed on a kitchen counter near a sink, ideal for a household coloring page.\",\n    \"description_fr\": \"Un petit marteau à griffe posé sur un comptoir de cuisine près d'un évier, idéal pour une page de coloriage sur le thème domestique.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"tools_hammer_in_toolbox\",\n    \"slug\": \"hammer-in-toolbox\",\n    \"name_en\": \"Claw Hammer inside a Toolbox\",\n    \"name_fr\": \"Marteau à griffe dans une boîte à outils\",\n    \"name_ar\": \"مطرقة داخل صندوق أدوات\",\n    \"description_en\": \"A colorful claw hammer nestled inside an open metal toolbox with other tools, a great object for coloring.\",\n    \"description_fr\": \"Un marteau à griffe coloré niché à l'intérieur d'une boîte à outils métallique ouverte, un excellent objet pour colorier.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"tools_hammer_near_door\",\n    \"slug\": \"hammer-near-door\",\n    \"name_en\": \"Claw Hammer near a Front Door\",\n    \"name_fr\": \"Marteau à griffe près d'une porte d'entrée\",\n    \"name_ar\": \"مطرقة عند باب أمامي\",\n    \"description_en\": \"A claw hammer leaning against the wall next to a front door, capturing a typical home scene for coloring.\",\n    \"description_fr\": \"Un marteau à griffe s'appuyant contre le mur à côté d'une porte d'entrée, capturant une scène domestique typique pour le coloriage.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "tools_hammer_in_workshop",
+          "slug": "hammer-in-workshop",
+          "name_en": "Claw Hammer on a Workbench",
+          "name_fr": "Marteau à griffe sur un établi",
+          "name_ar": "مطرقة على ورشة عمل",
+          "description_en": "A detailed claw hammer resting on a wooden workbench, perfect for a construction-themed coloring activity.",
+          "description_fr": "Un marteau à griffe détaillé reposant sur un établi en bois, parfait pour une activité de coloriage sur le thème de la construction.",
+          "weight": 0
+        },
+        {
+          "id": "tools_hammer_in_garage",
+          "slug": "hammer-in-garage",
+          "name_en": "Claw Hammer in a Garage",
+          "name_fr": "Marteau à griffe dans un garage",
+          "name_ar": "مطرقة في гараج",
+          "description_en": "A sturdy claw hammer hanging on a peg in a cluttered garage, ready for DIY projects, coloring fun.",
+          "description_fr": "Un marteau à griffe robuste accroché sur un crochet dans un garage encombré, prêt pour des projets DIY, divertissant à colorier.",
+          "weight": 1
+        },
+        {
+          "id": "tools_hammer_in_kitchen",
+          "slug": "hammer-in-kitchen",
+          "name_en": "Claw Hammer on a Kitchen Counter",
+          "name_fr": "Marteau à griffe sur un comptoir de cuisine",
+          "name_ar": "مطرقة على طاولة المطبخ",
+          "description_en": "A small claw hammer placed on a kitchen counter near a sink, ideal for a household coloring page.",
+          "description_fr": "Un petit marteau à griffe posé sur un comptoir de cuisine près d'un évier, idéal pour une page de coloriage sur le thème domestique.",
+          "weight": 2
+        },
+        {
+          "id": "tools_hammer_in_toolbox",
+          "slug": "hammer-in-toolbox",
+          "name_en": "Claw Hammer inside a Toolbox",
+          "name_fr": "Marteau à griffe dans une boîte à outils",
+          "name_ar": "مطرقة داخل صندوق أدوات",
+          "description_en": "A colorful claw hammer nestled inside an open metal toolbox with other tools, a great object for coloring.",
+          "description_fr": "Un marteau à griffe coloré niché à l'intérieur d'une boîte à outils métallique ouverte, un excellent objet pour colorier.",
+          "weight": 3
+        },
+        {
+          "id": "tools_hammer_near_door",
+          "slug": "hammer-near-door",
+          "name_en": "Claw Hammer near a Front Door",
+          "name_fr": "Marteau à griffe près d'une porte d'entrée",
+          "name_ar": "مطرقة عند باب أمامي",
+          "description_en": "A claw hammer leaning against the wall next to a front door, capturing a typical home scene for coloring.",
+          "description_fr": "Un marteau à griffe s'appuyant contre le mur à côté d'une porte d'entrée, capturant une scène domestique typique pour le coloriage.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 15.741312503814697,
+      "evaluations": [
+        {
+          "id": "tools_hammer_in_workshop",
+          "name_en": "Claw Hammer on a Workbench",
+          "name_fr": "Marteau à griffe sur un établi",
+          "name_ar": "مطرقة على ورشة عمل",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tools_hammer_in_workshop",
+            "slug": "hammer-in-workshop",
+            "name_en": "Claw Hammer on a Workbench",
+            "name_fr": "Marteau à griffe sur un établi",
+            "name_ar": "مطرقة على ورشة عمل",
+            "description_en": "A detailed claw hammer resting on a wooden workbench, perfect for a construction-themed coloring activity.",
+            "description_fr": "Un marteau à griffe détaillé reposant sur un établi en bois, parfait pour une activité de coloriage sur le thème de la construction.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "tools_hammer_in_garage",
+          "name_en": "Claw Hammer in a Garage",
+          "name_fr": "Marteau à griffe dans un garage",
+          "name_ar": "مطرقة في гараج",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tools_hammer_in_garage",
+            "slug": "hammer-in-garage",
+            "name_en": "Claw Hammer in a Garage",
+            "name_fr": "Marteau à griffe dans un garage",
+            "name_ar": "مطرقة في гараج",
+            "description_en": "A sturdy claw hammer hanging on a peg in a cluttered garage, ready for DIY projects, coloring fun.",
+            "description_fr": "Un marteau à griffe robuste accroché sur un crochet dans un garage encombré, prêt pour des projets DIY, divertissant à colorier.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "tools_hammer_in_kitchen",
+          "name_en": "Claw Hammer on a Kitchen Counter",
+          "name_fr": "Marteau à griffe sur un comptoir de cuisine",
+          "name_ar": "مطرقة على طاولة المطبخ",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tools_hammer_in_kitchen",
+            "slug": "hammer-in-kitchen",
+            "name_en": "Claw Hammer on a Kitchen Counter",
+            "name_fr": "Marteau à griffe sur un comptoir de cuisine",
+            "name_ar": "مطرقة على طاولة المطبخ",
+            "description_en": "A small claw hammer placed on a kitchen counter near a sink, ideal for a household coloring page.",
+            "description_fr": "Un petit marteau à griffe posé sur un comptoir de cuisine près d'un évier, idéal pour une page de coloriage sur le thème domestique.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "tools_hammer_in_toolbox",
+          "name_en": "Claw Hammer inside a Toolbox",
+          "name_fr": "Marteau à griffe dans une boîte à outils",
+          "name_ar": "مطرقة داخل صندوق أدوات",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tools_hammer_in_toolbox",
+            "slug": "hammer-in-toolbox",
+            "name_en": "Claw Hammer inside a Toolbox",
+            "name_fr": "Marteau à griffe dans une boîte à outils",
+            "name_ar": "مطرقة داخل صندوق أدوات",
+            "description_en": "A colorful claw hammer nestled inside an open metal toolbox with other tools, a great object for coloring.",
+            "description_fr": "Un marteau à griffe coloré niché à l'intérieur d'une boîte à outils métallique ouverte, un excellent objet pour colorier.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "tools_hammer_near_door",
+          "name_en": "Claw Hammer near a Front Door",
+          "name_fr": "Marteau à griffe près d'une porte d'entrée",
+          "name_ar": "مطرقة عند باب أمامي",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tools_hammer_near_door",
+            "slug": "hammer-near-door",
+            "name_en": "Claw Hammer near a Front Door",
+            "name_fr": "Marteau à griffe près d'une porte d'entrée",
+            "name_ar": "مطرقة عند باب أمامي",
+            "description_en": "A claw hammer leaning against the wall next to a front door, capturing a typical home scene for coloring.",
+            "description_fr": "Un marteau à griffe s'appuyant contre le mur à côté d'une porte d'entrée, capturant une scène domestique typique pour le coloriage.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "firefighter_with_hose",
+        "parent_id": "security_and_emergency",
+        "name_en": "Firefighter with Hose",
+        "name_fr": "Pompier avec lance à eau",
+        "name_ar": "إطفائي بخرطوم",
+        "_category": "Professions",
+        "_focus": "FR translation quality"
+      },
+      "raw": "[\n  {\n    \"id\": \"firefighter_hose_station\",\n    \"slug\": \"firefighter-hose-station\",\n    \"name_en\": \"Firefighter in a Fire Station\",\n    \"name_fr\": \"Pompier dans une caserne\",\n    \"name_ar\": \"إطفائي في محطة\",\n    \"description_en\": \"A firefighter standing with a hose inside a fire station, ready for action. This firefighter coloring page features bold lines perfect for kids.\",\n    \"description_fr\": \"Un pompier tenant un tuyau à l'intérieur d'une caserne, prêt à l'action. Cette page de coloriage présente des lignes audacieuses parfaites pour les enfants.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"firefighter_hose_fire\",\n    \"slug\": \"firefighter-hose-fire\",\n    \"name_en\": \"Firefighter in a Burning Building\",\n    \"name_fr\": \"Pompier dans un bâtiment en feu\",\n    \"name_ar\": \"إطفائي في مبنى محترق\",\n    \"description_en\": \"A brave firefighter holding a hose near flames inside a burning building. This dynamic firefighter coloring page teaches safety and heroism.\",\n    \"description_fr\": \"Un courageux pompier tenant un tuyau près de flammes à l'intérieur d'un bâtiment en feu. Cette page de coloriage dynamique enseigne la sécurité et le héroïsme.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"firefighter_hose_road\",\n    \"slug\": \"firefighter-hose-road\",\n    \"name_en\": \"Firefighter on a City Street\",\n    \"name_fr\": \"Pompier sur une rue\",\n    \"name_ar\": \"إطفائي في شارع\",\n    \"description_en\": \"A firefighter walking with a coiled hose along a busy city street. This firefighter coloring page captures urban life and community service.\",\n    \"description_fr\": \"Un pompier marchant avec un tuyau enroulé le long d'une rue urbaine. Cette page de coloriage capture la vie urbaine et le service communautaire.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"firefighter_hose_school\",\n    \"slug\": \"firefighter-hose-school\",\n    \"name_en\": \"Firefighter in a School Yard\",\n    \"name_fr\": \"Pompier dans un jardin d'école\",\n    \"name_ar\": \"إطفائي في حديقة مدرسة\",\n    \"description_en\": \"A friendly firefighter holding a hose near playground equipment in a school yard. This firefighter coloring page promotes safety education for children.\",\n    \"description_fr\": \"Un pompier amical tenant un tuyau près de l'équipement de jeux dans un jardin d'école. Cette page de coloriage promeut l'éducation à la sécurité pour les enfants.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"firefighter_hose_bay\",\n    \"slug\": \"firefighter-hose-bay\",\n    \"name_en\": \"Firefighter in a Garage Bay\",\n    \"name_fr\": \"Pompier dans un bay de garage\",\n    \"name_ar\": \"إطفائي في باي Garage\",\n    \"description_en\": \"A firefighter inspecting a hose inside a large garage bay with tools. This firefighter coloring page shows the preparation phase before responding.\",\n    \"description_fr\": \"Un pompier inspectant un tuyau à l'intérieur d'un grand bay de garage avec des outils. Cette page de coloriage montre la phase de préparation avant la réponse.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "firefighter_hose_station",
+          "slug": "firefighter-hose-station",
+          "name_en": "Firefighter in a Fire Station",
+          "name_fr": "Pompier dans une caserne",
+          "name_ar": "إطفائي في محطة",
+          "description_en": "A firefighter standing with a hose inside a fire station, ready for action. This firefighter coloring page features bold lines perfect for kids.",
+          "description_fr": "Un pompier tenant un tuyau à l'intérieur d'une caserne, prêt à l'action. Cette page de coloriage présente des lignes audacieuses parfaites pour les enfants.",
+          "weight": 0
+        },
+        {
+          "id": "firefighter_hose_fire",
+          "slug": "firefighter-hose-fire",
+          "name_en": "Firefighter in a Burning Building",
+          "name_fr": "Pompier dans un bâtiment en feu",
+          "name_ar": "إطفائي في مبنى محترق",
+          "description_en": "A brave firefighter holding a hose near flames inside a burning building. This dynamic firefighter coloring page teaches safety and heroism.",
+          "description_fr": "Un courageux pompier tenant un tuyau près de flammes à l'intérieur d'un bâtiment en feu. Cette page de coloriage dynamique enseigne la sécurité et le héroïsme.",
+          "weight": 1
+        },
+        {
+          "id": "firefighter_hose_road",
+          "slug": "firefighter-hose-road",
+          "name_en": "Firefighter on a City Street",
+          "name_fr": "Pompier sur une rue",
+          "name_ar": "إطفائي في شارع",
+          "description_en": "A firefighter walking with a coiled hose along a busy city street. This firefighter coloring page captures urban life and community service.",
+          "description_fr": "Un pompier marchant avec un tuyau enroulé le long d'une rue urbaine. Cette page de coloriage capture la vie urbaine et le service communautaire.",
+          "weight": 2
+        },
+        {
+          "id": "firefighter_hose_school",
+          "slug": "firefighter-hose-school",
+          "name_en": "Firefighter in a School Yard",
+          "name_fr": "Pompier dans un jardin d'école",
+          "name_ar": "إطفائي في حديقة مدرسة",
+          "description_en": "A friendly firefighter holding a hose near playground equipment in a school yard. This firefighter coloring page promotes safety education for children.",
+          "description_fr": "Un pompier amical tenant un tuyau près de l'équipement de jeux dans un jardin d'école. Cette page de coloriage promeut l'éducation à la sécurité pour les enfants.",
+          "weight": 3
+        },
+        {
+          "id": "firefighter_hose_bay",
+          "slug": "firefighter-hose-bay",
+          "name_en": "Firefighter in a Garage Bay",
+          "name_fr": "Pompier dans un bay de garage",
+          "name_ar": "إطفائي في باي Garage",
+          "description_en": "A firefighter inspecting a hose inside a large garage bay with tools. This firefighter coloring page shows the preparation phase before responding.",
+          "description_fr": "Un pompier inspectant un tuyau à l'intérieur d'un grand bay de garage avec des outils. Cette page de coloriage montre la phase de préparation avant la réponse.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 11.287976503372192,
+      "evaluations": [
+        {
+          "id": "firefighter_hose_station",
+          "name_en": "Firefighter in a Fire Station",
+          "name_fr": "Pompier dans une caserne",
+          "name_ar": "إطفائي في محطة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_station",
+            "slug": "firefighter-hose-station",
+            "name_en": "Firefighter in a Fire Station",
+            "name_fr": "Pompier dans une caserne",
+            "name_ar": "إطفائي في محطة",
+            "description_en": "A firefighter standing with a hose inside a fire station, ready for action. This firefighter coloring page features bold lines perfect for kids.",
+            "description_fr": "Un pompier tenant un tuyau à l'intérieur d'une caserne, prêt à l'action. Cette page de coloriage présente des lignes audacieuses parfaites pour les enfants.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "firefighter_hose_fire",
+          "name_en": "Firefighter in a Burning Building",
+          "name_fr": "Pompier dans un bâtiment en feu",
+          "name_ar": "إطفائي في مبنى محترق",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_fire",
+            "slug": "firefighter-hose-fire",
+            "name_en": "Firefighter in a Burning Building",
+            "name_fr": "Pompier dans un bâtiment en feu",
+            "name_ar": "إطفائي في مبنى محترق",
+            "description_en": "A brave firefighter holding a hose near flames inside a burning building. This dynamic firefighter coloring page teaches safety and heroism.",
+            "description_fr": "Un courageux pompier tenant un tuyau près de flammes à l'intérieur d'un bâtiment en feu. Cette page de coloriage dynamique enseigne la sécurité et le héroïsme.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "firefighter_hose_road",
+          "name_en": "Firefighter on a City Street",
+          "name_fr": "Pompier sur une rue",
+          "name_ar": "إطفائي في شارع",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_road",
+            "slug": "firefighter-hose-road",
+            "name_en": "Firefighter on a City Street",
+            "name_fr": "Pompier sur une rue",
+            "name_ar": "إطفائي في شارع",
+            "description_en": "A firefighter walking with a coiled hose along a busy city street. This firefighter coloring page captures urban life and community service.",
+            "description_fr": "Un pompier marchant avec un tuyau enroulé le long d'une rue urbaine. Cette page de coloriage capture la vie urbaine et le service communautaire.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "firefighter_hose_school",
+          "name_en": "Firefighter in a School Yard",
+          "name_fr": "Pompier dans un jardin d'école",
+          "name_ar": "إطفائي في حديقة مدرسة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_school",
+            "slug": "firefighter-hose-school",
+            "name_en": "Firefighter in a School Yard",
+            "name_fr": "Pompier dans un jardin d'école",
+            "name_ar": "إطفائي في حديقة مدرسة",
+            "description_en": "A friendly firefighter holding a hose near playground equipment in a school yard. This firefighter coloring page promotes safety education for children.",
+            "description_fr": "Un pompier amical tenant un tuyau près de l'équipement de jeux dans un jardin d'école. Cette page de coloriage promeut l'éducation à la sécurité pour les enfants.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "firefighter_hose_bay",
+          "name_en": "Firefighter in a Garage Bay",
+          "name_fr": "Pompier dans un bay de garage",
+          "name_ar": "إطفائي في باي Garage",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_bay",
+            "slug": "firefighter-hose-bay",
+            "name_en": "Firefighter in a Garage Bay",
+            "name_fr": "Pompier dans un bay de garage",
+            "name_ar": "إطفائي في باي Garage",
+            "description_en": "A firefighter inspecting a hose inside a large garage bay with tools. This firefighter coloring page shows the preparation phase before responding.",
+            "description_fr": "Un pompier inspectant un tuyau à l'intérieur d'un grand bay de garage avec des outils. Cette page de coloriage montre la phase de préparation avant la réponse.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "elsa_from_frozen",
+        "parent_id": "disney_universe",
+        "name_en": "Elsa from Frozen",
+        "name_fr": "Elsa de La Reine des Neiges",
+        "name_ar": "إلسا من فروزن",
+        "_category": "Personnages",
+        "_focus": "Subject+Setting strict"
+      },
+      "raw": "[\n  {\"id\": \"elsa_in_the_cold_north\", \"slug\": \"elsa-in-the-cold-north\", \"name_en\": \"Elsa in the Frozen North\", \"name_fr\": \"Èlsa au Nord gelé\", \"name_ar\": \"إلسا في الشمال الجليدي\", \"description_en\": \"Elsa standing in a snowy winter forest coloring page, perfect for kids.\", \"description_fr\": \"Page de coloriage d'Èlsa debout dans une forêt hivernale enneigée, parfaite pour les enfants.\", \"weight\": 0},\n  {\"id\": \"elsa_in_the_ice_castle\", \"slug\": \"elsa-in-the-ice-castle\", \"name_en\": \"Elsa in an Ice Castle\", \"name_fr\": \"Èlsa dans un château de glace\", \"name_ar\": \"إلسا في قلعة الجليد\", \"description_en\": \"Elsa inside a magical ice palace with crystal windows for coloring.\", \"description_fr\": \"Page de coloriage d'Èlsa à l'intérieur d'un palais de glace magique avec fenêtres en cristal.\", \"weight\": 1},\n  {\"id\": \"elsa_in_the_snowy_forest\", \"slug\": \"elsa-in-the-snowy-forest\", \"name_en\": \"Elsa in a Snowy Forest\", \"name_fr\": \"Èlsa dans une forêt enneigée\", \"name_ar\": \"إلسا في الغابة المثلجة\", \"description_en\": \"Elsa walking near pine trees in a winter landscape coloring page.\", \"description_fr\": \"Page de coloriage d'Èlsa marchant près de pins dans un paysage d'hiver.\", \"weight\": 2},\n  {\"id\": \"elsa_in_the_winter_lake\", \"slug\": \"elsa-in-the-winter-lake\", \"name_en\": \"Elsa in a Winter Lake\", \"name_fr\": \"Èlsa sur un lac d'hiver\", \"name_ar\": \"إلسا في البحيرة الشتوية\", \"description_en\": \"Elsa standing on ice near a frozen lake with snow for coloring.\", \"description_fr\": \"Page de coloriage d'Èlsa debout sur la glace près d'un lac gelé avec de la neige.\", \"weight\": 3},\n  {\"id\": \"elsa_in_the_magic_garden\", \"slug\": \"elsa-in-the-magic-garden\", \"name_en\": \"Elsa in a Magic Garden\", \"name_fr\": \"Èlsa dans un jardin magique\", \"name_ar\": \"إلسا في الحديقة السحرية\", \"description_en\": \"Elsa in a magical garden with flowers and snow for a coloring activity.\", \"description_fr\": \"Page de coloriage d'Èlsa dans un jardin magique avec des fleurs et de la neige.\", \"weight\": 4}\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "elsa_in_the_cold_north",
+          "slug": "elsa-in-the-cold-north",
+          "name_en": "Elsa in the Frozen North",
+          "name_fr": "Èlsa au Nord gelé",
+          "name_ar": "إلسا في الشمال الجليدي",
+          "description_en": "Elsa standing in a snowy winter forest coloring page, perfect for kids.",
+          "description_fr": "Page de coloriage d'Èlsa debout dans une forêt hivernale enneigée, parfaite pour les enfants.",
+          "weight": 0
+        },
+        {
+          "id": "elsa_in_the_ice_castle",
+          "slug": "elsa-in-the-ice-castle",
+          "name_en": "Elsa in an Ice Castle",
+          "name_fr": "Èlsa dans un château de glace",
+          "name_ar": "إلسا في قلعة الجليد",
+          "description_en": "Elsa inside a magical ice palace with crystal windows for coloring.",
+          "description_fr": "Page de coloriage d'Èlsa à l'intérieur d'un palais de glace magique avec fenêtres en cristal.",
+          "weight": 1
+        },
+        {
+          "id": "elsa_in_the_snowy_forest",
+          "slug": "elsa-in-the-snowy-forest",
+          "name_en": "Elsa in a Snowy Forest",
+          "name_fr": "Èlsa dans une forêt enneigée",
+          "name_ar": "إلسا في الغابة المثلجة",
+          "description_en": "Elsa walking near pine trees in a winter landscape coloring page.",
+          "description_fr": "Page de coloriage d'Èlsa marchant près de pins dans un paysage d'hiver.",
+          "weight": 2
+        },
+        {
+          "id": "elsa_in_the_winter_lake",
+          "slug": "elsa-in-the-winter-lake",
+          "name_en": "Elsa in a Winter Lake",
+          "name_fr": "Èlsa sur un lac d'hiver",
+          "name_ar": "إلسا في البحيرة الشتوية",
+          "description_en": "Elsa standing on ice near a frozen lake with snow for coloring.",
+          "description_fr": "Page de coloriage d'Èlsa debout sur la glace près d'un lac gelé avec de la neige.",
+          "weight": 3
+        },
+        {
+          "id": "elsa_in_the_magic_garden",
+          "slug": "elsa-in-the-magic-garden",
+          "name_en": "Elsa in a Magic Garden",
+          "name_fr": "Èlsa dans un jardin magique",
+          "name_ar": "إلسا في الحديقة السحرية",
+          "description_en": "Elsa in a magical garden with flowers and snow for a coloring activity.",
+          "description_fr": "Page de coloriage d'Èlsa dans un jardin magique avec des fleurs et de la neige.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 8.92752456665039,
+      "evaluations": [
+        {
+          "id": "elsa_in_the_cold_north",
+          "name_en": "Elsa in the Frozen North",
+          "name_fr": "Èlsa au Nord gelé",
+          "name_ar": "إلسا في الشمال الجليدي",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_in_the_cold_north",
+            "slug": "elsa-in-the-cold-north",
+            "name_en": "Elsa in the Frozen North",
+            "name_fr": "Èlsa au Nord gelé",
+            "name_ar": "إلسا في الشمال الجليدي",
+            "description_en": "Elsa standing in a snowy winter forest coloring page, perfect for kids.",
+            "description_fr": "Page de coloriage d'Èlsa debout dans une forêt hivernale enneigée, parfaite pour les enfants.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "elsa_in_the_ice_castle",
+          "name_en": "Elsa in an Ice Castle",
+          "name_fr": "Èlsa dans un château de glace",
+          "name_ar": "إلسا في قلعة الجليد",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_in_the_ice_castle",
+            "slug": "elsa-in-the-ice-castle",
+            "name_en": "Elsa in an Ice Castle",
+            "name_fr": "Èlsa dans un château de glace",
+            "name_ar": "إلسا في قلعة الجليد",
+            "description_en": "Elsa inside a magical ice palace with crystal windows for coloring.",
+            "description_fr": "Page de coloriage d'Èlsa à l'intérieur d'un palais de glace magique avec fenêtres en cristal.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "elsa_in_the_snowy_forest",
+          "name_en": "Elsa in a Snowy Forest",
+          "name_fr": "Èlsa dans une forêt enneigée",
+          "name_ar": "إلسا في الغابة المثلجة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_in_the_snowy_forest",
+            "slug": "elsa-in-the-snowy-forest",
+            "name_en": "Elsa in a Snowy Forest",
+            "name_fr": "Èlsa dans une forêt enneigée",
+            "name_ar": "إلسا في الغابة المثلجة",
+            "description_en": "Elsa walking near pine trees in a winter landscape coloring page.",
+            "description_fr": "Page de coloriage d'Èlsa marchant près de pins dans un paysage d'hiver.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "elsa_in_the_winter_lake",
+          "name_en": "Elsa in a Winter Lake",
+          "name_fr": "Èlsa sur un lac d'hiver",
+          "name_ar": "إلسا في البحيرة الشتوية",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_in_the_winter_lake",
+            "slug": "elsa-in-the-winter-lake",
+            "name_en": "Elsa in a Winter Lake",
+            "name_fr": "Èlsa sur un lac d'hiver",
+            "name_ar": "إلسا في البحيرة الشتوية",
+            "description_en": "Elsa standing on ice near a frozen lake with snow for coloring.",
+            "description_fr": "Page de coloriage d'Èlsa debout sur la glace près d'un lac gelé avec de la neige.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "elsa_in_the_magic_garden",
+          "name_en": "Elsa in a Magic Garden",
+          "name_fr": "Èlsa dans un jardin magique",
+          "name_ar": "إلسا في الحديقة السحرية",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_in_the_magic_garden",
+            "slug": "elsa-in-the-magic-garden",
+            "name_en": "Elsa in a Magic Garden",
+            "name_fr": "Èlsa dans un jardin magique",
+            "name_ar": "إلسا في الحديقة السحرية",
+            "description_en": "Elsa in a magical garden with flowers and snow for a coloring activity.",
+            "description_fr": "Page de coloriage d'Èlsa dans un jardin magique avec des fleurs et de la neige.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "letter_a_with_apple",
+        "parent_id": "english_alphabet_illustrated",
+        "name_en": "Letter A with Apple",
+        "name_fr": "Lettre A avec une pomme",
+        "name_ar": "حرف A مع تفاحة",
+        "_category": "Alphabet",
+        "_focus": "Subject+Setting strict"
+      },
+      "raw": "[\n  {\n    \"id\": \"letter_a_in_a_school\",\n    \"slug\": \"letter-a-in-a-school\",\n    \"name_en\": \"Letter A in a School Classroom\",\n    \"name_fr\": \"Lettre A dans une classe\",\n    \"name_ar\": \"حرف A في الفصل\",\n    \"description_en\": \"Coloring page featuring the letter A displayed on a school blackboard with an apple nearby.\",\n    \"description_fr\": \"Page de coloriage avec la lettre A affichée sur un tableau d'école et une pomme à côté.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"apple_on_a_tree\",\n    \"slug\": \"apple-on-a-tree\",\n    \"name_en\": \"Red Apple on a Green Tree Branch\",\n    \"name_fr\": \"Pomme rouge sur une branche\",\n    \"name_ar\": \"تفاحة حمراء على فرع\",\n    \"description_en\": \"Coloring page showing a single red apple hanging from a leafy green tree branch.\",\n    \"description_fr\": \"Page de coloriage représentant une pomme rouge pendante sur une branche d'arbre feuillue.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"apple_in_a_basket\",\n    \"slug\": \"apple-in-a-basket\",\n    \"name_en\": \"Red Apple in a Woven Fruit Basket\",\n    \"name_fr\": \"Pomme rouge dans un panier\",\n    \"name_ar\": \"تفاحة حمراء في سلة\",\n    \"description_en\": \"Coloring page of a red apple resting inside a traditional woven fruit basket.\",\n    \"description_fr\": \"Page de coloriage d'une pomme rouge reposant dans un panier tressu traditionnel.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"apple_near_a_table\",\n    \"slug\": \"apple-near-a-table\",\n    \"name_en\": \"Red Apple near a Wooden Dining Table\",\n    \"name_fr\": \"Pomme rouge près d'une table\",\n    \"name_ar\": \"تفاحة حمراء عند طاولة\",\n    \"description_en\": \"Coloring page with a red apple placed near a simple wooden dining table.\",\n    \"description_fr\": \"Page de coloriage avec une pomme rouge placée près d'une simple table en bois.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"letter_a_with_apple\",\n    \"slug\": \"letter-a-with-apple\",\n    \"name_en\": \"Letter A with a Red Apple\",\n    \"name_fr\": \"Lettre A avec une pomme\",\n    \"name_ar\": \"حرف A مع تفاحة\",\n    \"description_en\": \"Coloring page combining the letter A and a red apple for alphabet learning activities.\",\n    \"description_fr\": \"Page de coloriage combinant la lettre A et une pomme rouge pour les activités d'apprentissage.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "letter_a_in_a_school",
+          "slug": "letter-a-in-a-school",
+          "name_en": "Letter A in a School Classroom",
+          "name_fr": "Lettre A dans une classe",
+          "name_ar": "حرف A في الفصل",
+          "description_en": "Coloring page featuring the letter A displayed on a school blackboard with an apple nearby.",
+          "description_fr": "Page de coloriage avec la lettre A affichée sur un tableau d'école et une pomme à côté.",
+          "weight": 0
+        },
+        {
+          "id": "apple_on_a_tree",
+          "slug": "apple-on-a-tree",
+          "name_en": "Red Apple on a Green Tree Branch",
+          "name_fr": "Pomme rouge sur une branche",
+          "name_ar": "تفاحة حمراء على فرع",
+          "description_en": "Coloring page showing a single red apple hanging from a leafy green tree branch.",
+          "description_fr": "Page de coloriage représentant une pomme rouge pendante sur une branche d'arbre feuillue.",
+          "weight": 1
+        },
+        {
+          "id": "apple_in_a_basket",
+          "slug": "apple-in-a-basket",
+          "name_en": "Red Apple in a Woven Fruit Basket",
+          "name_fr": "Pomme rouge dans un panier",
+          "name_ar": "تفاحة حمراء في سلة",
+          "description_en": "Coloring page of a red apple resting inside a traditional woven fruit basket.",
+          "description_fr": "Page de coloriage d'une pomme rouge reposant dans un panier tressu traditionnel.",
+          "weight": 2
+        },
+        {
+          "id": "apple_near_a_table",
+          "slug": "apple-near-a-table",
+          "name_en": "Red Apple near a Wooden Dining Table",
+          "name_fr": "Pomme rouge près d'une table",
+          "name_ar": "تفاحة حمراء عند طاولة",
+          "description_en": "Coloring page with a red apple placed near a simple wooden dining table.",
+          "description_fr": "Page de coloriage avec une pomme rouge placée près d'une simple table en bois.",
+          "weight": 3
+        },
+        {
+          "id": "letter_a_with_apple",
+          "slug": "letter-a-with-apple",
+          "name_en": "Letter A with a Red Apple",
+          "name_fr": "Lettre A avec une pomme",
+          "name_ar": "حرف A مع تفاحة",
+          "description_en": "Coloring page combining the letter A and a red apple for alphabet learning activities.",
+          "description_fr": "Page de coloriage combinant la lettre A et une pomme rouge pour les activités d'apprentissage.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 10.017308712005615,
+      "evaluations": [
+        {
+          "id": "letter_a_in_a_school",
+          "name_en": "Letter A in a School Classroom",
+          "name_fr": "Lettre A dans une classe",
+          "name_ar": "حرف A في الفصل",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "letter_a_in_a_school",
+            "slug": "letter-a-in-a-school",
+            "name_en": "Letter A in a School Classroom",
+            "name_fr": "Lettre A dans une classe",
+            "name_ar": "حرف A في الفصل",
+            "description_en": "Coloring page featuring the letter A displayed on a school blackboard with an apple nearby.",
+            "description_fr": "Page de coloriage avec la lettre A affichée sur un tableau d'école et une pomme à côté.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "apple_on_a_tree",
+          "name_en": "Red Apple on a Green Tree Branch",
+          "name_fr": "Pomme rouge sur une branche",
+          "name_ar": "تفاحة حمراء على فرع",
+          "name_en_word_count": 7,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "apple_on_a_tree",
+            "slug": "apple-on-a-tree",
+            "name_en": "Red Apple on a Green Tree Branch",
+            "name_fr": "Pomme rouge sur une branche",
+            "name_ar": "تفاحة حمراء على فرع",
+            "description_en": "Coloring page showing a single red apple hanging from a leafy green tree branch.",
+            "description_fr": "Page de coloriage représentant une pomme rouge pendante sur une branche d'arbre feuillue.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "apple_in_a_basket",
+          "name_en": "Red Apple in a Woven Fruit Basket",
+          "name_fr": "Pomme rouge dans un panier",
+          "name_ar": "تفاحة حمراء في سلة",
+          "name_en_word_count": 7,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "apple_in_a_basket",
+            "slug": "apple-in-a-basket",
+            "name_en": "Red Apple in a Woven Fruit Basket",
+            "name_fr": "Pomme rouge dans un panier",
+            "name_ar": "تفاحة حمراء في سلة",
+            "description_en": "Coloring page of a red apple resting inside a traditional woven fruit basket.",
+            "description_fr": "Page de coloriage d'une pomme rouge reposant dans un panier tressu traditionnel.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "apple_near_a_table",
+          "name_en": "Red Apple near a Wooden Dining Table",
+          "name_fr": "Pomme rouge près d'une table",
+          "name_ar": "تفاحة حمراء عند طاولة",
+          "name_en_word_count": 7,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "apple_near_a_table",
+            "slug": "apple-near-a-table",
+            "name_en": "Red Apple near a Wooden Dining Table",
+            "name_fr": "Pomme rouge près d'une table",
+            "name_ar": "تفاحة حمراء عند طاولة",
+            "description_en": "Coloring page with a red apple placed near a simple wooden dining table.",
+            "description_fr": "Page de coloriage avec une pomme rouge placée près d'une simple table en bois.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "letter_a_with_apple",
+          "name_en": "Letter A with a Red Apple",
+          "name_fr": "Lettre A avec une pomme",
+          "name_ar": "حرف A مع تفاحة",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "letter_a_with_apple",
+            "slug": "letter-a-with-apple",
+            "name_en": "Letter A with a Red Apple",
+            "name_fr": "Lettre A avec une pomme",
+            "name_ar": "حرف A مع تفاحة",
+            "description_en": "Coloring page combining the letter A and a red apple for alphabet learning activities.",
+            "description_fr": "Page de coloriage combinant la lettre A et une pomme rouge pour les activités d'apprentissage.",
+            "weight": 4
+          }
+        }
+      ]
+    }
+  ],
+  "comparison": [
+    {
+      "leaf_id": "claw_hammer",
+      "v1": {
+        "leaf": {
+          "id": "claw_hammer",
+          "parent_id": "hand_tools",
+          "name_en": "Claw Hammer",
+          "name_fr": "Marteau arrache-clou",
+          "name_ar": "المطرقة",
+          "_label": "tools/hand_tools",
+          "_category": "Outils"
+        },
+        "raw": "[\n  {\"id\": \"claw_hammer_in_workshop\", \"slug\": \"claw-hammer-in-workshop\", \"name_en\": \"Claw Hammer in a Workshop\", \"name_fr\": \"Marteau griffe dans un atelier\", \"name_ar\": \"مطرقة في ورشة\", \"description_en\": \"A claw hammer resting on a workbench coloring page for kids to enjoy.\", \"description_fr\": \"Page de coloriage d'un marteau griffe posé sur un établi, idéal pour les enfants.\", \"weight\": 0},\n  {\"id\": \"claw_hammer_in_garden\", \"slug\": \"claw-hammer-in-garden\", \"name_en\": \"Claw Hammer in a Garden\", \"name_fr\": \"Marteau griffe dans un jardin\", \"name_ar\": \"مطرقة في حديقة\", \"description_en\": \"A claw hammer near flowers and plants for a fun garden coloring activity.\", \"description_fr\": \"Page de coloriage d'un marteau griffe près de fleurs et de plantes, parfait pour les enfants.\", \"weight\": 1},\n  {\"id\": \"claw_hammer_in_forest\", \"slug\": \"claw-hammer-in-forest\", \"name_en\": \"Claw Hammer in a Forest\", \"name_fr\": \"Marteau griffe dans une forêt\", \"name_ar\": \"مطرقة في غابة\", \"description_en\": \"A claw hammer surrounded by trees and leaves for a nature coloring page.\", \"description_fr\": \"Page de coloriage d'un marteau griffe entouré d'arbres et de feuilles, idéal pour la nature.\", \"weight\": 2},\n  {\"id\": \"claw_hammer_in_kitchen\", \"slug\": \"claw-hammer-in-kitchen\", \"name_en\": \"Claw Hammer in a Kitchen\", \"name_fr\": \"Marteau griffe dans une cuisine\", \"name_ar\": \"مطرقة في مطبخ\", \"description_en\": \"A claw hammer on a wooden table in a cozy kitchen coloring page for kids.\", \"description_fr\": \"Page de coloriage d'un marteau griffe sur une table en bois dans une cuisine confortable.\", \"weight\": 3},\n  {\"id\": \"claw_hammer_in_barn\", \"slug\": \"claw-hammer-in-barn\", \"name_en\": \"Claw Hammer in a Barn\", \"name_fr\": \"Marteau griffe dans une étable\", \"name_ar\": \"مطرقة في مزرعة\", \"description_en\": \"A claw hammer hanging on a wall in a rustic barn for farm-themed coloring.\", \"description_fr\": \"Page de coloriage d'un marteau griffe accroché au mur dans une étable rustique.\", \"weight\": 4}\n]",
+        "json_ok": true,
+        "concepts": [
+          {
+            "id": "claw_hammer_in_workshop",
+            "slug": "claw-hammer-in-workshop",
+            "name_en": "Claw Hammer in a Workshop",
+            "name_fr": "Marteau griffe dans un atelier",
+            "name_ar": "مطرقة في ورشة",
+            "description_en": "A claw hammer resting on a workbench coloring page for kids to enjoy.",
+            "description_fr": "Page de coloriage d'un marteau griffe posé sur un établi, idéal pour les enfants.",
+            "weight": 0
+          },
+          {
+            "id": "claw_hammer_in_garden",
+            "slug": "claw-hammer-in-garden",
+            "name_en": "Claw Hammer in a Garden",
+            "name_fr": "Marteau griffe dans un jardin",
+            "name_ar": "مطرقة في حديقة",
+            "description_en": "A claw hammer near flowers and plants for a fun garden coloring activity.",
+            "description_fr": "Page de coloriage d'un marteau griffe près de fleurs et de plantes, parfait pour les enfants.",
+            "weight": 1
+          },
+          {
+            "id": "claw_hammer_in_forest",
+            "slug": "claw-hammer-in-forest",
+            "name_en": "Claw Hammer in a Forest",
+            "name_fr": "Marteau griffe dans une forêt",
+            "name_ar": "مطرقة في غابة",
+            "description_en": "A claw hammer surrounded by trees and leaves for a nature coloring page.",
+            "description_fr": "Page de coloriage d'un marteau griffe entouré d'arbres et de feuilles, idéal pour la nature.",
+            "weight": 2
+          },
+          {
+            "id": "claw_hammer_in_kitchen",
+            "slug": "claw-hammer-in-kitchen",
+            "name_en": "Claw Hammer in a Kitchen",
+            "name_fr": "Marteau griffe dans une cuisine",
+            "name_ar": "مطرقة في مطبخ",
+            "description_en": "A claw hammer on a wooden table in a cozy kitchen coloring page for kids.",
+            "description_fr": "Page de coloriage d'un marteau griffe sur une table en bois dans une cuisine confortable.",
+            "weight": 3
+          },
+          {
+            "id": "claw_hammer_in_barn",
+            "slug": "claw-hammer-in-barn",
+            "name_en": "Claw Hammer in a Barn",
+            "name_fr": "Marteau griffe dans une étable",
+            "name_ar": "مطرقة في مزرعة",
+            "description_en": "A claw hammer hanging on a wall in a rustic barn for farm-themed coloring.",
+            "description_fr": "Page de coloriage d'un marteau griffe accroché au mur dans une étable rustique.",
+            "weight": 4
+          }
+        ],
+        "latency_s": 9.004642248153687,
+        "evaluations": [
+          {
+            "id": "claw_hammer_in_workshop",
+            "name_en": "Claw Hammer in a Workshop",
+            "name_fr": "Marteau griffe dans un atelier",
+            "name_ar": "مطرقة في ورشة",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 3,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "claw_hammer_in_workshop",
+              "slug": "claw-hammer-in-workshop",
+              "name_en": "Claw Hammer in a Workshop",
+              "name_fr": "Marteau griffe dans un atelier",
+              "name_ar": "مطرقة في ورشة",
+              "description_en": "A claw hammer resting on a workbench coloring page for kids to enjoy.",
+              "description_fr": "Page de coloriage d'un marteau griffe posé sur un établi, idéal pour les enfants.",
+              "weight": 0
+            }
+          },
+          {
+            "id": "claw_hammer_in_garden",
+            "name_en": "Claw Hammer in a Garden",
+            "name_fr": "Marteau griffe dans un jardin",
+            "name_ar": "مطرقة في حديقة",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 3,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "claw_hammer_in_garden",
+              "slug": "claw-hammer-in-garden",
+              "name_en": "Claw Hammer in a Garden",
+              "name_fr": "Marteau griffe dans un jardin",
+              "name_ar": "مطرقة في حديقة",
+              "description_en": "A claw hammer near flowers and plants for a fun garden coloring activity.",
+              "description_fr": "Page de coloriage d'un marteau griffe près de fleurs et de plantes, parfait pour les enfants.",
+              "weight": 1
+            }
+          },
+          {
+            "id": "claw_hammer_in_forest",
+            "name_en": "Claw Hammer in a Forest",
+            "name_fr": "Marteau griffe dans une forêt",
+            "name_ar": "مطرقة في غابة",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 3,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "claw_hammer_in_forest",
+              "slug": "claw-hammer-in-forest",
+              "name_en": "Claw Hammer in a Forest",
+              "name_fr": "Marteau griffe dans une forêt",
+              "name_ar": "مطرقة في غابة",
+              "description_en": "A claw hammer surrounded by trees and leaves for a nature coloring page.",
+              "description_fr": "Page de coloriage d'un marteau griffe entouré d'arbres et de feuilles, idéal pour la nature.",
+              "weight": 2
+            }
+          },
+          {
+            "id": "claw_hammer_in_kitchen",
+            "name_en": "Claw Hammer in a Kitchen",
+            "name_fr": "Marteau griffe dans une cuisine",
+            "name_ar": "مطرقة في مطبخ",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 3,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "claw_hammer_in_kitchen",
+              "slug": "claw-hammer-in-kitchen",
+              "name_en": "Claw Hammer in a Kitchen",
+              "name_fr": "Marteau griffe dans une cuisine",
+              "name_ar": "مطرقة في مطبخ",
+              "description_en": "A claw hammer on a wooden table in a cozy kitchen coloring page for kids.",
+              "description_fr": "Page de coloriage d'un marteau griffe sur une table en bois dans une cuisine confortable.",
+              "weight": 3
+            }
+          },
+          {
+            "id": "claw_hammer_in_barn",
+            "name_en": "Claw Hammer in a Barn",
+            "name_fr": "Marteau griffe dans une étable",
+            "name_ar": "مطرقة في مزرعة",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 3,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "claw_hammer_in_barn",
+              "slug": "claw-hammer-in-barn",
+              "name_en": "Claw Hammer in a Barn",
+              "name_fr": "Marteau griffe dans une étable",
+              "name_ar": "مطرقة في مزرعة",
+              "description_en": "A claw hammer hanging on a wall in a rustic barn for farm-themed coloring.",
+              "description_fr": "Page de coloriage d'un marteau griffe accroché au mur dans une étable rustique.",
+              "weight": 4
+            }
+          }
+        ]
+      },
+      "v2": {
+        "leaf": {
+          "id": "claw_hammer",
+          "parent_id": "hand_tools",
+          "name_en": "Claw Hammer",
+          "name_fr": "Marteau arrache-clou",
+          "name_ar": "المطرقة",
+          "_category": "Outils",
+          "_focus": "Setting plausibility"
+        },
+        "raw": "[\n  {\n    \"id\": \"tools_hammer_in_workshop\",\n    \"slug\": \"hammer-in-workshop\",\n    \"name_en\": \"Claw Hammer on a Workbench\",\n    \"name_fr\": \"Marteau à griffe sur un établi\",\n    \"name_ar\": \"مطرقة على ورشة عمل\",\n    \"description_en\": \"A detailed claw hammer resting on a wooden workbench, perfect for a construction-themed coloring activity.\",\n    \"description_fr\": \"Un marteau à griffe détaillé reposant sur un établi en bois, parfait pour une activité de coloriage sur le thème de la construction.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"tools_hammer_in_garage\",\n    \"slug\": \"hammer-in-garage\",\n    \"name_en\": \"Claw Hammer in a Garage\",\n    \"name_fr\": \"Marteau à griffe dans un garage\",\n    \"name_ar\": \"مطرقة في гараج\",\n    \"description_en\": \"A sturdy claw hammer hanging on a peg in a cluttered garage, ready for DIY projects, coloring fun.\",\n    \"description_fr\": \"Un marteau à griffe robuste accroché sur un crochet dans un garage encombré, prêt pour des projets DIY, divertissant à colorier.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"tools_hammer_in_kitchen\",\n    \"slug\": \"hammer-in-kitchen\",\n    \"name_en\": \"Claw Hammer on a Kitchen Counter\",\n    \"name_fr\": \"Marteau à griffe sur un comptoir de cuisine\",\n    \"name_ar\": \"مطرقة على طاولة المطبخ\",\n    \"description_en\": \"A small claw hammer placed on a kitchen counter near a sink, ideal for a household coloring page.\",\n    \"description_fr\": \"Un petit marteau à griffe posé sur un comptoir de cuisine près d'un évier, idéal pour une page de coloriage sur le thème domestique.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"tools_hammer_in_toolbox\",\n    \"slug\": \"hammer-in-toolbox\",\n    \"name_en\": \"Claw Hammer inside a Toolbox\",\n    \"name_fr\": \"Marteau à griffe dans une boîte à outils\",\n    \"name_ar\": \"مطرقة داخل صندوق أدوات\",\n    \"description_en\": \"A colorful claw hammer nestled inside an open metal toolbox with other tools, a great object for coloring.\",\n    \"description_fr\": \"Un marteau à griffe coloré niché à l'intérieur d'une boîte à outils métallique ouverte, un excellent objet pour colorier.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"tools_hammer_near_door\",\n    \"slug\": \"hammer-near-door\",\n    \"name_en\": \"Claw Hammer near a Front Door\",\n    \"name_fr\": \"Marteau à griffe près d'une porte d'entrée\",\n    \"name_ar\": \"مطرقة عند باب أمامي\",\n    \"description_en\": \"A claw hammer leaning against the wall next to a front door, capturing a typical home scene for coloring.\",\n    \"description_fr\": \"Un marteau à griffe s'appuyant contre le mur à côté d'une porte d'entrée, capturant une scène domestique typique pour le coloriage.\",\n    \"weight\": 4\n  }\n]",
+        "json_ok": true,
+        "concepts": [
+          {
+            "id": "tools_hammer_in_workshop",
+            "slug": "hammer-in-workshop",
+            "name_en": "Claw Hammer on a Workbench",
+            "name_fr": "Marteau à griffe sur un établi",
+            "name_ar": "مطرقة على ورشة عمل",
+            "description_en": "A detailed claw hammer resting on a wooden workbench, perfect for a construction-themed coloring activity.",
+            "description_fr": "Un marteau à griffe détaillé reposant sur un établi en bois, parfait pour une activité de coloriage sur le thème de la construction.",
+            "weight": 0
+          },
+          {
+            "id": "tools_hammer_in_garage",
+            "slug": "hammer-in-garage",
+            "name_en": "Claw Hammer in a Garage",
+            "name_fr": "Marteau à griffe dans un garage",
+            "name_ar": "مطرقة في гараج",
+            "description_en": "A sturdy claw hammer hanging on a peg in a cluttered garage, ready for DIY projects, coloring fun.",
+            "description_fr": "Un marteau à griffe robuste accroché sur un crochet dans un garage encombré, prêt pour des projets DIY, divertissant à colorier.",
+            "weight": 1
+          },
+          {
+            "id": "tools_hammer_in_kitchen",
+            "slug": "hammer-in-kitchen",
+            "name_en": "Claw Hammer on a Kitchen Counter",
+            "name_fr": "Marteau à griffe sur un comptoir de cuisine",
+            "name_ar": "مطرقة على طاولة المطبخ",
+            "description_en": "A small claw hammer placed on a kitchen counter near a sink, ideal for a household coloring page.",
+            "description_fr": "Un petit marteau à griffe posé sur un comptoir de cuisine près d'un évier, idéal pour une page de coloriage sur le thème domestique.",
+            "weight": 2
+          },
+          {
+            "id": "tools_hammer_in_toolbox",
+            "slug": "hammer-in-toolbox",
+            "name_en": "Claw Hammer inside a Toolbox",
+            "name_fr": "Marteau à griffe dans une boîte à outils",
+            "name_ar": "مطرقة داخل صندوق أدوات",
+            "description_en": "A colorful claw hammer nestled inside an open metal toolbox with other tools, a great object for coloring.",
+            "description_fr": "Un marteau à griffe coloré niché à l'intérieur d'une boîte à outils métallique ouverte, un excellent objet pour colorier.",
+            "weight": 3
+          },
+          {
+            "id": "tools_hammer_near_door",
+            "slug": "hammer-near-door",
+            "name_en": "Claw Hammer near a Front Door",
+            "name_fr": "Marteau à griffe près d'une porte d'entrée",
+            "name_ar": "مطرقة عند باب أمامي",
+            "description_en": "A claw hammer leaning against the wall next to a front door, capturing a typical home scene for coloring.",
+            "description_fr": "Un marteau à griffe s'appuyant contre le mur à côté d'une porte d'entrée, capturant une scène domestique typique pour le coloriage.",
+            "weight": 4
+          }
+        ],
+        "latency_s": 15.741312503814697,
+        "evaluations": [
+          {
+            "id": "tools_hammer_in_workshop",
+            "name_en": "Claw Hammer on a Workbench",
+            "name_fr": "Marteau à griffe sur un établi",
+            "name_ar": "مطرقة على ورشة عمل",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "tools_hammer_in_workshop",
+              "slug": "hammer-in-workshop",
+              "name_en": "Claw Hammer on a Workbench",
+              "name_fr": "Marteau à griffe sur un établi",
+              "name_ar": "مطرقة على ورشة عمل",
+              "description_en": "A detailed claw hammer resting on a wooden workbench, perfect for a construction-themed coloring activity.",
+              "description_fr": "Un marteau à griffe détaillé reposant sur un établi en bois, parfait pour une activité de coloriage sur le thème de la construction.",
+              "weight": 0
+            }
+          },
+          {
+            "id": "tools_hammer_in_garage",
+            "name_en": "Claw Hammer in a Garage",
+            "name_fr": "Marteau à griffe dans un garage",
+            "name_ar": "مطرقة في гараج",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 3,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "tools_hammer_in_garage",
+              "slug": "hammer-in-garage",
+              "name_en": "Claw Hammer in a Garage",
+              "name_fr": "Marteau à griffe dans un garage",
+              "name_ar": "مطرقة في гараج",
+              "description_en": "A sturdy claw hammer hanging on a peg in a cluttered garage, ready for DIY projects, coloring fun.",
+              "description_fr": "Un marteau à griffe robuste accroché sur un crochet dans un garage encombré, prêt pour des projets DIY, divertissant à colorier.",
+              "weight": 1
+            }
+          },
+          {
+            "id": "tools_hammer_in_kitchen",
+            "name_en": "Claw Hammer on a Kitchen Counter",
+            "name_fr": "Marteau à griffe sur un comptoir de cuisine",
+            "name_ar": "مطرقة على طاولة المطبخ",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "tools_hammer_in_kitchen",
+              "slug": "hammer-in-kitchen",
+              "name_en": "Claw Hammer on a Kitchen Counter",
+              "name_fr": "Marteau à griffe sur un comptoir de cuisine",
+              "name_ar": "مطرقة على طاولة المطبخ",
+              "description_en": "A small claw hammer placed on a kitchen counter near a sink, ideal for a household coloring page.",
+              "description_fr": "Un petit marteau à griffe posé sur un comptoir de cuisine près d'un évier, idéal pour une page de coloriage sur le thème domestique.",
+              "weight": 2
+            }
+          },
+          {
+            "id": "tools_hammer_in_toolbox",
+            "name_en": "Claw Hammer inside a Toolbox",
+            "name_fr": "Marteau à griffe dans une boîte à outils",
+            "name_ar": "مطرقة داخل صندوق أدوات",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "tools_hammer_in_toolbox",
+              "slug": "hammer-in-toolbox",
+              "name_en": "Claw Hammer inside a Toolbox",
+              "name_fr": "Marteau à griffe dans une boîte à outils",
+              "name_ar": "مطرقة داخل صندوق أدوات",
+              "description_en": "A colorful claw hammer nestled inside an open metal toolbox with other tools, a great object for coloring.",
+              "description_fr": "Un marteau à griffe coloré niché à l'intérieur d'une boîte à outils métallique ouverte, un excellent objet pour colorier.",
+              "weight": 3
+            }
+          },
+          {
+            "id": "tools_hammer_near_door",
+            "name_en": "Claw Hammer near a Front Door",
+            "name_fr": "Marteau à griffe près d'une porte d'entrée",
+            "name_ar": "مطرقة عند باب أمامي",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "tools_hammer_near_door",
+              "slug": "hammer-near-door",
+              "name_en": "Claw Hammer near a Front Door",
+              "name_fr": "Marteau à griffe près d'une porte d'entrée",
+              "name_ar": "مطرقة عند باب أمامي",
+              "description_en": "A claw hammer leaning against the wall next to a front door, capturing a typical home scene for coloring.",
+              "description_fr": "Un marteau à griffe s'appuyant contre le mur à côté d'une porte d'entrée, capturant une scène domestique typique pour le coloriage.",
+              "weight": 4
+            }
+          }
+        ]
+      }
+    },
+    {
+      "leaf_id": "firefighter_with_hose",
+      "v1": {
+        "leaf": {
+          "id": "firefighter_with_hose",
+          "parent_id": "security_and_emergency",
+          "name_en": "Firefighter with Hose",
+          "name_fr": "Pompier avec lance à eau",
+          "name_ar": "إطفائي بخرطوم",
+          "_label": "professions/security_and_emergency",
+          "_category": "Professions"
+        },
+        "raw": "[\n  {\n    \"id\": \"firefighter_hose_station\",\n    \"slug\": \"firefighter-hose-station\",\n    \"name_en\": \"Firefighter with Hose at Fire Station\",\n    \"name_fr\": \"Infirmier de pompier avec un tuyau\",\n    \"name_ar\": \"إطفائي بخرطوم\",\n    \"description_en\": \"A brave firefighter with a hose standing at the fire station, perfect for kids' coloring pages.\",\n    \"description_fr\": \"Un pompier courageux avec un tuyau debout à la station des pompiers, idéal pour les pages de coloriage.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"firefighter_hose_fire\",\n    \"slug\": \"firefighter-hose-fire\",\n    \"name_en\": \"Firefighter with Hose Fighting Fire\",\n    \"name_fr\": \"Infirmier de pompier combattant un incendie\",\n    \"name_ar\": \"إطفائي بخرطوم يطفئ الحريق\",\n    \"description_en\": \"A firefighter using a hose to put out a fire, an exciting action scene for coloring.\",\n    \"description_fr\": \"Un pompier utilisant un tuyau pour éteindre un incendie, une scène d'action excitante pour le coloriage.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"firefighter_hose_house\",\n    \"slug\": \"firefighter-house\",\n    \"name_en\": \"Firefighter with Hose at a House\",\n    \"name_fr\": \"Infirmier de pompier devant une maison\",\n    \"name_ar\": \"إطفائي بخرطوم في منزل\",\n    \"description_en\": \"A firefighter with a hose standing near a house, a relatable setting for children's coloring.\",\n    \"description_fr\": \"Un pompier avec un tuyau debout près d'une maison, un cadre familier pour le coloriage des enfants.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"firefighter_hose_bicycle\",\n    \"slug\": \"firefighter-hose-bicycle\",\n    \"name_en\": \"Firefighter with Hose on a Bicycle\",\n    \"name_fr\": \"Infirmier de pompier sur un vélo\",\n    \"name_ar\": \"إطفائي بخرطوم على دراجة\",\n    \"description_en\": \"A firefighter with a hose riding a bicycle, a fun and active concept for coloring.\",\n    \"description_fr\": \"Un pompier avec un tuyau qui roule sur un vélo, un concept amusant et actif pour le coloriage.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"firefighter_hose_tree\",\n    \"slug\": \"firefighter-hose-tree\",\n    \"name_en\": \"Firefighter with Hose near a Tree\",\n    \"name_fr\": \"Infirmier de pompier près d'un arbre\",\n    \"name_ar\": \"إطفائي بخرطوم بجانب شجرة\",\n    \"description_en\": \"A firefighter with a hose standing next to a tree, a simple nature setting for coloring.\",\n    \"description_fr\": \"Un pompier avec un tuyau debout à côté d'un arbre, un cadre simple de la nature pour le coloriage.\",\n    \"weight\": 4\n  }\n]",
+        "json_ok": true,
+        "concepts": [
+          {
+            "id": "firefighter_hose_station",
+            "slug": "firefighter-hose-station",
+            "name_en": "Firefighter with Hose at Fire Station",
+            "name_fr": "Infirmier de pompier avec un tuyau",
+            "name_ar": "إطفائي بخرطوم",
+            "description_en": "A brave firefighter with a hose standing at the fire station, perfect for kids' coloring pages.",
+            "description_fr": "Un pompier courageux avec un tuyau debout à la station des pompiers, idéal pour les pages de coloriage.",
+            "weight": 0
+          },
+          {
+            "id": "firefighter_hose_fire",
+            "slug": "firefighter-hose-fire",
+            "name_en": "Firefighter with Hose Fighting Fire",
+            "name_fr": "Infirmier de pompier combattant un incendie",
+            "name_ar": "إطفائي بخرطوم يطفئ الحريق",
+            "description_en": "A firefighter using a hose to put out a fire, an exciting action scene for coloring.",
+            "description_fr": "Un pompier utilisant un tuyau pour éteindre un incendie, une scène d'action excitante pour le coloriage.",
+            "weight": 1
+          },
+          {
+            "id": "firefighter_hose_house",
+            "slug": "firefighter-house",
+            "name_en": "Firefighter with Hose at a House",
+            "name_fr": "Infirmier de pompier devant une maison",
+            "name_ar": "إطفائي بخرطوم في منزل",
+            "description_en": "A firefighter with a hose standing near a house, a relatable setting for children's coloring.",
+            "description_fr": "Un pompier avec un tuyau debout près d'une maison, un cadre familier pour le coloriage des enfants.",
+            "weight": 2
+          },
+          {
+            "id": "firefighter_hose_bicycle",
+            "slug": "firefighter-hose-bicycle",
+            "name_en": "Firefighter with Hose on a Bicycle",
+            "name_fr": "Infirmier de pompier sur un vélo",
+            "name_ar": "إطفائي بخرطوم على دراجة",
+            "description_en": "A firefighter with a hose riding a bicycle, a fun and active concept for coloring.",
+            "description_fr": "Un pompier avec un tuyau qui roule sur un vélo, un concept amusant et actif pour le coloriage.",
+            "weight": 3
+          },
+          {
+            "id": "firefighter_hose_tree",
+            "slug": "firefighter-hose-tree",
+            "name_en": "Firefighter with Hose near a Tree",
+            "name_fr": "Infirmier de pompier près d'un arbre",
+            "name_ar": "إطفائي بخرطوم بجانب شجرة",
+            "description_en": "A firefighter with a hose standing next to a tree, a simple nature setting for coloring.",
+            "description_fr": "Un pompier avec un tuyau debout à côté d'un arbre, un cadre simple de la nature pour le coloriage.",
+            "weight": 4
+          }
+        ],
+        "latency_s": 12.235372543334961,
+        "evaluations": [
+          {
+            "id": "firefighter_hose_station",
+            "name_en": "Firefighter with Hose at Fire Station",
+            "name_fr": "Infirmier de pompier avec un tuyau",
+            "name_ar": "إطفائي بخرطوم",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 2,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_station",
+              "slug": "firefighter-hose-station",
+              "name_en": "Firefighter with Hose at Fire Station",
+              "name_fr": "Infirmier de pompier avec un tuyau",
+              "name_ar": "إطفائي بخرطوم",
+              "description_en": "A brave firefighter with a hose standing at the fire station, perfect for kids' coloring pages.",
+              "description_fr": "Un pompier courageux avec un tuyau debout à la station des pompiers, idéal pour les pages de coloriage.",
+              "weight": 0
+            }
+          },
+          {
+            "id": "firefighter_hose_fire",
+            "name_en": "Firefighter with Hose Fighting Fire",
+            "name_fr": "Infirmier de pompier combattant un incendie",
+            "name_ar": "إطفائي بخرطوم يطفئ الحريق",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_fire",
+              "slug": "firefighter-hose-fire",
+              "name_en": "Firefighter with Hose Fighting Fire",
+              "name_fr": "Infirmier de pompier combattant un incendie",
+              "name_ar": "إطفائي بخرطوم يطفئ الحريق",
+              "description_en": "A firefighter using a hose to put out a fire, an exciting action scene for coloring.",
+              "description_fr": "Un pompier utilisant un tuyau pour éteindre un incendie, une scène d'action excitante pour le coloriage.",
+              "weight": 1
+            }
+          },
+          {
+            "id": "firefighter_hose_house",
+            "name_en": "Firefighter with Hose at a House",
+            "name_fr": "Infirmier de pompier devant une maison",
+            "name_ar": "إطفائي بخرطوم في منزل",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_house",
+              "slug": "firefighter-house",
+              "name_en": "Firefighter with Hose at a House",
+              "name_fr": "Infirmier de pompier devant une maison",
+              "name_ar": "إطفائي بخرطوم في منزل",
+              "description_en": "A firefighter with a hose standing near a house, a relatable setting for children's coloring.",
+              "description_fr": "Un pompier avec un tuyau debout près d'une maison, un cadre familier pour le coloriage des enfants.",
+              "weight": 2
+            }
+          },
+          {
+            "id": "firefighter_hose_bicycle",
+            "name_en": "Firefighter with Hose on a Bicycle",
+            "name_fr": "Infirmier de pompier sur un vélo",
+            "name_ar": "إطفائي بخرطوم على دراجة",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_bicycle",
+              "slug": "firefighter-hose-bicycle",
+              "name_en": "Firefighter with Hose on a Bicycle",
+              "name_fr": "Infirmier de pompier sur un vélo",
+              "name_ar": "إطفائي بخرطوم على دراجة",
+              "description_en": "A firefighter with a hose riding a bicycle, a fun and active concept for coloring.",
+              "description_fr": "Un pompier avec un tuyau qui roule sur un vélo, un concept amusant et actif pour le coloriage.",
+              "weight": 3
+            }
+          },
+          {
+            "id": "firefighter_hose_tree",
+            "name_en": "Firefighter with Hose near a Tree",
+            "name_fr": "Infirmier de pompier près d'un arbre",
+            "name_ar": "إطفائي بخرطوم بجانب شجرة",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_tree",
+              "slug": "firefighter-hose-tree",
+              "name_en": "Firefighter with Hose near a Tree",
+              "name_fr": "Infirmier de pompier près d'un arbre",
+              "name_ar": "إطفائي بخرطوم بجانب شجرة",
+              "description_en": "A firefighter with a hose standing next to a tree, a simple nature setting for coloring.",
+              "description_fr": "Un pompier avec un tuyau debout à côté d'un arbre, un cadre simple de la nature pour le coloriage.",
+              "weight": 4
+            }
+          }
+        ]
+      },
+      "v2": {
+        "leaf": {
+          "id": "firefighter_with_hose",
+          "parent_id": "security_and_emergency",
+          "name_en": "Firefighter with Hose",
+          "name_fr": "Pompier avec lance à eau",
+          "name_ar": "إطفائي بخرطوم",
+          "_category": "Professions",
+          "_focus": "FR translation quality"
+        },
+        "raw": "[\n  {\n    \"id\": \"firefighter_hose_station\",\n    \"slug\": \"firefighter-hose-station\",\n    \"name_en\": \"Firefighter in a Fire Station\",\n    \"name_fr\": \"Pompier dans une caserne\",\n    \"name_ar\": \"إطفائي في محطة\",\n    \"description_en\": \"A firefighter standing with a hose inside a fire station, ready for action. This firefighter coloring page features bold lines perfect for kids.\",\n    \"description_fr\": \"Un pompier tenant un tuyau à l'intérieur d'une caserne, prêt à l'action. Cette page de coloriage présente des lignes audacieuses parfaites pour les enfants.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"firefighter_hose_fire\",\n    \"slug\": \"firefighter-hose-fire\",\n    \"name_en\": \"Firefighter in a Burning Building\",\n    \"name_fr\": \"Pompier dans un bâtiment en feu\",\n    \"name_ar\": \"إطفائي في مبنى محترق\",\n    \"description_en\": \"A brave firefighter holding a hose near flames inside a burning building. This dynamic firefighter coloring page teaches safety and heroism.\",\n    \"description_fr\": \"Un courageux pompier tenant un tuyau près de flammes à l'intérieur d'un bâtiment en feu. Cette page de coloriage dynamique enseigne la sécurité et le héroïsme.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"firefighter_hose_road\",\n    \"slug\": \"firefighter-hose-road\",\n    \"name_en\": \"Firefighter on a City Street\",\n    \"name_fr\": \"Pompier sur une rue\",\n    \"name_ar\": \"إطفائي في شارع\",\n    \"description_en\": \"A firefighter walking with a coiled hose along a busy city street. This firefighter coloring page captures urban life and community service.\",\n    \"description_fr\": \"Un pompier marchant avec un tuyau enroulé le long d'une rue urbaine. Cette page de coloriage capture la vie urbaine et le service communautaire.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"firefighter_hose_school\",\n    \"slug\": \"firefighter-hose-school\",\n    \"name_en\": \"Firefighter in a School Yard\",\n    \"name_fr\": \"Pompier dans un jardin d'école\",\n    \"name_ar\": \"إطفائي في حديقة مدرسة\",\n    \"description_en\": \"A friendly firefighter holding a hose near playground equipment in a school yard. This firefighter coloring page promotes safety education for children.\",\n    \"description_fr\": \"Un pompier amical tenant un tuyau près de l'équipement de jeux dans un jardin d'école. Cette page de coloriage promeut l'éducation à la sécurité pour les enfants.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"firefighter_hose_bay\",\n    \"slug\": \"firefighter-hose-bay\",\n    \"name_en\": \"Firefighter in a Garage Bay\",\n    \"name_fr\": \"Pompier dans un bay de garage\",\n    \"name_ar\": \"إطفائي في باي Garage\",\n    \"description_en\": \"A firefighter inspecting a hose inside a large garage bay with tools. This firefighter coloring page shows the preparation phase before responding.\",\n    \"description_fr\": \"Un pompier inspectant un tuyau à l'intérieur d'un grand bay de garage avec des outils. Cette page de coloriage montre la phase de préparation avant la réponse.\",\n    \"weight\": 4\n  }\n]",
+        "json_ok": true,
+        "concepts": [
+          {
+            "id": "firefighter_hose_station",
+            "slug": "firefighter-hose-station",
+            "name_en": "Firefighter in a Fire Station",
+            "name_fr": "Pompier dans une caserne",
+            "name_ar": "إطفائي في محطة",
+            "description_en": "A firefighter standing with a hose inside a fire station, ready for action. This firefighter coloring page features bold lines perfect for kids.",
+            "description_fr": "Un pompier tenant un tuyau à l'intérieur d'une caserne, prêt à l'action. Cette page de coloriage présente des lignes audacieuses parfaites pour les enfants.",
+            "weight": 0
+          },
+          {
+            "id": "firefighter_hose_fire",
+            "slug": "firefighter-hose-fire",
+            "name_en": "Firefighter in a Burning Building",
+            "name_fr": "Pompier dans un bâtiment en feu",
+            "name_ar": "إطفائي في مبنى محترق",
+            "description_en": "A brave firefighter holding a hose near flames inside a burning building. This dynamic firefighter coloring page teaches safety and heroism.",
+            "description_fr": "Un courageux pompier tenant un tuyau près de flammes à l'intérieur d'un bâtiment en feu. Cette page de coloriage dynamique enseigne la sécurité et le héroïsme.",
+            "weight": 1
+          },
+          {
+            "id": "firefighter_hose_road",
+            "slug": "firefighter-hose-road",
+            "name_en": "Firefighter on a City Street",
+            "name_fr": "Pompier sur une rue",
+            "name_ar": "إطفائي في شارع",
+            "description_en": "A firefighter walking with a coiled hose along a busy city street. This firefighter coloring page captures urban life and community service.",
+            "description_fr": "Un pompier marchant avec un tuyau enroulé le long d'une rue urbaine. Cette page de coloriage capture la vie urbaine et le service communautaire.",
+            "weight": 2
+          },
+          {
+            "id": "firefighter_hose_school",
+            "slug": "firefighter-hose-school",
+            "name_en": "Firefighter in a School Yard",
+            "name_fr": "Pompier dans un jardin d'école",
+            "name_ar": "إطفائي في حديقة مدرسة",
+            "description_en": "A friendly firefighter holding a hose near playground equipment in a school yard. This firefighter coloring page promotes safety education for children.",
+            "description_fr": "Un pompier amical tenant un tuyau près de l'équipement de jeux dans un jardin d'école. Cette page de coloriage promeut l'éducation à la sécurité pour les enfants.",
+            "weight": 3
+          },
+          {
+            "id": "firefighter_hose_bay",
+            "slug": "firefighter-hose-bay",
+            "name_en": "Firefighter in a Garage Bay",
+            "name_fr": "Pompier dans un bay de garage",
+            "name_ar": "إطفائي في باي Garage",
+            "description_en": "A firefighter inspecting a hose inside a large garage bay with tools. This firefighter coloring page shows the preparation phase before responding.",
+            "description_fr": "Un pompier inspectant un tuyau à l'intérieur d'un grand bay de garage avec des outils. Cette page de coloriage montre la phase de préparation avant la réponse.",
+            "weight": 4
+          }
+        ],
+        "latency_s": 11.287976503372192,
+        "evaluations": [
+          {
+            "id": "firefighter_hose_station",
+            "name_en": "Firefighter in a Fire Station",
+            "name_fr": "Pompier dans une caserne",
+            "name_ar": "إطفائي في محطة",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 3,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_station",
+              "slug": "firefighter-hose-station",
+              "name_en": "Firefighter in a Fire Station",
+              "name_fr": "Pompier dans une caserne",
+              "name_ar": "إطفائي في محطة",
+              "description_en": "A firefighter standing with a hose inside a fire station, ready for action. This firefighter coloring page features bold lines perfect for kids.",
+              "description_fr": "Un pompier tenant un tuyau à l'intérieur d'une caserne, prêt à l'action. Cette page de coloriage présente des lignes audacieuses parfaites pour les enfants.",
+              "weight": 0
+            }
+          },
+          {
+            "id": "firefighter_hose_fire",
+            "name_en": "Firefighter in a Burning Building",
+            "name_fr": "Pompier dans un bâtiment en feu",
+            "name_ar": "إطفائي في مبنى محترق",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_fire",
+              "slug": "firefighter-hose-fire",
+              "name_en": "Firefighter in a Burning Building",
+              "name_fr": "Pompier dans un bâtiment en feu",
+              "name_ar": "إطفائي في مبنى محترق",
+              "description_en": "A brave firefighter holding a hose near flames inside a burning building. This dynamic firefighter coloring page teaches safety and heroism.",
+              "description_fr": "Un courageux pompier tenant un tuyau près de flammes à l'intérieur d'un bâtiment en feu. Cette page de coloriage dynamique enseigne la sécurité et le héroïsme.",
+              "weight": 1
+            }
+          },
+          {
+            "id": "firefighter_hose_road",
+            "name_en": "Firefighter on a City Street",
+            "name_fr": "Pompier sur une rue",
+            "name_ar": "إطفائي في شارع",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 3,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_road",
+              "slug": "firefighter-hose-road",
+              "name_en": "Firefighter on a City Street",
+              "name_fr": "Pompier sur une rue",
+              "name_ar": "إطفائي في شارع",
+              "description_en": "A firefighter walking with a coiled hose along a busy city street. This firefighter coloring page captures urban life and community service.",
+              "description_fr": "Un pompier marchant avec un tuyau enroulé le long d'une rue urbaine. Cette page de coloriage capture la vie urbaine et le service communautaire.",
+              "weight": 2
+            }
+          },
+          {
+            "id": "firefighter_hose_school",
+            "name_en": "Firefighter in a School Yard",
+            "name_fr": "Pompier dans un jardin d'école",
+            "name_ar": "إطفائي في حديقة مدرسة",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_school",
+              "slug": "firefighter-hose-school",
+              "name_en": "Firefighter in a School Yard",
+              "name_fr": "Pompier dans un jardin d'école",
+              "name_ar": "إطفائي في حديقة مدرسة",
+              "description_en": "A friendly firefighter holding a hose near playground equipment in a school yard. This firefighter coloring page promotes safety education for children.",
+              "description_fr": "Un pompier amical tenant un tuyau près de l'équipement de jeux dans un jardin d'école. Cette page de coloriage promeut l'éducation à la sécurité pour les enfants.",
+              "weight": 3
+            }
+          },
+          {
+            "id": "firefighter_hose_bay",
+            "name_en": "Firefighter in a Garage Bay",
+            "name_fr": "Pompier dans un bay de garage",
+            "name_ar": "إطفائي في باي Garage",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "firefighter_hose_bay",
+              "slug": "firefighter-hose-bay",
+              "name_en": "Firefighter in a Garage Bay",
+              "name_fr": "Pompier dans un bay de garage",
+              "name_ar": "إطفائي في باي Garage",
+              "description_en": "A firefighter inspecting a hose inside a large garage bay with tools. This firefighter coloring page shows the preparation phase before responding.",
+              "description_fr": "Un pompier inspectant un tuyau à l'intérieur d'un grand bay de garage avec des outils. Cette page de coloriage montre la phase de préparation avant la réponse.",
+              "weight": 4
+            }
+          }
+        ]
+      }
+    },
+    {
+      "leaf_id": "elsa_from_frozen",
+      "v1": {
+        "leaf": {
+          "id": "elsa_from_frozen",
+          "parent_id": "disney_universe",
+          "name_en": "Elsa from Frozen",
+          "name_fr": "Elsa de La Reine des Neiges",
+          "name_ar": "إلسا من فروزن",
+          "_label": "characters/disney_universe",
+          "_category": "Personnages fictifs"
+        },
+        "raw": "[\n  {\"id\": \"elsa_snow_castle\", \"slug\": \"elsa-snow-castle\", \"name_en\": \"Elsa Building a Snow Castle\", \"name_fr\": \"Élsa construit un château de neige\", \"name_ar\": \"إلسا تبني قلعة ثلج\", \"description_en\": \"Coloring page of Elsa building a magical snow castle in her ice kingdom.\", \"description_fr\": \"Page de coloriage d'Élsa construisant un château magique de neige dans son royaume.\", \"weight\": 0},\n  {\"id\": \"elsa_ice_skating\", \"slug\": \"elsa-ice-skating\", \"name_en\": \"Elsa Skating on Frozen Lake\", \"name_fr\": \"Élsa patine sur un lac gelé\", \"name_ar\": \"إلسا تسبح على بحيرة مجمدة\", \"description_en\": \"Elsa gracefully skating on a frozen lake in this fun winter coloring page.\", \"description_fr\": \"Élsa glissant gracieusement sur un lac gelé dans cette page de coloriage d'hiver amusante.\", \"weight\": 1},\n  {\"id\": \"elsa_magic_snowflake\", \"slug\": \"elsa-magic-snowflake\", \"name_en\": \"Elsa Creating a Magic Snowflake\", \"name_fr\": \"Élsa crée un flocon de neige magique\", \"name_ar\": \"إلسا تصنع خيط ثلج سحري\", \"description_en\": \"Coloring page featuring Elsa conjuring a beautiful magic snowflake with her powers.\", \"description_fr\": \"Page de coloriage montrant Élsa invoquant une magnifique flocon de neige magique avec ses pouvoirs.\", \"weight\": 2},\n  {\"id\": \"elsa_animals_snow\", \"slug\": \"elsa-animals-snow\", \"name_en\": \"Elsa Playing with Snow Animals\", \"name_fr\": \"Élsa joue avec des animaux de neige\", \"name_ar\": \"إلسا تلعب مع حيوانات الثلج\", \"description_en\": \"Elsa playing happily with cute snow animals in this delightful winter coloring page.\", \"description_fr\": \"Élsa jouant joyeusement avec des animaux de neige mignons dans cette page de coloriage d'hiver délicieuse.\", \"weight\": 3},\n  {\"id\": \"elsa_ice_skirt\", \"slug\": \"elsa-ice-skirt\", \"name_en\": \"Elsa Wearing Ice Skirt\", \"name_fr\": \"Élsa porte une jupe de glace\", \"name_ar\": \"إلسا ترتدي فستان ثلج\", \"description_en\": \"Coloring page of Elsa wearing her iconic ice skirt in the cold winter setting.\", \"description_fr\": \"Page de coloriage d'Élsa portant sa jupe emblématique de glace dans un cadre d'hiver froid.\", \"weight\": 4}\n]",
+        "json_ok": true,
+        "concepts": [
+          {
+            "id": "elsa_snow_castle",
+            "slug": "elsa-snow-castle",
+            "name_en": "Elsa Building a Snow Castle",
+            "name_fr": "Élsa construit un château de neige",
+            "name_ar": "إلسا تبني قلعة ثلج",
+            "description_en": "Coloring page of Elsa building a magical snow castle in her ice kingdom.",
+            "description_fr": "Page de coloriage d'Élsa construisant un château magique de neige dans son royaume.",
+            "weight": 0
+          },
+          {
+            "id": "elsa_ice_skating",
+            "slug": "elsa-ice-skating",
+            "name_en": "Elsa Skating on Frozen Lake",
+            "name_fr": "Élsa patine sur un lac gelé",
+            "name_ar": "إلسا تسبح على بحيرة مجمدة",
+            "description_en": "Elsa gracefully skating on a frozen lake in this fun winter coloring page.",
+            "description_fr": "Élsa glissant gracieusement sur un lac gelé dans cette page de coloriage d'hiver amusante.",
+            "weight": 1
+          },
+          {
+            "id": "elsa_magic_snowflake",
+            "slug": "elsa-magic-snowflake",
+            "name_en": "Elsa Creating a Magic Snowflake",
+            "name_fr": "Élsa crée un flocon de neige magique",
+            "name_ar": "إلسا تصنع خيط ثلج سحري",
+            "description_en": "Coloring page featuring Elsa conjuring a beautiful magic snowflake with her powers.",
+            "description_fr": "Page de coloriage montrant Élsa invoquant une magnifique flocon de neige magique avec ses pouvoirs.",
+            "weight": 2
+          },
+          {
+            "id": "elsa_animals_snow",
+            "slug": "elsa-animals-snow",
+            "name_en": "Elsa Playing with Snow Animals",
+            "name_fr": "Élsa joue avec des animaux de neige",
+            "name_ar": "إلسا تلعب مع حيوانات الثلج",
+            "description_en": "Elsa playing happily with cute snow animals in this delightful winter coloring page.",
+            "description_fr": "Élsa jouant joyeusement avec des animaux de neige mignons dans cette page de coloriage d'hiver délicieuse.",
+            "weight": 3
+          },
+          {
+            "id": "elsa_ice_skirt",
+            "slug": "elsa-ice-skirt",
+            "name_en": "Elsa Wearing Ice Skirt",
+            "name_fr": "Élsa porte une jupe de glace",
+            "name_ar": "إلسا ترتدي فستان ثلج",
+            "description_en": "Coloring page of Elsa wearing her iconic ice skirt in the cold winter setting.",
+            "description_fr": "Page de coloriage d'Élsa portant sa jupe emblématique de glace dans un cadre d'hiver froid.",
+            "weight": 4
+          }
+        ],
+        "latency_s": 10.0407555103302,
+        "evaluations": [
+          {
+            "id": "elsa_snow_castle",
+            "name_en": "Elsa Building a Snow Castle",
+            "name_fr": "Élsa construit un château de neige",
+            "name_ar": "إلسا تبني قلعة ثلج",
+            "name_en_word_count": 5,
+            "name_en_has_setting": false,
+            "name_en_subject_setting_ok": false,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_snow_castle",
+              "slug": "elsa-snow-castle",
+              "name_en": "Elsa Building a Snow Castle",
+              "name_fr": "Élsa construit un château de neige",
+              "name_ar": "إلسا تبني قلعة ثلج",
+              "description_en": "Coloring page of Elsa building a magical snow castle in her ice kingdom.",
+              "description_fr": "Page de coloriage d'Élsa construisant un château magique de neige dans son royaume.",
+              "weight": 0
+            }
+          },
+          {
+            "id": "elsa_ice_skating",
+            "name_en": "Elsa Skating on Frozen Lake",
+            "name_fr": "Élsa patine sur un lac gelé",
+            "name_ar": "إلسا تسبح على بحيرة مجمدة",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 5,
+            "name_ar_in_1_4_words": false,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_ice_skating",
+              "slug": "elsa-ice-skating",
+              "name_en": "Elsa Skating on Frozen Lake",
+              "name_fr": "Élsa patine sur un lac gelé",
+              "name_ar": "إلسا تسبح على بحيرة مجمدة",
+              "description_en": "Elsa gracefully skating on a frozen lake in this fun winter coloring page.",
+              "description_fr": "Élsa glissant gracieusement sur un lac gelé dans cette page de coloriage d'hiver amusante.",
+              "weight": 1
+            }
+          },
+          {
+            "id": "elsa_magic_snowflake",
+            "name_en": "Elsa Creating a Magic Snowflake",
+            "name_fr": "Élsa crée un flocon de neige magique",
+            "name_ar": "إلسا تصنع خيط ثلج سحري",
+            "name_en_word_count": 5,
+            "name_en_has_setting": false,
+            "name_en_subject_setting_ok": false,
+            "name_ar_word_count": 5,
+            "name_ar_in_1_4_words": false,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_magic_snowflake",
+              "slug": "elsa-magic-snowflake",
+              "name_en": "Elsa Creating a Magic Snowflake",
+              "name_fr": "Élsa crée un flocon de neige magique",
+              "name_ar": "إلسا تصنع خيط ثلج سحري",
+              "description_en": "Coloring page featuring Elsa conjuring a beautiful magic snowflake with her powers.",
+              "description_fr": "Page de coloriage montrant Élsa invoquant une magnifique flocon de neige magique avec ses pouvoirs.",
+              "weight": 2
+            }
+          },
+          {
+            "id": "elsa_animals_snow",
+            "name_en": "Elsa Playing with Snow Animals",
+            "name_fr": "Élsa joue avec des animaux de neige",
+            "name_ar": "إلسا تلعب مع حيوانات الثلج",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 5,
+            "name_ar_in_1_4_words": false,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_animals_snow",
+              "slug": "elsa-animals-snow",
+              "name_en": "Elsa Playing with Snow Animals",
+              "name_fr": "Élsa joue avec des animaux de neige",
+              "name_ar": "إلسا تلعب مع حيوانات الثلج",
+              "description_en": "Elsa playing happily with cute snow animals in this delightful winter coloring page.",
+              "description_fr": "Élsa jouant joyeusement avec des animaux de neige mignons dans cette page de coloriage d'hiver délicieuse.",
+              "weight": 3
+            }
+          },
+          {
+            "id": "elsa_ice_skirt",
+            "name_en": "Elsa Wearing Ice Skirt",
+            "name_fr": "Élsa porte une jupe de glace",
+            "name_ar": "إلسا ترتدي فستان ثلج",
+            "name_en_word_count": 4,
+            "name_en_has_setting": false,
+            "name_en_subject_setting_ok": false,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_ice_skirt",
+              "slug": "elsa-ice-skirt",
+              "name_en": "Elsa Wearing Ice Skirt",
+              "name_fr": "Élsa porte une jupe de glace",
+              "name_ar": "إلسا ترتدي فستان ثلج",
+              "description_en": "Coloring page of Elsa wearing her iconic ice skirt in the cold winter setting.",
+              "description_fr": "Page de coloriage d'Élsa portant sa jupe emblématique de glace dans un cadre d'hiver froid.",
+              "weight": 4
+            }
+          }
+        ]
+      },
+      "v2": {
+        "leaf": {
+          "id": "elsa_from_frozen",
+          "parent_id": "disney_universe",
+          "name_en": "Elsa from Frozen",
+          "name_fr": "Elsa de La Reine des Neiges",
+          "name_ar": "إلسا من فروزن",
+          "_category": "Personnages",
+          "_focus": "Subject+Setting strict"
+        },
+        "raw": "[\n  {\"id\": \"elsa_in_the_cold_north\", \"slug\": \"elsa-in-the-cold-north\", \"name_en\": \"Elsa in the Frozen North\", \"name_fr\": \"Èlsa au Nord gelé\", \"name_ar\": \"إلسا في الشمال الجليدي\", \"description_en\": \"Elsa standing in a snowy winter forest coloring page, perfect for kids.\", \"description_fr\": \"Page de coloriage d'Èlsa debout dans une forêt hivernale enneigée, parfaite pour les enfants.\", \"weight\": 0},\n  {\"id\": \"elsa_in_the_ice_castle\", \"slug\": \"elsa-in-the-ice-castle\", \"name_en\": \"Elsa in an Ice Castle\", \"name_fr\": \"Èlsa dans un château de glace\", \"name_ar\": \"إلسا في قلعة الجليد\", \"description_en\": \"Elsa inside a magical ice palace with crystal windows for coloring.\", \"description_fr\": \"Page de coloriage d'Èlsa à l'intérieur d'un palais de glace magique avec fenêtres en cristal.\", \"weight\": 1},\n  {\"id\": \"elsa_in_the_snowy_forest\", \"slug\": \"elsa-in-the-snowy-forest\", \"name_en\": \"Elsa in a Snowy Forest\", \"name_fr\": \"Èlsa dans une forêt enneigée\", \"name_ar\": \"إلسا في الغابة المثلجة\", \"description_en\": \"Elsa walking near pine trees in a winter landscape coloring page.\", \"description_fr\": \"Page de coloriage d'Èlsa marchant près de pins dans un paysage d'hiver.\", \"weight\": 2},\n  {\"id\": \"elsa_in_the_winter_lake\", \"slug\": \"elsa-in-the-winter-lake\", \"name_en\": \"Elsa in a Winter Lake\", \"name_fr\": \"Èlsa sur un lac d'hiver\", \"name_ar\": \"إلسا في البحيرة الشتوية\", \"description_en\": \"Elsa standing on ice near a frozen lake with snow for coloring.\", \"description_fr\": \"Page de coloriage d'Èlsa debout sur la glace près d'un lac gelé avec de la neige.\", \"weight\": 3},\n  {\"id\": \"elsa_in_the_magic_garden\", \"slug\": \"elsa-in-the-magic-garden\", \"name_en\": \"Elsa in a Magic Garden\", \"name_fr\": \"Èlsa dans un jardin magique\", \"name_ar\": \"إلسا في الحديقة السحرية\", \"description_en\": \"Elsa in a magical garden with flowers and snow for a coloring activity.\", \"description_fr\": \"Page de coloriage d'Èlsa dans un jardin magique avec des fleurs et de la neige.\", \"weight\": 4}\n]",
+        "json_ok": true,
+        "concepts": [
+          {
+            "id": "elsa_in_the_cold_north",
+            "slug": "elsa-in-the-cold-north",
+            "name_en": "Elsa in the Frozen North",
+            "name_fr": "Èlsa au Nord gelé",
+            "name_ar": "إلسا في الشمال الجليدي",
+            "description_en": "Elsa standing in a snowy winter forest coloring page, perfect for kids.",
+            "description_fr": "Page de coloriage d'Èlsa debout dans une forêt hivernale enneigée, parfaite pour les enfants.",
+            "weight": 0
+          },
+          {
+            "id": "elsa_in_the_ice_castle",
+            "slug": "elsa-in-the-ice-castle",
+            "name_en": "Elsa in an Ice Castle",
+            "name_fr": "Èlsa dans un château de glace",
+            "name_ar": "إلسا في قلعة الجليد",
+            "description_en": "Elsa inside a magical ice palace with crystal windows for coloring.",
+            "description_fr": "Page de coloriage d'Èlsa à l'intérieur d'un palais de glace magique avec fenêtres en cristal.",
+            "weight": 1
+          },
+          {
+            "id": "elsa_in_the_snowy_forest",
+            "slug": "elsa-in-the-snowy-forest",
+            "name_en": "Elsa in a Snowy Forest",
+            "name_fr": "Èlsa dans une forêt enneigée",
+            "name_ar": "إلسا في الغابة المثلجة",
+            "description_en": "Elsa walking near pine trees in a winter landscape coloring page.",
+            "description_fr": "Page de coloriage d'Èlsa marchant près de pins dans un paysage d'hiver.",
+            "weight": 2
+          },
+          {
+            "id": "elsa_in_the_winter_lake",
+            "slug": "elsa-in-the-winter-lake",
+            "name_en": "Elsa in a Winter Lake",
+            "name_fr": "Èlsa sur un lac d'hiver",
+            "name_ar": "إلسا في البحيرة الشتوية",
+            "description_en": "Elsa standing on ice near a frozen lake with snow for coloring.",
+            "description_fr": "Page de coloriage d'Èlsa debout sur la glace près d'un lac gelé avec de la neige.",
+            "weight": 3
+          },
+          {
+            "id": "elsa_in_the_magic_garden",
+            "slug": "elsa-in-the-magic-garden",
+            "name_en": "Elsa in a Magic Garden",
+            "name_fr": "Èlsa dans un jardin magique",
+            "name_ar": "إلسا في الحديقة السحرية",
+            "description_en": "Elsa in a magical garden with flowers and snow for a coloring activity.",
+            "description_fr": "Page de coloriage d'Èlsa dans un jardin magique avec des fleurs et de la neige.",
+            "weight": 4
+          }
+        ],
+        "latency_s": 8.92752456665039,
+        "evaluations": [
+          {
+            "id": "elsa_in_the_cold_north",
+            "name_en": "Elsa in the Frozen North",
+            "name_fr": "Èlsa au Nord gelé",
+            "name_ar": "إلسا في الشمال الجليدي",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_in_the_cold_north",
+              "slug": "elsa-in-the-cold-north",
+              "name_en": "Elsa in the Frozen North",
+              "name_fr": "Èlsa au Nord gelé",
+              "name_ar": "إلسا في الشمال الجليدي",
+              "description_en": "Elsa standing in a snowy winter forest coloring page, perfect for kids.",
+              "description_fr": "Page de coloriage d'Èlsa debout dans une forêt hivernale enneigée, parfaite pour les enfants.",
+              "weight": 0
+            }
+          },
+          {
+            "id": "elsa_in_the_ice_castle",
+            "name_en": "Elsa in an Ice Castle",
+            "name_fr": "Èlsa dans un château de glace",
+            "name_ar": "إلسا في قلعة الجليد",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_in_the_ice_castle",
+              "slug": "elsa-in-the-ice-castle",
+              "name_en": "Elsa in an Ice Castle",
+              "name_fr": "Èlsa dans un château de glace",
+              "name_ar": "إلسا في قلعة الجليد",
+              "description_en": "Elsa inside a magical ice palace with crystal windows for coloring.",
+              "description_fr": "Page de coloriage d'Èlsa à l'intérieur d'un palais de glace magique avec fenêtres en cristal.",
+              "weight": 1
+            }
+          },
+          {
+            "id": "elsa_in_the_snowy_forest",
+            "name_en": "Elsa in a Snowy Forest",
+            "name_fr": "Èlsa dans une forêt enneigée",
+            "name_ar": "إلسا في الغابة المثلجة",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_in_the_snowy_forest",
+              "slug": "elsa-in-the-snowy-forest",
+              "name_en": "Elsa in a Snowy Forest",
+              "name_fr": "Èlsa dans une forêt enneigée",
+              "name_ar": "إلسا في الغابة المثلجة",
+              "description_en": "Elsa walking near pine trees in a winter landscape coloring page.",
+              "description_fr": "Page de coloriage d'Èlsa marchant près de pins dans un paysage d'hiver.",
+              "weight": 2
+            }
+          },
+          {
+            "id": "elsa_in_the_winter_lake",
+            "name_en": "Elsa in a Winter Lake",
+            "name_fr": "Èlsa sur un lac d'hiver",
+            "name_ar": "إلسا في البحيرة الشتوية",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_in_the_winter_lake",
+              "slug": "elsa-in-the-winter-lake",
+              "name_en": "Elsa in a Winter Lake",
+              "name_fr": "Èlsa sur un lac d'hiver",
+              "name_ar": "إلسا في البحيرة الشتوية",
+              "description_en": "Elsa standing on ice near a frozen lake with snow for coloring.",
+              "description_fr": "Page de coloriage d'Èlsa debout sur la glace près d'un lac gelé avec de la neige.",
+              "weight": 3
+            }
+          },
+          {
+            "id": "elsa_in_the_magic_garden",
+            "name_en": "Elsa in a Magic Garden",
+            "name_fr": "Èlsa dans un jardin magique",
+            "name_ar": "إلسا في الحديقة السحرية",
+            "name_en_word_count": 5,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "elsa_in_the_magic_garden",
+              "slug": "elsa-in-the-magic-garden",
+              "name_en": "Elsa in a Magic Garden",
+              "name_fr": "Èlsa dans un jardin magique",
+              "name_ar": "إلسا في الحديقة السحرية",
+              "description_en": "Elsa in a magical garden with flowers and snow for a coloring activity.",
+              "description_fr": "Page de coloriage d'Èlsa dans un jardin magique avec des fleurs et de la neige.",
+              "weight": 4
+            }
+          }
+        ]
+      }
+    },
+    {
+      "leaf_id": "letter_a_with_apple",
+      "v1": {
+        "leaf": {
+          "id": "letter_a_with_apple",
+          "parent_id": "english_alphabet_illustrated",
+          "name_en": "Letter A with Apple",
+          "name_fr": "Lettre A avec une pomme",
+          "name_ar": "حرف A مع تفاحة",
+          "_label": "alphabet/english_alphabet_illustrated",
+          "_category": "Géométrie / Alphabet"
+        },
+        "raw": "[\n  {\n    \"id\": \"apple_tree_in_garden\",\n    \"slug\": \"apple-tree-in-garden\",\n    \"name_en\": \"Red Apple Tree in a Sunny Garden\",\n    \"name_fr\": \"Arbre de pommes rouge dans un jardin\",\n    \"name_ar\": \"شجرة التفاح الحمراء في الحديقة\",\n    \"description_en\": \"A beautiful red apple tree with ripe fruit in a sunny garden, perfect for apple coloring pages.\",\n    \"description_fr\": \"Page de coloriage d'un beau arbre de pommes rouges avec des fruits mûrs dans un jardin ensoleillé.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"apple_on_table\",\n    \"slug\": \"apple-on-table\",\n    \"name_en\": \"Fresh Red Apple on a Wooden Table\",\n    \"name_fr\": \"Pomme rouge fraîche sur une table\",\n    \"name_ar\": \"تفاحة حمراء طازجة على طاولة خشبية\",\n    \"description_en\": \"A shiny red apple resting on a rustic wooden table, great for simple apple coloring activities.\",\n    \"description_fr\": \"Page de coloriage d'une pomme rouge brillante reposant sur une table en bois rustique.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"apple_in_basket\",\n    \"slug\": \"apple-in-basket\",\n    \"name_en\": \"Ripe Apples in a Woven Basket\",\n    \"name_fr\": \"Pommes mûres dans un panier tressé\",\n    \"name_ar\": \"تفاحات ناضجة في سلة م织ية\",\n    \"description_en\": \"Coloring page featuring a woven basket filled with fresh red apples, ideal for letter A learning.\",\n    \"description_fr\": \"Page de coloriage montrant un panier tressé rempli de pommes fraîches rouges, idéal pour l'apprentissage de la lettre A.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"apple_in_hands\",\n    \"slug\": \"apple-in-hands\",\n    \"name_en\": \"Child Holding a Red Apple\",\n    \"name_fr\": \"Enfant tenant une pomme rouge\",\n    \"name_ar\": \"طفل يحمل تفاحة حمراء\",\n    \"description_en\": \"A cute child holding a large red apple, a fun and interactive apple coloring page for kids.\",\n    \"description_fr\": \"Page de coloriage amusante d'un enfant adorable tenant une grande pomme rouge.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"apple_in_jar\",\n    \"slug\": \"apple-in-jar\",\n    \"name_en\": \"Canned Apples in a Glass Jar\",\n    \"name_fr\": \"Pommes en conserve dans un bocal\",\n    \"name_ar\": \"تفاح معلبة في زجاجة زجاجية\",\n    \"description_en\": \"A clear glass jar filled with canned apples, offering a unique perspective for apple coloring.\",\n    \"description_fr\": \"Page de coloriage d'un bocal en verre rempli de pommes en conserve, offrant une perspective unique.\",\n    \"weight\": 4\n  }\n]",
+        "json_ok": true,
+        "concepts": [
+          {
+            "id": "apple_tree_in_garden",
+            "slug": "apple-tree-in-garden",
+            "name_en": "Red Apple Tree in a Sunny Garden",
+            "name_fr": "Arbre de pommes rouge dans un jardin",
+            "name_ar": "شجرة التفاح الحمراء في الحديقة",
+            "description_en": "A beautiful red apple tree with ripe fruit in a sunny garden, perfect for apple coloring pages.",
+            "description_fr": "Page de coloriage d'un beau arbre de pommes rouges avec des fruits mûrs dans un jardin ensoleillé.",
+            "weight": 0
+          },
+          {
+            "id": "apple_on_table",
+            "slug": "apple-on-table",
+            "name_en": "Fresh Red Apple on a Wooden Table",
+            "name_fr": "Pomme rouge fraîche sur une table",
+            "name_ar": "تفاحة حمراء طازجة على طاولة خشبية",
+            "description_en": "A shiny red apple resting on a rustic wooden table, great for simple apple coloring activities.",
+            "description_fr": "Page de coloriage d'une pomme rouge brillante reposant sur une table en bois rustique.",
+            "weight": 1
+          },
+          {
+            "id": "apple_in_basket",
+            "slug": "apple-in-basket",
+            "name_en": "Ripe Apples in a Woven Basket",
+            "name_fr": "Pommes mûres dans un panier tressé",
+            "name_ar": "تفاحات ناضجة في سلة م织ية",
+            "description_en": "Coloring page featuring a woven basket filled with fresh red apples, ideal for letter A learning.",
+            "description_fr": "Page de coloriage montrant un panier tressé rempli de pommes fraîches rouges, idéal pour l'apprentissage de la lettre A.",
+            "weight": 2
+          },
+          {
+            "id": "apple_in_hands",
+            "slug": "apple-in-hands",
+            "name_en": "Child Holding a Red Apple",
+            "name_fr": "Enfant tenant une pomme rouge",
+            "name_ar": "طفل يحمل تفاحة حمراء",
+            "description_en": "A cute child holding a large red apple, a fun and interactive apple coloring page for kids.",
+            "description_fr": "Page de coloriage amusante d'un enfant adorable tenant une grande pomme rouge.",
+            "weight": 3
+          },
+          {
+            "id": "apple_in_jar",
+            "slug": "apple-in-jar",
+            "name_en": "Canned Apples in a Glass Jar",
+            "name_fr": "Pommes en conserve dans un bocal",
+            "name_ar": "تفاح معلبة في زجاجة زجاجية",
+            "description_en": "A clear glass jar filled with canned apples, offering a unique perspective for apple coloring.",
+            "description_fr": "Page de coloriage d'un bocal en verre rempli de pommes en conserve, offrant une perspective unique.",
+            "weight": 4
+          }
+        ],
+        "latency_s": 11.378866195678711,
+        "evaluations": [
+          {
+            "id": "apple_tree_in_garden",
+            "name_en": "Red Apple Tree in a Sunny Garden",
+            "name_fr": "Arbre de pommes rouge dans un jardin",
+            "name_ar": "شجرة التفاح الحمراء في الحديقة",
+            "name_en_word_count": 7,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 5,
+            "name_ar_in_1_4_words": false,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "apple_tree_in_garden",
+              "slug": "apple-tree-in-garden",
+              "name_en": "Red Apple Tree in a Sunny Garden",
+              "name_fr": "Arbre de pommes rouge dans un jardin",
+              "name_ar": "شجرة التفاح الحمراء في الحديقة",
+              "description_en": "A beautiful red apple tree with ripe fruit in a sunny garden, perfect for apple coloring pages.",
+              "description_fr": "Page de coloriage d'un beau arbre de pommes rouges avec des fruits mûrs dans un jardin ensoleillé.",
+              "weight": 0
+            }
+          },
+          {
+            "id": "apple_on_table",
+            "name_en": "Fresh Red Apple on a Wooden Table",
+            "name_fr": "Pomme rouge fraîche sur une table",
+            "name_ar": "تفاحة حمراء طازجة على طاولة خشبية",
+            "name_en_word_count": 7,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 6,
+            "name_ar_in_1_4_words": false,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "apple_on_table",
+              "slug": "apple-on-table",
+              "name_en": "Fresh Red Apple on a Wooden Table",
+              "name_fr": "Pomme rouge fraîche sur une table",
+              "name_ar": "تفاحة حمراء طازجة على طاولة خشبية",
+              "description_en": "A shiny red apple resting on a rustic wooden table, great for simple apple coloring activities.",
+              "description_fr": "Page de coloriage d'une pomme rouge brillante reposant sur une table en bois rustique.",
+              "weight": 1
+            }
+          },
+          {
+            "id": "apple_in_basket",
+            "name_en": "Ripe Apples in a Woven Basket",
+            "name_fr": "Pommes mûres dans un panier tressé",
+            "name_ar": "تفاحات ناضجة في سلة م织ية",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 5,
+            "name_ar_in_1_4_words": false,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "apple_in_basket",
+              "slug": "apple-in-basket",
+              "name_en": "Ripe Apples in a Woven Basket",
+              "name_fr": "Pommes mûres dans un panier tressé",
+              "name_ar": "تفاحات ناضجة في سلة م织ية",
+              "description_en": "Coloring page featuring a woven basket filled with fresh red apples, ideal for letter A learning.",
+              "description_fr": "Page de coloriage montrant un panier tressé rempli de pommes fraîches rouges, idéal pour l'apprentissage de la lettre A.",
+              "weight": 2
+            }
+          },
+          {
+            "id": "apple_in_hands",
+            "name_en": "Child Holding a Red Apple",
+            "name_fr": "Enfant tenant une pomme rouge",
+            "name_ar": "طفل يحمل تفاحة حمراء",
+            "name_en_word_count": 5,
+            "name_en_has_setting": false,
+            "name_en_subject_setting_ok": false,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "apple_in_hands",
+              "slug": "apple-in-hands",
+              "name_en": "Child Holding a Red Apple",
+              "name_fr": "Enfant tenant une pomme rouge",
+              "name_ar": "طفل يحمل تفاحة حمراء",
+              "description_en": "A cute child holding a large red apple, a fun and interactive apple coloring page for kids.",
+              "description_fr": "Page de coloriage amusante d'un enfant adorable tenant une grande pomme rouge.",
+              "weight": 3
+            }
+          },
+          {
+            "id": "apple_in_jar",
+            "name_en": "Canned Apples in a Glass Jar",
+            "name_fr": "Pommes en conserve dans un bocal",
+            "name_ar": "تفاح معلبة في زجاجة زجاجية",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 5,
+            "name_ar_in_1_4_words": false,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "apple_in_jar",
+              "slug": "apple-in-jar",
+              "name_en": "Canned Apples in a Glass Jar",
+              "name_fr": "Pommes en conserve dans un bocal",
+              "name_ar": "تفاح معلبة في زجاجة زجاجية",
+              "description_en": "A clear glass jar filled with canned apples, offering a unique perspective for apple coloring.",
+              "description_fr": "Page de coloriage d'un bocal en verre rempli de pommes en conserve, offrant une perspective unique.",
+              "weight": 4
+            }
+          }
+        ]
+      },
+      "v2": {
+        "leaf": {
+          "id": "letter_a_with_apple",
+          "parent_id": "english_alphabet_illustrated",
+          "name_en": "Letter A with Apple",
+          "name_fr": "Lettre A avec une pomme",
+          "name_ar": "حرف A مع تفاحة",
+          "_category": "Alphabet",
+          "_focus": "Subject+Setting strict"
+        },
+        "raw": "[\n  {\n    \"id\": \"letter_a_in_a_school\",\n    \"slug\": \"letter-a-in-a-school\",\n    \"name_en\": \"Letter A in a School Classroom\",\n    \"name_fr\": \"Lettre A dans une classe\",\n    \"name_ar\": \"حرف A في الفصل\",\n    \"description_en\": \"Coloring page featuring the letter A displayed on a school blackboard with an apple nearby.\",\n    \"description_fr\": \"Page de coloriage avec la lettre A affichée sur un tableau d'école et une pomme à côté.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"apple_on_a_tree\",\n    \"slug\": \"apple-on-a-tree\",\n    \"name_en\": \"Red Apple on a Green Tree Branch\",\n    \"name_fr\": \"Pomme rouge sur une branche\",\n    \"name_ar\": \"تفاحة حمراء على فرع\",\n    \"description_en\": \"Coloring page showing a single red apple hanging from a leafy green tree branch.\",\n    \"description_fr\": \"Page de coloriage représentant une pomme rouge pendante sur une branche d'arbre feuillue.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"apple_in_a_basket\",\n    \"slug\": \"apple-in-a-basket\",\n    \"name_en\": \"Red Apple in a Woven Fruit Basket\",\n    \"name_fr\": \"Pomme rouge dans un panier\",\n    \"name_ar\": \"تفاحة حمراء في سلة\",\n    \"description_en\": \"Coloring page of a red apple resting inside a traditional woven fruit basket.\",\n    \"description_fr\": \"Page de coloriage d'une pomme rouge reposant dans un panier tressu traditionnel.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"apple_near_a_table\",\n    \"slug\": \"apple-near-a-table\",\n    \"name_en\": \"Red Apple near a Wooden Dining Table\",\n    \"name_fr\": \"Pomme rouge près d'une table\",\n    \"name_ar\": \"تفاحة حمراء عند طاولة\",\n    \"description_en\": \"Coloring page with a red apple placed near a simple wooden dining table.\",\n    \"description_fr\": \"Page de coloriage avec une pomme rouge placée près d'une simple table en bois.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"letter_a_with_apple\",\n    \"slug\": \"letter-a-with-apple\",\n    \"name_en\": \"Letter A with a Red Apple\",\n    \"name_fr\": \"Lettre A avec une pomme\",\n    \"name_ar\": \"حرف A مع تفاحة\",\n    \"description_en\": \"Coloring page combining the letter A and a red apple for alphabet learning activities.\",\n    \"description_fr\": \"Page de coloriage combinant la lettre A et une pomme rouge pour les activités d'apprentissage.\",\n    \"weight\": 4\n  }\n]",
+        "json_ok": true,
+        "concepts": [
+          {
+            "id": "letter_a_in_a_school",
+            "slug": "letter-a-in-a-school",
+            "name_en": "Letter A in a School Classroom",
+            "name_fr": "Lettre A dans une classe",
+            "name_ar": "حرف A في الفصل",
+            "description_en": "Coloring page featuring the letter A displayed on a school blackboard with an apple nearby.",
+            "description_fr": "Page de coloriage avec la lettre A affichée sur un tableau d'école et une pomme à côté.",
+            "weight": 0
+          },
+          {
+            "id": "apple_on_a_tree",
+            "slug": "apple-on-a-tree",
+            "name_en": "Red Apple on a Green Tree Branch",
+            "name_fr": "Pomme rouge sur une branche",
+            "name_ar": "تفاحة حمراء على فرع",
+            "description_en": "Coloring page showing a single red apple hanging from a leafy green tree branch.",
+            "description_fr": "Page de coloriage représentant une pomme rouge pendante sur une branche d'arbre feuillue.",
+            "weight": 1
+          },
+          {
+            "id": "apple_in_a_basket",
+            "slug": "apple-in-a-basket",
+            "name_en": "Red Apple in a Woven Fruit Basket",
+            "name_fr": "Pomme rouge dans un panier",
+            "name_ar": "تفاحة حمراء في سلة",
+            "description_en": "Coloring page of a red apple resting inside a traditional woven fruit basket.",
+            "description_fr": "Page de coloriage d'une pomme rouge reposant dans un panier tressu traditionnel.",
+            "weight": 2
+          },
+          {
+            "id": "apple_near_a_table",
+            "slug": "apple-near-a-table",
+            "name_en": "Red Apple near a Wooden Dining Table",
+            "name_fr": "Pomme rouge près d'une table",
+            "name_ar": "تفاحة حمراء عند طاولة",
+            "description_en": "Coloring page with a red apple placed near a simple wooden dining table.",
+            "description_fr": "Page de coloriage avec une pomme rouge placée près d'une simple table en bois.",
+            "weight": 3
+          },
+          {
+            "id": "letter_a_with_apple",
+            "slug": "letter-a-with-apple",
+            "name_en": "Letter A with a Red Apple",
+            "name_fr": "Lettre A avec une pomme",
+            "name_ar": "حرف A مع تفاحة",
+            "description_en": "Coloring page combining the letter A and a red apple for alphabet learning activities.",
+            "description_fr": "Page de coloriage combinant la lettre A et une pomme rouge pour les activités d'apprentissage.",
+            "weight": 4
+          }
+        ],
+        "latency_s": 10.017308712005615,
+        "evaluations": [
+          {
+            "id": "letter_a_in_a_school",
+            "name_en": "Letter A in a School Classroom",
+            "name_fr": "Lettre A dans une classe",
+            "name_ar": "حرف A في الفصل",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "letter_a_in_a_school",
+              "slug": "letter-a-in-a-school",
+              "name_en": "Letter A in a School Classroom",
+              "name_fr": "Lettre A dans une classe",
+              "name_ar": "حرف A في الفصل",
+              "description_en": "Coloring page featuring the letter A displayed on a school blackboard with an apple nearby.",
+              "description_fr": "Page de coloriage avec la lettre A affichée sur un tableau d'école et une pomme à côté.",
+              "weight": 0
+            }
+          },
+          {
+            "id": "apple_on_a_tree",
+            "name_en": "Red Apple on a Green Tree Branch",
+            "name_fr": "Pomme rouge sur une branche",
+            "name_ar": "تفاحة حمراء على فرع",
+            "name_en_word_count": 7,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "apple_on_a_tree",
+              "slug": "apple-on-a-tree",
+              "name_en": "Red Apple on a Green Tree Branch",
+              "name_fr": "Pomme rouge sur une branche",
+              "name_ar": "تفاحة حمراء على فرع",
+              "description_en": "Coloring page showing a single red apple hanging from a leafy green tree branch.",
+              "description_fr": "Page de coloriage représentant une pomme rouge pendante sur une branche d'arbre feuillue.",
+              "weight": 1
+            }
+          },
+          {
+            "id": "apple_in_a_basket",
+            "name_en": "Red Apple in a Woven Fruit Basket",
+            "name_fr": "Pomme rouge dans un panier",
+            "name_ar": "تفاحة حمراء في سلة",
+            "name_en_word_count": 7,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "apple_in_a_basket",
+              "slug": "apple-in-a-basket",
+              "name_en": "Red Apple in a Woven Fruit Basket",
+              "name_fr": "Pomme rouge dans un panier",
+              "name_ar": "تفاحة حمراء في سلة",
+              "description_en": "Coloring page of a red apple resting inside a traditional woven fruit basket.",
+              "description_fr": "Page de coloriage d'une pomme rouge reposant dans un panier tressu traditionnel.",
+              "weight": 2
+            }
+          },
+          {
+            "id": "apple_near_a_table",
+            "name_en": "Red Apple near a Wooden Dining Table",
+            "name_fr": "Pomme rouge près d'une table",
+            "name_ar": "تفاحة حمراء عند طاولة",
+            "name_en_word_count": 7,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "apple_near_a_table",
+              "slug": "apple-near-a-table",
+              "name_en": "Red Apple near a Wooden Dining Table",
+              "name_fr": "Pomme rouge près d'une table",
+              "name_ar": "تفاحة حمراء عند طاولة",
+              "description_en": "Coloring page with a red apple placed near a simple wooden dining table.",
+              "description_fr": "Page de coloriage avec une pomme rouge placée près d'une simple table en bois.",
+              "weight": 3
+            }
+          },
+          {
+            "id": "letter_a_with_apple",
+            "name_en": "Letter A with a Red Apple",
+            "name_fr": "Lettre A avec une pomme",
+            "name_ar": "حرف A مع تفاحة",
+            "name_en_word_count": 6,
+            "name_en_has_setting": true,
+            "name_en_subject_setting_ok": true,
+            "name_ar_word_count": 4,
+            "name_ar_in_1_4_words": true,
+            "name_ar_has_harakat": false,
+            "name_ar_present": true,
+            "raw": {
+              "id": "letter_a_with_apple",
+              "slug": "letter-a-with-apple",
+              "name_en": "Letter A with a Red Apple",
+              "name_fr": "Lettre A avec une pomme",
+              "name_ar": "حرف A مع تفاحة",
+              "description_en": "Coloring page combining the letter A and a red apple for alphabet learning activities.",
+              "description_fr": "Page de coloriage combinant la lettre A et une pomme rouge pour les activités d'apprentissage.",
+              "weight": 4
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

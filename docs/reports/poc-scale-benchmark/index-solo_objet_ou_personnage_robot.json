@@ -1,0 +1,150 @@
+{
+  "source": "workflow_class='Solo objet ou personnage robot' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet ou personnage robot",
+  "subjects": [
+    {
+      "filename": "kid_with_educational_robot_1024x1024_euler8s.png",
+      "name_en": "Kid with Educational Robot",
+      "leaf_id": "kid_with_educational_robot",
+      "tier": "Solo objet ou personnage robot",
+      "workflow_class": "Solo objet ou personnage robot",
+      "technique": "Solo + pose statique ou simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kid with educational robot centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10834
+    },
+    {
+      "filename": "robot_dog_pet_1024x1024_euler8s.png",
+      "name_en": "Robot Dog Pet",
+      "leaf_id": "robot_dog_pet",
+      "tier": "Solo objet ou personnage robot",
+      "workflow_class": "Solo objet ou personnage robot",
+      "technique": "Solo + pose statique ou simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one robot dog pet centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10841
+    },
+    {
+      "filename": "humanoid_robot_friendly_1024x1024_euler8s.png",
+      "name_en": "Humanoid Robot Friendly",
+      "leaf_id": "humanoid_robot_friendly",
+      "tier": "Solo objet ou personnage robot",
+      "workflow_class": "Solo objet ou personnage robot",
+      "technique": "Solo + pose statique ou simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one humanoid robot friendly centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10848
+    },
+    {
+      "filename": "smart_speaker_assistant_1024x1024_euler8s.png",
+      "name_en": "Smart Speaker Assistant",
+      "leaf_id": "smart_speaker_assistant",
+      "tier": "Solo objet ou personnage robot",
+      "workflow_class": "Solo objet ou personnage robot",
+      "technique": "Solo + pose statique ou simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one smart speaker assistant centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10855
+    },
+    {
+      "filename": "self_driving_car_1024x1024_euler8s.png",
+      "name_en": "Self Driving Car",
+      "leaf_id": "self_driving_car",
+      "tier": "Solo objet ou personnage robot",
+      "workflow_class": "Solo objet ou personnage robot",
+      "technique": "Solo + pose statique ou simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one self driving car centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10862
+    },
+    {
+      "filename": "drone_with_camera_1024x1024_euler8s.png",
+      "name_en": "Drone with Camera",
+      "leaf_id": "drone_with_camera",
+      "tier": "Solo objet ou personnage robot",
+      "workflow_class": "Solo objet ou personnage robot",
+      "technique": "Solo + pose statique ou simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one drone with camera centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10869
+    },
+    {
+      "filename": "industrial_robot_arm_1024x1024_euler8s.png",
+      "name_en": "Industrial Robot Arm",
+      "leaf_id": "industrial_robot_arm",
+      "tier": "Solo objet ou personnage robot",
+      "workflow_class": "Solo objet ou personnage robot",
+      "technique": "Solo + pose statique ou simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one industrial robot arm centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10876
+    },
+    {
+      "filename": "ai_brain_with_circuits_1024x1024_euler8s.png",
+      "name_en": "AI Brain with Circuits",
+      "leaf_id": "ai_brain_with_circuits",
+      "tier": "Solo objet ou personnage robot",
+      "workflow_class": "Solo objet ou personnage robot",
+      "technique": "Solo + pose statique ou simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one ai brain with circuits centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10883
+    }
+  ]
+}

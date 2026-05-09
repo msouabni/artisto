@@ -1,0 +1,186 @@
+{
+  "source": "workflow_class='Solo objet (plante)' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet (plante)",
+  "subjects": [
+    {
+      "filename": "sunflower_with_seeds_1024x1024_euler8s.png",
+      "name_en": "Sunflower with Seeds",
+      "leaf_id": "sunflower_with_seeds",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sunflower with seeds centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10253
+    },
+    {
+      "filename": "potted_house_plants_1024x1024_euler8s.png",
+      "name_en": "Potted House Plants",
+      "leaf_id": "potted_house_plants",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one potted house plants centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10260
+    },
+    {
+      "filename": "olive_tree_branch_1024x1024_euler8s.png",
+      "name_en": "Olive Tree Branch",
+      "leaf_id": "olive_tree_branch",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one olive tree branch centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10267
+    },
+    {
+      "filename": "palm_tree_with_dates_1024x1024_euler8s.png",
+      "name_en": "Palm Tree with Dates",
+      "leaf_id": "palm_tree_with_dates",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one palm tree with dates centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10274
+    },
+    {
+      "filename": "daisy_in_meadow_1024x1024_euler8s.png",
+      "name_en": "Daisy in Meadow",
+      "leaf_id": "daisy_in_meadow",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one daisy in meadow centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10281
+    },
+    {
+      "filename": "oak_tree_full_grown_1024x1024_euler8s.png",
+      "name_en": "Oak Tree Full Grown",
+      "leaf_id": "oak_tree_full_grown",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one oak tree full grown centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10288
+    },
+    {
+      "filename": "mushrooms_in_forest_1024x1024_euler8s.png",
+      "name_en": "Mushrooms in Forest",
+      "leaf_id": "mushrooms_in_forest",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one mushrooms in forest centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10295
+    },
+    {
+      "filename": "cherry_blossom_branch_1024x1024_euler8s.png",
+      "name_en": "Cherry Blossom Branch",
+      "leaf_id": "cherry_blossom_branch",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one cherry blossom branch centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10302
+    },
+    {
+      "filename": "tulip_field_garden_1024x1024_euler8s.png",
+      "name_en": "Tulip Field Garden",
+      "leaf_id": "tulip_field_garden",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one tulip field garden centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10309
+    },
+    {
+      "filename": "cactus_in_pot_1024x1024_euler8s.png",
+      "name_en": "Cactus in Pot",
+      "leaf_id": "cactus_in_pot",
+      "tier": "Solo objet (plante)",
+      "workflow_class": "Solo objet (plante)",
+      "technique": "Solo + sol minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one cactus in pot centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10316
+    }
+  ]
+}

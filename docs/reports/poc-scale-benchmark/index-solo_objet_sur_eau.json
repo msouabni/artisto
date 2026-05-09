@@ -1,0 +1,186 @@
+{
+  "source": "workflow_class='Solo objet sur eau' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet sur eau",
+  "subjects": [
+    {
+      "filename": "oil_tanker_1376x768_euler8s.png",
+      "name_en": "Oil Tanker",
+      "leaf_id": "oil_tanker",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one oil tanker centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10995
+    },
+    {
+      "filename": "rowboat_on_lake_1376x768_euler8s.png",
+      "name_en": "Rowboat on Lake",
+      "leaf_id": "rowboat_on_lake",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one rowboat on lake centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 11002
+    },
+    {
+      "filename": "submarine_underwater_1376x768_euler8s.png",
+      "name_en": "Submarine Underwater",
+      "leaf_id": "submarine_underwater",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one submarine underwater centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 11009
+    },
+    {
+      "filename": "speedboat_1376x768_euler8s.png",
+      "name_en": "Speedboat",
+      "leaf_id": "speedboat",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one speedboat centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 11016
+    },
+    {
+      "filename": "jet_ski_1376x768_euler8s.png",
+      "name_en": "Jet Ski",
+      "leaf_id": "jet_ski",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one jet ski centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 11023
+    },
+    {
+      "filename": "sailing_yacht_1376x768_euler8s.png",
+      "name_en": "Sailing Yacht",
+      "leaf_id": "sailing_yacht",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sailing yacht centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 11030
+    },
+    {
+      "filename": "fishing_boat_1376x768_euler8s.png",
+      "name_en": "Fishing Boat",
+      "leaf_id": "fishing_boat",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one fishing boat centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 11037
+    },
+    {
+      "filename": "cruise_liner_1376x768_euler8s.png",
+      "name_en": "Cruise Liner",
+      "leaf_id": "cruise_liner",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one cruise liner centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 11044
+    },
+    {
+      "filename": "cargo_ship_1376x768_euler8s.png",
+      "name_en": "Cargo Ship",
+      "leaf_id": "cargo_ship",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one cargo ship centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 11051
+    },
+    {
+      "filename": "ferry_boat_1376x768_euler8s.png",
+      "name_en": "Ferry Boat",
+      "leaf_id": "ferry_boat",
+      "tier": "Solo objet sur eau",
+      "workflow_class": "Solo objet sur eau",
+      "technique": "Solo + horizon mer (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one ferry boat centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 11058
+    }
+  ]
+}

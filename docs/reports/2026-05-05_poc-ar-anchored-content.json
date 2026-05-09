@@ -1,0 +1,1001 @@
+{
+  "poc": "ar-anchored-content",
+  "date": "2026-05-05",
+  "model": "qwen2.5:7b",
+  "temperature": 0.0,
+  "pairs_count": 10,
+  "pairs": [
+    {
+      "concept_en": "elephant in the savanna",
+      "term_id": "animaux_sauvages",
+      "term_ar": "حيوانات برية",
+      "term_en": "Wild animals"
+    },
+    {
+      "concept_en": "jumping dolphin",
+      "term_id": "animaux_marins",
+      "term_ar": "حيوانات بحرية",
+      "term_en": "Sea animals"
+    },
+    {
+      "concept_en": "cow grazing in the field",
+      "term_id": "animaux_ferme",
+      "term_ar": "حيوانات المزرعة",
+      "term_en": "Farm animals"
+    },
+    {
+      "concept_en": "kitten playing with a ball",
+      "term_id": "animaux_domestiques_cats_kittens",
+      "term_ar": "القطط في اللعب",
+      "term_en": "Kittens Playtime"
+    },
+    {
+      "concept_en": "decorated Christmas tree",
+      "term_id": "noel",
+      "term_ar": "عيد الميلاد",
+      "term_en": "Christmas"
+    },
+    {
+      "concept_en": "Easter eggs in a basket",
+      "term_id": "paques",
+      "term_ar": "عيد الفصح",
+      "term_en": "Easter"
+    },
+    {
+      "concept_en": "Halloween pumpkin with a smile",
+      "term_id": "halloween",
+      "term_ar": "هالووين",
+      "term_en": "Halloween"
+    },
+    {
+      "concept_en": "complex flower mandala",
+      "term_id": "mandalas_fleurs",
+      "term_ar": "مندالات الزهور",
+      "term_en": "Flower mandalas"
+    },
+    {
+      "concept_en": "snowy mountains scene",
+      "term_id": "hiver",
+      "term_ar": "الشتاء",
+      "term_en": "Winter"
+    },
+    {
+      "concept_en": "racing car on a track",
+      "term_id": "voitures",
+      "term_ar": "السيارات",
+      "term_en": "Cars"
+    }
+  ],
+  "prompt_a_template": "Le sujet de l'image est : \"{concept_en}\".\nLe thème principal en arabe est : {term_ar} ({term_en}).\n\nGénère le contenu éditorial en arabe standard (fusha/MSA) pour cette page de coloriage.\n\nRègles strictes :\n- Pas de harakat (signes diacritiques)\n- Pas de caractères latins\n- Arabe standard uniquement, pas de dialecte\n\nRetourne UNIQUEMENT un JSON valide avec ces champs :\n{{\"title\": \"...\", \"title_card\": \"...\", \"description\": \"...\", \"keywords\": [\"...\", \"...\", \"...\", \"...\", \"...\"]}}\n\nContraintes de longueur :\n- title : 30 à 50 caractères\n- title_card : 25 caractères maximum\n- description : 55 à 90 caractères\n- keywords : exactement 5 mots-clés",
+  "prompt_b_template": "Le sujet de l'image est : \"{concept_en}\".\nLe thème principal en arabe est : {term_ar} ({term_en}).\n\nGénère le contenu éditorial en arabe standard (fusha/MSA) pour cette page de coloriage.\n\nRègles strictes :\n- Le title DOIT commencer par les mots : {term_ar}\n- Pas de harakat (signes diacritiques)\n- Pas de caractères latins\n- Arabe standard uniquement, pas de dialecte\n\nRetourne UNIQUEMENT un JSON valide avec ces champs :\n{{\"title\": \"...\", \"title_card\": \"...\", \"description\": \"...\", \"keywords\": [\"...\", \"...\", \"...\", \"...\", \"...\"]}}\n\nContraintes de longueur :\n- title : 30 à 50 caractères\n- title_card : 25 caractères maximum\n- description : 55 à 90 caractères\n- keywords : exactement 5 mots-clés",
+  "summary_a": {
+    "json_ok": 10,
+    "total": 10,
+    "title_in_bounds": 0,
+    "title_card_in_bounds": 10,
+    "description_in_bounds": 0,
+    "keywords_count_ok": 10,
+    "anchor_present": 7,
+    "harakat_present": 0,
+    "latin_present": 2,
+    "avg_latency_s": 6.02
+  },
+  "summary_b": {
+    "json_ok": 10,
+    "total": 10,
+    "title_in_bounds": 0,
+    "title_card_in_bounds": 10,
+    "description_in_bounds": 0,
+    "keywords_count_ok": 10,
+    "anchor_present": 10,
+    "harakat_present": 0,
+    "latin_present": 4,
+    "avg_latency_s": 4.16
+  },
+  "variant_b_triggered": true,
+  "results_a": [
+    {
+      "raw": "{\n    \"title\": \"حيوانات برية\",\n    \"title_card\": \"إيل في الصحراء\",\n    \"description\": \"صورة لتمثال إيل في الصحراء للاستمتاع باللون\",\n    \"keywords\": [\"إيل\", \"صحراء\", \"لون\", \"حيوانات\", \"برية\"]\n}",
+      "parsed": {
+        "title": "حيوانات برية",
+        "title_card": "إيل في الصحراء",
+        "description": "صورة لتمثال إيل في الصحراء للاستمتاع باللون",
+        "keywords": [
+          "إيل",
+          "صحراء",
+          "لون",
+          "حيوانات",
+          "برية"
+        ]
+      },
+      "latency_s": 21.962105751037598,
+      "json_ok": true,
+      "title": "حيوانات برية",
+      "title_card": "إيل في الصحراء",
+      "description": "صورة لتمثال إيل في الصحراء للاستمتاع باللون",
+      "keywords": [
+        "إيل",
+        "صحراء",
+        "لون",
+        "حيوانات",
+        "برية"
+      ],
+      "title_len": 12,
+      "title_in_bounds": false,
+      "title_card_len": 14,
+      "title_card_in_bounds": true,
+      "description_len": 43,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "elephant in the savanna",
+        "term_id": "animaux_sauvages",
+        "term_ar": "حيوانات برية",
+        "term_en": "Wild animals"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"صورة حوت قفز\",\n    \"title_card\": \"حوت قفز\",\n    \"description\": \"صورة لحوت يقفز خارج الماء للاستمتاع بعملية التلوين\",\n    \"keywords\": [\"حوت\", \"قفز\", \"مائي\", \"طبيعة\", \"طفوله\"]\n}",
+      "parsed": {
+        "title": "صورة حوت قفز",
+        "title_card": "حوت قفز",
+        "description": "صورة لحوت يقفز خارج الماء للاستمتاع بعملية التلوين",
+        "keywords": [
+          "حوت",
+          "قفز",
+          "مائي",
+          "طبيعة",
+          "طفوله"
+        ]
+      },
+      "latency_s": 4.37746524810791,
+      "json_ok": true,
+      "title": "صورة حوت قفز",
+      "title_card": "حوت قفز",
+      "description": "صورة لحوت يقفز خارج الماء للاستمتاع بعملية التلوين",
+      "keywords": [
+        "حوت",
+        "قفز",
+        "مائي",
+        "طبيعة",
+        "طفوله"
+      ],
+      "title_len": 12,
+      "title_in_bounds": false,
+      "title_card_len": 7,
+      "title_card_in_bounds": true,
+      "description_len": 50,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": false,
+      "anchor_match_kind": "absent",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "jumping dolphin",
+        "term_id": "animaux_marins",
+        "term_ar": "حيوانات بحرية",
+        "term_en": "Sea animals"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"صورة لبقرة تأكل في الحقل\",\n    \"title_card\": \"بقرة\",\n    \"description\": \"تلوين بقرة تغذى في حقل\",\n    \"keywords\": [\"بقرة\", \"حقل\", \"تغذى\", \"تلوين\", \"مزرعة\"]\n}",
+      "parsed": {
+        "title": "صورة لبقرة تأكل في الحقل",
+        "title_card": "بقرة",
+        "description": "تلوين بقرة تغذى في حقل",
+        "keywords": [
+          "بقرة",
+          "حقل",
+          "تغذى",
+          "تلوين",
+          "مزرعة"
+        ]
+      },
+      "latency_s": 4.279304265975952,
+      "json_ok": true,
+      "title": "صورة لبقرة تأكل في الحقل",
+      "title_card": "بقرة",
+      "description": "تلوين بقرة تغذى في حقل",
+      "keywords": [
+        "بقرة",
+        "حقل",
+        "تغذى",
+        "تلوين",
+        "مزرعة"
+      ],
+      "title_len": 24,
+      "title_in_bounds": false,
+      "title_card_len": 4,
+      "title_card_in_bounds": true,
+      "description_len": 22,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": false,
+      "anchor_match_kind": "absent",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "cow grazing in the field",
+        "term_id": "animaux_ferme",
+        "term_ar": "حيوانات المزرعة",
+        "term_en": "Farm animals"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"لعب القطط مع الكرة\",\n    \"title_card\": \"قطط وكرة\",\n    \"description\": \"صغيرة القطط تلعب مع كرة اللعب في الحديقة\",\n    \"keywords\": [\"قطط\", \"كرة\", \"لعب\", \"حديقة\", \"صغيرة\"]\n}",
+      "parsed": {
+        "title": "لعب القطط مع الكرة",
+        "title_card": "قطط وكرة",
+        "description": "صغيرة القطط تلعب مع كرة اللعب في الحديقة",
+        "keywords": [
+          "قطط",
+          "كرة",
+          "لعب",
+          "حديقة",
+          "صغيرة"
+        ]
+      },
+      "latency_s": 4.054795265197754,
+      "json_ok": true,
+      "title": "لعب القطط مع الكرة",
+      "title_card": "قطط وكرة",
+      "description": "صغيرة القطط تلعب مع كرة اللعب في الحديقة",
+      "keywords": [
+        "قطط",
+        "كرة",
+        "لعب",
+        "حديقة",
+        "صغيرة"
+      ],
+      "title_len": 18,
+      "title_in_bounds": false,
+      "title_card_len": 8,
+      "title_card_in_bounds": true,
+      "description_len": 40,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "token_match",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "kitten playing with a ball",
+        "term_id": "animaux_domestiques_cats_kittens",
+        "term_ar": "القطط في اللعب",
+        "term_en": "Kittens Playtime"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"شجرة عيد الميلاد\",\n    \"title_card\": \"شجرة عيد\",\n    \"description\": \"تلوين شجرة عيد الميلاد المزينة\",\n    \"keywords\": [\"شجرة\", \"عيد\", \"ميلاد\", \"تلوين\", \"مerry\"]\n}",
+      "parsed": {
+        "title": "شجرة عيد الميلاد",
+        "title_card": "شجرة عيد",
+        "description": "تلوين شجرة عيد الميلاد المزينة",
+        "keywords": [
+          "شجرة",
+          "عيد",
+          "ميلاد",
+          "تلوين",
+          "مerry"
+        ]
+      },
+      "latency_s": 4.134749412536621,
+      "json_ok": true,
+      "title": "شجرة عيد الميلاد",
+      "title_card": "شجرة عيد",
+      "description": "تلوين شجرة عيد الميلاد المزينة",
+      "keywords": [
+        "شجرة",
+        "عيد",
+        "ميلاد",
+        "تلوين",
+        "مerry"
+      ],
+      "title_len": 16,
+      "title_in_bounds": false,
+      "title_card_len": 8,
+      "title_card_in_bounds": true,
+      "description_len": 30,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": true,
+      "pair": {
+        "concept_en": "decorated Christmas tree",
+        "term_id": "noel",
+        "term_ar": "عيد الميلاد",
+        "term_en": "Christmas"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"صورة لبيض الفصح في سلة\",\n    \"title_card\": \"بيض الفصح\",\n    \"description\": \"رسم بيضاء لتزيين سلة عيد الفصح بالبيض\",\n    \"keywords\": [\"بيض\", \"فصح\", \"سلة\", \"رسم\", \"أطفال\"]\n}",
+      "parsed": {
+        "title": "صورة لبيض الفصح في سلة",
+        "title_card": "بيض الفصح",
+        "description": "رسم بيضاء لتزيين سلة عيد الفصح بالبيض",
+        "keywords": [
+          "بيض",
+          "فصح",
+          "سلة",
+          "رسم",
+          "أطفال"
+        ]
+      },
+      "latency_s": 4.013887643814087,
+      "json_ok": true,
+      "title": "صورة لبيض الفصح في سلة",
+      "title_card": "بيض الفصح",
+      "description": "رسم بيضاء لتزيين سلة عيد الفصح بالبيض",
+      "keywords": [
+        "بيض",
+        "فصح",
+        "سلة",
+        "رسم",
+        "أطفال"
+      ],
+      "title_len": 22,
+      "title_in_bounds": false,
+      "title_card_len": 9,
+      "title_card_in_bounds": true,
+      "description_len": 37,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "Easter eggs in a basket",
+        "term_id": "paques",
+        "term_ar": "عيد الفصح",
+        "term_en": "Easter"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"هالووين مانحشة ضاحكة\",\n    \"title_card\": \"هالووين\",\n    \"description\": \"صورة جبلة هالووين مع ضاحكة لملء الألوان\",\n    \"keywords\": [\"هالووين\", \"مانحشة\", \"ضاحكة\", \"جبلة\", \"أعياد\"]\n}",
+      "parsed": {
+        "title": "هالووين مانحشة ضاحكة",
+        "title_card": "هالووين",
+        "description": "صورة جبلة هالووين مع ضاحكة لملء الألوان",
+        "keywords": [
+          "هالووين",
+          "مانحشة",
+          "ضاحكة",
+          "جبلة",
+          "أعياد"
+        ]
+      },
+      "latency_s": 4.741362571716309,
+      "json_ok": true,
+      "title": "هالووين مانحشة ضاحكة",
+      "title_card": "هالووين",
+      "description": "صورة جبلة هالووين مع ضاحكة لملء الألوان",
+      "keywords": [
+        "هالووين",
+        "مانحشة",
+        "ضاحكة",
+        "جبلة",
+        "أعياد"
+      ],
+      "title_len": 20,
+      "title_in_bounds": false,
+      "title_card_len": 7,
+      "title_card_in_bounds": true,
+      "description_len": 39,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "Halloween pumpkin with a smile",
+        "term_id": "halloween",
+        "term_ar": "هالووين",
+        "term_en": "Halloween"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"مندالات الزهور\",\n    \"title_card\": \"زهور\",\n    \"description\": \"صورة ل Mandalas الزهور للرسم\",\n    \"keywords\": [\"مندالات\", \"زهرة\", \"زهور\", \"رسم\", \" Mandalas\"]\n}",
+      "parsed": {
+        "title": "مندالات الزهور",
+        "title_card": "زهور",
+        "description": "صورة ل Mandalas الزهور للرسم",
+        "keywords": [
+          "مندالات",
+          "زهرة",
+          "زهور",
+          "رسم",
+          " Mandalas"
+        ]
+      },
+      "latency_s": 3.9963274002075195,
+      "json_ok": true,
+      "title": "مندالات الزهور",
+      "title_card": "زهور",
+      "description": "صورة ل Mandalas الزهور للرسم",
+      "keywords": [
+        "مندالات",
+        "زهرة",
+        "زهور",
+        "رسم",
+        " Mandalas"
+      ],
+      "title_len": 14,
+      "title_in_bounds": false,
+      "title_card_len": 4,
+      "title_card_in_bounds": true,
+      "description_len": 28,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": true,
+      "pair": {
+        "concept_en": "complex flower mandala",
+        "term_id": "mandalas_fleurs",
+        "term_ar": "مندالات الزهور",
+        "term_en": "Flower mandalas"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"صورة جبال مغطاة بالثلوج\",\n    \"title_card\": \"جبال الشتاء\",\n    \"description\": \"صورة لمشهد جبلي مغطى بالثلوج، مناسبة للرسم واللون\",\n    \"keywords\": [\"جبال\", \"ثلوج\", \"شتاء\", \"مشهد\", \"رسم\"]\n}",
+      "parsed": {
+        "title": "صورة جبال مغطاة بالثلوج",
+        "title_card": "جبال الشتاء",
+        "description": "صورة لمشهد جبلي مغطى بالثلوج، مناسبة للرسم واللون",
+        "keywords": [
+          "جبال",
+          "ثلوج",
+          "شتاء",
+          "مشهد",
+          "رسم"
+        ]
+      },
+      "latency_s": 4.528224468231201,
+      "json_ok": true,
+      "title": "صورة جبال مغطاة بالثلوج",
+      "title_card": "جبال الشتاء",
+      "description": "صورة لمشهد جبلي مغطى بالثلوج، مناسبة للرسم واللون",
+      "keywords": [
+        "جبال",
+        "ثلوج",
+        "شتاء",
+        "مشهد",
+        "رسم"
+      ],
+      "title_len": 23,
+      "title_in_bounds": false,
+      "title_card_len": 11,
+      "title_card_in_bounds": true,
+      "description_len": 49,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": false,
+      "anchor_match_kind": "absent",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "snowy mountains scene",
+        "term_id": "hiver",
+        "term_ar": "الشتاء",
+        "term_en": "Winter"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"صورة سيارة سباق\",\n    \"title_card\": \"سيارة سباق\",\n    \"description\": \"رسم سيارة سباق على مسار للطابع الفني\",\n    \"keywords\": [\"سيارة\", \"سباق\", \"مسار\", \"رسم\", \"طابع\"]\n}",
+      "parsed": {
+        "title": "صورة سيارة سباق",
+        "title_card": "سيارة سباق",
+        "description": "رسم سيارة سباق على مسار للطابع الفني",
+        "keywords": [
+          "سيارة",
+          "سباق",
+          "مسار",
+          "رسم",
+          "طابع"
+        ]
+      },
+      "latency_s": 4.161080360412598,
+      "json_ok": true,
+      "title": "صورة سيارة سباق",
+      "title_card": "سيارة سباق",
+      "description": "رسم سيارة سباق على مسار للطابع الفني",
+      "keywords": [
+        "سيارة",
+        "سباق",
+        "مسار",
+        "رسم",
+        "طابع"
+      ],
+      "title_len": 15,
+      "title_in_bounds": false,
+      "title_card_len": 10,
+      "title_card_in_bounds": true,
+      "description_len": 36,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "prefix_4",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "racing car on a track",
+        "term_id": "voitures",
+        "term_ar": "السيارات",
+        "term_en": "Cars"
+      }
+    }
+  ],
+  "results_b": [
+    {
+      "raw": "{\n    \"title\": \"حيوانات برية\",\n    \"title_card\": \"إLEPHANT\",\n    \"description\": \"صورة ل Likeness elephant savanna coloring\",\n    \"keywords\": [\"elephant\", \"savanna\", \"wild\", \"animals\", \"coloring\"]\n}",
+      "parsed": {
+        "title": "حيوانات برية",
+        "title_card": "إLEPHANT",
+        "description": "صورة ل Likeness elephant savanna coloring",
+        "keywords": [
+          "elephant",
+          "savanna",
+          "wild",
+          "animals",
+          "coloring"
+        ]
+      },
+      "latency_s": 3.761061429977417,
+      "json_ok": true,
+      "title": "حيوانات برية",
+      "title_card": "إLEPHANT",
+      "description": "صورة ل Likeness elephant savanna coloring",
+      "keywords": [
+        "elephant",
+        "savanna",
+        "wild",
+        "animals",
+        "coloring"
+      ],
+      "title_len": 12,
+      "title_in_bounds": false,
+      "title_card_len": 8,
+      "title_card_in_bounds": true,
+      "description_len": 41,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": true,
+      "pair": {
+        "concept_en": "elephant in the savanna",
+        "term_id": "animaux_sauvages",
+        "term_ar": "حيوانات برية",
+        "term_en": "Wild animals"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"حيوانات بحرية\",\n    \"title_card\": \"حيوانات بحرية\",\n    \"description\": \"دolphin jumping في الماء\",\n    \"keywords\": [\"حيوانات\", \"بحرية\", \" Dolphin \", \"Jumping\", \"مائي\"]\n}",
+      "parsed": {
+        "title": "حيوانات بحرية",
+        "title_card": "حيوانات بحرية",
+        "description": "دolphin jumping في الماء",
+        "keywords": [
+          "حيوانات",
+          "بحرية",
+          " Dolphin ",
+          "Jumping",
+          "مائي"
+        ]
+      },
+      "latency_s": 3.9277617931365967,
+      "json_ok": true,
+      "title": "حيوانات بحرية",
+      "title_card": "حيوانات بحرية",
+      "description": "دolphin jumping في الماء",
+      "keywords": [
+        "حيوانات",
+        "بحرية",
+        " Dolphin ",
+        "Jumping",
+        "مائي"
+      ],
+      "title_len": 13,
+      "title_in_bounds": false,
+      "title_card_len": 13,
+      "title_card_in_bounds": true,
+      "description_len": 24,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": true,
+      "pair": {
+        "concept_en": "jumping dolphin",
+        "term_id": "animaux_marins",
+        "term_ar": "حيوانات بحرية",
+        "term_en": "Sea animals"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"حيوانات المزرعة\",\n    \"title_card\": \"حيوانات المزرعة\",\n    \"description\": \"صورة قلم رصاص لبقرة تأكل في الحقل\",\n    \"keywords\": [\"حيوانات\", \"مزرعة\", \"بقرة\", \"حقل\", \"رسم\"]\n}",
+      "parsed": {
+        "title": "حيوانات المزرعة",
+        "title_card": "حيوانات المزرعة",
+        "description": "صورة قلم رصاص لبقرة تأكل في الحقل",
+        "keywords": [
+          "حيوانات",
+          "مزرعة",
+          "بقرة",
+          "حقل",
+          "رسم"
+        ]
+      },
+      "latency_s": 4.298423528671265,
+      "json_ok": true,
+      "title": "حيوانات المزرعة",
+      "title_card": "حيوانات المزرعة",
+      "description": "صورة قلم رصاص لبقرة تأكل في الحقل",
+      "keywords": [
+        "حيوانات",
+        "مزرعة",
+        "بقرة",
+        "حقل",
+        "رسم"
+      ],
+      "title_len": 15,
+      "title_in_bounds": false,
+      "title_card_len": 15,
+      "title_card_in_bounds": true,
+      "description_len": 33,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "cow grazing in the field",
+        "term_id": "animaux_ferme",
+        "term_ar": "حيوانات المزرعة",
+        "term_en": "Farm animals"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"القطط في اللعب\",\n    \"title_card\": \"لعب القطط\",\n    \"description\": \"صورة لقطة تلعب بالكرة تنمي مهاراتها وتحافظ على صحتها\",\n    \"keywords\": [\"قطط\", \"لعب\", \"كرة\", \"تنمية\", \"صحة\"]\n}",
+      "parsed": {
+        "title": "القطط في اللعب",
+        "title_card": "لعب القطط",
+        "description": "صورة لقطة تلعب بالكرة تنمي مهاراتها وتحافظ على صحتها",
+        "keywords": [
+          "قطط",
+          "لعب",
+          "كرة",
+          "تنمية",
+          "صحة"
+        ]
+      },
+      "latency_s": 4.404176473617554,
+      "json_ok": true,
+      "title": "القطط في اللعب",
+      "title_card": "لعب القطط",
+      "description": "صورة لقطة تلعب بالكرة تنمي مهاراتها وتحافظ على صحتها",
+      "keywords": [
+        "قطط",
+        "لعب",
+        "كرة",
+        "تنمية",
+        "صحة"
+      ],
+      "title_len": 14,
+      "title_in_bounds": false,
+      "title_card_len": 9,
+      "title_card_in_bounds": true,
+      "description_len": 52,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "kitten playing with a ball",
+        "term_id": "animaux_domestiques_cats_kittens",
+        "term_ar": "القطط في اللعب",
+        "term_en": "Kittens Playtime"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"عيد الميلاد\",\n    \"title_card\": \"عيد الميلاد\",\n    \"description\": \"شجرة عيد ميلاد مزينة للاطفال\",\n    \"keywords\": [\"عيد\", \"ميلاد\", \"شجرة\", \"مزينة\", \"الرسم\"]\n}",
+      "parsed": {
+        "title": "عيد الميلاد",
+        "title_card": "عيد الميلاد",
+        "description": "شجرة عيد ميلاد مزينة للاطفال",
+        "keywords": [
+          "عيد",
+          "ميلاد",
+          "شجرة",
+          "مزينة",
+          "الرسم"
+        ]
+      },
+      "latency_s": 4.056423664093018,
+      "json_ok": true,
+      "title": "عيد الميلاد",
+      "title_card": "عيد الميلاد",
+      "description": "شجرة عيد ميلاد مزينة للاطفال",
+      "keywords": [
+        "عيد",
+        "ميلاد",
+        "شجرة",
+        "مزينة",
+        "الرسم"
+      ],
+      "title_len": 11,
+      "title_in_bounds": false,
+      "title_card_len": 11,
+      "title_card_in_bounds": true,
+      "description_len": 28,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "decorated Christmas tree",
+        "term_id": "noel",
+        "term_ar": "عيد الميلاد",
+        "term_en": "Christmas"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"عيد الفصح\",\n    \"title_card\": \"عيد الفصح\",\n    \"description\": \"البيض في سلة للاطفال\",\n    \"keywords\": [\"عيد\", \"الفصح\", \"بيض\", \"سلة\", \"طفل\"]\n}",
+      "parsed": {
+        "title": "عيد الفصح",
+        "title_card": "عيد الفصح",
+        "description": "البيض في سلة للاطفال",
+        "keywords": [
+          "عيد",
+          "الفصح",
+          "بيض",
+          "سلة",
+          "طفل"
+        ]
+      },
+      "latency_s": 3.691725254058838,
+      "json_ok": true,
+      "title": "عيد الفصح",
+      "title_card": "عيد الفصح",
+      "description": "البيض في سلة للاطفال",
+      "keywords": [
+        "عيد",
+        "الفصح",
+        "بيض",
+        "سلة",
+        "طفل"
+      ],
+      "title_len": 9,
+      "title_in_bounds": false,
+      "title_card_len": 9,
+      "title_card_in_bounds": true,
+      "description_len": 20,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "Easter eggs in a basket",
+        "term_id": "paques",
+        "term_ar": "عيد الفصح",
+        "term_en": "Easter"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"هالووين كيوت بومبيون\",\n    \"title_card\": \"بومبيون هالووين\",\n    \"description\": \"صورة بومبيون هالووين يبتسم للاطفال\",\n    \"keywords\": [\"هالووين\", \"بومبيون\", \"ابتسامة\", \"طفل\", \"مerry\"]\n}",
+      "parsed": {
+        "title": "هالووين كيوت بومبيون",
+        "title_card": "بومبيون هالووين",
+        "description": "صورة بومبيون هالووين يبتسم للاطفال",
+        "keywords": [
+          "هالووين",
+          "بومبيون",
+          "ابتسامة",
+          "طفل",
+          "مerry"
+        ]
+      },
+      "latency_s": 4.8721764087677,
+      "json_ok": true,
+      "title": "هالووين كيوت بومبيون",
+      "title_card": "بومبيون هالووين",
+      "description": "صورة بومبيون هالووين يبتسم للاطفال",
+      "keywords": [
+        "هالووين",
+        "بومبيون",
+        "ابتسامة",
+        "طفل",
+        "مerry"
+      ],
+      "title_len": 20,
+      "title_in_bounds": false,
+      "title_card_len": 15,
+      "title_card_in_bounds": true,
+      "description_len": 34,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": true,
+      "pair": {
+        "concept_en": "Halloween pumpkin with a smile",
+        "term_id": "halloween",
+        "term_ar": "هالووين",
+        "term_en": "Halloween"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"مندالات الزهور\",\n    \"title_card\": \"زهور\",\n    \"description\": \"مغامرة في تلوين مندالات الزهور المتنوعة\",\n    \"keywords\": [\"مندالات\", \"زهرة\", \"تلوين\", \" Mandalas\", \"فن\"]\n}",
+      "parsed": {
+        "title": "مندالات الزهور",
+        "title_card": "زهور",
+        "description": "مغامرة في تلوين مندالات الزهور المتنوعة",
+        "keywords": [
+          "مندالات",
+          "زهرة",
+          "تلوين",
+          " Mandalas",
+          "فن"
+        ]
+      },
+      "latency_s": 4.17831015586853,
+      "json_ok": true,
+      "title": "مندالات الزهور",
+      "title_card": "زهور",
+      "description": "مغامرة في تلوين مندالات الزهور المتنوعة",
+      "keywords": [
+        "مندالات",
+        "زهرة",
+        "تلوين",
+        " Mandalas",
+        "فن"
+      ],
+      "title_len": 14,
+      "title_in_bounds": false,
+      "title_card_len": 4,
+      "title_card_in_bounds": true,
+      "description_len": 39,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": true,
+      "pair": {
+        "concept_en": "complex flower mandala",
+        "term_id": "mandalas_fleurs",
+        "term_ar": "مندالات الزهور",
+        "term_en": "Flower mandalas"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"شتاء جبال\",\n    \"title_card\": \"جبال شتوية\",\n    \"description\": \"صورة جبال مغطاة بالثلوج لرسمها وصبغها\",\n    \"keywords\": [\"شتاء\", \"جبال\", \"ثلوج\", \"رسم\", \"صبغ\"]\n}",
+      "parsed": {
+        "title": "شتاء جبال",
+        "title_card": "جبال شتوية",
+        "description": "صورة جبال مغطاة بالثلوج لرسمها وصبغها",
+        "keywords": [
+          "شتاء",
+          "جبال",
+          "ثلوج",
+          "رسم",
+          "صبغ"
+        ]
+      },
+      "latency_s": 4.2260870933532715,
+      "json_ok": true,
+      "title": "شتاء جبال",
+      "title_card": "جبال شتوية",
+      "description": "صورة جبال مغطاة بالثلوج لرسمها وصبغها",
+      "keywords": [
+        "شتاء",
+        "جبال",
+        "ثلوج",
+        "رسم",
+        "صبغ"
+      ],
+      "title_len": 9,
+      "title_in_bounds": false,
+      "title_card_len": 10,
+      "title_card_in_bounds": true,
+      "description_len": 37,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "no_article",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "snowy mountains scene",
+        "term_id": "hiver",
+        "term_ar": "الشتاء",
+        "term_en": "Winter"
+      }
+    },
+    {
+      "raw": "{\n    \"title\": \"سيارات على حلبة\",\n    \"title_card\": \"سيارات حلبة\",\n    \"description\": \"رسم سيارة سباق على حلبة للاستمتاع بعملية التلوين\",\n    \"keywords\": [\"سيارات\", \"سباق\", \"حلبة\", \"تلوين\", \"طفل\"]\n}",
+      "parsed": {
+        "title": "سيارات على حلبة",
+        "title_card": "سيارات حلبة",
+        "description": "رسم سيارة سباق على حلبة للاستمتاع بعملية التلوين",
+        "keywords": [
+          "سيارات",
+          "سباق",
+          "حلبة",
+          "تلوين",
+          "طفل"
+        ]
+      },
+      "latency_s": 4.20061469078064,
+      "json_ok": true,
+      "title": "سيارات على حلبة",
+      "title_card": "سيارات حلبة",
+      "description": "رسم سيارة سباق على حلبة للاستمتاع بعملية التلوين",
+      "keywords": [
+        "سيارات",
+        "سباق",
+        "حلبة",
+        "تلوين",
+        "طفل"
+      ],
+      "title_len": 15,
+      "title_in_bounds": false,
+      "title_card_len": 11,
+      "title_card_in_bounds": true,
+      "description_len": 48,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "no_article",
+      "harakat_anywhere": false,
+      "latin_anywhere": false,
+      "pair": {
+        "concept_en": "racing car on a track",
+        "term_id": "voitures",
+        "term_ar": "السيارات",
+        "term_en": "Cars"
+      }
+    }
+  ],
+  "baseline_error_rate_no_anchor": "30-40% (cf. POC ar-content-quality 2026-05-05)"
+}

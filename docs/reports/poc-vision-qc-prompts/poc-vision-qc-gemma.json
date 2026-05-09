@@ -1,0 +1,482 @@
+{
+  "poc": "vision-qc-gemma",
+  "date": "2026-05-07",
+  "vision_model": "gemma4:26b",
+  "ollama_base_url": "http://100.65.24.35:11434",
+  "source_dir": "docs/reports/poc-batch-size",
+  "annotations_file": "docs/reports/poc-batch-size/annotations.json",
+  "n_images": 30,
+  "ground_truth_3jambes_count": 18,
+  "prompts_tested": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "prompts_text": {
+    "A": {
+      "label": "current (baseline)",
+      "system": "You are a quality control assistant for children's coloring pages.",
+      "user": "Evaluate this coloring page image quality for publication.\nReply ONLY with valid JSON, no explanation:\n{\"quality\": \"good\"|\"poor\", \"issues\": [], \"confidence\": 0-100}\nPossible issues: \"has_color\", \"blurry\", \"noisy\", \"artifacts\", \"not_line_art\", \"incomplete\", \"has_text\""
+    },
+    "B": {
+      "label": "anatomy-aware",
+      "system": "You are a strict quality control inspector for children's coloring book pages.",
+      "user": "Inspect this coloring page carefully for anatomy defects.\nCount the number of legs on any human or animal figure.\nA normal person has EXACTLY 2 legs. 3 or more legs = defect.\nReply ONLY with valid JSON:\n{\"quality\": \"good\"|\"poor\", \"issues\": [], \"confidence\": 0-100}\nPossible issues: \"extra_leg\" (3+ legs visible), \"missing_leg\", \"multiple_figures\", \"has_color\", \"not_line_art\", \"incomplete\""
+    },
+    "C": {
+      "label": "soccer-specific explicit",
+      "system": "You are a quality control assistant for children's coloring pages.",
+      "user": "This coloring page shows a soccer scene. Inspect it carefully:\n1. Count the legs of the soccer player. Normal = 2 legs. If you see 3 or more legs, that is a critical defect.\n2. Count soccer balls. Normal = 1 ball.\n3. Is it black-and-white line art only?\nReply ONLY with valid JSON:\n{\"quality\": \"good\"|\"poor\", \"leg_count\": <integer>, \"ball_count\": <integer>, \"issues\": [], \"confidence\": 0-100}\nPossible issues: \"extra_leg\", \"multiple_balls\", \"has_color\", \"not_line_art\", \"incomplete\""
+    },
+    "D": {
+      "label": "binary anatomy check",
+      "system": "You are a precise visual inspector.",
+      "user": "Look at this image very carefully.\nFocus ONLY on this question: does any figure in the image have an abnormal number of limbs?\n- A human soccer player should have EXACTLY 2 legs and 2 arms.\n- If you see 3 legs, fused legs, or extra limbs anywhere: anatomy_ok = false.\nReply ONLY with valid JSON:\n{\"quality\": \"good\"|\"poor\", \"anatomy_ok\": true, \"issues\": [], \"confidence\": 0-100}\nSet quality to poor if anatomy_ok is false."
+    },
+    "E": {
+      "label": "chain-of-thought forced",
+      "system": "You are a quality control assistant for children's coloring pages.",
+      "user": "Examine this coloring page step by step:\nStep 1: Is there a human figure? If yes, count their legs carefully.\nStep 2: Are there any anatomy defects (extra limbs, fused limbs, wrong number of legs)?\nStep 3: Is it proper black-and-white line art (no color fills)?\nStep 4: Final verdict.\nReply ONLY with valid JSON (no text outside JSON):\n{\"leg_count\": <integer or null>, \"anatomy_defect\": true|false, \"has_color\": true|false, \"quality\": \"good\"|\"poor\", \"issues\": [], \"confidence\": 0-100}"
+    }
+  },
+  "results": {
+    "A": {
+      "label": "current (baseline)",
+      "per_image": {
+        "soccer_var01_s616025_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var01_s616025_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 26.45,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var01_s616025_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var01_s616025_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 12.13,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var01_s616025_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var01_s616025_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 42.05,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 98}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 98
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var02_s402793_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var02_s402793_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 12.38,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var02_s402793_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var02_s402793_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 12.9,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var02_s402793_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var02_s402793_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 19.53,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var03_s030207_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var03_s030207_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 19.03,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var03_s030207_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var03_s030207_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 13.43,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var03_s030207_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var03_s030207_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 13.93,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var04_s087846_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var04_s087846_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 15.03,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var04_s087846_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var04_s087846_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 16.75,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var04_s087846_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var04_s087846_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 12.81,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var05_s509027_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var05_s509027_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 16.37,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var05_s509027_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var05_s509027_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 14.81,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var05_s509027_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var05_s509027_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 13.14,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var06_s987308_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var06_s987308_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 13.69,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var06_s987308_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var06_s987308_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 13.02,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var06_s987308_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var06_s987308_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 15.59,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var07_s609845_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var07_s609845_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 13.87,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var07_s609845_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var07_s609845_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 19.07,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var07_s609845_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var07_s609845_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 22.1,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var08_s963309_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var08_s963309_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 13.56,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var08_s963309_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var08_s963309_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 10.95,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var08_s963309_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var08_s963309_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 11.38,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var09_s252818_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var09_s252818_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 10.98,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var09_s252818_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var09_s252818_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 26.93,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var09_s252818_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var09_s252818_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 35.64,
+          "ground_truth_3jambes": false,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 98}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 98
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var10_s817377_b1_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var10_s817377_b1_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 11.23,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var10_s817377_b2_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var10_s817377_b2_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 11.71,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        },
+        "soccer_var10_s817377_b3_08s_normal_euler_cfg10.png": {
+          "filename": "soccer_var10_s817377_b3_08s_normal_euler_cfg10.png",
+          "status": "ok",
+          "latency_s": 13.49,
+          "ground_truth_3jambes": true,
+          "raw_response": "```json\n{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}\n```",
+          "parsed": {
+            "quality": "good",
+            "issues": [],
+            "confidence": 100
+          },
+          "detected_defect": false,
+          "detection_reason": "clean"
+        }
+      },
+      "metrics": {
+        "TP": 0,
+        "FP": 0,
+        "FN": 18,
+        "TN": 12,
+        "no_parse": 0,
+        "no_parse_files": [],
+        "precision": 0.0,
+        "recall": 0.0,
+        "F1": 0.0
+      }
+    }
+  }
+}

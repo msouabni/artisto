@@ -1,0 +1,166 @@
+{
+  "source": "workflow_class='Grille imagier annoté' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Grille imagier annoté",
+  "subjects": [
+    {
+      "filename": "color_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Color Imagier with Names",
+      "leaf_id": "color_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a color imagier with names item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"COLOR IMAGIER WITH NAMES\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9126
+    },
+    {
+      "filename": "clothing_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Clothing Imagier with Names",
+      "leaf_id": "clothing_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a clothing imagier with names item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"CLOTHING IMAGIER WITH NAMES\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9133
+    },
+    {
+      "filename": "weather_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Weather Imagier with Names",
+      "leaf_id": "weather_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a weather imagier with names item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"WEATHER IMAGIER WITH NAMES\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9140
+    },
+    {
+      "filename": "fruit_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Fruit Imagier with Names",
+      "leaf_id": "fruit_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a fruit imagier with names item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"FRUIT IMAGIER WITH NAMES\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9147
+    },
+    {
+      "filename": "feeling_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Feeling Imagier with Names",
+      "leaf_id": "feeling_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a feeling imagier with names item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"FEELING IMAGIER WITH NAMES\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9154
+    },
+    {
+      "filename": "transport_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Transport Imagier with Names",
+      "leaf_id": "transport_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a transport imagier with names item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"TRANSPORT IMAGIER WITH NAMES\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9161
+    },
+    {
+      "filename": "vegetable_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Vegetable Imagier with Names",
+      "leaf_id": "vegetable_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a vegetable imagier with names item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"VEGETABLE IMAGIER WITH NAMES\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9168
+    },
+    {
+      "filename": "house_object_imagier_1024x1024_euler8s.png",
+      "name_en": "House Object Imagier",
+      "leaf_id": "house_object_imagier",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a house object imagier item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"HOUSE OBJECT IMAGIER\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9175
+    }
+  ]
+}

@@ -1,0 +1,451 @@
+{
+  "poc": "negative-prompt",
+  "date": "2026-05-06",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "vision_model": "qwen3.5:9b",
+  "seeds": {
+    "soccer": 42001,
+    "refrigerator": 42002,
+    "dragon": 42003
+  },
+  "neg_baseline": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo",
+  "neg_additional": {
+    "soccer": "motion blur, action lines, speed lines, motion streaks, extra limbs, three legs, deformed legs, anatomical errors, multiple exposure, ghost limbs",
+    "refrigerator": "colorful, vivid colors, saturated colors, color fills, colored objects, ambient light, window glow, sunlight effect, warm lighting, colored lighting, golden light",
+    "dragon": "colorful, vivid colors, green scales, colored dragon, saturated, painted, fantasy colors, chromatic"
+  },
+  "results": [
+    {
+      "target": "soccer",
+      "concept": {
+        "target": "soccer",
+        "name_en": "Soccer Ball on a Field",
+        "category": "sports",
+        "final_prompt": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.",
+        "validator_score": 95
+      },
+      "seed": 42001,
+      "variants": [
+        {
+          "code": "v2_no_negative",
+          "negative": "",
+          "image_path": "docs/reports/poc-negative-prompt/sports-soccer-ball-on-a-field_v2_no_negative.png",
+          "histogram": {
+            "histogram_ok": true,
+            "color_ratio": 0.00212,
+            "white_ratio": 0.78488,
+            "ink_ratio": 0.13031,
+            "flags": []
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 13.198442697525024
+          },
+          "ok": true,
+          "comfy_latency_s": 24.25,
+          "comfy_prompt_id": "264db1c1-ee86-4624-a228-6223dd38a2a9",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "contract_version": "workflow_contract_v1",
+            "steps": 8,
+            "cfg": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "seed": 42001
+          }
+        },
+        {
+          "code": "v3_baseline",
+          "negative": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo",
+          "image_path": "docs/reports/poc-negative-prompt/sports-soccer-ball-on-a-field_v3_baseline.png",
+          "histogram": {
+            "histogram_ok": true,
+            "color_ratio": 0.00212,
+            "white_ratio": 0.78488,
+            "ink_ratio": 0.13031,
+            "flags": []
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 3.6560046672821045
+          },
+          "ok": true,
+          "comfy_latency_s": 18.2,
+          "comfy_prompt_id": "7dee4f40-ec10-40a8-8a60-1e136bb77e86",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "contract_version": "workflow_contract_v1",
+            "steps": 8,
+            "cfg": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "seed": 42001
+          }
+        },
+        {
+          "code": "v4_baseline_additif",
+          "negative": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo, motion blur, action lines, speed lines, motion streaks, extra limbs, three legs, deformed legs, anatomical errors, multiple exposure, ghost limbs",
+          "image_path": "docs/reports/poc-negative-prompt/sports-soccer-ball-on-a-field_v4_baseline_additif.png",
+          "histogram": {
+            "histogram_ok": true,
+            "color_ratio": 0.00212,
+            "white_ratio": 0.78488,
+            "ink_ratio": 0.13031,
+            "flags": []
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 3.5980465412139893
+          },
+          "ok": true,
+          "comfy_latency_s": 18.18,
+          "comfy_prompt_id": "210f4747-ae77-4a6a-8b2b-90bc20f33bb4",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "contract_version": "workflow_contract_v1",
+            "steps": 8,
+            "cfg": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "seed": 42001
+          }
+        }
+      ]
+    },
+    {
+      "target": "refrigerator",
+      "concept": {
+        "target": "refrigerator",
+        "name_en": "Refrigerator in a Kitchen",
+        "category": "electromenager",
+        "final_prompt": "A wide shot centered on a colorful refrigerator with magnets and fruit on the counter in a bright and clean kitchen with a cheerful and inviting mood. The scene features a red apple, a blue banana, a magnetic star, and a magnetic heart placed on the kitchen counter near an open refrigerator door and white cabinets, with a window letting in sunlight. Style: black and white line art only, monochrome outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, clean layout.",
+        "validator_score": 95
+      },
+      "seed": 42002,
+      "variants": [
+        {
+          "code": "v2_no_negative",
+          "negative": "",
+          "image_path": "docs/reports/poc-negative-prompt/electromenager-refrigerator-in-a-kitchen_v2_no_negative.png",
+          "histogram": {
+            "histogram_ok": false,
+            "color_ratio": 0.03978,
+            "white_ratio": 0.84095,
+            "ink_ratio": 0.08324,
+            "flags": [
+              "noticeable_color"
+            ]
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\n  \"quality\": \"poor\",\n  \"issues\": [\n    \"has_color\"\n  ],\n  \"confidence\": 100\n}",
+            "parsed": {
+              "quality": "poor",
+              "issues": [
+                "has_color"
+              ],
+              "confidence": 100
+            },
+            "verdict": "poor",
+            "issues": [
+              "has_color"
+            ],
+            "confidence": 100,
+            "latency_s": 3.897566080093384
+          },
+          "ok": true,
+          "comfy_latency_s": 18.16,
+          "comfy_prompt_id": "77da6da9-f075-4ae7-b30f-87c0170b40c1",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "contract_version": "workflow_contract_v1",
+            "steps": 8,
+            "cfg": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "seed": 42002
+          }
+        },
+        {
+          "code": "v3_baseline",
+          "negative": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo",
+          "image_path": "docs/reports/poc-negative-prompt/electromenager-refrigerator-in-a-kitchen_v3_baseline.png",
+          "histogram": {
+            "histogram_ok": false,
+            "color_ratio": 0.03978,
+            "white_ratio": 0.84095,
+            "ink_ratio": 0.08324,
+            "flags": [
+              "noticeable_color"
+            ]
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\n  \"quality\": \"poor\",\n  \"issues\": [\n    \"has_color\"\n  ],\n  \"confidence\": 100\n}",
+            "parsed": {
+              "quality": "poor",
+              "issues": [
+                "has_color"
+              ],
+              "confidence": 100
+            },
+            "verdict": "poor",
+            "issues": [
+              "has_color"
+            ],
+            "confidence": 100,
+            "latency_s": 3.8985724449157715
+          },
+          "ok": true,
+          "comfy_latency_s": 18.17,
+          "comfy_prompt_id": "ec9108d9-108e-44be-adb8-4d6978ea602e",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "contract_version": "workflow_contract_v1",
+            "steps": 8,
+            "cfg": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "seed": 42002
+          }
+        },
+        {
+          "code": "v4_baseline_additif",
+          "negative": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo, colorful, vivid colors, saturated colors, color fills, colored objects, ambient light, window glow, sunlight effect, warm lighting, colored lighting, golden light",
+          "image_path": "docs/reports/poc-negative-prompt/electromenager-refrigerator-in-a-kitchen_v4_baseline_additif.png",
+          "histogram": {
+            "histogram_ok": false,
+            "color_ratio": 0.03978,
+            "white_ratio": 0.84095,
+            "ink_ratio": 0.08324,
+            "flags": [
+              "noticeable_color"
+            ]
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\n  \"quality\": \"poor\",\n  \"issues\": [\n    \"has_color\"\n  ],\n  \"confidence\": 100\n}",
+            "parsed": {
+              "quality": "poor",
+              "issues": [
+                "has_color"
+              ],
+              "confidence": 100
+            },
+            "verdict": "poor",
+            "issues": [
+              "has_color"
+            ],
+            "confidence": 100,
+            "latency_s": 3.8808679580688477
+          },
+          "ok": true,
+          "comfy_latency_s": 18.19,
+          "comfy_prompt_id": "c42c4499-2419-45b5-bb1a-d34a23a214b8",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "contract_version": "workflow_contract_v1",
+            "steps": 8,
+            "cfg": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "seed": 42002
+          }
+        }
+      ]
+    },
+    {
+      "target": "dragon",
+      "concept": {
+        "target": "dragon",
+        "name_en": "Dragon in a Castle Courtyard",
+        "category": "fantasy",
+        "final_prompt": "A wide shot centered on a friendly green dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, red banners hanging from the towers, a stone fountain in the center, a large stone gate, green bushes, painted stone walls, and the dragon's large wings spread wide. Style: monochrome line art with black outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, clean layout.",
+        "validator_score": 95
+      },
+      "seed": 42003,
+      "variants": [
+        {
+          "code": "v2_no_negative",
+          "negative": "",
+          "image_path": "docs/reports/poc-negative-prompt/fantasy-dragon-in-a-castle-courtyard_v2_no_negative.png",
+          "histogram": {
+            "histogram_ok": false,
+            "color_ratio": 0.02602,
+            "white_ratio": 0.79105,
+            "ink_ratio": 0.1318,
+            "flags": [
+              "noticeable_color"
+            ]
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 3.607625722885132
+          },
+          "ok": true,
+          "comfy_latency_s": 18.15,
+          "comfy_prompt_id": "baea9d5e-5b96-4221-85ed-f23ddedd6d88",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "contract_version": "workflow_contract_v1",
+            "steps": 8,
+            "cfg": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "seed": 42003
+          }
+        },
+        {
+          "code": "v3_baseline",
+          "negative": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo",
+          "image_path": "docs/reports/poc-negative-prompt/fantasy-dragon-in-a-castle-courtyard_v3_baseline.png",
+          "histogram": {
+            "histogram_ok": false,
+            "color_ratio": 0.02602,
+            "white_ratio": 0.79105,
+            "ink_ratio": 0.1318,
+            "flags": [
+              "noticeable_color"
+            ]
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 3.5767128467559814
+          },
+          "ok": true,
+          "comfy_latency_s": 18.18,
+          "comfy_prompt_id": "bef610f4-ea55-40e2-a1df-fbbb9946a5e7",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "contract_version": "workflow_contract_v1",
+            "steps": 8,
+            "cfg": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "seed": 42003
+          }
+        },
+        {
+          "code": "v4_baseline_additif",
+          "negative": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo, colorful, vivid colors, green scales, colored dragon, saturated, painted, fantasy colors, chromatic",
+          "image_path": "docs/reports/poc-negative-prompt/fantasy-dragon-in-a-castle-courtyard_v4_baseline_additif.png",
+          "histogram": {
+            "histogram_ok": false,
+            "color_ratio": 0.02602,
+            "white_ratio": 0.79105,
+            "ink_ratio": 0.1318,
+            "flags": [
+              "noticeable_color"
+            ]
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 3.5725882053375244
+          },
+          "ok": true,
+          "comfy_latency_s": 18.16,
+          "comfy_prompt_id": "96e87252-abd7-4e9b-93e8-e1af67541436",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "contract_version": "workflow_contract_v1",
+            "steps": 8,
+            "cfg": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "seed": 42003
+          }
+        }
+      ]
+    }
+  ]
+}

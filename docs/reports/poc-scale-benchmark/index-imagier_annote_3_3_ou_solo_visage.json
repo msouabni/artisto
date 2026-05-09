@@ -1,0 +1,186 @@
+{
+  "source": "workflow_class='Imagier annoté 3×3 OU Solo visage' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+  "subjects": [
+    {
+      "filename": "happy_child_smiling_1024x1024_euler8s.png",
+      "name_en": "Happy Child Smiling",
+      "leaf_id": "happy_child_smiling",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a happy child smiling item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"HAPPY CHILD SMILING\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9420
+    },
+    {
+      "filename": "curious_child_face_1024x1024_euler8s.png",
+      "name_en": "Curious Child Face",
+      "leaf_id": "curious_child_face",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a curious child face item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"CURIOUS CHILD FACE\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9427
+    },
+    {
+      "filename": "proud_child_face_1024x1024_euler8s.png",
+      "name_en": "Proud Child Face",
+      "leaf_id": "proud_child_face",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a proud child face item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"PROUD CHILD FACE\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9434
+    },
+    {
+      "filename": "sad_child_crying_1024x1024_euler8s.png",
+      "name_en": "Sad Child Crying",
+      "leaf_id": "sad_child_crying",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a sad child crying item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"SAD CHILD CRYING\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9441
+    },
+    {
+      "filename": "emotion_chart_poster_1024x1024_euler8s.png",
+      "name_en": "Emotion Chart Poster",
+      "leaf_id": "emotion_chart_poster",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a emotion chart poster item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"EMOTION CHART POSTER\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9448
+    },
+    {
+      "filename": "shy_child_face_1024x1024_euler8s.png",
+      "name_en": "Shy Child Face",
+      "leaf_id": "shy_child_face",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a shy child face item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"SHY CHILD FACE\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9455
+    },
+    {
+      "filename": "angry_child_face_1024x1024_euler8s.png",
+      "name_en": "Angry Child Face",
+      "leaf_id": "angry_child_face",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a angry child face item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"ANGRY CHILD FACE\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9462
+    },
+    {
+      "filename": "calm_child_breathing_1024x1024_euler8s.png",
+      "name_en": "Calm Child Breathing",
+      "leaf_id": "calm_child_breathing",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a calm child breathing item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"CALM CHILD BREATHING\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9469
+    },
+    {
+      "filename": "surprised_child_face_1024x1024_euler8s.png",
+      "name_en": "Surprised Child Face",
+      "leaf_id": "surprised_child_face",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a surprised child face item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"SURPRISED CHILD FACE\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9476
+    },
+    {
+      "filename": "scared_child_face_1024x1024_euler8s.png",
+      "name_en": "Scared Child Face",
+      "leaf_id": "scared_child_face",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a scared child face item with its name written below in capital letters inside the same cell, each cell shows a different item, the title \"SCARED CHILD FACE\" written above the grid",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9483
+    }
+  ]
+}

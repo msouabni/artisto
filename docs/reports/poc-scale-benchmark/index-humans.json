@@ -1,0 +1,1268 @@
+{
+  "source": "PromptGenerator workflow_class filter -> sample(seed=2027)",
+  "human_classes": [
+    "Humain + entité",
+    "Solo humain (générique)",
+    "Solo humain (personnalité)",
+    "Solo humain (personnalité) + action figée",
+    "Solo humain + accessoires",
+    "Solo humain en action",
+    "Solo humain pose active",
+    "Solo humain/animal cartoon",
+    "Solo personnage ou créature"
+  ],
+  "subjects": [
+    {
+      "filename": "child_running_outdoors_848x1264_euler8s.png",
+      "name_en": "Child Running Outdoors",
+      "leaf_id": "child_running_outdoors",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Solo + activité physique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Posture explicite (Insight D) pour mouvements"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single child running outdoors, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "child_running_outdoors_848x1264_b1_euler8s.png",
+        "child_running_outdoors_848x1264_b2_euler8s.png",
+        "child_running_outdoors_848x1264_b3_euler8s.png"
+      ],
+      "seed": 6000
+    },
+    {
+      "filename": "speed_skater_848x1264_euler8s.png",
+      "name_en": "Speed Skater",
+      "leaf_id": "speed_skater",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Idem individual_sports + paysage neige",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single speed skater, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "speed_skater_848x1264_b1_euler8s.png",
+        "speed_skater_848x1264_b2_euler8s.png",
+        "speed_skater_848x1264_b3_euler8s.png"
+      ],
+      "seed": 6007
+    },
+    {
+      "filename": "captain_marvel_848x1264_euler8s.png",
+      "name_en": "Captain Marvel",
+      "leaf_id": "captain_marvel",
+      "tier": "Solo humain (personnalité)",
+      "workflow_class": "Solo humain (personnalité)",
+      "technique": "Personnage nommé en pose héroïque + accessoire signature",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "IP risk Disney+Marvel"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Captain Marvel in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark expression, blood, weapons",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "captain_marvel_848x1264_euler8s.png"
+      ],
+      "seed": 6014
+    },
+    {
+      "filename": "animal_superhero_848x1264_euler8s.png",
+      "name_en": "Animal Superhero",
+      "leaf_id": "animal_superhero",
+      "tier": "Solo humain (générique)",
+      "workflow_class": "Solo humain (générique)",
+      "technique": "Super-héros générique sans IP",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single animal superhero, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark, weapons",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "animal_superhero_848x1264_euler8s.png"
+      ],
+      "seed": 6021
+    },
+    {
+      "filename": "mirabel_from_encanto_1024x1024_euler8s.png",
+      "name_en": "Mirabel from Encanto",
+      "leaf_id": "mirabel_from_encanto",
+      "tier": "Solo humain (personnalité)",
+      "workflow_class": "Solo humain (personnalité)",
+      "technique": "Personnage nommé OU version générique (cf. risque IP §4.2)",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Haute (pour test), Moyenne (commercial)",
+      "pitfalls": [
+        "IP risk : production version générique pour usage commercial"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Mirabel from Encanto in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark expression",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "mirabel_from_encanto_1024x1024_euler8s.png"
+      ],
+      "seed": 6028
+    },
+    {
+      "filename": "robot_superhero_848x1264_euler8s.png",
+      "name_en": "Robot Superhero",
+      "leaf_id": "robot_superhero",
+      "tier": "Solo humain (générique)",
+      "workflow_class": "Solo humain (générique)",
+      "technique": "Super-héros générique sans IP",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single robot superhero, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark, weapons",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "robot_superhero_848x1264_euler8s.png"
+      ],
+      "seed": 6035
+    },
+    {
+      "filename": "fishmonger_at_market_1024x1024_euler8s.png",
+      "name_en": "Fishmonger at Market",
+      "leaf_id": "fishmonger_at_market",
+      "tier": "Solo humain + accessoires",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outils cuisine",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "4+ chefs : frise 1×4 obligatoire (cas Z5b)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single fishmonger at market, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "fishmonger_at_market_1024x1024_euler8s.png"
+      ],
+      "seed": 6042
+    },
+    {
+      "filename": "rapunzel_with_long_hair_1024x1024_euler8s.png",
+      "name_en": "Rapunzel with Long Hair",
+      "leaf_id": "rapunzel_with_long_hair",
+      "tier": "Solo humain (personnalité)",
+      "workflow_class": "Solo humain (personnalité)",
+      "technique": "Personnage nommé OU version générique (cf. risque IP §4.2)",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Haute (pour test), Moyenne (commercial)",
+      "pitfalls": [
+        "IP risk : production version générique pour usage commercial"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Rapunzel with Long Hair in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark expression",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "rapunzel_with_long_hair_1024x1024_euler8s.png"
+      ],
+      "seed": 6049
+    },
+    {
+      "filename": "fisherman_with_net_1024x1024_euler8s.png",
+      "name_en": "Fisherman with Net",
+      "leaf_id": "fisherman_with_net",
+      "tier": "Humain + entité",
+      "workflow_class": "Humain + entité",
+      "technique": "Formule asymétrie humain+outil OU humain+animal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of fisherman with net, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "fisherman_with_net_1024x1024_euler8s.png"
+      ],
+      "seed": 6056
+    },
+    {
+      "filename": "ons_jabeur_cartoon_848x1264_euler8s.png",
+      "name_en": "Ons Jabeur Cartoon",
+      "leaf_id": "ons_jabeur_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé avec raquette en service ou frappe",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Ons Jabeur in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "ons_jabeur_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6063
+    },
+    {
+      "filename": "firefighter_with_hose_848x1264_euler8s.png",
+      "name_en": "Firefighter with Hose",
+      "leaf_id": "firefighter_with_hose",
+      "tier": "Solo humain pose active",
+      "workflow_class": "Solo humain pose active",
+      "technique": "Solo + accessoire signature + énumération anti-bras",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Firefighter validé cas 4. Énumération bras critique."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single firefighter with hose, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "firefighter_with_hose_848x1264_b1_euler8s.png",
+        "firefighter_with_hose_848x1264_b2_euler8s.png",
+        "firefighter_with_hose_848x1264_b3_euler8s.png"
+      ],
+      "seed": 6070
+    },
+    {
+      "filename": "lamine_yamal_cartoon_848x1264_euler8s.png",
+      "name_en": "Lamine Yamal Cartoon",
+      "leaf_id": "lamine_yamal_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé en mid-action (Z7 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Pose dynamique → risque membres en trop. Énumérer les bras."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Lamine Yamal in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "lamine_yamal_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6077
+    },
+    {
+      "filename": "locksmith_with_keys_1024x1024_euler8s.png",
+      "name_en": "Locksmith with Keys",
+      "leaf_id": "locksmith_with_keys",
+      "tier": "Solo humain + accessoires",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outil + pose active",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Énumérer bras pour pose active"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single locksmith with keys, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "locksmith_with_keys_1024x1024_euler8s.png"
+      ],
+      "seed": 6084
+    },
+    {
+      "filename": "captain_america_with_shield_848x1264_euler8s.png",
+      "name_en": "Captain America with Shield",
+      "leaf_id": "captain_america_with_shield",
+      "tier": "Solo humain (personnalité)",
+      "workflow_class": "Solo humain (personnalité)",
+      "technique": "Personnage nommé en pose héroïque + accessoire signature",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "IP risk Disney+Marvel"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Captain America with Shield in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark expression, blood, weapons",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "captain_america_with_shield_848x1264_euler8s.png"
+      ],
+      "seed": 6091
+    },
+    {
+      "filename": "noah_lyles_cartoon_848x1264_euler8s.png",
+      "name_en": "Noah Lyles Cartoon",
+      "leaf_id": "noah_lyles_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé selon discipline",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "Gymnastique : poses très complexes, tester chaque cas"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Noah Lyles in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "noah_lyles_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6098
+    },
+    {
+      "filename": "mason_with_bricks_1024x1024_euler8s.png",
+      "name_en": "Mason with Bricks",
+      "leaf_id": "mason_with_bricks",
+      "tier": "Solo humain + accessoires",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outil + pose active",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Énumérer bras pour pose active"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single mason with bricks, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "mason_with_bricks_1024x1024_euler8s.png"
+      ],
+      "seed": 6105
+    },
+    {
+      "filename": "bungee_jumper_848x1264_euler8s.png",
+      "name_en": "Bungee Jumper",
+      "leaf_id": "bungee_jumper",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Action figée + motion lines (Z7)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Posture aérienne explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single bungee jumper, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "bungee_jumper_848x1264_b1_euler8s.png",
+        "bungee_jumper_848x1264_b2_euler8s.png",
+        "bungee_jumper_848x1264_b3_euler8s.png"
+      ],
+      "seed": 6112
+    },
+    {
+      "filename": "khabib_nurmagomedov_cartoon_848x1264_euler8s.png",
+      "name_en": "Khabib Nurmagomedov Cartoon",
+      "leaf_id": "khabib_nurmagomedov_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé en pose de combat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "Adapter pour audience enfants 3-12"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Khabib Nurmagomedov in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, blood, violence",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "khabib_nurmagomedov_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6119
+    },
+    {
+      "filename": "scooby_doo_1024x1024_euler8s.png",
+      "name_en": "Scooby Doo",
+      "leaf_id": "scooby_doo",
+      "tier": "Solo humain/animal cartoon",
+      "workflow_class": "Solo humain/animal cartoon",
+      "technique": "Personnage en pose iconique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "IP variable selon âge des personnages"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one scooby doo centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "scooby_doo_1024x1024_euler8s.png"
+      ],
+      "seed": 6126
+    },
+    {
+      "filename": "tour_guide_with_group_1024x1024_euler8s.png",
+      "name_en": "Tour Guide with Group",
+      "leaf_id": "tour_guide_with_group",
+      "tier": "Solo humain + accessoires",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + sifflet/raquette/etc.",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single tour guide with group, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "tour_guide_with_group_1024x1024_euler8s.png"
+      ],
+      "seed": 6133
+    },
+    {
+      "filename": "iron_man_848x1264_euler8s.png",
+      "name_en": "Iron Man",
+      "leaf_id": "iron_man",
+      "tier": "Solo humain (personnalité)",
+      "workflow_class": "Solo humain (personnalité)",
+      "technique": "Personnage nommé en pose héroïque + accessoire signature",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "IP risk Disney+Marvel"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Iron Man in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark expression, blood, weapons",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "iron_man_848x1264_euler8s.png"
+      ],
+      "seed": 6140
+    },
+    {
+      "filename": "elf_with_bow_and_arrow_848x1264_euler8s.png",
+      "name_en": "Elf with Bow and Arrow",
+      "leaf_id": "elf_with_bow_and_arrow",
+      "tier": "Solo personnage ou créature",
+      "workflow_class": "Solo personnage ou créature",
+      "technique": "Pose épique + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Dragons : version kid-friendly"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Elf with Bow and Arrow in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, blood, weapons threatening",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "elf_with_bow_and_arrow_848x1264_euler8s.png"
+      ],
+      "seed": 6147
+    },
+    {
+      "filename": "neymar_jr_cartoon_848x1264_euler8s.png",
+      "name_en": "Neymar Jr Cartoon",
+      "leaf_id": "neymar_jr_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé en mid-action (Z7 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Pose dynamique → risque membres en trop. Énumérer les bras."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Neymar Jr in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "neymar_jr_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6154
+    },
+    {
+      "filename": "olaf_the_snowman_1024x1024_euler8s.png",
+      "name_en": "Olaf the Snowman",
+      "leaf_id": "olaf_the_snowman",
+      "tier": "Solo humain (personnalité)",
+      "workflow_class": "Solo humain (personnalité)",
+      "technique": "Personnage nommé OU version générique (cf. risque IP §4.2)",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Haute (pour test), Moyenne (commercial)",
+      "pitfalls": [
+        "IP risk : production version générique pour usage commercial"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Olaf the Snowman in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark expression",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "olaf_the_snowman_1024x1024_euler8s.png"
+      ],
+      "seed": 6161
+    },
+    {
+      "filename": "house_painter_with_roller_1024x1024_euler8s.png",
+      "name_en": "House Painter with Roller",
+      "leaf_id": "house_painter_with_roller",
+      "tier": "Solo humain + accessoires",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outil + pose active",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Énumérer bras pour pose active"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single house painter with roller, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "house_painter_with_roller_1024x1024_euler8s.png"
+      ],
+      "seed": 6168
+    },
+    {
+      "filename": "rafael_nadal_cartoon_848x1264_euler8s.png",
+      "name_en": "Rafael Nadal Cartoon",
+      "leaf_id": "rafael_nadal_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé avec raquette en service ou frappe",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Rafael Nadal in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "rafael_nadal_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6175
+    },
+    {
+      "filename": "snowboarder_jump_848x1264_euler8s.png",
+      "name_en": "Snowboarder Jumping",
+      "leaf_id": "snowboarder_jump",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Idem individual_sports + paysage neige",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single snowboarder jumping, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "snowboarder_jump_848x1264_b1_euler8s.png",
+        "snowboarder_jump_848x1264_b2_euler8s.png",
+        "snowboarder_jump_848x1264_b3_euler8s.png"
+      ],
+      "seed": 6182
+    },
+    {
+      "filename": "police_officer_on_duty_848x1264_euler8s.png",
+      "name_en": "Police Officer on Duty",
+      "leaf_id": "police_officer_on_duty",
+      "tier": "Solo humain pose active",
+      "workflow_class": "Solo humain pose active",
+      "technique": "Solo + accessoire signature + énumération anti-bras",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Firefighter validé cas 4. Énumération bras critique."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single police officer on duty, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "police_officer_on_duty_848x1264_b1_euler8s.png",
+        "police_officer_on_duty_848x1264_b2_euler8s.png",
+        "police_officer_on_duty_848x1264_b3_euler8s.png"
+      ],
+      "seed": 6189
+    },
+    {
+      "filename": "erling_haaland_cartoon_848x1264_euler8s.png",
+      "name_en": "Erling Haaland Cartoon",
+      "leaf_id": "erling_haaland_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé en mid-action (Z7 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Pose dynamique → risque membres en trop. Énumérer les bras."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Erling Haaland in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "erling_haaland_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6196
+    },
+    {
+      "filename": "spongebob_squarepants_1024x1024_euler8s.png",
+      "name_en": "SpongeBob SquarePants",
+      "leaf_id": "spongebob_squarepants",
+      "tier": "Solo humain/animal cartoon",
+      "workflow_class": "Solo humain/animal cartoon",
+      "technique": "Personnage en pose iconique",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "IP risk fort (Bluey, Miraculous)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one spongebob squarepants centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "spongebob_squarepants_1024x1024_euler8s.png"
+      ],
+      "seed": 6203
+    },
+    {
+      "filename": "phoenix_rising_from_ashes_848x1264_euler8s.png",
+      "name_en": "Phoenix Rising from Ashes",
+      "leaf_id": "phoenix_rising_from_ashes",
+      "tier": "Solo personnage ou créature",
+      "workflow_class": "Solo personnage ou créature",
+      "technique": "Pose épique + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Dragons : version kid-friendly"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Phoenix Rising from Ashes in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, blood, weapons threatening",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "phoenix_rising_from_ashes_848x1264_euler8s.png"
+      ],
+      "seed": 6210
+    },
+    {
+      "filename": "mike_tyson_cartoon_848x1264_euler8s.png",
+      "name_en": "Mike Tyson Cartoon",
+      "leaf_id": "mike_tyson_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé en pose de combat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "Adapter pour audience enfants 3-12"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Mike Tyson in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, blood, violence",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "mike_tyson_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6217
+    },
+    {
+      "filename": "computer_programmer_1024x1024_euler8s.png",
+      "name_en": "Computer Programmer",
+      "leaf_id": "computer_programmer",
+      "tier": "Solo humain + accessoires",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outils scientifiques",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single computer programmer, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "computer_programmer_1024x1024_euler8s.png"
+      ],
+      "seed": 6224
+    },
+    {
+      "filename": "football_coach_1024x1024_euler8s.png",
+      "name_en": "Football Coach",
+      "leaf_id": "football_coach",
+      "tier": "Solo humain + accessoires",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + sifflet/raquette/etc.",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single football coach, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "football_coach_1024x1024_euler8s.png"
+      ],
+      "seed": 6231
+    },
+    {
+      "filename": "breakdancer_848x1264_euler8s.png",
+      "name_en": "Breakdancer",
+      "leaf_id": "breakdancer",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Solo + pose dynamique (jambes/bras explicites)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "Poses ballet très complexes — tester individuellement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single breakdancer, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "breakdancer_848x1264_b1_euler8s.png",
+        "breakdancer_848x1264_b2_euler8s.png",
+        "breakdancer_848x1264_b3_euler8s.png"
+      ],
+      "seed": 6238
+    },
+    {
+      "filename": "moana_on_ocean_1024x1024_euler8s.png",
+      "name_en": "Moana on the Ocean",
+      "leaf_id": "moana_on_ocean",
+      "tier": "Solo humain (personnalité)",
+      "workflow_class": "Solo humain (personnalité)",
+      "technique": "Personnage nommé OU version générique (cf. risque IP §4.2)",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Haute (pour test), Moyenne (commercial)",
+      "pitfalls": [
+        "IP risk : production version générique pour usage commercial"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Moana on the Ocean in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark expression",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "moana_on_ocean_1024x1024_euler8s.png"
+      ],
+      "seed": 6245
+    },
+    {
+      "filename": "stitch_from_lilo_and_stitch_1024x1024_euler8s.png",
+      "name_en": "Stitch from Lilo and Stitch",
+      "leaf_id": "stitch_from_lilo_and_stitch",
+      "tier": "Solo humain (personnalité)",
+      "workflow_class": "Solo humain (personnalité)",
+      "technique": "Personnage nommé OU version générique (cf. risque IP §4.2)",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Haute (pour test), Moyenne (commercial)",
+      "pitfalls": [
+        "IP risk : production version générique pour usage commercial"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Stitch from Lilo and Stitch in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark expression",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "stitch_from_lilo_and_stitch_1024x1024_euler8s.png"
+      ],
+      "seed": 6252
+    },
+    {
+      "filename": "kid_yoga_pose_848x1264_euler8s.png",
+      "name_en": "Kid Yoga Pose",
+      "leaf_id": "kid_yoga_pose",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Solo + activité physique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Posture explicite (Insight D) pour mouvements"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single kid yoga pose, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "kid_yoga_pose_848x1264_b1_euler8s.png",
+        "kid_yoga_pose_848x1264_b2_euler8s.png",
+        "kid_yoga_pose_848x1264_b3_euler8s.png"
+      ],
+      "seed": 6259
+    },
+    {
+      "filename": "water_skiing_1376x768_euler8s.png",
+      "name_en": "Water Skiing",
+      "leaf_id": "water_skiing",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Idem + horizon mer (P3 validé)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Horizon mer comme séparation 2 plans naturelle"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single water skiing, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1376,
+        768
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "water_skiing_1376x768_b1_euler8s.png",
+        "water_skiing_1376x768_b2_euler8s.png",
+        "water_skiing_1376x768_b3_euler8s.png"
+      ],
+      "seed": 6266
+    },
+    {
+      "filename": "child_combing_hair_1024x1024_euler8s.png",
+      "name_en": "Child Combing Hair",
+      "leaf_id": "child_combing_hair",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Solo + accessoire hygiène",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Brushing teeth validé Phase B1"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single child combing hair, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "child_combing_hair_1024x1024_b1_euler8s.png",
+        "child_combing_hair_1024x1024_b2_euler8s.png",
+        "child_combing_hair_1024x1024_b3_euler8s.png"
+      ],
+      "seed": 6273
+    },
+    {
+      "filename": "ladybug_miraculous_1024x1024_euler8s.png",
+      "name_en": "Ladybug Miraculous",
+      "leaf_id": "ladybug_miraculous",
+      "tier": "Solo humain/animal cartoon",
+      "workflow_class": "Solo humain/animal cartoon",
+      "technique": "Personnage en pose iconique",
+      "pipeline": "ERNIE direct (test) / Production version générique",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "IP risk fort (Bluey, Miraculous)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one ladybug miraculous centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "ladybug_miraculous_1024x1024_euler8s.png"
+      ],
+      "seed": 6280
+    },
+    {
+      "filename": "roofer_on_roof_1024x1024_euler8s.png",
+      "name_en": "Roofer on Roof",
+      "leaf_id": "roofer_on_roof",
+      "tier": "Solo humain + accessoires",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outil + pose active",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Énumérer bras pour pose active"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single roofer on roof, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "roofer_on_roof_1024x1024_euler8s.png"
+      ],
+      "seed": 6287
+    },
+    {
+      "filename": "popeye_the_sailor_1024x1024_euler8s.png",
+      "name_en": "Popeye the Sailor",
+      "leaf_id": "popeye_the_sailor",
+      "tier": "Solo humain/animal cartoon",
+      "workflow_class": "Solo humain/animal cartoon",
+      "technique": "Personnage en pose iconique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "IP variable selon âge des personnages"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one popeye the sailor centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "popeye_the_sailor_1024x1024_euler8s.png"
+      ],
+      "seed": 6294
+    },
+    {
+      "filename": "chef_cooking_1024x1024_euler8s.png",
+      "name_en": "Chef Cooking",
+      "leaf_id": "chef_cooking",
+      "tier": "Solo humain + accessoires",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outils cuisine",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "4+ chefs : frise 1×4 obligatoire (cas Z5b)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single chef cooking, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "chef_cooking_1024x1024_euler8s.png"
+      ],
+      "seed": 6301
+    },
+    {
+      "filename": "firefighter_superhero_848x1264_euler8s.png",
+      "name_en": "Firefighter Superhero",
+      "leaf_id": "firefighter_superhero",
+      "tier": "Solo humain (générique)",
+      "workflow_class": "Solo humain (générique)",
+      "technique": "Super-héros générique sans IP",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single firefighter superhero, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, dark, weapons",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "firefighter_superhero_848x1264_euler8s.png"
+      ],
+      "seed": 6308
+    },
+    {
+      "filename": "kylian_mbappe_cartoon_848x1264_euler8s.png",
+      "name_en": "Kylian Mbappe Cartoon",
+      "leaf_id": "kylian_mbappe_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé en mid-action (Z7 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Pose dynamique → risque membres en trop. Énumérer les bras."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Kylian Mbappe in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "kylian_mbappe_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6315
+    },
+    {
+      "filename": "canelo_alvarez_cartoon_848x1264_euler8s.png",
+      "name_en": "Canelo Alvarez Cartoon",
+      "leaf_id": "canelo_alvarez_cartoon",
+      "tier": "Solo humain (personnalité) + action figée",
+      "workflow_class": "Solo humain (personnalité) + action figée",
+      "technique": "Personnage nommé en pose de combat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "Adapter pour audience enfants 3-12"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Canelo Alvarez in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, blood, violence",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "canelo_alvarez_cartoon_848x1264_euler8s.png"
+      ],
+      "seed": 6322
+    },
+    {
+      "filename": "tintin_reporter_1024x1024_euler8s.png",
+      "name_en": "Tintin Reporter",
+      "leaf_id": "tintin_reporter",
+      "tier": "Solo humain/animal cartoon",
+      "workflow_class": "Solo humain/animal cartoon",
+      "technique": "Personnage en pose iconique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "IP variable selon âge des personnages"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one tintin reporter centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "batch_size": 1,
+      "risk_anatomy": false,
+      "batch_filenames": [
+        "tintin_reporter_1024x1024_euler8s.png"
+      ],
+      "seed": 6329
+    },
+    {
+      "filename": "sailing_boat_1376x768_euler8s.png",
+      "name_en": "Sailing Boat Race",
+      "leaf_id": "sailing_boat",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Idem + horizon mer (P3 validé)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Horizon mer comme séparation 2 plans naturelle"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single sailing boat race, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "resolution": [
+        1376,
+        768
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "sailing_boat_1376x768_b1_euler8s.png",
+        "sailing_boat_1376x768_b2_euler8s.png",
+        "sailing_boat_1376x768_b3_euler8s.png"
+      ],
+      "seed": 6336
+    },
+    {
+      "filename": "tango_couple_848x1264_euler8s.png",
+      "name_en": "Tango Couple",
+      "leaf_id": "tango_couple",
+      "tier": "Solo humain en action",
+      "workflow_class": "Solo humain en action",
+      "technique": "Solo + pose dynamique (jambes/bras explicites)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "pitfalls": [
+        "Poses ballet très complexes — tester individuellement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single tango couple, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "batch_size": 3,
+      "risk_anatomy": true,
+      "batch_filenames": [
+        "tango_couple_848x1264_b1_euler8s.png",
+        "tango_couple_848x1264_b2_euler8s.png",
+        "tango_couple_848x1264_b3_euler8s.png"
+      ],
+      "seed": 6343
+    }
+  ]
+}

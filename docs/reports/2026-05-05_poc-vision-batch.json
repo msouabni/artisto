@@ -1,0 +1,1072 @@
+{
+  "poc": "vision-batch",
+  "date": "2026-05-05",
+  "model": "gemma4:26b",
+  "ollama_base_url": "http://100.65.24.35:11434",
+  "n_images": 6,
+  "vision_images": [
+    {
+      "path": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+      "ground_truth": "poor",
+      "expected_issues": [
+        "incomplete",
+        "not_line_art"
+      ]
+    },
+    {
+      "path": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+      "ground_truth": "poor",
+      "expected_issues": [
+        "has_color"
+      ]
+    },
+    {
+      "path": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+      "ground_truth": "good",
+      "expected_issues": []
+    },
+    {
+      "path": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+      "ground_truth": "good",
+      "expected_issues": []
+    },
+    {
+      "path": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+      "ground_truth": "good",
+      "expected_issues": []
+    },
+    {
+      "path": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+      "ground_truth": "good",
+      "expected_issues": []
+    }
+  ],
+  "configs": {
+    "unit": {
+      "summary": {
+        "label": "unit (1×6)",
+        "batch_size": 1,
+        "n_calls": 6,
+        "total_latency_s": 116.36,
+        "latency_per_image_s": 19.39,
+        "verdicts_correct": 6,
+        "n_images": 6,
+        "json_ok_calls": 6,
+        "json_ko_calls": 0,
+        "missing_in_response": 0,
+        "issues_overlap_avg": 1.0
+      },
+      "call_records": [
+        {
+          "chunk_idx": 1,
+          "n_images": 1,
+          "raw": "```json\n[\n  {\n    \"image_index\": 1,\n    \"verdict\": \"poor\",\n    \"confidence\": 100,\n    \"issues\": [\n      \"not_line_art\",\n      \"incomplete\"\n    ]\n  }\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "poor",
+              "confidence": 100,
+              "issues": [
+                "not_line_art",
+                "incomplete"
+              ]
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+              "ground_truth": "poor",
+              "expected_issues": [
+                "incomplete",
+                "not_line_art"
+              ],
+              "verdict": "poor",
+              "verdict_correct": true,
+              "issues_returned": [
+                "not_line_art",
+                "incomplete"
+              ],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 27.4526104927063
+        },
+        {
+          "chunk_idx": 2,
+          "n_images": 1,
+          "raw": "```json\n[\n  {\n    \"image_index\": 1,\n    \"verdict\": \"poor\",\n    \"confidence\": 100,\n    \"issues\": [\n      \"has_color\",\n      \"not_line_art\"\n    ]\n  }\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "poor",
+              "confidence": 100,
+              "issues": [
+                "has_color",
+                "not_line_art"
+              ]
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+              "ground_truth": "poor",
+              "expected_issues": [
+                "has_color"
+              ],
+              "verdict": "poor",
+              "verdict_correct": true,
+              "issues_returned": [
+                "has_color",
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 17.771058320999146
+        },
+        {
+          "chunk_idx": 3,
+          "n_images": 1,
+          "raw": "[{\"image_index\": 1, \"verdict\": \"good\", \"confidence\": 100, \"issues\": []}]",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "good",
+              "confidence": 100,
+              "issues": []
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "good",
+              "verdict_correct": true,
+              "issues_returned": [],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 13.894059181213379
+        },
+        {
+          "chunk_idx": 4,
+          "n_images": 1,
+          "raw": "```json\n[\n  {\n    \"image_index\": 1,\n    \"verdict\": \"good\",\n    \"confidence\": 100,\n    \"issues\": []\n  }\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "good",
+              "confidence": 100,
+              "issues": []
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "good",
+              "verdict_correct": true,
+              "issues_returned": [],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 18.497138261795044
+        },
+        {
+          "chunk_idx": 5,
+          "n_images": 1,
+          "raw": "```json\n[\n  {\n    \"image_index\": 1,\n    \"verdict\": \"good\",\n    \"confidence\": 100,\n    \"issues\": []\n  }\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "good",
+              "confidence": 100,
+              "issues": []
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "good",
+              "verdict_correct": true,
+              "issues_returned": [],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 23.75641393661499
+        },
+        {
+          "chunk_idx": 6,
+          "n_images": 1,
+          "raw": "```json\n[\n  {\n    \"image_index\": 1,\n    \"verdict\": \"good\",\n    \"confidence\": 100,\n    \"issues\": []\n  }\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "good",
+              "confidence": 100,
+              "issues": []
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "good",
+              "verdict_correct": true,
+              "issues_returned": [],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 14.985426902770996
+        }
+      ],
+      "evaluations": [
+        {
+          "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+          "ground_truth": "poor",
+          "expected_issues": [
+            "incomplete",
+            "not_line_art"
+          ],
+          "verdict": "poor",
+          "verdict_correct": true,
+          "issues_returned": [
+            "not_line_art",
+            "incomplete"
+          ],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+          "ground_truth": "poor",
+          "expected_issues": [
+            "has_color"
+          ],
+          "verdict": "poor",
+          "verdict_correct": true,
+          "issues_returned": [
+            "has_color",
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "good",
+          "verdict_correct": true,
+          "issues_returned": [],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "good",
+          "verdict_correct": true,
+          "issues_returned": [],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "good",
+          "verdict_correct": true,
+          "issues_returned": [],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "good",
+          "verdict_correct": true,
+          "issues_returned": [],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        }
+      ]
+    },
+    "batch3": {
+      "summary": {
+        "label": "batch 3",
+        "batch_size": 3,
+        "n_calls": 2,
+        "total_latency_s": 96.55,
+        "latency_per_image_s": 16.09,
+        "verdicts_correct": 5,
+        "n_images": 6,
+        "json_ok_calls": 2,
+        "json_ko_calls": 0,
+        "missing_in_response": 0,
+        "issues_overlap_avg": 0.83
+      },
+      "call_records": [
+        {
+          "chunk_idx": 1,
+          "n_images": 3,
+          "raw": "```json\n[\n  {\n    \"image_index\": 1,\n    \"verdict\": \"poor\",\n    \"confidence\": 100,\n    \"issues\": [\n      \"not_line_art\",\n      \"incomplete\"\n    ]\n  },\n  {\n    \"image_index\": 2,\n    \"verdict\": \"poor\",\n    \"confidence\": 100,\n    \"issues\": [\n      \"not_line_art\",\n      \"has_color\"\n    ]\n  },\n  {\n    \"image_index\": 3,\n    \"verdict\": \"poor\",\n    \"confidence\": 100,\n    \"issues\": [\n      \"not_line_art\",\n      \"has_color\"\n    ]\n  }\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "poor",
+              "confidence": 100,
+              "issues": [
+                "not_line_art",
+                "incomplete"
+              ]
+            },
+            {
+              "image_index": 2,
+              "verdict": "poor",
+              "confidence": 100,
+              "issues": [
+                "not_line_art",
+                "has_color"
+              ]
+            },
+            {
+              "image_index": 3,
+              "verdict": "poor",
+              "confidence": 100,
+              "issues": [
+                "not_line_art",
+                "has_color"
+              ]
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+              "ground_truth": "poor",
+              "expected_issues": [
+                "incomplete",
+                "not_line_art"
+              ],
+              "verdict": "poor",
+              "verdict_correct": true,
+              "issues_returned": [
+                "not_line_art",
+                "incomplete"
+              ],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+              "ground_truth": "poor",
+              "expected_issues": [
+                "has_color"
+              ],
+              "verdict": "poor",
+              "verdict_correct": true,
+              "issues_returned": [
+                "not_line_art",
+                "has_color"
+              ],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "poor",
+              "verdict_correct": false,
+              "issues_returned": [
+                "not_line_art",
+                "has_color"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 100,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 49.94497728347778
+        },
+        {
+          "chunk_idx": 2,
+          "n_images": 3,
+          "raw": "```json\n[\n  {\n    \"image_index\": 1,\n    \"verdict\": \"good\",\n    \"confidence\": 100,\n    \"issues\": []\n  },\n  {\n    \"image_index\": 2,\n    \"verdict\": \"good\",\n    \"confidence\": 100,\n    \"issues\": []\n  },\n  {\n    \"image_index\": 3,\n    \"verdict\": \"good\",\n    \"confidence\": 100,\n    \"issues\": []\n  }\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "good",
+              "confidence": 100,
+              "issues": []
+            },
+            {
+              "image_index": 2,
+              "verdict": "good",
+              "confidence": 100,
+              "issues": []
+            },
+            {
+              "image_index": 3,
+              "verdict": "good",
+              "confidence": 100,
+              "issues": []
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "good",
+              "verdict_correct": true,
+              "issues_returned": [],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "good",
+              "verdict_correct": true,
+              "issues_returned": [],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "good",
+              "verdict_correct": true,
+              "issues_returned": [],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 46.60610818862915
+        }
+      ],
+      "evaluations": [
+        {
+          "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+          "ground_truth": "poor",
+          "expected_issues": [
+            "incomplete",
+            "not_line_art"
+          ],
+          "verdict": "poor",
+          "verdict_correct": true,
+          "issues_returned": [
+            "not_line_art",
+            "incomplete"
+          ],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+          "ground_truth": "poor",
+          "expected_issues": [
+            "has_color"
+          ],
+          "verdict": "poor",
+          "verdict_correct": true,
+          "issues_returned": [
+            "not_line_art",
+            "has_color"
+          ],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "poor",
+          "verdict_correct": false,
+          "issues_returned": [
+            "not_line_art",
+            "has_color"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "good",
+          "verdict_correct": true,
+          "issues_returned": [],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "good",
+          "verdict_correct": true,
+          "issues_returned": [],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "good",
+          "verdict_correct": true,
+          "issues_returned": [],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        }
+      ]
+    },
+    "batch5": {
+      "summary": {
+        "label": "batch 5",
+        "batch_size": 5,
+        "n_calls": 2,
+        "total_latency_s": 108.54,
+        "latency_per_image_s": 18.09,
+        "verdicts_correct": 3,
+        "n_images": 6,
+        "json_ok_calls": 2,
+        "json_ko_calls": 0,
+        "missing_in_response": 0,
+        "issues_overlap_avg": 0.33
+      },
+      "call_records": [
+        {
+          "chunk_idx": 1,
+          "n_images": 5,
+          "raw": "```json\n[\n  {\n    \"image_index\": 1,\n    \"verdict\": \"poor\",\n    \"confidence\": 100,\n    \"issues\": [\n      \"not_line_art\",\n      \"incomplete\"\n    ]\n  },\n  {\n    \"image_index\": 2,\n    \"verdict\": \"poor\",\n    \"confidence\": 95,\n    \"issues\": [\n      \"not_line_art\"\n    ]\n  },\n  {\n    \"image_index\": 3,\n    \"verdict\": \"poor\",\n    \"confidence\": 95,\n    \"issues\": [\n      \"not_line_art\"\n    ]\n  },\n  {\n    \"image_index\": 4,\n    \"verdict\": \"poor\",\n    \"confidence\": 95,\n    \"issues\": [\n      \"not_line_art\"\n    ]\n  },\n  {\n    \"image_index\": 5,\n    \"verdict\": \"poor\",\n    \"confidence\": 95,\n    \"issues\": [\n      \"not_line_art\"\n    ]\n  }\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "poor",
+              "confidence": 100,
+              "issues": [
+                "not_line_art",
+                "incomplete"
+              ]
+            },
+            {
+              "image_index": 2,
+              "verdict": "poor",
+              "confidence": 95,
+              "issues": [
+                "not_line_art"
+              ]
+            },
+            {
+              "image_index": 3,
+              "verdict": "poor",
+              "confidence": 95,
+              "issues": [
+                "not_line_art"
+              ]
+            },
+            {
+              "image_index": 4,
+              "verdict": "poor",
+              "confidence": 95,
+              "issues": [
+                "not_line_art"
+              ]
+            },
+            {
+              "image_index": 5,
+              "verdict": "poor",
+              "confidence": 95,
+              "issues": [
+                "not_line_art"
+              ]
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+              "ground_truth": "poor",
+              "expected_issues": [
+                "incomplete",
+                "not_line_art"
+              ],
+              "verdict": "poor",
+              "verdict_correct": true,
+              "issues_returned": [
+                "not_line_art",
+                "incomplete"
+              ],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+              "ground_truth": "poor",
+              "expected_issues": [
+                "has_color"
+              ],
+              "verdict": "poor",
+              "verdict_correct": true,
+              "issues_returned": [
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 95,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "poor",
+              "verdict_correct": false,
+              "issues_returned": [
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 95,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "poor",
+              "verdict_correct": false,
+              "issues_returned": [
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 95,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "poor",
+              "verdict_correct": false,
+              "issues_returned": [
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 95,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 93.74467515945435
+        },
+        {
+          "chunk_idx": 2,
+          "n_images": 1,
+          "raw": "```json\n[\n  {\n    \"image_index\": 1,\n    \"verdict\": \"good\",\n    \"confidence\": 100,\n    \"issues\": []\n  }\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "good",
+              "confidence": 100,
+              "issues": []
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "good",
+              "verdict_correct": true,
+              "issues_returned": [],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 14.79367208480835
+        }
+      ],
+      "evaluations": [
+        {
+          "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+          "ground_truth": "poor",
+          "expected_issues": [
+            "incomplete",
+            "not_line_art"
+          ],
+          "verdict": "poor",
+          "verdict_correct": true,
+          "issues_returned": [
+            "not_line_art",
+            "incomplete"
+          ],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+          "ground_truth": "poor",
+          "expected_issues": [
+            "has_color"
+          ],
+          "verdict": "poor",
+          "verdict_correct": true,
+          "issues_returned": [
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 95,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "poor",
+          "verdict_correct": false,
+          "issues_returned": [
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 95,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "poor",
+          "verdict_correct": false,
+          "issues_returned": [
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 95,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "poor",
+          "verdict_correct": false,
+          "issues_returned": [
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 95,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "good",
+          "verdict_correct": true,
+          "issues_returned": [],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        }
+      ]
+    },
+    "batch6": {
+      "summary": {
+        "label": "batch 6 (all)",
+        "batch_size": 6,
+        "n_calls": 1,
+        "total_latency_s": 87.77,
+        "latency_per_image_s": 14.63,
+        "verdicts_correct": 2,
+        "n_images": 6,
+        "json_ok_calls": 1,
+        "json_ko_calls": 0,
+        "missing_in_response": 0,
+        "issues_overlap_avg": 0.17
+      },
+      "call_records": [
+        {
+          "chunk_idx": 1,
+          "n_images": 6,
+          "raw": "```json\n[\n  {\"image_index\": 1, \"verdict\": \"poor\", \"confidence\": 100, \"issues\": [\"not_line_art\", \"incomplete\"]},\n  {\"image_index\": 2, \"verdict\": \"poor\", \"confidence\": 95, \"issues\": [\"not_line_art\"]},\n  {\"image_index\": 3, \"verdict\": \"poor\", \"confidence\": 95, \"issues\": [\"not_line_art\"]},\n  {\"image_index\": 4, \"verdict\": \"poor\", \"confidence\": 95, \"issues\": [\"not_line_art\"]},\n  {\"image_index\": 5, \"verdict\": \"poor\", \"confidence\": 95, \"issues\": [\"not_line_art\"]},\n  {\"image_index\": 6, \"verdict\": \"poor\", \"confidence\": 95, \"issues\": [\"not_line_art\"]}\n]\n```",
+          "json_ok": true,
+          "verdicts_returned": [
+            {
+              "image_index": 1,
+              "verdict": "poor",
+              "confidence": 100,
+              "issues": [
+                "not_line_art",
+                "incomplete"
+              ]
+            },
+            {
+              "image_index": 2,
+              "verdict": "poor",
+              "confidence": 95,
+              "issues": [
+                "not_line_art"
+              ]
+            },
+            {
+              "image_index": 3,
+              "verdict": "poor",
+              "confidence": 95,
+              "issues": [
+                "not_line_art"
+              ]
+            },
+            {
+              "image_index": 4,
+              "verdict": "poor",
+              "confidence": 95,
+              "issues": [
+                "not_line_art"
+              ]
+            },
+            {
+              "image_index": 5,
+              "verdict": "poor",
+              "confidence": 95,
+              "issues": [
+                "not_line_art"
+              ]
+            },
+            {
+              "image_index": 6,
+              "verdict": "poor",
+              "confidence": 95,
+              "issues": [
+                "not_line_art"
+              ]
+            }
+          ],
+          "evaluations": [
+            {
+              "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+              "ground_truth": "poor",
+              "expected_issues": [
+                "incomplete",
+                "not_line_art"
+              ],
+              "verdict": "poor",
+              "verdict_correct": true,
+              "issues_returned": [
+                "not_line_art",
+                "incomplete"
+              ],
+              "issues_overlap_with_expected": 1.0,
+              "confidence": 100,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+              "ground_truth": "poor",
+              "expected_issues": [
+                "has_color"
+              ],
+              "verdict": "poor",
+              "verdict_correct": true,
+              "issues_returned": [
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 95,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "poor",
+              "verdict_correct": false,
+              "issues_returned": [
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 95,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "poor",
+              "verdict_correct": false,
+              "issues_returned": [
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 95,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "poor",
+              "verdict_correct": false,
+              "issues_returned": [
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 95,
+              "missing_in_response": false
+            },
+            {
+              "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+              "ground_truth": "good",
+              "expected_issues": [],
+              "verdict": "poor",
+              "verdict_correct": false,
+              "issues_returned": [
+                "not_line_art"
+              ],
+              "issues_overlap_with_expected": 0.0,
+              "confidence": 95,
+              "missing_in_response": false
+            }
+          ],
+          "latency_s": 87.76748275756836
+        }
+      ],
+      "evaluations": [
+        {
+          "image": "data/outputs/animaux_chat_collier_job_gen_1773358396932.png",
+          "ground_truth": "poor",
+          "expected_issues": [
+            "incomplete",
+            "not_line_art"
+          ],
+          "verdict": "poor",
+          "verdict_correct": true,
+          "issues_returned": [
+            "not_line_art",
+            "incomplete"
+          ],
+          "issues_overlap_with_expected": 1.0,
+          "confidence": 100,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/adventure_in_scooby-doo-island_job_gen_1776469080378352300_4.png",
+          "ground_truth": "poor",
+          "expected_issues": [
+            "has_color"
+          ],
+          "verdict": "poor",
+          "verdict_correct": true,
+          "issues_returned": [
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 95,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_bath_cat_job_gen_1776983831725453200_3.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "poor",
+          "verdict_correct": false,
+          "issues_returned": [
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 95,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_party_decor_job_gen_1776469535491823500_6.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "poor",
+          "verdict_correct": false,
+          "issues_returned": [
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 95,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animaux_chat_biblioth_que_job_gen_1773480548607.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "poor",
+          "verdict_correct": false,
+          "issues_returned": [
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 95,
+          "missing_in_response": false
+        },
+        {
+          "image": "data/outputs/animals_fairy_cat_job_gen_1776986811626965500_5.png",
+          "ground_truth": "good",
+          "expected_issues": [],
+          "verdict": "poor",
+          "verdict_correct": false,
+          "issues_returned": [
+            "not_line_art"
+          ],
+          "issues_overlap_with_expected": 0.0,
+          "confidence": 95,
+          "missing_in_response": false
+        }
+      ]
+    }
+  }
+}

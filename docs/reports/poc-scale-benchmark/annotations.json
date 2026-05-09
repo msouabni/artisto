@@ -142,9 +142,11 @@
       "updated_at": "2026-05-08T23:55:09.337423+00:00"
     },
     "african_elephant_1024x1024_euler8s.png": {
-      "score": 6,
+      "score": 5,
       "score_legacy": 10,
-      "image_tags": [],
+      "image_tags": [
+        "image_compo_bonne"
+      ],
       "prompt_tags": [],
       "custom_tags": [],
       "flags": {
@@ -153,7 +155,7 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-08T23:55:18.039701+00:00"
+      "updated_at": "2026-05-09T16:34:52.991060+00:00"
     },
     "captain_marvel_848x1264_euler8s.png": {
       "score": 1,
@@ -208,15 +210,20 @@
         "image_physique_pb",
         "image_prompt_non_respecte"
       ],
-      "prompt_tags": [],
-      "custom_tags": [],
+      "prompt_tags": [
+        "prompt_approximatif"
+      ],
+      "custom_tags": [
+        "deformation sujet",
+        "on a donner un choix important"
+      ],
       "flags": {
-        "pattern": false,
-        "pattern_note": "",
+        "pattern": true,
+        "pattern_note": "on a donne le choix du sujet au modele du coup il plante",
         "sample": false,
-        "publishable": null
+        "publishable": false
       },
-      "updated_at": "2026-05-08T23:56:40.811847+00:00"
+      "updated_at": "2026-05-09T16:39:46.003355+00:00"
     },
     "city_car_1024x1024_euler8s.png": {
       "score": 6,
@@ -235,7 +242,9 @@
     "arctic_fox_1024x1024_euler8s.png": {
       "score": 6,
       "score_legacy": 10,
-      "image_tags": [],
+      "image_tags": [
+        "image_compo_bonne"
+      ],
       "prompt_tags": [],
       "custom_tags": [],
       "flags": {
@@ -244,7 +253,7 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-08T23:56:58.115979+00:00"
+      "updated_at": "2026-05-09T16:41:02.842609+00:00"
     },
     "mirabel_from_encanto_1024x1024_euler8s.png": {
       "score": 6,
@@ -277,7 +286,9 @@
     "armadillo_1024x1024_euler8s.png": {
       "score": 6,
       "score_legacy": 10,
-      "image_tags": [],
+      "image_tags": [
+        "image_compo_bonne"
+      ],
       "prompt_tags": [],
       "custom_tags": [],
       "flags": {
@@ -286,7 +297,7 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-08T23:57:49.531998+00:00"
+      "updated_at": "2026-05-09T16:41:16.167255+00:00"
     },
     "robot_superhero_848x1264_euler8s.png": {
       "score": 6,
@@ -398,14 +409,16 @@
         "image_duplication"
       ],
       "prompt_tags": [],
-      "custom_tags": [],
+      "custom_tags": [
+        "sujet en double"
+      ],
       "flags": {
-        "pattern": false,
-        "pattern_note": "",
+        "pattern": true,
+        "pattern_note": "meilleur avec negative : no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, legs, four legs, paws, hooves, land animal limbs, walking pose, standing pose",
         "sample": false,
-        "publishable": null
+        "publishable": false
       },
-      "updated_at": "2026-05-09T00:00:54.976548+00:00"
+      "updated_at": "2026-05-09T16:48:09.843710+00:00"
     },
     "double_decker_bus_1024x1024_euler8s.png": {
       "score": 5,
@@ -2856,20 +2869,23 @@
       "updated_at": "2026-05-09T04:14:17.874223+00:00"
     },
     "bactrian_camel_1024x1024_euler8s_v2.png": {
-      "score": 1,
+      "score": 5,
       "score_legacy": 1,
       "image_tags": [
         "image_duplication"
       ],
       "prompt_tags": [],
-      "custom_tags": [],
+      "custom_tags": [
+        "distinction race animal",
+        "sujets en double"
+      ],
       "flags": {
         "pattern": false,
         "pattern_note": "",
         "sample": false,
-        "publishable": null
+        "publishable": false
       },
-      "updated_at": "2026-05-09T04:18:49.063632+00:00"
+      "updated_at": "2026-05-09T16:49:01.670134+00:00"
     },
     "chimpanzee_1024x1024_euler8s_v2.png": {
       "score": 6,
@@ -3040,34 +3056,50 @@
       "score_legacy": 9,
       "image_tags": [],
       "prompt_tags": [],
-      "custom_tags": [],
+      "custom_tags": [
+        "traits epais"
+      ],
       "flags": {
         "pattern": false,
         "pattern_note": "",
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-09T15:23:24.032138+00:00"
+      "updated_at": "2026-05-09T16:33:05.053315+00:00"
     },
     "advanced_mandala_for_teens_1024x1024_euler8s.png": {
       "score": 5,
       "score_legacy": 9,
-      "image_tags": [],
-      "prompt_tags": [],
-      "custom_tags": [],
+      "image_tags": [
+        "image_compo_bonne",
+        "image_coherente",
+        "image_creative"
+      ],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [
+        "incoherent angle"
+      ],
       "flags": {
         "pattern": false,
         "pattern_note": "",
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-09T09:28:47.180852+00:00"
+      "updated_at": "2026-05-09T16:34:33.499949+00:00"
     },
     "ai_brain_with_circuits_1024x1024_euler8s.png": {
       "score": 4,
       "score_legacy": 7,
-      "image_tags": [],
-      "prompt_tags": [],
+      "image_tags": [
+        "image_compo_bonne",
+        "image_creative"
+      ],
+      "prompt_tags": [
+        "prompt_interessant",
+        "prompt_creatif"
+      ],
       "custom_tags": [],
       "flags": {
         "pattern": false,
@@ -3075,7 +3107,7 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-09T09:28:57.218261+00:00"
+      "updated_at": "2026-05-09T16:35:07.427325+00:00"
     },
     "aladdin_with_magic_lamp_1024x1024_euler8s.png": {
       "score": 5,
@@ -3090,6 +3122,162 @@
         "publishable": true
       },
       "updated_at": "2026-05-09T09:29:08.380465+00:00"
+    },
+    "angry_child_face_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "variations non significative"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T16:35:54.835020+00:00"
+    },
+    "animal_mandala_lion_head_1024x1024_euler8s.png": {
+      "score": null,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_creative"
+      ],
+      "prompt_tags": [
+        "prompt_interessant"
+      ],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T16:36:10.201247+00:00"
+    },
+    "antique_radio_set_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [
+        "image_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "tramage en gris"
+      ],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "on peut demader les motifs de tramage soit en noir si on les fait",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T16:40:53.509388+00:00"
+    },
+    "astronaut_floating_in_space_848x1264_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "meilleur resultat avec negative = no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, legs, four legs, paws, hooves, land animal limbs, walking pose, standing pose",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T16:45:11.738045+00:00"
+    },
+    "astronaut_walking_on_moon_848x1264_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T16:45:42.069494+00:00"
+    },
+    "attic_with_old_objects_1024x1024_euler8s.png": {
+      "score": null,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_coherente",
+        "image_creative"
+      ],
+      "prompt_tags": [
+        "prompt_interessant",
+        "prompt_creatif"
+      ],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "axe de production",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T16:46:15.519003+00:00"
+    },
+    "atv_quad_bike_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T16:46:42.549487+00:00"
+    },
+    "baby_first_year_1376x768_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [
+        "prompt_ambigu",
+        "prompt_approximatif"
+      ],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T16:47:03.057871+00:00"
+    },
+    "balanced_lunch_plate_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_incomprehensible",
+        "image_prompt_non_respecte"
+      ],
+      "prompt_tags": [
+        "prompt_approximatif"
+      ],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:02:05.178921+00:00"
     }
   },
   "schema_version": "v2"

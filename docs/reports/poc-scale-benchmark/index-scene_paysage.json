@@ -1,0 +1,206 @@
+{
+  "source": "workflow_class='Scène paysage' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Scène paysage",
+  "subjects": [
+    {
+      "filename": "tropical_beach_with_palm_trees_1376x768_euler8s.png",
+      "name_en": "Tropical Beach with Palm Trees",
+      "leaf_id": "tropical_beach_with_palm_trees",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tropical beach with palm trees scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9910
+    },
+    {
+      "filename": "snowy_mountain_peaks_1376x768_euler8s.png",
+      "name_en": "Snowy Mountain Peaks",
+      "leaf_id": "snowy_mountain_peaks",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a snowy mountain peaks scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9917
+    },
+    {
+      "filename": "lavender_fields_provence_1376x768_euler8s.png",
+      "name_en": "Lavender Fields in Provence",
+      "leaf_id": "lavender_fields_provence",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a lavender fields in provence scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9924
+    },
+    {
+      "filename": "polar_ice_landscape_1376x768_euler8s.png",
+      "name_en": "Polar Ice Landscape",
+      "leaf_id": "polar_ice_landscape",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a polar ice landscape scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9931
+    },
+    {
+      "filename": "sahara_desert_dunes_1376x768_euler8s.png",
+      "name_en": "Sahara Desert Dunes",
+      "leaf_id": "sahara_desert_dunes",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a sahara desert dunes scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9938
+    },
+    {
+      "filename": "rice_paddy_terraces_1376x768_euler8s.png",
+      "name_en": "Rice Paddy Terraces",
+      "leaf_id": "rice_paddy_terraces",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a rice paddy terraces scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9945
+    },
+    {
+      "filename": "tropical_rainforest_canopy_1376x768_euler8s.png",
+      "name_en": "Tropical Rainforest Canopy",
+      "leaf_id": "tropical_rainforest_canopy",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tropical rainforest canopy scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9952
+    },
+    {
+      "filename": "savanna_with_acacia_trees_1376x768_euler8s.png",
+      "name_en": "Savanna with Acacia Trees",
+      "leaf_id": "savanna_with_acacia_trees",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a savanna with acacia trees scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9959
+    },
+    {
+      "filename": "river_with_waterfall_1376x768_euler8s.png",
+      "name_en": "River with Waterfall",
+      "leaf_id": "river_with_waterfall",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a river with waterfall scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9966
+    },
+    {
+      "filename": "volcanic_landscape_lava_1376x768_euler8s.png",
+      "name_en": "Volcanic Landscape with Lava",
+      "leaf_id": "volcanic_landscape_lava",
+      "tier": "Scène paysage",
+      "workflow_class": "Scène paysage",
+      "technique": "2 plans avec horizon (P3 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 15 tropical_beach : oiseau debout (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a volcanic landscape with lava scene divided by a horizon line across the middle of the page, in the upper half elements of the sky fully visible, in the lower half elements of the ground or water fully visible, the horizon line clearly drawn as a continuous line, all elements drawn with the same uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9973
+    }
+  ]
+}

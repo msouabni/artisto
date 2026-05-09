@@ -1,0 +1,200 @@
+{
+  "source": "workflow_class='Solo humain en pose' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo humain en pose",
+  "subjects": [
+    {
+      "filename": "pilates_exercise_848x1264_euler8s.png",
+      "name_en": "Pilates Exercise",
+      "leaf_id": "pilates_exercise",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Pose statique précise",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Tree pose validé Phase B5. Étendre aux autres poses."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in pilates exercise, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, extra arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10071
+    },
+    {
+      "filename": "growth_mindset_brain_with_plant_848x1264_euler8s.png",
+      "name_en": "Growth Mindset Brain with Plant",
+      "leaf_id": "growth_mindset_brain_with_plant",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Solo + pose calme/méditation",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in growth mindset brain with plant, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10078
+    },
+    {
+      "filename": "kid_meditating_848x1264_euler8s.png",
+      "name_en": "Kid Meditating",
+      "leaf_id": "kid_meditating",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Pose statique précise",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Tree pose validé Phase B5. Étendre aux autres poses."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in kid meditating, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, extra arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10085
+    },
+    {
+      "filename": "kid_hugging_pillow_safe_848x1264_euler8s.png",
+      "name_en": "Kid Hugging Pillow Safe",
+      "leaf_id": "kid_hugging_pillow_safe",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Solo + pose calme/méditation",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in kid hugging pillow safe, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10092
+    },
+    {
+      "filename": "kid_talking_to_friend_848x1264_euler8s.png",
+      "name_en": "Kid Talking to Friend",
+      "leaf_id": "kid_talking_to_friend",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Solo + pose calme/méditation",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in kid talking to friend, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10099
+    },
+    {
+      "filename": "warrior_pose_yoga_848x1264_euler8s.png",
+      "name_en": "Warrior Pose Yoga",
+      "leaf_id": "warrior_pose_yoga",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Pose statique précise",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Tree pose validé Phase B5. Étendre aux autres poses."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in warrior pose yoga, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, extra arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10106
+    },
+    {
+      "filename": "tree_pose_yoga_848x1264_euler8s.png",
+      "name_en": "Tree Pose Yoga",
+      "leaf_id": "tree_pose_yoga",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Pose statique précise",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Tree pose validé Phase B5. Étendre aux autres poses."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in tree pose yoga, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, extra arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10113
+    },
+    {
+      "filename": "downward_dog_pose_848x1264_euler8s.png",
+      "name_en": "Downward Dog Pose",
+      "leaf_id": "downward_dog_pose",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Pose statique précise",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Tree pose validé Phase B5. Étendre aux autres poses."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in downward dog pose, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, extra arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10120
+    },
+    {
+      "filename": "tai_chi_practice_848x1264_euler8s.png",
+      "name_en": "Tai Chi Practice",
+      "leaf_id": "tai_chi_practice",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Pose statique précise",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Tree pose validé Phase B5. Étendre aux autres poses."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in tai chi practice, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, extra arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10127
+    },
+    {
+      "filename": "lotus_pose_meditation_848x1264_euler8s.png",
+      "name_en": "Lotus Pose Meditation",
+      "leaf_id": "lotus_pose_meditation",
+      "tier": "Solo humain en pose",
+      "workflow_class": "Solo humain en pose",
+      "technique": "Pose statique précise",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Tree pose validé Phase B5. Étendre aux autres poses."
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single person in lotus pose meditation, calm and balanced pose, full body view from the side or three-quarter angle, two arms total, both legs fully visible, simple ground line, peaceful expression, off-center composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, extra arm, extra leg",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10134
+    }
+  ]
+}

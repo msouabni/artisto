@@ -1,0 +1,704 @@
+{
+  "poc": "prompt-chain",
+  "date": "2026-05-05",
+  "models": {
+    "planner": "qwen3:8b",
+    "writer": "qwen3:8b",
+    "validator": "qwen3:8b"
+  },
+  "profile": "kids_coloring_lineart_v1",
+  "workflow": "ernie-image-turbo-q8-api",
+  "success_threshold_score": 75,
+  "success_rate_target": 0.8,
+  "latency_budget_s": 45.0,
+  "concepts": [
+    {
+      "category": "animaux",
+      "taxonomy_anchor": "themes/animaux/animaux_domestiques",
+      "name_en": "Cat in a Library",
+      "keywords": "cat, library, books, bookshelves, reading",
+      "tags_context": "Animaux, Animaux domestiques, Chat"
+    },
+    {
+      "category": "animaux",
+      "taxonomy_anchor": "themes/animaux/animaux_marins",
+      "name_en": "Dolphin near a Coral Reef",
+      "keywords": "dolphin, coral reef, ocean, fish, seaweed",
+      "tags_context": "Animaux, Animaux marins, Dauphin"
+    },
+    {
+      "category": "outils",
+      "taxonomy_anchor": "themes/personnages/metiers",
+      "name_en": "Hammer on a Workbench",
+      "keywords": "hammer, workbench, tools, nails, sawdust",
+      "tags_context": "Personnages, Métiers, Menuisier, Outils"
+    },
+    {
+      "category": "outils",
+      "taxonomy_anchor": "themes/personnages/metiers",
+      "name_en": "Paintbrush in an Art Studio",
+      "keywords": "paintbrush, studio, easel, palette, canvas",
+      "tags_context": "Personnages, Métiers, Artiste, Outils"
+    },
+    {
+      "category": "sports",
+      "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+      "name_en": "Soccer Ball on a Field",
+      "keywords": "soccer ball, field, goal, grass, stadium",
+      "tags_context": "Personnages, Vie quotidienne, Sport, Football"
+    },
+    {
+      "category": "sports",
+      "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+      "name_en": "Skateboard in a Skate Park",
+      "keywords": "skateboard, skate park, ramps, helmet, urban",
+      "tags_context": "Personnages, Vie quotidienne, Sport, Skateboard"
+    },
+    {
+      "category": "personnages_fictifs",
+      "taxonomy_anchor": "themes/personnages/super_heros_originaux",
+      "name_en": "Superhero on a City Rooftop",
+      "keywords": "superhero, cape, rooftop, skyline, mask",
+      "tags_context": "Personnages, Super-héros originaux"
+    },
+    {
+      "category": "personnages_fictifs",
+      "taxonomy_anchor": "themes/personnages/fantasy",
+      "name_en": "Wizard in a Magic Tower",
+      "keywords": "wizard, tower, spellbook, crystal ball, robe",
+      "tags_context": "Personnages, Fantasy, Magicien"
+    },
+    {
+      "category": "corps_humain_geometrie",
+      "taxonomy_anchor": "themes/educatif/formes",
+      "name_en": "Triangle on a School Blackboard",
+      "keywords": "triangle, blackboard, classroom, chalk, geometry",
+      "tags_context": "Éducatif, Formes, Géométrie"
+    },
+    {
+      "category": "corps_humain_geometrie",
+      "taxonomy_anchor": "themes/educatif/science",
+      "name_en": "Skeleton in a Science Lab",
+      "keywords": "skeleton, science lab, anatomy, microscope, beakers",
+      "tags_context": "Éducatif, Science, Corps humain, Anatomie"
+    }
+  ],
+  "results": [
+    {
+      "concept": {
+        "category": "animaux",
+        "taxonomy_anchor": "themes/animaux/animaux_domestiques",
+        "name_en": "Cat in a Library",
+        "keywords": "cat, library, books, bookshelves, reading",
+        "tags_context": "Animaux, Animaux domestiques, Chat"
+      },
+      "errors": [
+        "validator: ValueError: Réponse Ollama non parsable en JSON. Extrait : {\"score\":100,\"checks\":[{\"id\":\"structure\",\"pass\":true,\"detail\":\"Clear scene description followed by explicit style and technical cleanup instructions.\"},{\"id\":\"line_art_constraints\",\"pass\":true,\"detail\":\"Specifies monochrome outlines, no shading/gradients, and describes elements using geometric shape"
+      ],
+      "latencies": {
+        "planner_s": 10.559701681137085,
+        "writer_s": 12.30337381362915
+      },
+      "plan": {
+        "subject": "Cat",
+        "setting": "Library",
+        "props": [
+          "books",
+          "bookshelves",
+          "reading lamp",
+          "armchair",
+          "carpet",
+          "windowpane"
+        ],
+        "composition": "wide shot of cat perched on bookshelf",
+        "mood": "calm and cozy",
+        "constraints": "black-and-white line art only, white background, no color fills, child-safe imagery"
+      },
+      "plan_raw": "{\n  \"subject\": \"Cat\",\n  \"setting\": \"Library\",\n  \"props\": [\"books\", \"bookshelves\", \"reading lamp\", \"armchair\", \"carpet\", \"windowpane\"],\n  \"composition\": \"wide shot of cat perched on bookshelf\",\n  \"mood\": \"calm and cozy\",\n  \"constraints\": \"black-and-white line art only, white background, no color fills, child-safe imagery\"\n}",
+      "plan_model": "qwen3:8b",
+      "final_prompt": "A wide shot of a cat perched on a bookshelf in a cozy library, exuding calm and cozy vibes. The scene features stacked books with rectangular shapes, wooden bookshelves with vertical grooves, a round reading lamp with a glass罩, an armchair with curved arms, a textured carpet with geometric patterns, and a windowpane with a framed glass design. Style: Black-and-white line art with precise monochrome outlines on a white background, no shading, no gradients, no color fills, child-safe imagery. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot of a cat perched on a bookshelf in a cozy library, exuding calm and cozy vibes. The scene features stacked books with rectangular shapes, wooden bookshelves with vertical grooves, a round reading lamp with a glass罩, an armchair with curved arms, a textured carpet with geometric patterns, and a windowpane with a framed glass design. Style: Black-and-white line art with precise monochrome outlines on a white background, no shading, no gradients, no color fills, child-safe imagery. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3:8b"
+    },
+    {
+      "concept": {
+        "category": "animaux",
+        "taxonomy_anchor": "themes/animaux/animaux_marins",
+        "name_en": "Dolphin near a Coral Reef",
+        "keywords": "dolphin, coral reef, ocean, fish, seaweed",
+        "tags_context": "Animaux, Animaux marins, Dauphin"
+      },
+      "errors": [
+        "validator: ValueError: Réponse Ollama non parsable en JSON. Extrait : {\"score\":100,\"checks\":[{\"id\":\"structure\",\"pass\":true,\"detail\":\"Clear separation of scene description and style/technical requirements.\"},{\"id\":\"line_art_constraints\",\"pass\":true,\"detail\":\"Explicitly specifies monochrome line art, no shading, and clean outlines.\"},{\"id\":\"technical_cleanup\",\"pass\":tru"
+      ],
+      "latencies": {
+        "planner_s": 10.999141693115234,
+        "writer_s": 14.722965717315674
+      },
+      "plan": {
+        "subject": "dolphin",
+        "setting": "coral reef in the ocean",
+        "props": [
+          "fish",
+          "coral",
+          "seaweed",
+          "seashell",
+          "turtle"
+        ],
+        "composition": "wide shot of dolphin swimming near coral formations",
+        "mood": "adventurous and cheerful",
+        "constraints": "black-and-white line art on white background, no color fills, child-safe content"
+      },
+      "plan_raw": "{\n  \"subject\": \"dolphin\",\n  \"setting\": \"coral reef in the ocean\",\n  \"props\": [\"fish\", \"coral\", \"seaweed\", \"seashell\", \"turtle\"],\n  \"composition\": \"wide shot of dolphin swimming near coral formations\",\n  \"mood\": \"adventurous and cheerful\",\n  \"constraints\": \"black-and-white line art on white background, no color fills, child-safe content\"\n}",
+      "plan_model": "qwen3:8b",
+      "final_prompt": "A wide shot of a dolphin swimming near coral formations in the ocean, adventurous and cheerful.\n\nA dolphin glides through vibrant coral reefs, with fish darting around its body, coral structures branching out in intricate shapes, flowing seaweed swaying gently, a seashell nestled among the rocks, and a turtle moving gracefully through the scene.\n\nStyle: Black-and-white line art on white background, no color fills, no shading or gradients, clean monochrome outlines for easy coloring.\n\nTechnical cleanup: No text, no watermark, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot of a dolphin swimming near coral formations in the ocean, adventurous and cheerful.\\n\\nA dolphin glides through vibrant coral reefs, with fish darting around its body, coral structures branching out in intricate shapes, flowing seaweed swaying gently, a seashell nestled among the rocks, and a turtle moving gracefully through the scene.\\n\\nStyle: Black-and-white line art on white background, no color fills, no shading or gradients, clean monochrome outlines for easy coloring.\\n\\nTechnical cleanup: No text, no watermark, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3:8b"
+    },
+    {
+      "concept": {
+        "category": "outils",
+        "taxonomy_anchor": "themes/personnages/metiers",
+        "name_en": "Hammer on a Workbench",
+        "keywords": "hammer, workbench, tools, nails, sawdust",
+        "tags_context": "Personnages, Métiers, Menuisier, Outils"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 25.266886949539185,
+        "writer_s": 9.845430135726929,
+        "validator_s": 12.26752758026123,
+        "total_s": 47.379844665527344
+      },
+      "plan": {
+        "subject": "Hammer",
+        "setting": "Carpenter's Workshop",
+        "props": [
+          "Hammer",
+          "Workbench",
+          "Saw",
+          "Wrench",
+          "Nails",
+          "Sawdust"
+        ],
+        "composition": "Wide shot showing the hammer on the workbench with tools and sawdust",
+        "mood": "Focused and determined",
+        "constraints": "No color fills, white background, child-safe line art"
+      },
+      "plan_raw": "{\n  \"subject\": \"Hammer\",\n  \"setting\": \"Carpenter's Workshop\",\n  \"props\": [\"Hammer\", \"Workbench\", \"Saw\", \"Wrench\", \"Nails\", \"Sawdust\"],\n  \"composition\": \"Wide shot showing the hammer on the workbench with tools and sawdust\",\n  \"mood\": \"Focused and determined\",\n  \"constraints\": \"No color fills, white background, child-safe line art\"\n}",
+      "plan_model": "qwen3:8b",
+      "final_prompt": "A wide shot of a hammer centered on a wooden workbench in a cozy carpenter's workshop, capturing a focused and determined mood. The hammer rests on the bench alongside a saw, wrench, and nails, with sawdust scattered around the base. The workbench is a sturdy rectangular surface with tool slots, the hammer features a curved head and straight handle, the saw has a serrated edge, the wrench is a hexagonal shape, and nails are small metallic cylinders. Style: Monochrome line art with black outlines on a white background, no shading, no gradients, no color fills, child-safe line art for coloring. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot of a hammer centered on a wooden workbench in a cozy carpenter's workshop, capturing a focused and determined mood. The hammer rests on the bench alongside a saw, wrench, and nails, with sawdust scattered around the base. The workbench is a sturdy rectangular surface with tool slots, the hammer features a curved head and straight handle, the saw has a serrated edge, the wrench is a hexagonal shape, and nails are small metallic cylinders. Style: Monochrome line art with black outlines on a white background, no shading, no gradients, no color fills, child-safe line art for coloring. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3:8b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Clear scene description followed by style and technical cleanup specifications."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly states monochrome line art, black outlines, no shading/gradients/color fills."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Specifies no text/watermarks/logos/signatures, clean layout."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes all required line-art and safety keywords (monochrome, white background, child-safe)."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Explicitly mentions 'child-safe line art for coloring' and no hazardous elements."
+          }
+        ],
+        "recommendations": []
+      },
+      "validator_raw": "{\"score\":95,\"checks\":[{\"id\":\"structure\",\"pass\":true,\"detail\":\"Clear scene description followed by style and technical cleanup specifications.\"},{\"id\":\"line_art_constraints\",\"pass\":true,\"detail\":\"Explicitly states monochrome line art, black outlines, no shading/gradients/color fills.\"},{\"id\":\"technical_cleanup\",\"pass\":true,\"detail\":\"Specifies no text/watermarks/logos/signatures, clean layout.\"},{\"id\":\"keyword_coverage\",\"pass\":true,\"detail\":\"Includes all required line-art and safety keywords (monochrome, white background, child-safe).\"},{\"id\":\"kids_safe\",\"pass\":true,\"detail\":\"Explicitly mentions 'child-safe line art for coloring' and no hazardous elements.\"}],\"recommendations\":[]}",
+      "validator_model": "qwen3:8b"
+    },
+    {
+      "concept": {
+        "category": "outils",
+        "taxonomy_anchor": "themes/personnages/metiers",
+        "name_en": "Paintbrush in an Art Studio",
+        "keywords": "paintbrush, studio, easel, palette, canvas",
+        "tags_context": "Personnages, Métiers, Artiste, Outils"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 21.17189359664917,
+        "writer_s": 7.181062698364258,
+        "validator_s": 14.104456663131714,
+        "total_s": 42.45741295814514
+      },
+      "plan": {
+        "subject": "Paintbrush",
+        "setting": "Art Studio",
+        "props": [
+          "Easel",
+          "Palette",
+          "Canvas",
+          "Paint Tubes",
+          "Brushes",
+          "Art Chair"
+        ],
+        "composition": "Wide shot of the paintbrush on an easel in a studio",
+        "mood": "Creative and Inspiring",
+        "constraints": "Black-and-white line art on white background, no color fills, child-safe elements"
+      },
+      "plan_raw": "{\n  \"subject\": \"Paintbrush\",\n  \"setting\": \"Art Studio\",\n  \"props\": [\"Easel\", \"Palette\", \"Canvas\", \"Paint Tubes\", \"Brushes\", \"Art Chair\"],\n  \"composition\": \"Wide shot of the paintbrush on an easel in a studio\",\n  \"mood\": \"Creative and Inspiring\",\n  \"constraints\": \"Black-and-white line art on white background, no color fills, child-safe elements\"\n}",
+      "plan_model": "qwen3:8b",
+      "final_prompt": "A wide shot of the paintbrush on an easel in a vibrant art studio, exuding a creative and inspiring mood. The scene features an easel with a stretched canvas, a palette with paint tubes arranged neatly, a stack of brushes nearby, and an art chair positioned near the workspace. The paintbrush is centered, its bristles slightly angled, with the handle resting on the easel's base. The canvas is a smooth rectangle, the palette a rectangular tray with cylindrical paint tubes, brushes vary in size and shape, and the chair has a simple, rounded design. Style: Black-and-white line art on white background, no shading, no gradients, no color fills, with crisp outlines and clean contours. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot of the paintbrush on an easel in a vibrant art studio, exuding a creative and inspiring mood. The scene features an easel with a stretched canvas, a palette with paint tubes arranged neatly, a stack of brushes nearby, and an art chair positioned near the workspace. The paintbrush is centered, its bristles slightly angled, with the handle resting on the easel's base. The canvas is a smooth rectangle, the palette a rectangular tray with cylindrical paint tubes, brushes vary in size and shape, and the chair has a simple, rounded design. Style: Black-and-white line art on white background, no shading, no gradients, no color fills, with crisp outlines and clean contours. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3:8b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Clear scene description with spatial arrangement and element details"
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly specifies black-and-white line art with no shading/gradients"
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Mentions no text/watermarks/logos for clean output"
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes all required elements for a coloring page (easel, brushes, canvas, etc.)"
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Safe art studio environment with no hazardous elements"
+          }
+        ],
+        "recommendations": [
+          "Add explicit mention of 'monochrome line art' for redundancy",
+          "Specify 'simple shapes' for brushes and objects to ensure clarity for coloring"
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\"id\": \"structure\", \"pass\": true, \"detail\": \"Clear scene description with spatial arrangement and element details\"},\n    {\"id\": \"line_art_constraints\", \"pass\": true, \"detail\": \"Explicitly specifies black-and-white line art with no shading/gradients\"},\n    {\"id\": \"technical_cleanup\", \"pass\": true, \"detail\": \"Mentions no text/watermarks/logos for clean output\"},\n    {\"id\": \"keyword_coverage\", \"pass\": true, \"detail\": \"Includes all required elements for a coloring page (easel, brushes, canvas, etc.)\"},\n    {\"id\": \"kids_safe\", \"pass\": true, \"detail\": \"Safe art studio environment with no hazardous elements\"}\n  ],\n  \"recommendations\": [\n    \"Add explicit mention of 'monochrome line art' for redundancy\",\n    \"Specify 'simple shapes' for brushes and objects to ensure clarity for coloring\"\n  ]\n}",
+      "validator_model": "qwen3:8b"
+    },
+    {
+      "concept": {
+        "category": "sports",
+        "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+        "name_en": "Soccer Ball on a Field",
+        "keywords": "soccer ball, field, goal, grass, stadium",
+        "tags_context": "Personnages, Vie quotidienne, Sport, Football"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 13.146582841873169,
+        "writer_s": 9.831329107284546,
+        "validator_s": 8.899438858032227,
+        "total_s": 31.87735080718994
+      },
+      "plan": {
+        "subject": "soccer ball",
+        "setting": "soccer field in a stadium",
+        "props": [
+          "soccer ball",
+          "goal",
+          "grass",
+          "stadium",
+          "player jersey",
+          "referee cone"
+        ],
+        "composition": "wide shot with ball near the goal",
+        "mood": "adventurous",
+        "constraints": "no color fills, white background, child-safe line art"
+      },
+      "plan_raw": "{\n  \"subject\": \"soccer ball\",\n  \"setting\": \"soccer field in a stadium\",\n  \"props\": [\"soccer ball\", \"goal\", \"grass\", \"stadium\", \"player jersey\", \"referee cone\"],\n  \"composition\": \"wide shot with ball near the goal\",\n  \"mood\": \"adventurous\",\n  \"constraints\": \"no color fills, white background, child-safe line art\"\n}",
+      "plan_model": "qwen3:8b",
+      "final_prompt": "A wide shot of a soccer ball near the goal on a soccer field in a stadium, capturing an adventurous mood. The soccer ball sits between the goalposts, with curved lines forming the ball's surface. Grass textures are rendered with short vertical strokes, and the stadium's outline is a simple rectangular shape with seating areas. Player jerseys are solid geometric shapes in distinct patterns, and a referee cone is a triangular form near the sideline. Style: Monochrome line art with black outlines on white background, no shading, no gradients, no color fills, child-safe shapes and proportions. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot of a soccer ball near the goal on a soccer field in a stadium, capturing an adventurous mood. The soccer ball sits between the goalposts, with curved lines forming the ball's surface. Grass textures are rendered with short vertical strokes, and the stadium's outline is a simple rectangular shape with seating areas. Player jerseys are solid geometric shapes in distinct patterns, and a referee cone is a triangular form near the sideline. Style: Monochrome line art with black outlines on white background, no shading, no gradients, no color fills, child-safe shapes and proportions. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3:8b",
+      "validator": {
+        "score": 100,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Clear scene description with explicit style and technical cleanup instructions"
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Specifies monochrome line art, black outlines, no shading/gradients, and child-safe shapes"
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Explicitly excludes text/watermarks/logos and specifies clean layout"
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes all required terms: line art, monochrome, black outlines, white background, no color fills"
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "All shapes are simple, geometric, and appropriate for children with no hazardous elements"
+          }
+        ],
+        "recommendations": []
+      },
+      "validator_raw": "{\n  \"score\": 100,\n  \"checks\": [\n    {\"id\": \"structure\", \"pass\": true, \"detail\": \"Clear scene description with explicit style and technical cleanup instructions\"},\n    {\"id\": \"line_art_constraints\", \"pass\": true, \"detail\": \"Specifies monochrome line art, black outlines, no shading/gradients, and child-safe shapes\"},\n    {\"id\": \"technical_cleanup\", \"pass\": true, \"detail\": \"Explicitly excludes text/watermarks/logos and specifies clean layout\"},\n    {\"id\": \"keyword_coverage\", \"pass\": true, \"detail\": \"Includes all required terms: line art, monochrome, black outlines, white background, no color fills\"},\n    {\"id\": \"kids_safe\", \"pass\": true, \"detail\": \"All shapes are simple, geometric, and appropriate for children with no hazardous elements\"}\n  ],\n  \"recommendations\": []\n}",
+      "validator_model": "qwen3:8b"
+    },
+    {
+      "concept": {
+        "category": "sports",
+        "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+        "name_en": "Skateboard in a Skate Park",
+        "keywords": "skateboard, skate park, ramps, helmet, urban",
+        "tags_context": "Personnages, Vie quotidienne, Sport, Skateboard"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 14.72459101676941,
+        "writer_s": 8.605097770690918,
+        "validator_s": 14.128028631210327,
+        "total_s": 37.457717418670654
+      },
+      "plan": {
+        "subject": "skateboarder",
+        "setting": "skate park with urban elements",
+        "props": [
+          "skateboard",
+          "ramps",
+          "helmet",
+          "street sign",
+          "graffiti wall",
+          "bench"
+        ],
+        "composition": "wide shot of skateboarder mid-air on a ramp",
+        "mood": "adventurous",
+        "constraints": "line-art only, white background, no color fills, child-safe content"
+      },
+      "plan_raw": "{\n  \"subject\": \"skateboarder\",\n  \"setting\": \"skate park with urban elements\",\n  \"props\": [\"skateboard\", \"ramps\", \"helmet\", \"street sign\", \"graffiti wall\", \"bench\"],\n  \"composition\": \"wide shot of skateboarder mid-air on a ramp\",\n  \"mood\": \"adventurous\",\n  \"constraints\": \"line-art only, white background, no color fills, child-safe content\"\n}",
+      "plan_model": "qwen3:8b",
+      "final_prompt": "A wide shot of a skateboarder mid-air on a ramp in a skate park with urban elements, capturing an adventurous mood.\n\nThe skateboarder is positioned above a curved ramp, with a helmet on their head. Nearby, a street sign leans against a graffiti-covered wall made of jagged, angular shapes. A bench with straight edges sits beneath a sign that has bold, blocky letters. The skateboard itself has a rectangular deck with circular wheels, and the ramp features a smooth, curved surface.\n\nStyle: Monochrome line art with black outlines on a white background, no shading, no gradients, no color fills, child-safe content.\n\nTechnical cleanup: No text, no watermark, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot of a skateboarder mid-air on a ramp in a skate park with urban elements, capturing an adventurous mood.\\n\\nThe skateboarder is positioned above a curved ramp, with a helmet on their head. Nearby, a street sign leans against a graffiti-covered wall made of jagged, angular shapes. A bench with straight edges sits beneath a sign that has bold, blocky letters. The skateboard itself has a rectangular deck with circular wheels, and the ramp features a smooth, curved surface.\\n\\nStyle: Monochrome line art with black outlines on a white background, no shading, no gradients, no color fills, child-safe content.\\n\\nTechnical cleanup: No text, no watermark, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3:8b",
+      "validator": {
+        "score": 85,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Clear scene description with spatial relationships and element details"
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly specifies monochrome line art, black outlines, and no shading/gradients"
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": false,
+            "detail": "Includes text elements (street sign, blocky letters) conflicting with 'no text' requirement"
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Comprehensive coverage of line-art parameters and safety requirements"
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "No violent, scary, or inappropriate content elements"
+          }
+        ],
+        "recommendations": [
+          "Remove text elements (street signs, blocky letters) to comply with technical cleanup requirements",
+          "Clarify if 'no text' refers to generated image or prompt description"
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 85,\n  \"checks\": [\n    {\"id\": \"structure\", \"pass\": true, \"detail\": \"Clear scene description with spatial relationships and element details\"},\n    {\"id\": \"line_art_constraints\", \"pass\": true, \"detail\": \"Explicitly specifies monochrome line art, black outlines, and no shading/gradients\"},\n    {\"id\": \"technical_cleanup\", \"pass\": false, \"detail\": \"Includes text elements (street sign, blocky letters) conflicting with 'no text' requirement\"},\n    {\"id\": \"keyword_coverage\", \"pass\": true, \"detail\": \"Comprehensive coverage of line-art parameters and safety requirements\"},\n    {\"id\": \"kids_safe\", \"pass\": true, \"detail\": \"No violent, scary, or inappropriate content elements\"}\n  ],\n  \"recommendations\": [\n    \"Remove text elements (street signs, blocky letters) to comply with technical cleanup requirements\",\n    \"Clarify if 'no text' refers to generated image or prompt description\"\n  ]\n}",
+      "validator_model": "qwen3:8b"
+    },
+    {
+      "concept": {
+        "category": "personnages_fictifs",
+        "taxonomy_anchor": "themes/personnages/super_heros_originaux",
+        "name_en": "Superhero on a City Rooftop",
+        "keywords": "superhero, cape, rooftop, skyline, mask",
+        "tags_context": "Personnages, Super-héros originaux"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 18.519627571105957,
+        "writer_s": 7.701693534851074,
+        "validator_s": 15.298534870147705,
+        "total_s": 41.519855976104736
+      },
+      "plan": {
+        "subject": "superhero",
+        "setting": "city rooftop",
+        "props": [
+          "cape",
+          "mask",
+          "city building",
+          "ladder",
+          "sign",
+          "bird"
+        ],
+        "composition": "wide shot",
+        "mood": "heroic and determined",
+        "constraints": "line art only, no color fills, white background, child-safe"
+      },
+      "plan_raw": "{\n  \"subject\": \"superhero\",\n  \"setting\": \"city rooftop\",\n  \"props\": [\"cape\", \"mask\", \"city building\", \"ladder\", \"sign\", \"bird\"],\n  \"composition\": \"wide shot\",\n  \"mood\": \"heroic and determined\",\n  \"constraints\": \"line art only, no color fills, white background, child-safe\"\n}",
+      "plan_model": "qwen3:8b",
+      "final_prompt": "Wide shot of a heroic and determined superhero standing on a city rooftop. The superhero wears a flowing cape with sharp angular folds, a detailed mask covering the lower face, and holds a ladder leaning against the edge of a skyscraper. In the background, a city building with geometric windows and a sign reading \"SAVE THE DAY\" hangs from the rooftop. A bird in flight arcs across the sky above. Style: Monochrome line art with black outlines on white background, no shading, no gradients, no color fills, child-safe. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"Wide shot of a heroic and determined superhero standing on a city rooftop. The superhero wears a flowing cape with sharp angular folds, a detailed mask covering the lower face, and holds a ladder leaning against the edge of a skyscraper. In the background, a city building with geometric windows and a sign reading \\\"SAVE THE DAY\\\" hangs from the rooftop. A bird in flight arcs across the sky above. Style: Monochrome line art with black outlines on white background, no shading, no gradients, no color fills, child-safe. Technical cleanup: No text, no watermark, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3:8b",
+      "validator": {
+        "score": 85,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Clear composition with superhero, cityscape, and bird in flight"
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly specifies monochrome line art with no shading or gradients"
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": false,
+            "detail": "Includes text 'SAVE THE DAY' in background which violates 'no text' rule"
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes all required line-art and safety keywords"
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "No violent or inappropriate elements, heroic theme"
+          }
+        ],
+        "recommendations": [
+          "Remove the 'SAVE THE DAY' text to comply with technical cleanup requirements",
+          "Verify if the sign's text is essential for the design"
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 85,\n  \"checks\": [\n    {\"id\": \"structure\", \"pass\": true, \"detail\": \"Clear composition with superhero, cityscape, and bird in flight\"},\n    {\"id\": \"line_art_constraints\", \"pass\": true, \"detail\": \"Explicitly specifies monochrome line art with no shading or gradients\"},\n    {\"id\": \"technical_cleanup\", \"pass\": false, \"detail\": \"Includes text 'SAVE THE DAY' in background which violates 'no text' rule\"},\n    {\"id\": \"keyword_coverage\", \"pass\": true, \"detail\": \"Includes all required line-art and safety keywords\"},\n    {\"id\": \"kids_safe\", \"pass\": true, \"detail\": \"No violent or inappropriate elements, heroic theme\"}\n  ],\n  \"recommendations\": [\n    \"Remove the 'SAVE THE DAY' text to comply with technical cleanup requirements\",\n    \"Verify if the sign's text is essential for the design\"\n  ]\n}",
+      "validator_model": "qwen3:8b"
+    },
+    {
+      "concept": {
+        "category": "personnages_fictifs",
+        "taxonomy_anchor": "themes/personnages/fantasy",
+        "name_en": "Wizard in a Magic Tower",
+        "keywords": "wizard, tower, spellbook, crystal ball, robe",
+        "tags_context": "Personnages, Fantasy, Magicien"
+      },
+      "errors": [
+        "planner: ValueError: Réponse Ollama non parsable en JSON. Extrait : You're absolutely right! The code you provided using a `for` loop is correct and will work perfectly for calculating the sum of the first 100 natural numbers. However, using a `for` loop is not the most efficient way in terms of computational performance, especially for such a simple and straightfor"
+      ],
+      "latencies": {}
+    },
+    {
+      "concept": {
+        "category": "corps_humain_geometrie",
+        "taxonomy_anchor": "themes/educatif/formes",
+        "name_en": "Triangle on a School Blackboard",
+        "keywords": "triangle, blackboard, classroom, chalk, geometry",
+        "tags_context": "Éducatif, Formes, Géométrie"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 15.57460641860962,
+        "writer_s": 9.625293970108032,
+        "validator_s": 16.890926599502563,
+        "total_s": 42.090826988220215
+      },
+      "plan": {
+        "subject": "Triangle",
+        "setting": "Classroom blackboard",
+        "props": [
+          "chalk",
+          "blackboard eraser",
+          "ruler",
+          "protractor",
+          "compass",
+          "geometry textbook"
+        ],
+        "composition": "wide shot of blackboard with geometric shapes",
+        "mood": "calm and focused",
+        "constraints": "no color fills, white background, child-safe line art"
+      },
+      "plan_raw": "{\n  \"subject\": \"Triangle\",\n  \"setting\": \"Classroom blackboard\",\n  \"props\": [\"chalk\", \"blackboard eraser\", \"ruler\", \"protractor\", \"compass\", \"geometry textbook\"],\n  \"composition\": \"wide shot of blackboard with geometric shapes\",\n  \"mood\": \"calm and focused\",\n  \"constraints\": \"no color fills, white background, child-safe line art\"\n}",
+      "plan_model": "qwen3:8b",
+      "final_prompt": "A wide shot of the blackboard features a triangle in a calm and focused classroom setting. The blackboard displays a triangle alongside other geometric shapes drawn with chalk, with a chalk dust texture. A blackboard eraser rests near the triangle, while a ruler, protractor, and compass are arranged neatly at the bottom. A geometry textbook lies open beside the board, its pages showing diagrams of shapes. The scene includes a circle and square for comparison, all rendered in precise lines.\n\nStyle: Monochrome line art on white background, black outlines only, no shading, no gradients, no color fills. Clean, child-safe lines with simple shapes and clear contours.\n\nTechnical cleanup: No text, no watermark, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot of the blackboard features a triangle in a calm and focused classroom setting. The blackboard displays a triangle alongside other geometric shapes drawn with chalk, with a chalk dust texture. A blackboard eraser rests near the triangle, while a ruler, protractor, and compass are arranged neatly at the bottom. A geometry textbook lies open beside the board, its pages showing diagrams of shapes. The scene includes a circle and square for comparison, all rendered in precise lines.\\n\\nStyle: Monochrome line art on white background, black outlines only, no shading, no gradients, no color fills. Clean, child-safe lines with simple shapes and clear contours.\\n\\nTechnical cleanup: No text, no watermark, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3:8b",
+      "validator": {
+        "score": 100,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Clear scene description followed by style and technical constraints."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Specifies monochrome line art, black outlines, no shading/gradients, and clean contours."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Explicitly excludes text/watermarks/logos, focuses on clean layout."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes all required line-art elements (shapes, tools, textbook) and safety keywords."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Emphasizes child-safe lines, simple shapes, and no inappropriate content."
+          }
+        ],
+        "recommendations": []
+      },
+      "validator_raw": "{\"score\":100,\"checks\":[{\"id\":\"structure\",\"pass\":true,\"detail\":\"Clear scene description followed by style and technical constraints.\"},{\"id\":\"line_art_constraints\",\"pass\":true,\"detail\":\"Specifies monochrome line art, black outlines, no shading/gradients, and clean contours.\"},{\"id\":\"technical_cleanup\",\"pass\":true,\"detail\":\"Explicitly excludes text/watermarks/logos, focuses on clean layout.\"},{\"id\":\"keyword_coverage\",\"pass\":true,\"detail\":\"Includes all required line-art elements (shapes, tools, textbook) and safety keywords.\"},{\"id\":\"kids_safe\",\"pass\":true,\"detail\":\"Emphasizes child-safe lines, simple shapes, and no inappropriate content.\"}],\"recommendations\":[]}",
+      "validator_model": "qwen3:8b"
+    },
+    {
+      "concept": {
+        "category": "corps_humain_geometrie",
+        "taxonomy_anchor": "themes/educatif/science",
+        "name_en": "Skeleton in a Science Lab",
+        "keywords": "skeleton, science lab, anatomy, microscope, beakers",
+        "tags_context": "Éducatif, Science, Corps humain, Anatomie"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 10.500293016433716,
+        "writer_s": 7.664468765258789,
+        "validator_s": 25.462040424346924,
+        "total_s": 43.62680220603943
+      },
+      "plan": {
+        "subject": "Skeleton",
+        "setting": "Science Lab",
+        "props": [
+          "microscope",
+          "beakers",
+          "anatomical diagram",
+          "lab bench",
+          "whiteboard",
+          "periodic table poster"
+        ],
+        "composition": "wide shot with skeleton centered near lab equipment",
+        "mood": "Curious and Educational",
+        "constraints": "Black-and-white line art only, no color fills, white background, child-safe anatomy depiction"
+      },
+      "plan_raw": "{\n  \"subject\": \"Skeleton\",\n  \"setting\": \"Science Lab\",\n  \"props\": [\"microscope\", \"beakers\", \"anatomical diagram\", \"lab bench\", \"whiteboard\", \"periodic table poster\"],\n  \"composition\": \"wide shot with skeleton centered near lab equipment\",\n  \"mood\": \"Curious and Educational\",\n  \"constraints\": \"Black-and-white line art only, no color fills, white background, child-safe anatomy depiction\"\n}",
+      "plan_model": "qwen3:8b",
+      "final_prompt": "A wide shot of a curious skeleton centered in a science lab, exploring educational equipment with a playful and informative mood. The skeleton is positioned near a microscope, beakers, an anatomical diagram, a lab bench, a whiteboard with notes, and a periodic table poster, all arranged to emphasize learning and discovery. The scene features clean, simple shapes and detailed lab tools outlined in precise lines to encourage creative coloring.\n\nStyle: Black-and-white line art with no shading, gradients, or color fills. All elements are outlined in solid black on a white background, ensuring a child-safe, monochrome coloring book aesthetic.\n\nTechnical cleanup: No text, no watermark, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot of a curious skeleton centered in a science lab, exploring educational equipment with a playful and informative mood. The skeleton is positioned near a microscope, beakers, an anatomical diagram, a lab bench, a whiteboard with notes, and a periodic table poster, all arranged to emphasize learning and discovery. The scene features clean, simple shapes and detailed lab tools outlined in precise lines to encourage creative coloring.\\n\\nStyle: Black-and-white line art with no shading, gradients, or color fills. All elements are outlined in solid black on a white background, ensuring a child-safe, monochrome coloring book aesthetic.\\n\\nTechnical cleanup: No text, no watermark, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3:8b",
+      "validator": {
+        "score": 85,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Clear scene description, style, and technical cleanup sections"
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly specifies black-and-white line art, no shading or gradients"
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": false,
+            "detail": "Includes text elements (whiteboard notes, periodic table) which conflict with 'no text' requirement"
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes 'line art', 'black-and-white', 'solid black', and 'clean layout'"
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Educational, playful scene with no violent or inappropriate content"
+          }
+        ],
+        "recommendations": [
+          "Remove text elements (whiteboard notes, periodic table) to comply with technical cleanup requirements",
+          "Add explicit mention of 'no text' in the technical cleanup section"
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 85,\n  \"checks\": [\n    {\"id\": \"structure\", \"pass\": true, \"detail\": \"Clear scene description, style, and technical cleanup sections\"},\n    {\"id\": \"line_art_constraints\", \"pass\": true, \"detail\": \"Explicitly specifies black-and-white line art, no shading or gradients\"},\n    {\"id\": \"technical_cleanup\", \"pass\": false, \"detail\": \"Includes text elements (whiteboard notes, periodic table) which conflict with 'no text' requirement\"},\n    {\"id\": \"keyword_coverage\", \"pass\": true, \"detail\": \"Includes 'line art', 'black-and-white', 'solid black', and 'clean layout'\"},\n    {\"id\": \"kids_safe\", \"pass\": true, \"detail\": \"Educational, playful scene with no violent or inappropriate content\"}\n  ],\n  \"recommendations\": [\n    \"Remove text elements (whiteboard notes, periodic table) to comply with technical cleanup requirements\",\n    \"Add explicit mention of 'no text' in the technical cleanup section\"\n  ]\n}",
+      "validator_model": "qwen3:8b"
+    }
+  ],
+  "aggregates": {
+    "n_concepts": 10,
+    "n_chain_errors": 3,
+    "n_above_threshold": 7,
+    "rate_threshold": 0.7,
+    "n_under_budget": 6,
+    "rate_budget": 0.6,
+    "score_min": 85,
+    "score_median": 95,
+    "score_max": 100,
+    "latency_total_p50": 42.090826988220215,
+    "latency_total_p95": 47.379844665527344,
+    "latency_total_mean": 40.91568728855678,
+    "checks_pass": {
+      "structure": 7,
+      "line_art_constraints": 7,
+      "technical_cleanup": 4,
+      "keyword_coverage": 7,
+      "kids_safe": 7
+    },
+    "checks_total": {
+      "structure": 7,
+      "line_art_constraints": 7,
+      "technical_cleanup": 7,
+      "keyword_coverage": 7,
+      "kids_safe": 7
+    }
+  }
+}

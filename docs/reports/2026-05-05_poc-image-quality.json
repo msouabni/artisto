@@ -1,0 +1,441 @@
+{
+  "poc": "image-quality",
+  "date": "2026-05-05",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "vision_model": "qwen3.5:9b",
+  "comfy_url": "http://127.0.0.1:8188",
+  "ollama_base_url": "http://100.65.24.35:11434",
+  "selection": [
+    "animaux",
+    "outils",
+    "sports",
+    "personnages_fictifs",
+    "electromenager",
+    "geometrie",
+    "professions",
+    "fantasy"
+  ],
+  "results": [
+    {
+      "concept": {
+        "category": "animaux",
+        "taxonomy_anchor": "themes/animaux/animaux_domestiques",
+        "name_en": "Cat in a Library",
+        "keywords": "cat, library, books, bookshelves, reading",
+        "tags_context": "Animaux, Animaux domestiques, Chat"
+      },
+      "prompt": "A fluffy kitten sitting on a wooden table in a cozy children's library with warm lighting, centered composition with the kitten in the foreground, calm and peaceful mood. The scene features bookshelves filled with books, a stack of storybooks, a reading lamp, a wooden table, a window with curtains, a rug on the floor, bookmarks, and a small plant, all depicted as simple shapes suitable for children. Style: black and white line art only, monochrome outlines on white background, no shading, no gradients, no color fills, clean simple lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, pure visual illustration.",
+      "negative_prompt": "",
+      "prompt_score_validator": 95,
+      "image_path": "docs/reports/poc-image-quality/animaux-cat-in-a-library.png",
+      "comfy_latency_s": 42.42,
+      "comfy_prompt_id": "06ed34c1-ec34-49f8-9efe-13c2180aac0c",
+      "generation_params": {
+        "workflow_template": "ernie-image-turbo-q8-api",
+        "contract_version": "workflow_contract_v1",
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 3118672567
+      },
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0015,
+        "white_ratio": 0.81213,
+        "ink_ratio": 0.12276,
+        "flags": [],
+        "status": "pass"
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 7.996772766113281
+      }
+    },
+    {
+      "concept": {
+        "category": "outils",
+        "taxonomy_anchor": "themes/personnages/metiers",
+        "name_en": "Hammer on a Workbench",
+        "keywords": "hammer, workbench, tools, nails, sawdust",
+        "tags_context": "Personnages, Métiers, Menuisier, Outils"
+      },
+      "prompt": "A centered composition featuring a friendly cartoon woodworker holding a hammer, standing in the middle of a cozy indoor workshop filled with tools, with a cheerful and industrious mood. The scene includes a wooden workbench cluttered with various items, a hammer resting nearby, a wooden saw lying flat, scattered nails, several wooden planks of different shapes, a small pile of sawdust, a wooden stool, and a tool chest in the background. All objects are depicted as simple geometric shapes and outlines without any specific paint colors, maintaining a clean and playful aesthetic suitable for children. Style: Black and white line art only with no color fills, white background, and no shading or gradients, ensuring the image is ready for coloring. Technical cleanup: No text, no watermark, no logos, no signatures, no written characters, and no labels anywhere in the scene, keeping the layout completely clean and free of any diegetic text elements.",
+      "negative_prompt": "",
+      "prompt_score_validator": 95,
+      "image_path": "docs/reports/poc-image-quality/outils-hammer-on-a-workbench.png",
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "9822133f-2388-46fc-856a-ded87346b8db",
+      "generation_params": {
+        "workflow_template": "ernie-image-turbo-q8-api",
+        "contract_version": "workflow_contract_v1",
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 3574900139
+      },
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00212,
+        "white_ratio": 0.82616,
+        "ink_ratio": 0.1302,
+        "flags": [],
+        "status": "pass"
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.5990161895751953
+      }
+    },
+    {
+      "concept": {
+        "category": "sports",
+        "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+        "name_en": "Soccer Ball on a Field",
+        "keywords": "soccer ball, field, goal, grass, stadium",
+        "tags_context": "Personnages, Vie quotidienne, Sport, Football"
+      },
+      "prompt": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.",
+      "negative_prompt": "",
+      "prompt_score_validator": 95,
+      "image_path": "docs/reports/poc-image-quality/sports-soccer-ball-on-a-field.png",
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "fab020a6-dd21-4b97-9617-85749c98c1d8",
+      "generation_params": {
+        "workflow_template": "ernie-image-turbo-q8-api",
+        "contract_version": "workflow_contract_v1",
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 1598463574
+      },
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00656,
+        "white_ratio": 0.73484,
+        "ink_ratio": 0.14025,
+        "flags": [],
+        "status": "pass"
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.6265647411346436
+      }
+    },
+    {
+      "concept": {
+        "category": "personnages_fictifs",
+        "taxonomy_anchor": "themes/personnages/super_heros_originaux",
+        "name_en": "Superhero on a City Rooftop",
+        "keywords": "superhero, cape, rooftop, skyline, mask",
+        "tags_context": "Personnages, Super-héros originaux"
+      },
+      "prompt": "A wide shot centered on a friendly superhero with a flowing cape and a mask standing on a city rooftop at sunset with a distant skyline, adventurous and cheerful mood. The scene features a flowing cape billowing in the wind, a city skyline with tall buildings, a rooftop railing, a glowing sun, soft clouds, street lights, and a hero mask, all depicted as simple shapes and outlines without specifying paint colors. Style: Black-and-white line art only, monochrome coloring book page, thick black outlines on white background, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the scene, pure visual composition.",
+      "negative_prompt": "",
+      "prompt_score_validator": 95,
+      "image_path": "docs/reports/poc-image-quality/personnages_fictifs-superhero-on-a-city-rooftop.png",
+      "comfy_latency_s": 18.13,
+      "comfy_prompt_id": "f2740f6b-e53f-4f52-9601-5b24a218d3c5",
+      "generation_params": {
+        "workflow_template": "ernie-image-turbo-q8-api",
+        "contract_version": "workflow_contract_v1",
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 2343630559
+      },
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00169,
+        "white_ratio": 0.8264,
+        "ink_ratio": 0.11678,
+        "flags": [],
+        "status": "pass"
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.6102209091186523
+      }
+    },
+    {
+      "concept": {
+        "category": "electromenager",
+        "taxonomy_anchor": "themes/divers",
+        "name_en": "Refrigerator in a Kitchen",
+        "keywords": "refrigerator, kitchen, counter, fruits, magnets",
+        "tags_context": "Maison, Cuisine, Électroménager"
+      },
+      "prompt": "A wide shot centered on a colorful refrigerator with magnets and fruit on the counter in a bright and clean kitchen with a cheerful and inviting mood. The scene features a red apple, a blue banana, a magnetic star, and a magnetic heart placed on the kitchen counter near an open refrigerator door and white cabinets, with a window letting in sunlight. Style: black and white line art only, monochrome outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "prompt_score_validator": 95,
+      "image_path": "docs/reports/poc-image-quality/electromenager-refrigerator-in-a-kitchen.png",
+      "comfy_latency_s": 18.18,
+      "comfy_prompt_id": "4ccec3c3-a5b6-4d31-9902-566039955b51",
+      "generation_params": {
+        "workflow_template": "ernie-image-turbo-q8-api",
+        "contract_version": "workflow_contract_v1",
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 4282975060
+      },
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.05817,
+        "white_ratio": 0.83639,
+        "ink_ratio": 0.07459,
+        "flags": [
+          "noticeable_color"
+        ],
+        "status": "warning"
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "raw": "{\n  \"quality\": \"good\",\n  \"issues\": [\n    \"has_color\"\n  ],\n  \"confidence\": 95\n}",
+        "parsed": {
+          "quality": "good",
+          "issues": [
+            "has_color"
+          ],
+          "confidence": 95
+        },
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.7697982788085938
+      }
+    },
+    {
+      "concept": {
+        "category": "geometrie",
+        "taxonomy_anchor": "themes/educatif/formes",
+        "name_en": "Cube on a Math Desk",
+        "keywords": "cube, desk, classroom, notebook, pencil",
+        "tags_context": "Éducatif, Formes, Géométrie, Solide"
+      },
+      "prompt": "An eye-level close-up shot of a colorful geometric cube resting on a wooden desk in a bright elementary school classroom with an educational and focused mood. The scene includes an open notebook filled with mathematical symbols and equations, a wooden pencil case, a sharpened pencil, a ruler, an eraser, a stack of paper, a school clock, and a window letting in sunlight. All objects are rendered as clean black outlines with no color fills, ensuring the shapes remain distinct and suitable for coloring.\n\nStyle: Monochrome line art only, black outlines on a clean white background, no shading, no gradients, no color fills, no cross-hatching, and no texture effects to maintain a flat, two-dimensional appearance ideal for children's coloring pages.\n\nTechnical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no signatures, no watermarks, no logos, no brand names, and no written characters anywhere in the scene, including on the notebook, clock, or walls, ensuring a purely visual composition free of any readable text.",
+      "negative_prompt": "",
+      "prompt_score_validator": 95,
+      "image_path": "docs/reports/poc-image-quality/geometrie-cube-on-a-math-desk.png",
+      "comfy_latency_s": 18.21,
+      "comfy_prompt_id": "7f690e1a-417a-42ae-93c0-08d5d96f234a",
+      "generation_params": {
+        "workflow_template": "ernie-image-turbo-q8-api",
+        "contract_version": "workflow_contract_v1",
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 2802341502
+      },
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00239,
+        "white_ratio": 0.80999,
+        "ink_ratio": 0.11848,
+        "flags": [],
+        "status": "pass"
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 4.761239290237427
+      }
+    },
+    {
+      "concept": {
+        "category": "professions",
+        "taxonomy_anchor": "themes/personnages/metiers",
+        "name_en": "Astronaut on a Space Station",
+        "keywords": "astronaut, space station, helmet, control panel, porthole",
+        "tags_context": "Personnages, Métiers, Astronaute, Espace"
+      },
+      "prompt": "A wide shot centered on an adventurous astronaut floating in the interior of a futuristic space station with large windows. The scene includes a detailed space helmet, a control panel with buttons, a round porthole, a spiral staircase, a friendly robot companion, small floating debris, a starfield view visible through the glass, and a metal ladder.\n\nDraw the astronaut in a dynamic pose surrounded by the station elements, ensuring all shapes are defined by clear, bold black outlines. The control panel should feature distinct geometric shapes and lines for buttons without any labels or text. The robot companion should have smooth curves and simple mechanical details. The floating debris should appear as abstract geometric forms. The starfield should be represented by simple dots or small lines outside the window frame. Maintain a clean, adventurous mood throughout the composition.\n\nStyle: monochrome line art suitable for a coloring book, using only black outlines on a pure white background. No shading, no gradients, no color fills, no hatching, and no texture effects. All lines must be crisp and uniform in weight to allow for easy coloring.\n\nTechnical cleanup: absolutely no readable text, letters, words, numbers, signs, labels, or written characters anywhere in the image, including on the control panel, walls, or equipment. No watermarks, no logos, no signatures, and no background clutter that obscures the main subject. The layout must be clean and uncluttered.",
+      "negative_prompt": "",
+      "prompt_score_validator": 95,
+      "image_path": "docs/reports/poc-image-quality/professions-astronaut-on-a-space-station.png",
+      "comfy_latency_s": 20.16,
+      "comfy_prompt_id": "621223fb-4e7e-46cb-91f5-029c0035f36d",
+      "generation_params": {
+        "workflow_template": "ernie-image-turbo-q8-api",
+        "contract_version": "workflow_contract_v1",
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 4046715983
+      },
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00435,
+        "white_ratio": 0.77454,
+        "ink_ratio": 0.16055,
+        "flags": [],
+        "status": "pass"
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.735917329788208
+      }
+    },
+    {
+      "concept": {
+        "category": "fantasy",
+        "taxonomy_anchor": "themes/personnages/fantasy",
+        "name_en": "Dragon in a Castle Courtyard",
+        "keywords": "dragon, castle courtyard, towers, banners, drawbridge",
+        "tags_context": "Personnages, Fantasy, Dragon"
+      },
+      "prompt": "A wide shot centered on a friendly green dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, red banners hanging from the towers, a stone fountain in the center, a large stone gate, green bushes, painted stone walls, and the dragon's large wings spread wide. Style: monochrome line art with black outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, clean layout.",
+      "negative_prompt": "",
+      "prompt_score_validator": 95,
+      "image_path": "docs/reports/poc-image-quality/fantasy-dragon-in-a-castle-courtyard.png",
+      "comfy_latency_s": 20.21,
+      "comfy_prompt_id": "5d45ba7a-23fc-478f-b2df-1fd95381133f",
+      "generation_params": {
+        "workflow_template": "ernie-image-turbo-q8-api",
+        "contract_version": "workflow_contract_v1",
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 3703769972
+      },
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.05019,
+        "white_ratio": 0.76429,
+        "ink_ratio": 0.12641,
+        "flags": [
+          "noticeable_color"
+        ],
+        "status": "warning"
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "raw": "{\n  \"quality\": \"good\",\n  \"issues\": [\n    \"has_color\"\n  ],\n  \"confidence\": 95\n}",
+        "parsed": {
+          "quality": "good",
+          "issues": [
+            "has_color"
+          ],
+          "confidence": 95
+        },
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.9678666591644287
+      }
+    }
+  ],
+  "aggregates": {
+    "n_concepts": 8,
+    "n_image_generated": 8,
+    "n_vision_good": 8,
+    "n_vision_poor": 0,
+    "n_has_text": 0,
+    "n_has_color": 2,
+    "n_histogram_ko": 2,
+    "target_good": 6,
+    "target_max_hist_ko": 2,
+    "comfy_latency_min_s": 18.13,
+    "comfy_latency_max_s": 42.42,
+    "comfy_latency_mean_s": 21.71125,
+    "vision_latency_min_s": 3.5990161895751953,
+    "vision_latency_max_s": 7.996772766113281,
+    "vision_latency_mean_s": 4.383424520492554
+  }
+}

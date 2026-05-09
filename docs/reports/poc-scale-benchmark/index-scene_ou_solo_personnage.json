@@ -1,0 +1,194 @@
+{
+  "source": "workflow_class='Scène ou solo personnage' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Scène ou solo personnage",
+  "subjects": [
+    {
+      "filename": "scheherazade_telling_stories_1024x1024_euler8s.png",
+      "name_en": "Scheherazade Telling Stories",
+      "leaf_id": "scheherazade_telling_stories",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose + détails orientaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Scheherazade Telling Stories in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9840
+    },
+    {
+      "filename": "cinderella_at_ball_1024x1024_euler8s.png",
+      "name_en": "Cinderella at the Ball",
+      "leaf_id": "cinderella_at_ball",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose iconique + scène",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Domaine public, OK pour usage commercial"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Cinderella at the Ball in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, dark",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9847
+    },
+    {
+      "filename": "roc_giant_bird_1024x1024_euler8s.png",
+      "name_en": "Roc Giant Bird",
+      "leaf_id": "roc_giant_bird",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose + détails orientaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Roc Giant Bird in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9854
+    },
+    {
+      "filename": "sultan_palace_with_domes_1024x1024_euler8s.png",
+      "name_en": "Sultan Palace with Domes",
+      "leaf_id": "sultan_palace_with_domes",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose + détails orientaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Sultan Palace with Domes in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9861
+    },
+    {
+      "filename": "puss_in_boots_1024x1024_euler8s.png",
+      "name_en": "Puss in Boots",
+      "leaf_id": "puss_in_boots",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose iconique + scène",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Domaine public, OK pour usage commercial"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Puss in Boots in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, dark",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9868
+    },
+    {
+      "filename": "three_little_pigs_1024x1024_euler8s.png",
+      "name_en": "The Three Little Pigs",
+      "leaf_id": "three_little_pigs",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose iconique + scène",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Domaine public, OK pour usage commercial"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single The Three Little Pigs in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, dark",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9875
+    },
+    {
+      "filename": "rapunzel_in_tower_1024x1024_euler8s.png",
+      "name_en": "Rapunzel in the Tower",
+      "leaf_id": "rapunzel_in_tower",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose iconique + scène",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Domaine public, OK pour usage commercial"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Rapunzel in the Tower in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, dark",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9882
+    },
+    {
+      "filename": "sinbad_the_sailor_ship_1024x1024_euler8s.png",
+      "name_en": "Sinbad the Sailor Ship",
+      "leaf_id": "sinbad_the_sailor_ship",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose + détails orientaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Sinbad the Sailor Ship in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9889
+    },
+    {
+      "filename": "flying_carpet_over_city_1024x1024_euler8s.png",
+      "name_en": "Flying Carpet Over City",
+      "leaf_id": "flying_carpet_over_city",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose + détails orientaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Flying Carpet Over City in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9896
+    },
+    {
+      "filename": "aladdin_with_magic_lamp_1024x1024_euler8s.png",
+      "name_en": "Aladdin with Magic Lamp",
+      "leaf_id": "aladdin_with_magic_lamp",
+      "tier": "Scène ou solo personnage",
+      "workflow_class": "Scène ou solo personnage",
+      "technique": "Personnage en pose + détails orientaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Aladdin with Magic Lamp in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9903
+    }
+  ]
+}

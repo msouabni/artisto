@@ -1,0 +1,62 @@
+{
+  "poc": "ar-content-quality",
+  "date": "2026-05-05",
+  "model": "qwen2.5:7b",
+  "temperature": 0.0,
+  "corpus_size": 10,
+  "audience": "Site de coloriage pour enfants (4-10 ans)",
+  "summary": {
+    "json_parsable": "10/10",
+    "schema_complete": "10/10",
+    "title_in_zod_bounds_40_60": "0/10",
+    "title_card_under_30": "10/10",
+    "description_in_zod_bounds_80_130": "1/10",
+    "keywords_3_items": "10/10",
+    "latency_cold_seconds": 21.6,
+    "latency_warm_range_seconds": [3.8, 7.3]
+  },
+  "anomalies": {
+    "unexpected_vocalisation": {
+      "count": 3,
+      "entries": [6, 7, 8],
+      "note": "Harakat insérées sans qu'on les demande ; les 7 autres sont en arabe non vocalisé"
+    },
+    "latin_in_arabic_field": {
+      "count": 1,
+      "entries": [5],
+      "example": "أسماك الocean"
+    },
+    "semantic_errors_grave": {
+      "count": 2,
+      "entries": [
+        {
+          "id": 4,
+          "concept_fr": "éléphant avec ses petits",
+          "ar_output_title": "الإنسان الأفريقي مع صغاره",
+          "literal_back_translation": "l'humain africain avec ses petits",
+          "note": "Sujet remplacé : 'humain africain' au lieu de 'éléphant'"
+        },
+        {
+          "id": 6,
+          "concept_fr": "renard dans la forêt",
+          "ar_output_title": "الحَرْسُ الأَحْمَرُ في الغابة",
+          "literal_back_translation": "le garde rouge dans la forêt",
+          "note": "Sujet remplacé : 'garde rouge' au lieu de 'renard'"
+        }
+      ]
+    }
+  },
+  "raw_results": [
+    {"id": 1, "concept_fr": "lion dans la savane", "title": "الأسد في الغابة", "title_card": "أسد الغابة", "description": "استمتع برسم الأسد في غابة السافانا الجميلة.", "keywords": ["أسد", "غابة", "سافانا"], "lengths": {"title": 15, "title_card": 10, "description": 43, "keywords": 3}, "latency_s": 21.6},
+    {"id": 2, "concept_fr": "chat dans une bibliothèque", "title": "صغير في مكتبة", "title_card": "صغيرة ومكتبة", "description": "استمتع بوقتك مع صغير يلعب في مكتبة مليئة بالكتب.", "keywords": ["صغير", "مكتبة", "لعب"], "lengths": {"title": 13, "title_card": 12, "description": 48, "keywords": 3}, "latency_s": 3.8},
+    {"id": 3, "concept_fr": "papillon coloré", "title": "صورة لبومبيه ملون", "title_card": "بومبيه ملون", "description": "انغمس في عالم الألوان مع بومبيه ملون وابحث عن الحيوانات الجميلة في الطبيعة.", "keywords": ["بومبيه", "اللون", "الطبيعة"], "lengths": {"title": 17, "title_card": 11, "description": 75, "keywords": 3}, "latency_s": 4.4},
+    {"id": 4, "concept_fr": "éléphant avec ses petits", "title": "الإنسان الأفريقي مع صغاره", "title_card": "أفيون وصغاره", "description": "تلوين إنسان أفريقى مع صغاره يلعبون سوياً في الغابة.", "keywords": ["إنسان أفريقيا", "صغار", "تلوين"], "lengths": {"title": 25, "title_card": 12, "description": 51, "keywords": 3}, "latency_s": 4.3, "semantic_error": "elephant→human_african"},
+    {"id": 5, "concept_fr": "poisson dans l'océan", "title": "الأسماك في المحيط", "title_card": "أسماك الocean", "description": "اكتشف عالم الأسماك في المحيطات الجميلة مع أطفالك.", "keywords": ["أسماك", "محيط", "اللون"], "lengths": {"title": 17, "title_card": 13, "description": 49, "keywords": 3}, "latency_s": 3.9, "anomaly": "latin_chars_in_ar"},
+    {"id": 6, "concept_fr": "renard dans la forêt", "title": "الحَرْسُ الأَحْمَرُ في الغابة", "title_card": "الحَرْسُ الأَحْمَرُ", "description": "انضم إلى الحَرْس الأَحْمَرِ في رحلة مثيرة عبر الغابة.", "keywords": ["الحَرْس الأَحْمَر", "الغابة", "رحلة"], "lengths": {"title": 29, "title_card": 19, "description": 53, "keywords": 3}, "latency_s": 5.2, "semantic_error": "fox→red_guard", "anomaly": "unexpected_vocalisation"},
+    {"id": 7, "concept_fr": "lapin blanc", "title": "اللّبَن الأبيض: صديقك في اللوحة", "title_card": "اللّبَن الأبيض", "description": "انطلق مع اللّبَن الأبيض في رحلة فنية ممتعة! ألوانه الزاهية تجعل اللوحة أكثر جمالاً.", "keywords": ["اللّبَن الأبيض", "رحلة فنية", "ألوان زاهية"], "lengths": {"title": 31, "title_card": 14, "description": 83, "keywords": 3}, "latency_s": 5.1, "anomaly": "unexpected_vocalisation"},
+    {"id": 8, "concept_fr": "oiseau sur une branche", "title": "أوْصَافٌ لِلْعَصْفُورِ عَلَى الْجَذْرِ", "title_card": "العَصْفُورُ عَلَى الْجَذْرِ", "description": "انسَجَمْتِ العَصْفُورُ بِقِطْعَةِ الْجَذْرِ، رَوْحٌ وَنِعْمَةٌ لِلْبَيْتِ.", "keywords": ["العَصْفُور", "الجَذْر", "البيت"], "lengths": {"title": 38, "title_card": 27, "description": 74, "keywords": 3}, "latency_s": 7.3, "anomaly": "unexpected_vocalisation"},
+    {"id": 9, "concept_fr": "tortue sur un rocher", "title": "تتارخية على حجر", "title_card": "تتارخية وحجر", "description": "انسَرِقْ مع التتارخية الصغيرة إلى جبل الصخور، واستمتع بوقتك في اللوحة.", "keywords": ["تتارخية", "حجر", "لوحة"], "lengths": {"title": 15, "title_card": 12, "description": 70, "keywords": 3}, "latency_s": 4.5},
+    {"id": 10, "concept_fr": "dauphin qui saute", "title": "سهم الدلافين في الماء", "title_card": "دلافين تلعب", "description": "انغمس مع أطفالك في عالم الألعاب المائية مع دلافين تسقط ببراعة في الماء.", "keywords": ["دلافين", "ماء", "ألعاب"], "lengths": {"title": 21, "title_card": 11, "description": 71, "keywords": 3}, "latency_s": 4.1}
+  ],
+  "decision": "Génération AR directe (FR→AR) ÉLIMINÉE. Option EN-first validée : générer en EN puis traduire EN→AR avec prompt guidé (bornes, no harakat, no latin, double ancrage FR+EN). À tester dans un POC dédié avant Phase 2."
+}

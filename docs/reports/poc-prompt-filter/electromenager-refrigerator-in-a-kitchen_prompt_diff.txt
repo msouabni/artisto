@@ -1,0 +1,14 @@
+# Refrigerator in a Kitchen
+# Issue: couleurs résiduelles + lighting (sunlight + colorful + couleurs nommées)
+
+## ORIGINAL PROMPT
+A wide shot centered on a colorful refrigerator with magnets and fruit on the counter in a bright and clean kitchen with a cheerful and inviting mood. The scene features a red apple, a blue banana, a magnetic star, and a magnetic heart placed on the kitchen counter near an open refrigerator door and white cabinets, with a window letting in sunlight. Style: black and white line art only, monochrome outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, clean layout.
+
+## FILTERED PROMPT
+A wide shot centered on a cheerful refrigerator with magnets and fruit on the counter in a inviting and clean kitchen with a cheerful and inviting mood. The scene features a apple, a banana, a magnetic star, and a magnetic heart placed on the kitchen counter near an open refrigerator door and cabinets, with a window. Style: and white line art only, monochrome outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, clean layout.
+
+## RULES TRIGGERED (4)
+- {"rule_id": "no_light_sources", "action": "replace", "needle": "with a window letting in sunlight", "replacement": "with a window", "n_matches": 1}
+- {"rule_id": "strip_color_nouns", "action": "regex", "pattern": "\\b(red|blue|green|yellow|orange|purple|pink|brown|golden|grey|gray|white|black)\\s+(\\w+)", "n_matches": 4, "examples": ["red apple", "blue banana", "white cabinets", "black and"]}
+- {"rule_id": "no_colorful_adjectives", "action": "replace", "needle": "colorful", "replacement": "cheerful", "n_matches": 1}
+- {"rule_id": "no_colorful_adjectives", "action": "replace", "needle": "bright", "replacement": "inviting", "n_matches": 1}

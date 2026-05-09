@@ -1,0 +1,186 @@
+{
+  "source": "workflow_class='Solo objet en vol OU au sol' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet en vol OU au sol",
+  "subjects": [
+    {
+      "filename": "blimp_airship_1376x768_euler8s.png",
+      "name_en": "Blimp Airship",
+      "leaf_id": "blimp_airship",
+      "tier": "Solo objet en vol OU au sol",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one blimp airship centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10428
+    },
+    {
+      "filename": "space_rocket_1376x768_euler8s.png",
+      "name_en": "Space Rocket",
+      "leaf_id": "space_rocket",
+      "tier": "Solo objet en vol OU au sol",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one space rocket centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10435
+    },
+    {
+      "filename": "seaplane_1376x768_euler8s.png",
+      "name_en": "Seaplane",
+      "leaf_id": "seaplane",
+      "tier": "Solo objet en vol OU au sol",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one seaplane centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10442
+    },
+    {
+      "filename": "quadcopter_drone_1376x768_euler8s.png",
+      "name_en": "Quadcopter Drone",
+      "leaf_id": "quadcopter_drone",
+      "tier": "Solo objet en vol OU au sol",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one quadcopter drone centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10449
+    },
+    {
+      "filename": "glider_plane_1376x768_euler8s.png",
+      "name_en": "Glider Plane",
+      "leaf_id": "glider_plane",
+      "tier": "Solo objet en vol OU au sol",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one glider plane centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10456
+    },
+    {
+      "filename": "civilian_helicopter_1376x768_euler8s.png",
+      "name_en": "Civilian Helicopter",
+      "leaf_id": "civilian_helicopter",
+      "tier": "Solo objet en vol OU au sol",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one civilian helicopter centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10463
+    },
+    {
+      "filename": "hot_air_balloon_1376x768_euler8s.png",
+      "name_en": "Hot Air Balloon",
+      "leaf_id": "hot_air_balloon",
+      "tier": "Solo objet en vol OU au sol",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one hot air balloon centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10470
+    },
+    {
+      "filename": "fighter_jet_1376x768_euler8s.png",
+      "name_en": "Fighter Jet",
+      "leaf_id": "fighter_jet",
+      "tier": "Solo objet en vol OU au sol",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one fighter jet centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10477
+    },
+    {
+      "filename": "passenger_airplane_1376x768_euler8s.png",
+      "name_en": "Passenger Airplane",
+      "leaf_id": "passenger_airplane",
+      "tier": "Solo objet en vol OU au sol",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one passenger airplane centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10484
+    }
+  ]
+}

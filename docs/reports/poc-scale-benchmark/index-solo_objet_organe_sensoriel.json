@@ -1,0 +1,114 @@
+{
+  "source": "workflow_class='Solo objet (organe sensoriel)' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet (organe sensoriel)",
+  "subjects": [
+    {
+      "filename": "five_senses_summary_poster_1024x1024_euler8s.png",
+      "name_en": "Five Senses Summary Poster",
+      "leaf_id": "five_senses_summary_poster",
+      "tier": "Solo objet (organe sensoriel)",
+      "workflow_class": "Solo objet (organe sensoriel)",
+      "technique": "Organe + élément sensoriel associé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one five senses summary poster centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10211
+    },
+    {
+      "filename": "sense_of_hearing_ear_1024x1024_euler8s.png",
+      "name_en": "Sense of Hearing Ear",
+      "leaf_id": "sense_of_hearing_ear",
+      "tier": "Solo objet (organe sensoriel)",
+      "workflow_class": "Solo objet (organe sensoriel)",
+      "technique": "Organe + élément sensoriel associé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sense of hearing ear centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10218
+    },
+    {
+      "filename": "sense_of_smell_nose_1024x1024_euler8s.png",
+      "name_en": "Sense of Smell Nose",
+      "leaf_id": "sense_of_smell_nose",
+      "tier": "Solo objet (organe sensoriel)",
+      "workflow_class": "Solo objet (organe sensoriel)",
+      "technique": "Organe + élément sensoriel associé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sense of smell nose centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10225
+    },
+    {
+      "filename": "sense_of_taste_tongue_1024x1024_euler8s.png",
+      "name_en": "Sense of Taste Tongue",
+      "leaf_id": "sense_of_taste_tongue",
+      "tier": "Solo objet (organe sensoriel)",
+      "workflow_class": "Solo objet (organe sensoriel)",
+      "technique": "Organe + élément sensoriel associé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sense of taste tongue centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10232
+    },
+    {
+      "filename": "sense_of_touch_hand_1024x1024_euler8s.png",
+      "name_en": "Sense of Touch Hand",
+      "leaf_id": "sense_of_touch_hand",
+      "tier": "Solo objet (organe sensoriel)",
+      "workflow_class": "Solo objet (organe sensoriel)",
+      "technique": "Organe + élément sensoriel associé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sense of touch hand centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10239
+    },
+    {
+      "filename": "sense_of_sight_eye_1024x1024_euler8s.png",
+      "name_en": "Sense of Sight Eye",
+      "leaf_id": "sense_of_sight_eye",
+      "tier": "Solo objet (organe sensoriel)",
+      "workflow_class": "Solo objet (organe sensoriel)",
+      "technique": "Organe + élément sensoriel associé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sense of sight eye centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10246
+    }
+  ]
+}

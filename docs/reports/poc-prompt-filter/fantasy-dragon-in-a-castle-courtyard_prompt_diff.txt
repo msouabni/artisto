@@ -1,0 +1,11 @@
+# Dragon in a Castle Courtyard
+# Issue: couleurs résiduelles (green dragon, red banners)
+
+## ORIGINAL PROMPT
+A wide shot centered on a friendly green dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, red banners hanging from the towers, a stone fountain in the center, a large stone gate, green bushes, painted stone walls, and the dragon's large wings spread wide. Style: monochrome line art with black outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, clean layout.
+
+## FILTERED PROMPT
+A wide shot centered on a friendly dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, banners hanging from the towers, a stone fountain in the center, a large stone gate, bushes, painted stone walls, and the dragon's large wings spread wide. Style: monochrome line art with black outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, clean layout.
+
+## RULES TRIGGERED (1)
+- {"rule_id": "strip_color_nouns", "action": "regex", "pattern": "\\b(red|blue|green|yellow|orange|purple|pink|brown|golden|grey|gray|white|black)\\s+(\\w+)", "n_matches": 3, "examples": ["green dragon", "red banners", "green bushes"]}

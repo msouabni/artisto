@@ -1,0 +1,206 @@
+{
+  "source": "workflow_class='Solo objet ou humain en scaphandre' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet ou humain en scaphandre",
+  "subjects": [
+    {
+      "filename": "spaceship_orbiting_earth_848x1264_euler8s.png",
+      "name_en": "Spaceship Orbiting Earth",
+      "leaf_id": "spaceship_orbiting_earth",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one spaceship orbiting earth centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10715
+    },
+    {
+      "filename": "rocket_launching_into_sky_848x1264_euler8s.png",
+      "name_en": "Rocket Launching into Sky",
+      "leaf_id": "rocket_launching_into_sky",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one rocket launching into sky centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10722
+    },
+    {
+      "filename": "space_colony_on_mars_848x1264_euler8s.png",
+      "name_en": "Space Colony on Mars",
+      "leaf_id": "space_colony_on_mars",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one space colony on mars centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10729
+    },
+    {
+      "filename": "iss_with_astronauts_848x1264_euler8s.png",
+      "name_en": "ISS with Astronauts",
+      "leaf_id": "iss_with_astronauts",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one iss with astronauts centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10736
+    },
+    {
+      "filename": "james_webb_space_telescope_848x1264_euler8s.png",
+      "name_en": "James Webb Space Telescope",
+      "leaf_id": "james_webb_space_telescope",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one james webb space telescope centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10743
+    },
+    {
+      "filename": "astronaut_floating_in_space_848x1264_euler8s.png",
+      "name_en": "Astronaut Floating in Space",
+      "leaf_id": "astronaut_floating_in_space",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one astronaut floating in space centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10750
+    },
+    {
+      "filename": "astronaut_walking_on_moon_848x1264_euler8s.png",
+      "name_en": "Astronaut Walking on Moon",
+      "leaf_id": "astronaut_walking_on_moon",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one astronaut walking on moon centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10757
+    },
+    {
+      "filename": "mars_rover_on_red_planet_848x1264_euler8s.png",
+      "name_en": "Mars Rover on Red Planet",
+      "leaf_id": "mars_rover_on_red_planet",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one mars rover on red planet centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10764
+    },
+    {
+      "filename": "moon_landing_apollo_848x1264_euler8s.png",
+      "name_en": "Moon Landing Apollo",
+      "leaf_id": "moon_landing_apollo",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one moon landing apollo centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10771
+    },
+    {
+      "filename": "satellite_in_orbit_848x1264_euler8s.png",
+      "name_en": "Satellite in Orbit",
+      "leaf_id": "satellite_in_orbit",
+      "tier": "Solo objet ou humain en scaphandre",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one satellite in orbit centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 10778
+    }
+  ]
+}

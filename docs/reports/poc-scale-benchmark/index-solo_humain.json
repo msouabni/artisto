@@ -1,0 +1,146 @@
+{
+  "source": "workflow_class='Solo humain' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo humain",
+  "subjects": [
+    {
+      "filename": "different_skin_tones_friends_1024x1024_euler8s.png",
+      "name_en": "Different Skin Tones Friends",
+      "leaf_id": "different_skin_tones_friends",
+      "tier": "Solo humain",
+      "workflow_class": "Solo humain",
+      "technique": "Solo + accessoire spécifique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Représenter avec dignité, pas comme curiosité"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single different skin tones friends, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9980
+    },
+    {
+      "filename": "child_with_hearing_aid_1024x1024_euler8s.png",
+      "name_en": "Child with Hearing Aid",
+      "leaf_id": "child_with_hearing_aid",
+      "tier": "Solo humain",
+      "workflow_class": "Solo humain",
+      "technique": "Solo + accessoire spécifique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Représenter avec dignité, pas comme curiosité"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single child with hearing aid, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9987
+    },
+    {
+      "filename": "child_with_prosthetic_leg_1024x1024_euler8s.png",
+      "name_en": "Child with Prosthetic Leg",
+      "leaf_id": "child_with_prosthetic_leg",
+      "tier": "Solo humain",
+      "workflow_class": "Solo humain",
+      "technique": "Solo + accessoire spécifique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Représenter avec dignité, pas comme curiosité"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single child with prosthetic leg, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9994
+    },
+    {
+      "filename": "child_with_cane_blind_1024x1024_euler8s.png",
+      "name_en": "Child with Cane Blind",
+      "leaf_id": "child_with_cane_blind",
+      "tier": "Solo humain",
+      "workflow_class": "Solo humain",
+      "technique": "Solo + accessoire spécifique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Représenter avec dignité, pas comme curiosité"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single child with cane blind, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10001
+    },
+    {
+      "filename": "child_in_wheelchair_playing_1024x1024_euler8s.png",
+      "name_en": "Child in Wheelchair Playing",
+      "leaf_id": "child_in_wheelchair_playing",
+      "tier": "Solo humain",
+      "workflow_class": "Solo humain",
+      "technique": "Solo + accessoire spécifique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Représenter avec dignité, pas comme curiosité"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single child in wheelchair playing, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10008
+    },
+    {
+      "filename": "child_with_glasses_reading_1024x1024_euler8s.png",
+      "name_en": "Child with Glasses Reading",
+      "leaf_id": "child_with_glasses_reading",
+      "tier": "Solo humain",
+      "workflow_class": "Solo humain",
+      "technique": "Solo + accessoire spécifique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Représenter avec dignité, pas comme curiosité"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single child with glasses reading, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10015
+    },
+    {
+      "filename": "different_heights_friends_group_1024x1024_euler8s.png",
+      "name_en": "Different Heights Friends Group",
+      "leaf_id": "different_heights_friends_group",
+      "tier": "Solo humain",
+      "workflow_class": "Solo humain",
+      "technique": "Solo + accessoire spécifique",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Représenter avec dignité, pas comme curiosité"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single different heights friends group, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10022
+    }
+  ]
+}

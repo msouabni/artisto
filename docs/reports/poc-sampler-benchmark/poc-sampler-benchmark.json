@@ -1,0 +1,730 @@
+{
+  "poc": "sampler-benchmark",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "vision_model": "qwen3.5:9b",
+  "fixed_params": {
+    "cfg": 1.0,
+    "sampler_name": "euler",
+    "denoise": 1.0
+  },
+  "grid": {
+    "steps": [
+      4,
+      8,
+      12,
+      20
+    ],
+    "scheduler": [
+      "normal",
+      "karras"
+    ]
+  },
+  "concepts": {
+    "soccer": {
+      "seed": 1038277875074319,
+      "negative_chars": 131
+    },
+    "refrigerator": {
+      "seed": 42002,
+      "negative_chars": 158
+    },
+    "dragon": {
+      "seed": 42003,
+      "negative_chars": 158
+    }
+  },
+  "results": {
+    "soccer_04s_normal_euler_cfg10_074319.png": {
+      "concept": "soccer",
+      "steps": 4,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 8.06,
+      "comfy_prompt_id": "88d446e1-909c-418c-9126-28e178f2e60b",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00137,
+        "white_ratio": 0.79972,
+        "ink_ratio": 0.14319,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 12.51
+      }
+    },
+    "soccer_04s_karras_euler_cfg10_074319.png": {
+      "concept": "soccer",
+      "steps": 4,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 8.11,
+      "comfy_prompt_id": "cc7125fc-abe1-490d-b3a5-9f790a2db3ad",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00404,
+        "white_ratio": 0.79849,
+        "ink_ratio": 0.14066,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.57
+      }
+    },
+    "soccer_08s_normal_euler_cfg10_074319.png": {
+      "concept": "soccer",
+      "steps": 8,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 12.21,
+      "comfy_prompt_id": "52ac6d96-6878-4326-a132-6511301c48f8",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00151,
+        "white_ratio": 0.80505,
+        "ink_ratio": 0.12503,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.23
+      }
+    },
+    "soccer_08s_karras_euler_cfg10_074319.png": {
+      "concept": "soccer",
+      "steps": 8,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 14.16,
+      "comfy_prompt_id": "a1114aa4-c8b1-4774-afbb-3ab9620286c5",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0026,
+        "white_ratio": 0.79758,
+        "ink_ratio": 0.14541,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.68
+      }
+    },
+    "soccer_12s_normal_euler_cfg10_074319.png": {
+      "concept": "soccer",
+      "steps": 12,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 18.18,
+      "comfy_prompt_id": "bc47f0d8-2286-412c-b023-f4deb8521337",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00172,
+        "white_ratio": 0.79754,
+        "ink_ratio": 0.12795,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.58
+      }
+    },
+    "soccer_12s_karras_euler_cfg10_074319.png": {
+      "concept": "soccer",
+      "steps": 12,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 18.15,
+      "comfy_prompt_id": "2711f641-5d5d-4ff4-a145-bd2e98594ae5",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0018,
+        "white_ratio": 0.79691,
+        "ink_ratio": 0.14786,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.61
+      }
+    },
+    "soccer_20s_normal_euler_cfg10_074319.png": {
+      "concept": "soccer",
+      "steps": 20,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 30.28,
+      "comfy_prompt_id": "d870241e-12b0-47fe-a615-3598de471460",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00141,
+        "white_ratio": 0.75523,
+        "ink_ratio": 0.12175,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.72
+      }
+    },
+    "soccer_20s_karras_euler_cfg10_074319.png": {
+      "concept": "soccer",
+      "steps": 20,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 1038277875074319,
+      "negative_chars": 131,
+      "ok": true,
+      "comfy_latency_s": 30.27,
+      "comfy_prompt_id": "a8c7cf12-0f88-490b-b2ce-c1ffabee3ce0",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00139,
+        "white_ratio": 0.79536,
+        "ink_ratio": 0.14949,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.67
+      }
+    },
+    "refrigerator_04s_normal_euler_cfg10_42002.png": {
+      "concept": "refrigerator",
+      "steps": 4,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 14.12,
+      "comfy_prompt_id": "5361676f-1d26-461f-995e-22053ac74cfb",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04176,
+        "white_ratio": 0.82877,
+        "ink_ratio": 0.08086,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "poor",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.73
+      }
+    },
+    "refrigerator_04s_karras_euler_cfg10_42002.png": {
+      "concept": "refrigerator",
+      "steps": 4,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 8.1,
+      "comfy_prompt_id": "c4ae5f10-e224-439d-8d39-893721257417",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04578,
+        "white_ratio": 0.82892,
+        "ink_ratio": 0.07019,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 2.99
+      }
+    },
+    "refrigerator_08s_normal_euler_cfg10_42002.png": {
+      "concept": "refrigerator",
+      "steps": 8,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 14.13,
+      "comfy_prompt_id": "e075f7e2-0288-4dee-8040-c68ab9ae195f",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.03978,
+        "white_ratio": 0.84095,
+        "ink_ratio": 0.08324,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "poor",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 100,
+        "latency_s": 3.65
+      }
+    },
+    "refrigerator_08s_karras_euler_cfg10_42002.png": {
+      "concept": "refrigerator",
+      "steps": 8,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 14.14,
+      "comfy_prompt_id": "0d903c15-15aa-4fd4-a581-873c4bf75da7",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04201,
+        "white_ratio": 0.83093,
+        "ink_ratio": 0.07437,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.55
+      }
+    },
+    "refrigerator_12s_normal_euler_cfg10_42002.png": {
+      "concept": "refrigerator",
+      "steps": 12,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 20.18,
+      "comfy_prompt_id": "d42c1f6a-abc4-43ce-9c61-c3fd99123e28",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04359,
+        "white_ratio": 0.75095,
+        "ink_ratio": 0.09901,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.97
+      }
+    },
+    "refrigerator_12s_karras_euler_cfg10_42002.png": {
+      "concept": "refrigerator",
+      "steps": 12,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.26,
+      "comfy_prompt_id": "a1dfa293-6951-4050-b434-c1eb09c423ae",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04046,
+        "white_ratio": 0.82741,
+        "ink_ratio": 0.07617,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "poor",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.94
+      }
+    },
+    "refrigerator_20s_normal_euler_cfg10_42002.png": {
+      "concept": "refrigerator",
+      "steps": 20,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 30.21,
+      "comfy_prompt_id": "926c616e-60ae-44b5-95d4-7f6bd5b12556",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.01806,
+        "white_ratio": 0.7093,
+        "ink_ratio": 0.08798,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.73
+      }
+    },
+    "refrigerator_20s_karras_euler_cfg10_42002.png": {
+      "concept": "refrigerator",
+      "steps": 20,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42002,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 30.28,
+      "comfy_prompt_id": "a6d3c759-4705-4954-950c-d47709f241a9",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.04183,
+        "white_ratio": 0.82411,
+        "ink_ratio": 0.0764,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.96
+      }
+    },
+    "dragon_04s_normal_euler_cfg10_42003.png": {
+      "concept": "dragon",
+      "steps": 4,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 12.12,
+      "comfy_prompt_id": "f6aa7b95-9677-4b20-ad4e-3f70ba043a64",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02824,
+        "white_ratio": 0.78751,
+        "ink_ratio": 0.13141,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.62
+      }
+    },
+    "dragon_04s_karras_euler_cfg10_42003.png": {
+      "concept": "dragon",
+      "steps": 4,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 8.1,
+      "comfy_prompt_id": "fd9d06f0-9be7-4e9e-8672-fde8fa969385",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02802,
+        "white_ratio": 0.79745,
+        "ink_ratio": 0.11352,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.06
+      }
+    },
+    "dragon_08s_normal_euler_cfg10_42003.png": {
+      "concept": "dragon",
+      "steps": 8,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 14.16,
+      "comfy_prompt_id": "416fda5b-2d2e-4b01-9a1d-f268b2839964",
+      "histogram": {
+        "histogram_ok": false,
+        "color_ratio": 0.02602,
+        "white_ratio": 0.79105,
+        "ink_ratio": 0.1318,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.32
+      }
+    },
+    "dragon_08s_karras_euler_cfg10_42003.png": {
+      "concept": "dragon",
+      "steps": 8,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 14.1,
+      "comfy_prompt_id": "e5d72a7e-087e-469c-8b29-60d641d5e14f",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.0225,
+        "white_ratio": 0.80015,
+        "ink_ratio": 0.12173,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.59
+      }
+    },
+    "dragon_12s_normal_euler_cfg10_42003.png": {
+      "concept": "dragon",
+      "steps": 12,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 20.2,
+      "comfy_prompt_id": "d0ac110d-eb62-4ff9-97f2-614ad0fe8c03",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.02164,
+        "white_ratio": 0.79861,
+        "ink_ratio": 0.12751,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.79
+      }
+    },
+    "dragon_12s_karras_euler_cfg10_42003.png": {
+      "concept": "dragon",
+      "steps": 12,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 18.34,
+      "comfy_prompt_id": "18b51fef-95c2-4109-9bd9-8e9e8721692c",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.02311,
+        "white_ratio": 0.79621,
+        "ink_ratio": 0.12644,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 4.01
+      }
+    },
+    "dragon_20s_normal_euler_cfg10_42003.png": {
+      "concept": "dragon",
+      "steps": 20,
+      "scheduler": "normal",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 30.21,
+      "comfy_prompt_id": "4d316b18-ced4-42d6-812c-199d75a0097a",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.00249,
+        "white_ratio": 0.7945,
+        "ink_ratio": 0.13073,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.66
+      }
+    },
+    "dragon_20s_karras_euler_cfg10_42003.png": {
+      "concept": "dragon",
+      "steps": 20,
+      "scheduler": "karras",
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "seed": 42003,
+      "negative_chars": 158,
+      "ok": true,
+      "comfy_latency_s": 30.27,
+      "comfy_prompt_id": "fb15c608-9bfc-4baf-b17a-255808dc850c",
+      "histogram": {
+        "histogram_ok": true,
+        "color_ratio": 0.02181,
+        "white_ratio": 0.79387,
+        "ink_ratio": 0.12771,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "poor",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.96
+      }
+    }
+  }
+}

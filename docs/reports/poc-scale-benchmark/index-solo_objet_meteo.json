@@ -1,0 +1,166 @@
+{
+  "source": "workflow_class='Solo objet météo' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet météo",
+  "subjects": [
+    {
+      "filename": "windy_day_kite_flying_1024x1024_euler8s.png",
+      "name_en": "Windy Day Kite Flying",
+      "leaf_id": "windy_day_kite_flying",
+      "tier": "Solo objet météo",
+      "workflow_class": "Solo objet météo",
+      "technique": "Solo + élément représentatif",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight D : feuilles qui tombent en posture explicite"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one windy day kite flying centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10547
+    },
+    {
+      "filename": "rainy_day_with_umbrella_1024x1024_euler8s.png",
+      "name_en": "Rainy Day with Umbrella",
+      "leaf_id": "rainy_day_with_umbrella",
+      "tier": "Solo objet météo",
+      "workflow_class": "Solo objet météo",
+      "technique": "Solo + élément représentatif",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight D : feuilles qui tombent en posture explicite"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one rainy day with umbrella centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10554
+    },
+    {
+      "filename": "tornado_in_distance_1024x1024_euler8s.png",
+      "name_en": "Tornado in Distance",
+      "leaf_id": "tornado_in_distance",
+      "tier": "Solo objet météo",
+      "workflow_class": "Solo objet météo",
+      "technique": "Solo + élément représentatif",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight D : feuilles qui tombent en posture explicite"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one tornado in distance centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10561
+    },
+    {
+      "filename": "rainbow_after_rain_1024x1024_euler8s.png",
+      "name_en": "Rainbow After Rain",
+      "leaf_id": "rainbow_after_rain",
+      "tier": "Solo objet météo",
+      "workflow_class": "Solo objet météo",
+      "technique": "Solo + élément représentatif",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight D : feuilles qui tombent en posture explicite"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one rainbow after rain centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10568
+    },
+    {
+      "filename": "foggy_morning_landscape_1024x1024_euler8s.png",
+      "name_en": "Foggy Morning Landscape",
+      "leaf_id": "foggy_morning_landscape",
+      "tier": "Solo objet météo",
+      "workflow_class": "Solo objet météo",
+      "technique": "Solo + élément représentatif",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight D : feuilles qui tombent en posture explicite"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one foggy morning landscape centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10575
+    },
+    {
+      "filename": "thunderstorm_with_lightning_1024x1024_euler8s.png",
+      "name_en": "Thunderstorm with Lightning",
+      "leaf_id": "thunderstorm_with_lightning",
+      "tier": "Solo objet météo",
+      "workflow_class": "Solo objet météo",
+      "technique": "Solo + élément représentatif",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight D : feuilles qui tombent en posture explicite"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one thunderstorm with lightning centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10582
+    },
+    {
+      "filename": "snowy_day_with_snowflakes_1024x1024_euler8s.png",
+      "name_en": "Snowy Day with Snowflakes",
+      "leaf_id": "snowy_day_with_snowflakes",
+      "tier": "Solo objet météo",
+      "workflow_class": "Solo objet météo",
+      "technique": "Solo + élément représentatif",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight D : feuilles qui tombent en posture explicite"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one snowy day with snowflakes centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10589
+    },
+    {
+      "filename": "sunny_day_with_sun_1024x1024_euler8s.png",
+      "name_en": "Sunny Day with Sun",
+      "leaf_id": "sunny_day_with_sun",
+      "tier": "Solo objet météo",
+      "workflow_class": "Solo objet météo",
+      "technique": "Solo + élément représentatif",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight D : feuilles qui tombent en posture explicite"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sunny day with sun centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10596
+    }
+  ]
+}

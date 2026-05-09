@@ -1,0 +1,423 @@
+{
+  "poc": "color-to-lineart",
+  "date": "2026-05-05",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "vision_model": "qwen3.5:9b",
+  "results": [
+    {
+      "concept": {
+        "category": "electromenager",
+        "name_en": "Refrigerator in a Kitchen",
+        "slug": "electromenager-refrigerator-in-a-kitchen",
+        "original_image": "electromenager-refrigerator-in-a-kitchen.png",
+        "prompt": "A wide shot centered on a refrigerator with magnets and fruit on the counter in a bright and clean kitchen, cheerful and inviting mood. The scene features a red apple, a yellow banana, a magnetic star, and a magnetic heart placed on the kitchen counter near an open refrigerator door and white cabinets, with a window letting in sunlight.\n\nStyle: children's book cartoon illustration, thick bold black outlines around every shape, flat solid color fills inside each region, white background, clean vector style, no shading, no gradients, no textures, no soft edges. Each object is delineated by a clear continuous black contour.\n\nTechnical cleanup: no text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, clean layout.",
+        "negative_prompt": ""
+      },
+      "original_mono_image": "docs/reports/poc-image-quality/electromenager-refrigerator-in-a-kitchen.png",
+      "colored_image": "docs/reports/poc-color-to-lineart/electromenager-refrigerator-in-a-kitchen_colored.png",
+      "comfy_latency_s": 18.17,
+      "generation_params": {
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 3884645452
+      },
+      "methods": {
+        "method_a": {
+          "image": "docs/reports/poc-color-to-lineart/electromenager-refrigerator-in-a-kitchen_method_a.png",
+          "extract_latency_s": 0.0149,
+          "closed_contours_ratio": 0.702,
+          "closed_contours_latency_s": 0.4908,
+          "histogram": {
+            "color_ratio": 0.0,
+            "white_ratio": 0.91125,
+            "ink_ratio": 0.08875,
+            "flags": [],
+            "status": "pass"
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 7.3990724086761475
+          }
+        },
+        "method_b": {
+          "image": "docs/reports/poc-color-to-lineart/electromenager-refrigerator-in-a-kitchen_method_b.png",
+          "extract_latency_s": 0.0069,
+          "closed_contours_ratio": 0.7008,
+          "closed_contours_latency_s": 0.4722,
+          "histogram": {
+            "color_ratio": 0.0,
+            "white_ratio": 0.84177,
+            "ink_ratio": 0.15823,
+            "flags": [],
+            "status": "pass"
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 2.1371357440948486
+          }
+        },
+        "method_c": {
+          "image": "docs/reports/poc-color-to-lineart/electromenager-refrigerator-in-a-kitchen_method_c.png",
+          "extract_latency_s": 0.0103,
+          "closed_contours_ratio": 0.731,
+          "closed_contours_latency_s": 0.4389,
+          "histogram": {
+            "color_ratio": 0.0,
+            "white_ratio": 0.79403,
+            "ink_ratio": 0.20597,
+            "flags": [],
+            "status": "pass"
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 2.104952096939087
+          }
+        }
+      },
+      "colored_source": {
+        "histogram": {
+          "color_ratio": 0.371,
+          "white_ratio": 0.36848,
+          "ink_ratio": 0.07968,
+          "flags": [
+            "strong_color"
+          ],
+          "status": "fail"
+        },
+        "closed_contours_ratio": 0.7512
+      },
+      "compare_image": "docs/reports/poc-color-to-lineart/electromenager-refrigerator-in-a-kitchen_compare.png"
+    },
+    {
+      "concept": {
+        "category": "fantasy",
+        "name_en": "Dragon in a Castle Courtyard",
+        "slug": "fantasy-dragon-in-a-castle-courtyard",
+        "original_image": "fantasy-dragon-in-a-castle-courtyard.png",
+        "prompt": "A wide shot centered on a friendly green dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, red banners hanging from the towers, a stone fountain in the center, a large stone gate, green bushes, and the dragon's large wings spread wide.\n\nStyle: children's book cartoon illustration, thick bold black outlines around every shape, flat solid color fills inside each region, white background, clean vector style, no shading, no gradients, no textures. Each object is delineated by a clear continuous black contour.\n\nTechnical cleanup: no text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, clean layout.",
+        "negative_prompt": ""
+      },
+      "original_mono_image": "docs/reports/poc-image-quality/fantasy-dragon-in-a-castle-courtyard.png",
+      "colored_image": "docs/reports/poc-color-to-lineart/fantasy-dragon-in-a-castle-courtyard_colored.png",
+      "comfy_latency_s": 18.2,
+      "generation_params": {
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 3067441205
+      },
+      "methods": {
+        "method_a": {
+          "image": "docs/reports/poc-color-to-lineart/fantasy-dragon-in-a-castle-courtyard_method_a.png",
+          "extract_latency_s": 0.0076,
+          "closed_contours_ratio": 0.5711,
+          "closed_contours_latency_s": 0.4255,
+          "histogram": {
+            "color_ratio": 0.0,
+            "white_ratio": 0.85383,
+            "ink_ratio": 0.14617,
+            "flags": [],
+            "status": "pass"
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 3.265855073928833
+          }
+        },
+        "method_b": {
+          "image": "docs/reports/poc-color-to-lineart/fantasy-dragon-in-a-castle-courtyard_method_b.png",
+          "extract_latency_s": 0.0091,
+          "closed_contours_ratio": 0.6061,
+          "closed_contours_latency_s": 0.3456,
+          "histogram": {
+            "color_ratio": 0.0,
+            "white_ratio": 0.61081,
+            "ink_ratio": 0.38919,
+            "flags": [],
+            "status": "pass"
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 2.115483522415161
+          }
+        },
+        "method_c": {
+          "image": "docs/reports/poc-color-to-lineart/fantasy-dragon-in-a-castle-courtyard_method_c.png",
+          "extract_latency_s": 0.0086,
+          "closed_contours_ratio": 0.6727,
+          "closed_contours_latency_s": 0.2602,
+          "histogram": {
+            "color_ratio": 0.0,
+            "white_ratio": 0.48664,
+            "ink_ratio": 0.51336,
+            "flags": [
+              "very_dense_ink"
+            ],
+            "status": "warning"
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\n  \"quality\": \"good\",\n  \"issues\": [],\n  \"confidence\": 100\n}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 2.3472213745117188
+          }
+        }
+      },
+      "colored_source": {
+        "histogram": {
+          "color_ratio": 0.52408,
+          "white_ratio": 0.30377,
+          "ink_ratio": 0.14054,
+          "flags": [
+            "strong_color"
+          ],
+          "status": "fail"
+        },
+        "closed_contours_ratio": 0.9429
+      },
+      "compare_image": "docs/reports/poc-color-to-lineart/fantasy-dragon-in-a-castle-courtyard_compare.png"
+    },
+    {
+      "concept": {
+        "category": "sports",
+        "name_en": "Soccer Ball on a Field",
+        "slug": "sports-soccer-ball-on-a-field",
+        "original_image": "sports-soccer-ball-on-a-field.png",
+        "prompt": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. The child has exactly two legs in a natural kicking pose.\n\nStyle: children's book cartoon illustration, thick bold black outlines around every shape, flat solid color fills inside each region, white background, clean vector style, no shading, no gradients, no textures. Each character and object is delineated by a clear continuous black contour.\n\nTechnical cleanup: no text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, clean layout, anatomy correct.",
+        "negative_prompt": ""
+      },
+      "original_mono_image": "docs/reports/poc-image-quality/sports-soccer-ball-on-a-field.png",
+      "colored_image": "docs/reports/poc-color-to-lineart/sports-soccer-ball-on-a-field_colored.png",
+      "comfy_latency_s": 18.2,
+      "generation_params": {
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 666946549
+      },
+      "methods": {
+        "method_a": {
+          "image": "docs/reports/poc-color-to-lineart/sports-soccer-ball-on-a-field_method_a.png",
+          "extract_latency_s": 0.008,
+          "closed_contours_ratio": 0.8119,
+          "closed_contours_latency_s": 0.6318,
+          "histogram": {
+            "color_ratio": 0.0,
+            "white_ratio": 0.93594,
+            "ink_ratio": 0.06406,
+            "flags": [],
+            "status": "pass"
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 7.95025372505188
+          }
+        },
+        "method_b": {
+          "image": "docs/reports/poc-color-to-lineart/sports-soccer-ball-on-a-field_method_b.png",
+          "extract_latency_s": 0.0068,
+          "closed_contours_ratio": 0.8195,
+          "closed_contours_latency_s": 0.5994,
+          "histogram": {
+            "color_ratio": 0.0,
+            "white_ratio": 0.88923,
+            "ink_ratio": 0.11077,
+            "flags": [],
+            "status": "pass"
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 2.140183925628662
+          }
+        },
+        "method_c": {
+          "image": "docs/reports/poc-color-to-lineart/sports-soccer-ball-on-a-field_method_c.png",
+          "extract_latency_s": 0.0062,
+          "closed_contours_ratio": 0.7964,
+          "closed_contours_latency_s": 0.4744,
+          "histogram": {
+            "color_ratio": 0.0,
+            "white_ratio": 0.75966,
+            "ink_ratio": 0.24034,
+            "flags": [],
+            "status": "pass"
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 2.103515863418579
+          }
+        }
+      },
+      "colored_source": {
+        "histogram": {
+          "color_ratio": 0.5027,
+          "white_ratio": 0.40354,
+          "ink_ratio": 0.06312,
+          "flags": [
+            "strong_color"
+          ],
+          "status": "fail"
+        },
+        "closed_contours_ratio": 0.7888
+      },
+      "compare_image": "docs/reports/poc-color-to-lineart/sports-soccer-ball-on-a-field_compare.png"
+    }
+  ],
+  "winners": [
+    {
+      "concept": "Refrigerator in a Kitchen",
+      "category": "electromenager",
+      "winner": "method_a",
+      "winner_score": 64,
+      "ranking": [
+        [
+          "method_a",
+          64
+        ],
+        [
+          "method_b",
+          64
+        ],
+        [
+          "method_c",
+          64
+        ]
+      ]
+    },
+    {
+      "concept": "Dragon in a Castle Courtyard",
+      "category": "fantasy",
+      "winner": "method_a",
+      "winner_score": 68,
+      "ranking": [
+        [
+          "method_a",
+          68
+        ],
+        [
+          "method_b",
+          67
+        ],
+        [
+          "method_c",
+          65
+        ]
+      ]
+    },
+    {
+      "concept": "Soccer Ball on a Field",
+      "category": "sports",
+      "winner": "method_c",
+      "winner_score": 62,
+      "ranking": [
+        [
+          "method_c",
+          62
+        ],
+        [
+          "method_a",
+          61
+        ],
+        [
+          "method_b",
+          61
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "source": "workflow_class='Solo objet ou Humain + entité' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet ou Humain + entité",
+  "subjects": [
+    {
+      "filename": "cloud_computing_diagram_1024x1024_euler8s.png",
+      "name_en": "Cloud Computing Diagram",
+      "leaf_id": "cloud_computing_diagram",
+      "tier": "Solo objet ou Humain + entité",
+      "workflow_class": "Solo objet ou Humain + entité",
+      "technique": "Setup PC ou enfant à l'ordinateur",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Code à l'écran : préciser 'simple symbolic code, no real text'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one cloud computing diagram centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10603
+    },
+    {
+      "filename": "laptop_open_with_code_1024x1024_euler8s.png",
+      "name_en": "Laptop Open with Code",
+      "leaf_id": "laptop_open_with_code",
+      "tier": "Solo objet ou Humain + entité",
+      "workflow_class": "Solo objet ou Humain + entité",
+      "technique": "Setup PC ou enfant à l'ordinateur",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Code à l'écran : préciser 'simple symbolic code, no real text'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one laptop open with code centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10610
+    },
+    {
+      "filename": "gaming_setup_with_keyboard_1024x1024_euler8s.png",
+      "name_en": "Gaming Setup with Keyboard",
+      "leaf_id": "gaming_setup_with_keyboard",
+      "tier": "Solo objet ou Humain + entité",
+      "workflow_class": "Solo objet ou Humain + entité",
+      "technique": "Setup PC ou enfant à l'ordinateur",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Code à l'écran : préciser 'simple symbolic code, no real text'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one gaming setup with keyboard centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10617
+    },
+    {
+      "filename": "computer_motherboard_inside_1024x1024_euler8s.png",
+      "name_en": "Computer Motherboard Inside",
+      "leaf_id": "computer_motherboard_inside",
+      "tier": "Solo objet ou Humain + entité",
+      "workflow_class": "Solo objet ou Humain + entité",
+      "technique": "Setup PC ou enfant à l'ordinateur",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Code à l'écran : préciser 'simple symbolic code, no real text'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one computer motherboard inside centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10624
+    },
+    {
+      "filename": "kid_coding_on_computer_1024x1024_euler8s.png",
+      "name_en": "Kid Coding on Computer",
+      "leaf_id": "kid_coding_on_computer",
+      "tier": "Solo objet ou Humain + entité",
+      "workflow_class": "Solo objet ou Humain + entité",
+      "technique": "Setup PC ou enfant à l'ordinateur",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Code à l'écran : préciser 'simple symbolic code, no real text'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kid coding on computer centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10631
+    },
+    {
+      "filename": "binary_code_pattern_1024x1024_euler8s.png",
+      "name_en": "Binary Code Pattern",
+      "leaf_id": "binary_code_pattern",
+      "tier": "Solo objet ou Humain + entité",
+      "workflow_class": "Solo objet ou Humain + entité",
+      "technique": "Setup PC ou enfant à l'ordinateur",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Code à l'écran : préciser 'simple symbolic code, no real text'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one binary code pattern centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10638
+    },
+    {
+      "filename": "personal_computer_setup_1024x1024_euler8s.png",
+      "name_en": "Personal Computer Setup",
+      "leaf_id": "personal_computer_setup",
+      "tier": "Solo objet ou Humain + entité",
+      "workflow_class": "Solo objet ou Humain + entité",
+      "technique": "Setup PC ou enfant à l'ordinateur",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Code à l'écran : préciser 'simple symbolic code, no real text'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one personal computer setup centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10645
+    },
+    {
+      "filename": "server_room_with_racks_1024x1024_euler8s.png",
+      "name_en": "Server Room with Racks",
+      "leaf_id": "server_room_with_racks",
+      "tier": "Solo objet ou Humain + entité",
+      "workflow_class": "Solo objet ou Humain + entité",
+      "technique": "Setup PC ou enfant à l'ordinateur",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Code à l'écran : préciser 'simple symbolic code, no real text'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one server room with racks centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10652
+    },
+    {
+      "filename": "valentines_day_cupid_arrow_1024x1024_euler8s.png",
+      "name_en": "Valentines Day Cupid with Arrow",
+      "leaf_id": "valentines_day_cupid_arrow",
+      "tier": "Solo objet ou humain+entité",
+      "workflow_class": "Solo objet ou humain+entité",
+      "technique": "Carte solo OU famille en interaction",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one valentines day cupid with arrow centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10785
+    },
+    {
+      "filename": "mothers_day_flower_bouquet_1024x1024_euler8s.png",
+      "name_en": "Mothers Day Flower Bouquet",
+      "leaf_id": "mothers_day_flower_bouquet",
+      "tier": "Solo objet ou humain+entité",
+      "workflow_class": "Solo objet ou humain+entité",
+      "technique": "Carte solo OU famille en interaction",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one mothers day flower bouquet centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10792
+    },
+    {
+      "filename": "fathers_day_tie_card_1024x1024_euler8s.png",
+      "name_en": "Fathers Day Tie Card",
+      "leaf_id": "fathers_day_tie_card",
+      "tier": "Solo objet ou humain+entité",
+      "workflow_class": "Solo objet ou humain+entité",
+      "technique": "Carte solo OU famille en interaction",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one fathers day tie card centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10799
+    },
+    {
+      "filename": "kid_hugging_father_1024x1024_euler8s.png",
+      "name_en": "Kid Hugging Father",
+      "leaf_id": "kid_hugging_father",
+      "tier": "Solo objet ou humain+entité",
+      "workflow_class": "Solo objet ou humain+entité",
+      "technique": "Carte solo OU famille en interaction",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kid hugging father centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10806
+    },
+    {
+      "filename": "valentines_day_heart_card_1024x1024_euler8s.png",
+      "name_en": "Valentines Day Heart Card",
+      "leaf_id": "valentines_day_heart_card",
+      "tier": "Solo objet ou humain+entité",
+      "workflow_class": "Solo objet ou humain+entité",
+      "technique": "Carte solo OU famille en interaction",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one valentines day heart card centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10813
+    },
+    {
+      "filename": "kid_hugging_mother_1024x1024_euler8s.png",
+      "name_en": "Kid Hugging Mother",
+      "leaf_id": "kid_hugging_mother",
+      "tier": "Solo objet ou humain+entité",
+      "workflow_class": "Solo objet ou humain+entité",
+      "technique": "Carte solo OU famille en interaction",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kid hugging mother centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10820
+    },
+    {
+      "filename": "grandparents_day_portrait_1024x1024_euler8s.png",
+      "name_en": "Grandparents Day Portrait",
+      "leaf_id": "grandparents_day_portrait",
+      "tier": "Solo objet ou humain+entité",
+      "workflow_class": "Solo objet ou humain+entité",
+      "technique": "Carte solo OU famille en interaction",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one grandparents day portrait centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10827
+    }
+  ]
+}

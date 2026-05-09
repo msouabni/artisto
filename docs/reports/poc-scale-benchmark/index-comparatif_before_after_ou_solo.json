@@ -1,0 +1,216 @@
+{
+  "source": "workflow_class='Comparatif before/after OU Solo' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Comparatif before/after OU Solo",
+  "subjects": [
+    {
+      "filename": "rainwater_collection_barrel_1376x768_euler8s.png",
+      "name_en": "Rainwater Collection Barrel",
+      "leaf_id": "rainwater_collection_barrel",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows rainwater collection barrel in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9000
+    },
+    {
+      "filename": "kid_recycling_bin_sorting_1376x768_euler8s.png",
+      "name_en": "Kid Sorting Recycling Bins",
+      "leaf_id": "kid_recycling_bin_sorting",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows kid sorting recycling bins in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9007
+    },
+    {
+      "filename": "beach_cleanup_volunteers_1376x768_euler8s.png",
+      "name_en": "Beach Cleanup Volunteers",
+      "leaf_id": "beach_cleanup_volunteers",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows beach cleanup volunteers in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9014
+    },
+    {
+      "filename": "compost_bin_in_garden_1376x768_euler8s.png",
+      "name_en": "Compost Bin in Garden",
+      "leaf_id": "compost_bin_in_garden",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows compost bin in garden in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9021
+    },
+    {
+      "filename": "earth_with_protective_hands_1376x768_euler8s.png",
+      "name_en": "Earth with Protective Hands",
+      "leaf_id": "earth_with_protective_hands",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows earth with protective hands in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9028
+    },
+    {
+      "filename": "solar_panels_on_roof_1376x768_euler8s.png",
+      "name_en": "Solar Panels on Roof",
+      "leaf_id": "solar_panels_on_roof",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows solar panels on roof in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9035
+    },
+    {
+      "filename": "polar_bear_on_melting_ice_1376x768_euler8s.png",
+      "name_en": "Polar Bear on Melting Ice",
+      "leaf_id": "polar_bear_on_melting_ice",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows polar bear on melting ice in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9042
+    },
+    {
+      "filename": "wind_turbines_on_hill_1376x768_euler8s.png",
+      "name_en": "Wind Turbines on Hill",
+      "leaf_id": "wind_turbines_on_hill",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows wind turbines on hill in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9049
+    },
+    {
+      "filename": "kid_planting_a_tree_1376x768_euler8s.png",
+      "name_en": "Kid Planting a Tree",
+      "leaf_id": "kid_planting_a_tree",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows kid planting a tree in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9056
+    },
+    {
+      "filename": "deforestation_before_after_1376x768_euler8s.png",
+      "name_en": "Deforestation Before and After",
+      "leaf_id": "deforestation_before_after",
+      "tier": "Comparatif before/after OU Solo",
+      "workflow_class": "Comparatif before/after OU Solo",
+      "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois pour comparatifs",
+        "Cas 12 deforestation validé presque parfait avec Insight C"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick black vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows deforestation before and after in its initial state, the right cell shows the same scene with one single change applied, both cells drawn from the same wide angle for clear comparison, all elements with uniform black line thickness",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 9063
+    }
+  ]
+}

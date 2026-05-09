@@ -1,0 +1,146 @@
+{
+  "source": "workflow_class='Solo objet anatomique + labels' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet anatomique + labels",
+  "subjects": [
+    {
+      "filename": "hand_with_fingers_named_1024x1024_euler8s.png",
+      "name_en": "Hand with Fingers Named",
+      "leaf_id": "hand_with_fingers_named",
+      "tier": "Solo objet anatomique + labels",
+      "workflow_class": "Solo objet anatomique + labels",
+      "technique": "Schéma annoté (Z1 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Labels courts uniquement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one hand with fingers named centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10323
+    },
+    {
+      "filename": "child_face_features_1024x1024_euler8s.png",
+      "name_en": "Child Face Features",
+      "leaf_id": "child_face_features",
+      "tier": "Solo objet anatomique + labels",
+      "workflow_class": "Solo objet anatomique + labels",
+      "technique": "Schéma annoté (Z1 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Labels courts uniquement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one child face features centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10330
+    },
+    {
+      "filename": "head_and_hair_styles_1024x1024_euler8s.png",
+      "name_en": "Head and Hair Styles",
+      "leaf_id": "head_and_hair_styles",
+      "tier": "Solo objet anatomique + labels",
+      "workflow_class": "Solo objet anatomique + labels",
+      "technique": "Schéma annoté (Z1 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Labels courts uniquement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one head and hair styles centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10337
+    },
+    {
+      "filename": "skeleton_for_children_1024x1024_euler8s.png",
+      "name_en": "Skeleton for Children",
+      "leaf_id": "skeleton_for_children",
+      "tier": "Solo objet anatomique + labels",
+      "workflow_class": "Solo objet anatomique + labels",
+      "technique": "Schéma annoté (Z1 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Labels courts uniquement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one skeleton for children centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10344
+    },
+    {
+      "filename": "full_body_with_parts_labelled_1024x1024_euler8s.png",
+      "name_en": "Full Body with Parts Labelled",
+      "leaf_id": "full_body_with_parts_labelled",
+      "tier": "Solo objet anatomique + labels",
+      "workflow_class": "Solo objet anatomique + labels",
+      "technique": "Schéma annoté (Z1 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Labels courts uniquement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one full body with parts labelled centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10351
+    },
+    {
+      "filename": "foot_with_toes_1024x1024_euler8s.png",
+      "name_en": "Foot with Toes",
+      "leaf_id": "foot_with_toes",
+      "tier": "Solo objet anatomique + labels",
+      "workflow_class": "Solo objet anatomique + labels",
+      "technique": "Schéma annoté (Z1 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Labels courts uniquement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one foot with toes centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10358
+    },
+    {
+      "filename": "skin_and_skin_tones_diversity_1024x1024_euler8s.png",
+      "name_en": "Skin and Skin Tones Diversity",
+      "leaf_id": "skin_and_skin_tones_diversity",
+      "tier": "Solo objet anatomique + labels",
+      "workflow_class": "Solo objet anatomique + labels",
+      "technique": "Schéma annoté (Z1 pattern)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Labels courts uniquement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one skin and skin tones diversity centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10365
+    }
+  ]
+}

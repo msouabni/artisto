@@ -1,0 +1,252 @@
+{
+  "poc": "taxonomy-ar-coverage",
+  "date": "2026-05-05",
+  "api_base": "http://127.0.0.1:8000",
+  "part_a": {
+    "total_terms": 88,
+    "terms_with_name_ar": 88,
+    "pct_with_name_ar": 100.0,
+    "leaves_total": 74,
+    "leaves_with_name_ar": 74,
+    "pct_leaves_with_name_ar": 100.0,
+    "by_vocabulary": {
+      "themes": {
+        "total": 88,
+        "with_ar": 88,
+        "leaves": 74,
+        "leaves_with_ar": 74
+      }
+    },
+    "top_10_leaves": [
+      {
+        "id": "aid",
+        "parent_id": "fetes",
+        "vocabulary_id": "themes",
+        "name_fr": "Aïd",
+        "name_en": "Eid",
+        "name_ar": "عيد",
+        "is_leaf": true
+      },
+      {
+        "id": "animaux_domestiques_cows",
+        "parent_id": "animaux_domestiques",
+        "vocabulary_id": "themes",
+        "name_fr": "Vaches",
+        "name_en": "Cows",
+        "name_ar": "البقرة",
+        "is_leaf": true
+      },
+      {
+        "id": "animaux_domestiques_dogs_chihuahuas",
+        "parent_id": "animaux_domestiques_dogs",
+        "vocabulary_id": "themes",
+        "name_fr": "Chiens de Chihuahua",
+        "name_en": "Chihuahuas",
+        "name_ar": "تشيكوахوا",
+        "is_leaf": true
+      },
+      {
+        "id": "animaux_domestiques_dogs_pitbulls",
+        "parent_id": "animaux_domestiques_dogs",
+        "vocabulary_id": "themes",
+        "name_fr": "Bulldog Américain",
+        "name_en": "Pit Bulls",
+        "name_ar": "بولي",
+        "is_leaf": true
+      },
+      {
+        "id": "animaux_domestiques_dogs_pomeranians",
+        "parent_id": "animaux_domestiques_dogs",
+        "vocabulary_id": "themes",
+        "name_fr": "Pomeraniens",
+        "name_en": "Pomeranians",
+        "name_ar": "بوميرانيان",
+        "is_leaf": true
+      },
+      {
+        "id": "animaux_domestiques_dogs_poodles",
+        "parent_id": "animaux_domestiques_dogs",
+        "vocabulary_id": "themes",
+        "name_fr": "Pudelp",
+        "name_en": "Poodles",
+        "name_ar": "بوديل",
+        "is_leaf": true
+      },
+      {
+        "id": "animaux_domestiques_dogs_pugs",
+        "parent_id": "animaux_domestiques_dogs",
+        "vocabulary_id": "themes",
+        "name_fr": "Pug",
+        "name_en": "Pugs",
+        "name_ar": "بوج",
+        "is_leaf": true
+      },
+      {
+        "id": "animaux_domestiques_dogs_retrievers",
+        "parent_id": "animaux_domestiques_dogs",
+        "vocabulary_id": "themes",
+        "name_fr": "Récupérateurs",
+        "name_en": "Retrievers",
+        "name_ar": "المتلقون",
+        "is_leaf": true
+      },
+      {
+        "id": "animaux_domestiques_dogs_schnauzers",
+        "parent_id": "animaux_domestiques_dogs",
+        "vocabulary_id": "themes",
+        "name_fr": "Schnauzer",
+        "name_en": "Schnauzers",
+        "name_ar": "شناوسر",
+        "is_leaf": true
+      },
+      {
+        "id": "animaux_domestiques_dogs_terriers",
+        "parent_id": "animaux_domestiques_dogs",
+        "vocabulary_id": "themes",
+        "name_fr": "Térier",
+        "name_en": "Terriers",
+        "name_ar": "تيرير",
+        "is_leaf": true
+      }
+    ]
+  },
+  "part_b": {
+    "tested_count": 2,
+    "results": [
+      {
+        "leaf": {
+          "id": "aid",
+          "parent_id": "fetes",
+          "vocabulary_id": "themes",
+          "name_fr": "Aïd",
+          "name_en": "Eid",
+          "name_ar": "عيد",
+          "is_leaf": true
+        },
+        "job_id": "job_ai_1777970742496806600_6935",
+        "status": "awaiting_validation",
+        "suggestions_count": 5,
+        "suggestions_evaluated": [
+          {
+            "id": "aid_hajj",
+            "name_fr": "Activités de l'Aïd",
+            "name_en": "Hajj Activities",
+            "name_ar": "أنشطة العيد الحج",
+            "ar_present": true,
+            "ar_word_count": 3,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          },
+          {
+            "id": "aid_islamic_sym",
+            "name_fr": "Symboles islamiques",
+            "name_en": "Islamic Symbols",
+            "name_ar": "رموز إسلامية",
+            "ar_present": true,
+            "ar_word_count": 2,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          },
+          {
+            "id": "aid_family_traditions",
+            "name_fr": "Traditions familiales",
+            "name_en": "Family Traditions",
+            "name_ar": "العادات العائلية",
+            "ar_present": true,
+            "ar_word_count": 2,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          },
+          {
+            "id": "aid_food_drinks",
+            "name_fr": "Aliments & boissons",
+            "name_en": "Food & Drinks",
+            "name_ar": "الأطعمة والمشروبات",
+            "ar_present": true,
+            "ar_word_count": 2,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          },
+          {
+            "id": "aid_clothing",
+            "name_fr": "Vêtements",
+            "name_en": "Clothing",
+            "name_ar": "الملابس",
+            "ar_present": true,
+            "ar_word_count": 1,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          }
+        ],
+        "raw_result": "{\"artifact_version\": 1, \"artifact_type\": \"taxonomy_import_ops\", \"entity_type\": \"vocabulary\", \"entity_id\": \"themes\", \"job_type\": \"taxonomy_suggest_children\", \"proposal\": {\"vocabulary_id\": \"themes\", \"operations\": [{\"op\": \"add\", \"value\": {\"id\": \"aid_hajj\", \"slug\": \"hajj-activities\", \"name_fr\": \"Activités de l'Aïd\", \"name_en\": \"Hajj Activities\", \"name_ar\": \"أنشطة العيد الحج\", \"description_fr\": \"Coloriages d'activités du hajj pour enfants : pèlerins et lieux de prédilection à colorier.\", \"description_en\": \"Coloring pages with hajj activities for children, including pilgrims and landmarks.\", \"description_ar\": \"\", \"weight\": 0, \"parent_id\": \"aid\", \"keywords\": []}}, {\"op\": \"add\", \"value\": {\"id\": \"aid_islamic_sym\", \"slug\": \"islamic-symbols\", \"name_fr\": \"Symboles islamiques\", \"name_en\": \"Islamic Symbols\", \"name_ar\": \"رموز إسلامية\", \"description_fr\": \"Coloriages de symboles islamiques : croissant de lune et étoile, minaret et calligraphie à colorier.\", \"description_en\": \"Coloring Islamic symbols such as the crescent moon and star, minarets, and calligraphy.\", \"description_ar\": \"\", \"weight\": 1, \"parent_id\": \"aid\", \"keywords\": []}}, {\"op\": \"add\", \"value\": {\"id\": \"aid_family_traditions\", \"slug\": \"family-traditions\", \"name_fr\": \"Traditions familiales\", \"name_en\": \"Family Traditions\", \"name_ar\": \"العادات العائلية\", \"description_fr\": \"Coloriages de traditions familiales et célébrations culturelles durant l'Aïd à colorier.\", \"description_en\": \"Coloring pages featuring family traditions and cultural celebrations during Aïd.\", \"description_ar\": \"\", \"weight\": 2, \"parent_id\": \"aid\", \"keywords\": []}}, {\"op\": \"add\", \"value\": {\"id\": \"aid_food_drinks\", \"slug\": \"food-drinks\", \"name_fr\": \"Aliments & boissons\", \"name_en\": \"Food & Drinks\", \"name_ar\": \"الأطعمة والمشروبات\", \"description_fr\": \"Coloriages d'aliments et boissons traditionnels de l'Aïd : confiseries et jus à colorier.\", \"description_en\": \"Coloring pages with traditional Aïd foods and drinks, such as sweets and juice.\", \"description_ar\": \"\", \"weight\": 3, \"parent_id\": \"aid\", \"keywords\": []}}, {\"op\": \"add\", \"value\": {\"id\": \"aid_clothing\", \"slug\": \"clothing\", \"name_fr\": \"Vêtements\", \"name_en\": \"Clothing\", \"name_ar\": \"الملابس\", \"description_fr\": \"Coloriages de vêtements traditionnels pour enfants à colorier.\", \"description_en\": \"Coloring pages with traditional Aïd clothing and outfits for children.\", \"description_ar\": \"\", \"weight\": 4, \"parent_id\": \"aid\", \"keywords\": []}}]}, \"review_summary\": \"\", \"preview\": {}, \"apply_plan\": {\"mode\": \"taxonomy_import_operations\"}, \"resources\": {}}"
+      },
+      {
+        "leaf": {
+          "id": "animaux_domestiques_cows",
+          "parent_id": "animaux_domestiques",
+          "vocabulary_id": "themes",
+          "name_fr": "Vaches",
+          "name_en": "Cows",
+          "name_ar": "البقرة",
+          "is_leaf": true
+        },
+        "job_id": "job_ai_1777970783948490500_3374",
+        "status": "awaiting_validation",
+        "suggestions_count": 5,
+        "suggestions_evaluated": [
+          {
+            "id": "animaux_domestiques_cows_bull",
+            "name_fr": "Taureaux",
+            "name_en": "Bulls",
+            "name_ar": "البقر ذكور",
+            "ar_present": true,
+            "ar_word_count": 2,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          },
+          {
+            "id": "animaux_domestiques_cows_heifer",
+            "name_fr": "Taureau",
+            "name_en": "Heifers",
+            "name_ar": "البقرات",
+            "ar_present": true,
+            "ar_word_count": 1,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          },
+          {
+            "id": "animaux_domestiques_cows_tractor",
+            "name_fr": "Égouts",
+            "name_en": "Tractors",
+            "name_ar": "الجرارات الزراعية",
+            "ar_present": true,
+            "ar_word_count": 2,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          },
+          {
+            "id": "animaux_domestiques_cows_pasture",
+            "name_fr": "Pâturages",
+            "name_en": "Pastures",
+            "name_ar": "الحقول",
+            "ar_present": true,
+            "ar_word_count": 1,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          },
+          {
+            "id": "animaux_domestiques_cows_feed",
+            "name_fr": "Alimentation",
+            "name_en": "Feeding",
+            "name_ar": "التغذية",
+            "ar_present": true,
+            "ar_word_count": 1,
+            "ar_in_1_4_words": true,
+            "duplicate_with_existing": false
+          }
+        ],
+        "raw_result": "{\"artifact_version\": 1, \"artifact_type\": \"taxonomy_import_ops\", \"entity_type\": \"vocabulary\", \"entity_id\": \"themes\", \"job_type\": \"taxonomy_suggest_children\", \"proposal\": {\"vocabulary_id\": \"themes\", \"operations\": [{\"op\": \"add\", \"value\": {\"id\": \"animaux_domestiques_cows_bull\", \"slug\": \"bulls\", \"name_fr\": \"Taureaux\", \"name_en\": \"Bulls\", \"name_ar\": \"البقر ذكور\", \"description_fr\": \"Coloriage de taureaux forts et majestueux.\", \"description_en\": \"Coloring pages featuring strong and majestic bulls.\", \"description_ar\": \"\", \"weight\": 0, \"parent_id\": \"animaux_domestiques_cows\", \"keywords\": []}}, {\"op\": \"add\", \"value\": {\"id\": \"animaux_domestiques_cows_heifer\", \"slug\": \"heifers\", \"name_fr\": \"Taureau\", \"name_en\": \"Heifers\", \"name_ar\": \"البقرات\", \"description_fr\": \"Coloriage de vaches femelles.\", \"description_en\": \"Coloring pages of young female cows.\", \"description_ar\": \"\", \"weight\": 1, \"parent_id\": \"animaux_domestiques_cows\", \"keywords\": []}}, {\"op\": \"add\", \"value\": {\"id\": \"animaux_domestiques_cows_tractor\", \"slug\": \"tractors\", \"name_fr\": \"Égouts\", \"name_en\": \"Tractors\", \"name_ar\": \"الجرارات الزراعية\", \"description_fr\": \"Coloriage de tracteurs agricoles et leurs pièces.\", \"description_en\": \"Coloring pages featuring farm tractors and their parts.\", \"description_ar\": \"\", \"weight\": 2, \"parent_id\": \"animaux_domestiques_cows\", \"keywords\": []}}, {\"op\": \"add\", \"value\": {\"id\": \"animaux_domestiques_cows_pasture\", \"slug\": \"pastures\", \"name_fr\": \"Pâturages\", \"name_en\": \"Pastures\", \"name_ar\": \"الحقول\", \"description_fr\": \"Coloriage de vaches grattant dans des pâturages verdoyants.\", \"description_en\": \"Coloring pages of cows grazing in lush green pastures.\", \"description_ar\": \"\", \"weight\": 3, \"parent_id\": \"animaux_domestiques_cows\", \"keywords\": []}}, {\"op\": \"add\", \"value\": {\"id\": \"animaux_domestiques_cows_feed\", \"slug\": \"feeding\", \"name_fr\": \"Alimentation\", \"name_en\": \"Feeding\", \"name_ar\": \"التغذية\", \"description_fr\": \"Coloriage de vaches nourries par les fermiers.\", \"description_en\": \"Coloring pages showing cows being fed by farmers.\", \"description_ar\": \"\", \"weight\": 4, \"parent_id\": \"animaux_domestiques_cows\", \"keywords\": []}}]}, \"review_summary\": \"\", \"preview\": {}, \"apply_plan\": {\"mode\": \"taxonomy_import_operations\"}, \"resources\": {}}"
+      }
+    ]
+  }
+}

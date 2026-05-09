@@ -1,0 +1,186 @@
+{
+  "source": "workflow_class='Humain + entité OU Solo humain pose statique' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Humain + entité OU Solo humain pose statique",
+  "subjects": [
+    {
+      "filename": "physiotherapist_with_patient_1024x1024_euler8s.png",
+      "name_en": "Physiotherapist with Patient",
+      "leaf_id": "physiotherapist_with_patient",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of physiotherapist with patient, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9350
+    },
+    {
+      "filename": "optometrist_eye_test_1024x1024_euler8s.png",
+      "name_en": "Optometrist Eye Test",
+      "leaf_id": "optometrist_eye_test",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of optometrist eye test, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9357
+    },
+    {
+      "filename": "doctor_with_stethoscope_1024x1024_euler8s.png",
+      "name_en": "Doctor with Stethoscope",
+      "leaf_id": "doctor_with_stethoscope",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of doctor with stethoscope, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9364
+    },
+    {
+      "filename": "veterinarian_with_dog_1024x1024_euler8s.png",
+      "name_en": "Veterinarian with Dog",
+      "leaf_id": "veterinarian_with_dog",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of veterinarian with dog, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9371
+    },
+    {
+      "filename": "pharmacist_at_counter_1024x1024_euler8s.png",
+      "name_en": "Pharmacist at Counter",
+      "leaf_id": "pharmacist_at_counter",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of pharmacist at counter, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9378
+    },
+    {
+      "filename": "dentist_at_work_1024x1024_euler8s.png",
+      "name_en": "Dentist at Work",
+      "leaf_id": "dentist_at_work",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of dentist at work, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9385
+    },
+    {
+      "filename": "surgeon_in_operating_room_1024x1024_euler8s.png",
+      "name_en": "Surgeon in Operating Room",
+      "leaf_id": "surgeon_in_operating_room",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of surgeon in operating room, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9392
+    },
+    {
+      "filename": "nurse_with_patient_1024x1024_euler8s.png",
+      "name_en": "Nurse with Patient",
+      "leaf_id": "nurse_with_patient",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of nurse with patient, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9399
+    },
+    {
+      "filename": "psychologist_listening_1024x1024_euler8s.png",
+      "name_en": "Psychologist Listening",
+      "leaf_id": "psychologist_listening",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of psychologist listening, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9406
+    },
+    {
+      "filename": "midwife_holding_baby_1024x1024_euler8s.png",
+      "name_en": "Midwife Holding Baby",
+      "leaf_id": "midwife_holding_baby",
+      "tier": "Humain + entité OU Solo humain pose statique",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of midwife holding baby, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9413
+    }
+  ]
+}

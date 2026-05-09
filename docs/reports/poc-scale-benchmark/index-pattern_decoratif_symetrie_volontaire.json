@@ -1,0 +1,166 @@
+{
+  "source": "workflow_class='Pattern décoratif (symétrie volontaire)' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Pattern décoratif (symétrie volontaire)",
+  "subjects": [
+    {
+      "filename": "lotus_mandala_1024x1024_euler8s.png",
+      "name_en": "Lotus Mandala",
+      "leaf_id": "lotus_mandala",
+      "tier": "Pattern décoratif (symétrie volontaire)",
+      "workflow_class": "Pattern décoratif (symétrie volontaire)",
+      "technique": "Symétrie volontaire (Z6 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mandalas très complexes : multiple générations + sélection"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one lotus mandala centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9665
+    },
+    {
+      "filename": "celtic_knot_mandala_1024x1024_euler8s.png",
+      "name_en": "Celtic Knot Mandala",
+      "leaf_id": "celtic_knot_mandala",
+      "tier": "Pattern décoratif (symétrie volontaire)",
+      "workflow_class": "Pattern décoratif (symétrie volontaire)",
+      "technique": "Symétrie volontaire (Z6 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mandalas très complexes : multiple générations + sélection"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one celtic knot mandala centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9672
+    },
+    {
+      "filename": "geometric_mandala_1024x1024_euler8s.png",
+      "name_en": "Geometric Mandala",
+      "leaf_id": "geometric_mandala",
+      "tier": "Pattern décoratif (symétrie volontaire)",
+      "workflow_class": "Pattern décoratif (symétrie volontaire)",
+      "technique": "Symétrie volontaire (Z6 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mandalas très complexes : multiple générations + sélection"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one geometric mandala centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9679
+    },
+    {
+      "filename": "advanced_mandala_for_teens_1024x1024_euler8s.png",
+      "name_en": "Advanced Mandala for Teens",
+      "leaf_id": "advanced_mandala_for_teens",
+      "tier": "Pattern décoratif (symétrie volontaire)",
+      "workflow_class": "Pattern décoratif (symétrie volontaire)",
+      "technique": "Symétrie volontaire (Z6 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mandalas très complexes : multiple générations + sélection"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one advanced mandala for teens centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9686
+    },
+    {
+      "filename": "floral_mandala_1024x1024_euler8s.png",
+      "name_en": "Floral Mandala",
+      "leaf_id": "floral_mandala",
+      "tier": "Pattern décoratif (symétrie volontaire)",
+      "workflow_class": "Pattern décoratif (symétrie volontaire)",
+      "technique": "Symétrie volontaire (Z6 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mandalas très complexes : multiple générations + sélection"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one floral mandala centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9693
+    },
+    {
+      "filename": "animal_mandala_lion_head_1024x1024_euler8s.png",
+      "name_en": "Animal Mandala Lion Head",
+      "leaf_id": "animal_mandala_lion_head",
+      "tier": "Pattern décoratif (symétrie volontaire)",
+      "workflow_class": "Pattern décoratif (symétrie volontaire)",
+      "technique": "Symétrie volontaire (Z6 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mandalas très complexes : multiple générations + sélection"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one animal mandala lion head centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9700
+    },
+    {
+      "filename": "simple_mandala_for_kids_1024x1024_euler8s.png",
+      "name_en": "Simple Mandala for Kids",
+      "leaf_id": "simple_mandala_for_kids",
+      "tier": "Pattern décoratif (symétrie volontaire)",
+      "workflow_class": "Pattern décoratif (symétrie volontaire)",
+      "technique": "Symétrie volontaire (Z6 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mandalas très complexes : multiple générations + sélection"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one simple mandala for kids centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9707
+    },
+    {
+      "filename": "sun_mandala_1024x1024_euler8s.png",
+      "name_en": "Sun Mandala",
+      "leaf_id": "sun_mandala",
+      "tier": "Pattern décoratif (symétrie volontaire)",
+      "workflow_class": "Pattern décoratif (symétrie volontaire)",
+      "technique": "Symétrie volontaire (Z6 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mandalas très complexes : multiple générations + sélection"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sun mandala centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9714
+    }
+  ]
+}

@@ -1,0 +1,2143 @@
+{
+  "poc": "llm-benchmark",
+  "date": "2026-05-05",
+  "ollama_base_url": "http://100.65.24.35:11434",
+  "all_models_listed": [
+    {
+      "name": "qwen2.5:7b",
+      "size_gb": 4.36,
+      "param_size": "7.6B",
+      "family": "qwen2"
+    },
+    {
+      "name": "qwen3:8b",
+      "size_gb": 4.87,
+      "param_size": "8.2B",
+      "family": "qwen3"
+    }
+  ],
+  "text_models_tested": [
+    "qwen2.5:7b",
+    "qwen3:8b"
+  ],
+  "ar_pairs_count": 10,
+  "leaf_terms_concepts": [
+    {
+      "id": "animaux_marins",
+      "name_fr": "Animaux marins",
+      "name_en": "Sea animals"
+    },
+    {
+      "id": "noel",
+      "name_fr": "Noël",
+      "name_en": "Christmas"
+    },
+    {
+      "id": "mandalas_fleurs",
+      "name_fr": "Mandalas fleurs",
+      "name_en": "Flower mandalas"
+    },
+    {
+      "id": "voitures",
+      "name_fr": "Voitures",
+      "name_en": "Cars"
+    },
+    {
+      "id": "science",
+      "name_fr": "Science",
+      "name_en": "Science"
+    }
+  ],
+  "ar_bounds": {
+    "title": [
+      25,
+      55
+    ],
+    "description": [
+      40,
+      100
+    ]
+  },
+  "results_by_model": {
+    "qwen2.5:7b": {
+      "model_info": {
+        "name": "qwen2.5:7b",
+        "model": "qwen2.5:7b",
+        "modified_at": "2026-04-16T17:26:05.7365495+01:00",
+        "size": 4683087332,
+        "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "7.6B",
+          "quantization_level": "Q4_K_M"
+        }
+      },
+      "ar_results": [
+        {
+          "pair": {
+            "concept_en": "elephant in the savanna",
+            "term_id": "animaux_sauvages",
+            "term_ar": "حيوانات برية",
+            "term_en": "Wild animals"
+          },
+          "raw": "{\n    \"title\": \"حيوانات برية\",\n    \"title_card\": \"إيل في الصحراء\",\n    \"description\": \"صورة لتمثال إيل في الصحراء للاستمتاع باللون\",\n    \"keywords\": [\"إيل\", \"صحراء\", \"لون\", \"حيوانات\", \"برية\"]\n}",
+          "parsed": {
+            "title": "حيوانات برية",
+            "title_card": "إيل في الصحراء",
+            "description": "صورة لتمثال إيل في الصحراء للاستمتاع باللون",
+            "keywords": [
+              "إيل",
+              "صحراء",
+              "لون",
+              "حيوانات",
+              "برية"
+            ]
+          },
+          "latency_s": 3.10556697845459,
+          "json_ok": true,
+          "title": "حيوانات برية",
+          "title_card": "إيل في الصحراء",
+          "description": "صورة لتمثال إيل في الصحراء للاستمتاع باللون",
+          "keywords": [
+            "إيل",
+            "صحراء",
+            "لون",
+            "حيوانات",
+            "برية"
+          ],
+          "title_len": 12,
+          "title_in_bounds": false,
+          "title_card_len": 14,
+          "title_card_in_bounds": true,
+          "description_len": 43,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "exact",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "jumping dolphin",
+            "term_id": "animaux_marins",
+            "term_ar": "حيوانات بحرية",
+            "term_en": "Sea animals"
+          },
+          "raw": "{\n    \"title\": \"صورة حوت قفز\",\n    \"title_card\": \"حوت قفز\",\n    \"description\": \"صورة لحوت يقفز خارج الماء للاستمتاع بعملية التلوين\",\n    \"keywords\": [\"حوت\", \"قفز\", \"مائي\", \"طبيعة\", \"طفوله\"]\n}",
+          "parsed": {
+            "title": "صورة حوت قفز",
+            "title_card": "حوت قفز",
+            "description": "صورة لحوت يقفز خارج الماء للاستمتاع بعملية التلوين",
+            "keywords": [
+              "حوت",
+              "قفز",
+              "مائي",
+              "طبيعة",
+              "طفوله"
+            ]
+          },
+          "latency_s": 1.4038259983062744,
+          "json_ok": true,
+          "title": "صورة حوت قفز",
+          "title_card": "حوت قفز",
+          "description": "صورة لحوت يقفز خارج الماء للاستمتاع بعملية التلوين",
+          "keywords": [
+            "حوت",
+            "قفز",
+            "مائي",
+            "طبيعة",
+            "طفوله"
+          ],
+          "title_len": 12,
+          "title_in_bounds": false,
+          "title_card_len": 7,
+          "title_card_in_bounds": true,
+          "description_len": 50,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": false,
+          "anchor_match_kind": "absent",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "cow grazing in the field",
+            "term_id": "animaux_ferme",
+            "term_ar": "حيوانات المزرعة",
+            "term_en": "Farm animals"
+          },
+          "raw": "{\n    \"title\": \"صورة لبقرة تأكل في الحقل\",\n    \"title_card\": \"بقرة\",\n    \"description\": \"تلوين بقرة تغذى في حقل\",\n    \"keywords\": [\"بقرة\", \"حقل\", \"تغذى\", \"تلوين\", \"مزرعة\"]\n}",
+          "parsed": {
+            "title": "صورة لبقرة تأكل في الحقل",
+            "title_card": "بقرة",
+            "description": "تلوين بقرة تغذى في حقل",
+            "keywords": [
+              "بقرة",
+              "حقل",
+              "تغذى",
+              "تلوين",
+              "مزرعة"
+            ]
+          },
+          "latency_s": 1.3831794261932373,
+          "json_ok": true,
+          "title": "صورة لبقرة تأكل في الحقل",
+          "title_card": "بقرة",
+          "description": "تلوين بقرة تغذى في حقل",
+          "keywords": [
+            "بقرة",
+            "حقل",
+            "تغذى",
+            "تلوين",
+            "مزرعة"
+          ],
+          "title_len": 24,
+          "title_in_bounds": false,
+          "title_card_len": 4,
+          "title_card_in_bounds": true,
+          "description_len": 22,
+          "description_in_bounds": false,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": false,
+          "anchor_match_kind": "absent",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "kitten playing with a ball",
+            "term_id": "animaux_domestiques_cats_kittens",
+            "term_ar": "القطط في اللعب",
+            "term_en": "Kittens Playtime"
+          },
+          "raw": "{\n    \"title\": \"لعب القطط مع الكرة\",\n    \"title_card\": \"قطط وكرة\",\n    \"description\": \"صغيرة القطط تلعب مع كرة اللعب في الحديقة\",\n    \"keywords\": [\"قطط\", \"كرة\", \"لعب\", \"حديقة\", \"صغيرة\"]\n}",
+          "parsed": {
+            "title": "لعب القطط مع الكرة",
+            "title_card": "قطط وكرة",
+            "description": "صغيرة القطط تلعب مع كرة اللعب في الحديقة",
+            "keywords": [
+              "قطط",
+              "كرة",
+              "لعب",
+              "حديقة",
+              "صغيرة"
+            ]
+          },
+          "latency_s": 2.615330457687378,
+          "json_ok": true,
+          "title": "لعب القطط مع الكرة",
+          "title_card": "قطط وكرة",
+          "description": "صغيرة القطط تلعب مع كرة اللعب في الحديقة",
+          "keywords": [
+            "قطط",
+            "كرة",
+            "لعب",
+            "حديقة",
+            "صغيرة"
+          ],
+          "title_len": 18,
+          "title_in_bounds": false,
+          "title_card_len": 8,
+          "title_card_in_bounds": true,
+          "description_len": 40,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "token_match",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "decorated Christmas tree",
+            "term_id": "noel",
+            "term_ar": "عيد الميلاد",
+            "term_en": "Christmas"
+          },
+          "raw": "{\n    \"title\": \"شجرة عيد الميلاد\",\n    \"title_card\": \"شجرة عيد\",\n    \"description\": \"تلوين شجرة عيد الميلاد المزينة\",\n    \"keywords\": [\"شجرة\", \"عيد\", \"ميلاد\", \"تلوين\", \"مerry\"]\n}",
+          "parsed": {
+            "title": "شجرة عيد الميلاد",
+            "title_card": "شجرة عيد",
+            "description": "تلوين شجرة عيد الميلاد المزينة",
+            "keywords": [
+              "شجرة",
+              "عيد",
+              "ميلاد",
+              "تلوين",
+              "مerry"
+            ]
+          },
+          "latency_s": 1.2881896495819092,
+          "json_ok": true,
+          "title": "شجرة عيد الميلاد",
+          "title_card": "شجرة عيد",
+          "description": "تلوين شجرة عيد الميلاد المزينة",
+          "keywords": [
+            "شجرة",
+            "عيد",
+            "ميلاد",
+            "تلوين",
+            "مerry"
+          ],
+          "title_len": 16,
+          "title_in_bounds": false,
+          "title_card_len": 8,
+          "title_card_in_bounds": true,
+          "description_len": 30,
+          "description_in_bounds": false,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "exact",
+          "harakat_anywhere": false,
+          "latin_anywhere": true
+        },
+        {
+          "pair": {
+            "concept_en": "Easter eggs in a basket",
+            "term_id": "paques",
+            "term_ar": "عيد الفصح",
+            "term_en": "Easter"
+          },
+          "raw": "{\n    \"title\": \"صورة لبيض الفصح في سلة\",\n    \"title_card\": \"بيض الفصح\",\n    \"description\": \"رسم بيضاء لتزيين سلة عيد الفصح بالبيض\",\n    \"keywords\": [\"بيض\", \"فصح\", \"سلة\", \"رسم\", \"أطفال\"]\n}",
+          "parsed": {
+            "title": "صورة لبيض الفصح في سلة",
+            "title_card": "بيض الفصح",
+            "description": "رسم بيضاء لتزيين سلة عيد الفصح بالبيض",
+            "keywords": [
+              "بيض",
+              "فصح",
+              "سلة",
+              "رسم",
+              "أطفال"
+            ]
+          },
+          "latency_s": 1.266080379486084,
+          "json_ok": true,
+          "title": "صورة لبيض الفصح في سلة",
+          "title_card": "بيض الفصح",
+          "description": "رسم بيضاء لتزيين سلة عيد الفصح بالبيض",
+          "keywords": [
+            "بيض",
+            "فصح",
+            "سلة",
+            "رسم",
+            "أطفال"
+          ],
+          "title_len": 22,
+          "title_in_bounds": false,
+          "title_card_len": 9,
+          "title_card_in_bounds": true,
+          "description_len": 37,
+          "description_in_bounds": false,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "exact",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "Halloween pumpkin with a smile",
+            "term_id": "halloween",
+            "term_ar": "هالووين",
+            "term_en": "Halloween"
+          },
+          "raw": "{\n    \"title\": \"هالووين مانحشة ضاحكة\",\n    \"title_card\": \"هالووين\",\n    \"description\": \"صورة جبلة هالووين مع ضاحكة لملء الألوان\",\n    \"keywords\": [\"هالووين\", \"مانحشة\", \"ضاحكة\", \"جبلة\", \"أعياد\"]\n}",
+          "parsed": {
+            "title": "هالووين مانحشة ضاحكة",
+            "title_card": "هالووين",
+            "description": "صورة جبلة هالووين مع ضاحكة لملء الألوان",
+            "keywords": [
+              "هالووين",
+              "مانحشة",
+              "ضاحكة",
+              "جبلة",
+              "أعياد"
+            ]
+          },
+          "latency_s": 1.5702197551727295,
+          "json_ok": true,
+          "title": "هالووين مانحشة ضاحكة",
+          "title_card": "هالووين",
+          "description": "صورة جبلة هالووين مع ضاحكة لملء الألوان",
+          "keywords": [
+            "هالووين",
+            "مانحشة",
+            "ضاحكة",
+            "جبلة",
+            "أعياد"
+          ],
+          "title_len": 20,
+          "title_in_bounds": false,
+          "title_card_len": 7,
+          "title_card_in_bounds": true,
+          "description_len": 39,
+          "description_in_bounds": false,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "exact",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "complex flower mandala",
+            "term_id": "mandalas_fleurs",
+            "term_ar": "مندالات الزهور",
+            "term_en": "Flower mandalas"
+          },
+          "raw": "{\n    \"title\": \"مندالات الزهور\",\n    \"title_card\": \"زهور\",\n    \"description\": \"صورة ل Mandalas الزهور للرسم\",\n    \"keywords\": [\"مندالات\", \"زهرة\", \"زهور\", \"رسم\", \" Mandalas\"]\n}",
+          "parsed": {
+            "title": "مندالات الزهور",
+            "title_card": "زهور",
+            "description": "صورة ل Mandalas الزهور للرسم",
+            "keywords": [
+              "مندالات",
+              "زهرة",
+              "زهور",
+              "رسم",
+              " Mandalas"
+            ]
+          },
+          "latency_s": 1.2501239776611328,
+          "json_ok": true,
+          "title": "مندالات الزهور",
+          "title_card": "زهور",
+          "description": "صورة ل Mandalas الزهور للرسم",
+          "keywords": [
+            "مندالات",
+            "زهرة",
+            "زهور",
+            "رسم",
+            " Mandalas"
+          ],
+          "title_len": 14,
+          "title_in_bounds": false,
+          "title_card_len": 4,
+          "title_card_in_bounds": true,
+          "description_len": 28,
+          "description_in_bounds": false,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "exact",
+          "harakat_anywhere": false,
+          "latin_anywhere": true
+        },
+        {
+          "pair": {
+            "concept_en": "snowy mountains scene",
+            "term_id": "hiver",
+            "term_ar": "الشتاء",
+            "term_en": "Winter"
+          },
+          "raw": "{\n    \"title\": \"صورة جبال مغطاة بالثلوج\",\n    \"title_card\": \"جبال الشتاء\",\n    \"description\": \"صورة لمشهد جبلي مغطى بالثلوج، مناسبة للرسم واللون\",\n    \"keywords\": [\"جبال\", \"ثلوج\", \"شتاء\", \"مشهد\", \"رسم\"]\n}",
+          "parsed": {
+            "title": "صورة جبال مغطاة بالثلوج",
+            "title_card": "جبال الشتاء",
+            "description": "صورة لمشهد جبلي مغطى بالثلوج، مناسبة للرسم واللون",
+            "keywords": [
+              "جبال",
+              "ثلوج",
+              "شتاء",
+              "مشهد",
+              "رسم"
+            ]
+          },
+          "latency_s": 1.4783236980438232,
+          "json_ok": true,
+          "title": "صورة جبال مغطاة بالثلوج",
+          "title_card": "جبال الشتاء",
+          "description": "صورة لمشهد جبلي مغطى بالثلوج، مناسبة للرسم واللون",
+          "keywords": [
+            "جبال",
+            "ثلوج",
+            "شتاء",
+            "مشهد",
+            "رسم"
+          ],
+          "title_len": 23,
+          "title_in_bounds": false,
+          "title_card_len": 11,
+          "title_card_in_bounds": true,
+          "description_len": 49,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": false,
+          "anchor_match_kind": "absent",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "racing car on a track",
+            "term_id": "voitures",
+            "term_ar": "السيارات",
+            "term_en": "Cars"
+          },
+          "raw": "{\n    \"title\": \"صورة سيارة سباق\",\n    \"title_card\": \"سيارة سباق\",\n    \"description\": \"رسم سيارة سباق على مسار للطابع الفني\",\n    \"keywords\": [\"سيارة\", \"سباق\", \"مسار\", \"رسم\", \"طابع\"]\n}",
+          "parsed": {
+            "title": "صورة سيارة سباق",
+            "title_card": "سيارة سباق",
+            "description": "رسم سيارة سباق على مسار للطابع الفني",
+            "keywords": [
+              "سيارة",
+              "سباق",
+              "مسار",
+              "رسم",
+              "طابع"
+            ]
+          },
+          "latency_s": 1.3098111152648926,
+          "json_ok": true,
+          "title": "صورة سيارة سباق",
+          "title_card": "سيارة سباق",
+          "description": "رسم سيارة سباق على مسار للطابع الفني",
+          "keywords": [
+            "سيارة",
+            "سباق",
+            "مسار",
+            "رسم",
+            "طابع"
+          ],
+          "title_len": 15,
+          "title_in_bounds": false,
+          "title_card_len": 10,
+          "title_card_in_bounds": true,
+          "description_len": 36,
+          "description_in_bounds": false,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "prefix_4",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        }
+      ],
+      "ar_agg": {
+        "total": 10,
+        "json_ok": 10,
+        "anchor_present": 7,
+        "title_in_bounds": 0,
+        "title_card_in_bounds": 10,
+        "description_in_bounds": 4,
+        "keywords_count_ok": 10,
+        "harakat_clean": 10,
+        "latin_clean": 8,
+        "avg_latency_s": 1.67
+      },
+      "concepts_results": [
+        {
+          "leaf": {
+            "id": "animaux_marins",
+            "name_fr": "Animaux marins",
+            "name_en": "Sea animals"
+          },
+          "raw": "[\n  {\"id\": \"animaux_marins_fish\", \"slug\": \"fish\", \"name_en\": \"Fish\", \"name_fr\": \"Poissons\",\n    \"name_ar\": \"أسماك\", \"description_en\": \"Coloring pages featuring a variety of colorful fish like clownfish and sharks.\", \"description_fr\": \"Coloriage de poissons variés comme le poisson-pieuvre et les requins.\", \"weight\": 0},\n  {\"id\": \"animaux_marins_crabs\", \"slug\": \"crabs\", \"name_en\": \"Crabs\", \"name_fr\": \"Écrevisses\",\n    \"name_ar\": \"القرشيات\", \"description_en\": \"Color crab and lobster coloring pages for kids.\", \"description_fr\": \"Coloriage d'écrevisses et de homards pour enfants.\", \"weight\": 1},\n  {\"id\": \"animaux_marins_octopus\", \"slug\": \"octopus\", \"name_en\": \"Octopus\", \"name_fr\": \"Poulpe\",\n    \"name_ar\": \"العديس\", \"description_en\": \"Color octopus and squid coloring pages with tentacles.\", \"description_fr\": \"Coloriage de poulpes et de calmar avec des tentacules.\", \"weight\": 2},\n  {\"id\": \"animaux_marins_seahorses\", \"slug\": \"seahorses\", \"name_en\": \"Seahorses\", \"name_fr\": \"Poissons cheval\",\n    \"name_ar\": \"أسماك الفرس\", \"description_en\": \"Color seahorse and other sea creatures with unique shapes.\", \"description_fr\": \"Coloriage de poissons chevaux et d'autres créatures marines à formes uniques.\", \"weight\": 3},\n  {\"id\": \"animaux_marins_dolphins\", \"slug\": \"dolphins\", \"name_en\": \"Dolphins\", \"name_fr\": \"Dauphins\",\n    \"name_ar\": \"الدلافين\", \"description_en\": \"Color dolphins and whales swimming in the ocean.\", \"description_fr\": \"Coloriage de dauphins et de baleines nageant dans l'océan.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "animaux_marins_fish",
+              "slug": "fish",
+              "name_en": "Fish",
+              "name_fr": "Poissons",
+              "name_ar": "أسماك",
+              "description_en": "Coloring pages featuring a variety of colorful fish like clownfish and sharks.",
+              "description_fr": "Coloriage de poissons variés comme le poisson-pieuvre et les requins.",
+              "weight": 0
+            },
+            {
+              "id": "animaux_marins_crabs",
+              "slug": "crabs",
+              "name_en": "Crabs",
+              "name_fr": "Écrevisses",
+              "name_ar": "القرشيات",
+              "description_en": "Color crab and lobster coloring pages for kids.",
+              "description_fr": "Coloriage d'écrevisses et de homards pour enfants.",
+              "weight": 1
+            },
+            {
+              "id": "animaux_marins_octopus",
+              "slug": "octopus",
+              "name_en": "Octopus",
+              "name_fr": "Poulpe",
+              "name_ar": "العديس",
+              "description_en": "Color octopus and squid coloring pages with tentacles.",
+              "description_fr": "Coloriage de poulpes et de calmar avec des tentacules.",
+              "weight": 2
+            },
+            {
+              "id": "animaux_marins_seahorses",
+              "slug": "seahorses",
+              "name_en": "Seahorses",
+              "name_fr": "Poissons cheval",
+              "name_ar": "أسماك الفرس",
+              "description_en": "Color seahorse and other sea creatures with unique shapes.",
+              "description_fr": "Coloriage de poissons chevaux et d'autres créatures marines à formes uniques.",
+              "weight": 3
+            },
+            {
+              "id": "animaux_marins_dolphins",
+              "slug": "dolphins",
+              "name_en": "Dolphins",
+              "name_fr": "Dauphins",
+              "name_ar": "الدلافين",
+              "description_en": "Color dolphins and whales swimming in the ocean.",
+              "description_fr": "Coloriage de dauphins et de baleines nageant dans l'océan.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 6.91390323638916,
+          "children_evaluated": [
+            {
+              "id": "animaux_marins_fish",
+              "name_fr": "Poissons",
+              "name_en": "Fish",
+              "name_ar": "أسماك",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "animaux_marins_crabs",
+              "name_fr": "Écrevisses",
+              "name_en": "Crabs",
+              "name_ar": "القرشيات",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "animaux_marins_octopus",
+              "name_fr": "Poulpe",
+              "name_en": "Octopus",
+              "name_ar": "العديس",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "animaux_marins_seahorses",
+              "name_fr": "Poissons cheval",
+              "name_en": "Seahorses",
+              "name_ar": "أسماك الفرس",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "animaux_marins_dolphins",
+              "name_fr": "Dauphins",
+              "name_en": "Dolphins",
+              "name_ar": "الدلافين",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        },
+        {
+          "leaf": {
+            "id": "noel",
+            "name_fr": "Noël",
+            "name_en": "Christmas"
+          },
+          "raw": "[\n  {\"id\": \"noel_santa_claus\", \"slug\": \"santa-claus\", \"name_en\": \"Santa Claus\", \"name_fr\": \"Papa Noël\", \"name_ar\": \"بابا نويل\", \"description_en\": \"Color Santa Claus and his sleigh with children's coloring pages.\", \"description_fr\": \"Colorie Papa Noël et son traîneau avec des coloriages pour enfants.\", \"weight\": 0},\n  {\"id\": \"noel_tree\", \"slug\": \"tree\", \"name_en\": \"Christmas Tree\", \"name_fr\": \"Arbre de Noël\", \"name_ar\": \"شجرة عيد الميلاد\", \"description_en\": \"Color the traditional Christmas tree with ornaments and lights.\", \"description_fr\": \"Colorie l'arbre de Noël traditionnel avec ses guirlandes et ses décorations.\", \"weight\": 1},\n  {\"id\": \"noel_gifts\", \"slug\": \"gifts\", \"name_en\": \"Gifts\", \"name_fr\": \"Cadeaux\", \"name_ar\": \"هدايا\", \"description_en\": \"Color Christmas presents under the tree with ribbons and bows.\", \"description_fr\": \"Colorie les cadeaux sous l'arbre avec des rubans et des nœuds.\", \"weight\": 2},\n  {\"id\": \"noel_star\", \"slug\": \"star\", \"name_en\": \"Star\", \"name_fr\": \"Étoile\", \"name_ar\": \"نجمة\", \"description_en\": \"Color the star that guides the way to Bethlehem with children's coloring pages.\", \"description_fr\": \"Colorie l'étoile qui guide le chemin vers Bethléem avec des coloriages pour enfants.\", \"weight\": 3},\n  {\"id\": \"noel_elves\", \"slug\": \"elves\", \"name_en\": \"Elf\", \"name_fr\": \"Elfe\", \"name_ar\": \"إلاف\", \"description_en\": \"Color the friendly elves who help Santa Claus make toys for children.\", \"description_fr\": \"Colorie les elfes amicaux qui aident Papa Noël à fabriquer des jouets pour les enfants.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "noel_santa_claus",
+              "slug": "santa-claus",
+              "name_en": "Santa Claus",
+              "name_fr": "Papa Noël",
+              "name_ar": "بابا نويل",
+              "description_en": "Color Santa Claus and his sleigh with children's coloring pages.",
+              "description_fr": "Colorie Papa Noël et son traîneau avec des coloriages pour enfants.",
+              "weight": 0
+            },
+            {
+              "id": "noel_tree",
+              "slug": "tree",
+              "name_en": "Christmas Tree",
+              "name_fr": "Arbre de Noël",
+              "name_ar": "شجرة عيد الميلاد",
+              "description_en": "Color the traditional Christmas tree with ornaments and lights.",
+              "description_fr": "Colorie l'arbre de Noël traditionnel avec ses guirlandes et ses décorations.",
+              "weight": 1
+            },
+            {
+              "id": "noel_gifts",
+              "slug": "gifts",
+              "name_en": "Gifts",
+              "name_fr": "Cadeaux",
+              "name_ar": "هدايا",
+              "description_en": "Color Christmas presents under the tree with ribbons and bows.",
+              "description_fr": "Colorie les cadeaux sous l'arbre avec des rubans et des nœuds.",
+              "weight": 2
+            },
+            {
+              "id": "noel_star",
+              "slug": "star",
+              "name_en": "Star",
+              "name_fr": "Étoile",
+              "name_ar": "نجمة",
+              "description_en": "Color the star that guides the way to Bethlehem with children's coloring pages.",
+              "description_fr": "Colorie l'étoile qui guide le chemin vers Bethléem avec des coloriages pour enfants.",
+              "weight": 3
+            },
+            {
+              "id": "noel_elves",
+              "slug": "elves",
+              "name_en": "Elf",
+              "name_fr": "Elfe",
+              "name_ar": "إلاف",
+              "description_en": "Color the friendly elves who help Santa Claus make toys for children.",
+              "description_fr": "Colorie les elfes amicaux qui aident Papa Noël à fabriquer des jouets pour les enfants.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 6.843624830245972,
+          "children_evaluated": [
+            {
+              "id": "noel_santa_claus",
+              "name_fr": "Papa Noël",
+              "name_en": "Santa Claus",
+              "name_ar": "بابا نويل",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "noel_tree",
+              "name_fr": "Arbre de Noël",
+              "name_en": "Christmas Tree",
+              "name_ar": "شجرة عيد الميلاد",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "noel_gifts",
+              "name_fr": "Cadeaux",
+              "name_en": "Gifts",
+              "name_ar": "هدايا",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "noel_star",
+              "name_fr": "Étoile",
+              "name_en": "Star",
+              "name_ar": "نجمة",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "noel_elves",
+              "name_fr": "Elfe",
+              "name_en": "Elf",
+              "name_ar": "إلاف",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        },
+        {
+          "leaf": {
+            "id": "mandalas_fleurs",
+            "name_fr": "Mandalas fleurs",
+            "name_en": "Flower mandalas"
+          },
+          "raw": "[\n    {\"id\": \"mandalas_fleurs_roses\", \"slug\": \"roses\", \"name_en\": \"Roses\", \"name_fr\": \"Roses\", \"name_ar\": \"النرجس\", \"description_en\": \"Beautiful rose coloring pages with different shades for kids to color.\", \"description_fr\": \"Pages de coloriage de roses pour enfants avec différentes teintes à colorier.\", \"weight\": 0},\n    {\"id\": \"mandalas_fleurs_tulips\", \"slug\": \"tulips\", \"name_en\": \"Tulips\", \"name_fr\": \"Tulipes\", \"name_ar\": \"ال tulipان\", \"description_en\": \"Colorful tulip coloring pages for kids featuring springtime favorites.\", \"description_fr\": \"Pages de coloriage de tulipes pour enfants : fleurs préférées du printemps à colorier.\", \"weight\": 1},\n    {\"id\": \"mandalas_fleurs_sunflowers\", \"slug\": \"sunflowers\", \"name_en\": \"Sunflowers\", \"name_fr\": \"Tournesols\", \"name_ar\": \"النرجس الكوكبى\", \"description_en\": \"Bright and cheerful sunflower coloring pages for kids to enjoy.\", \"description_fr\": \"Pages de coloriage de tournesols pour enfants : fleurs gaies à colorier.\", \"weight\": 2},\n    {\"id\": \"mandalas_fleurs_lilies\", \"slug\": \"lilies\", \"name_en\": \"Lilies\", \"name_fr\": \"Lilas\", \"name_ar\": \"اللوزيات\", \"description_en\": \"Delicate lily coloring pages for kids to color in soft pastel shades.\", \"description_fr\": \"Pages de coloriage de lilas pour enfants : fleurs délicates à colorier dans des teintes pâles.\", \"weight\": 3},\n    {\"id\": \"mandalas_fleurs_peonies\", \"slug\": \"peonies\", \"name_en\": \"Peonies\", \"name_fr\": \"Pivoines\", \"name_ar\": \"البيونيا\", \"description_en\": \"Rich and elegant peony coloring pages for kids to explore.\", \"description_fr\": \"Pages de coloriage de pivoines pour enfants : fleurs raffinées à explorer.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "mandalas_fleurs_roses",
+              "slug": "roses",
+              "name_en": "Roses",
+              "name_fr": "Roses",
+              "name_ar": "النرجس",
+              "description_en": "Beautiful rose coloring pages with different shades for kids to color.",
+              "description_fr": "Pages de coloriage de roses pour enfants avec différentes teintes à colorier.",
+              "weight": 0
+            },
+            {
+              "id": "mandalas_fleurs_tulips",
+              "slug": "tulips",
+              "name_en": "Tulips",
+              "name_fr": "Tulipes",
+              "name_ar": "ال tulipان",
+              "description_en": "Colorful tulip coloring pages for kids featuring springtime favorites.",
+              "description_fr": "Pages de coloriage de tulipes pour enfants : fleurs préférées du printemps à colorier.",
+              "weight": 1
+            },
+            {
+              "id": "mandalas_fleurs_sunflowers",
+              "slug": "sunflowers",
+              "name_en": "Sunflowers",
+              "name_fr": "Tournesols",
+              "name_ar": "النرجس الكوكبى",
+              "description_en": "Bright and cheerful sunflower coloring pages for kids to enjoy.",
+              "description_fr": "Pages de coloriage de tournesols pour enfants : fleurs gaies à colorier.",
+              "weight": 2
+            },
+            {
+              "id": "mandalas_fleurs_lilies",
+              "slug": "lilies",
+              "name_en": "Lilies",
+              "name_fr": "Lilas",
+              "name_ar": "اللوزيات",
+              "description_en": "Delicate lily coloring pages for kids to color in soft pastel shades.",
+              "description_fr": "Pages de coloriage de lilas pour enfants : fleurs délicates à colorier dans des teintes pâles.",
+              "weight": 3
+            },
+            {
+              "id": "mandalas_fleurs_peonies",
+              "slug": "peonies",
+              "name_en": "Peonies",
+              "name_fr": "Pivoines",
+              "name_ar": "البيونيا",
+              "description_en": "Rich and elegant peony coloring pages for kids to explore.",
+              "description_fr": "Pages de coloriage de pivoines pour enfants : fleurs raffinées à explorer.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 7.621385097503662,
+          "children_evaluated": [
+            {
+              "id": "mandalas_fleurs_roses",
+              "name_fr": "Roses",
+              "name_en": "Roses",
+              "name_ar": "النرجس",
+              "ar_ok": true,
+              "cross_locale_suspect": true,
+              "duplicate": false
+            },
+            {
+              "id": "mandalas_fleurs_tulips",
+              "name_fr": "Tulipes",
+              "name_en": "Tulips",
+              "name_ar": "ال tulipان",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "mandalas_fleurs_sunflowers",
+              "name_fr": "Tournesols",
+              "name_en": "Sunflowers",
+              "name_ar": "النرجس الكوكبى",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "mandalas_fleurs_lilies",
+              "name_fr": "Lilas",
+              "name_en": "Lilies",
+              "name_ar": "اللوزيات",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "mandalas_fleurs_peonies",
+              "name_fr": "Pivoines",
+              "name_en": "Peonies",
+              "name_ar": "البيونيا",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        },
+        {
+          "leaf": {
+            "id": "voitures",
+            "name_fr": "Voitures",
+            "name_en": "Cars"
+          },
+          "raw": "[\n  {\"id\": \"voitures_cars\", \"slug\": \"cars\", \"name_en\": \"Cars\", \"name_fr\": \"Voitures\",\n    \"name_ar\": \"السيارات\", \"description_en\": \"Coloring pages of famous cars and vehicles for kids.\", \"description_fr\": \"Coloriages de voitures célèbres et véhicules pour enfants.\", \"weight\": 0},\n  {\"id\": \"voitures_trucks\", \"slug\": \"trucks\", \"name_en\": \"Trucks\", \"name_fr\": \"Camions\",\n    \"name_ar\": \"الشاحنات\", \"description_en\": \"Coloring pages of big and colorful trucks for kids.\", \"description_fr\": \"Coloriages de camions pour enfants : gros et colorés.\", \"weight\": 1},\n  {\"id\": \"voitures_buses\", \"slug\": \"buses\", \"name_en\": \"Buses\", \"name_fr\": \"Autobus\",\n    \"name_ar\": \"حافلات\", \"description_en\": \"Coloring pages of colorful and fun buses for kids.\", \"description_fr\": \"Coloriages d'autobus pour enfants : colorés et amusants.\", \"weight\": 2},\n  {\"id\": \"voitures_ambulances\", \"slug\": \"ambulances\", \"name_en\": \"Ambulances\", \"name_fr\": \"Ambulance\",\n    \"name_ar\": \"السيارات الإسعافية\", \"description_en\": \"Coloring pages of red and white ambulances for kids.\", \"description_fr\": \"Coloriages d'ambulances pour enfants : rouges et blanches.\", \"weight\": 3},\n  {\"id\": \"voitures_motorcycles\", \"slug\": \"motorcycles\", \"name_en\": \"Motorcycles\", \"name_fr\": \"Motocyclettes\",\n    \"name_ar\": \"دراجات نارية\", \"description_en\": \"Coloring pages of cool and exciting motorcycles for kids.\", \"description_fr\": \"Coloriages de motos pour enfants : superbes et excitants.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "voitures_cars",
+              "slug": "cars",
+              "name_en": "Cars",
+              "name_fr": "Voitures",
+              "name_ar": "السيارات",
+              "description_en": "Coloring pages of famous cars and vehicles for kids.",
+              "description_fr": "Coloriages de voitures célèbres et véhicules pour enfants.",
+              "weight": 0
+            },
+            {
+              "id": "voitures_trucks",
+              "slug": "trucks",
+              "name_en": "Trucks",
+              "name_fr": "Camions",
+              "name_ar": "الشاحنات",
+              "description_en": "Coloring pages of big and colorful trucks for kids.",
+              "description_fr": "Coloriages de camions pour enfants : gros et colorés.",
+              "weight": 1
+            },
+            {
+              "id": "voitures_buses",
+              "slug": "buses",
+              "name_en": "Buses",
+              "name_fr": "Autobus",
+              "name_ar": "حافلات",
+              "description_en": "Coloring pages of colorful and fun buses for kids.",
+              "description_fr": "Coloriages d'autobus pour enfants : colorés et amusants.",
+              "weight": 2
+            },
+            {
+              "id": "voitures_ambulances",
+              "slug": "ambulances",
+              "name_en": "Ambulances",
+              "name_fr": "Ambulance",
+              "name_ar": "السيارات الإسعافية",
+              "description_en": "Coloring pages of red and white ambulances for kids.",
+              "description_fr": "Coloriages d'ambulances pour enfants : rouges et blanches.",
+              "weight": 3
+            },
+            {
+              "id": "voitures_motorcycles",
+              "slug": "motorcycles",
+              "name_en": "Motorcycles",
+              "name_fr": "Motocyclettes",
+              "name_ar": "دراجات نارية",
+              "description_en": "Coloring pages of cool and exciting motorcycles for kids.",
+              "description_fr": "Coloriages de motos pour enfants : superbes et excitants.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 6.966034889221191,
+          "children_evaluated": [
+            {
+              "id": "voitures_cars",
+              "name_fr": "Voitures",
+              "name_en": "Cars",
+              "name_ar": "السيارات",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": true
+            },
+            {
+              "id": "voitures_trucks",
+              "name_fr": "Camions",
+              "name_en": "Trucks",
+              "name_ar": "الشاحنات",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": true
+            },
+            {
+              "id": "voitures_buses",
+              "name_fr": "Autobus",
+              "name_en": "Buses",
+              "name_ar": "حافلات",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "voitures_ambulances",
+              "name_fr": "Ambulance",
+              "name_en": "Ambulances",
+              "name_ar": "السيارات الإسعافية",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "voitures_motorcycles",
+              "name_fr": "Motocyclettes",
+              "name_en": "Motorcycles",
+              "name_ar": "دراجات نارية",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        },
+        {
+          "leaf": {
+            "id": "science",
+            "name_fr": "Science",
+            "name_en": "Science"
+          },
+          "raw": "[\n    {\"id\": \"science_organisms\", \"slug\": \"microscopic-organisms\", \"name_en\": \"Microscopic Organisms\", \"name_fr\": \"Organismes Microscopiques\", \"name_ar\": \"الميكروبات\", \"description_en\": \"Coloring pages of microscopic organisms like bacteria and protozoa for kids.\", \"description_fr\": \"Coloriages d'organismes microscopiques comme des bactéries et des protistes pour enfants.\", \"weight\": 0},\n    {\"id\": \"science_weather\", \"slug\": \"weather\", \"name_en\": \"Weather\", \"name_fr\": \"Météo\", \"name_ar\": \"الطقس\", \"description_en\": \"Coloring pages of weather phenomena such as rainbows, hurricanes and clouds for kids.\", \"description_fr\": \"Coloriages de phénomènes météorologiques comme des arc-en-ciel, des ouragans et des nuages pour enfants.\", \"weight\": 1},\n    {\"id\": \"science_plants\", \"slug\": \"plants\", \"name_en\": \"Plants\", \"name_fr\": \"Plantes\", \"name_ar\": \"نباتات\", \"description_en\": \"Coloring pages of plants from different ecosystems for kids to learn about nature.\", \"description_fr\": \"Coloriages de plantes d'ecosystèmes différents pour enfants afin qu'ils apprennent sur la nature.\", \"weight\": 2},\n    {\"id\": \"science_animals\", \"slug\": \"animals\", \"name_en\": \"Animals\", \"name_fr\": \"Animaux\", \"name_ar\": \"حيوانات\", \"description_en\": \"Coloring pages of animals from around the world for kids to explore.\", \"description_fr\": \"Coloriages d'animaux du monde entier pour enfants afin qu'ils explorent les différentes espèces.\", \"weight\": 3},\n    {\"id\": \"science_space\", \"slug\": \"space\", \"name_en\": \"Space\", \"name_fr\": \"Espace\", \"name_ar\": \"فضاء\", \"description_en\": \"Coloring pages of celestial bodies and space exploration for kids to dream big.\", \"description_fr\": \"Coloriages de corps célestes et d'exploration spatiale pour enfants afin qu'ils rêvent grand.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "science_organisms",
+              "slug": "microscopic-organisms",
+              "name_en": "Microscopic Organisms",
+              "name_fr": "Organismes Microscopiques",
+              "name_ar": "الميكروبات",
+              "description_en": "Coloring pages of microscopic organisms like bacteria and protozoa for kids.",
+              "description_fr": "Coloriages d'organismes microscopiques comme des bactéries et des protistes pour enfants.",
+              "weight": 0
+            },
+            {
+              "id": "science_weather",
+              "slug": "weather",
+              "name_en": "Weather",
+              "name_fr": "Météo",
+              "name_ar": "الطقس",
+              "description_en": "Coloring pages of weather phenomena such as rainbows, hurricanes and clouds for kids.",
+              "description_fr": "Coloriages de phénomènes météorologiques comme des arc-en-ciel, des ouragans et des nuages pour enfants.",
+              "weight": 1
+            },
+            {
+              "id": "science_plants",
+              "slug": "plants",
+              "name_en": "Plants",
+              "name_fr": "Plantes",
+              "name_ar": "نباتات",
+              "description_en": "Coloring pages of plants from different ecosystems for kids to learn about nature.",
+              "description_fr": "Coloriages de plantes d'ecosystèmes différents pour enfants afin qu'ils apprennent sur la nature.",
+              "weight": 2
+            },
+            {
+              "id": "science_animals",
+              "slug": "animals",
+              "name_en": "Animals",
+              "name_fr": "Animaux",
+              "name_ar": "حيوانات",
+              "description_en": "Coloring pages of animals from around the world for kids to explore.",
+              "description_fr": "Coloriages d'animaux du monde entier pour enfants afin qu'ils explorent les différentes espèces.",
+              "weight": 3
+            },
+            {
+              "id": "science_space",
+              "slug": "space",
+              "name_en": "Space",
+              "name_fr": "Espace",
+              "name_ar": "فضاء",
+              "description_en": "Coloring pages of celestial bodies and space exploration for kids to dream big.",
+              "description_fr": "Coloriages de corps célestes et d'exploration spatiale pour enfants afin qu'ils rêvent grand.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 8.5881826877594,
+          "children_evaluated": [
+            {
+              "id": "science_organisms",
+              "name_fr": "Organismes Microscopiques",
+              "name_en": "Microscopic Organisms",
+              "name_ar": "الميكروبات",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "science_weather",
+              "name_fr": "Météo",
+              "name_en": "Weather",
+              "name_ar": "الطقس",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "science_plants",
+              "name_fr": "Plantes",
+              "name_en": "Plants",
+              "name_ar": "نباتات",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "science_animals",
+              "name_fr": "Animaux",
+              "name_en": "Animals",
+              "name_ar": "حيوانات",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": true
+            },
+            {
+              "id": "science_space",
+              "name_fr": "Espace",
+              "name_en": "Space",
+              "name_ar": "فضاء",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        }
+      ],
+      "concepts_agg": {
+        "total_terms": 5,
+        "json_ok": 5,
+        "total_children_generated": 25,
+        "ar_present_and_short": 25,
+        "cross_locale_suspect": 1,
+        "duplicates_with_existing": 3,
+        "avg_latency_s": 7.39
+      },
+      "composite_score": 79.0
+    },
+    "qwen3:8b": {
+      "model_info": {
+        "name": "qwen3:8b",
+        "model": "qwen3:8b",
+        "modified_at": "2026-04-15T10:22:20.4911151+01:00",
+        "size": 5225388164,
+        "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "8.2B",
+          "quantization_level": "Q4_K_M"
+        }
+      },
+      "ar_results": [
+        {
+          "pair": {
+            "concept_en": "elephant in the savanna",
+            "term_id": "animaux_sauvages",
+            "term_ar": "حيوانات برية",
+            "term_en": "Wild animals"
+          },
+          "raw": "{\"title\": \"الصغير الأفيال في الصحراء\", \"title_card\": \"الأفيال في الصحراء\", \"description\": \"استمتع بلوحة أفيال صغيرة في الصحراء وابدأ رحلتك في عالم الحيوانات البرية مع هذا التصميم الملون\", \"keywords\": [\"أفيال\", \"صحراء\", \"حيوانات برية\", \"لوحة ألوان\", \"رسم\"]}",
+          "parsed": {
+            "title": "الصغير الأفيال في الصحراء",
+            "title_card": "الأفيال في الصحراء",
+            "description": "استمتع بلوحة أفيال صغيرة في الصحراء وابدأ رحلتك في عالم الحيوانات البرية مع هذا التصميم الملون",
+            "keywords": [
+              "أفيال",
+              "صحراء",
+              "حيوانات برية",
+              "لوحة ألوان",
+              "رسم"
+            ]
+          },
+          "latency_s": 15.703246831893921,
+          "json_ok": true,
+          "title": "الصغير الأفيال في الصحراء",
+          "title_card": "الأفيال في الصحراء",
+          "description": "استمتع بلوحة أفيال صغيرة في الصحراء وابدأ رحلتك في عالم الحيوانات البرية مع هذا التصميم الملون",
+          "keywords": [
+            "أفيال",
+            "صحراء",
+            "حيوانات برية",
+            "لوحة ألوان",
+            "رسم"
+          ],
+          "title_len": 25,
+          "title_in_bounds": true,
+          "title_card_len": 18,
+          "title_card_in_bounds": true,
+          "description_len": 94,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "token_match",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "jumping dolphin",
+            "term_id": "animaux_marins",
+            "term_ar": "حيوانات بحرية",
+            "term_en": "Sea animals"
+          },
+          "raw": "{\"title\": \"دلفين يقفز في محيط ملون\", \"title_card\": \"دلفين ملون\", \"description\": \"استمتع بلوحة ملونة لدلفين يقفز في المحيط. مناسب للأطفال لتنمية مهاراتهم الإبداعية\", \"keywords\": [\"دلفين\", \"حيوانات بحرية\", \"لوحة ملونة\", \"الأطفال\", \"الإبداع\"]}",
+          "parsed": {
+            "title": "دلفين يقفز في محيط ملون",
+            "title_card": "دلفين ملون",
+            "description": "استمتع بلوحة ملونة لدلفين يقفز في المحيط. مناسب للأطفال لتنمية مهاراتهم الإبداعية",
+            "keywords": [
+              "دلفين",
+              "حيوانات بحرية",
+              "لوحة ملونة",
+              "الأطفال",
+              "الإبداع"
+            ]
+          },
+          "latency_s": 9.819612264633179,
+          "json_ok": true,
+          "title": "دلفين يقفز في محيط ملون",
+          "title_card": "دلفين ملون",
+          "description": "استمتع بلوحة ملونة لدلفين يقفز في المحيط. مناسب للأطفال لتنمية مهاراتهم الإبداعية",
+          "keywords": [
+            "دلفين",
+            "حيوانات بحرية",
+            "لوحة ملونة",
+            "الأطفال",
+            "الإبداع"
+          ],
+          "title_len": 23,
+          "title_in_bounds": false,
+          "title_card_len": 10,
+          "title_card_in_bounds": true,
+          "description_len": 81,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": false,
+          "anchor_match_kind": "absent",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "cow grazing in the field",
+            "term_id": "animaux_ferme",
+            "term_ar": "حيوانات المزرعة",
+            "term_en": "Farm animals"
+          },
+          "raw": "{\"title\": \"البقرة ترعى في الحقل المفتوح\", \"title_card\": \"البقرة في الحقل\", \"description\": \"البقرة ترعى في حقل مفتوح مليء بالعشب الأخضر، مثالية لرسم الأطفال\", \"keywords\": [\"حيوانات المزرعة\", \"البقرة\", \"الرسم\", \"الحقل\", \"الأطفال\"]}",
+          "parsed": {
+            "title": "البقرة ترعى في الحقل المفتوح",
+            "title_card": "البقرة في الحقل",
+            "description": "البقرة ترعى في حقل مفتوح مليء بالعشب الأخضر، مثالية لرسم الأطفال",
+            "keywords": [
+              "حيوانات المزرعة",
+              "البقرة",
+              "الرسم",
+              "الحقل",
+              "الأطفال"
+            ]
+          },
+          "latency_s": 12.955924272537231,
+          "json_ok": true,
+          "title": "البقرة ترعى في الحقل المفتوح",
+          "title_card": "البقرة في الحقل",
+          "description": "البقرة ترعى في حقل مفتوح مليء بالعشب الأخضر، مثالية لرسم الأطفال",
+          "keywords": [
+            "حيوانات المزرعة",
+            "البقرة",
+            "الرسم",
+            "الحقل",
+            "الأطفال"
+          ],
+          "title_len": 28,
+          "title_in_bounds": true,
+          "title_card_len": 15,
+          "title_card_in_bounds": true,
+          "description_len": 64,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": false,
+          "anchor_match_kind": "absent",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "kitten playing with a ball",
+            "term_id": "animaux_domestiques_cats_kittens",
+            "term_ar": "القطط في اللعب",
+            "term_en": "Kittens Playtime"
+          },
+          "raw": "{\"title\": \"قطط صغيرة تلعب بالكرة الملونة\", \"title_card\": \"قطط تلعب\", \"description\": \"انظر إلى القطط الصغيرة تلعب بالكرة اللطيفة في هذه الصفحة الملونة\", \"keywords\": [\"قطط\", \"لعب\", \"كرة\", \"الرسم\", \"الرسم باللون\"]}",
+          "parsed": {
+            "title": "قطط صغيرة تلعب بالكرة الملونة",
+            "title_card": "قطط تلعب",
+            "description": "انظر إلى القطط الصغيرة تلعب بالكرة اللطيفة في هذه الصفحة الملونة",
+            "keywords": [
+              "قطط",
+              "لعب",
+              "كرة",
+              "الرسم",
+              "الرسم باللون"
+            ]
+          },
+          "latency_s": 12.86360502243042,
+          "json_ok": true,
+          "title": "قطط صغيرة تلعب بالكرة الملونة",
+          "title_card": "قطط تلعب",
+          "description": "انظر إلى القطط الصغيرة تلعب بالكرة اللطيفة في هذه الصفحة الملونة",
+          "keywords": [
+            "قطط",
+            "لعب",
+            "كرة",
+            "الرسم",
+            "الرسم باللون"
+          ],
+          "title_len": 29,
+          "title_in_bounds": true,
+          "title_card_len": 8,
+          "title_card_in_bounds": true,
+          "description_len": 64,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "token_match",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "decorated Christmas tree",
+            "term_id": "noel",
+            "term_ar": "عيد الميلاد",
+            "term_en": "Christmas"
+          },
+          "raw": "{\"title\": \"شجرة عيد الميلاد المزينة الجميلة\", \"title_card\": \"عيد الميلاد\", \"description\": \"صفحة رسم ملونة لشجرة عيد الميلاد مع إضاءة ونجوم وهدية\", \"keywords\": [\"شجرة عيد الميلاد\", \"رسم ملون\", \"ديكورات\", \"عيد الميلاد\", \"هدية\"]}",
+          "parsed": {
+            "title": "شجرة عيد الميلاد المزينة الجميلة",
+            "title_card": "عيد الميلاد",
+            "description": "صفحة رسم ملونة لشجرة عيد الميلاد مع إضاءة ونجوم وهدية",
+            "keywords": [
+              "شجرة عيد الميلاد",
+              "رسم ملون",
+              "ديكورات",
+              "عيد الميلاد",
+              "هدية"
+            ]
+          },
+          "latency_s": 9.929063081741333,
+          "json_ok": true,
+          "title": "شجرة عيد الميلاد المزينة الجميلة",
+          "title_card": "عيد الميلاد",
+          "description": "صفحة رسم ملونة لشجرة عيد الميلاد مع إضاءة ونجوم وهدية",
+          "keywords": [
+            "شجرة عيد الميلاد",
+            "رسم ملون",
+            "ديكورات",
+            "عيد الميلاد",
+            "هدية"
+          ],
+          "title_len": 32,
+          "title_in_bounds": true,
+          "title_card_len": 11,
+          "title_card_in_bounds": true,
+          "description_len": 53,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "exact",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "Easter eggs in a basket",
+            "term_id": "paques",
+            "term_ar": "عيد الفصح",
+            "term_en": "Easter"
+          },
+          "raw": "{\"title\": \"عيد الفصح: بيض عيد الفصح في سلة\", \"title_card\": \"بيض عيد الفصح\", \"description\": \"استمتع بلوحة التلوين هذه مع بيض عيد الفصح في سلة، وابدأ بتحويلها إلى عمل فني مميز!\", \"keywords\": [\"عيد الفصح\", \"بيض عيد الفصح\", \"لوحة تلوين\", \"سلة\", \"أنشطة عيد الفصح\"]}",
+          "parsed": {
+            "title": "عيد الفصح: بيض عيد الفصح في سلة",
+            "title_card": "بيض عيد الفصح",
+            "description": "استمتع بلوحة التلوين هذه مع بيض عيد الفصح في سلة، وابدأ بتحويلها إلى عمل فني مميز!",
+            "keywords": [
+              "عيد الفصح",
+              "بيض عيد الفصح",
+              "لوحة تلوين",
+              "سلة",
+              "أنشطة عيد الفصح"
+            ]
+          },
+          "latency_s": 8.749932050704956,
+          "json_ok": true,
+          "title": "عيد الفصح: بيض عيد الفصح في سلة",
+          "title_card": "بيض عيد الفصح",
+          "description": "استمتع بلوحة التلوين هذه مع بيض عيد الفصح في سلة، وابدأ بتحويلها إلى عمل فني مميز!",
+          "keywords": [
+            "عيد الفصح",
+            "بيض عيد الفصح",
+            "لوحة تلوين",
+            "سلة",
+            "أنشطة عيد الفصح"
+          ],
+          "title_len": 31,
+          "title_in_bounds": true,
+          "title_card_len": 13,
+          "title_card_in_bounds": true,
+          "description_len": 82,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "exact",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        },
+        {
+          "pair": {
+            "concept_en": "Halloween pumpkin with a smile",
+            "term_id": "halloween",
+            "term_ar": "هالووين",
+            "term_en": "Halloween"
+          },
+          "raw": "{\"title\": \"خريف هالوين: بُنَّان مبتسم مُحْسِن\", \"title_card\": \"هالوين: بُنَّان مبتسم\", \"description\": \"استمتع ب Coloring هذه الصورة المبتسمة من هالوين، وابدأ رحلة الإبداع مع هذه الصورة الملونة!\", \"keywords\": [\"هالوين\", \"بُنَّان\", \"رسم\", \"الرسم\", \"الإبداع\"]}",
+          "parsed": {
+            "title": "خريف هالوين: بُنَّان مبتسم مُحْسِن",
+            "title_card": "هالوين: بُنَّان مبتسم",
+            "description": "استمتع ب Coloring هذه الصورة المبتسمة من هالوين، وابدأ رحلة الإبداع مع هذه الصورة الملونة!",
+            "keywords": [
+              "هالوين",
+              "بُنَّان",
+              "رسم",
+              "الرسم",
+              "الإبداع"
+            ]
+          },
+          "latency_s": 14.264795303344727,
+          "json_ok": true,
+          "title": "خريف هالوين: بُنَّان مبتسم مُحْسِن",
+          "title_card": "هالوين: بُنَّان مبتسم",
+          "description": "استمتع ب Coloring هذه الصورة المبتسمة من هالوين، وابدأ رحلة الإبداع مع هذه الصورة الملونة!",
+          "keywords": [
+            "هالوين",
+            "بُنَّان",
+            "رسم",
+            "الرسم",
+            "الإبداع"
+          ],
+          "title_len": 34,
+          "title_in_bounds": true,
+          "title_card_len": 21,
+          "title_card_in_bounds": true,
+          "description_len": 90,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "prefix_4",
+          "harakat_anywhere": true,
+          "latin_anywhere": true
+        },
+        {
+          "pair": {
+            "concept_en": "complex flower mandala",
+            "term_id": "mandalas_fleurs",
+            "term_ar": "مندالات الزهور",
+            "term_en": "Flower mandalas"
+          },
+          "raw": "{\"title\": \"مندالات الزهور المعقدة للرسم واللون\", \"title_card\": \"مندالات الزهور المعقدة\", \"description\": \"استمتع برسم مندالات الزهور المعقدة ولونها بألوانك المفضلة. مناسبة للأطفال والكبار\", \"keywords\": [\"مندالات الزهور\", \"رسم Mandalas\", \"الرسم للأطفال\", \"ال Mandalas المعقدة\", \"الرسم واللون\"]}",
+          "parsed": {
+            "title": "مندالات الزهور المعقدة للرسم واللون",
+            "title_card": "مندالات الزهور المعقدة",
+            "description": "استمتع برسم مندالات الزهور المعقدة ولونها بألوانك المفضلة. مناسبة للأطفال والكبار",
+            "keywords": [
+              "مندالات الزهور",
+              "رسم Mandalas",
+              "الرسم للأطفال",
+              "ال Mandalas المعقدة",
+              "الرسم واللون"
+            ]
+          },
+          "latency_s": 13.292476177215576,
+          "json_ok": true,
+          "title": "مندالات الزهور المعقدة للرسم واللون",
+          "title_card": "مندالات الزهور المعقدة",
+          "description": "استمتع برسم مندالات الزهور المعقدة ولونها بألوانك المفضلة. مناسبة للأطفال والكبار",
+          "keywords": [
+            "مندالات الزهور",
+            "رسم Mandalas",
+            "الرسم للأطفال",
+            "ال Mandalas المعقدة",
+            "الرسم واللون"
+          ],
+          "title_len": 35,
+          "title_in_bounds": true,
+          "title_card_len": 22,
+          "title_card_in_bounds": true,
+          "description_len": 81,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "exact",
+          "harakat_anywhere": false,
+          "latin_anywhere": true
+        },
+        {
+          "pair": {
+            "concept_en": "snowy mountains scene",
+            "term_id": "hiver",
+            "term_ar": "الشتاء",
+            "term_en": "Winter"
+          },
+          "raw": "{\"title\": \"رسم جبال ثلجية مذهلة في الشتاء\", \"title_card\": \"جبال ثلجية في الشتاء\", \"description\": \"استمتع ب Coloring هذه الجبال الثلجية في فصل الشتاء مع ألوان مبهجة وتفاصيل رائعة\", \"keywords\": [\"رسم\", \"جبال\", \"ثلجية\", \"شتاء\", \"طبيعة\"]}",
+          "parsed": {
+            "title": "رسم جبال ثلجية مذهلة في الشتاء",
+            "title_card": "جبال ثلجية في الشتاء",
+            "description": "استمتع ب Coloring هذه الجبال الثلجية في فصل الشتاء مع ألوان مبهجة وتفاصيل رائعة",
+            "keywords": [
+              "رسم",
+              "جبال",
+              "ثلجية",
+              "شتاء",
+              "طبيعة"
+            ]
+          },
+          "latency_s": 11.013564825057983,
+          "json_ok": true,
+          "title": "رسم جبال ثلجية مذهلة في الشتاء",
+          "title_card": "جبال ثلجية في الشتاء",
+          "description": "استمتع ب Coloring هذه الجبال الثلجية في فصل الشتاء مع ألوان مبهجة وتفاصيل رائعة",
+          "keywords": [
+            "رسم",
+            "جبال",
+            "ثلجية",
+            "شتاء",
+            "طبيعة"
+          ],
+          "title_len": 30,
+          "title_in_bounds": true,
+          "title_card_len": 20,
+          "title_card_in_bounds": true,
+          "description_len": 79,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "exact",
+          "harakat_anywhere": false,
+          "latin_anywhere": true
+        },
+        {
+          "pair": {
+            "concept_en": "racing car on a track",
+            "term_id": "voitures",
+            "term_ar": "السيارات",
+            "term_en": "Cars"
+          },
+          "raw": "{\"title\": \"السيارة السريعة تجوب المضمار\", \"title_card\": \"سيارة سريعة على مضمار\", \"description\": \"انطلق السيارة السريعة على مضمار السباق بسرعة عالية وانسيابية\", \"keywords\": [\"سيارة\", \"مضمار\", \"سباق\", \"سرعة\", \"الرسم\"]}",
+          "parsed": {
+            "title": "السيارة السريعة تجوب المضمار",
+            "title_card": "سيارة سريعة على مضمار",
+            "description": "انطلق السيارة السريعة على مضمار السباق بسرعة عالية وانسيابية",
+            "keywords": [
+              "سيارة",
+              "مضمار",
+              "سباق",
+              "سرعة",
+              "الرسم"
+            ]
+          },
+          "latency_s": 10.43399167060852,
+          "json_ok": true,
+          "title": "السيارة السريعة تجوب المضمار",
+          "title_card": "سيارة سريعة على مضمار",
+          "description": "انطلق السيارة السريعة على مضمار السباق بسرعة عالية وانسيابية",
+          "keywords": [
+            "سيارة",
+            "مضمار",
+            "سباق",
+            "سرعة",
+            "الرسم"
+          ],
+          "title_len": 28,
+          "title_in_bounds": true,
+          "title_card_len": 21,
+          "title_card_in_bounds": true,
+          "description_len": 60,
+          "description_in_bounds": true,
+          "keywords_count": 5,
+          "keywords_count_ok": true,
+          "anchor_present": true,
+          "anchor_match_kind": "prefix_4",
+          "harakat_anywhere": false,
+          "latin_anywhere": false
+        }
+      ],
+      "ar_agg": {
+        "total": 10,
+        "json_ok": 10,
+        "anchor_present": 8,
+        "title_in_bounds": 9,
+        "title_card_in_bounds": 10,
+        "description_in_bounds": 10,
+        "keywords_count_ok": 10,
+        "harakat_clean": 9,
+        "latin_clean": 7,
+        "avg_latency_s": 11.9
+      },
+      "concepts_results": [
+        {
+          "leaf": {
+            "id": "animaux_marins",
+            "name_fr": "Animaux marins",
+            "name_en": "Sea animals"
+          },
+          "raw": "[\n  {\"id\": \"animaux_marins_dolphins\", \"slug\": \"dolphins\", \"name_en\": \"Dolphins\", \"name_fr\": \"Dauphins\", \"name_ar\": \"الدلافين\", \"description_en\": \"Dolphin coloring pages for kids featuring playful dolphins and ocean scenes to color.\", \"description_fr\": \"Coloriages de dauphins pour enfants : dauphins joueurs et scènes océaniques à colorier.\", \"weight\": 0},\n  {\"id\": \"animaux_marins_sharks\", \"slug\": \"sharks\", \"name_en\": \"Sharks\", \"name_fr\": \"Requins\", \"name_ar\": \"النحل\", \"description_en\": \"Shark coloring pages for children with detailed fins and underwater environments to color.\", \"description_fr\": \"Coloriages de requins pour enfants : nageoires détaillées et environnements sous-marins à colorier.\", \"weight\": 1},\n  {\"id\": \"animaux_marins_whales\", \"slug\": \"whales\", \"name_en\": \"Whales\", \"name_fr\": \"Baleines\", \"name_ar\": \"الحيتان\", \"description_en\": \"Whale coloring pages for kids with majestic blue whales and sea creatures to color.\", \"description_fr\": \"Coloriages de baleines pour enfants : baleines majestueuses et créatures marines à colorier.\", \"weight\": 2},\n  {\"id\": \"animaux_marins_turtles\", \"slug\": \"turtles\", \"name_en\": \"Turtles\", \"name_fr\": \"Tortues\", \"name_ar\": \"السلمندر\", \"description_en\": \"Turtle coloring pages for children featuring sea turtles and coral reefs to color.\", \"description_fr\": \"Coloriages de tortues pour enfants : tortues de mer et récifs coralliens à colorier.\", \"weight\": 3},\n  {\"id\": \"animaux_marins_starfish\", \"slug\": \"starfish\", \"name_en\": \"Starfish\", \"name_fr\": \"Étoiles de mer\", \"name_ar\": \"الجمجمة\", \"description_en\": \"Starfish coloring pages for kids with vibrant colors and sea creature designs to color.\", \"description_fr\": \"Coloriages d'étoiles de mer pour enfants : couleurs vives et dessins de créatures marines à colorier.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "animaux_marins_dolphins",
+              "slug": "dolphins",
+              "name_en": "Dolphins",
+              "name_fr": "Dauphins",
+              "name_ar": "الدلافين",
+              "description_en": "Dolphin coloring pages for kids featuring playful dolphins and ocean scenes to color.",
+              "description_fr": "Coloriages de dauphins pour enfants : dauphins joueurs et scènes océaniques à colorier.",
+              "weight": 0
+            },
+            {
+              "id": "animaux_marins_sharks",
+              "slug": "sharks",
+              "name_en": "Sharks",
+              "name_fr": "Requins",
+              "name_ar": "النحل",
+              "description_en": "Shark coloring pages for children with detailed fins and underwater environments to color.",
+              "description_fr": "Coloriages de requins pour enfants : nageoires détaillées et environnements sous-marins à colorier.",
+              "weight": 1
+            },
+            {
+              "id": "animaux_marins_whales",
+              "slug": "whales",
+              "name_en": "Whales",
+              "name_fr": "Baleines",
+              "name_ar": "الحيتان",
+              "description_en": "Whale coloring pages for kids with majestic blue whales and sea creatures to color.",
+              "description_fr": "Coloriages de baleines pour enfants : baleines majestueuses et créatures marines à colorier.",
+              "weight": 2
+            },
+            {
+              "id": "animaux_marins_turtles",
+              "slug": "turtles",
+              "name_en": "Turtles",
+              "name_fr": "Tortues",
+              "name_ar": "السلمندر",
+              "description_en": "Turtle coloring pages for children featuring sea turtles and coral reefs to color.",
+              "description_fr": "Coloriages de tortues pour enfants : tortues de mer et récifs coralliens à colorier.",
+              "weight": 3
+            },
+            {
+              "id": "animaux_marins_starfish",
+              "slug": "starfish",
+              "name_en": "Starfish",
+              "name_fr": "Étoiles de mer",
+              "name_ar": "الجمجمة",
+              "description_en": "Starfish coloring pages for kids with vibrant colors and sea creature designs to color.",
+              "description_fr": "Coloriages d'étoiles de mer pour enfants : couleurs vives et dessins de créatures marines à colorier.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 41.523266315460205,
+          "children_evaluated": [
+            {
+              "id": "animaux_marins_dolphins",
+              "name_fr": "Dauphins",
+              "name_en": "Dolphins",
+              "name_ar": "الدلافين",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "animaux_marins_sharks",
+              "name_fr": "Requins",
+              "name_en": "Sharks",
+              "name_ar": "النحل",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "animaux_marins_whales",
+              "name_fr": "Baleines",
+              "name_en": "Whales",
+              "name_ar": "الحيتان",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "animaux_marins_turtles",
+              "name_fr": "Tortues",
+              "name_en": "Turtles",
+              "name_ar": "السلمندر",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "animaux_marins_starfish",
+              "name_fr": "Étoiles de mer",
+              "name_en": "Starfish",
+              "name_ar": "الجمجمة",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        },
+        {
+          "leaf": {
+            "id": "noel",
+            "name_fr": "Noël",
+            "name_en": "Christmas"
+          },
+          "raw": "[\n  {\"id\": \"noel_santa_claus\", \"slug\": \"santa-claus\", \"name_en\": \"Santa Claus\", \"name_fr\": \"Père Noël\", \"name_ar\": \"بابا نويل\", \"description_en\": \"Christmas coloring pages featuring Santa Claus with sleigh, gifts and festive hats to color.\", \"description_fr\": \"Coloriages de Père Noël avec traîneau, cadeaux et bonnet de Noël à colorier.\", \"weight\": 0},\n  {\"id\": \"noel_snowmen\", \"slug\": \"snowmen\", \"name_en\": \"Snowmen\", \"name_fr\": \"Hommes de neige\", \"name_ar\": \"الرجال الثلج\", \"description_en\": \"Coloring pages of snowmen with scarves, hats and carrot noses for holiday fun.\", \"description_fr\": \"Coloriages d'hommes de neige avec écharpes, chapeaux et nez en carotte à colorier.\", \"weight\": 1},\n  {\"id\": \"noel_reindeer\", \"slug\": \"reindeer\", \"name_en\": \"Reindeer\", \"name_fr\": \"Rennes\", \"name_ar\": \"النيرين\", \"description_en\": \"Festive reindeer coloring pages with antlers, fur and holiday patterns to color.\", \"description_fr\": \"Coloriages de rennes avec cornes, fourrure et motifs de Noël à colorier.\", \"weight\": 2},\n  {\"id\": \"noel_trees\", \"slug\": \"christmas-trees\", \"name_en\": \"Christmas Trees\", \"name_fr\": \"Arbres de Noël\", \"name_ar\": \"أشجار عيد الميلاد\", \"description_en\": \"Coloring pages of decorated Christmas trees with ornaments, stars and lights to color.\", \"description_fr\": \"Coloriages d'arbres de Noël décorés avec guirlandes, étoiles et lumières à colorier.\", \"weight\": 3},\n  {\"id\": \"noel_gifts\", \"slug\": \"gifts\", \"name_en\": \"Gifts\", \"name_fr\": \"Cadeaux\", \"name_ar\": \"الهدايا\", \"description_en\": \"Coloring pages of gift boxes, wrapping paper and presents under the Christmas tree.\", \"description_fr\": \"Coloriages de boîtes de cadeaux, papier cadeau et présents sous l'arbre de Noël.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "noel_santa_claus",
+              "slug": "santa-claus",
+              "name_en": "Santa Claus",
+              "name_fr": "Père Noël",
+              "name_ar": "بابا نويل",
+              "description_en": "Christmas coloring pages featuring Santa Claus with sleigh, gifts and festive hats to color.",
+              "description_fr": "Coloriages de Père Noël avec traîneau, cadeaux et bonnet de Noël à colorier.",
+              "weight": 0
+            },
+            {
+              "id": "noel_snowmen",
+              "slug": "snowmen",
+              "name_en": "Snowmen",
+              "name_fr": "Hommes de neige",
+              "name_ar": "الرجال الثلج",
+              "description_en": "Coloring pages of snowmen with scarves, hats and carrot noses for holiday fun.",
+              "description_fr": "Coloriages d'hommes de neige avec écharpes, chapeaux et nez en carotte à colorier.",
+              "weight": 1
+            },
+            {
+              "id": "noel_reindeer",
+              "slug": "reindeer",
+              "name_en": "Reindeer",
+              "name_fr": "Rennes",
+              "name_ar": "النيرين",
+              "description_en": "Festive reindeer coloring pages with antlers, fur and holiday patterns to color.",
+              "description_fr": "Coloriages de rennes avec cornes, fourrure et motifs de Noël à colorier.",
+              "weight": 2
+            },
+            {
+              "id": "noel_trees",
+              "slug": "christmas-trees",
+              "name_en": "Christmas Trees",
+              "name_fr": "Arbres de Noël",
+              "name_ar": "أشجار عيد الميلاد",
+              "description_en": "Coloring pages of decorated Christmas trees with ornaments, stars and lights to color.",
+              "description_fr": "Coloriages d'arbres de Noël décorés avec guirlandes, étoiles et lumières à colorier.",
+              "weight": 3
+            },
+            {
+              "id": "noel_gifts",
+              "slug": "gifts",
+              "name_en": "Gifts",
+              "name_fr": "Cadeaux",
+              "name_ar": "الهدايا",
+              "description_en": "Coloring pages of gift boxes, wrapping paper and presents under the Christmas tree.",
+              "description_fr": "Coloriages de boîtes de cadeaux, papier cadeau et présents sous l'arbre de Noël.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 22.172839641571045,
+          "children_evaluated": [
+            {
+              "id": "noel_santa_claus",
+              "name_fr": "Père Noël",
+              "name_en": "Santa Claus",
+              "name_ar": "بابا نويل",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "noel_snowmen",
+              "name_fr": "Hommes de neige",
+              "name_en": "Snowmen",
+              "name_ar": "الرجال الثلج",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "noel_reindeer",
+              "name_fr": "Rennes",
+              "name_en": "Reindeer",
+              "name_ar": "النيرين",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "noel_trees",
+              "name_fr": "Arbres de Noël",
+              "name_en": "Christmas Trees",
+              "name_ar": "أشجار عيد الميلاد",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "noel_gifts",
+              "name_fr": "Cadeaux",
+              "name_en": "Gifts",
+              "name_ar": "الهدايا",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        },
+        {
+          "leaf": {
+            "id": "mandalas_fleurs",
+            "name_fr": "Mandalas fleurs",
+            "name_en": "Flower mandalas"
+          },
+          "raw": "[\n  {\"id\": \"mandalas_fleurs_patterns\", \"slug\": \"flower-mandalas-patterns\", \"name_en\": \"Flower Mandalas Patterns\", \"name_fr\": \"Mandalas Fleurs Motifs\", \"name_ar\": \" Mandalas الزهور الأنماط\", \"description_en\": \"Coloring pages featuring intricate flower mandala patterns for creative kids to color and explore.\", \"description_fr\": \"Coloriages de mandalas fleurs avec des motifs pour les enfants à colorier et découvrir.\", \"weight\": 0},\n  {\"id\": \"mandalas_fleurs_symmetry\", \"slug\": \"flower-mandalas-symmetry\", \"name_en\": \"Flower Mandalas Symmetry\", \"name_fr\": \"Mandalas Fleurs Symétrie\", \"name_ar\": \" Mandalas الزهور التناظر\", \"description_en\": \"Symmetrical flower mandala coloring pages to help kids practice color and balance in art.\", \"description_fr\": \"Coloriages de mandalas fleurs symétriques pour apprendre à colorier et créer un équilibre artistique.\", \"weight\": 1},\n  {\"id\": \"mandalas_fleurs_seasons\", \"slug\": \"flower-mandalas-seasons\", \"name_en\": \"Flower Mandalas Seasons\", \"name_fr\": \"Mandalas Fleurs Saisons\", \"name_ar\": \" Mandalas الزهور الفصول\", \"description_en\": \"Seasonal flower mandala coloring pages with spring, summer, autumn, and winter designs.\", \"description_fr\": \"Coloriages de mandalas fleurs par saison : printemps, été, automne et hiver à colorier.\", \"weight\": 2},\n  {\"id\": \"mandalas_fleurs_butterflies\", \"slug\": \"flower-mandalas-butterflies\", \"name_en\": \"Flower Mandalas Butterflies\", \"name_fr\": \"Mandalas Fleurs Papillons\", \"name_ar\": \" Mandalas الزهور الفراشات\", \"description_en\": \"Coloring pages combining flower mandalas with butterflies for playful and creative coloring.\", \"description_fr\": \"Coloriages de mandalas fleurs avec des papillons pour un coloriage créatif et ludique.\", \"weight\": 3},\n  {\"id\": \"mandalas_fleurs_borders\", \"slug\": \"flower-mandalas-borders\", \"name_en\": \"Flower Mandalas Borders\", \"name_fr\": \"Mandalas Fleurs Bordures\", \"name_ar\": \" Mandalas الزهور الحواف\", \"description_en\": \"Floral border mandala coloring pages with intricate edge designs for detailed coloring fun.\", \"description_fr\": \"Coloriages de mandalas fleurs avec des bordures complexes pour un coloriage détaillé.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "mandalas_fleurs_patterns",
+              "slug": "flower-mandalas-patterns",
+              "name_en": "Flower Mandalas Patterns",
+              "name_fr": "Mandalas Fleurs Motifs",
+              "name_ar": " Mandalas الزهور الأنماط",
+              "description_en": "Coloring pages featuring intricate flower mandala patterns for creative kids to color and explore.",
+              "description_fr": "Coloriages de mandalas fleurs avec des motifs pour les enfants à colorier et découvrir.",
+              "weight": 0
+            },
+            {
+              "id": "mandalas_fleurs_symmetry",
+              "slug": "flower-mandalas-symmetry",
+              "name_en": "Flower Mandalas Symmetry",
+              "name_fr": "Mandalas Fleurs Symétrie",
+              "name_ar": " Mandalas الزهور التناظر",
+              "description_en": "Symmetrical flower mandala coloring pages to help kids practice color and balance in art.",
+              "description_fr": "Coloriages de mandalas fleurs symétriques pour apprendre à colorier et créer un équilibre artistique.",
+              "weight": 1
+            },
+            {
+              "id": "mandalas_fleurs_seasons",
+              "slug": "flower-mandalas-seasons",
+              "name_en": "Flower Mandalas Seasons",
+              "name_fr": "Mandalas Fleurs Saisons",
+              "name_ar": " Mandalas الزهور الفصول",
+              "description_en": "Seasonal flower mandala coloring pages with spring, summer, autumn, and winter designs.",
+              "description_fr": "Coloriages de mandalas fleurs par saison : printemps, été, automne et hiver à colorier.",
+              "weight": 2
+            },
+            {
+              "id": "mandalas_fleurs_butterflies",
+              "slug": "flower-mandalas-butterflies",
+              "name_en": "Flower Mandalas Butterflies",
+              "name_fr": "Mandalas Fleurs Papillons",
+              "name_ar": " Mandalas الزهور الفراشات",
+              "description_en": "Coloring pages combining flower mandalas with butterflies for playful and creative coloring.",
+              "description_fr": "Coloriages de mandalas fleurs avec des papillons pour un coloriage créatif et ludique.",
+              "weight": 3
+            },
+            {
+              "id": "mandalas_fleurs_borders",
+              "slug": "flower-mandalas-borders",
+              "name_en": "Flower Mandalas Borders",
+              "name_fr": "Mandalas Fleurs Bordures",
+              "name_ar": " Mandalas الزهور الحواف",
+              "description_en": "Floral border mandala coloring pages with intricate edge designs for detailed coloring fun.",
+              "description_fr": "Coloriages de mandalas fleurs avec des bordures complexes pour un coloriage détaillé.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 30.37748122215271,
+          "children_evaluated": [
+            {
+              "id": "mandalas_fleurs_patterns",
+              "name_fr": "Mandalas Fleurs Motifs",
+              "name_en": "Flower Mandalas Patterns",
+              "name_ar": "Mandalas الزهور الأنماط",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "mandalas_fleurs_symmetry",
+              "name_fr": "Mandalas Fleurs Symétrie",
+              "name_en": "Flower Mandalas Symmetry",
+              "name_ar": "Mandalas الزهور التناظر",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "mandalas_fleurs_seasons",
+              "name_fr": "Mandalas Fleurs Saisons",
+              "name_en": "Flower Mandalas Seasons",
+              "name_ar": "Mandalas الزهور الفصول",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "mandalas_fleurs_butterflies",
+              "name_fr": "Mandalas Fleurs Papillons",
+              "name_en": "Flower Mandalas Butterflies",
+              "name_ar": "Mandalas الزهور الفراشات",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "mandalas_fleurs_borders",
+              "name_fr": "Mandalas Fleurs Bordures",
+              "name_en": "Flower Mandalas Borders",
+              "name_ar": "Mandalas الزهور الحواف",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        },
+        {
+          "leaf": {
+            "id": "voitures",
+            "name_fr": "Voitures",
+            "name_en": "Cars"
+          },
+          "raw": "[\n  {\"id\": \"voitures_racing_cars\", \"slug\": \"racing-cars\", \"name_en\": \"Racing Cars\", \"name_fr\": \"Voitures de course\", \"name_ar\": \"سيارات سباق\", \"description_en\": \"Color pages featuring racing cars, dragsters, and sports cars for kids to color and enjoy.\", \"description_fr\": \"Coloriages de voitures de course, dragsters et voitures sportives pour enfants à colorier.\", \"weight\": 0},\n  {\"id\": \"voitures_fire_trucks\", \"slug\": \"fire-trucks\", \"name_en\": \"Fire Trucks\", \"name_fr\": \"Camions pompiers\", \"name_ar\": \"السيارات الإطفائية\", \"description_en\": \"Coloring pages of fire trucks, emergency vehicles, and rescue cars for creative kids.\", \"description_fr\": \"Coloriages de camions pompiers, véhicules d'urgence et camions de sauvetage à colorier.\", \"weight\": 1},\n  {\"id\": \"voitures_police_cars\", \"slug\": \"police-cars\", \"name_en\": \"Police Cars\", \"name_fr\": \"Voitures de police\", \"name_ar\": \"السيارات الشرطة\", \"description_en\": \"Coloring pages of police cars, patrol vehicles, and law enforcement cars for kids.\", \"description_fr\": \"Coloriages de voitures de police, véhicules de patrouille et véhicules de sécurité à colorier.\", \"weight\": 2},\n  {\"id\": \"voitures_classic_cars\", \"slug\": \"classic-cars\", \"name_en\": \"Classic Cars\", \"name_fr\": \"Voitures anciennes\", \"name_ar\": \"السيارات الكلاسيكية\", \"description_en\": \"Color pages of vintage cars, classic models, and retro-style vehicles for coloring fun.\", \"description_fr\": \"Coloriages de voitures anciennes, modèles classiques et véhicules rétro à colorier.\", \"weight\": 3},\n  {\"id\": \"voitures_electric_cars\", \"slug\": \"electric-cars\", \"name_en\": \"Electric Cars\", \"name_fr\": \"Voitures électriques\", \"name_ar\": \"السيارات الكهربائية\", \"description_en\": \"Coloring pages of electric cars, hybrid vehicles, and eco-friendly car designs.\", \"description_fr\": \"Coloriages de voitures électriques, véhicules hybrides et modèles écologiques à colorier.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "voitures_racing_cars",
+              "slug": "racing-cars",
+              "name_en": "Racing Cars",
+              "name_fr": "Voitures de course",
+              "name_ar": "سيارات سباق",
+              "description_en": "Color pages featuring racing cars, dragsters, and sports cars for kids to color and enjoy.",
+              "description_fr": "Coloriages de voitures de course, dragsters et voitures sportives pour enfants à colorier.",
+              "weight": 0
+            },
+            {
+              "id": "voitures_fire_trucks",
+              "slug": "fire-trucks",
+              "name_en": "Fire Trucks",
+              "name_fr": "Camions pompiers",
+              "name_ar": "السيارات الإطفائية",
+              "description_en": "Coloring pages of fire trucks, emergency vehicles, and rescue cars for creative kids.",
+              "description_fr": "Coloriages de camions pompiers, véhicules d'urgence et camions de sauvetage à colorier.",
+              "weight": 1
+            },
+            {
+              "id": "voitures_police_cars",
+              "slug": "police-cars",
+              "name_en": "Police Cars",
+              "name_fr": "Voitures de police",
+              "name_ar": "السيارات الشرطة",
+              "description_en": "Coloring pages of police cars, patrol vehicles, and law enforcement cars for kids.",
+              "description_fr": "Coloriages de voitures de police, véhicules de patrouille et véhicules de sécurité à colorier.",
+              "weight": 2
+            },
+            {
+              "id": "voitures_classic_cars",
+              "slug": "classic-cars",
+              "name_en": "Classic Cars",
+              "name_fr": "Voitures anciennes",
+              "name_ar": "السيارات الكلاسيكية",
+              "description_en": "Color pages of vintage cars, classic models, and retro-style vehicles for coloring fun.",
+              "description_fr": "Coloriages de voitures anciennes, modèles classiques et véhicules rétro à colorier.",
+              "weight": 3
+            },
+            {
+              "id": "voitures_electric_cars",
+              "slug": "electric-cars",
+              "name_en": "Electric Cars",
+              "name_fr": "Voitures électriques",
+              "name_ar": "السيارات الكهربائية",
+              "description_en": "Coloring pages of electric cars, hybrid vehicles, and eco-friendly car designs.",
+              "description_fr": "Coloriages de voitures électriques, véhicules hybrides et modèles écologiques à colorier.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 22.40739345550537,
+          "children_evaluated": [
+            {
+              "id": "voitures_racing_cars",
+              "name_fr": "Voitures de course",
+              "name_en": "Racing Cars",
+              "name_ar": "سيارات سباق",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "voitures_fire_trucks",
+              "name_fr": "Camions pompiers",
+              "name_en": "Fire Trucks",
+              "name_ar": "السيارات الإطفائية",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "voitures_police_cars",
+              "name_fr": "Voitures de police",
+              "name_en": "Police Cars",
+              "name_ar": "السيارات الشرطة",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "voitures_classic_cars",
+              "name_fr": "Voitures anciennes",
+              "name_en": "Classic Cars",
+              "name_ar": "السيارات الكلاسيكية",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "voitures_electric_cars",
+              "name_fr": "Voitures électriques",
+              "name_en": "Electric Cars",
+              "name_ar": "السيارات الكهربائية",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        },
+        {
+          "leaf": {
+            "id": "science",
+            "name_fr": "Science",
+            "name_en": "Science"
+          },
+          "raw": "[\n  {\"id\": \"science_galaxy\", \"slug\": \"galaxy\", \"name_en\": \"Galaxy\", \"name_fr\": \"Galaxie\", \"name_ar\": \"الكواكب\", \"description_en\": \"Coloring pages featuring galaxies, stars, and space scenes to spark curiosity about the universe.\", \"description_fr\": \"Coloriages de galaxies, étoiles et scènes spatiales pour découvrir l'univers en coloriant.\", \"weight\": 0},\n  {\"id\": \"science_bacteria\", \"slug\": \"bacteria\", \"name_en\": \"Bacteria\", \"name_fr\": \"Bactéries\", \"name_ar\": \"البكتيريا\", \"description_en\": \"Simple yet fascinating bacterial coloring pages to learn about microscopic life through art.\", \"description_fr\": \"Coloriages de bactéries pour apprendre à colorier des micro-organismes.\", \"weight\": 1},\n  {\"id\": \"science_weather\", \"slug\": \"weather\", \"name_en\": \"Weather\", \"name_fr\": \"Météo\", \"name_ar\": \"الطقس\", \"description_en\": \"Coloring pages of clouds, rain, and storms to explore different weather patterns creatively.\", \"description_fr\": \"Coloriages de nuages, pluie et tempêtes pour découvrir les phénomènes météorologiques.\", \"weight\": 2},\n  {\"id\": \"science_ocean_life\", \"slug\": \"ocean-life\", \"name_en\": \"Ocean Life\", \"name_fr\": \"Faune marine\", \"name_ar\": \"الحياة البحرية\", \"description_en\": \"Underwater coloring pages with whales, corals, and sea creatures for marine biology fun.\", \"description_fr\": \"Coloriages de la faune marine : baleines, coraux et créatures du fond des mers.\", \"weight\": 3},\n  {\"id\": \"science_body_systems\", \"slug\": \"body-systems\", \"name_en\": \"Body Systems\", \"name_fr\": \"Systèmes du corps\", \"name_ar\": \"أنظمة الجسم\", \"description_en\": \"Coloring pages of the human body systems to make learning anatomy fun and interactive.\", \"description_fr\": \"Coloriages des systèmes du corps humain pour apprendre l'anatomie de manière ludique.\", \"weight\": 4}\n]",
+          "json_ok": true,
+          "children": [
+            {
+              "id": "science_galaxy",
+              "slug": "galaxy",
+              "name_en": "Galaxy",
+              "name_fr": "Galaxie",
+              "name_ar": "الكواكب",
+              "description_en": "Coloring pages featuring galaxies, stars, and space scenes to spark curiosity about the universe.",
+              "description_fr": "Coloriages de galaxies, étoiles et scènes spatiales pour découvrir l'univers en coloriant.",
+              "weight": 0
+            },
+            {
+              "id": "science_bacteria",
+              "slug": "bacteria",
+              "name_en": "Bacteria",
+              "name_fr": "Bactéries",
+              "name_ar": "البكتيريا",
+              "description_en": "Simple yet fascinating bacterial coloring pages to learn about microscopic life through art.",
+              "description_fr": "Coloriages de bactéries pour apprendre à colorier des micro-organismes.",
+              "weight": 1
+            },
+            {
+              "id": "science_weather",
+              "slug": "weather",
+              "name_en": "Weather",
+              "name_fr": "Météo",
+              "name_ar": "الطقس",
+              "description_en": "Coloring pages of clouds, rain, and storms to explore different weather patterns creatively.",
+              "description_fr": "Coloriages de nuages, pluie et tempêtes pour découvrir les phénomènes météorologiques.",
+              "weight": 2
+            },
+            {
+              "id": "science_ocean_life",
+              "slug": "ocean-life",
+              "name_en": "Ocean Life",
+              "name_fr": "Faune marine",
+              "name_ar": "الحياة البحرية",
+              "description_en": "Underwater coloring pages with whales, corals, and sea creatures for marine biology fun.",
+              "description_fr": "Coloriages de la faune marine : baleines, coraux et créatures du fond des mers.",
+              "weight": 3
+            },
+            {
+              "id": "science_body_systems",
+              "slug": "body-systems",
+              "name_en": "Body Systems",
+              "name_fr": "Systèmes du corps",
+              "name_ar": "أنظمة الجسم",
+              "description_en": "Coloring pages of the human body systems to make learning anatomy fun and interactive.",
+              "description_fr": "Coloriages des systèmes du corps humain pour apprendre l'anatomie de manière ludique.",
+              "weight": 4
+            }
+          ],
+          "latency_s": 15.469692707061768,
+          "children_evaluated": [
+            {
+              "id": "science_galaxy",
+              "name_fr": "Galaxie",
+              "name_en": "Galaxy",
+              "name_ar": "الكواكب",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "science_bacteria",
+              "name_fr": "Bactéries",
+              "name_en": "Bacteria",
+              "name_ar": "البكتيريا",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "science_weather",
+              "name_fr": "Météo",
+              "name_en": "Weather",
+              "name_ar": "الطقس",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "science_ocean_life",
+              "name_fr": "Faune marine",
+              "name_en": "Ocean Life",
+              "name_ar": "الحياة البحرية",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            },
+            {
+              "id": "science_body_systems",
+              "name_fr": "Systèmes du corps",
+              "name_en": "Body Systems",
+              "name_ar": "أنظمة الجسم",
+              "ar_ok": true,
+              "cross_locale_suspect": false,
+              "duplicate": false
+            }
+          ]
+        }
+      ],
+      "concepts_agg": {
+        "total_terms": 5,
+        "json_ok": 5,
+        "total_children_generated": 25,
+        "ar_present_and_short": 25,
+        "cross_locale_suspect": 0,
+        "duplicates_with_existing": 0,
+        "avg_latency_s": 26.39
+      },
+      "composite_score": 85.7
+    }
+  }
+}

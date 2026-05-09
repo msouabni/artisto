@@ -1,0 +1,336 @@
+{
+  "poc": "prompt-filter",
+  "date": "2026-05-05",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "vision_model": "qwen3.5:9b",
+  "rules": [
+    {
+      "id": "anatomy_static_pose",
+      "type": "trigger_append"
+    },
+    {
+      "id": "no_light_sources",
+      "type": "phrase_replace"
+    },
+    {
+      "id": "strip_color_nouns",
+      "type": "regex_replace"
+    },
+    {
+      "id": "no_colorful_adjectives",
+      "type": "phrase_replace"
+    }
+  ],
+  "results": [
+    {
+      "concept": {
+        "name_en": "Soccer Ball on a Field",
+        "category": "sports",
+        "slug": "sports-soccer-ball-on-a-field",
+        "issue": "anatomie (3 jambes en mode action kicking)",
+        "original_image": "sports-soccer-ball-on-a-field.png"
+      },
+      "original_prompt": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.",
+      "filtered_prompt": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, grass rendered as simple shapes, a goal net with clear mesh patterns, stadium stands in the background, a sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring. Note: simple static pose, character standing or sitting calmly, no motion blur, no action lines, anatomically correct with exactly two legs and two arms visible.",
+      "rules_log": [
+        {
+          "rule_id": "anatomy_static_pose",
+          "action": "append",
+          "triggered_by": "kicking",
+          "before_len": 780,
+          "after_len": 942
+        },
+        {
+          "rule_id": "strip_color_nouns",
+          "action": "regex",
+          "pattern": "\\b(red|blue|green|yellow|orange|purple|pink|brown|golden|grey|gray|white|black)\\s+(\\w+)",
+          "n_matches": 3,
+          "examples": [
+            "green grass",
+            "white goal",
+            "blue sky"
+          ]
+        }
+      ],
+      "n_rules_triggered": 2,
+      "original_image": "docs/reports/poc-image-quality/sports-soccer-ball-on-a-field.png",
+      "filtered_image": "docs/reports/poc-prompt-filter/sports-soccer-ball-on-a-field_filtered.png",
+      "prompt_diff_txt": "docs/reports/poc-prompt-filter/sports-soccer-ball-on-a-field_prompt_diff.txt",
+      "comfy_latency_s": 18.19,
+      "generation_params": {
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 2415871107
+      },
+      "histogram_filtered": {
+        "color_ratio": 0.00149,
+        "white_ratio": 0.82606,
+        "ink_ratio": 0.11312,
+        "flags": []
+      },
+      "histogram_original": {
+        "color_ratio": 0.00656,
+        "white_ratio": 0.73484,
+        "ink_ratio": 0.14025,
+        "flags": []
+      },
+      "vision_filtered": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 7.707250595092773
+      },
+      "vision_original": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.5883257389068604
+      },
+      "compare_image": "docs/reports/poc-prompt-filter/sports-soccer-ball-on-a-field_compare.png",
+      "diff_prompt_image": "docs/reports/poc-prompt-filter/sports-soccer-ball-on-a-field_diff_prompt.png"
+    },
+    {
+      "concept": {
+        "name_en": "Refrigerator in a Kitchen",
+        "category": "electromenager",
+        "slug": "electromenager-refrigerator-in-a-kitchen",
+        "issue": "couleurs résiduelles + lighting (sunlight + colorful + couleurs nommées)",
+        "original_image": "electromenager-refrigerator-in-a-kitchen.png"
+      },
+      "original_prompt": "A wide shot centered on a colorful refrigerator with magnets and fruit on the counter in a bright and clean kitchen with a cheerful and inviting mood. The scene features a red apple, a blue banana, a magnetic star, and a magnetic heart placed on the kitchen counter near an open refrigerator door and white cabinets, with a window letting in sunlight. Style: black and white line art only, monochrome outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, clean layout.",
+      "filtered_prompt": "A wide shot centered on a cheerful refrigerator with magnets and fruit on the counter in a inviting and clean kitchen with a cheerful and inviting mood. The scene features a apple, a banana, a magnetic star, and a magnetic heart placed on the kitchen counter near an open refrigerator door and cabinets, with a window. Style: and white line art only, monochrome outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, clean layout.",
+      "rules_log": [
+        {
+          "rule_id": "no_light_sources",
+          "action": "replace",
+          "needle": "with a window letting in sunlight",
+          "replacement": "with a window",
+          "n_matches": 1
+        },
+        {
+          "rule_id": "strip_color_nouns",
+          "action": "regex",
+          "pattern": "\\b(red|blue|green|yellow|orange|purple|pink|brown|golden|grey|gray|white|black)\\s+(\\w+)",
+          "n_matches": 4,
+          "examples": [
+            "red apple",
+            "blue banana",
+            "white cabinets",
+            "black and"
+          ]
+        },
+        {
+          "rule_id": "no_colorful_adjectives",
+          "action": "replace",
+          "needle": "colorful",
+          "replacement": "cheerful",
+          "n_matches": 1
+        },
+        {
+          "rule_id": "no_colorful_adjectives",
+          "action": "replace",
+          "needle": "bright",
+          "replacement": "inviting",
+          "n_matches": 1
+        }
+      ],
+      "n_rules_triggered": 4,
+      "original_image": "docs/reports/poc-image-quality/electromenager-refrigerator-in-a-kitchen.png",
+      "filtered_image": "docs/reports/poc-prompt-filter/electromenager-refrigerator-in-a-kitchen_filtered.png",
+      "prompt_diff_txt": "docs/reports/poc-prompt-filter/electromenager-refrigerator-in-a-kitchen_prompt_diff.txt",
+      "comfy_latency_s": 20.23,
+      "generation_params": {
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 2007930086
+      },
+      "histogram_filtered": {
+        "color_ratio": 0.0006,
+        "white_ratio": 0.898,
+        "ink_ratio": 0.04232,
+        "flags": []
+      },
+      "histogram_original": {
+        "color_ratio": 0.05817,
+        "white_ratio": 0.83639,
+        "ink_ratio": 0.07459,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_filtered": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 5.133410692214966
+      },
+      "vision_original": {
+        "json_ok": true,
+        "raw": "{\n  \"quality\": \"good\",\n  \"issues\": [\n    \"has_color\"\n  ],\n  \"confidence\": 95\n}",
+        "parsed": {
+          "quality": "good",
+          "issues": [
+            "has_color"
+          ],
+          "confidence": 95
+        },
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 2.691197395324707
+      },
+      "compare_image": "docs/reports/poc-prompt-filter/electromenager-refrigerator-in-a-kitchen_compare.png",
+      "diff_prompt_image": "docs/reports/poc-prompt-filter/electromenager-refrigerator-in-a-kitchen_diff_prompt.png"
+    },
+    {
+      "concept": {
+        "name_en": "Dragon in a Castle Courtyard",
+        "category": "fantasy",
+        "slug": "fantasy-dragon-in-a-castle-courtyard",
+        "issue": "couleurs résiduelles (green dragon, red banners)",
+        "original_image": "fantasy-dragon-in-a-castle-courtyard.png"
+      },
+      "original_prompt": "A wide shot centered on a friendly green dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, red banners hanging from the towers, a stone fountain in the center, a large stone gate, green bushes, painted stone walls, and the dragon's large wings spread wide. Style: monochrome line art with black outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, clean layout.",
+      "filtered_prompt": "A wide shot centered on a friendly dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, banners hanging from the towers, a stone fountain in the center, a large stone gate, bushes, painted stone walls, and the dragon's large wings spread wide. Style: monochrome line art with black outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, clean layout.",
+      "rules_log": [
+        {
+          "rule_id": "strip_color_nouns",
+          "action": "regex",
+          "pattern": "\\b(red|blue|green|yellow|orange|purple|pink|brown|golden|grey|gray|white|black)\\s+(\\w+)",
+          "n_matches": 3,
+          "examples": [
+            "green dragon",
+            "red banners",
+            "green bushes"
+          ]
+        }
+      ],
+      "n_rules_triggered": 1,
+      "original_image": "docs/reports/poc-image-quality/fantasy-dragon-in-a-castle-courtyard.png",
+      "filtered_image": "docs/reports/poc-prompt-filter/fantasy-dragon-in-a-castle-courtyard_filtered.png",
+      "prompt_diff_txt": "docs/reports/poc-prompt-filter/fantasy-dragon-in-a-castle-courtyard_prompt_diff.txt",
+      "comfy_latency_s": 18.15,
+      "generation_params": {
+        "steps": 8,
+        "cfg": 1.0,
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 1,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0,
+        "seed": 3574683562
+      },
+      "histogram_filtered": {
+        "color_ratio": 0.00346,
+        "white_ratio": 0.78836,
+        "ink_ratio": 0.12381,
+        "flags": []
+      },
+      "histogram_original": {
+        "color_ratio": 0.05019,
+        "white_ratio": 0.76429,
+        "ink_ratio": 0.12641,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_filtered": {
+        "json_ok": true,
+        "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+        "parsed": {
+          "quality": "good",
+          "issues": [],
+          "confidence": 100
+        },
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.586486339569092
+      },
+      "vision_original": {
+        "json_ok": true,
+        "raw": "{\n  \"quality\": \"good\",\n  \"issues\": [\n    \"has_color\"\n  ],\n  \"confidence\": 95\n}",
+        "parsed": {
+          "quality": "good",
+          "issues": [
+            "has_color"
+          ],
+          "confidence": 95
+        },
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 2.649930715560913
+      },
+      "compare_image": "docs/reports/poc-prompt-filter/fantasy-dragon-in-a-castle-courtyard_compare.png",
+      "diff_prompt_image": "docs/reports/poc-prompt-filter/fantasy-dragon-in-a-castle-courtyard_diff_prompt.png"
+    }
+  ],
+  "rule_stats": {
+    "anatomy_static_pose": {
+      "triggered_on": [
+        "Soccer Ball on a Field"
+      ],
+      "n_total_matches": 1
+    },
+    "no_light_sources": {
+      "triggered_on": [
+        "Refrigerator in a Kitchen"
+      ],
+      "n_total_matches": 1
+    },
+    "strip_color_nouns": {
+      "triggered_on": [
+        "Soccer Ball on a Field",
+        "Refrigerator in a Kitchen",
+        "Dragon in a Castle Courtyard"
+      ],
+      "n_total_matches": 10
+    },
+    "no_colorful_adjectives": {
+      "triggered_on": [
+        "Refrigerator in a Kitchen",
+        "Refrigerator in a Kitchen"
+      ],
+      "n_total_matches": 2
+    }
+  }
+}

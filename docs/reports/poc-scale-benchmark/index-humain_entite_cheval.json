@@ -1,0 +1,126 @@
+{
+  "source": "workflow_class='Humain + entité (cheval)' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Humain + entité (cheval)",
+  "subjects": [
+    {
+      "filename": "polo_player_848x1264_euler8s.png",
+      "name_en": "Polo Player",
+      "leaf_id": "polo_player",
+      "tier": "Humain + entité (cheval)",
+      "workflow_class": "Humain + entité (cheval)",
+      "technique": "Formule asymétrie OU humain SUR cheval",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si humain sur cheval : 'rider seated on the horse, both clearly visible'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of polo player, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 9182
+    },
+    {
+      "filename": "endurance_riding_848x1264_euler8s.png",
+      "name_en": "Endurance Riding",
+      "leaf_id": "endurance_riding",
+      "tier": "Humain + entité (cheval)",
+      "workflow_class": "Humain + entité (cheval)",
+      "technique": "Formule asymétrie OU humain SUR cheval",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si humain sur cheval : 'rider seated on the horse, both clearly visible'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of endurance riding, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 9189
+    },
+    {
+      "filename": "horse_show_jumping_848x1264_euler8s.png",
+      "name_en": "Horse Show Jumping",
+      "leaf_id": "horse_show_jumping",
+      "tier": "Humain + entité (cheval)",
+      "workflow_class": "Humain + entité (cheval)",
+      "technique": "Formule asymétrie OU humain SUR cheval",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si humain sur cheval : 'rider seated on the horse, both clearly visible'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of horse show jumping, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 9196
+    },
+    {
+      "filename": "horse_racing_848x1264_euler8s.png",
+      "name_en": "Horse Racing",
+      "leaf_id": "horse_racing",
+      "tier": "Humain + entité (cheval)",
+      "workflow_class": "Humain + entité (cheval)",
+      "technique": "Formule asymétrie OU humain SUR cheval",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si humain sur cheval : 'rider seated on the horse, both clearly visible'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of horse racing, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 9203
+    },
+    {
+      "filename": "dressage_horse_848x1264_euler8s.png",
+      "name_en": "Dressage Horse",
+      "leaf_id": "dressage_horse",
+      "tier": "Humain + entité (cheval)",
+      "workflow_class": "Humain + entité (cheval)",
+      "technique": "Formule asymétrie OU humain SUR cheval",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si humain sur cheval : 'rider seated on the horse, both clearly visible'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of dressage horse, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 9210
+    },
+    {
+      "filename": "cross_country_riding_848x1264_euler8s.png",
+      "name_en": "Cross Country Riding",
+      "leaf_id": "cross_country_riding",
+      "tier": "Humain + entité (cheval)",
+      "workflow_class": "Humain + entité (cheval)",
+      "technique": "Formule asymétrie OU humain SUR cheval",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Si humain sur cheval : 'rider seated on the horse, both clearly visible'"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of cross country riding, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        848,
+        1264
+      ],
+      "seed": 9217
+    }
+  ]
+}

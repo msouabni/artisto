@@ -1,0 +1,1739 @@
+{
+  "poc": "prompt-chain-v2",
+  "date": "2026-05-05",
+  "fixes_applied": [
+    "validator num_ctx=8192",
+    "planner drift retry @ T=0",
+    "no-text rule in prompt_writer_ernie.system",
+    "models migrated to qwen3.5:4b"
+  ],
+  "models": {
+    "planner": "qwen3.5:4b",
+    "writer": "qwen3.5:4b",
+    "validator": "qwen3.5:4b"
+  },
+  "profile": "kids_coloring_lineart_v1",
+  "workflow": "ernie-image-turbo-q8-api",
+  "validator_num_ctx": 8192,
+  "success_threshold_score": 75,
+  "success_rate_target": 0.8,
+  "latency_budget_s": 45.0,
+  "concepts_v1_count": 10,
+  "concepts_new_count": 10,
+  "concepts": [
+    {
+      "category": "animaux",
+      "taxonomy_anchor": "themes/animaux/animaux_domestiques",
+      "name_en": "Cat in a Library",
+      "keywords": "cat, library, books, bookshelves, reading",
+      "tags_context": "Animaux, Animaux domestiques, Chat"
+    },
+    {
+      "category": "animaux",
+      "taxonomy_anchor": "themes/animaux/animaux_marins",
+      "name_en": "Dolphin near a Coral Reef",
+      "keywords": "dolphin, coral reef, ocean, fish, seaweed",
+      "tags_context": "Animaux, Animaux marins, Dauphin"
+    },
+    {
+      "category": "outils",
+      "taxonomy_anchor": "themes/personnages/metiers",
+      "name_en": "Hammer on a Workbench",
+      "keywords": "hammer, workbench, tools, nails, sawdust",
+      "tags_context": "Personnages, Métiers, Menuisier, Outils"
+    },
+    {
+      "category": "outils",
+      "taxonomy_anchor": "themes/personnages/metiers",
+      "name_en": "Paintbrush in an Art Studio",
+      "keywords": "paintbrush, studio, easel, palette, canvas",
+      "tags_context": "Personnages, Métiers, Artiste, Outils"
+    },
+    {
+      "category": "sports",
+      "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+      "name_en": "Soccer Ball on a Field",
+      "keywords": "soccer ball, field, goal, grass, stadium",
+      "tags_context": "Personnages, Vie quotidienne, Sport, Football"
+    },
+    {
+      "category": "sports",
+      "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+      "name_en": "Skateboard in a Skate Park",
+      "keywords": "skateboard, skate park, ramps, helmet, urban",
+      "tags_context": "Personnages, Vie quotidienne, Sport, Skateboard"
+    },
+    {
+      "category": "personnages_fictifs",
+      "taxonomy_anchor": "themes/personnages/super_heros_originaux",
+      "name_en": "Superhero on a City Rooftop",
+      "keywords": "superhero, cape, rooftop, skyline, mask",
+      "tags_context": "Personnages, Super-héros originaux"
+    },
+    {
+      "category": "personnages_fictifs",
+      "taxonomy_anchor": "themes/personnages/fantasy",
+      "name_en": "Wizard in a Magic Tower",
+      "keywords": "wizard, tower, spellbook, crystal ball, robe",
+      "tags_context": "Personnages, Fantasy, Magicien"
+    },
+    {
+      "category": "corps_humain_geometrie",
+      "taxonomy_anchor": "themes/educatif/formes",
+      "name_en": "Triangle on a School Blackboard",
+      "keywords": "triangle, blackboard, classroom, chalk, geometry",
+      "tags_context": "Éducatif, Formes, Géométrie"
+    },
+    {
+      "category": "corps_humain_geometrie",
+      "taxonomy_anchor": "themes/educatif/science",
+      "name_en": "Skeleton in a Science Lab",
+      "keywords": "skeleton, science lab, anatomy, microscope, beakers",
+      "tags_context": "Éducatif, Science, Corps humain, Anatomie"
+    },
+    {
+      "category": "electromenager",
+      "taxonomy_anchor": "themes/divers",
+      "name_en": "Refrigerator in a Kitchen",
+      "keywords": "refrigerator, kitchen, counter, fruits, magnets",
+      "tags_context": "Maison, Cuisine, Électroménager"
+    },
+    {
+      "category": "electromenager",
+      "taxonomy_anchor": "themes/divers",
+      "name_en": "Washing Machine in a Laundry Room",
+      "keywords": "washing machine, laundry, basket, detergent, towels",
+      "tags_context": "Maison, Buanderie, Électroménager"
+    },
+    {
+      "category": "geometrie",
+      "taxonomy_anchor": "themes/educatif/formes",
+      "name_en": "Hexagon on a Math Whiteboard",
+      "keywords": "hexagon, whiteboard, classroom, marker, ruler",
+      "tags_context": "Éducatif, Formes, Géométrie"
+    },
+    {
+      "category": "geometrie",
+      "taxonomy_anchor": "themes/educatif/formes",
+      "name_en": "Cube on a Math Desk",
+      "keywords": "cube, desk, classroom, notebook, pencil",
+      "tags_context": "Éducatif, Formes, Géométrie, Solide"
+    },
+    {
+      "category": "personnalites_sportives",
+      "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+      "name_en": "Tennis Player on a Court",
+      "keywords": "tennis player, court, racket, net, ball",
+      "tags_context": "Personnages, Sport, Tennis"
+    },
+    {
+      "category": "personnalites_sportives",
+      "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+      "name_en": "Boxer in a Boxing Ring",
+      "keywords": "boxer, boxing ring, gloves, ropes, corner stool",
+      "tags_context": "Personnages, Sport, Boxe"
+    },
+    {
+      "category": "professions",
+      "taxonomy_anchor": "themes/personnages/metiers",
+      "name_en": "Astronaut on a Space Station",
+      "keywords": "astronaut, space station, helmet, control panel, porthole",
+      "tags_context": "Personnages, Métiers, Astronaute, Espace"
+    },
+    {
+      "category": "professions",
+      "taxonomy_anchor": "themes/personnages/metiers",
+      "name_en": "Chef in a Restaurant Kitchen",
+      "keywords": "chef, restaurant kitchen, hat, pots, stove",
+      "tags_context": "Personnages, Métiers, Cuisinier"
+    },
+    {
+      "category": "fantasy",
+      "taxonomy_anchor": "themes/personnages/fantasy",
+      "name_en": "Dragon in a Castle Courtyard",
+      "keywords": "dragon, castle courtyard, towers, banners, drawbridge",
+      "tags_context": "Personnages, Fantasy, Dragon"
+    },
+    {
+      "category": "fantasy",
+      "taxonomy_anchor": "themes/personnages/fantasy",
+      "name_en": "Fairy in an Enchanted Forest",
+      "keywords": "fairy, enchanted forest, mushrooms, fireflies, flowers",
+      "tags_context": "Personnages, Fantasy, Fée, Forêt"
+    }
+  ],
+  "results": [
+    {
+      "concept": {
+        "category": "animaux",
+        "taxonomy_anchor": "themes/animaux/animaux_domestiques",
+        "name_en": "Cat in a Library",
+        "keywords": "cat, library, books, bookshelves, reading",
+        "tags_context": "Animaux, Animaux domestiques, Chat"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 7.38975191116333,
+        "writer_s": 2.705428123474121,
+        "validator_s": 8.019339084625244,
+        "total_s": 18.114519119262695
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "a fluffy kitten sitting on a wooden table",
+        "setting": "a cozy children's library with warm lighting",
+        "props": [
+          "bookshelves filled with books",
+          "stack of storybooks",
+          "reading lamp",
+          "wooden table",
+          "window with curtains",
+          "rug on floor",
+          "bookmarks",
+          "small plant"
+        ],
+        "composition": "centered composition with kitten in foreground",
+        "mood": "calm and peaceful",
+        "constraints": "black and white line art only, no shading or color fills, white background, simple shapes suitable for children"
+      },
+      "plan_raw": "{\n  \"subject\": \"a fluffy kitten sitting on a wooden table\",\n  \"setting\": \"a cozy children's library with warm lighting\",\n  \"props\": [\n    \"bookshelves filled with books\",\n    \"stack of storybooks\",\n    \"reading lamp\",\n    \"wooden table\",\n    \"window with curtains\",\n    \"rug on floor\",\n    \"bookmarks\",\n    \"small plant\"\n  ],\n  \"composition\": \"centered composition with kitten in foreground\",\n  \"mood\": \"calm and peaceful\",\n  \"constraints\": \"black and white line art only, no shading or color fills, white background, simple shapes suitable for children\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A fluffy kitten sitting on a wooden table in a cozy children's library with warm lighting, centered composition with the kitten in the foreground, calm and peaceful mood. The scene features bookshelves filled with books, a stack of storybooks, a reading lamp, a wooden table, a window with curtains, a rug on the floor, bookmarks, and a small plant, all depicted as simple shapes suitable for children. Style: black and white line art only, monochrome outlines on white background, no shading, no gradients, no color fills, clean simple lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, pure visual illustration.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A fluffy kitten sitting on a wooden table in a cozy children's library with warm lighting, centered composition with the kitten in the foreground, calm and peaceful mood. The scene features bookshelves filled with books, a stack of storybooks, a reading lamp, a wooden table, a window with curtains, a rug on the floor, bookmarks, and a small plant, all depicted as simple shapes suitable for children. Style: black and white line art only, monochrome outlines on white background, no shading, no gradients, no color fills, clean simple lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, pure visual illustration.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear central subject (kitten) with supporting background elements arranged logically."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests black and white line art, monochrome outlines, no shading, no gradients, and no color fills."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed for text, watermarks, logos, signatures, and written characters."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes specific scene elements (bookshelves, lamp, plant) and style descriptors suitable for coloring pages."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject is a kitten in a peaceful setting; no violence, gore, or inappropriate content indicated."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'thick lines' or 'bold outlines' to ensure visibility for young children.",
+          "Specify 'no tiny details' to prevent clutter that might be missed during coloring."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear central subject (kitten) with supporting background elements arranged logically.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests black and white line art, monochrome outlines, no shading, no gradients, and no color fills.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed for text, watermarks, logos, signatures, and written characters.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Includes specific scene elements (bookshelves, lamp, plant) and style descriptors suitable for coloring pages.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject is a kitten in a peaceful setting; no violence, gore, or inappropriate content indicated.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'thick lines' or 'bold outlines' to ensure visibility for young children.\",\n    \"Specify 'no tiny details' to prevent clutter that might be missed during coloring.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "animaux",
+        "taxonomy_anchor": "themes/animaux/animaux_marins",
+        "name_en": "Dolphin near a Coral Reef",
+        "keywords": "dolphin, coral reef, ocean, fish, seaweed",
+        "tags_context": "Animaux, Animaux marins, Dauphin"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 5.9999659061431885,
+        "writer_s": 3.2791972160339355,
+        "validator_s": 7.909123420715332,
+        "total_s": 17.188286542892456
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A playful dolphin jumping near a colorful coral reef",
+        "setting": "Underwater ocean scene with vibrant coral and swimming fish",
+        "props": [
+          "bright orange coral",
+          "swirling blue seaweed",
+          "small yellow fish",
+          "green sea anemone",
+          "white sandy ocean floor",
+          "bubbles rising",
+          "large rock formation",
+          "school of blue fish"
+        ],
+        "composition": "centered wide shot with dolphin in foreground",
+        "mood": "cheerful and adventurous",
+        "constraints": "black-and-white line art only, no color fills, white background, child-safe, clean outlines suitable for printing"
+      },
+      "plan_raw": "{\n  \"subject\": \"A playful dolphin jumping near a colorful coral reef\",\n  \"setting\": \"Underwater ocean scene with vibrant coral and swimming fish\",\n  \"props\": [\n    \"bright orange coral\",\n    \"swirling blue seaweed\",\n    \"small yellow fish\",\n    \"green sea anemone\",\n    \"white sandy ocean floor\",\n    \"bubbles rising\",\n    \"large rock formation\",\n    \"school of blue fish\"\n  ],\n  \"composition\": \"centered wide shot with dolphin in foreground\",\n  \"mood\": \"cheerful and adventurous\",\n  \"constraints\": \"black-and-white line art only, no color fills, white background, child-safe, clean outlines suitable for printing\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A centered wide shot of a playful dolphin jumping near a vibrant coral reef in a cheerful underwater ocean scene with a sense of adventure. The dolphin is surrounded by bright orange coral structures, swirling blue seaweed, small yellow fish, and green sea anemones, with white sandy ocean floor visible below. Bubbles rise gently through the water while a large rock formation sits in the background, and a school of blue fish swims nearby, all depicted with clean, bold black outlines on a pure white background with no shading, no gradients, and no color fills. Style: monochrome line art only, perfect for a coloring book, featuring crisp black outlines on white paper with absolutely no gray tones or ink fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, no diegetic writing of any kind, ensuring a completely clean layout suitable for printing.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A centered wide shot of a playful dolphin jumping near a vibrant coral reef in a cheerful underwater ocean scene with a sense of adventure. The dolphin is surrounded by bright orange coral structures, swirling blue seaweed, small yellow fish, and green sea anemones, with white sandy ocean floor visible below. Bubbles rise gently through the water while a large rock formation sits in the background, and a school of blue fish swims nearby, all depicted with clean, bold black outlines on a pure white background with no shading, no gradients, and no color fills. Style: monochrome line art only, perfect for a coloring book, featuring crisp black outlines on white paper with absolutely no gray tones or ink fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, no diegetic writing of any kind, ensuring a completely clean layout suitable for printing.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt specifies a centered wide shot with clear foreground, midground, and background elements."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests clean, bold black outlines, monochrome line art only, and forbids shading, gradients, and color fills."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed for text, watermarks, logos, and signatures."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Strong coverage of target subjects (dolphin, coral, fish) and technical requirements (white background, black outlines)."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject matter is playful and age-appropriate; no safety concerns identified."
+          }
+        ],
+        "recommendations": [
+          "Consider adding specific size constraints (e.g., 'A4 size') for better print layout consistency."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt specifies a centered wide shot with clear foreground, midground, and background elements.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests clean, bold black outlines, monochrome line art only, and forbids shading, gradients, and color fills.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed for text, watermarks, logos, and signatures.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Strong coverage of target subjects (dolphin, coral, fish) and technical requirements (white background, black outlines).\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject matter is playful and age-appropriate; no safety concerns identified.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding specific size constraints (e.g., 'A4 size') for better print layout consistency.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "outils",
+        "taxonomy_anchor": "themes/personnages/metiers",
+        "name_en": "Hammer on a Workbench",
+        "keywords": "hammer, workbench, tools, nails, sawdust",
+        "tags_context": "Personnages, Métiers, Menuisier, Outils"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 5.9561755657196045,
+        "writer_s": 3.2505223751068115,
+        "validator_s": 8.193902969360352,
+        "total_s": 17.400600910186768
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A friendly cartoon woodworker holding a hammer",
+        "setting": "A cozy indoor workshop filled with tools",
+        "props": [
+          "wooden workbench",
+          "hammer",
+          "wooden saw",
+          "nails",
+          "wooden planks",
+          "sawdust pile",
+          "wooden stool",
+          "tool chest"
+        ],
+        "composition": "centered composition with the woodworker standing in the middle",
+        "mood": "cheerful and industrious",
+        "constraints": "Black and white line art only with no color fills, white background, and no shading or gradients suitable for children"
+      },
+      "plan_raw": "{\n  \"subject\": \"A friendly cartoon woodworker holding a hammer\",\n  \"setting\": \"A cozy indoor workshop filled with tools\",\n  \"props\": [\n    \"wooden workbench\",\n    \"hammer\",\n    \"wooden saw\",\n    \"nails\",\n    \"wooden planks\",\n    \"sawdust pile\",\n    \"wooden stool\",\n    \"tool chest\"\n  ],\n  \"composition\": \"centered composition with the woodworker standing in the middle\",\n  \"mood\": \"cheerful and industrious\",\n  \"constraints\": \"Black and white line art only with no color fills, white background, and no shading or gradients suitable for children\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A centered composition featuring a friendly cartoon woodworker holding a hammer, standing in the middle of a cozy indoor workshop filled with tools, with a cheerful and industrious mood. The scene includes a wooden workbench cluttered with various items, a hammer resting nearby, a wooden saw lying flat, scattered nails, several wooden planks of different shapes, a small pile of sawdust, a wooden stool, and a tool chest in the background. All objects are depicted as simple geometric shapes and outlines without any specific paint colors, maintaining a clean and playful aesthetic suitable for children. Style: Black and white line art only with no color fills, white background, and no shading or gradients, ensuring the image is ready for coloring. Technical cleanup: No text, no watermark, no logos, no signatures, no written characters, and no labels anywhere in the scene, keeping the layout completely clean and free of any diegetic text elements.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A centered composition featuring a friendly cartoon woodworker holding a hammer, standing in the middle of a cozy indoor workshop filled with tools, with a cheerful and industrious mood. The scene includes a wooden workbench cluttered with various items, a hammer resting nearby, a wooden saw lying flat, scattered nails, several wooden planks of different shapes, a small pile of sawdust, a wooden stool, and a tool chest in the background. All objects are depicted as simple geometric shapes and outlines without any specific paint colors, maintaining a clean and playful aesthetic suitable for children. Style: Black and white line art only with no color fills, white background, and no shading or gradients, ensuring the image is ready for coloring. Technical cleanup: No text, no watermark, no logos, no signatures, no written characters, and no labels anywhere in the scene, keeping the layout completely clean and free of any diegetic text elements.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt specifies a centered composition with clear foreground and background elements, ensuring a balanced layout."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests simple geometric shapes, outlines, no shading, no gradients, and black and white line art only."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensively bans text, watermarks, logos, signatures, and labels to ensure a clean printable page."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes specific objects (hammer, saw, planks, stool) and style descriptors (cozy, playful, industrious) for rich content generation."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject matter is friendly and non-threatening; explicitly avoids color fills and complex shading to prevent safety issues."
+          }
+        ],
+        "recommendations": [
+          "Consider adding a specific age range (e.g., 'ages 4-8') to further tailor complexity."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt specifies a centered composition with clear foreground and background elements, ensuring a balanced layout.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests simple geometric shapes, outlines, no shading, no gradients, and black and white line art only.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensively bans text, watermarks, logos, signatures, and labels to ensure a clean printable page.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Includes specific objects (hammer, saw, planks, stool) and style descriptors (cozy, playful, industrious) for rich content generation.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject matter is friendly and non-threatening; explicitly avoids color fills and complex shading to prevent safety issues.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding a specific age range (e.g., 'ages 4-8') to further tailor complexity.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "outils",
+        "taxonomy_anchor": "themes/personnages/metiers",
+        "name_en": "Paintbrush in an Art Studio",
+        "keywords": "paintbrush, studio, easel, palette, canvas",
+        "tags_context": "Personnages, Métiers, Artiste, Outils"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.082395792007446,
+        "writer_s": 3.2275617122650146,
+        "validator_s": 8.613854169845581,
+        "total_s": 17.923811674118042
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A cheerful child artist holding a paintbrush",
+        "setting": "A cozy art studio with natural light",
+        "props": [
+          "wooden easel",
+          "white canvas",
+          "colorful paint palette",
+          "small paintbrush",
+          "scattered paint tubes",
+          "artist's apron",
+          "window with sunlight",
+          "stack of art books"
+        ],
+        "composition": "centered composition with the child at the easel",
+        "mood": "creative and joyful",
+        "constraints": "black-and-white line art only, no color fills, white background, simple shapes suitable for children, no shading or gradients"
+      },
+      "plan_raw": "{\n  \"subject\": \"A cheerful child artist holding a paintbrush\",\n  \"setting\": \"A cozy art studio with natural light\",\n  \"props\": [\n    \"wooden easel\",\n    \"white canvas\",\n    \"colorful paint palette\",\n    \"small paintbrush\",\n    \"scattered paint tubes\",\n    \"artist's apron\",\n    \"window with sunlight\",\n    \"stack of art books\"\n  ],\n  \"composition\": \"centered composition with the child at the easel\",\n  \"mood\": \"creative and joyful\",\n  \"constraints\": \"black-and-white line art only, no color fills, white background, simple shapes suitable for children, no shading or gradients\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A cheerful child artist holding a paintbrush in a cozy art studio filled with natural light, creating a creative and joyful atmosphere. The scene features a wooden easel with a white canvas, a colorful paint palette with distinct shapes, a small paintbrush, scattered paint tubes, an artist's apron, a window with sunlight streaming in, and a stack of art books. All elements are rendered as simple, clean shapes suitable for children. Style: black-and-white line art only, thick black outlines on a pure white background, no shading, no gradients, no color fills, no gray areas, no texture. Technical cleanup: absolutely no readable text, no letters, no words, no numbers, no signs, no labels, no written characters on any object or surface, no watermarks, no logos, no signatures, no signatures, clean layout, isolated subject.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A cheerful child artist holding a paintbrush in a cozy art studio filled with natural light, creating a creative and joyful atmosphere. The scene features a wooden easel with a white canvas, a colorful paint palette with distinct shapes, a small paintbrush, scattered paint tubes, an artist's apron, a window with sunlight streaming in, and a stack of art books. All elements are rendered as simple, clean shapes suitable for children. Style: black-and-white line art only, thick black outlines on a pure white background, no shading, no gradients, no color fills, no gray areas, no texture. Technical cleanup: absolutely no readable text, no letters, no words, no numbers, no signs, no labels, no written characters on any object or surface, no watermarks, no logos, no signatures, no signatures, clean layout, isolated subject.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear subject (child artist) and environment (studio) with logical spatial relationships."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests black-and-white line art, thick outlines, and explicitly forbids shading, gradients, and color fills."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints against text, logos, watermarks, and signatures are present."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Key terms for coloring pages (simple shapes, clean layout, isolated subject) and safety (no text) are well covered."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject is a cheerful child in a safe environment; no dangerous objects or inappropriate content."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'vector style' to reinforce the clean edge requirement for AI models.",
+          "Add 'high contrast' to ensure the black lines stand out clearly against the white background."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear subject (child artist) and environment (studio) with logical spatial relationships.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests black-and-white line art, thick outlines, and explicitly forbids shading, gradients, and color fills.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints against text, logos, watermarks, and signatures are present.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Key terms for coloring pages (simple shapes, clean layout, isolated subject) and safety (no text) are well covered.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject is a cheerful child in a safe environment; no dangerous objects or inappropriate content.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'vector style' to reinforce the clean edge requirement for AI models.\",\n    \"Add 'high contrast' to ensure the black lines stand out clearly against the white background.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "sports",
+        "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+        "name_en": "Soccer Ball on a Field",
+        "keywords": "soccer ball, field, goal, grass, stadium",
+        "tags_context": "Personnages, Vie quotidienne, Sport, Football"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.006762504577637,
+        "writer_s": 3.2159311771392822,
+        "validator_s": 8.4920175075531,
+        "total_s": 17.71471118927002
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A child kicking a soccer ball",
+        "setting": "A sunny outdoor grass field with a goal",
+        "props": [
+          "soccer ball",
+          "green grass",
+          "white goal net",
+          "stadium stands",
+          "blue sky",
+          "clouds",
+          "goal post",
+          "kick motion lines"
+        ],
+        "composition": "wide shot centered on the action",
+        "mood": "cheerful and energetic",
+        "constraints": "Black-and-white line art only, no color fills, white background, child-safe details, clear outlines for easy coloring"
+      },
+      "plan_raw": "{\n  \"subject\": \"A child kicking a soccer ball\",\n  \"setting\": \"A sunny outdoor grass field with a goal\",\n  \"props\": [\n    \"soccer ball\",\n    \"green grass\",\n    \"white goal net\",\n    \"stadium stands\",\n    \"blue sky\",\n    \"clouds\",\n    \"goal post\",\n    \"kick motion lines\"\n  ],\n  \"composition\": \"wide shot centered on the action\",\n  \"mood\": \"cheerful and energetic\",\n  \"constraints\": \"Black-and-white line art only, no color fills, white background, child-safe details, clear outlines for easy coloring\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear, centered composition with distinct foreground, midground, and background elements."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests black-and-white line art, thick black outlines, no shading, no gradients, and no color fills."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed to prevent text, logos, watermarks, and any written characters."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Covers all necessary elements: child, soccer ball, grass, goal, sky, clouds, motion lines, and specific style requirements."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject matter is age-appropriate (child playing sports), and safety constraints regarding text and logos are strictly enforced."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'no complex background details' to further simplify the scene for younger children."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear, centered composition with distinct foreground, midground, and background elements.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests black-and-white line art, thick black outlines, no shading, no gradients, and no color fills.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed to prevent text, logos, watermarks, and any written characters.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Covers all necessary elements: child, soccer ball, grass, goal, sky, clouds, motion lines, and specific style requirements.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject matter is age-appropriate (child playing sports), and safety constraints regarding text and logos are strictly enforced.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'no complex background details' to further simplify the scene for younger children.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "sports",
+        "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+        "name_en": "Skateboard in a Skate Park",
+        "keywords": "skateboard, skate park, ramps, helmet, urban",
+        "tags_context": "Personnages, Vie quotidienne, Sport, Skateboard"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.1238884925842285,
+        "writer_s": 3.707184076309204,
+        "validator_s": 8.706122636795044,
+        "total_s": 18.537195205688477
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A child riding a skateboard down a ramp",
+        "setting": "Urban skate park with metal ramps and rails",
+        "props": [
+          "skateboard",
+          "metal ramp",
+          "skateboard rail",
+          "concrete ground",
+          "helmet",
+          "backpack",
+          "street lamp",
+          "painted wall"
+        ],
+        "composition": "Low angle side view",
+        "mood": "Energetic",
+        "constraints": "Black and white line art only, no shading or color fills, white background, simple shapes suitable for children to color, no violent actions or sexualized content."
+      },
+      "plan_raw": "{\n  \"subject\": \"A child riding a skateboard down a ramp\",\n  \"setting\": \"Urban skate park with metal ramps and rails\",\n  \"props\": [\n    \"skateboard\",\n    \"metal ramp\",\n    \"skateboard rail\",\n    \"concrete ground\",\n    \"helmet\",\n    \"backpack\",\n    \"street lamp\",\n    \"painted wall\"\n  ],\n  \"composition\": \"Low angle side view\",\n  \"mood\": \"Energetic\",\n  \"constraints\": \"Black and white line art only, no shading or color fills, white background, simple shapes suitable for children to color, no violent actions or sexualized content.\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "Low angle side view of an energetic child riding a skateboard down a ramp in an urban skate park. The scene features a metal ramp, a skateboard rail, and a concrete ground surface. The child wears a helmet and carries a backpack, gliding past a street lamp and a painted wall. All elements are depicted as simple, bold shapes suitable for children to color.\n\nStyle: Black and white line art only, monochrome coloring book style with clean black outlines on a white background. No shading, no gradients, no color fills, no cross-hatching, and no texture details. Keep lines simple and uncluttered for easy coloring.\n\nTechnical cleanup: Absolutely no text, no letters, no words, no numbers, no signs, no labels, no written characters anywhere in the image. No watermarks, no logos, no signatures, and no diegetic text on any object or wall. Clean layout with white space around all figures.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"Low angle side view of an energetic child riding a skateboard down a ramp in an urban skate park. The scene features a metal ramp, a skateboard rail, and a concrete ground surface. The child wears a helmet and carries a backpack, gliding past a street lamp and a painted wall. All elements are depicted as simple, bold shapes suitable for children to color.\\n\\nStyle: Black and white line art only, monochrome coloring book style with clean black outlines on a white background. No shading, no gradients, no color fills, no cross-hatching, and no texture details. Keep lines simple and uncluttered for easy coloring.\\n\\nTechnical cleanup: Absolutely no text, no letters, no words, no numbers, no signs, no labels, no written characters anywhere in the image. No watermarks, no logos, no signatures, and no diegetic text on any object or wall. Clean layout with white space around all figures.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear scene with distinct elements (child, skateboard, ramp, urban background) suitable for a single-page layout."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests black and white line art, monochrome style, clean black outlines, and forbids shading, gradients, fills, and textures."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints cover text, numbers, logos, watermarks, and signatures, ensuring a clean printable output."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes relevant keywords for the subject (child, skateboard, skate park) and style (bold shapes, simple, uncluttered)."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject matter is age-appropriate; no violence, gore, or inappropriate content is requested."
+          }
+        ],
+        "recommendations": [
+          "Consider adding specific geometric shapes (e.g., 'circles', 'triangles') to further guide the AI toward simple coloring regions."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear scene with distinct elements (child, skateboard, ramp, urban background) suitable for a single-page layout.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests black and white line art, monochrome style, clean black outlines, and forbids shading, gradients, fills, and textures.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints cover text, numbers, logos, watermarks, and signatures, ensuring a clean printable output.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Includes relevant keywords for the subject (child, skateboard, skate park) and style (bold shapes, simple, uncluttered).\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject matter is age-appropriate; no violence, gore, or inappropriate content is requested.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding specific geometric shapes (e.g., 'circles', 'triangles') to further guide the AI toward simple coloring regions.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "personnages_fictifs",
+        "taxonomy_anchor": "themes/personnages/super_heros_originaux",
+        "name_en": "Superhero on a City Rooftop",
+        "keywords": "superhero, cape, rooftop, skyline, mask",
+        "tags_context": "Personnages, Super-héros originaux"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.041679859161377,
+        "writer_s": 3.0510542392730713,
+        "validator_s": 8.827812433242798,
+        "total_s": 17.920546531677246
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A friendly superhero with a flowing cape and a mask",
+        "setting": "A city rooftop at sunset with a distant skyline",
+        "props": [
+          "flowing cape",
+          "city skyline",
+          "rooftop railing",
+          "sunset sun",
+          "clouds",
+          "street lights",
+          "hero mask",
+          "city buildings"
+        ],
+        "composition": "wide shot centered on the hero",
+        "mood": "adventurous and cheerful",
+        "constraints": "Black-and-white line art only, no color fills, white background, child-safe with rounded edges"
+      },
+      "plan_raw": "{\n  \"subject\": \"A friendly superhero with a flowing cape and a mask\",\n  \"setting\": \"A city rooftop at sunset with a distant skyline\",\n  \"props\": [\n    \"flowing cape\",\n    \"city skyline\",\n    \"rooftop railing\",\n    \"sunset sun\",\n    \"clouds\",\n    \"street lights\",\n    \"hero mask\",\n    \"city buildings\"\n  ],\n  \"composition\": \"wide shot centered on the hero\",\n  \"mood\": \"adventurous and cheerful\",\n  \"constraints\": \"Black-and-white line art only, no color fills, white background, child-safe with rounded edges\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A wide shot centered on a friendly superhero with a flowing cape and a mask standing on a city rooftop at sunset with a distant skyline, adventurous and cheerful mood. The scene features a flowing cape billowing in the wind, a city skyline with tall buildings, a rooftop railing, a glowing sun, soft clouds, street lights, and a hero mask, all depicted as simple shapes and outlines without specifying paint colors. Style: Black-and-white line art only, monochrome coloring book page, thick black outlines on white background, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the scene, pure visual composition.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot centered on a friendly superhero with a flowing cape and a mask standing on a city rooftop at sunset with a distant skyline, adventurous and cheerful mood. The scene features a flowing cape billowing in the wind, a city skyline with tall buildings, a rooftop railing, a glowing sun, soft clouds, street lights, and a hero mask, all depicted as simple shapes and outlines without specifying paint colors. Style: Black-and-white line art only, monochrome coloring book page, thick black outlines on white background, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the scene, pure visual composition.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear central subject (superhero) with specific environmental context (rooftop, sunset, skyline) suitable for a wide shot composition."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests 'Black-and-white line art only', 'monochrome coloring book page', 'thick black outlines', 'no shading', 'no gradients', and 'no color fills', which strongly enforces the target style."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed for text, logos, watermarks, and signatures, ensuring a clean visual composition."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes essential keywords for the use case: 'kids', 'coloring', 'line art', 'monochrome', 'simple shapes', 'outlines', and 'vector lines'."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject is a friendly superhero; mood is adventurous and cheerful; no dangerous elements or inappropriate content identified."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'symmetrical composition' to ensure balanced line art for easier coloring."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear central subject (superhero) with specific environmental context (rooftop, sunset, skyline) suitable for a wide shot composition.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests 'Black-and-white line art only', 'monochrome coloring book page', 'thick black outlines', 'no shading', 'no gradients', and 'no color fills', which strongly enforces the target style.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed for text, logos, watermarks, and signatures, ensuring a clean visual composition.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Includes essential keywords for the use case: 'kids', 'coloring', 'line art', 'monochrome', 'simple shapes', 'outlines', and 'vector lines'.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject is a friendly superhero; mood is adventurous and cheerful; no dangerous elements or inappropriate content identified.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'symmetrical composition' to ensure balanced line art for easier coloring.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "personnages_fictifs",
+        "taxonomy_anchor": "themes/personnages/fantasy",
+        "name_en": "Wizard in a Magic Tower",
+        "keywords": "wizard, tower, spellbook, crystal ball, robe",
+        "tags_context": "Personnages, Fantasy, Magicien"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.038764715194702,
+        "writer_s": 3.1244163513183594,
+        "validator_s": 8.239951133728027,
+        "total_s": 17.40313220024109
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A young wizard standing in a tall stone tower",
+        "setting": "Inside a magical stone tower with floating crystals",
+        "props": [
+          "open spellbook",
+          "glowing crystal ball",
+          "flowing blue robe",
+          "floating candles",
+          "ancient stone pillars",
+          "magic runes",
+          "staircase",
+          "moonlight window"
+        ],
+        "composition": "centered composition with vertical focus",
+        "mood": "mysterious and whimsical",
+        "constraints": "black and white line art only, no color fills, white background, child-safe design with clean outlines"
+      },
+      "plan_raw": "{\n  \"subject\": \"A young wizard standing in a tall stone tower\",\n  \"setting\": \"Inside a magical stone tower with floating crystals\",\n  \"props\": [\n    \"open spellbook\",\n    \"glowing crystal ball\",\n    \"flowing blue robe\",\n    \"floating candles\",\n    \"ancient stone pillars\",\n    \"magic runes\",\n    \"staircase\",\n    \"moonlight window\"\n  ],\n  \"composition\": \"centered composition with vertical focus\",\n  \"mood\": \"mysterious and whimsical\",\n  \"constraints\": \"black and white line art only, no color fills, white background, child-safe design with clean outlines\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A centered composition featuring a young wizard standing inside a tall magical stone tower filled with floating crystals, with a mysterious and whimsical mood. The scene includes an open spellbook on a surface, a glowing crystal ball, a flowing blue robe, floating candles, ancient stone pillars, magic runes, a staircase, and a moonlight window, all depicted as clean geometric shapes and outlines without any specific paint colors. Style: black and white line art only, coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no half-tones, no texture. Technical cleanup: absolutely no readable text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, no diegetic text on objects or walls, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A centered composition featuring a young wizard standing inside a tall magical stone tower filled with floating crystals, with a mysterious and whimsical mood. The scene includes an open spellbook on a surface, a glowing crystal ball, a flowing blue robe, floating candles, ancient stone pillars, magic runes, a staircase, and a moonlight window, all depicted as clean geometric shapes and outlines without any specific paint colors. Style: black and white line art only, coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no half-tones, no texture. Technical cleanup: absolutely no readable text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, no diegetic text on objects or walls, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt specifies a centered composition with clear subject matter (wizard, tower, crystals)."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests black and white line art, thick black outlines, no shading, no gradients, and no color fills."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints against text, logos, watermarks, and diegetic text are present."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Covers all required elements: wizard, tower, crystals, spellbook, crystal ball, robe, candles, pillars, runes, staircase, window."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject matter is appropriate for children; no violence, gore, or inappropriate themes detected in the description."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'symmetrical' to ensure the composition remains balanced for printing."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt specifies a centered composition with clear subject matter (wizard, tower, crystals).\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests black and white line art, thick black outlines, no shading, no gradients, and no color fills.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints against text, logos, watermarks, and diegetic text are present.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Covers all required elements: wizard, tower, crystals, spellbook, crystal ball, robe, candles, pillars, runes, staircase, window.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject matter is appropriate for children; no violence, gore, or inappropriate themes detected in the description.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'symmetrical' to ensure the composition remains balanced for printing.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "corps_humain_geometrie",
+        "taxonomy_anchor": "themes/educatif/formes",
+        "name_en": "Triangle on a School Blackboard",
+        "keywords": "triangle, blackboard, classroom, chalk, geometry",
+        "tags_context": "Éducatif, Formes, Géométrie"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 5.930768013000488,
+        "writer_s": 3.1167232990264893,
+        "validator_s": 8.035542488098145,
+        "total_s": 17.083033800125122
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A colorful triangle drawn on a school blackboard",
+        "setting": "A bright elementary school classroom",
+        "props": [
+          "school blackboard",
+          "white chalk",
+          "student desk",
+          "teacher's podium",
+          "geometric shapes",
+          "school clock",
+          "window with sunlight",
+          "chalk dust"
+        ],
+        "composition": "Frontal view centered on the blackboard",
+        "mood": "Educational and cheerful",
+        "constraints": "Black and white line art only with no color fills, white background, and child-safe details suitable for printing."
+      },
+      "plan_raw": "{\n  \"subject\": \"A colorful triangle drawn on a school blackboard\",\n  \"setting\": \"A bright elementary school classroom\",\n  \"props\": [\n    \"school blackboard\",\n    \"white chalk\",\n    \"student desk\",\n    \"teacher's podium\",\n    \"geometric shapes\",\n    \"school clock\",\n    \"window with sunlight\",\n    \"chalk dust\"\n  ],\n  \"composition\": \"Frontal view centered on the blackboard\",\n  \"mood\": \"Educational and cheerful\",\n  \"constraints\": \"Black and white line art only with no color fills, white background, and child-safe details suitable for printing.\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A frontal centered view of a bright elementary school classroom featuring a colorful triangle drawn on a school blackboard with an educational and cheerful mood. The scene includes a student desk, a teacher's podium, various geometric shapes on the wall, a school clock, and a window letting in sunlight with visible chalk dust floating in the air. \n\nStyle: Black and white line art only with no color fills, white background, and child-safe details suitable for printing. Use clean black outlines on white, no shading, no gradients, no color fills, and ensure all geometric shapes are simple and safe for coloring.\n\nTechnical cleanup: No text, no watermark, no logos, no signatures, no letters, no words, no numbers, no signs, no labels, no written characters anywhere in the scene, clean layout with pure white background.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A frontal centered view of a bright elementary school classroom featuring a colorful triangle drawn on a school blackboard with an educational and cheerful mood. The scene includes a student desk, a teacher's podium, various geometric shapes on the wall, a school clock, and a window letting in sunlight with visible chalk dust floating in the air. \\n\\nStyle: Black and white line art only with no color fills, white background, and child-safe details suitable for printing. Use clean black outlines on white, no shading, no gradients, no color fills, and ensure all geometric shapes are simple and safe for coloring.\\n\\nTechnical cleanup: No text, no watermark, no logos, no signatures, no letters, no words, no numbers, no signs, no labels, no written characters anywhere in the scene, clean layout with pure white background.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt clearly defines a frontal, centered classroom scene with specific elements (blackboard, desk, podium, window)."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests black and white line art, no color fills, no shading, no gradients, and clean black outlines on white."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed for text, watermarks, logos, and written characters."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Strong coverage of required elements: classroom, blackboard, geometric shapes, clock, window, chalk dust."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Explicitly mentions child-safe details and cheerful mood; no dangerous objects or inappropriate content."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'simple shapes' to geometric shapes to reinforce the coloring page aspect."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt clearly defines a frontal, centered classroom scene with specific elements (blackboard, desk, podium, window).\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests black and white line art, no color fills, no shading, no gradients, and clean black outlines on white.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed for text, watermarks, logos, and written characters.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Strong coverage of required elements: classroom, blackboard, geometric shapes, clock, window, chalk dust.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Explicitly mentions child-safe details and cheerful mood; no dangerous objects or inappropriate content.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'simple shapes' to geometric shapes to reinforce the coloring page aspect.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "corps_humain_geometrie",
+        "taxonomy_anchor": "themes/educatif/science",
+        "name_en": "Skeleton in a Science Lab",
+        "keywords": "skeleton, science lab, anatomy, microscope, beakers",
+        "tags_context": "Éducatif, Science, Corps humain, Anatomie"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.111296892166138,
+        "writer_s": 3.4286818504333496,
+        "validator_s": 7.982993125915527,
+        "total_s": 17.522971868515015
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A friendly cartoon skeleton wearing a lab coat and safety goggles",
+        "setting": "A bright science laboratory filled with educational equipment",
+        "props": [
+          "microscope",
+          "glass beakers",
+          "scientific charts",
+          "shelves with jars",
+          "whiteboard",
+          "safety goggles",
+          "lab coat",
+          "stethoscope"
+        ],
+        "composition": "centered composition with the skeleton standing in the middle of the room",
+        "mood": "educational and curious",
+        "constraints": "black-and-white line art only with no color fills, white background, and child-safe simple shapes"
+      },
+      "plan_raw": "{\n  \"subject\": \"A friendly cartoon skeleton wearing a lab coat and safety goggles\",\n  \"setting\": \"A bright science laboratory filled with educational equipment\",\n  \"props\": [\n    \"microscope\",\n    \"glass beakers\",\n    \"scientific charts\",\n    \"shelves with jars\",\n    \"whiteboard\",\n    \"safety goggles\",\n    \"lab coat\",\n    \"stethoscope\"\n  ],\n  \"composition\": \"centered composition with the skeleton standing in the middle of the room\",\n  \"mood\": \"educational and curious\",\n  \"constraints\": \"black-and-white line art only with no color fills, white background, and child-safe simple shapes\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A centered composition of a friendly cartoon skeleton wearing a lab coat and safety goggles standing in the middle of a bright science laboratory filled with educational equipment. The scene features a microscope, glass beakers, scientific charts, shelves with jars, a whiteboard, and a stethoscope arranged around the skeleton. All objects are depicted as simple, clean shapes suitable for children, with no specific paint colors applied.\n\nStyle: Black-and-white line art only with no color fills, white background, and child-safe simple shapes. Use thick black outlines on a pure white background with no shading, no gradients, no cross-hatching, and no color fills anywhere in the image.\n\nTechnical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no written characters, no watermarks, no logos, no signatures, and no diegetic text of any kind. Clean layout with perfect white background.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A centered composition of a friendly cartoon skeleton wearing a lab coat and safety goggles standing in the middle of a bright science laboratory filled with educational equipment. The scene features a microscope, glass beakers, scientific charts, shelves with jars, a whiteboard, and a stethoscope arranged around the skeleton. All objects are depicted as simple, clean shapes suitable for children, with no specific paint colors applied.\\n\\nStyle: Black-and-white line art only with no color fills, white background, and child-safe simple shapes. Use thick black outlines on a pure white background with no shading, no gradients, no cross-hatching, and no color fills anywhere in the image.\\n\\nTechnical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no written characters, no watermarks, no logos, no signatures, and no diegetic text of any kind. Clean layout with perfect white background.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt specifies a centered composition with clear subject and background elements."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests black-and-white line art, thick black outlines, no shading, no gradients, and no color fills."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensively lists prohibited elements including text, numbers, logos, and watermarks."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Covers target keywords: skeleton, lab coat, goggles, microscope, beakers, charts, jars, whiteboard, stethoscope."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject is friendly and cartoonish; style constraints ensure no scary imagery or complex details."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'vector style' to reinforce clean edges for digital printing."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt specifies a centered composition with clear subject and background elements.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests black-and-white line art, thick black outlines, no shading, no gradients, and no color fills.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensively lists prohibited elements including text, numbers, logos, and watermarks.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Covers target keywords: skeleton, lab coat, goggles, microscope, beakers, charts, jars, whiteboard, stethoscope.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject is friendly and cartoonish; style constraints ensure no scary imagery or complex details.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'vector style' to reinforce clean edges for digital printing.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "v1"
+    },
+    {
+      "concept": {
+        "category": "electromenager",
+        "taxonomy_anchor": "themes/divers",
+        "name_en": "Refrigerator in a Kitchen",
+        "keywords": "refrigerator, kitchen, counter, fruits, magnets",
+        "tags_context": "Maison, Cuisine, Électroménager"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 5.939078092575073,
+        "writer_s": 2.6569151878356934,
+        "validator_s": 8.308950901031494,
+        "total_s": 16.90494418144226
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A colorful refrigerator with magnets and fruit on the counter",
+        "setting": "A bright and clean kitchen",
+        "props": [
+          "red apple",
+          "blue banana",
+          "magnetic star",
+          "magnetic heart",
+          "kitchen counter",
+          "open refrigerator door",
+          "white cabinets",
+          "window with sunlight"
+        ],
+        "composition": "wide shot centered on the refrigerator",
+        "mood": "cheerful and inviting",
+        "constraints": "black and white line art only, no color fills, white background, simple shapes suitable for children, no shading or gradients"
+      },
+      "plan_raw": "{\n  \"subject\": \"A colorful refrigerator with magnets and fruit on the counter\",\n  \"setting\": \"A bright and clean kitchen\",\n  \"props\": [\n    \"red apple\",\n    \"blue banana\",\n    \"magnetic star\",\n    \"magnetic heart\",\n    \"kitchen counter\",\n    \"open refrigerator door\",\n    \"white cabinets\",\n    \"window with sunlight\"\n  ],\n  \"composition\": \"wide shot centered on the refrigerator\",\n  \"mood\": \"cheerful and inviting\",\n  \"constraints\": \"black and white line art only, no color fills, white background, simple shapes suitable for children, no shading or gradients\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A wide shot centered on a colorful refrigerator with magnets and fruit on the counter in a bright and clean kitchen with a cheerful and inviting mood. The scene features a red apple, a blue banana, a magnetic star, and a magnetic heart placed on the kitchen counter near an open refrigerator door and white cabinets, with a window letting in sunlight. Style: black and white line art only, monochrome outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot centered on a colorful refrigerator with magnets and fruit on the counter in a bright and clean kitchen with a cheerful and inviting mood. The scene features a red apple, a blue banana, a magnetic star, and a magnetic heart placed on the kitchen counter near an open refrigerator door and white cabinets, with a window letting in sunlight. Style: black and white line art only, monochrome outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills. Technical cleanup: no text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear central subject (refrigerator) with specific surrounding elements and spatial relationships."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests black and white line art, monochrome outlines, simple shapes, and explicitly forbids shading, gradients, and color fills."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed to prevent text, logos, watermarks, and signatures."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes all necessary visual descriptors (colors of objects, mood, lighting) and style keywords for the target model."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject matter is appropriate for children; no violence, gore, or inappropriate content detected in the description."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'thick lines' or 'bold outlines' to ensure visibility for very young children."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear central subject (refrigerator) with specific surrounding elements and spatial relationships.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests black and white line art, monochrome outlines, simple shapes, and explicitly forbids shading, gradients, and color fills.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed to prevent text, logos, watermarks, and signatures.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Includes all necessary visual descriptors (colors of objects, mood, lighting) and style keywords for the target model.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject matter is appropriate for children; no violence, gore, or inappropriate content detected in the description.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'thick lines' or 'bold outlines' to ensure visibility for very young children.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    },
+    {
+      "concept": {
+        "category": "electromenager",
+        "taxonomy_anchor": "themes/divers",
+        "name_en": "Washing Machine in a Laundry Room",
+        "keywords": "washing machine, laundry, basket, detergent, towels",
+        "tags_context": "Maison, Buanderie, Électroménager"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 5.957242012023926,
+        "writer_s": 3.013688325881958,
+        "validator_s": 7.8232948780059814,
+        "total_s": 16.794225215911865
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A smiling child folding clean towels next to a washing machine",
+        "setting": "A bright and tidy laundry room with large windows",
+        "props": [
+          "washing machine",
+          "laundry basket",
+          "detergent bottle",
+          "clean towels",
+          "laundry rack",
+          "window",
+          "floor mat"
+        ],
+        "composition": "centered composition with the child in the foreground",
+        "mood": "cheerful and calm",
+        "constraints": "Black-and-white line art only with no color fills, white background, and child-safe details suitable for coloring books"
+      },
+      "plan_raw": "{\n  \"subject\": \"A smiling child folding clean towels next to a washing machine\",\n  \"setting\": \"A bright and tidy laundry room with large windows\",\n  \"props\": [\n    \"washing machine\",\n    \"laundry basket\",\n    \"detergent bottle\",\n    \"clean towels\",\n    \"laundry rack\",\n    \"window\",\n    \"floor mat\"\n  ],\n  \"composition\": \"centered composition with the child in the foreground\",\n  \"mood\": \"cheerful and calm\",\n  \"constraints\": \"Black-and-white line art only with no color fills, white background, and child-safe details suitable for coloring books\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A centered composition of a smiling child folding clean towels next to a washing machine in a bright and tidy laundry room with large windows, cheerful and calm mood. The child is surrounded by a washing machine, a laundry basket, a detergent bottle, several folded clean towels, a laundry rack, a window with panes, and a floor mat, all depicted as simple geometric shapes and outlines without any specific paint colors. Style: Black-and-white line art only with no color fills, white background, black outlines on white, no shading, no gradients, no color fills, clean vector lines suitable for coloring books. Technical cleanup: No text, no watermark, no logos, no signatures, no written characters, no letters, no numbers, no signs, no labels, no diegetic text, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A centered composition of a smiling child folding clean towels next to a washing machine in a bright and tidy laundry room with large windows, cheerful and calm mood. The child is surrounded by a washing machine, a laundry basket, a detergent bottle, several folded clean towels, a laundry rack, a window with panes, and a floor mat, all depicted as simple geometric shapes and outlines without any specific paint colors. Style: Black-and-white line art only with no color fills, white background, black outlines on white, no shading, no gradients, no color fills, clean vector lines suitable for coloring books. Technical cleanup: No text, no watermark, no logos, no signatures, no written characters, no letters, no numbers, no signs, no labels, no diegetic text, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt specifies a centered composition with clear subject and background elements."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests simple geometric shapes, outlines, black-and-white line art, and no shading or gradients."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed for text, watermarks, logos, and diegetic text."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Strong coverage of target keywords: child, towels, washing machine, laundry room, monochrome, line art."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject is a smiling child in a safe domestic setting; no inappropriate content."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'no complex background details' to further reduce visual noise for young children."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt specifies a centered composition with clear subject and background elements.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests simple geometric shapes, outlines, black-and-white line art, and no shading or gradients.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed for text, watermarks, logos, and diegetic text.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Strong coverage of target keywords: child, towels, washing machine, laundry room, monochrome, line art.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject is a smiling child in a safe domestic setting; no inappropriate content.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'no complex background details' to further reduce visual noise for young children.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    },
+    {
+      "concept": {
+        "category": "geometrie",
+        "taxonomy_anchor": "themes/educatif/formes",
+        "name_en": "Hexagon on a Math Whiteboard",
+        "keywords": "hexagon, whiteboard, classroom, marker, ruler",
+        "tags_context": "Éducatif, Formes, Géométrie"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.023017406463623,
+        "writer_s": 2.918799638748169,
+        "validator_s": 8.948537111282349,
+        "total_s": 17.89035415649414
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A colorful hexagon drawn on a whiteboard",
+        "setting": "A bright elementary school classroom",
+        "props": [
+          "whiteboard",
+          "chalk eraser",
+          "ruler",
+          "math worksheet",
+          "student desk",
+          "teacher's chair",
+          "window with sunlight",
+          "bookshelf with books"
+        ],
+        "composition": "centered composition with the hexagon as the focal point",
+        "mood": "educational and cheerful",
+        "constraints": "black-and-white line art only, no color fills, white background, simple shapes suitable for children to color, no text or shading"
+      },
+      "plan_raw": "{\n  \"subject\": \"A colorful hexagon drawn on a whiteboard\",\n  \"setting\": \"A bright elementary school classroom\",\n  \"props\": [\n    \"whiteboard\",\n    \"chalk eraser\",\n    \"ruler\",\n    \"math worksheet\",\n    \"student desk\",\n    \"teacher's chair\",\n    \"window with sunlight\",\n    \"bookshelf with books\"\n  ],\n  \"composition\": \"centered composition with the hexagon as the focal point\",\n  \"mood\": \"educational and cheerful\",\n  \"constraints\": \"black-and-white line art only, no color fills, white background, simple shapes suitable for children to color, no text or shading\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A centered composition featuring a colorful hexagon drawn on a whiteboard in a bright elementary school classroom with an educational and cheerful mood. The scene includes a whiteboard with the hexagon outline, a chalk eraser resting nearby, a ruler, a math worksheet, a student desk, a teacher's chair, a window letting in sunlight, and a bookshelf filled with books. All objects are depicted as simple black outlines suitable for children to color, with no specific paint colors applied to the shapes or background. Style: monochrome line art only, black outlines on white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, clean layout, pure white background.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A centered composition featuring a colorful hexagon drawn on a whiteboard in a bright elementary school classroom with an educational and cheerful mood. The scene includes a whiteboard with the hexagon outline, a chalk eraser resting nearby, a ruler, a math worksheet, a student desk, a teacher's chair, a window letting in sunlight, and a bookshelf filled with books. All objects are depicted as simple black outlines suitable for children to color, with no specific paint colors applied to the shapes or background. Style: monochrome line art only, black outlines on white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, clean layout, pure white background.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 45,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear centered composition with multiple distinct objects."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": false,
+            "detail": "Contradictory instructions: 'colorful hexagon' and 'colorful' in mood conflict with 'monochrome line art only', 'no color fills', and 'no specific paint colors applied'."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Explicitly requests no text, watermarks, logos, or signatures, and specifies a pure white background."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Covers required elements: hexagon, whiteboard, chalk eraser, ruler, math worksheet, desk, chair, window, bookshelf."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Content is educational and cheerful; no inappropriate themes or complex text that could confuse children."
+          }
+        ],
+        "recommendations": [
+          "Remove 'colorful' and 'bright' to prevent the model from applying hues.",
+          "Replace 'colorful hexagon' with 'black hexagon outline' or 'hexagon shape' to ensure monochrome adherence.",
+          "Clarify that the 'whiteboard' is white, not colored, to avoid ambiguity."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 45,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear centered composition with multiple distinct objects.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": false,\n      \"detail\": \"Contradictory instructions: 'colorful hexagon' and 'colorful' in mood conflict with 'monochrome line art only', 'no color fills', and 'no specific paint colors applied'.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests no text, watermarks, logos, or signatures, and specifies a pure white background.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Covers required elements: hexagon, whiteboard, chalk eraser, ruler, math worksheet, desk, chair, window, bookshelf.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Content is educational and cheerful; no inappropriate themes or complex text that could confuse children.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Remove 'colorful' and 'bright' to prevent the model from applying hues.\",\n    \"Replace 'colorful hexagon' with 'black hexagon outline' or 'hexagon shape' to ensure monochrome adherence.\",\n    \"Clarify that the 'whiteboard' is white, not colored, to avoid ambiguity.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    },
+    {
+      "concept": {
+        "category": "geometrie",
+        "taxonomy_anchor": "themes/educatif/formes",
+        "name_en": "Cube on a Math Desk",
+        "keywords": "cube, desk, classroom, notebook, pencil",
+        "tags_context": "Éducatif, Formes, Géométrie, Solide"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.006691932678223,
+        "writer_s": 3.775627374649048,
+        "validator_s": 8.371230840682983,
+        "total_s": 18.153550148010254
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A colorful geometric cube resting on a wooden desk",
+        "setting": "A bright elementary school classroom",
+        "props": [
+          "open notebook with math problems",
+          "wooden pencil case",
+          "sharpened pencil",
+          "ruler",
+          "eraser",
+          "stack of paper",
+          "school clock",
+          "window with sunlight"
+        ],
+        "composition": "eye-level close-up with slight angle",
+        "mood": "educational and focused",
+        "constraints": "Black and white line art only, no color fills, clean white background, child-safe design with no text or shading"
+      },
+      "plan_raw": "{\n  \"subject\": \"A colorful geometric cube resting on a wooden desk\",\n  \"setting\": \"A bright elementary school classroom\",\n  \"props\": [\n    \"open notebook with math problems\",\n    \"wooden pencil case\",\n    \"sharpened pencil\",\n    \"ruler\",\n    \"eraser\",\n    \"stack of paper\",\n    \"school clock\",\n    \"window with sunlight\"\n  ],\n  \"composition\": \"eye-level close-up with slight angle\",\n  \"mood\": \"educational and focused\",\n  \"constraints\": \"Black and white line art only, no color fills, clean white background, child-safe design with no text or shading\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "An eye-level close-up shot of a colorful geometric cube resting on a wooden desk in a bright elementary school classroom with an educational and focused mood. The scene includes an open notebook filled with mathematical symbols and equations, a wooden pencil case, a sharpened pencil, a ruler, an eraser, a stack of paper, a school clock, and a window letting in sunlight. All objects are rendered as clean black outlines with no color fills, ensuring the shapes remain distinct and suitable for coloring.\n\nStyle: Monochrome line art only, black outlines on a clean white background, no shading, no gradients, no color fills, no cross-hatching, and no texture effects to maintain a flat, two-dimensional appearance ideal for children's coloring pages.\n\nTechnical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no signatures, no watermarks, no logos, no brand names, and no written characters anywhere in the scene, including on the notebook, clock, or walls, ensuring a purely visual composition free of any readable text.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"An eye-level close-up shot of a colorful geometric cube resting on a wooden desk in a bright elementary school classroom with an educational and focused mood. The scene includes an open notebook filled with mathematical symbols and equations, a wooden pencil case, a sharpened pencil, a ruler, an eraser, a stack of paper, a school clock, and a window letting in sunlight. All objects are rendered as clean black outlines with no color fills, ensuring the shapes remain distinct and suitable for coloring.\\n\\nStyle: Monochrome line art only, black outlines on a clean white background, no shading, no gradients, no color fills, no cross-hatching, and no texture effects to maintain a flat, two-dimensional appearance ideal for children's coloring pages.\\n\\nTechnical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no signatures, no watermarks, no logos, no brand names, and no written characters anywhere in the scene, including on the notebook, clock, or walls, ensuring a purely visual composition free of any readable text.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear scene structure with specific objects and spatial relationships suitable for a coloring page."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests 'clean black outlines', 'no color fills', 'no shading', and 'no cross-hatching', strongly enforcing line art."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed to remove text, numbers, and logos, which is critical for coloring pages."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes relevant keywords like 'geometric cube', 'wooden pencil case', 'school clock', and 'elementary school classroom'."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Content is educational and age-appropriate, with no dangerous objects or inappropriate themes."
+          }
+        ],
+        "recommendations": [
+          "Consider simplifying the object list slightly to ensure the model does not overcomplicate the scene with too many small details."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear scene structure with specific objects and spatial relationships suitable for a coloring page.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests 'clean black outlines', 'no color fills', 'no shading', and 'no cross-hatching', strongly enforcing line art.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed to remove text, numbers, and logos, which is critical for coloring pages.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Includes relevant keywords like 'geometric cube', 'wooden pencil case', 'school clock', and 'elementary school classroom'.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Content is educational and age-appropriate, with no dangerous objects or inappropriate themes.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider simplifying the object list slightly to ensure the model does not overcomplicate the scene with too many small details.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    },
+    {
+      "concept": {
+        "category": "personnalites_sportives",
+        "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+        "name_en": "Tennis Player on a Court",
+        "keywords": "tennis player, court, racket, net, ball",
+        "tags_context": "Personnages, Sport, Tennis"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.00629734992981,
+        "writer_s": 2.9964466094970703,
+        "validator_s": 8.777607202529907,
+        "total_s": 17.780351161956787
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A young tennis player in action",
+        "setting": "An outdoor tennis court",
+        "props": [
+          "tennis racket",
+          "yellow tennis ball",
+          "net with white tape",
+          "blue court lines",
+          "green grass border",
+          "white umpire chair",
+          "backpack",
+          "water bottle"
+        ],
+        "composition": "wide shot centered on the player mid-swing",
+        "mood": "energetic and focused",
+        "constraints": "Black-and-white line art only, no shading or color fills, clean white background, simple shapes suitable for children, no text or logos."
+      },
+      "plan_raw": "{\n  \"subject\": \"A young tennis player in action\",\n  \"setting\": \"An outdoor tennis court\",\n  \"props\": [\n    \"tennis racket\",\n    \"yellow tennis ball\",\n    \"net with white tape\",\n    \"blue court lines\",\n    \"green grass border\",\n    \"white umpire chair\",\n    \"backpack\",\n    \"water bottle\"\n  ],\n  \"composition\": \"wide shot centered on the player mid-swing\",\n  \"mood\": \"energetic and focused\",\n  \"constraints\": \"Black-and-white line art only, no shading or color fills, clean white background, simple shapes suitable for children, no text or logos.\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A wide shot centered on a young energetic tennis player mid-swing on an outdoor court, focused and ready to hit. The scene includes a tennis racket held high, a yellow tennis ball in motion, a net with white tape, blue court lines, a green grass border, a white umpire chair, a backpack, and a water bottle. Describe all objects using simple clean shapes suitable for children to color. Style: Black-and-white line art only, thick black outlines on a pure white background, no shading, no gradients, no color fills, no hatching, and no texture. Technical cleanup: Absolutely no text, no letters, no numbers, no words, no signs, no labels, no logos, no signatures, no watermarks, and no readable characters anywhere in the image.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot centered on a young energetic tennis player mid-swing on an outdoor court, focused and ready to hit. The scene includes a tennis racket held high, a yellow tennis ball in motion, a net with white tape, blue court lines, a green grass border, a white umpire chair, a backpack, and a water bottle. Describe all objects using simple clean shapes suitable for children to color. Style: Black-and-white line art only, thick black outlines on a pure white background, no shading, no gradients, no color fills, no hatching, and no texture. Technical cleanup: Absolutely no text, no letters, no numbers, no words, no signs, no labels, no logos, no signatures, no watermarks, and no readable characters anywhere in the image.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear central subject (tennis player) with specific surrounding elements and a defined composition (wide shot, centered)."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests 'Black-and-white line art only', 'thick black outlines', 'no shading', 'no gradients', 'no color fills', 'no hatching', and 'no texture'."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive prohibition of text, letters, numbers, words, signs, labels, logos, signatures, watermarks, and readable characters."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Covers all necessary objects (player, racket, ball, net, lines, grass, chair, backpack, bottle) and style requirements."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject is a young energetic child; content is non-violent and appropriate for coloring."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'simple geometric shapes' to reinforce the 'simple clean shapes' instruction for AI generation.",
+          "Add 'vector style' to ensure crisp lines suitable for printing."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear central subject (tennis player) with specific surrounding elements and a defined composition (wide shot, centered).\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests 'Black-and-white line art only', 'thick black outlines', 'no shading', 'no gradients', 'no color fills', 'no hatching', and 'no texture'.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive prohibition of text, letters, numbers, words, signs, labels, logos, signatures, watermarks, and readable characters.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Covers all necessary objects (player, racket, ball, net, lines, grass, chair, backpack, bottle) and style requirements.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject is a young energetic child; content is non-violent and appropriate for coloring.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'simple geometric shapes' to reinforce the 'simple clean shapes' instruction for AI generation.\",\n    \"Add 'vector style' to ensure crisp lines suitable for printing.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    },
+    {
+      "concept": {
+        "category": "personnalites_sportives",
+        "taxonomy_anchor": "themes/personnages/vie_quotidienne",
+        "name_en": "Boxer in a Boxing Ring",
+        "keywords": "boxer, boxing ring, gloves, ropes, corner stool",
+        "tags_context": "Personnages, Sport, Boxe"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.062673091888428,
+        "writer_s": 3.2879040241241455,
+        "validator_s": 8.201642990112305,
+        "total_s": 17.552220106124878
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A cute cartoon boxer wearing a striped shirt and boxing gloves",
+        "setting": "A brightly lit boxing ring with ropes and corner posts",
+        "props": [
+          "boxing ring ropes",
+          "corner stool",
+          "corner flag",
+          "ring post",
+          "boxing gloves",
+          "striped shirt",
+          "headband",
+          "spotlight"
+        ],
+        "composition": "centered composition with the boxer facing forward",
+        "mood": "cheerful and energetic",
+        "constraints": "Black and white line art only, no color fills, white background, simple shapes suitable for children, no violent actions or realistic gore"
+      },
+      "plan_raw": "{\n  \"subject\": \"A cute cartoon boxer wearing a striped shirt and boxing gloves\",\n  \"setting\": \"A brightly lit boxing ring with ropes and corner posts\",\n  \"props\": [\n    \"boxing ring ropes\",\n    \"corner stool\",\n    \"corner flag\",\n    \"ring post\",\n    \"boxing gloves\",\n    \"striped shirt\",\n    \"headband\",\n    \"spotlight\"\n  ],\n  \"composition\": \"centered composition with the boxer facing forward\",\n  \"mood\": \"cheerful and energetic\",\n  \"constraints\": \"Black and white line art only, no color fills, white background, simple shapes suitable for children, no violent actions or realistic gore\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A cute cartoon boxer wearing a striped shirt and boxing gloves standing in the center of a brightly lit boxing ring with ropes and corner posts, cheerful and energetic mood. The scene includes boxing ring ropes forming a square, a corner stool, a corner flag, a ring post, the boxer's boxing gloves, a striped shirt with simple curved lines, a headband across the forehead, and a spotlight beam. All objects are depicted as simple shapes and outlines suitable for children to color, with no violent actions or realistic gore. Style: Black and white monochrome line art only, thick black outlines on pure white background, no shading, no gradients, no color fills, no ink spills. Technical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the scene, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A cute cartoon boxer wearing a striped shirt and boxing gloves standing in the center of a brightly lit boxing ring with ropes and corner posts, cheerful and energetic mood. The scene includes boxing ring ropes forming a square, a corner stool, a corner flag, a ring post, the boxer's boxing gloves, a striped shirt with simple curved lines, a headband across the forehead, and a spotlight beam. All objects are depicted as simple shapes and outlines suitable for children to color, with no violent actions or realistic gore. Style: Black and white monochrome line art only, thick black outlines on pure white background, no shading, no gradients, no color fills, no ink spills. Technical cleanup: No text, no letters, no words, no numbers, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the scene, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear central subject (boxer) with supporting environmental elements (ring, ropes, stool) and a coherent composition."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests simple shapes, outlines, thick black lines, no shading, no gradients, and no color fills."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed for text, logos, watermarks, and signatures to ensure a clean printable layout."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Covers all necessary visual elements (boxer, gloves, striped shirt, ring, ropes, spotlight) and style requirements."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Explicitly excludes violent actions and realistic gore; mood is described as cheerful and energetic."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'no complex background details' to further reduce potential rendering noise in the ring area."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear central subject (boxer) with supporting environmental elements (ring, ropes, stool) and a coherent composition.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests simple shapes, outlines, thick black lines, no shading, no gradients, and no color fills.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed for text, logos, watermarks, and signatures to ensure a clean printable layout.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Covers all necessary visual elements (boxer, gloves, striped shirt, ring, ropes, spotlight) and style requirements.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Explicitly excludes violent actions and realistic gore; mood is described as cheerful and energetic.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'no complex background details' to further reduce potential rendering noise in the ring area.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    },
+    {
+      "concept": {
+        "category": "professions",
+        "taxonomy_anchor": "themes/personnages/metiers",
+        "name_en": "Astronaut on a Space Station",
+        "keywords": "astronaut, space station, helmet, control panel, porthole",
+        "tags_context": "Personnages, Métiers, Astronaute, Espace"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 5.905097723007202,
+        "writer_s": 4.75077748298645,
+        "validator_s": 8.688986778259277,
+        "total_s": 19.34486198425293
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "Astronaut floating in a space station",
+        "setting": "Interior of a futuristic space station with large windows",
+        "props": [
+          "space helmet",
+          "control panel",
+          "porthole",
+          "staircase",
+          "robot companion",
+          "floating debris",
+          "starfield view",
+          "ladder"
+        ],
+        "composition": "wide shot centered on astronaut",
+        "mood": "adventurous",
+        "constraints": "black-and-white line art only, no color fills, white background, child-safe, no shading or gradients"
+      },
+      "plan_raw": "{\n  \"subject\": \"Astronaut floating in a space station\",\n  \"setting\": \"Interior of a futuristic space station with large windows\",\n  \"props\": [\n    \"space helmet\",\n    \"control panel\",\n    \"porthole\",\n    \"staircase\",\n    \"robot companion\",\n    \"floating debris\",\n    \"starfield view\",\n    \"ladder\"\n  ],\n  \"composition\": \"wide shot centered on astronaut\",\n  \"mood\": \"adventurous\",\n  \"constraints\": \"black-and-white line art only, no color fills, white background, child-safe, no shading or gradients\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A wide shot centered on an adventurous astronaut floating in the interior of a futuristic space station with large windows. The scene includes a detailed space helmet, a control panel with buttons, a round porthole, a spiral staircase, a friendly robot companion, small floating debris, a starfield view visible through the glass, and a metal ladder.\n\nDraw the astronaut in a dynamic pose surrounded by the station elements, ensuring all shapes are defined by clear, bold black outlines. The control panel should feature distinct geometric shapes and lines for buttons without any labels or text. The robot companion should have smooth curves and simple mechanical details. The floating debris should appear as abstract geometric forms. The starfield should be represented by simple dots or small lines outside the window frame. Maintain a clean, adventurous mood throughout the composition.\n\nStyle: monochrome line art suitable for a coloring book, using only black outlines on a pure white background. No shading, no gradients, no color fills, no hatching, and no texture effects. All lines must be crisp and uniform in weight to allow for easy coloring.\n\nTechnical cleanup: absolutely no readable text, letters, words, numbers, signs, labels, or written characters anywhere in the image, including on the control panel, walls, or equipment. No watermarks, no logos, no signatures, and no background clutter that obscures the main subject. The layout must be clean and uncluttered.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot centered on an adventurous astronaut floating in the interior of a futuristic space station with large windows. The scene includes a detailed space helmet, a control panel with buttons, a round porthole, a spiral staircase, a friendly robot companion, small floating debris, a starfield view visible through the glass, and a metal ladder.\\n\\nDraw the astronaut in a dynamic pose surrounded by the station elements, ensuring all shapes are defined by clear, bold black outlines. The control panel should feature distinct geometric shapes and lines for buttons without any labels or text. The robot companion should have smooth curves and simple mechanical details. The floating debris should appear as abstract geometric forms. The starfield should be represented by simple dots or small lines outside the window frame. Maintain a clean, adventurous mood throughout the composition.\\n\\nStyle: monochrome line art suitable for a coloring book, using only black outlines on a pure white background. No shading, no gradients, no color fills, no hatching, and no texture effects. All lines must be crisp and uniform in weight to allow for easy coloring.\\n\\nTechnical cleanup: absolutely no readable text, letters, words, numbers, signs, labels, or written characters anywhere in the image, including on the control panel, walls, or equipment. No watermarks, no logos, no signatures, and no background clutter that obscures the main subject. The layout must be clean and uncluttered.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a coherent scene with clear subject (astronaut) and environment (space station), ensuring structural integrity for generation."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests bold black outlines, clear shapes, and specific geometric simplifications (abstract debris, simple starfield) to enforce line art."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Strong negative constraints against text, labels, watermarks, and clutter are present, with a dedicated technical cleanup section."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Comprehensive list of visual elements (helmet, porthole, robot, debris, starfield) ensures sufficient detail for the model."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Content is non-violent, non-scary, and age-appropriate (friendly robot, adventurous mood)."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'no cross-hatching' explicitly to prevent texture artifacts in monochrome mode.",
+          "Specify 'uniform line weight' more strictly if previous generations show varying stroke thickness."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a coherent scene with clear subject (astronaut) and environment (space station), ensuring structural integrity for generation.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests bold black outlines, clear shapes, and specific geometric simplifications (abstract debris, simple starfield) to enforce line art.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Strong negative constraints against text, labels, watermarks, and clutter are present, with a dedicated technical cleanup section.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive list of visual elements (helmet, porthole, robot, debris, starfield) ensures sufficient detail for the model.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Content is non-violent, non-scary, and age-appropriate (friendly robot, adventurous mood).\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'no cross-hatching' explicitly to prevent texture artifacts in monochrome mode.\",\n    \"Specify 'uniform line weight' more strictly if previous generations show varying stroke thickness.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    },
+    {
+      "concept": {
+        "category": "professions",
+        "taxonomy_anchor": "themes/personnages/metiers",
+        "name_en": "Chef in a Restaurant Kitchen",
+        "keywords": "chef, restaurant kitchen, hat, pots, stove",
+        "tags_context": "Personnages, Métiers, Cuisinier"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 5.996613025665283,
+        "writer_s": 3.2279956340789795,
+        "validator_s": 7.6439783573150635,
+        "total_s": 16.868587017059326
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A cheerful young chef wearing a tall white hat",
+        "setting": "A bright and clean restaurant kitchen",
+        "props": [
+          "silver stove",
+          "rolling metal tray",
+          "stack of white plates",
+          "wooden cutting board",
+          "red tomato",
+          "yellow lemon",
+          "large cooking pot",
+          "chef's apron"
+        ],
+        "composition": "centered composition with the chef in the middle",
+        "mood": "cheerful and busy",
+        "constraints": "Black and white line art only with no color fills, white background, and child-safe design"
+      },
+      "plan_raw": "{\n  \"subject\": \"A cheerful young chef wearing a tall white hat\",\n  \"setting\": \"A bright and clean restaurant kitchen\",\n  \"props\": [\n    \"silver stove\",\n    \"rolling metal tray\",\n    \"stack of white plates\",\n    \"wooden cutting board\",\n    \"red tomato\",\n    \"yellow lemon\",\n    \"large cooking pot\",\n    \"chef's apron\"\n  ],\n  \"composition\": \"centered composition with the chef in the middle\",\n  \"mood\": \"cheerful and busy\",\n  \"constraints\": \"Black and white line art only with no color fills, white background, and child-safe design\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A cheerful young chef wearing a tall white hat standing in a bright and clean restaurant kitchen with a centered composition. The scene features a silver stove, a rolling metal tray, a stack of white plates, a wooden cutting board, a red tomato, a yellow lemon, a large cooking pot, and the chef's apron arranged around the central figure. Use simple geometric shapes to represent the tomato and lemon as colored circles without filling them in. Style: Black and white line art only with no color fills, white background, and child-safe design featuring clean black outlines on white paper with no shading, no gradients, and no color fills. Technical cleanup: No text, no watermark, no logos, no signatures, no letters, no numbers, no signs, no labels, no written characters anywhere in the scene, ensuring a clean layout suitable for coloring.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A cheerful young chef wearing a tall white hat standing in a bright and clean restaurant kitchen with a centered composition. The scene features a silver stove, a rolling metal tray, a stack of white plates, a wooden cutting board, a red tomato, a yellow lemon, a large cooking pot, and the chef's apron arranged around the central figure. Use simple geometric shapes to represent the tomato and lemon as colored circles without filling them in. Style: Black and white line art only with no color fills, white background, and child-safe design featuring clean black outlines on white paper with no shading, no gradients, and no color fills. Technical cleanup: No text, no watermark, no logos, no signatures, no letters, no numbers, no signs, no labels, no written characters anywhere in the scene, ensuring a clean layout suitable for coloring.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear central subject (chef) with surrounding elements and a centered composition."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests black and white line art, no color fills, no shading, no gradients, and simple geometric shapes."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed for text, watermarks, logos, signatures, and written characters."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Includes specific objects (stove, tray, plates, etc.) and style descriptors suitable for a coloring page."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Designates child-safe features including clean outlines, no shading, and absence of complex or potentially distracting elements."
+          }
+        ],
+        "recommendations": []
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear central subject (chef) with surrounding elements and a centered composition.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests black and white line art, no color fills, no shading, no gradients, and simple geometric shapes.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed for text, watermarks, logos, signatures, and written characters.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Includes specific objects (stove, tray, plates, etc.) and style descriptors suitable for a coloring page.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Designates child-safe features including clean outlines, no shading, and absence of complex or potentially distracting elements.\"\n    }\n  ],\n  \"recommendations\": []\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    },
+    {
+      "concept": {
+        "category": "fantasy",
+        "taxonomy_anchor": "themes/personnages/fantasy",
+        "name_en": "Dragon in a Castle Courtyard",
+        "keywords": "dragon, castle courtyard, towers, banners, drawbridge",
+        "tags_context": "Personnages, Fantasy, Dragon"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 5.955827713012695,
+        "writer_s": 2.794332504272461,
+        "validator_s": 8.458911180496216,
+        "total_s": 17.209071397781372
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "a friendly green dragon standing in a castle courtyard",
+        "setting": "a medieval castle courtyard with towers and a drawbridge",
+        "props": [
+          "stone castle towers",
+          "drawbridge",
+          "red banners",
+          "stone fountain",
+          "large stone gate",
+          "bushes",
+          "painted stone walls",
+          "dragon wings"
+        ],
+        "composition": "wide shot centered on the dragon",
+        "mood": "adventurous and cheerful",
+        "constraints": "black-and-white line art with no color fills, white background, simple shapes suitable for children, no shading or gradients"
+      },
+      "plan_raw": "{\n  \"subject\": \"a friendly green dragon standing in a castle courtyard\",\n  \"setting\": \"a medieval castle courtyard with towers and a drawbridge\",\n  \"props\": [\n    \"stone castle towers\",\n    \"drawbridge\",\n    \"red banners\",\n    \"stone fountain\",\n    \"large stone gate\",\n    \"bushes\",\n    \"painted stone walls\",\n    \"dragon wings\"\n  ],\n  \"composition\": \"wide shot centered on the dragon\",\n  \"mood\": \"adventurous and cheerful\",\n  \"constraints\": \"black-and-white line art with no color fills, white background, simple shapes suitable for children, no shading or gradients\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "A wide shot centered on a friendly green dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, red banners hanging from the towers, a stone fountain in the center, a large stone gate, green bushes, painted stone walls, and the dragon's large wings spread wide. Style: monochrome line art with black outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"A wide shot centered on a friendly green dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, red banners hanging from the towers, a stone fountain in the center, a large stone gate, green bushes, painted stone walls, and the dragon's large wings spread wide. Style: monochrome line art with black outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 95,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt defines a clear central subject (dragon) with a well-structured environment (castle courtyard) and specific compositional elements."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests monochrome line art, black outlines, simple shapes, no shading, no gradients, and no color fills, which strongly enforces the target style."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints are listed to prevent text, watermarks, logos, signatures, and any written characters or numbers."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Key visual elements (dragon, castle, drawbridge, fountain, banners, wings) and style descriptors (friendly, adventurous, cheerful) are clearly specified."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject matter is age-appropriate (friendly dragon, cheerful mood) and the style constraints (no shading, simple shapes) ensure safety for children."
+          }
+        ],
+        "recommendations": [
+          "Consider adding 'white background' explicitly to reinforce the monochrome requirement."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 95,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt defines a clear central subject (dragon) with a well-structured environment (castle courtyard) and specific compositional elements.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests monochrome line art, black outlines, simple shapes, no shading, no gradients, and no color fills, which strongly enforces the target style.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints are listed to prevent text, watermarks, logos, signatures, and any written characters or numbers.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Key visual elements (dragon, castle, drawbridge, fountain, banners, wings) and style descriptors (friendly, adventurous, cheerful) are clearly specified.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject matter is age-appropriate (friendly dragon, cheerful mood) and the style constraints (no shading, simple shapes) ensure safety for children.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding 'white background' explicitly to reinforce the monochrome requirement.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    },
+    {
+      "concept": {
+        "category": "fantasy",
+        "taxonomy_anchor": "themes/personnages/fantasy",
+        "name_en": "Fairy in an Enchanted Forest",
+        "keywords": "fairy, enchanted forest, mushrooms, fireflies, flowers",
+        "tags_context": "Personnages, Fantasy, Fée, Forêt"
+      },
+      "errors": [],
+      "latencies": {
+        "planner_s": 6.170132637023926,
+        "writer_s": 8.736961603164673,
+        "validator_s": 8.670830011367798,
+        "total_s": 23.577924251556396
+      },
+      "drift_retry": false,
+      "plan": {
+        "subject": "A small fairy with translucent wings and a flowing dress",
+        "setting": "An enchanted forest floor covered in glowing mushrooms and wildflowers",
+        "props": [
+          "glowing mushroom caps",
+          "fireflies",
+          "wildflowers",
+          "twisted tree roots",
+          "mossy stones",
+          "fairy wings",
+          "fairy dress",
+          "magnifying glass"
+        ],
+        "composition": "Low angle close-up centered on the fairy",
+        "mood": "Magical and whimsical",
+        "constraints": "Black and white line art only, no color fills, white background, simple thick lines suitable for children, no shading or gradients"
+      },
+      "plan_raw": "{\n  \"subject\": \"A small fairy with translucent wings and a flowing dress\",\n  \"setting\": \"An enchanted forest floor covered in glowing mushrooms and wildflowers\",\n  \"props\": [\n    \"glowing mushroom caps\",\n    \"fireflies\",\n    \"wildflowers\",\n    \"twisted tree roots\",\n    \"mossy stones\",\n    \"fairy wings\",\n    \"fairy dress\",\n    \"magnifying glass\"\n  ],\n  \"composition\": \"Low angle close-up centered on the fairy\",\n  \"mood\": \"Magical and whimsical\",\n  \"constraints\": \"Black and white line art only, no color fills, white background, simple thick lines suitable for children, no shading or gradients\"\n}",
+      "plan_first_raw_drift": null,
+      "plan_model": "qwen3.5:4b",
+      "final_prompt": "Low angle close-up centered on a small fairy with translucent wings and a flowing dress in an enchanted forest floor covered in glowing mushrooms and wildflowers, magical and whimsical mood.\n\nThe scene features glowing mushroom caps, fireflies, wildflowers, twisted tree roots, mossy stones, fairy wings, fairy dress, and a magnifying glass. Draw the shapes of the mushrooms, flowers, and roots clearly without specifying any paint colors, using only outlines to suggest form.\n\nStyle: Black and white line art only, no color fills, white background, simple thick lines suitable for children, no shading or gradients, clean black outlines on white.\n\nTechnical cleanup: No text, no watermark, no logos, no signatures, no written characters, no numbers, no signs, no labels, clean layout.",
+      "negative_prompt": "",
+      "writer_raw": "{\"prompt\": \"Low angle close-up centered on a small fairy with translucent wings and a flowing dress in an enchanted forest floor covered in glowing mushrooms and wildflowers, magical and whimsical mood.\\n\\nThe scene features glowing mushroom caps, fireflies, wildflowers, twisted tree roots, mossy stones, fairy wings, fairy dress, and a magnifying glass. Draw the shapes of the mushrooms, flowers, and roots clearly without specifying any paint colors, using only outlines to suggest form.\\n\\nStyle: Black and white line art only, no color fills, white background, simple thick lines suitable for children, no shading or gradients, clean black outlines on white.\\n\\nTechnical cleanup: No text, no watermark, no logos, no signatures, no written characters, no numbers, no signs, no labels, clean layout.\", \"negative_prompt\": \"\"}",
+      "writer_model": "qwen3.5:4b",
+      "validator": {
+        "score": 85,
+        "checks": [
+          {
+            "id": "structure",
+            "pass": true,
+            "detail": "Prompt establishes a clear central subject (fairy) with defined environmental elements (mushrooms, flowers) suitable for a single-page composition."
+          },
+          {
+            "id": "line_art_constraints",
+            "pass": true,
+            "detail": "Explicitly requests 'Black and white line art only', 'no color fills', 'no shading or gradients', and 'clean black outlines', which strongly enforces the monochrome requirement."
+          },
+          {
+            "id": "technical_cleanup",
+            "pass": true,
+            "detail": "Comprehensive negative constraints listed for text, watermarks, logos, and signatures, ensuring a clean printable layout."
+          },
+          {
+            "id": "keyword_coverage",
+            "pass": true,
+            "detail": "Key visual elements (fairy, mushrooms, fireflies, roots, moss) and style descriptors (whimsical, thick lines) are well-covered."
+          },
+          {
+            "id": "kids_safe",
+            "pass": true,
+            "detail": "Subject matter (fairy, forest, nature) is age-appropriate and free of safety hazards or inappropriate content."
+          }
+        ],
+        "recommendations": [
+          "Consider adding specific line weight instructions (e.g., 'thick outlines for main shapes, thin lines for details') to further ensure print clarity."
+        ]
+      },
+      "validator_raw": "{\n  \"score\": 85,\n  \"checks\": [\n    {\n      \"id\": \"structure\",\n      \"pass\": true,\n      \"detail\": \"Prompt establishes a clear central subject (fairy) with defined environmental elements (mushrooms, flowers) suitable for a single-page composition.\"\n    },\n    {\n      \"id\": \"line_art_constraints\",\n      \"pass\": true,\n      \"detail\": \"Explicitly requests 'Black and white line art only', 'no color fills', 'no shading or gradients', and 'clean black outlines', which strongly enforces the monochrome requirement.\"\n    },\n    {\n      \"id\": \"technical_cleanup\",\n      \"pass\": true,\n      \"detail\": \"Comprehensive negative constraints listed for text, watermarks, logos, and signatures, ensuring a clean printable layout.\"\n    },\n    {\n      \"id\": \"keyword_coverage\",\n      \"pass\": true,\n      \"detail\": \"Key visual elements (fairy, mushrooms, fireflies, roots, moss) and style descriptors (whimsical, thick lines) are well-covered.\"\n    },\n    {\n      \"id\": \"kids_safe\",\n      \"pass\": true,\n      \"detail\": \"Subject matter (fairy, forest, nature) is age-appropriate and free of safety hazards or inappropriate content.\"\n    }\n  ],\n  \"recommendations\": [\n    \"Consider adding specific line weight instructions (e.g., 'thick outlines for main shapes, thin lines for details') to further ensure print clarity.\"\n  ]\n}",
+      "validator_model": "qwen3.5:4b",
+      "origin": "new"
+    }
+  ],
+  "aggregates": {
+    "n_concepts": 20,
+    "n_chain_errors": 0,
+    "n_drift_retried": 0,
+    "n_above_threshold": 19,
+    "rate_threshold": 0.95,
+    "n_under_budget": 20,
+    "rate_budget": 1.0,
+    "score_min": 45,
+    "score_median": 95.0,
+    "score_max": 95,
+    "latency_total_p50": 17.63346564769745,
+    "latency_total_p95": 19.34486198425293,
+    "latency_total_mean": 17.944244933128356,
+    "checks_pass": {
+      "structure": 20,
+      "line_art_constraints": 19,
+      "technical_cleanup": 20,
+      "keyword_coverage": 20,
+      "kids_safe": 20
+    },
+    "checks_total": {
+      "structure": 20,
+      "line_art_constraints": 20,
+      "technical_cleanup": 20,
+      "keyword_coverage": 20,
+      "kids_safe": 20
+    }
+  }
+}

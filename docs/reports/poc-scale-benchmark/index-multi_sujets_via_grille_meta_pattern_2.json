@@ -1,0 +1,218 @@
+{
+  "source": "workflow_class='Multi-sujets via grille (méta-pattern §2)' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+  "subjects": [
+    {
+      "filename": "number_zero_with_eggs_1024x1024_euler8s.png",
+      "name_en": "Number Zero with Eggs",
+      "leaf_id": "number_zero_with_eggs",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to number zero with eggs, each item clearly distinct from the others, every cell contains exactly one item, the title \"NUMBER\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9595
+    },
+    {
+      "filename": "number_three_with_birds_1024x1024_euler8s.png",
+      "name_en": "Number Three with Birds",
+      "leaf_id": "number_three_with_birds",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to number three with birds, each item clearly distinct from the others, every cell contains exactly one item, the title \"NUMBER\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9602
+    },
+    {
+      "filename": "counting_to_twenty_1024x1024_euler8s.png",
+      "name_en": "Counting to Twenty",
+      "leaf_id": "counting_to_twenty",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to counting to twenty, each item clearly distinct from the others, every cell contains exactly one item, the title \"COUNTING\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9609
+    },
+    {
+      "filename": "number_nine_with_cars_1024x1024_euler8s.png",
+      "name_en": "Number Nine with Cars",
+      "leaf_id": "number_nine_with_cars",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to number nine with cars, each item clearly distinct from the others, every cell contains exactly one item, the title \"NUMBER\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9616
+    },
+    {
+      "filename": "decorative_number_ten_fingers_1024x1024_euler8s.png",
+      "name_en": "Decorative Number Ten with Fingers",
+      "leaf_id": "decorative_number_ten_fingers",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 (validé E.sept perfect)",
+      "pipeline": "ERNIE direct + grille",
+      "confidence": "Haute",
+      "pitfalls": [
+        "1 à 5 : énumération directe",
+        "6 à 9 : grille 3×3 (Phase E.six/E.sept)",
+        "10+ : composition PIL"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to decorative number ten with fingers, each item clearly distinct from the others, every cell contains exactly one item, the title \"DECORATIVE\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9623
+    },
+    {
+      "filename": "number_nine_with_balloons_1024x1024_euler8s.png",
+      "name_en": "Number Nine with Balloons",
+      "leaf_id": "number_nine_with_balloons",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 (validé E.sept perfect)",
+      "pipeline": "ERNIE direct + grille",
+      "confidence": "Haute",
+      "pitfalls": [
+        "1 à 5 : énumération directe",
+        "6 à 9 : grille 3×3 (Phase E.six/E.sept)",
+        "10+ : composition PIL"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to number nine with balloons, each item clearly distinct from the others, every cell contains exactly one item, the title \"NUMBER\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9630
+    },
+    {
+      "filename": "number_one_with_apple_1024x1024_euler8s.png",
+      "name_en": "Number One with Apple",
+      "leaf_id": "number_one_with_apple",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to number one with apple, each item clearly distinct from the others, every cell contains exactly one item, the title \"NUMBER\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9637
+    },
+    {
+      "filename": "number_seven_with_butterflies_1024x1024_euler8s.png",
+      "name_en": "Number Seven with Butterflies",
+      "leaf_id": "number_seven_with_butterflies",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to number seven with butterflies, each item clearly distinct from the others, every cell contains exactly one item, the title \"NUMBER\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9644
+    },
+    {
+      "filename": "number_five_with_stars_1024x1024_euler8s.png",
+      "name_en": "Number Five with Stars",
+      "leaf_id": "number_five_with_stars",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to number five with stars, each item clearly distinct from the others, every cell contains exactly one item, the title \"NUMBER\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9651
+    },
+    {
+      "filename": "number_four_with_flowers_1024x1024_euler8s.png",
+      "name_en": "Number Four with Flowers",
+      "leaf_id": "number_four_with_flowers",
+      "tier": "Multi-sujets via grille (méta-pattern §2)",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to number four with flowers, each item clearly distinct from the others, every cell contains exactly one item, the title \"NUMBER\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9658
+    }
+  ]
+}

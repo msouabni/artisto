@@ -1,0 +1,266 @@
+{
+  "poc": "dithering",
+  "date": "2026-05-05",
+  "sources": [
+    "electromenager-refrigerator-in-a-kitchen_colored.png",
+    "fantasy-dragon-in-a-castle-courtyard_colored.png",
+    "sports-soccer-ball-on-a-field_colored.png"
+  ],
+  "techniques": [
+    "grayscale",
+    "halftone (cell=6,10,16)",
+    "floyd_steinberg",
+    "bayer 8x8"
+  ],
+  "results": [
+    {
+      "src": "electromenager-refrigerator-in-a-kitchen_colored.png",
+      "metrics": [
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "technique": "grayscale",
+          "param": "",
+          "dot_density": 0.1582,
+          "white_ratio": 0.8418,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 15,
+          "out": "electromenager-refrigerator-in-a-kitchen_grayscale.png"
+        },
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "technique": "halftone",
+          "param": "cell=6",
+          "dot_density": 0.134,
+          "white_ratio": 0.866,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 130,
+          "out": "electromenager-refrigerator-in-a-kitchen_halftone_6.png"
+        },
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "technique": "halftone",
+          "param": "cell=10",
+          "dot_density": 0.1049,
+          "white_ratio": 0.8951,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 49,
+          "out": "electromenager-refrigerator-in-a-kitchen_halftone_10.png"
+        },
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "technique": "halftone",
+          "param": "cell=16",
+          "dot_density": 0.0874,
+          "white_ratio": 0.9126,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 17,
+          "out": "electromenager-refrigerator-in-a-kitchen_halftone_16.png"
+        },
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "technique": "floyd_steinberg",
+          "param": "",
+          "dot_density": 0.2329,
+          "white_ratio": 0.7671,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 1213,
+          "out": "electromenager-refrigerator-in-a-kitchen_floyd_steinberg.png"
+        },
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "technique": "bayer",
+          "param": "8x8",
+          "dot_density": 0.2307,
+          "white_ratio": 0.7693,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 4,
+          "out": "electromenager-refrigerator-in-a-kitchen_bayer.png"
+        }
+      ]
+    },
+    {
+      "src": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+      "metrics": [
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "technique": "grayscale",
+          "param": "",
+          "dot_density": 0.3892,
+          "white_ratio": 0.6108,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 17,
+          "out": "fantasy-dragon-in-a-castle-courtyard_grayscale.png"
+        },
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "technique": "halftone",
+          "param": "cell=6",
+          "dot_density": 0.2507,
+          "white_ratio": 0.7493,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 128,
+          "out": "fantasy-dragon-in-a-castle-courtyard_halftone_6.png"
+        },
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "technique": "halftone",
+          "param": "cell=10",
+          "dot_density": 0.2287,
+          "white_ratio": 0.7713,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 47,
+          "out": "fantasy-dragon-in-a-castle-courtyard_halftone_10.png"
+        },
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "technique": "halftone",
+          "param": "cell=16",
+          "dot_density": 0.1944,
+          "white_ratio": 0.8056,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 20,
+          "out": "fantasy-dragon-in-a-castle-courtyard_halftone_16.png"
+        },
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "technique": "floyd_steinberg",
+          "param": "",
+          "dot_density": 0.3906,
+          "white_ratio": 0.6094,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 1286,
+          "out": "fantasy-dragon-in-a-castle-courtyard_floyd_steinberg.png"
+        },
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "technique": "bayer",
+          "param": "8x8",
+          "dot_density": 0.3879,
+          "white_ratio": 0.6121,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 0,
+          "out": "fantasy-dragon-in-a-castle-courtyard_bayer.png"
+        }
+      ]
+    },
+    {
+      "src": "sports-soccer-ball-on-a-field_colored.png",
+      "metrics": [
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "technique": "grayscale",
+          "param": "",
+          "dot_density": 0.1108,
+          "white_ratio": 0.8892,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 17,
+          "out": "sports-soccer-ball-on-a-field_grayscale.png"
+        },
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "technique": "halftone",
+          "param": "cell=6",
+          "dot_density": 0.1633,
+          "white_ratio": 0.8367,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 182,
+          "out": "sports-soccer-ball-on-a-field_halftone_6.png"
+        },
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "technique": "halftone",
+          "param": "cell=10",
+          "dot_density": 0.1133,
+          "white_ratio": 0.8867,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 67,
+          "out": "sports-soccer-ball-on-a-field_halftone_10.png"
+        },
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "technique": "halftone",
+          "param": "cell=16",
+          "dot_density": 0.1017,
+          "white_ratio": 0.8983,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 31,
+          "out": "sports-soccer-ball-on-a-field_halftone_16.png"
+        },
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "technique": "floyd_steinberg",
+          "param": "",
+          "dot_density": 0.2484,
+          "white_ratio": 0.7516,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 1602,
+          "out": "sports-soccer-ball-on-a-field_floyd_steinberg.png"
+        },
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "technique": "bayer",
+          "param": "8x8",
+          "dot_density": 0.2464,
+          "white_ratio": 0.7536,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 5,
+          "out": "sports-soccer-ball-on-a-field_bayer.png"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2979 @@
+{
+  "poc": "generate-concepts",
+  "date": "2026-05-05",
+  "model": "qwen3.5:4b",
+  "count_per_leaf": 5,
+  "subtopics": [
+    [
+      "animals/pet_animals",
+      "pet_animals",
+      "Animaux"
+    ],
+    [
+      "animals/farm_animals",
+      "farm_animals",
+      "Animaux"
+    ],
+    [
+      "animals/african_wild_animals",
+      "african_wild_animals",
+      "Animaux"
+    ],
+    [
+      "tools/hand_tools",
+      "hand_tools",
+      "Outils"
+    ],
+    [
+      "tools/gardening_tools",
+      "gardening_tools",
+      "Outils"
+    ],
+    [
+      "professions/health_professions",
+      "health_professions",
+      "Professions"
+    ],
+    [
+      "professions/security_and_emergency",
+      "security_and_emergency",
+      "Professions"
+    ],
+    [
+      "sports/team_sports",
+      "team_sports",
+      "Sports"
+    ],
+    [
+      "sports/individual_sports",
+      "individual_sports",
+      "Sports"
+    ],
+    [
+      "characters/disney_universe",
+      "disney_universe",
+      "Personnages fictifs"
+    ],
+    [
+      "characters/marvel_universe",
+      "marvel_universe",
+      "Personnages fictifs"
+    ],
+    [
+      "geometry/basic_shapes",
+      "basic_shapes",
+      "Géométrie / Alphabet"
+    ],
+    [
+      "alphabet/english_alphabet_illustrated",
+      "english_alphabet_illustrated",
+      "Géométrie / Alphabet"
+    ],
+    [
+      "body/external_anatomy",
+      "external_anatomy",
+      "Corps humain"
+    ],
+    [
+      "body/internal_organs_educational",
+      "internal_organs_educational",
+      "Corps humain"
+    ]
+  ],
+  "leaves": [
+    {
+      "id": "labrador_retriever",
+      "parent_id": "pet_animals",
+      "name_en": "Labrador Retriever",
+      "name_fr": "Labrador retriever",
+      "name_ar": "كلب اللابرادور",
+      "_label": "animals/pet_animals",
+      "_category": "Animaux"
+    },
+    {
+      "id": "dairy_cow",
+      "parent_id": "farm_animals",
+      "name_en": "Dairy Cow",
+      "name_fr": "Vache laitière",
+      "name_ar": "البقرة الحلوب",
+      "_label": "animals/farm_animals",
+      "_category": "Animaux"
+    },
+    {
+      "id": "lion_in_savanna",
+      "parent_id": "african_wild_animals",
+      "name_en": "Lion in the Savanna",
+      "name_fr": "Lion dans la savane",
+      "name_ar": "الأسد في السافانا",
+      "_label": "animals/african_wild_animals",
+      "_category": "Animaux"
+    },
+    {
+      "id": "claw_hammer",
+      "parent_id": "hand_tools",
+      "name_en": "Claw Hammer",
+      "name_fr": "Marteau arrache-clou",
+      "name_ar": "المطرقة",
+      "_label": "tools/hand_tools",
+      "_category": "Outils"
+    },
+    {
+      "id": "garden_shovel",
+      "parent_id": "gardening_tools",
+      "name_en": "Garden Shovel",
+      "name_fr": "Pelle de jardin",
+      "name_ar": "مجرفة البستان",
+      "_label": "tools/gardening_tools",
+      "_category": "Outils"
+    },
+    {
+      "id": "doctor_with_stethoscope",
+      "parent_id": "health_professions",
+      "name_en": "Doctor with Stethoscope",
+      "name_fr": "Médecin avec stéthoscope",
+      "name_ar": "طبيب بسماعة",
+      "_label": "professions/health_professions",
+      "_category": "Professions"
+    },
+    {
+      "id": "firefighter_with_hose",
+      "parent_id": "security_and_emergency",
+      "name_en": "Firefighter with Hose",
+      "name_fr": "Pompier avec lance à eau",
+      "name_ar": "إطفائي بخرطوم",
+      "_label": "professions/security_and_emergency",
+      "_category": "Professions"
+    },
+    {
+      "id": "football_match_scene",
+      "parent_id": "team_sports",
+      "name_en": "Football Match Scene",
+      "name_fr": "Match de football",
+      "name_ar": "مباراة كرة القدم",
+      "_label": "sports/team_sports",
+      "_category": "Sports"
+    },
+    {
+      "id": "tennis_player_serving",
+      "parent_id": "individual_sports",
+      "name_en": "Tennis Player Serving",
+      "name_fr": "Joueur de tennis au service",
+      "name_ar": "لاعب التنس",
+      "_label": "sports/individual_sports",
+      "_category": "Sports"
+    },
+    {
+      "id": "elsa_from_frozen",
+      "parent_id": "disney_universe",
+      "name_en": "Elsa from Frozen",
+      "name_fr": "Elsa de La Reine des Neiges",
+      "name_ar": "إلسا من فروزن",
+      "_label": "characters/disney_universe",
+      "_category": "Personnages fictifs"
+    },
+    {
+      "id": "spiderman_swinging",
+      "parent_id": "marvel_universe",
+      "name_en": "Spider-Man Swinging",
+      "name_fr": "Spider-Man en plein vol",
+      "name_ar": "الرجل العنكبوت",
+      "_label": "characters/marvel_universe",
+      "_category": "Personnages fictifs"
+    },
+    {
+      "id": "circle_shape",
+      "parent_id": "basic_shapes",
+      "name_en": "Circle Shape",
+      "name_fr": "Cercle",
+      "name_ar": "الدائرة",
+      "_label": "geometry/basic_shapes",
+      "_category": "Géométrie / Alphabet"
+    },
+    {
+      "id": "letter_a_with_apple",
+      "parent_id": "english_alphabet_illustrated",
+      "name_en": "Letter A with Apple",
+      "name_fr": "Lettre A avec une pomme",
+      "name_ar": "حرف A مع تفاحة",
+      "_label": "alphabet/english_alphabet_illustrated",
+      "_category": "Géométrie / Alphabet"
+    },
+    {
+      "id": "child_face_features",
+      "parent_id": "external_anatomy",
+      "name_en": "Child Face Features",
+      "name_fr": "Traits du visage d'enfant",
+      "name_ar": "ملامح وجه الطفل",
+      "_label": "body/external_anatomy",
+      "_category": "Corps humain"
+    },
+    {
+      "id": "heart_with_blood_circulation",
+      "parent_id": "internal_organs_educational",
+      "name_en": "Heart with Blood Circulation",
+      "name_fr": "Cœur avec circulation sanguine",
+      "name_ar": "القلب مع الدورة الدموية",
+      "_label": "body/internal_organs_educational",
+      "_category": "Corps humain"
+    }
+  ],
+  "results": [
+    {
+      "leaf": {
+        "id": "labrador_retriever",
+        "parent_id": "pet_animals",
+        "name_en": "Labrador Retriever",
+        "name_fr": "Labrador retriever",
+        "name_ar": "كلب اللابرادور",
+        "_label": "animals/pet_animals",
+        "_category": "Animaux"
+      },
+      "raw": "[\n  {\n    \"id\": \"labrador_park_run\",\n    \"slug\": \"labrador-running-park\",\n    \"name_en\": \"Labrador Retriever Running in a Park\",\n    \"name_fr\": \"Labrador qui court dans un parc\",\n    \"name_ar\": \"لابرادور يركض في حديقة\",\n    \"description_en\": \"A Labrador Retriever running happily in a sunny park for a fun coloring page.\",\n    \"description_fr\": \"Un labrador qui court joyeusement dans un parc ensoleillé, parfait pour le coloriage.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"labrador_farm_help\",\n    \"slug\": \"labrador-helping-on-farm\",\n    \"name_en\": \"Labrador Retriever Helping on a Farm\",\n    \"name_fr\": \"Labrador aidant sur une ferme\",\n    \"name_ar\": \"لابرادور يساعد في المزرعة\",\n    \"description_en\": \"A friendly Labrador Retriever helping with farm chores in a rustic barn setting.\",\n    \"description_fr\": \"Un labrador sympathique aidant aux tâches agricoles dans un étable rustique, pour le coloriage.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"labrador_sea_play\",\n    \"slug\": \"labrador-playing-in-sea\",\n    \"name_en\": \"Labrador Retriever Playing in the Sea\",\n    \"name_fr\": \"Labrador jouant dans la mer\",\n    \"name_ar\": \"لابرادور يلعب في البحر\",\n    \"description_en\": \"A playful Labrador Retriever splashing and swimming in the ocean for kids.\",\n    \"description_fr\": \"Un labrador jouant et s'amusant dans l'océan, idéal pour une page de coloriage.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"labrador_bed_rest\",\n    \"slug\": \"labrador-resting-in-bed\",\n    \"name_en\": \"Labrador Retriever Resting in a Bed\",\n    \"name_fr\": \"Labrador reposant dans un lit\",\n    \"name_ar\": \"لابرادور يرتاح في السرير\",\n    \"description_en\": \"A cozy Labrador Retriever sleeping peacefully in a soft bed for relaxation coloring.\",\n    \"description_fr\": \"Un labrador endormi paisiblement dans un lit confortable, parfait pour le coloriage.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"labrador_garden_work\",\n    \"slug\": \"labrador-working-in-garden\",\n    \"name_en\": \"Labrador Retriever Working in a Garden\",\n    \"name_fr\": \"Labrador travaillant dans un jardin\",\n    \"name_ar\": \"لابرادور يعمل في الحديقة\",\n    \"description_en\": \"A helpful Labrador Retriever tending to flowers in a colorful garden for coloring.\",\n    \"description_fr\": \"Un labrador s'occupant des fleurs dans un jardin coloré, idéal pour le coloriage.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "labrador_park_run",
+          "slug": "labrador-running-park",
+          "name_en": "Labrador Retriever Running in a Park",
+          "name_fr": "Labrador qui court dans un parc",
+          "name_ar": "لابرادور يركض في حديقة",
+          "description_en": "A Labrador Retriever running happily in a sunny park for a fun coloring page.",
+          "description_fr": "Un labrador qui court joyeusement dans un parc ensoleillé, parfait pour le coloriage.",
+          "weight": 0
+        },
+        {
+          "id": "labrador_farm_help",
+          "slug": "labrador-helping-on-farm",
+          "name_en": "Labrador Retriever Helping on a Farm",
+          "name_fr": "Labrador aidant sur une ferme",
+          "name_ar": "لابرادور يساعد في المزرعة",
+          "description_en": "A friendly Labrador Retriever helping with farm chores in a rustic barn setting.",
+          "description_fr": "Un labrador sympathique aidant aux tâches agricoles dans un étable rustique, pour le coloriage.",
+          "weight": 1
+        },
+        {
+          "id": "labrador_sea_play",
+          "slug": "labrador-playing-in-sea",
+          "name_en": "Labrador Retriever Playing in the Sea",
+          "name_fr": "Labrador jouant dans la mer",
+          "name_ar": "لابرادور يلعب في البحر",
+          "description_en": "A playful Labrador Retriever splashing and swimming in the ocean for kids.",
+          "description_fr": "Un labrador jouant et s'amusant dans l'océan, idéal pour une page de coloriage.",
+          "weight": 2
+        },
+        {
+          "id": "labrador_bed_rest",
+          "slug": "labrador-resting-in-bed",
+          "name_en": "Labrador Retriever Resting in a Bed",
+          "name_fr": "Labrador reposant dans un lit",
+          "name_ar": "لابرادور يرتاح في السرير",
+          "description_en": "A cozy Labrador Retriever sleeping peacefully in a soft bed for relaxation coloring.",
+          "description_fr": "Un labrador endormi paisiblement dans un lit confortable, parfait pour le coloriage.",
+          "weight": 3
+        },
+        {
+          "id": "labrador_garden_work",
+          "slug": "labrador-working-in-garden",
+          "name_en": "Labrador Retriever Working in a Garden",
+          "name_fr": "Labrador travaillant dans un jardin",
+          "name_ar": "لابرادور يعمل في الحديقة",
+          "description_en": "A helpful Labrador Retriever tending to flowers in a colorful garden for coloring.",
+          "description_fr": "Un labrador s'occupant des fleurs dans un jardin coloré, idéal pour le coloriage.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 14.564298152923584,
+      "evaluations": [
+        {
+          "id": "labrador_park_run",
+          "name_en": "Labrador Retriever Running in a Park",
+          "name_fr": "Labrador qui court dans un parc",
+          "name_ar": "لابرادور يركض في حديقة",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "labrador_park_run",
+            "slug": "labrador-running-park",
+            "name_en": "Labrador Retriever Running in a Park",
+            "name_fr": "Labrador qui court dans un parc",
+            "name_ar": "لابرادور يركض في حديقة",
+            "description_en": "A Labrador Retriever running happily in a sunny park for a fun coloring page.",
+            "description_fr": "Un labrador qui court joyeusement dans un parc ensoleillé, parfait pour le coloriage.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "labrador_farm_help",
+          "name_en": "Labrador Retriever Helping on a Farm",
+          "name_fr": "Labrador aidant sur une ferme",
+          "name_ar": "لابرادور يساعد في المزرعة",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "labrador_farm_help",
+            "slug": "labrador-helping-on-farm",
+            "name_en": "Labrador Retriever Helping on a Farm",
+            "name_fr": "Labrador aidant sur une ferme",
+            "name_ar": "لابرادور يساعد في المزرعة",
+            "description_en": "A friendly Labrador Retriever helping with farm chores in a rustic barn setting.",
+            "description_fr": "Un labrador sympathique aidant aux tâches agricoles dans un étable rustique, pour le coloriage.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "labrador_sea_play",
+          "name_en": "Labrador Retriever Playing in the Sea",
+          "name_fr": "Labrador jouant dans la mer",
+          "name_ar": "لابرادور يلعب في البحر",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "labrador_sea_play",
+            "slug": "labrador-playing-in-sea",
+            "name_en": "Labrador Retriever Playing in the Sea",
+            "name_fr": "Labrador jouant dans la mer",
+            "name_ar": "لابرادور يلعب في البحر",
+            "description_en": "A playful Labrador Retriever splashing and swimming in the ocean for kids.",
+            "description_fr": "Un labrador jouant et s'amusant dans l'océan, idéal pour une page de coloriage.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "labrador_bed_rest",
+          "name_en": "Labrador Retriever Resting in a Bed",
+          "name_fr": "Labrador reposant dans un lit",
+          "name_ar": "لابرادور يرتاح في السرير",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "labrador_bed_rest",
+            "slug": "labrador-resting-in-bed",
+            "name_en": "Labrador Retriever Resting in a Bed",
+            "name_fr": "Labrador reposant dans un lit",
+            "name_ar": "لابرادور يرتاح في السرير",
+            "description_en": "A cozy Labrador Retriever sleeping peacefully in a soft bed for relaxation coloring.",
+            "description_fr": "Un labrador endormi paisiblement dans un lit confortable, parfait pour le coloriage.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "labrador_garden_work",
+          "name_en": "Labrador Retriever Working in a Garden",
+          "name_fr": "Labrador travaillant dans un jardin",
+          "name_ar": "لابرادور يعمل في الحديقة",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "labrador_garden_work",
+            "slug": "labrador-working-in-garden",
+            "name_en": "Labrador Retriever Working in a Garden",
+            "name_fr": "Labrador travaillant dans un jardin",
+            "name_ar": "لابرادور يعمل في الحديقة",
+            "description_en": "A helpful Labrador Retriever tending to flowers in a colorful garden for coloring.",
+            "description_fr": "Un labrador s'occupant des fleurs dans un jardin coloré, idéal pour le coloriage.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "dairy_cow",
+        "parent_id": "farm_animals",
+        "name_en": "Dairy Cow",
+        "name_fr": "Vache laitière",
+        "name_ar": "البقرة الحلوب",
+        "_label": "animals/farm_animals",
+        "_category": "Animaux"
+      },
+      "raw": "[\n  {\"id\": \"dairy_cow_in_milking_stall\", \"slug\": \"dairy-cow-in-milking-stall\", \"name_en\": \"Dairy Cow in a Milking Stall\", \"name_fr\": \"Vache laitière dans un étalage\", \"name_ar\": \"بقرة في حظيرة\", \"description_en\": \"Coloring page featuring a dairy cow in a milking stall, perfect for kids to color.\", \"description_fr\": \"Page de coloriage d'une vache laitière dans un étalage, idéale pour les enfants.\", \"weight\": 0},\n  {\"id\": \"dairy_cow_in_field\", \"slug\": \"dairy-cow-in-field\", \"name_en\": \"Dairy Cow in a Green Field\", \"name_fr\": \"Vache laitière dans un champ vert\", \"name_ar\": \"بقرة في حقل\", \"description_en\": \"Color a dairy cow grazing in a green field, a simple and fun coloring page.\", \"description_fr\": \"Colorie une vache laitière paissant dans un champ vert, une page de coloriage simple.\", \"weight\": 1},\n  {\"id\": \"dairy_cow_with_baby\", \"slug\": \"dairy-cow-with-baby\", \"name_en\": \"Dairy Cow with Baby Cow\", \"name_fr\": \"Vache laitière avec sa veau\", \"name_ar\": \"بقرة مع صغرتها\", \"description_en\": \"Coloring page of a mother dairy cow with her baby, great for teaching family themes.\", \"description_fr\": \"Page de coloriage d'une vache laitière avec son veau, idéale pour enseigner les thèmes familiaux.\", \"weight\": 2},\n  {\"id\": \"dairy_cow_in_milk_shop\", \"slug\": \"dairy-cow-in-milk-shop\", \"name_en\": \"Dairy Cow in a Milk Shop\", \"name_fr\": \"Vache laitière dans une boutique de lait\", \"name_ar\": \"بقرة في متجر الحليب\", \"description_en\": \"Color a friendly dairy cow inside a milk shop, a charming scene for children.\", \"description_fr\": \"Colorie une vache laitière amiable dans une boutique de lait, une scène charmante pour les enfants.\", \"weight\": 3},\n  {\"id\": \"dairy_cow_in_hay_barn\", \"slug\": \"dairy-cow-in-hay-barn\", \"name_en\": \"Dairy Cow in a Hay Barn\", \"name_fr\": \"Vache laitière dans une grange de foin\", \"name_ar\": \"بقرة في حظيرة العشب\", \"description_en\": \"Coloring page showing a dairy cow resting in a hay barn, perfect for farm animal lovers.\", \"description_fr\": \"Page de coloriage montrant une vache laitière reposant dans une grange de foin, idéale pour les amateurs d'animaux de ferme.\", \"weight\": 4}\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "dairy_cow_in_milking_stall",
+          "slug": "dairy-cow-in-milking-stall",
+          "name_en": "Dairy Cow in a Milking Stall",
+          "name_fr": "Vache laitière dans un étalage",
+          "name_ar": "بقرة في حظيرة",
+          "description_en": "Coloring page featuring a dairy cow in a milking stall, perfect for kids to color.",
+          "description_fr": "Page de coloriage d'une vache laitière dans un étalage, idéale pour les enfants.",
+          "weight": 0
+        },
+        {
+          "id": "dairy_cow_in_field",
+          "slug": "dairy-cow-in-field",
+          "name_en": "Dairy Cow in a Green Field",
+          "name_fr": "Vache laitière dans un champ vert",
+          "name_ar": "بقرة في حقل",
+          "description_en": "Color a dairy cow grazing in a green field, a simple and fun coloring page.",
+          "description_fr": "Colorie une vache laitière paissant dans un champ vert, une page de coloriage simple.",
+          "weight": 1
+        },
+        {
+          "id": "dairy_cow_with_baby",
+          "slug": "dairy-cow-with-baby",
+          "name_en": "Dairy Cow with Baby Cow",
+          "name_fr": "Vache laitière avec sa veau",
+          "name_ar": "بقرة مع صغرتها",
+          "description_en": "Coloring page of a mother dairy cow with her baby, great for teaching family themes.",
+          "description_fr": "Page de coloriage d'une vache laitière avec son veau, idéale pour enseigner les thèmes familiaux.",
+          "weight": 2
+        },
+        {
+          "id": "dairy_cow_in_milk_shop",
+          "slug": "dairy-cow-in-milk-shop",
+          "name_en": "Dairy Cow in a Milk Shop",
+          "name_fr": "Vache laitière dans une boutique de lait",
+          "name_ar": "بقرة في متجر الحليب",
+          "description_en": "Color a friendly dairy cow inside a milk shop, a charming scene for children.",
+          "description_fr": "Colorie une vache laitière amiable dans une boutique de lait, une scène charmante pour les enfants.",
+          "weight": 3
+        },
+        {
+          "id": "dairy_cow_in_hay_barn",
+          "slug": "dairy-cow-in-hay-barn",
+          "name_en": "Dairy Cow in a Hay Barn",
+          "name_fr": "Vache laitière dans une grange de foin",
+          "name_ar": "بقرة في حظيرة العشب",
+          "description_en": "Coloring page showing a dairy cow resting in a hay barn, perfect for farm animal lovers.",
+          "description_fr": "Page de coloriage montrant une vache laitière reposant dans une grange de foin, idéale pour les amateurs d'animaux de ferme.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 9.241177558898926,
+      "evaluations": [
+        {
+          "id": "dairy_cow_in_milking_stall",
+          "name_en": "Dairy Cow in a Milking Stall",
+          "name_fr": "Vache laitière dans un étalage",
+          "name_ar": "بقرة في حظيرة",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "dairy_cow_in_milking_stall",
+            "slug": "dairy-cow-in-milking-stall",
+            "name_en": "Dairy Cow in a Milking Stall",
+            "name_fr": "Vache laitière dans un étalage",
+            "name_ar": "بقرة في حظيرة",
+            "description_en": "Coloring page featuring a dairy cow in a milking stall, perfect for kids to color.",
+            "description_fr": "Page de coloriage d'une vache laitière dans un étalage, idéale pour les enfants.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "dairy_cow_in_field",
+          "name_en": "Dairy Cow in a Green Field",
+          "name_fr": "Vache laitière dans un champ vert",
+          "name_ar": "بقرة في حقل",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "dairy_cow_in_field",
+            "slug": "dairy-cow-in-field",
+            "name_en": "Dairy Cow in a Green Field",
+            "name_fr": "Vache laitière dans un champ vert",
+            "name_ar": "بقرة في حقل",
+            "description_en": "Color a dairy cow grazing in a green field, a simple and fun coloring page.",
+            "description_fr": "Colorie une vache laitière paissant dans un champ vert, une page de coloriage simple.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "dairy_cow_with_baby",
+          "name_en": "Dairy Cow with Baby Cow",
+          "name_fr": "Vache laitière avec sa veau",
+          "name_ar": "بقرة مع صغرتها",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "dairy_cow_with_baby",
+            "slug": "dairy-cow-with-baby",
+            "name_en": "Dairy Cow with Baby Cow",
+            "name_fr": "Vache laitière avec sa veau",
+            "name_ar": "بقرة مع صغرتها",
+            "description_en": "Coloring page of a mother dairy cow with her baby, great for teaching family themes.",
+            "description_fr": "Page de coloriage d'une vache laitière avec son veau, idéale pour enseigner les thèmes familiaux.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "dairy_cow_in_milk_shop",
+          "name_en": "Dairy Cow in a Milk Shop",
+          "name_fr": "Vache laitière dans une boutique de lait",
+          "name_ar": "بقرة في متجر الحليب",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "dairy_cow_in_milk_shop",
+            "slug": "dairy-cow-in-milk-shop",
+            "name_en": "Dairy Cow in a Milk Shop",
+            "name_fr": "Vache laitière dans une boutique de lait",
+            "name_ar": "بقرة في متجر الحليب",
+            "description_en": "Color a friendly dairy cow inside a milk shop, a charming scene for children.",
+            "description_fr": "Colorie une vache laitière amiable dans une boutique de lait, une scène charmante pour les enfants.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "dairy_cow_in_hay_barn",
+          "name_en": "Dairy Cow in a Hay Barn",
+          "name_fr": "Vache laitière dans une grange de foin",
+          "name_ar": "بقرة في حظيرة العشب",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "dairy_cow_in_hay_barn",
+            "slug": "dairy-cow-in-hay-barn",
+            "name_en": "Dairy Cow in a Hay Barn",
+            "name_fr": "Vache laitière dans une grange de foin",
+            "name_ar": "بقرة في حظيرة العشب",
+            "description_en": "Coloring page showing a dairy cow resting in a hay barn, perfect for farm animal lovers.",
+            "description_fr": "Page de coloriage montrant une vache laitière reposant dans une grange de foin, idéale pour les amateurs d'animaux de ferme.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "lion_in_savanna",
+        "parent_id": "african_wild_animals",
+        "name_en": "Lion in the Savanna",
+        "name_fr": "Lion dans la savane",
+        "name_ar": "الأسد في السافانا",
+        "_label": "animals/african_wild_animals",
+        "_category": "Animaux"
+      },
+      "raw": "[\n  {\n    \"id\": \"lion_in_savanna_day\",\n    \"slug\": \"lion-in-savanna-day\",\n    \"name_en\": \"Lion in the Savanna\",\n    \"name_fr\": \"Lion dans la savane\",\n    \"name_ar\": \"أسد في السافانا\",\n    \"description_en\": \"A majestic lion standing in the savanna coloring page, perfect for kids to color.\",\n    \"description_fr\": \"Page de coloriage d'un lion majestueux dans la savane, idéale pour les enfants.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"lion_with_cubs_savanna\",\n    \"slug\": \"lion-with-cubs-savanna\",\n    \"name_en\": \"Lion with Cubs in Savanna\",\n    \"name_fr\": \"Lion avec ses petits\",\n    \"name_ar\": \"أسد مع صغاره\",\n    \"description_en\": \"Coloring page featuring a mother lion and her cubs playing in the savanna.\",\n    \"description_fr\": \"Page de coloriage d'une lionne et de ses petits jouant dans la savane.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"lion_hunting_savanna\",\n    \"slug\": \"lion-hunting-savanna\",\n    \"name_en\": \"Lion Hunting in Savanna\",\n    \"name_fr\": \"Lion chasseur\",\n    \"name_ar\": \"أسد صائد\",\n    \"description_en\": \"Exciting lion hunting scene in the savanna for advanced coloring activities.\",\n    \"description_fr\": \"Scène d'action d'un lion chasseur dans la savane pour les activités de coloriage.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"lion_sleeping_grass\",\n    \"slug\": \"lion-sleeping-grass\",\n    \"name_en\": \"Lion Sleeping in Grass\",\n    \"name_fr\": \"Lion qui dort\",\n    \"name_ar\": \"أسد نائم\",\n    \"description_en\": \"Peaceful coloring page of a lion sleeping peacefully in the tall savanna grass.\",\n    \"description_fr\": \"Page de coloriage paisible d'un lion dormant dans l'herbe haute de la savane.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"lion_with_elephant_savanna\",\n    \"slug\": \"lion-with-elephant-savanna\",\n    \"name_en\": \"Lion and Elephant in Savanna\",\n    \"name_fr\": \"Lion et éléphant\",\n    \"name_ar\": \"أسد وفيل\",\n    \"description_en\": \"Coloring page showing a lion and an elephant together in the savanna landscape.\",\n    \"description_fr\": \"Page de coloriage montrant un lion et un éléphant ensemble dans le paysage de la savane.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "lion_in_savanna_day",
+          "slug": "lion-in-savanna-day",
+          "name_en": "Lion in the Savanna",
+          "name_fr": "Lion dans la savane",
+          "name_ar": "أسد في السافانا",
+          "description_en": "A majestic lion standing in the savanna coloring page, perfect for kids to color.",
+          "description_fr": "Page de coloriage d'un lion majestueux dans la savane, idéale pour les enfants.",
+          "weight": 0
+        },
+        {
+          "id": "lion_with_cubs_savanna",
+          "slug": "lion-with-cubs-savanna",
+          "name_en": "Lion with Cubs in Savanna",
+          "name_fr": "Lion avec ses petits",
+          "name_ar": "أسد مع صغاره",
+          "description_en": "Coloring page featuring a mother lion and her cubs playing in the savanna.",
+          "description_fr": "Page de coloriage d'une lionne et de ses petits jouant dans la savane.",
+          "weight": 1
+        },
+        {
+          "id": "lion_hunting_savanna",
+          "slug": "lion-hunting-savanna",
+          "name_en": "Lion Hunting in Savanna",
+          "name_fr": "Lion chasseur",
+          "name_ar": "أسد صائد",
+          "description_en": "Exciting lion hunting scene in the savanna for advanced coloring activities.",
+          "description_fr": "Scène d'action d'un lion chasseur dans la savane pour les activités de coloriage.",
+          "weight": 2
+        },
+        {
+          "id": "lion_sleeping_grass",
+          "slug": "lion-sleeping-grass",
+          "name_en": "Lion Sleeping in Grass",
+          "name_fr": "Lion qui dort",
+          "name_ar": "أسد نائم",
+          "description_en": "Peaceful coloring page of a lion sleeping peacefully in the tall savanna grass.",
+          "description_fr": "Page de coloriage paisible d'un lion dormant dans l'herbe haute de la savane.",
+          "weight": 3
+        },
+        {
+          "id": "lion_with_elephant_savanna",
+          "slug": "lion-with-elephant-savanna",
+          "name_en": "Lion and Elephant in Savanna",
+          "name_fr": "Lion et éléphant",
+          "name_ar": "أسد وفيل",
+          "description_en": "Coloring page showing a lion and an elephant together in the savanna landscape.",
+          "description_fr": "Page de coloriage montrant un lion et un éléphant ensemble dans le paysage de la savane.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 9.51183271408081,
+      "evaluations": [
+        {
+          "id": "lion_in_savanna_day",
+          "name_en": "Lion in the Savanna",
+          "name_fr": "Lion dans la savane",
+          "name_ar": "أسد في السافانا",
+          "name_en_word_count": 4,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "lion_in_savanna_day",
+            "slug": "lion-in-savanna-day",
+            "name_en": "Lion in the Savanna",
+            "name_fr": "Lion dans la savane",
+            "name_ar": "أسد في السافانا",
+            "description_en": "A majestic lion standing in the savanna coloring page, perfect for kids to color.",
+            "description_fr": "Page de coloriage d'un lion majestueux dans la savane, idéale pour les enfants.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "lion_with_cubs_savanna",
+          "name_en": "Lion with Cubs in Savanna",
+          "name_fr": "Lion avec ses petits",
+          "name_ar": "أسد مع صغاره",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "lion_with_cubs_savanna",
+            "slug": "lion-with-cubs-savanna",
+            "name_en": "Lion with Cubs in Savanna",
+            "name_fr": "Lion avec ses petits",
+            "name_ar": "أسد مع صغاره",
+            "description_en": "Coloring page featuring a mother lion and her cubs playing in the savanna.",
+            "description_fr": "Page de coloriage d'une lionne et de ses petits jouant dans la savane.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "lion_hunting_savanna",
+          "name_en": "Lion Hunting in Savanna",
+          "name_fr": "Lion chasseur",
+          "name_ar": "أسد صائد",
+          "name_en_word_count": 4,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 2,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "lion_hunting_savanna",
+            "slug": "lion-hunting-savanna",
+            "name_en": "Lion Hunting in Savanna",
+            "name_fr": "Lion chasseur",
+            "name_ar": "أسد صائد",
+            "description_en": "Exciting lion hunting scene in the savanna for advanced coloring activities.",
+            "description_fr": "Scène d'action d'un lion chasseur dans la savane pour les activités de coloriage.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "lion_sleeping_grass",
+          "name_en": "Lion Sleeping in Grass",
+          "name_fr": "Lion qui dort",
+          "name_ar": "أسد نائم",
+          "name_en_word_count": 4,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 2,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "lion_sleeping_grass",
+            "slug": "lion-sleeping-grass",
+            "name_en": "Lion Sleeping in Grass",
+            "name_fr": "Lion qui dort",
+            "name_ar": "أسد نائم",
+            "description_en": "Peaceful coloring page of a lion sleeping peacefully in the tall savanna grass.",
+            "description_fr": "Page de coloriage paisible d'un lion dormant dans l'herbe haute de la savane.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "lion_with_elephant_savanna",
+          "name_en": "Lion and Elephant in Savanna",
+          "name_fr": "Lion et éléphant",
+          "name_ar": "أسد وفيل",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 2,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "lion_with_elephant_savanna",
+            "slug": "lion-with-elephant-savanna",
+            "name_en": "Lion and Elephant in Savanna",
+            "name_fr": "Lion et éléphant",
+            "name_ar": "أسد وفيل",
+            "description_en": "Coloring page showing a lion and an elephant together in the savanna landscape.",
+            "description_fr": "Page de coloriage montrant un lion et un éléphant ensemble dans le paysage de la savane.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "claw_hammer",
+        "parent_id": "hand_tools",
+        "name_en": "Claw Hammer",
+        "name_fr": "Marteau arrache-clou",
+        "name_ar": "المطرقة",
+        "_label": "tools/hand_tools",
+        "_category": "Outils"
+      },
+      "raw": "[\n  {\"id\": \"claw_hammer_in_workshop\", \"slug\": \"claw-hammer-in-workshop\", \"name_en\": \"Claw Hammer in a Workshop\", \"name_fr\": \"Marteau griffe dans un atelier\", \"name_ar\": \"مطرقة في ورشة\", \"description_en\": \"A claw hammer resting on a workbench coloring page for kids to enjoy.\", \"description_fr\": \"Page de coloriage d'un marteau griffe posé sur un établi, idéal pour les enfants.\", \"weight\": 0},\n  {\"id\": \"claw_hammer_in_garden\", \"slug\": \"claw-hammer-in-garden\", \"name_en\": \"Claw Hammer in a Garden\", \"name_fr\": \"Marteau griffe dans un jardin\", \"name_ar\": \"مطرقة في حديقة\", \"description_en\": \"A claw hammer near flowers and plants for a fun garden coloring activity.\", \"description_fr\": \"Page de coloriage d'un marteau griffe près de fleurs et de plantes, parfait pour les enfants.\", \"weight\": 1},\n  {\"id\": \"claw_hammer_in_forest\", \"slug\": \"claw-hammer-in-forest\", \"name_en\": \"Claw Hammer in a Forest\", \"name_fr\": \"Marteau griffe dans une forêt\", \"name_ar\": \"مطرقة في غابة\", \"description_en\": \"A claw hammer surrounded by trees and leaves for a nature coloring page.\", \"description_fr\": \"Page de coloriage d'un marteau griffe entouré d'arbres et de feuilles, idéal pour la nature.\", \"weight\": 2},\n  {\"id\": \"claw_hammer_in_kitchen\", \"slug\": \"claw-hammer-in-kitchen\", \"name_en\": \"Claw Hammer in a Kitchen\", \"name_fr\": \"Marteau griffe dans une cuisine\", \"name_ar\": \"مطرقة في مطبخ\", \"description_en\": \"A claw hammer on a wooden table in a cozy kitchen coloring page for kids.\", \"description_fr\": \"Page de coloriage d'un marteau griffe sur une table en bois dans une cuisine confortable.\", \"weight\": 3},\n  {\"id\": \"claw_hammer_in_barn\", \"slug\": \"claw-hammer-in-barn\", \"name_en\": \"Claw Hammer in a Barn\", \"name_fr\": \"Marteau griffe dans une étable\", \"name_ar\": \"مطرقة في مزرعة\", \"description_en\": \"A claw hammer hanging on a wall in a rustic barn for farm-themed coloring.\", \"description_fr\": \"Page de coloriage d'un marteau griffe accroché au mur dans une étable rustique.\", \"weight\": 4}\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "claw_hammer_in_workshop",
+          "slug": "claw-hammer-in-workshop",
+          "name_en": "Claw Hammer in a Workshop",
+          "name_fr": "Marteau griffe dans un atelier",
+          "name_ar": "مطرقة في ورشة",
+          "description_en": "A claw hammer resting on a workbench coloring page for kids to enjoy.",
+          "description_fr": "Page de coloriage d'un marteau griffe posé sur un établi, idéal pour les enfants.",
+          "weight": 0
+        },
+        {
+          "id": "claw_hammer_in_garden",
+          "slug": "claw-hammer-in-garden",
+          "name_en": "Claw Hammer in a Garden",
+          "name_fr": "Marteau griffe dans un jardin",
+          "name_ar": "مطرقة في حديقة",
+          "description_en": "A claw hammer near flowers and plants for a fun garden coloring activity.",
+          "description_fr": "Page de coloriage d'un marteau griffe près de fleurs et de plantes, parfait pour les enfants.",
+          "weight": 1
+        },
+        {
+          "id": "claw_hammer_in_forest",
+          "slug": "claw-hammer-in-forest",
+          "name_en": "Claw Hammer in a Forest",
+          "name_fr": "Marteau griffe dans une forêt",
+          "name_ar": "مطرقة في غابة",
+          "description_en": "A claw hammer surrounded by trees and leaves for a nature coloring page.",
+          "description_fr": "Page de coloriage d'un marteau griffe entouré d'arbres et de feuilles, idéal pour la nature.",
+          "weight": 2
+        },
+        {
+          "id": "claw_hammer_in_kitchen",
+          "slug": "claw-hammer-in-kitchen",
+          "name_en": "Claw Hammer in a Kitchen",
+          "name_fr": "Marteau griffe dans une cuisine",
+          "name_ar": "مطرقة في مطبخ",
+          "description_en": "A claw hammer on a wooden table in a cozy kitchen coloring page for kids.",
+          "description_fr": "Page de coloriage d'un marteau griffe sur une table en bois dans une cuisine confortable.",
+          "weight": 3
+        },
+        {
+          "id": "claw_hammer_in_barn",
+          "slug": "claw-hammer-in-barn",
+          "name_en": "Claw Hammer in a Barn",
+          "name_fr": "Marteau griffe dans une étable",
+          "name_ar": "مطرقة في مزرعة",
+          "description_en": "A claw hammer hanging on a wall in a rustic barn for farm-themed coloring.",
+          "description_fr": "Page de coloriage d'un marteau griffe accroché au mur dans une étable rustique.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 9.004642248153687,
+      "evaluations": [
+        {
+          "id": "claw_hammer_in_workshop",
+          "name_en": "Claw Hammer in a Workshop",
+          "name_fr": "Marteau griffe dans un atelier",
+          "name_ar": "مطرقة في ورشة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "claw_hammer_in_workshop",
+            "slug": "claw-hammer-in-workshop",
+            "name_en": "Claw Hammer in a Workshop",
+            "name_fr": "Marteau griffe dans un atelier",
+            "name_ar": "مطرقة في ورشة",
+            "description_en": "A claw hammer resting on a workbench coloring page for kids to enjoy.",
+            "description_fr": "Page de coloriage d'un marteau griffe posé sur un établi, idéal pour les enfants.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "claw_hammer_in_garden",
+          "name_en": "Claw Hammer in a Garden",
+          "name_fr": "Marteau griffe dans un jardin",
+          "name_ar": "مطرقة في حديقة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "claw_hammer_in_garden",
+            "slug": "claw-hammer-in-garden",
+            "name_en": "Claw Hammer in a Garden",
+            "name_fr": "Marteau griffe dans un jardin",
+            "name_ar": "مطرقة في حديقة",
+            "description_en": "A claw hammer near flowers and plants for a fun garden coloring activity.",
+            "description_fr": "Page de coloriage d'un marteau griffe près de fleurs et de plantes, parfait pour les enfants.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "claw_hammer_in_forest",
+          "name_en": "Claw Hammer in a Forest",
+          "name_fr": "Marteau griffe dans une forêt",
+          "name_ar": "مطرقة في غابة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "claw_hammer_in_forest",
+            "slug": "claw-hammer-in-forest",
+            "name_en": "Claw Hammer in a Forest",
+            "name_fr": "Marteau griffe dans une forêt",
+            "name_ar": "مطرقة في غابة",
+            "description_en": "A claw hammer surrounded by trees and leaves for a nature coloring page.",
+            "description_fr": "Page de coloriage d'un marteau griffe entouré d'arbres et de feuilles, idéal pour la nature.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "claw_hammer_in_kitchen",
+          "name_en": "Claw Hammer in a Kitchen",
+          "name_fr": "Marteau griffe dans une cuisine",
+          "name_ar": "مطرقة في مطبخ",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "claw_hammer_in_kitchen",
+            "slug": "claw-hammer-in-kitchen",
+            "name_en": "Claw Hammer in a Kitchen",
+            "name_fr": "Marteau griffe dans une cuisine",
+            "name_ar": "مطرقة في مطبخ",
+            "description_en": "A claw hammer on a wooden table in a cozy kitchen coloring page for kids.",
+            "description_fr": "Page de coloriage d'un marteau griffe sur une table en bois dans une cuisine confortable.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "claw_hammer_in_barn",
+          "name_en": "Claw Hammer in a Barn",
+          "name_fr": "Marteau griffe dans une étable",
+          "name_ar": "مطرقة في مزرعة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "claw_hammer_in_barn",
+            "slug": "claw-hammer-in-barn",
+            "name_en": "Claw Hammer in a Barn",
+            "name_fr": "Marteau griffe dans une étable",
+            "name_ar": "مطرقة في مزرعة",
+            "description_en": "A claw hammer hanging on a wall in a rustic barn for farm-themed coloring.",
+            "description_fr": "Page de coloriage d'un marteau griffe accroché au mur dans une étable rustique.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "garden_shovel",
+        "parent_id": "gardening_tools",
+        "name_en": "Garden Shovel",
+        "name_fr": "Pelle de jardin",
+        "name_ar": "مجرفة البستان",
+        "_label": "tools/gardening_tools",
+        "_category": "Outils"
+      },
+      "raw": "[\n  {\n    \"id\": \"garden_tools_shovel_in_garden\",\n    \"slug\": \"shovel-in-garden\",\n    \"name_en\": \"Red Shovel in a Sunny Garden\",\n    \"name_fr\": \"Pelle rouge dans un jardin ensoleillé\",\n    \"name_ar\": \"مجرفة في البستان\",\n    \"description_en\": \"A red garden shovel standing in a sunny garden, perfect for a simple coloring page.\",\n    \"description_fr\": \"Une pelle rouge dans un jardin ensoleillé, idéale pour une page de coloriage simple.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"garden_tools_shovel_in_bushes\",\n    \"slug\": \"shovel-in-bushes\",\n    \"name_en\": \"Shovel Digging in Green Bushes\",\n    \"name_fr\": \"Pelle creusant dans des buissons verts\",\n    \"name_ar\": \"مجرفة في الشجيرات\",\n    \"description_en\": \"A garden shovel digging into green bushes, an engaging activity for kids to color.\",\n    \"description_fr\": \"Une pelle creusant dans des buissons verts, une activité amusante pour les enfants à colorier.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"garden_tools_shovel_in_hedge\",\n    \"slug\": \"shovel-in-hedge\",\n    \"name_en\": \"Wooden Shovel Near a Wooden Fence\",\n    \"name_fr\": \"Pelle en bois près d'une clôture\",\n    \"name_ar\": \"مجرفة خشبية بجانب الحصار\",\n    \"description_en\": \"A wooden garden shovel leaning against a wooden fence, ready for outdoor play coloring.\",\n    \"description_fr\": \"Une pelle en bois s'appuyant contre une clôture en bois, prête pour une activité de coloriage en plein air.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"garden_tools_shovel_in_soil\",\n    \"slug\": \"shovel-in-soil\",\n    \"name_en\": \"Shovel Turning Dark Garden Soil\",\n    \"name_fr\": \"Pelle retournant la terre du jardin\",\n    \"name_ar\": \"مجرفة تترسب التربة\",\n    \"description_en\": \"A garden shovel turning dark soil, focusing on earth tones for a nature coloring page.\",\n    \"description_fr\": \"Une pelle retournant la terre sombre du jardin, axée sur les tons de terre pour une page de coloriage sur la nature.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"garden_tools_shovel_in_sand\",\n    \"slug\": \"shovel-in-sand\",\n    \"name_en\": \"Shovel Playing in Sandy Beach\",\n    \"name_fr\": \"Pelle jouant sur la plage de sable\",\n    \"name_ar\": \"مجرفة في الرمال\",\n    \"description_en\": \"A garden shovel playing in sandy beach dunes, a fun summer coloring idea for children.\",\n    \"description_fr\": \"Une pelle jouant dans les dunes de sable de la plage, une idée de coloriage d'été amusante pour les enfants.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "garden_tools_shovel_in_garden",
+          "slug": "shovel-in-garden",
+          "name_en": "Red Shovel in a Sunny Garden",
+          "name_fr": "Pelle rouge dans un jardin ensoleillé",
+          "name_ar": "مجرفة في البستان",
+          "description_en": "A red garden shovel standing in a sunny garden, perfect for a simple coloring page.",
+          "description_fr": "Une pelle rouge dans un jardin ensoleillé, idéale pour une page de coloriage simple.",
+          "weight": 0
+        },
+        {
+          "id": "garden_tools_shovel_in_bushes",
+          "slug": "shovel-in-bushes",
+          "name_en": "Shovel Digging in Green Bushes",
+          "name_fr": "Pelle creusant dans des buissons verts",
+          "name_ar": "مجرفة في الشجيرات",
+          "description_en": "A garden shovel digging into green bushes, an engaging activity for kids to color.",
+          "description_fr": "Une pelle creusant dans des buissons verts, une activité amusante pour les enfants à colorier.",
+          "weight": 1
+        },
+        {
+          "id": "garden_tools_shovel_in_hedge",
+          "slug": "shovel-in-hedge",
+          "name_en": "Wooden Shovel Near a Wooden Fence",
+          "name_fr": "Pelle en bois près d'une clôture",
+          "name_ar": "مجرفة خشبية بجانب الحصار",
+          "description_en": "A wooden garden shovel leaning against a wooden fence, ready for outdoor play coloring.",
+          "description_fr": "Une pelle en bois s'appuyant contre une clôture en bois, prête pour une activité de coloriage en plein air.",
+          "weight": 2
+        },
+        {
+          "id": "garden_tools_shovel_in_soil",
+          "slug": "shovel-in-soil",
+          "name_en": "Shovel Turning Dark Garden Soil",
+          "name_fr": "Pelle retournant la terre du jardin",
+          "name_ar": "مجرفة تترسب التربة",
+          "description_en": "A garden shovel turning dark soil, focusing on earth tones for a nature coloring page.",
+          "description_fr": "Une pelle retournant la terre sombre du jardin, axée sur les tons de terre pour une page de coloriage sur la nature.",
+          "weight": 3
+        },
+        {
+          "id": "garden_tools_shovel_in_sand",
+          "slug": "shovel-in-sand",
+          "name_en": "Shovel Playing in Sandy Beach",
+          "name_fr": "Pelle jouant sur la plage de sable",
+          "name_ar": "مجرفة في الرمال",
+          "description_en": "A garden shovel playing in sandy beach dunes, a fun summer coloring idea for children.",
+          "description_fr": "Une pelle jouant dans les dunes de sable de la plage, une idée de coloriage d'été amusante pour les enfants.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 11.33752727508545,
+      "evaluations": [
+        {
+          "id": "garden_tools_shovel_in_garden",
+          "name_en": "Red Shovel in a Sunny Garden",
+          "name_fr": "Pelle rouge dans un jardin ensoleillé",
+          "name_ar": "مجرفة في البستان",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "garden_tools_shovel_in_garden",
+            "slug": "shovel-in-garden",
+            "name_en": "Red Shovel in a Sunny Garden",
+            "name_fr": "Pelle rouge dans un jardin ensoleillé",
+            "name_ar": "مجرفة في البستان",
+            "description_en": "A red garden shovel standing in a sunny garden, perfect for a simple coloring page.",
+            "description_fr": "Une pelle rouge dans un jardin ensoleillé, idéale pour une page de coloriage simple.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "garden_tools_shovel_in_bushes",
+          "name_en": "Shovel Digging in Green Bushes",
+          "name_fr": "Pelle creusant dans des buissons verts",
+          "name_ar": "مجرفة في الشجيرات",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "garden_tools_shovel_in_bushes",
+            "slug": "shovel-in-bushes",
+            "name_en": "Shovel Digging in Green Bushes",
+            "name_fr": "Pelle creusant dans des buissons verts",
+            "name_ar": "مجرفة في الشجيرات",
+            "description_en": "A garden shovel digging into green bushes, an engaging activity for kids to color.",
+            "description_fr": "Une pelle creusant dans des buissons verts, une activité amusante pour les enfants à colorier.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "garden_tools_shovel_in_hedge",
+          "name_en": "Wooden Shovel Near a Wooden Fence",
+          "name_fr": "Pelle en bois près d'une clôture",
+          "name_ar": "مجرفة خشبية بجانب الحصار",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "garden_tools_shovel_in_hedge",
+            "slug": "shovel-in-hedge",
+            "name_en": "Wooden Shovel Near a Wooden Fence",
+            "name_fr": "Pelle en bois près d'une clôture",
+            "name_ar": "مجرفة خشبية بجانب الحصار",
+            "description_en": "A wooden garden shovel leaning against a wooden fence, ready for outdoor play coloring.",
+            "description_fr": "Une pelle en bois s'appuyant contre une clôture en bois, prête pour une activité de coloriage en plein air.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "garden_tools_shovel_in_soil",
+          "name_en": "Shovel Turning Dark Garden Soil",
+          "name_fr": "Pelle retournant la terre du jardin",
+          "name_ar": "مجرفة تترسب التربة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": false,
+          "name_en_subject_setting_ok": false,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "garden_tools_shovel_in_soil",
+            "slug": "shovel-in-soil",
+            "name_en": "Shovel Turning Dark Garden Soil",
+            "name_fr": "Pelle retournant la terre du jardin",
+            "name_ar": "مجرفة تترسب التربة",
+            "description_en": "A garden shovel turning dark soil, focusing on earth tones for a nature coloring page.",
+            "description_fr": "Une pelle retournant la terre sombre du jardin, axée sur les tons de terre pour une page de coloriage sur la nature.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "garden_tools_shovel_in_sand",
+          "name_en": "Shovel Playing in Sandy Beach",
+          "name_fr": "Pelle jouant sur la plage de sable",
+          "name_ar": "مجرفة في الرمال",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "garden_tools_shovel_in_sand",
+            "slug": "shovel-in-sand",
+            "name_en": "Shovel Playing in Sandy Beach",
+            "name_fr": "Pelle jouant sur la plage de sable",
+            "name_ar": "مجرفة في الرمال",
+            "description_en": "A garden shovel playing in sandy beach dunes, a fun summer coloring idea for children.",
+            "description_fr": "Une pelle jouant dans les dunes de sable de la plage, une idée de coloriage d'été amusante pour les enfants.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "doctor_with_stethoscope",
+        "parent_id": "health_professions",
+        "name_en": "Doctor with Stethoscope",
+        "name_fr": "Médecin avec stéthoscope",
+        "name_ar": "طبيب بسماعة",
+        "_label": "professions/health_professions",
+        "_category": "Professions"
+      },
+      "raw": "[\n  {\n    \"id\": \"doctor_in_hospital_room\",\n    \"slug\": \"doctor-in-hospital-room\",\n    \"name_en\": \"Doctor with Stethoscope in Hospital Room\",\n    \"name_fr\": \"Médicant avec stéthoscope dans une chambre\",\n    \"name_ar\": \"طبيب بسماعة في غرفة المستشفى\",\n    \"description_en\": \"A doctor wearing a stethoscope in a hospital room coloring page, perfect for kids.\",\n    \"description_fr\": \"Page de coloriage d'un médecin avec stéthoscope dans une chambre d'hôpital, idéale pour les enfants.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"doctor_in_school_clinic\",\n    \"slug\": \"doctor-in-school-clinic\",\n    \"name_en\": \"Doctor with Stethoscope in School Clinic\",\n    \"name_fr\": \"Médecin avec stéthoscope dans une clinique scolaire\",\n    \"name_ar\": \"طبيب بسماعة في عيادة المدرسة\",\n    \"description_en\": \"A friendly doctor checking a student's health in a school clinic coloring page.\",\n    \"description_fr\": \"Page de coloriage d'un médecin amical vérifiant la santé d'un élève dans une clinique scolaire.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"doctor_with_patient_on_couch\",\n    \"slug\": \"doctor-with-patient-on-couch\",\n    \"name_en\": \"Doctor with Stethoscope on Couch with Patient\",\n    \"name_fr\": \"Médecin avec stéthoscope sur canapé avec patient\",\n    \"name_ar\": \"طبيب بسماعة على السرير مع مريض\",\n    \"description_en\": \"A doctor examining a patient on a couch in a cozy room coloring page for children.\",\n    \"description_fr\": \"Page de coloriage d'un médecin examinant un patient sur un canapé dans une chambre confortable.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"doctor_in_lab_with_microscope\",\n    \"slug\": \"doctor-in-lab-with-microscope\",\n    \"name_en\": \"Doctor with Stethoscope in Lab with Microscope\",\n    \"name_fr\": \"Médecin avec stéthoscope dans un laboratoire avec microscope\",\n    \"name_ar\": \"طبيب بسماعة في المختبر مع مجهر\",\n    \"description_en\": \"A doctor using a microscope in a science lab setting for a coloring book.\",\n    \"description_fr\": \"Page de coloriage d'un médecin utilisant un microscope dans un laboratoire de sciences.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"doctor_in_emergency_room\",\n    \"slug\": \"doctor-in-emergency-room\",\n    \"name_en\": \"Doctor with Stethoscope in Emergency Room\",\n    \"name_fr\": \"Médecin avec stéthoscope dans une salle d'urgence\",\n    \"name_ar\": \"طبيب بسماعة في غرفة الطوارئ\",\n    \"description_en\": \"A busy doctor with a stethoscope in an emergency room coloring page for kids.\",\n    \"description_fr\": \"Page de coloriage d'un médecin occupé avec un stéthoscope dans une salle d'urgence.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "doctor_in_hospital_room",
+          "slug": "doctor-in-hospital-room",
+          "name_en": "Doctor with Stethoscope in Hospital Room",
+          "name_fr": "Médicant avec stéthoscope dans une chambre",
+          "name_ar": "طبيب بسماعة في غرفة المستشفى",
+          "description_en": "A doctor wearing a stethoscope in a hospital room coloring page, perfect for kids.",
+          "description_fr": "Page de coloriage d'un médecin avec stéthoscope dans une chambre d'hôpital, idéale pour les enfants.",
+          "weight": 0
+        },
+        {
+          "id": "doctor_in_school_clinic",
+          "slug": "doctor-in-school-clinic",
+          "name_en": "Doctor with Stethoscope in School Clinic",
+          "name_fr": "Médecin avec stéthoscope dans une clinique scolaire",
+          "name_ar": "طبيب بسماعة في عيادة المدرسة",
+          "description_en": "A friendly doctor checking a student's health in a school clinic coloring page.",
+          "description_fr": "Page de coloriage d'un médecin amical vérifiant la santé d'un élève dans une clinique scolaire.",
+          "weight": 1
+        },
+        {
+          "id": "doctor_with_patient_on_couch",
+          "slug": "doctor-with-patient-on-couch",
+          "name_en": "Doctor with Stethoscope on Couch with Patient",
+          "name_fr": "Médecin avec stéthoscope sur canapé avec patient",
+          "name_ar": "طبيب بسماعة على السرير مع مريض",
+          "description_en": "A doctor examining a patient on a couch in a cozy room coloring page for children.",
+          "description_fr": "Page de coloriage d'un médecin examinant un patient sur un canapé dans une chambre confortable.",
+          "weight": 2
+        },
+        {
+          "id": "doctor_in_lab_with_microscope",
+          "slug": "doctor-in-lab-with-microscope",
+          "name_en": "Doctor with Stethoscope in Lab with Microscope",
+          "name_fr": "Médecin avec stéthoscope dans un laboratoire avec microscope",
+          "name_ar": "طبيب بسماعة في المختبر مع مجهر",
+          "description_en": "A doctor using a microscope in a science lab setting for a coloring book.",
+          "description_fr": "Page de coloriage d'un médecin utilisant un microscope dans un laboratoire de sciences.",
+          "weight": 3
+        },
+        {
+          "id": "doctor_in_emergency_room",
+          "slug": "doctor-in-emergency-room",
+          "name_en": "Doctor with Stethoscope in Emergency Room",
+          "name_fr": "Médecin avec stéthoscope dans une salle d'urgence",
+          "name_ar": "طبيب بسماعة في غرفة الطوارئ",
+          "description_en": "A busy doctor with a stethoscope in an emergency room coloring page for kids.",
+          "description_fr": "Page de coloriage d'un médecin occupé avec un stéthoscope dans une salle d'urgence.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 12.187644958496094,
+      "evaluations": [
+        {
+          "id": "doctor_in_hospital_room",
+          "name_en": "Doctor with Stethoscope in Hospital Room",
+          "name_fr": "Médicant avec stéthoscope dans une chambre",
+          "name_ar": "طبيب بسماعة في غرفة المستشفى",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "doctor_in_hospital_room",
+            "slug": "doctor-in-hospital-room",
+            "name_en": "Doctor with Stethoscope in Hospital Room",
+            "name_fr": "Médicant avec stéthoscope dans une chambre",
+            "name_ar": "طبيب بسماعة في غرفة المستشفى",
+            "description_en": "A doctor wearing a stethoscope in a hospital room coloring page, perfect for kids.",
+            "description_fr": "Page de coloriage d'un médecin avec stéthoscope dans une chambre d'hôpital, idéale pour les enfants.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "doctor_in_school_clinic",
+          "name_en": "Doctor with Stethoscope in School Clinic",
+          "name_fr": "Médecin avec stéthoscope dans une clinique scolaire",
+          "name_ar": "طبيب بسماعة في عيادة المدرسة",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "doctor_in_school_clinic",
+            "slug": "doctor-in-school-clinic",
+            "name_en": "Doctor with Stethoscope in School Clinic",
+            "name_fr": "Médecin avec stéthoscope dans une clinique scolaire",
+            "name_ar": "طبيب بسماعة في عيادة المدرسة",
+            "description_en": "A friendly doctor checking a student's health in a school clinic coloring page.",
+            "description_fr": "Page de coloriage d'un médecin amical vérifiant la santé d'un élève dans une clinique scolaire.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "doctor_with_patient_on_couch",
+          "name_en": "Doctor with Stethoscope on Couch with Patient",
+          "name_fr": "Médecin avec stéthoscope sur canapé avec patient",
+          "name_ar": "طبيب بسماعة على السرير مع مريض",
+          "name_en_word_count": 7,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 6,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "doctor_with_patient_on_couch",
+            "slug": "doctor-with-patient-on-couch",
+            "name_en": "Doctor with Stethoscope on Couch with Patient",
+            "name_fr": "Médecin avec stéthoscope sur canapé avec patient",
+            "name_ar": "طبيب بسماعة على السرير مع مريض",
+            "description_en": "A doctor examining a patient on a couch in a cozy room coloring page for children.",
+            "description_fr": "Page de coloriage d'un médecin examinant un patient sur un canapé dans une chambre confortable.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "doctor_in_lab_with_microscope",
+          "name_en": "Doctor with Stethoscope in Lab with Microscope",
+          "name_fr": "Médecin avec stéthoscope dans un laboratoire avec microscope",
+          "name_ar": "طبيب بسماعة في المختبر مع مجهر",
+          "name_en_word_count": 7,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 6,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "doctor_in_lab_with_microscope",
+            "slug": "doctor-in-lab-with-microscope",
+            "name_en": "Doctor with Stethoscope in Lab with Microscope",
+            "name_fr": "Médecin avec stéthoscope dans un laboratoire avec microscope",
+            "name_ar": "طبيب بسماعة في المختبر مع مجهر",
+            "description_en": "A doctor using a microscope in a science lab setting for a coloring book.",
+            "description_fr": "Page de coloriage d'un médecin utilisant un microscope dans un laboratoire de sciences.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "doctor_in_emergency_room",
+          "name_en": "Doctor with Stethoscope in Emergency Room",
+          "name_fr": "Médecin avec stéthoscope dans une salle d'urgence",
+          "name_ar": "طبيب بسماعة في غرفة الطوارئ",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "doctor_in_emergency_room",
+            "slug": "doctor-in-emergency-room",
+            "name_en": "Doctor with Stethoscope in Emergency Room",
+            "name_fr": "Médecin avec stéthoscope dans une salle d'urgence",
+            "name_ar": "طبيب بسماعة في غرفة الطوارئ",
+            "description_en": "A busy doctor with a stethoscope in an emergency room coloring page for kids.",
+            "description_fr": "Page de coloriage d'un médecin occupé avec un stéthoscope dans une salle d'urgence.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "firefighter_with_hose",
+        "parent_id": "security_and_emergency",
+        "name_en": "Firefighter with Hose",
+        "name_fr": "Pompier avec lance à eau",
+        "name_ar": "إطفائي بخرطوم",
+        "_label": "professions/security_and_emergency",
+        "_category": "Professions"
+      },
+      "raw": "[\n  {\n    \"id\": \"firefighter_hose_station\",\n    \"slug\": \"firefighter-hose-station\",\n    \"name_en\": \"Firefighter with Hose at Fire Station\",\n    \"name_fr\": \"Infirmier de pompier avec un tuyau\",\n    \"name_ar\": \"إطفائي بخرطوم\",\n    \"description_en\": \"A brave firefighter with a hose standing at the fire station, perfect for kids' coloring pages.\",\n    \"description_fr\": \"Un pompier courageux avec un tuyau debout à la station des pompiers, idéal pour les pages de coloriage.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"firefighter_hose_fire\",\n    \"slug\": \"firefighter-hose-fire\",\n    \"name_en\": \"Firefighter with Hose Fighting Fire\",\n    \"name_fr\": \"Infirmier de pompier combattant un incendie\",\n    \"name_ar\": \"إطفائي بخرطوم يطفئ الحريق\",\n    \"description_en\": \"A firefighter using a hose to put out a fire, an exciting action scene for coloring.\",\n    \"description_fr\": \"Un pompier utilisant un tuyau pour éteindre un incendie, une scène d'action excitante pour le coloriage.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"firefighter_hose_house\",\n    \"slug\": \"firefighter-house\",\n    \"name_en\": \"Firefighter with Hose at a House\",\n    \"name_fr\": \"Infirmier de pompier devant une maison\",\n    \"name_ar\": \"إطفائي بخرطوم في منزل\",\n    \"description_en\": \"A firefighter with a hose standing near a house, a relatable setting for children's coloring.\",\n    \"description_fr\": \"Un pompier avec un tuyau debout près d'une maison, un cadre familier pour le coloriage des enfants.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"firefighter_hose_bicycle\",\n    \"slug\": \"firefighter-hose-bicycle\",\n    \"name_en\": \"Firefighter with Hose on a Bicycle\",\n    \"name_fr\": \"Infirmier de pompier sur un vélo\",\n    \"name_ar\": \"إطفائي بخرطوم على دراجة\",\n    \"description_en\": \"A firefighter with a hose riding a bicycle, a fun and active concept for coloring.\",\n    \"description_fr\": \"Un pompier avec un tuyau qui roule sur un vélo, un concept amusant et actif pour le coloriage.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"firefighter_hose_tree\",\n    \"slug\": \"firefighter-hose-tree\",\n    \"name_en\": \"Firefighter with Hose near a Tree\",\n    \"name_fr\": \"Infirmier de pompier près d'un arbre\",\n    \"name_ar\": \"إطفائي بخرطوم بجانب شجرة\",\n    \"description_en\": \"A firefighter with a hose standing next to a tree, a simple nature setting for coloring.\",\n    \"description_fr\": \"Un pompier avec un tuyau debout à côté d'un arbre, un cadre simple de la nature pour le coloriage.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "firefighter_hose_station",
+          "slug": "firefighter-hose-station",
+          "name_en": "Firefighter with Hose at Fire Station",
+          "name_fr": "Infirmier de pompier avec un tuyau",
+          "name_ar": "إطفائي بخرطوم",
+          "description_en": "A brave firefighter with a hose standing at the fire station, perfect for kids' coloring pages.",
+          "description_fr": "Un pompier courageux avec un tuyau debout à la station des pompiers, idéal pour les pages de coloriage.",
+          "weight": 0
+        },
+        {
+          "id": "firefighter_hose_fire",
+          "slug": "firefighter-hose-fire",
+          "name_en": "Firefighter with Hose Fighting Fire",
+          "name_fr": "Infirmier de pompier combattant un incendie",
+          "name_ar": "إطفائي بخرطوم يطفئ الحريق",
+          "description_en": "A firefighter using a hose to put out a fire, an exciting action scene for coloring.",
+          "description_fr": "Un pompier utilisant un tuyau pour éteindre un incendie, une scène d'action excitante pour le coloriage.",
+          "weight": 1
+        },
+        {
+          "id": "firefighter_hose_house",
+          "slug": "firefighter-house",
+          "name_en": "Firefighter with Hose at a House",
+          "name_fr": "Infirmier de pompier devant une maison",
+          "name_ar": "إطفائي بخرطوم في منزل",
+          "description_en": "A firefighter with a hose standing near a house, a relatable setting for children's coloring.",
+          "description_fr": "Un pompier avec un tuyau debout près d'une maison, un cadre familier pour le coloriage des enfants.",
+          "weight": 2
+        },
+        {
+          "id": "firefighter_hose_bicycle",
+          "slug": "firefighter-hose-bicycle",
+          "name_en": "Firefighter with Hose on a Bicycle",
+          "name_fr": "Infirmier de pompier sur un vélo",
+          "name_ar": "إطفائي بخرطوم على دراجة",
+          "description_en": "A firefighter with a hose riding a bicycle, a fun and active concept for coloring.",
+          "description_fr": "Un pompier avec un tuyau qui roule sur un vélo, un concept amusant et actif pour le coloriage.",
+          "weight": 3
+        },
+        {
+          "id": "firefighter_hose_tree",
+          "slug": "firefighter-hose-tree",
+          "name_en": "Firefighter with Hose near a Tree",
+          "name_fr": "Infirmier de pompier près d'un arbre",
+          "name_ar": "إطفائي بخرطوم بجانب شجرة",
+          "description_en": "A firefighter with a hose standing next to a tree, a simple nature setting for coloring.",
+          "description_fr": "Un pompier avec un tuyau debout à côté d'un arbre, un cadre simple de la nature pour le coloriage.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 12.235372543334961,
+      "evaluations": [
+        {
+          "id": "firefighter_hose_station",
+          "name_en": "Firefighter with Hose at Fire Station",
+          "name_fr": "Infirmier de pompier avec un tuyau",
+          "name_ar": "إطفائي بخرطوم",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 2,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_station",
+            "slug": "firefighter-hose-station",
+            "name_en": "Firefighter with Hose at Fire Station",
+            "name_fr": "Infirmier de pompier avec un tuyau",
+            "name_ar": "إطفائي بخرطوم",
+            "description_en": "A brave firefighter with a hose standing at the fire station, perfect for kids' coloring pages.",
+            "description_fr": "Un pompier courageux avec un tuyau debout à la station des pompiers, idéal pour les pages de coloriage.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "firefighter_hose_fire",
+          "name_en": "Firefighter with Hose Fighting Fire",
+          "name_fr": "Infirmier de pompier combattant un incendie",
+          "name_ar": "إطفائي بخرطوم يطفئ الحريق",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_fire",
+            "slug": "firefighter-hose-fire",
+            "name_en": "Firefighter with Hose Fighting Fire",
+            "name_fr": "Infirmier de pompier combattant un incendie",
+            "name_ar": "إطفائي بخرطوم يطفئ الحريق",
+            "description_en": "A firefighter using a hose to put out a fire, an exciting action scene for coloring.",
+            "description_fr": "Un pompier utilisant un tuyau pour éteindre un incendie, une scène d'action excitante pour le coloriage.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "firefighter_hose_house",
+          "name_en": "Firefighter with Hose at a House",
+          "name_fr": "Infirmier de pompier devant une maison",
+          "name_ar": "إطفائي بخرطوم في منزل",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_house",
+            "slug": "firefighter-house",
+            "name_en": "Firefighter with Hose at a House",
+            "name_fr": "Infirmier de pompier devant une maison",
+            "name_ar": "إطفائي بخرطوم في منزل",
+            "description_en": "A firefighter with a hose standing near a house, a relatable setting for children's coloring.",
+            "description_fr": "Un pompier avec un tuyau debout près d'une maison, un cadre familier pour le coloriage des enfants.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "firefighter_hose_bicycle",
+          "name_en": "Firefighter with Hose on a Bicycle",
+          "name_fr": "Infirmier de pompier sur un vélo",
+          "name_ar": "إطفائي بخرطوم على دراجة",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_bicycle",
+            "slug": "firefighter-hose-bicycle",
+            "name_en": "Firefighter with Hose on a Bicycle",
+            "name_fr": "Infirmier de pompier sur un vélo",
+            "name_ar": "إطفائي بخرطوم على دراجة",
+            "description_en": "A firefighter with a hose riding a bicycle, a fun and active concept for coloring.",
+            "description_fr": "Un pompier avec un tuyau qui roule sur un vélo, un concept amusant et actif pour le coloriage.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "firefighter_hose_tree",
+          "name_en": "Firefighter with Hose near a Tree",
+          "name_fr": "Infirmier de pompier près d'un arbre",
+          "name_ar": "إطفائي بخرطوم بجانب شجرة",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "firefighter_hose_tree",
+            "slug": "firefighter-hose-tree",
+            "name_en": "Firefighter with Hose near a Tree",
+            "name_fr": "Infirmier de pompier près d'un arbre",
+            "name_ar": "إطفائي بخرطوم بجانب شجرة",
+            "description_en": "A firefighter with a hose standing next to a tree, a simple nature setting for coloring.",
+            "description_fr": "Un pompier avec un tuyau debout à côté d'un arbre, un cadre simple de la nature pour le coloriage.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "football_match_scene",
+        "parent_id": "team_sports",
+        "name_en": "Football Match Scene",
+        "name_fr": "Match de football",
+        "name_ar": "مباراة كرة القدم",
+        "_label": "sports/team_sports",
+        "_category": "Sports"
+      },
+      "raw": "[\n  {\n    \"id\": \"football_match_stadium\",\n    \"slug\": \"football-match-stadium\",\n    \"name_en\": \"Team in a Football Stadium\",\n    \"name_fr\": \"Équipe dans un stade\",\n    \"name_ar\": \"فريق في استاد كرة قدم\",\n    \"description_en\": \"A football match scene coloring page showing players in a stadium, perfect for kids.\",\n    \"description_fr\": \"Page de coloriage d'un match de football avec des joueurs dans un stade, idéal pour les enfants.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"goalkeeper_net_goal\",\n    \"slug\": \"goalkeeper-net-goal\",\n    \"name_en\": \"Goalkeeper in a Football Net\",\n    \"name_fr\": \"Gardien dans un filet\",\n    \"name_ar\": \"حارس في شبكة\",\n    \"description_en\": \"Coloring page of a goalkeeper catching a ball in a net, fun and simple design.\",\n    \"description_fr\": \"Page de coloriage d'un gardien de but qui attrape une balle dans le filet, design amusant.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"referee_whistle_field\",\n    \"slug\": \"referee-whistle-field\",\n    \"name_en\": \"Referee on a Green Field\",\n    \"name_fr\": \"Arbitre sur un terrain\",\n    \"name_ar\": \"حكم على الملعب\",\n    \"description_en\": \"Simple line art of a referee blowing a whistle on a green football field.\",\n    \"description_fr\": \"Arts de ligne simples d'un arbitre soufflant dans un ballon sur un terrain vert.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"soccer_ball_ground\",\n    \"slug\": \"soccer-ball-ground\",\n    \"name_en\": \"Soccer Ball on Grass\",\n    \"name_fr\": \"Balle de soccer sur l'herbe\",\n    \"name_ar\": \"كرة قدم على العشب\",\n    \"description_en\": \"A detailed soccer ball resting on a grassy field for easy coloring.\",\n    \"description_fr\": \"Une balle de soccer détaillée reposant sur un terrain herbeux pour un coloriage facile.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"fans_stadium_seats\",\n    \"slug\": \"fans-stadium-seats\",\n    \"name_en\": \"Fans in Stadium Seats\",\n    \"name_fr\": \"Supports dans les sièges\",\n    \"name_ar\": \"مشجع في مقاعد الاستاد\",\n    \"description_en\": \"Coloring page featuring cheering fans sitting in stadium seats watching a match.\",\n    \"description_fr\": \"Page de coloriage montrant des supporters enthousiastes assis dans les sièges d'un stade.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "football_match_stadium",
+          "slug": "football-match-stadium",
+          "name_en": "Team in a Football Stadium",
+          "name_fr": "Équipe dans un stade",
+          "name_ar": "فريق في استاد كرة قدم",
+          "description_en": "A football match scene coloring page showing players in a stadium, perfect for kids.",
+          "description_fr": "Page de coloriage d'un match de football avec des joueurs dans un stade, idéal pour les enfants.",
+          "weight": 0
+        },
+        {
+          "id": "goalkeeper_net_goal",
+          "slug": "goalkeeper-net-goal",
+          "name_en": "Goalkeeper in a Football Net",
+          "name_fr": "Gardien dans un filet",
+          "name_ar": "حارس في شبكة",
+          "description_en": "Coloring page of a goalkeeper catching a ball in a net, fun and simple design.",
+          "description_fr": "Page de coloriage d'un gardien de but qui attrape une balle dans le filet, design amusant.",
+          "weight": 1
+        },
+        {
+          "id": "referee_whistle_field",
+          "slug": "referee-whistle-field",
+          "name_en": "Referee on a Green Field",
+          "name_fr": "Arbitre sur un terrain",
+          "name_ar": "حكم على الملعب",
+          "description_en": "Simple line art of a referee blowing a whistle on a green football field.",
+          "description_fr": "Arts de ligne simples d'un arbitre soufflant dans un ballon sur un terrain vert.",
+          "weight": 2
+        },
+        {
+          "id": "soccer_ball_ground",
+          "slug": "soccer-ball-ground",
+          "name_en": "Soccer Ball on Grass",
+          "name_fr": "Balle de soccer sur l'herbe",
+          "name_ar": "كرة قدم على العشب",
+          "description_en": "A detailed soccer ball resting on a grassy field for easy coloring.",
+          "description_fr": "Une balle de soccer détaillée reposant sur un terrain herbeux pour un coloriage facile.",
+          "weight": 3
+        },
+        {
+          "id": "fans_stadium_seats",
+          "slug": "fans-stadium-seats",
+          "name_en": "Fans in Stadium Seats",
+          "name_fr": "Supports dans les sièges",
+          "name_ar": "مشجع في مقاعد الاستاد",
+          "description_en": "Coloring page featuring cheering fans sitting in stadium seats watching a match.",
+          "description_fr": "Page de coloriage montrant des supporters enthousiastes assis dans les sièges d'un stade.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 10.96639609336853,
+      "evaluations": [
+        {
+          "id": "football_match_stadium",
+          "name_en": "Team in a Football Stadium",
+          "name_fr": "Équipe dans un stade",
+          "name_ar": "فريق في استاد كرة قدم",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "football_match_stadium",
+            "slug": "football-match-stadium",
+            "name_en": "Team in a Football Stadium",
+            "name_fr": "Équipe dans un stade",
+            "name_ar": "فريق في استاد كرة قدم",
+            "description_en": "A football match scene coloring page showing players in a stadium, perfect for kids.",
+            "description_fr": "Page de coloriage d'un match de football avec des joueurs dans un stade, idéal pour les enfants.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "goalkeeper_net_goal",
+          "name_en": "Goalkeeper in a Football Net",
+          "name_fr": "Gardien dans un filet",
+          "name_ar": "حارس في شبكة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "goalkeeper_net_goal",
+            "slug": "goalkeeper-net-goal",
+            "name_en": "Goalkeeper in a Football Net",
+            "name_fr": "Gardien dans un filet",
+            "name_ar": "حارس في شبكة",
+            "description_en": "Coloring page of a goalkeeper catching a ball in a net, fun and simple design.",
+            "description_fr": "Page de coloriage d'un gardien de but qui attrape une balle dans le filet, design amusant.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "referee_whistle_field",
+          "name_en": "Referee on a Green Field",
+          "name_fr": "Arbitre sur un terrain",
+          "name_ar": "حكم على الملعب",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "referee_whistle_field",
+            "slug": "referee-whistle-field",
+            "name_en": "Referee on a Green Field",
+            "name_fr": "Arbitre sur un terrain",
+            "name_ar": "حكم على الملعب",
+            "description_en": "Simple line art of a referee blowing a whistle on a green football field.",
+            "description_fr": "Arts de ligne simples d'un arbitre soufflant dans un ballon sur un terrain vert.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "soccer_ball_ground",
+          "name_en": "Soccer Ball on Grass",
+          "name_fr": "Balle de soccer sur l'herbe",
+          "name_ar": "كرة قدم على العشب",
+          "name_en_word_count": 4,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "soccer_ball_ground",
+            "slug": "soccer-ball-ground",
+            "name_en": "Soccer Ball on Grass",
+            "name_fr": "Balle de soccer sur l'herbe",
+            "name_ar": "كرة قدم على العشب",
+            "description_en": "A detailed soccer ball resting on a grassy field for easy coloring.",
+            "description_fr": "Une balle de soccer détaillée reposant sur un terrain herbeux pour un coloriage facile.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "fans_stadium_seats",
+          "name_en": "Fans in Stadium Seats",
+          "name_fr": "Supports dans les sièges",
+          "name_ar": "مشجع في مقاعد الاستاد",
+          "name_en_word_count": 4,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "fans_stadium_seats",
+            "slug": "fans-stadium-seats",
+            "name_en": "Fans in Stadium Seats",
+            "name_fr": "Supports dans les sièges",
+            "name_ar": "مشجع في مقاعد الاستاد",
+            "description_en": "Coloring page featuring cheering fans sitting in stadium seats watching a match.",
+            "description_fr": "Page de coloriage montrant des supporters enthousiastes assis dans les sièges d'un stade.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "tennis_player_serving",
+        "parent_id": "individual_sports",
+        "name_en": "Tennis Player Serving",
+        "name_fr": "Joueur de tennis au service",
+        "name_ar": "لاعب التنس",
+        "_label": "sports/individual_sports",
+        "_category": "Sports"
+      },
+      "raw": "[\n  {\n    \"id\": \"tennis_player_serving_net\",\n    \"slug\": \"tennis-player-serving-net\",\n    \"name_en\": \"Tennis Player Serving on the Court\",\n    \"name_fr\": \"Joueur de tennis qui sert sur le court\",\n    \"name_ar\": \"لاعب التنس على الملعب\",\n    \"description_en\": \"A dynamic tennis player serving a ball on a sunny court, perfect for sports coloring activities.\",\n    \"description_fr\": \"Un joueur de tennis qui sert sur un court ensoleillé, idéal pour les activités de coloriage sportif.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"tennis_player_holding_racket\",\n    \"slug\": \"tennis-player-holding-racket\",\n    \"name_en\": \"Tennis Player Holding Racket in Stadium\",\n    \"name_fr\": \"Joueur de tenant une raquette dans un stade\",\n    \"name_ar\": \"لاعب التنس مع المضرب في الملعب\",\n    \"description_en\": \"An illustrated tennis player holding a racket inside a stadium, ready for the next serve coloring page.\",\n    \"description_fr\": \"Un joueur de tennis tenant une raquette dans un stade, prêt pour le prochain service de coloriage.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"tennis_player_winning_match\",\n    \"slug\": \"tennis-player-winning-match\",\n    \"name_en\": \"Tennis Player Winning Match on Green Court\",\n    \"name_fr\": \"Joueur de tennis gagnant un match sur le court vert\",\n    \"name_ar\": \"لاعب التنس يفوز بالمباراة على الملعب الأخضر\",\n    \"description_en\": \"A happy tennis player celebrating a win on a green court, great for kids' coloring books.\",\n    \"description_fr\": \"Un joueur de tennis heureux célébrant une victoire sur un court vert, idéal pour les livres de coloriage.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"tennis_player_running_to_ball\",\n    \"slug\": \"tennis-player-running-to-ball\",\n    \"name_en\": \"Tennis Player Running to Ball on Clay\",\n    \"name_fr\": \"Joueur de tennis courant vers la balle sur terre battue\",\n    \"name_ar\": \"لاعب التنس يركض نحو الكرة على الأرض الطينية\",\n    \"description_en\": \"Action shot of a tennis player running to hit a ball on a clay court, excellent for active coloring.\",\n    \"description_fr\": \"Une vue d'action d'un joueur de tennis courant pour frapper une balle sur un court en terre battue.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"tennis_player_serving_outside\",\n    \"slug\": \"tennis-player-serving-outside\",\n    \"name_en\": \"Tennis Player Serving Outside in Park\",\n    \"name_fr\": \"Joueur de tennis servant dehors dans le parc\",\n    \"name_ar\": \"لاعب التنس يخدم خارجاً في الحديقة\",\n    \"description_en\": \"A tennis player serving outdoors in a park setting, offering a relaxing coloring scene for children.\",\n    \"description_fr\": \"Un joueur de tennis servant à l'extérieur dans un parc, offrant une scène apaisante de coloriage.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "tennis_player_serving_net",
+          "slug": "tennis-player-serving-net",
+          "name_en": "Tennis Player Serving on the Court",
+          "name_fr": "Joueur de tennis qui sert sur le court",
+          "name_ar": "لاعب التنس على الملعب",
+          "description_en": "A dynamic tennis player serving a ball on a sunny court, perfect for sports coloring activities.",
+          "description_fr": "Un joueur de tennis qui sert sur un court ensoleillé, idéal pour les activités de coloriage sportif.",
+          "weight": 0
+        },
+        {
+          "id": "tennis_player_holding_racket",
+          "slug": "tennis-player-holding-racket",
+          "name_en": "Tennis Player Holding Racket in Stadium",
+          "name_fr": "Joueur de tenant une raquette dans un stade",
+          "name_ar": "لاعب التنس مع المضرب في الملعب",
+          "description_en": "An illustrated tennis player holding a racket inside a stadium, ready for the next serve coloring page.",
+          "description_fr": "Un joueur de tennis tenant une raquette dans un stade, prêt pour le prochain service de coloriage.",
+          "weight": 1
+        },
+        {
+          "id": "tennis_player_winning_match",
+          "slug": "tennis-player-winning-match",
+          "name_en": "Tennis Player Winning Match on Green Court",
+          "name_fr": "Joueur de tennis gagnant un match sur le court vert",
+          "name_ar": "لاعب التنس يفوز بالمباراة على الملعب الأخضر",
+          "description_en": "A happy tennis player celebrating a win on a green court, great for kids' coloring books.",
+          "description_fr": "Un joueur de tennis heureux célébrant une victoire sur un court vert, idéal pour les livres de coloriage.",
+          "weight": 2
+        },
+        {
+          "id": "tennis_player_running_to_ball",
+          "slug": "tennis-player-running-to-ball",
+          "name_en": "Tennis Player Running to Ball on Clay",
+          "name_fr": "Joueur de tennis courant vers la balle sur terre battue",
+          "name_ar": "لاعب التنس يركض نحو الكرة على الأرض الطينية",
+          "description_en": "Action shot of a tennis player running to hit a ball on a clay court, excellent for active coloring.",
+          "description_fr": "Une vue d'action d'un joueur de tennis courant pour frapper une balle sur un court en terre battue.",
+          "weight": 3
+        },
+        {
+          "id": "tennis_player_serving_outside",
+          "slug": "tennis-player-serving-outside",
+          "name_en": "Tennis Player Serving Outside in Park",
+          "name_fr": "Joueur de tennis servant dehors dans le parc",
+          "name_ar": "لاعب التنس يخدم خارجاً في الحديقة",
+          "description_en": "A tennis player serving outdoors in a park setting, offering a relaxing coloring scene for children.",
+          "description_fr": "Un joueur de tennis servant à l'extérieur dans un parc, offrant une scène apaisante de coloriage.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 12.032256603240967,
+      "evaluations": [
+        {
+          "id": "tennis_player_serving_net",
+          "name_en": "Tennis Player Serving on the Court",
+          "name_fr": "Joueur de tennis qui sert sur le court",
+          "name_ar": "لاعب التنس على الملعب",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tennis_player_serving_net",
+            "slug": "tennis-player-serving-net",
+            "name_en": "Tennis Player Serving on the Court",
+            "name_fr": "Joueur de tennis qui sert sur le court",
+            "name_ar": "لاعب التنس على الملعب",
+            "description_en": "A dynamic tennis player serving a ball on a sunny court, perfect for sports coloring activities.",
+            "description_fr": "Un joueur de tennis qui sert sur un court ensoleillé, idéal pour les activités de coloriage sportif.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "tennis_player_holding_racket",
+          "name_en": "Tennis Player Holding Racket in Stadium",
+          "name_fr": "Joueur de tenant une raquette dans un stade",
+          "name_ar": "لاعب التنس مع المضرب في الملعب",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 6,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tennis_player_holding_racket",
+            "slug": "tennis-player-holding-racket",
+            "name_en": "Tennis Player Holding Racket in Stadium",
+            "name_fr": "Joueur de tenant une raquette dans un stade",
+            "name_ar": "لاعب التنس مع المضرب في الملعب",
+            "description_en": "An illustrated tennis player holding a racket inside a stadium, ready for the next serve coloring page.",
+            "description_fr": "Un joueur de tennis tenant une raquette dans un stade, prêt pour le prochain service de coloriage.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "tennis_player_winning_match",
+          "name_en": "Tennis Player Winning Match on Green Court",
+          "name_fr": "Joueur de tennis gagnant un match sur le court vert",
+          "name_ar": "لاعب التنس يفوز بالمباراة على الملعب الأخضر",
+          "name_en_word_count": 7,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 7,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tennis_player_winning_match",
+            "slug": "tennis-player-winning-match",
+            "name_en": "Tennis Player Winning Match on Green Court",
+            "name_fr": "Joueur de tennis gagnant un match sur le court vert",
+            "name_ar": "لاعب التنس يفوز بالمباراة على الملعب الأخضر",
+            "description_en": "A happy tennis player celebrating a win on a green court, great for kids' coloring books.",
+            "description_fr": "Un joueur de tennis heureux célébrant une victoire sur un court vert, idéal pour les livres de coloriage.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "tennis_player_running_to_ball",
+          "name_en": "Tennis Player Running to Ball on Clay",
+          "name_fr": "Joueur de tennis courant vers la balle sur terre battue",
+          "name_ar": "لاعب التنس يركض نحو الكرة على الأرض الطينية",
+          "name_en_word_count": 7,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 8,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tennis_player_running_to_ball",
+            "slug": "tennis-player-running-to-ball",
+            "name_en": "Tennis Player Running to Ball on Clay",
+            "name_fr": "Joueur de tennis courant vers la balle sur terre battue",
+            "name_ar": "لاعب التنس يركض نحو الكرة على الأرض الطينية",
+            "description_en": "Action shot of a tennis player running to hit a ball on a clay court, excellent for active coloring.",
+            "description_fr": "Une vue d'action d'un joueur de tennis courant pour frapper une balle sur un court en terre battue.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "tennis_player_serving_outside",
+          "name_en": "Tennis Player Serving Outside in Park",
+          "name_fr": "Joueur de tennis servant dehors dans le parc",
+          "name_ar": "لاعب التنس يخدم خارجاً في الحديقة",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 6,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": true,
+          "name_ar_present": true,
+          "raw": {
+            "id": "tennis_player_serving_outside",
+            "slug": "tennis-player-serving-outside",
+            "name_en": "Tennis Player Serving Outside in Park",
+            "name_fr": "Joueur de tennis servant dehors dans le parc",
+            "name_ar": "لاعب التنس يخدم خارجاً في الحديقة",
+            "description_en": "A tennis player serving outdoors in a park setting, offering a relaxing coloring scene for children.",
+            "description_fr": "Un joueur de tennis servant à l'extérieur dans un parc, offrant une scène apaisante de coloriage.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "elsa_from_frozen",
+        "parent_id": "disney_universe",
+        "name_en": "Elsa from Frozen",
+        "name_fr": "Elsa de La Reine des Neiges",
+        "name_ar": "إلسا من فروزن",
+        "_label": "characters/disney_universe",
+        "_category": "Personnages fictifs"
+      },
+      "raw": "[\n  {\"id\": \"elsa_snow_castle\", \"slug\": \"elsa-snow-castle\", \"name_en\": \"Elsa Building a Snow Castle\", \"name_fr\": \"Élsa construit un château de neige\", \"name_ar\": \"إلسا تبني قلعة ثلج\", \"description_en\": \"Coloring page of Elsa building a magical snow castle in her ice kingdom.\", \"description_fr\": \"Page de coloriage d'Élsa construisant un château magique de neige dans son royaume.\", \"weight\": 0},\n  {\"id\": \"elsa_ice_skating\", \"slug\": \"elsa-ice-skating\", \"name_en\": \"Elsa Skating on Frozen Lake\", \"name_fr\": \"Élsa patine sur un lac gelé\", \"name_ar\": \"إلسا تسبح على بحيرة مجمدة\", \"description_en\": \"Elsa gracefully skating on a frozen lake in this fun winter coloring page.\", \"description_fr\": \"Élsa glissant gracieusement sur un lac gelé dans cette page de coloriage d'hiver amusante.\", \"weight\": 1},\n  {\"id\": \"elsa_magic_snowflake\", \"slug\": \"elsa-magic-snowflake\", \"name_en\": \"Elsa Creating a Magic Snowflake\", \"name_fr\": \"Élsa crée un flocon de neige magique\", \"name_ar\": \"إلسا تصنع خيط ثلج سحري\", \"description_en\": \"Coloring page featuring Elsa conjuring a beautiful magic snowflake with her powers.\", \"description_fr\": \"Page de coloriage montrant Élsa invoquant une magnifique flocon de neige magique avec ses pouvoirs.\", \"weight\": 2},\n  {\"id\": \"elsa_animals_snow\", \"slug\": \"elsa-animals-snow\", \"name_en\": \"Elsa Playing with Snow Animals\", \"name_fr\": \"Élsa joue avec des animaux de neige\", \"name_ar\": \"إلسا تلعب مع حيوانات الثلج\", \"description_en\": \"Elsa playing happily with cute snow animals in this delightful winter coloring page.\", \"description_fr\": \"Élsa jouant joyeusement avec des animaux de neige mignons dans cette page de coloriage d'hiver délicieuse.\", \"weight\": 3},\n  {\"id\": \"elsa_ice_skirt\", \"slug\": \"elsa-ice-skirt\", \"name_en\": \"Elsa Wearing Ice Skirt\", \"name_fr\": \"Élsa porte une jupe de glace\", \"name_ar\": \"إلسا ترتدي فستان ثلج\", \"description_en\": \"Coloring page of Elsa wearing her iconic ice skirt in the cold winter setting.\", \"description_fr\": \"Page de coloriage d'Élsa portant sa jupe emblématique de glace dans un cadre d'hiver froid.\", \"weight\": 4}\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "elsa_snow_castle",
+          "slug": "elsa-snow-castle",
+          "name_en": "Elsa Building a Snow Castle",
+          "name_fr": "Élsa construit un château de neige",
+          "name_ar": "إلسا تبني قلعة ثلج",
+          "description_en": "Coloring page of Elsa building a magical snow castle in her ice kingdom.",
+          "description_fr": "Page de coloriage d'Élsa construisant un château magique de neige dans son royaume.",
+          "weight": 0
+        },
+        {
+          "id": "elsa_ice_skating",
+          "slug": "elsa-ice-skating",
+          "name_en": "Elsa Skating on Frozen Lake",
+          "name_fr": "Élsa patine sur un lac gelé",
+          "name_ar": "إلسا تسبح على بحيرة مجمدة",
+          "description_en": "Elsa gracefully skating on a frozen lake in this fun winter coloring page.",
+          "description_fr": "Élsa glissant gracieusement sur un lac gelé dans cette page de coloriage d'hiver amusante.",
+          "weight": 1
+        },
+        {
+          "id": "elsa_magic_snowflake",
+          "slug": "elsa-magic-snowflake",
+          "name_en": "Elsa Creating a Magic Snowflake",
+          "name_fr": "Élsa crée un flocon de neige magique",
+          "name_ar": "إلسا تصنع خيط ثلج سحري",
+          "description_en": "Coloring page featuring Elsa conjuring a beautiful magic snowflake with her powers.",
+          "description_fr": "Page de coloriage montrant Élsa invoquant une magnifique flocon de neige magique avec ses pouvoirs.",
+          "weight": 2
+        },
+        {
+          "id": "elsa_animals_snow",
+          "slug": "elsa-animals-snow",
+          "name_en": "Elsa Playing with Snow Animals",
+          "name_fr": "Élsa joue avec des animaux de neige",
+          "name_ar": "إلسا تلعب مع حيوانات الثلج",
+          "description_en": "Elsa playing happily with cute snow animals in this delightful winter coloring page.",
+          "description_fr": "Élsa jouant joyeusement avec des animaux de neige mignons dans cette page de coloriage d'hiver délicieuse.",
+          "weight": 3
+        },
+        {
+          "id": "elsa_ice_skirt",
+          "slug": "elsa-ice-skirt",
+          "name_en": "Elsa Wearing Ice Skirt",
+          "name_fr": "Élsa porte une jupe de glace",
+          "name_ar": "إلسا ترتدي فستان ثلج",
+          "description_en": "Coloring page of Elsa wearing her iconic ice skirt in the cold winter setting.",
+          "description_fr": "Page de coloriage d'Élsa portant sa jupe emblématique de glace dans un cadre d'hiver froid.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 10.0407555103302,
+      "evaluations": [
+        {
+          "id": "elsa_snow_castle",
+          "name_en": "Elsa Building a Snow Castle",
+          "name_fr": "Élsa construit un château de neige",
+          "name_ar": "إلسا تبني قلعة ثلج",
+          "name_en_word_count": 5,
+          "name_en_has_setting": false,
+          "name_en_subject_setting_ok": false,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_snow_castle",
+            "slug": "elsa-snow-castle",
+            "name_en": "Elsa Building a Snow Castle",
+            "name_fr": "Élsa construit un château de neige",
+            "name_ar": "إلسا تبني قلعة ثلج",
+            "description_en": "Coloring page of Elsa building a magical snow castle in her ice kingdom.",
+            "description_fr": "Page de coloriage d'Élsa construisant un château magique de neige dans son royaume.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "elsa_ice_skating",
+          "name_en": "Elsa Skating on Frozen Lake",
+          "name_fr": "Élsa patine sur un lac gelé",
+          "name_ar": "إلسا تسبح على بحيرة مجمدة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_ice_skating",
+            "slug": "elsa-ice-skating",
+            "name_en": "Elsa Skating on Frozen Lake",
+            "name_fr": "Élsa patine sur un lac gelé",
+            "name_ar": "إلسا تسبح على بحيرة مجمدة",
+            "description_en": "Elsa gracefully skating on a frozen lake in this fun winter coloring page.",
+            "description_fr": "Élsa glissant gracieusement sur un lac gelé dans cette page de coloriage d'hiver amusante.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "elsa_magic_snowflake",
+          "name_en": "Elsa Creating a Magic Snowflake",
+          "name_fr": "Élsa crée un flocon de neige magique",
+          "name_ar": "إلسا تصنع خيط ثلج سحري",
+          "name_en_word_count": 5,
+          "name_en_has_setting": false,
+          "name_en_subject_setting_ok": false,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_magic_snowflake",
+            "slug": "elsa-magic-snowflake",
+            "name_en": "Elsa Creating a Magic Snowflake",
+            "name_fr": "Élsa crée un flocon de neige magique",
+            "name_ar": "إلسا تصنع خيط ثلج سحري",
+            "description_en": "Coloring page featuring Elsa conjuring a beautiful magic snowflake with her powers.",
+            "description_fr": "Page de coloriage montrant Élsa invoquant une magnifique flocon de neige magique avec ses pouvoirs.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "elsa_animals_snow",
+          "name_en": "Elsa Playing with Snow Animals",
+          "name_fr": "Élsa joue avec des animaux de neige",
+          "name_ar": "إلسا تلعب مع حيوانات الثلج",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_animals_snow",
+            "slug": "elsa-animals-snow",
+            "name_en": "Elsa Playing with Snow Animals",
+            "name_fr": "Élsa joue avec des animaux de neige",
+            "name_ar": "إلسا تلعب مع حيوانات الثلج",
+            "description_en": "Elsa playing happily with cute snow animals in this delightful winter coloring page.",
+            "description_fr": "Élsa jouant joyeusement avec des animaux de neige mignons dans cette page de coloriage d'hiver délicieuse.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "elsa_ice_skirt",
+          "name_en": "Elsa Wearing Ice Skirt",
+          "name_fr": "Élsa porte une jupe de glace",
+          "name_ar": "إلسا ترتدي فستان ثلج",
+          "name_en_word_count": 4,
+          "name_en_has_setting": false,
+          "name_en_subject_setting_ok": false,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "elsa_ice_skirt",
+            "slug": "elsa-ice-skirt",
+            "name_en": "Elsa Wearing Ice Skirt",
+            "name_fr": "Élsa porte une jupe de glace",
+            "name_ar": "إلسا ترتدي فستان ثلج",
+            "description_en": "Coloring page of Elsa wearing her iconic ice skirt in the cold winter setting.",
+            "description_fr": "Page de coloriage d'Élsa portant sa jupe emblématique de glace dans un cadre d'hiver froid.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "spiderman_swinging",
+        "parent_id": "marvel_universe",
+        "name_en": "Spider-Man Swinging",
+        "name_fr": "Spider-Man en plein vol",
+        "name_ar": "الرجل العنكبوت",
+        "_label": "characters/marvel_universe",
+        "_category": "Personnages fictifs"
+      },
+      "raw": "[\n  {\n    \"id\": \"spiderman_swinging_city\",\n    \"slug\": \"spiderman-swinging-city\",\n    \"name_en\": \"Spider-Man Swinging in New York City\",\n    \"name_fr\": \"Spider-Man balançant dans la ville\",\n    \"name_ar\": \"الرجل العنكبوت يهبط في مدينة نيويورك\",\n    \"description_en\": \"Exciting Spider-Man swinging through the city skyline coloring page for kids.\",\n    \"description_fr\": \"Page de coloriage d'excitation avec Spider-Man balançant dans le ciel de la ville.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"spiderman_swinging_gym\",\n    \"slug\": \"spiderman-swinging-gym\",\n    \"name_en\": \"Spider-Man Swinging in the Park\",\n    \"name_fr\": \"Spider-Man balançant dans le parc\",\n    \"name_ar\": \"الرجل العنكبوت يهبط في الحديقة\",\n    \"description_en\": \"Fun Spider-Man swinging over green trees and flowers coloring sheet.\",\n    \"description_fr\": \"Feuille de coloriage amusante avec Spider-Man balançant au-dessus des arbres verts.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"spiderman_swinging_night\",\n    \"slug\": \"spiderman-swinging-night\",\n    \"name_en\": \"Spider-Man Swinging Under the Moon\",\n    \"name_fr\": \"Spider-Man balançant sous la lune\",\n    \"name_ar\": \"الرجل العنكبوت يهبط تحت القمر\",\n    \"description_en\": \"Mysterious Spider-Man swinging at night with stars coloring page.\",\n    \"description_fr\": \"Page de coloriage mystérieuse avec Spider-Man balançant la nuit avec des étoiles.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"spiderman_swinging_school\",\n    \"slug\": \"spiderman-swinging-school\",\n    \"name_en\": \"Spider-Man Swinging Near School\",\n    \"name_fr\": \"Spider-Man balançant près de l'école\",\n    \"name_ar\": \"الرجل العنكبوت يهبط بالقرب من المدرسة\",\n    \"description_en\": \"Friendly Spider-Man swinging near a school building coloring activity.\",\n    \"description_fr\": \"Activité de coloriage amicale avec Spider-Man balançant près d'un bâtiment d'école.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"spiderman_swinging_bridge\",\n    \"slug\": \"spiderman-swinging-bridge\",\n    \"name_en\": \"Spider-Man Swinging Over the Bridge\",\n    \"name_fr\": \"Spider-Man balançant au-dessus du pont\",\n    \"name_ar\": \"الرجل العنكبوت يهبط فوق الجسر\",\n    \"description_en\": \"Dynamic Spider-Man swinging over a colorful bridge coloring page.\",\n    \"description_fr\": \"Page de coloriage dynamique avec Spider-Man balançant au-dessus d'un pont coloré.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "spiderman_swinging_city",
+          "slug": "spiderman-swinging-city",
+          "name_en": "Spider-Man Swinging in New York City",
+          "name_fr": "Spider-Man balançant dans la ville",
+          "name_ar": "الرجل العنكبوت يهبط في مدينة نيويورك",
+          "description_en": "Exciting Spider-Man swinging through the city skyline coloring page for kids.",
+          "description_fr": "Page de coloriage d'excitation avec Spider-Man balançant dans le ciel de la ville.",
+          "weight": 0
+        },
+        {
+          "id": "spiderman_swinging_gym",
+          "slug": "spiderman-swinging-gym",
+          "name_en": "Spider-Man Swinging in the Park",
+          "name_fr": "Spider-Man balançant dans le parc",
+          "name_ar": "الرجل العنكبوت يهبط في الحديقة",
+          "description_en": "Fun Spider-Man swinging over green trees and flowers coloring sheet.",
+          "description_fr": "Feuille de coloriage amusante avec Spider-Man balançant au-dessus des arbres verts.",
+          "weight": 1
+        },
+        {
+          "id": "spiderman_swinging_night",
+          "slug": "spiderman-swinging-night",
+          "name_en": "Spider-Man Swinging Under the Moon",
+          "name_fr": "Spider-Man balançant sous la lune",
+          "name_ar": "الرجل العنكبوت يهبط تحت القمر",
+          "description_en": "Mysterious Spider-Man swinging at night with stars coloring page.",
+          "description_fr": "Page de coloriage mystérieuse avec Spider-Man balançant la nuit avec des étoiles.",
+          "weight": 2
+        },
+        {
+          "id": "spiderman_swinging_school",
+          "slug": "spiderman-swinging-school",
+          "name_en": "Spider-Man Swinging Near School",
+          "name_fr": "Spider-Man balançant près de l'école",
+          "name_ar": "الرجل العنكبوت يهبط بالقرب من المدرسة",
+          "description_en": "Friendly Spider-Man swinging near a school building coloring activity.",
+          "description_fr": "Activité de coloriage amicale avec Spider-Man balançant près d'un bâtiment d'école.",
+          "weight": 3
+        },
+        {
+          "id": "spiderman_swinging_bridge",
+          "slug": "spiderman-swinging-bridge",
+          "name_en": "Spider-Man Swinging Over the Bridge",
+          "name_fr": "Spider-Man balançant au-dessus du pont",
+          "name_ar": "الرجل العنكبوت يهبط فوق الجسر",
+          "description_en": "Dynamic Spider-Man swinging over a colorful bridge coloring page.",
+          "description_fr": "Page de coloriage dynamique avec Spider-Man balançant au-dessus d'un pont coloré.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 11.317673206329346,
+      "evaluations": [
+        {
+          "id": "spiderman_swinging_city",
+          "name_en": "Spider-Man Swinging in New York City",
+          "name_fr": "Spider-Man balançant dans la ville",
+          "name_ar": "الرجل العنكبوت يهبط في مدينة نيويورك",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 6,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "spiderman_swinging_city",
+            "slug": "spiderman-swinging-city",
+            "name_en": "Spider-Man Swinging in New York City",
+            "name_fr": "Spider-Man balançant dans la ville",
+            "name_ar": "الرجل العنكبوت يهبط في مدينة نيويورك",
+            "description_en": "Exciting Spider-Man swinging through the city skyline coloring page for kids.",
+            "description_fr": "Page de coloriage d'excitation avec Spider-Man balançant dans le ciel de la ville.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "spiderman_swinging_gym",
+          "name_en": "Spider-Man Swinging in the Park",
+          "name_fr": "Spider-Man balançant dans le parc",
+          "name_ar": "الرجل العنكبوت يهبط في الحديقة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "spiderman_swinging_gym",
+            "slug": "spiderman-swinging-gym",
+            "name_en": "Spider-Man Swinging in the Park",
+            "name_fr": "Spider-Man balançant dans le parc",
+            "name_ar": "الرجل العنكبوت يهبط في الحديقة",
+            "description_en": "Fun Spider-Man swinging over green trees and flowers coloring sheet.",
+            "description_fr": "Feuille de coloriage amusante avec Spider-Man balançant au-dessus des arbres verts.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "spiderman_swinging_night",
+          "name_en": "Spider-Man Swinging Under the Moon",
+          "name_fr": "Spider-Man balançant sous la lune",
+          "name_ar": "الرجل العنكبوت يهبط تحت القمر",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "spiderman_swinging_night",
+            "slug": "spiderman-swinging-night",
+            "name_en": "Spider-Man Swinging Under the Moon",
+            "name_fr": "Spider-Man balançant sous la lune",
+            "name_ar": "الرجل العنكبوت يهبط تحت القمر",
+            "description_en": "Mysterious Spider-Man swinging at night with stars coloring page.",
+            "description_fr": "Page de coloriage mystérieuse avec Spider-Man balançant la nuit avec des étoiles.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "spiderman_swinging_school",
+          "name_en": "Spider-Man Swinging Near School",
+          "name_fr": "Spider-Man balançant près de l'école",
+          "name_ar": "الرجل العنكبوت يهبط بالقرب من المدرسة",
+          "name_en_word_count": 4,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 6,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "spiderman_swinging_school",
+            "slug": "spiderman-swinging-school",
+            "name_en": "Spider-Man Swinging Near School",
+            "name_fr": "Spider-Man balançant près de l'école",
+            "name_ar": "الرجل العنكبوت يهبط بالقرب من المدرسة",
+            "description_en": "Friendly Spider-Man swinging near a school building coloring activity.",
+            "description_fr": "Activité de coloriage amicale avec Spider-Man balançant près d'un bâtiment d'école.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "spiderman_swinging_bridge",
+          "name_en": "Spider-Man Swinging Over the Bridge",
+          "name_fr": "Spider-Man balançant au-dessus du pont",
+          "name_ar": "الرجل العنكبوت يهبط فوق الجسر",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "spiderman_swinging_bridge",
+            "slug": "spiderman-swinging-bridge",
+            "name_en": "Spider-Man Swinging Over the Bridge",
+            "name_fr": "Spider-Man balançant au-dessus du pont",
+            "name_ar": "الرجل العنكبوت يهبط فوق الجسر",
+            "description_en": "Dynamic Spider-Man swinging over a colorful bridge coloring page.",
+            "description_fr": "Page de coloriage dynamique avec Spider-Man balançant au-dessus d'un pont coloré.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "circle_shape",
+        "parent_id": "basic_shapes",
+        "name_en": "Circle Shape",
+        "name_fr": "Cercle",
+        "name_ar": "الدائرة",
+        "_label": "geometry/basic_shapes",
+        "_category": "Géométrie / Alphabet"
+      },
+      "raw": "[\n  {\"id\": \"circles_in_snowflake\", \"slug\": \"circles-in-snowflake\", \"name_en\": \"Circles in a Winter Snowflake\", \"name_fr\": \"Cercles dans une flocon\", \"name_ar\": \"دوائر في زهرة ثلج\", \"description_en\": \"A fun winter coloring page featuring simple circles inside a detailed snowflake design.\", \"description_fr\": \"Page de coloriage d'hiver amusante avec des cercles simples dans un flocon détaillé.\", \"weight\": 0},\n  {\"id\": \"circles_on_beach\", \"slug\": \"circles-on-beach\", \"name_en\": \"Circles on a Sandy Beach\", \"name_fr\": \"Cercles sur une plage\", \"name_ar\": \"دوائر على شاطئ رمال\", \"description_en\": \"Coloring page showing colorful circles scattered on a sunny beach scene.\", \"description_fr\": \"Page de coloriage montrant des cercles colorés dispersés sur une scène de plage ensoleillée.\", \"weight\": 1},\n  {\"id\": \"circles_in_tree\", \"slug\": \"circles-in-tree\", \"name_en\": \"Circles in a Green Tree\", \"name_fr\": \"Cercles dans un arbre vert\", \"name_ar\": \"دوائر في شجرة خضراء\", \"description_en\": \"Nature coloring page with circles representing fruit or flowers inside a tree.\", \"description_fr\": \"Page de coloriage de nature avec des cercles représentant des fruits ou des fleurs dans un arbre.\", \"weight\": 2},\n  {\"id\": \"circles_in_pizza\", \"slug\": \"circles-in-pizza\", \"name_en\": \"Circles in a Pizza Slice\", \"name_fr\": \"Cercles dans une tranche de pizza\", \"name_ar\": \"دوائر في شريحة بيتزا\", \"description_en\": \"Delicious food coloring page with circular pepperoni slices on a pizza.\", \"description_fr\": \"Page de coloriage délicieuse avec des tranches de pizza rondes au pepperoni.\", \"weight\": 3},\n  {\"id\": \"circles_in_garden\", \"slug\": \"circles-in-garden\", \"name_en\": \"Circles in a Flower Garden\", \"name_fr\": \"Cercles dans un jardin de fleurs\", \"name_ar\": \"دوائر في حديقة زهور\", \"description_en\": \"Bright spring coloring page with circular flowers blooming in a garden setting.\", \"description_fr\": \"Page de coloriage printanière éclatante avec des fleurs circulaires en fleur dans un jardin.\", \"weight\": 4}\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "circles_in_snowflake",
+          "slug": "circles-in-snowflake",
+          "name_en": "Circles in a Winter Snowflake",
+          "name_fr": "Cercles dans une flocon",
+          "name_ar": "دوائر في زهرة ثلج",
+          "description_en": "A fun winter coloring page featuring simple circles inside a detailed snowflake design.",
+          "description_fr": "Page de coloriage d'hiver amusante avec des cercles simples dans un flocon détaillé.",
+          "weight": 0
+        },
+        {
+          "id": "circles_on_beach",
+          "slug": "circles-on-beach",
+          "name_en": "Circles on a Sandy Beach",
+          "name_fr": "Cercles sur une plage",
+          "name_ar": "دوائر على شاطئ رمال",
+          "description_en": "Coloring page showing colorful circles scattered on a sunny beach scene.",
+          "description_fr": "Page de coloriage montrant des cercles colorés dispersés sur une scène de plage ensoleillée.",
+          "weight": 1
+        },
+        {
+          "id": "circles_in_tree",
+          "slug": "circles-in-tree",
+          "name_en": "Circles in a Green Tree",
+          "name_fr": "Cercles dans un arbre vert",
+          "name_ar": "دوائر في شجرة خضراء",
+          "description_en": "Nature coloring page with circles representing fruit or flowers inside a tree.",
+          "description_fr": "Page de coloriage de nature avec des cercles représentant des fruits ou des fleurs dans un arbre.",
+          "weight": 2
+        },
+        {
+          "id": "circles_in_pizza",
+          "slug": "circles-in-pizza",
+          "name_en": "Circles in a Pizza Slice",
+          "name_fr": "Cercles dans une tranche de pizza",
+          "name_ar": "دوائر في شريحة بيتزا",
+          "description_en": "Delicious food coloring page with circular pepperoni slices on a pizza.",
+          "description_fr": "Page de coloriage délicieuse avec des tranches de pizza rondes au pepperoni.",
+          "weight": 3
+        },
+        {
+          "id": "circles_in_garden",
+          "slug": "circles-in-garden",
+          "name_en": "Circles in a Flower Garden",
+          "name_fr": "Cercles dans un jardin de fleurs",
+          "name_ar": "دوائر في حديقة زهور",
+          "description_en": "Bright spring coloring page with circular flowers blooming in a garden setting.",
+          "description_fr": "Page de coloriage printanière éclatante avec des fleurs circulaires en fleur dans un jardin.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 9.378708362579346,
+      "evaluations": [
+        {
+          "id": "circles_in_snowflake",
+          "name_en": "Circles in a Winter Snowflake",
+          "name_fr": "Cercles dans une flocon",
+          "name_ar": "دوائر في زهرة ثلج",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "circles_in_snowflake",
+            "slug": "circles-in-snowflake",
+            "name_en": "Circles in a Winter Snowflake",
+            "name_fr": "Cercles dans une flocon",
+            "name_ar": "دوائر في زهرة ثلج",
+            "description_en": "A fun winter coloring page featuring simple circles inside a detailed snowflake design.",
+            "description_fr": "Page de coloriage d'hiver amusante avec des cercles simples dans un flocon détaillé.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "circles_on_beach",
+          "name_en": "Circles on a Sandy Beach",
+          "name_fr": "Cercles sur une plage",
+          "name_ar": "دوائر على شاطئ رمال",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "circles_on_beach",
+            "slug": "circles-on-beach",
+            "name_en": "Circles on a Sandy Beach",
+            "name_fr": "Cercles sur une plage",
+            "name_ar": "دوائر على شاطئ رمال",
+            "description_en": "Coloring page showing colorful circles scattered on a sunny beach scene.",
+            "description_fr": "Page de coloriage montrant des cercles colorés dispersés sur une scène de plage ensoleillée.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "circles_in_tree",
+          "name_en": "Circles in a Green Tree",
+          "name_fr": "Cercles dans un arbre vert",
+          "name_ar": "دوائر في شجرة خضراء",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "circles_in_tree",
+            "slug": "circles-in-tree",
+            "name_en": "Circles in a Green Tree",
+            "name_fr": "Cercles dans un arbre vert",
+            "name_ar": "دوائر في شجرة خضراء",
+            "description_en": "Nature coloring page with circles representing fruit or flowers inside a tree.",
+            "description_fr": "Page de coloriage de nature avec des cercles représentant des fruits ou des fleurs dans un arbre.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "circles_in_pizza",
+          "name_en": "Circles in a Pizza Slice",
+          "name_fr": "Cercles dans une tranche de pizza",
+          "name_ar": "دوائر في شريحة بيتزا",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "circles_in_pizza",
+            "slug": "circles-in-pizza",
+            "name_en": "Circles in a Pizza Slice",
+            "name_fr": "Cercles dans une tranche de pizza",
+            "name_ar": "دوائر في شريحة بيتزا",
+            "description_en": "Delicious food coloring page with circular pepperoni slices on a pizza.",
+            "description_fr": "Page de coloriage délicieuse avec des tranches de pizza rondes au pepperoni.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "circles_in_garden",
+          "name_en": "Circles in a Flower Garden",
+          "name_fr": "Cercles dans un jardin de fleurs",
+          "name_ar": "دوائر في حديقة زهور",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "circles_in_garden",
+            "slug": "circles-in-garden",
+            "name_en": "Circles in a Flower Garden",
+            "name_fr": "Cercles dans un jardin de fleurs",
+            "name_ar": "دوائر في حديقة زهور",
+            "description_en": "Bright spring coloring page with circular flowers blooming in a garden setting.",
+            "description_fr": "Page de coloriage printanière éclatante avec des fleurs circulaires en fleur dans un jardin.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "letter_a_with_apple",
+        "parent_id": "english_alphabet_illustrated",
+        "name_en": "Letter A with Apple",
+        "name_fr": "Lettre A avec une pomme",
+        "name_ar": "حرف A مع تفاحة",
+        "_label": "alphabet/english_alphabet_illustrated",
+        "_category": "Géométrie / Alphabet"
+      },
+      "raw": "[\n  {\n    \"id\": \"apple_tree_in_garden\",\n    \"slug\": \"apple-tree-in-garden\",\n    \"name_en\": \"Red Apple Tree in a Sunny Garden\",\n    \"name_fr\": \"Arbre de pommes rouge dans un jardin\",\n    \"name_ar\": \"شجرة التفاح الحمراء في الحديقة\",\n    \"description_en\": \"A beautiful red apple tree with ripe fruit in a sunny garden, perfect for apple coloring pages.\",\n    \"description_fr\": \"Page de coloriage d'un beau arbre de pommes rouges avec des fruits mûrs dans un jardin ensoleillé.\",\n    \"weight\": 0\n  },\n  {\n    \"id\": \"apple_on_table\",\n    \"slug\": \"apple-on-table\",\n    \"name_en\": \"Fresh Red Apple on a Wooden Table\",\n    \"name_fr\": \"Pomme rouge fraîche sur une table\",\n    \"name_ar\": \"تفاحة حمراء طازجة على طاولة خشبية\",\n    \"description_en\": \"A shiny red apple resting on a rustic wooden table, great for simple apple coloring activities.\",\n    \"description_fr\": \"Page de coloriage d'une pomme rouge brillante reposant sur une table en bois rustique.\",\n    \"weight\": 1\n  },\n  {\n    \"id\": \"apple_in_basket\",\n    \"slug\": \"apple-in-basket\",\n    \"name_en\": \"Ripe Apples in a Woven Basket\",\n    \"name_fr\": \"Pommes mûres dans un panier tressé\",\n    \"name_ar\": \"تفاحات ناضجة في سلة م织ية\",\n    \"description_en\": \"Coloring page featuring a woven basket filled with fresh red apples, ideal for letter A learning.\",\n    \"description_fr\": \"Page de coloriage montrant un panier tressé rempli de pommes fraîches rouges, idéal pour l'apprentissage de la lettre A.\",\n    \"weight\": 2\n  },\n  {\n    \"id\": \"apple_in_hands\",\n    \"slug\": \"apple-in-hands\",\n    \"name_en\": \"Child Holding a Red Apple\",\n    \"name_fr\": \"Enfant tenant une pomme rouge\",\n    \"name_ar\": \"طفل يحمل تفاحة حمراء\",\n    \"description_en\": \"A cute child holding a large red apple, a fun and interactive apple coloring page for kids.\",\n    \"description_fr\": \"Page de coloriage amusante d'un enfant adorable tenant une grande pomme rouge.\",\n    \"weight\": 3\n  },\n  {\n    \"id\": \"apple_in_jar\",\n    \"slug\": \"apple-in-jar\",\n    \"name_en\": \"Canned Apples in a Glass Jar\",\n    \"name_fr\": \"Pommes en conserve dans un bocal\",\n    \"name_ar\": \"تفاح معلبة في زجاجة زجاجية\",\n    \"description_en\": \"A clear glass jar filled with canned apples, offering a unique perspective for apple coloring.\",\n    \"description_fr\": \"Page de coloriage d'un bocal en verre rempli de pommes en conserve, offrant une perspective unique.\",\n    \"weight\": 4\n  }\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "apple_tree_in_garden",
+          "slug": "apple-tree-in-garden",
+          "name_en": "Red Apple Tree in a Sunny Garden",
+          "name_fr": "Arbre de pommes rouge dans un jardin",
+          "name_ar": "شجرة التفاح الحمراء في الحديقة",
+          "description_en": "A beautiful red apple tree with ripe fruit in a sunny garden, perfect for apple coloring pages.",
+          "description_fr": "Page de coloriage d'un beau arbre de pommes rouges avec des fruits mûrs dans un jardin ensoleillé.",
+          "weight": 0
+        },
+        {
+          "id": "apple_on_table",
+          "slug": "apple-on-table",
+          "name_en": "Fresh Red Apple on a Wooden Table",
+          "name_fr": "Pomme rouge fraîche sur une table",
+          "name_ar": "تفاحة حمراء طازجة على طاولة خشبية",
+          "description_en": "A shiny red apple resting on a rustic wooden table, great for simple apple coloring activities.",
+          "description_fr": "Page de coloriage d'une pomme rouge brillante reposant sur une table en bois rustique.",
+          "weight": 1
+        },
+        {
+          "id": "apple_in_basket",
+          "slug": "apple-in-basket",
+          "name_en": "Ripe Apples in a Woven Basket",
+          "name_fr": "Pommes mûres dans un panier tressé",
+          "name_ar": "تفاحات ناضجة في سلة م织ية",
+          "description_en": "Coloring page featuring a woven basket filled with fresh red apples, ideal for letter A learning.",
+          "description_fr": "Page de coloriage montrant un panier tressé rempli de pommes fraîches rouges, idéal pour l'apprentissage de la lettre A.",
+          "weight": 2
+        },
+        {
+          "id": "apple_in_hands",
+          "slug": "apple-in-hands",
+          "name_en": "Child Holding a Red Apple",
+          "name_fr": "Enfant tenant une pomme rouge",
+          "name_ar": "طفل يحمل تفاحة حمراء",
+          "description_en": "A cute child holding a large red apple, a fun and interactive apple coloring page for kids.",
+          "description_fr": "Page de coloriage amusante d'un enfant adorable tenant une grande pomme rouge.",
+          "weight": 3
+        },
+        {
+          "id": "apple_in_jar",
+          "slug": "apple-in-jar",
+          "name_en": "Canned Apples in a Glass Jar",
+          "name_fr": "Pommes en conserve dans un bocal",
+          "name_ar": "تفاح معلبة في زجاجة زجاجية",
+          "description_en": "A clear glass jar filled with canned apples, offering a unique perspective for apple coloring.",
+          "description_fr": "Page de coloriage d'un bocal en verre rempli de pommes en conserve, offrant une perspective unique.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 11.378866195678711,
+      "evaluations": [
+        {
+          "id": "apple_tree_in_garden",
+          "name_en": "Red Apple Tree in a Sunny Garden",
+          "name_fr": "Arbre de pommes rouge dans un jardin",
+          "name_ar": "شجرة التفاح الحمراء في الحديقة",
+          "name_en_word_count": 7,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "apple_tree_in_garden",
+            "slug": "apple-tree-in-garden",
+            "name_en": "Red Apple Tree in a Sunny Garden",
+            "name_fr": "Arbre de pommes rouge dans un jardin",
+            "name_ar": "شجرة التفاح الحمراء في الحديقة",
+            "description_en": "A beautiful red apple tree with ripe fruit in a sunny garden, perfect for apple coloring pages.",
+            "description_fr": "Page de coloriage d'un beau arbre de pommes rouges avec des fruits mûrs dans un jardin ensoleillé.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "apple_on_table",
+          "name_en": "Fresh Red Apple on a Wooden Table",
+          "name_fr": "Pomme rouge fraîche sur une table",
+          "name_ar": "تفاحة حمراء طازجة على طاولة خشبية",
+          "name_en_word_count": 7,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 6,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "apple_on_table",
+            "slug": "apple-on-table",
+            "name_en": "Fresh Red Apple on a Wooden Table",
+            "name_fr": "Pomme rouge fraîche sur une table",
+            "name_ar": "تفاحة حمراء طازجة على طاولة خشبية",
+            "description_en": "A shiny red apple resting on a rustic wooden table, great for simple apple coloring activities.",
+            "description_fr": "Page de coloriage d'une pomme rouge brillante reposant sur une table en bois rustique.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "apple_in_basket",
+          "name_en": "Ripe Apples in a Woven Basket",
+          "name_fr": "Pommes mûres dans un panier tressé",
+          "name_ar": "تفاحات ناضجة في سلة م织ية",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "apple_in_basket",
+            "slug": "apple-in-basket",
+            "name_en": "Ripe Apples in a Woven Basket",
+            "name_fr": "Pommes mûres dans un panier tressé",
+            "name_ar": "تفاحات ناضجة في سلة م织ية",
+            "description_en": "Coloring page featuring a woven basket filled with fresh red apples, ideal for letter A learning.",
+            "description_fr": "Page de coloriage montrant un panier tressé rempli de pommes fraîches rouges, idéal pour l'apprentissage de la lettre A.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "apple_in_hands",
+          "name_en": "Child Holding a Red Apple",
+          "name_fr": "Enfant tenant une pomme rouge",
+          "name_ar": "طفل يحمل تفاحة حمراء",
+          "name_en_word_count": 5,
+          "name_en_has_setting": false,
+          "name_en_subject_setting_ok": false,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "apple_in_hands",
+            "slug": "apple-in-hands",
+            "name_en": "Child Holding a Red Apple",
+            "name_fr": "Enfant tenant une pomme rouge",
+            "name_ar": "طفل يحمل تفاحة حمراء",
+            "description_en": "A cute child holding a large red apple, a fun and interactive apple coloring page for kids.",
+            "description_fr": "Page de coloriage amusante d'un enfant adorable tenant une grande pomme rouge.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "apple_in_jar",
+          "name_en": "Canned Apples in a Glass Jar",
+          "name_fr": "Pommes en conserve dans un bocal",
+          "name_ar": "تفاح معلبة في زجاجة زجاجية",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "apple_in_jar",
+            "slug": "apple-in-jar",
+            "name_en": "Canned Apples in a Glass Jar",
+            "name_fr": "Pommes en conserve dans un bocal",
+            "name_ar": "تفاح معلبة في زجاجة زجاجية",
+            "description_en": "A clear glass jar filled with canned apples, offering a unique perspective for apple coloring.",
+            "description_fr": "Page de coloriage d'un bocal en verre rempli de pommes en conserve, offrant une perspective unique.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "child_face_features",
+        "parent_id": "external_anatomy",
+        "name_en": "Child Face Features",
+        "name_fr": "Traits du visage d'enfant",
+        "name_ar": "ملامح وجه الطفل",
+        "_label": "body/external_anatomy",
+        "_category": "Corps humain"
+      },
+      "raw": "[\n  {\"id\": \"child_face_in_mirror\", \"slug\": \"child-face-in-mirror\", \"name_en\": \"Child Face in a Mirror\", \"name_fr\": \"Visage d'enfant dans un miroir\", \"name_ar\": \"وجه طفل في مرآة\", \"description_en\": \"Coloring page featuring a child's face reflected in a mirror, great for learning facial features.\", \"description_fr\": \"Page de coloriage montrant le visage d'un enfant reflété dans un miroir, idéale pour apprendre les traits du visage.\", \"weight\": 0},\n  {\"id\": \"baby_face_on_bench\", \"slug\": \"baby-face-on-bench\", \"name_en\": \"Baby Face on a Park Bench\", \"name_fr\": \"Visage de bébé sur un banc\", \"name_ar\": \"وجه طفل على مقعد\", \"description_en\": \"Coloring page with a baby's face sitting on a park bench, perfect for toddlers.\", \"description_fr\": \"Page de coloriage avec le visage d'un bébé assis sur un banc de parc, parfait pour les tout-petits.\", \"weight\": 1},\n  {\"id\": \"toddler_face_in_stroller\", \"slug\": \"toddler-face-in-stroller\", \"name_en\": \"Toddler Face in a Stroller\", \"name_fr\": \"Visage de tout-petit dans un poussette\", \"name_ar\": \"وجه طفل في عربة\", \"description_en\": \"Coloring page showing a toddler's face inside a stroller, simple outlines for young children.\", \"description_fr\": \"Page de coloriage montrant le visage d'un tout-petit dans une poussette, contours simples pour les jeunes enfants.\", \"weight\": 2},\n  {\"id\": \"child_face_at_birthday\", \"slug\": \"child-face-at-birthday\", \"name_en\": \"Child Face at a Birthday Party\", \"name_fr\": \"Visage d'enfant à une fête d'anniversaire\", \"name_ar\": \"وجه طفل في حفلة عيد ميلاد\", \"description_en\": \"Coloring page of a child's face celebrating at a birthday party, fun and engaging for kids.\", \"description_fr\": \"Page de coloriage du visage d'un enfant célébrant à une fête d'anniversaire, amusante et engageante pour les enfants.\", \"weight\": 3},\n  {\"id\": \"kiddo_face_in_bed\", \"slug\": \"kiddo-face-in-bed\", \"name_en\": \"Kiddo Face in a Bed\", \"name_fr\": \"Visage d'enfant dans un lit\", \"name_ar\": \"وجه طفل في سرير\", \"description_en\": \"Coloring page with a child's face resting in a bed, cozy and suitable for bedtime coloring.\", \"description_fr\": \"Page de coloriage avec le visage d'un enfant reposant dans un lit, confortable et adaptée pour le coloriage avant le coucher.\", \"weight\": 4}\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "child_face_in_mirror",
+          "slug": "child-face-in-mirror",
+          "name_en": "Child Face in a Mirror",
+          "name_fr": "Visage d'enfant dans un miroir",
+          "name_ar": "وجه طفل في مرآة",
+          "description_en": "Coloring page featuring a child's face reflected in a mirror, great for learning facial features.",
+          "description_fr": "Page de coloriage montrant le visage d'un enfant reflété dans un miroir, idéale pour apprendre les traits du visage.",
+          "weight": 0
+        },
+        {
+          "id": "baby_face_on_bench",
+          "slug": "baby-face-on-bench",
+          "name_en": "Baby Face on a Park Bench",
+          "name_fr": "Visage de bébé sur un banc",
+          "name_ar": "وجه طفل على مقعد",
+          "description_en": "Coloring page with a baby's face sitting on a park bench, perfect for toddlers.",
+          "description_fr": "Page de coloriage avec le visage d'un bébé assis sur un banc de parc, parfait pour les tout-petits.",
+          "weight": 1
+        },
+        {
+          "id": "toddler_face_in_stroller",
+          "slug": "toddler-face-in-stroller",
+          "name_en": "Toddler Face in a Stroller",
+          "name_fr": "Visage de tout-petit dans un poussette",
+          "name_ar": "وجه طفل في عربة",
+          "description_en": "Coloring page showing a toddler's face inside a stroller, simple outlines for young children.",
+          "description_fr": "Page de coloriage montrant le visage d'un tout-petit dans une poussette, contours simples pour les jeunes enfants.",
+          "weight": 2
+        },
+        {
+          "id": "child_face_at_birthday",
+          "slug": "child-face-at-birthday",
+          "name_en": "Child Face at a Birthday Party",
+          "name_fr": "Visage d'enfant à une fête d'anniversaire",
+          "name_ar": "وجه طفل في حفلة عيد ميلاد",
+          "description_en": "Coloring page of a child's face celebrating at a birthday party, fun and engaging for kids.",
+          "description_fr": "Page de coloriage du visage d'un enfant célébrant à une fête d'anniversaire, amusante et engageante pour les enfants.",
+          "weight": 3
+        },
+        {
+          "id": "kiddo_face_in_bed",
+          "slug": "kiddo-face-in-bed",
+          "name_en": "Kiddo Face in a Bed",
+          "name_fr": "Visage d'enfant dans un lit",
+          "name_ar": "وجه طفل في سرير",
+          "description_en": "Coloring page with a child's face resting in a bed, cozy and suitable for bedtime coloring.",
+          "description_fr": "Page de coloriage avec le visage d'un enfant reposant dans un lit, confortable et adaptée pour le coloriage avant le coucher.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 9.938204526901245,
+      "evaluations": [
+        {
+          "id": "child_face_in_mirror",
+          "name_en": "Child Face in a Mirror",
+          "name_fr": "Visage d'enfant dans un miroir",
+          "name_ar": "وجه طفل في مرآة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "child_face_in_mirror",
+            "slug": "child-face-in-mirror",
+            "name_en": "Child Face in a Mirror",
+            "name_fr": "Visage d'enfant dans un miroir",
+            "name_ar": "وجه طفل في مرآة",
+            "description_en": "Coloring page featuring a child's face reflected in a mirror, great for learning facial features.",
+            "description_fr": "Page de coloriage montrant le visage d'un enfant reflété dans un miroir, idéale pour apprendre les traits du visage.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "baby_face_on_bench",
+          "name_en": "Baby Face on a Park Bench",
+          "name_fr": "Visage de bébé sur un banc",
+          "name_ar": "وجه طفل على مقعد",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "baby_face_on_bench",
+            "slug": "baby-face-on-bench",
+            "name_en": "Baby Face on a Park Bench",
+            "name_fr": "Visage de bébé sur un banc",
+            "name_ar": "وجه طفل على مقعد",
+            "description_en": "Coloring page with a baby's face sitting on a park bench, perfect for toddlers.",
+            "description_fr": "Page de coloriage avec le visage d'un bébé assis sur un banc de parc, parfait pour les tout-petits.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "toddler_face_in_stroller",
+          "name_en": "Toddler Face in a Stroller",
+          "name_fr": "Visage de tout-petit dans un poussette",
+          "name_ar": "وجه طفل في عربة",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "toddler_face_in_stroller",
+            "slug": "toddler-face-in-stroller",
+            "name_en": "Toddler Face in a Stroller",
+            "name_fr": "Visage de tout-petit dans un poussette",
+            "name_ar": "وجه طفل في عربة",
+            "description_en": "Coloring page showing a toddler's face inside a stroller, simple outlines for young children.",
+            "description_fr": "Page de coloriage montrant le visage d'un tout-petit dans une poussette, contours simples pour les jeunes enfants.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "child_face_at_birthday",
+          "name_en": "Child Face at a Birthday Party",
+          "name_fr": "Visage d'enfant à une fête d'anniversaire",
+          "name_ar": "وجه طفل في حفلة عيد ميلاد",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 6,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "child_face_at_birthday",
+            "slug": "child-face-at-birthday",
+            "name_en": "Child Face at a Birthday Party",
+            "name_fr": "Visage d'enfant à une fête d'anniversaire",
+            "name_ar": "وجه طفل في حفلة عيد ميلاد",
+            "description_en": "Coloring page of a child's face celebrating at a birthday party, fun and engaging for kids.",
+            "description_fr": "Page de coloriage du visage d'un enfant célébrant à une fête d'anniversaire, amusante et engageante pour les enfants.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "kiddo_face_in_bed",
+          "name_en": "Kiddo Face in a Bed",
+          "name_fr": "Visage d'enfant dans un lit",
+          "name_ar": "وجه طفل في سرير",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "kiddo_face_in_bed",
+            "slug": "kiddo-face-in-bed",
+            "name_en": "Kiddo Face in a Bed",
+            "name_fr": "Visage d'enfant dans un lit",
+            "name_ar": "وجه طفل في سرير",
+            "description_en": "Coloring page with a child's face resting in a bed, cozy and suitable for bedtime coloring.",
+            "description_fr": "Page de coloriage avec le visage d'un enfant reposant dans un lit, confortable et adaptée pour le coloriage avant le coucher.",
+            "weight": 4
+          }
+        }
+      ]
+    },
+    {
+      "leaf": {
+        "id": "heart_with_blood_circulation",
+        "parent_id": "internal_organs_educational",
+        "name_en": "Heart with Blood Circulation",
+        "name_fr": "Cœur avec circulation sanguine",
+        "name_ar": "القلب مع الدورة الدموية",
+        "_label": "body/internal_organs_educational",
+        "_category": "Corps humain"
+      },
+      "raw": "[\n  {\"id\": \"heart_beating_in_chest\", \"slug\": \"heart-beating-in-chest\", \"name_en\": \"Red Heart Beating in Human Chest\", \"name_fr\": \"Cœur rouge battant dans la poitrine\", \"name_ar\": \"قلب ينبض في الصدر\", \"description_en\": \"A red heart beating inside a human chest, perfect for heart circulation coloring pages.\", \"description_fr\": \"Un cœur rouge battant dans une poitrine humaine, idéal pour les pages de coloriage sur la circulation sanguine.\", \"weight\": 0},\n  {\"id\": \"blood_flow_in_veins\", \"slug\": \"blood-flow-in-veins\", \"name_en\": \"Blue Blood Flow in Red Veins\", \"name_fr\": \"Sang bleu en veines rouges\", \"name_ar\": \"دم أزرق في وعاء أحمر\", \"description_en\": \"Blue blood moving through red veins, a clear educational coloring page for learning circulation.\", \"description_fr\": \"Du sang bleu circulant dans des veines rouges, une page de coloriage éducative claire pour apprendre la circulation.\", \"weight\": 1},\n  {\"id\": \"pump_in_heart_chamber\", \"slug\": \"pump-in-heart-chamber\", \"name_en\": \"Muscle Pump in Heart Chamber\", \"name_fr\": \"Pompe musculaire dans la chambre du cœur\", \"name_ar\": \"ضخامة عضلية في غرفة القلب\", \"description_en\": \"Detailed muscle pump inside a heart chamber, designed for advanced heart structure coloring.\", \"description_fr\": \"Une pompe musculaire détaillée à l'intérieur d'une chambre du cœur, conçue pour le coloriage avancé de la structure cardiaque.\", \"weight\": 2},\n  {\"id\": \"arteries_branching_out\", \"slug\": \"arteries-branching-out\", \"name_en\": \"Red Arteries Branching Out\", \"name_fr\": \"Artères rouges qui se branchent\", \"name_ar\": \"عروق حمراء تتفرع\", \"description_en\": \"Red arteries branching out from the heart, an engaging coloring page about blood vessels.\", \"description_fr\": \"Des artères rouges qui se branchent à partir du cœur, une page de coloriage engageante sur les vaisseaux sanguins.\", \"weight\": 3},\n  {\"id\": \"capillaries_near_skin\", \"slug\": \"capillaries-near-skin\", \"name_en\": \"Tiny Capillaries Near Skin\", \"name_fr\": \"Capillaires près de la peau\", \"name_ar\": \"أوعية دقيقة بالقرب من الجلد\", \"description_en\": \"Tiny capillaries near the skin surface, a fascinating close-up for detailed heart coloring.\", \"description_fr\": \"De petits capillaires près de la surface de la peau, un gros plan fascinant pour le coloriage détaillé du cœur.\", \"weight\": 4}\n]",
+      "json_ok": true,
+      "concepts": [
+        {
+          "id": "heart_beating_in_chest",
+          "slug": "heart-beating-in-chest",
+          "name_en": "Red Heart Beating in Human Chest",
+          "name_fr": "Cœur rouge battant dans la poitrine",
+          "name_ar": "قلب ينبض في الصدر",
+          "description_en": "A red heart beating inside a human chest, perfect for heart circulation coloring pages.",
+          "description_fr": "Un cœur rouge battant dans une poitrine humaine, idéal pour les pages de coloriage sur la circulation sanguine.",
+          "weight": 0
+        },
+        {
+          "id": "blood_flow_in_veins",
+          "slug": "blood-flow-in-veins",
+          "name_en": "Blue Blood Flow in Red Veins",
+          "name_fr": "Sang bleu en veines rouges",
+          "name_ar": "دم أزرق في وعاء أحمر",
+          "description_en": "Blue blood moving through red veins, a clear educational coloring page for learning circulation.",
+          "description_fr": "Du sang bleu circulant dans des veines rouges, une page de coloriage éducative claire pour apprendre la circulation.",
+          "weight": 1
+        },
+        {
+          "id": "pump_in_heart_chamber",
+          "slug": "pump-in-heart-chamber",
+          "name_en": "Muscle Pump in Heart Chamber",
+          "name_fr": "Pompe musculaire dans la chambre du cœur",
+          "name_ar": "ضخامة عضلية في غرفة القلب",
+          "description_en": "Detailed muscle pump inside a heart chamber, designed for advanced heart structure coloring.",
+          "description_fr": "Une pompe musculaire détaillée à l'intérieur d'une chambre du cœur, conçue pour le coloriage avancé de la structure cardiaque.",
+          "weight": 2
+        },
+        {
+          "id": "arteries_branching_out",
+          "slug": "arteries-branching-out",
+          "name_en": "Red Arteries Branching Out",
+          "name_fr": "Artères rouges qui se branchent",
+          "name_ar": "عروق حمراء تتفرع",
+          "description_en": "Red arteries branching out from the heart, an engaging coloring page about blood vessels.",
+          "description_fr": "Des artères rouges qui se branchent à partir du cœur, une page de coloriage engageante sur les vaisseaux sanguins.",
+          "weight": 3
+        },
+        {
+          "id": "capillaries_near_skin",
+          "slug": "capillaries-near-skin",
+          "name_en": "Tiny Capillaries Near Skin",
+          "name_fr": "Capillaires près de la peau",
+          "name_ar": "أوعية دقيقة بالقرب من الجلد",
+          "description_en": "Tiny capillaries near the skin surface, a fascinating close-up for detailed heart coloring.",
+          "description_fr": "De petits capillaires près de la surface de la peau, un gros plan fascinant pour le coloriage détaillé du cœur.",
+          "weight": 4
+        }
+      ],
+      "latency_s": 9.667762994766235,
+      "evaluations": [
+        {
+          "id": "heart_beating_in_chest",
+          "name_en": "Red Heart Beating in Human Chest",
+          "name_fr": "Cœur rouge battant dans la poitrine",
+          "name_ar": "قلب ينبض في الصدر",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 4,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "heart_beating_in_chest",
+            "slug": "heart-beating-in-chest",
+            "name_en": "Red Heart Beating in Human Chest",
+            "name_fr": "Cœur rouge battant dans la poitrine",
+            "name_ar": "قلب ينبض في الصدر",
+            "description_en": "A red heart beating inside a human chest, perfect for heart circulation coloring pages.",
+            "description_fr": "Un cœur rouge battant dans une poitrine humaine, idéal pour les pages de coloriage sur la circulation sanguine.",
+            "weight": 0
+          }
+        },
+        {
+          "id": "blood_flow_in_veins",
+          "name_en": "Blue Blood Flow in Red Veins",
+          "name_fr": "Sang bleu en veines rouges",
+          "name_ar": "دم أزرق في وعاء أحمر",
+          "name_en_word_count": 6,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "blood_flow_in_veins",
+            "slug": "blood-flow-in-veins",
+            "name_en": "Blue Blood Flow in Red Veins",
+            "name_fr": "Sang bleu en veines rouges",
+            "name_ar": "دم أزرق في وعاء أحمر",
+            "description_en": "Blue blood moving through red veins, a clear educational coloring page for learning circulation.",
+            "description_fr": "Du sang bleu circulant dans des veines rouges, une page de coloriage éducative claire pour apprendre la circulation.",
+            "weight": 1
+          }
+        },
+        {
+          "id": "pump_in_heart_chamber",
+          "name_en": "Muscle Pump in Heart Chamber",
+          "name_fr": "Pompe musculaire dans la chambre du cœur",
+          "name_ar": "ضخامة عضلية في غرفة القلب",
+          "name_en_word_count": 5,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "pump_in_heart_chamber",
+            "slug": "pump-in-heart-chamber",
+            "name_en": "Muscle Pump in Heart Chamber",
+            "name_fr": "Pompe musculaire dans la chambre du cœur",
+            "name_ar": "ضخامة عضلية في غرفة القلب",
+            "description_en": "Detailed muscle pump inside a heart chamber, designed for advanced heart structure coloring.",
+            "description_fr": "Une pompe musculaire détaillée à l'intérieur d'une chambre du cœur, conçue pour le coloriage avancé de la structure cardiaque.",
+            "weight": 2
+          }
+        },
+        {
+          "id": "arteries_branching_out",
+          "name_en": "Red Arteries Branching Out",
+          "name_fr": "Artères rouges qui se branchent",
+          "name_ar": "عروق حمراء تتفرع",
+          "name_en_word_count": 4,
+          "name_en_has_setting": false,
+          "name_en_subject_setting_ok": false,
+          "name_ar_word_count": 3,
+          "name_ar_in_1_4_words": true,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "arteries_branching_out",
+            "slug": "arteries-branching-out",
+            "name_en": "Red Arteries Branching Out",
+            "name_fr": "Artères rouges qui se branchent",
+            "name_ar": "عروق حمراء تتفرع",
+            "description_en": "Red arteries branching out from the heart, an engaging coloring page about blood vessels.",
+            "description_fr": "Des artères rouges qui se branchent à partir du cœur, une page de coloriage engageante sur les vaisseaux sanguins.",
+            "weight": 3
+          }
+        },
+        {
+          "id": "capillaries_near_skin",
+          "name_en": "Tiny Capillaries Near Skin",
+          "name_fr": "Capillaires près de la peau",
+          "name_ar": "أوعية دقيقة بالقرب من الجلد",
+          "name_en_word_count": 4,
+          "name_en_has_setting": true,
+          "name_en_subject_setting_ok": true,
+          "name_ar_word_count": 5,
+          "name_ar_in_1_4_words": false,
+          "name_ar_has_harakat": false,
+          "name_ar_present": true,
+          "raw": {
+            "id": "capillaries_near_skin",
+            "slug": "capillaries-near-skin",
+            "name_en": "Tiny Capillaries Near Skin",
+            "name_fr": "Capillaires près de la peau",
+            "name_ar": "أوعية دقيقة بالقرب من الجلد",
+            "description_en": "Tiny capillaries near the skin surface, a fascinating close-up for detailed heart coloring.",
+            "description_fr": "De petits capillaires près de la surface de la peau, un gros plan fascinant pour le coloriage détaillé du cœur.",
+            "weight": 4
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "leaves_targeted": 15,
+    "leaves_actual": 15,
+    "calls_total": 15,
+    "calls_json_ok": 15,
+    "concepts_total": 75,
+    "name_en_subject_setting_ok": "69/75",
+    "name_ar_present": "75/75",
+    "name_ar_in_1_4_words": "49/75",
+    "name_ar_no_harakat": "74/75",
+    "avg_latency_s": 10.85
+  }
+}

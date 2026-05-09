@@ -1,0 +1,306 @@
+{
+  "poc": "soccer-karras",
+  "date": "2026-05-07",
+  "comfy_url": "http://127.0.0.1:8188",
+  "ollama_base_url": "http://100.65.24.35:11434",
+  "vision_model": "qwen3.5:9b",
+  "params_fixes": {
+    "sampler_name": "euler",
+    "steps": 8,
+    "scheduler": "karras",
+    "cfg": 1.0,
+    "width": 1024,
+    "height": 1024,
+    "denoise": 1.0
+  },
+  "negative_used": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet, no motion",
+  "source_index": "docs/reports/poc-seed-variance/poc-seed-variance.json",
+  "seeds": {
+    "soccer": [
+      511616025,
+      2390402793,
+      3299030207,
+      2519087846,
+      1030509027,
+      2637987308,
+      475609845,
+      3507963309,
+      1931252818,
+      2942817377
+    ]
+  },
+  "prompt_used": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.",
+  "items_total": 10,
+  "items": [
+    {
+      "concept": "soccer",
+      "var_index": 1,
+      "seed": 511616025,
+      "seed_short": "616025",
+      "filename": "soccer_var01_s616025_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:03:59Z",
+      "comfy_latency_s": 18.14,
+      "comfy_prompt_id": "c3d7afec-4c9d-4763-9a8c-4269a1704419",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var01_s616025_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00239_.png",
+      "histogram": {
+        "color_ratio": 0.00272,
+        "white_ratio": 0.79556,
+        "ink_ratio": 0.14715,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 6.3155012130737305
+      },
+      "finished_at": "2026-05-06T22:04:24Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 2,
+      "seed": 2390402793,
+      "seed_short": "402793",
+      "filename": "soccer_var02_s402793_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:04:24Z",
+      "comfy_latency_s": 14.12,
+      "comfy_prompt_id": "8e6c0027-b348-441e-b909-642f1de8176b",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var02_s402793_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00240_.png",
+      "histogram": {
+        "color_ratio": 0.0028,
+        "white_ratio": 0.79821,
+        "ink_ratio": 0.14063,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.670341730117798
+      },
+      "finished_at": "2026-05-06T22:04:40Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 3,
+      "seed": 3299030207,
+      "seed_short": "030207",
+      "filename": "soccer_var03_s030207_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:04:40Z",
+      "comfy_latency_s": 12.23,
+      "comfy_prompt_id": "c5b37301-b27f-4ac6-b9d4-1f727d20385b",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var03_s030207_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00241_.png",
+      "histogram": {
+        "color_ratio": 0.00291,
+        "white_ratio": 0.79383,
+        "ink_ratio": 0.14609,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.698042392730713
+      },
+      "finished_at": "2026-05-06T22:04:55Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 4,
+      "seed": 2519087846,
+      "seed_short": "087846",
+      "filename": "soccer_var04_s087846_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:04:55Z",
+      "comfy_latency_s": 14.1,
+      "comfy_prompt_id": "9fc63370-ff62-4d11-99ce-91bd35386d49",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var04_s087846_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00242_.png",
+      "histogram": {
+        "color_ratio": 0.00245,
+        "white_ratio": 0.79678,
+        "ink_ratio": 0.14627,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.84193754196167
+      },
+      "finished_at": "2026-05-06T22:05:12Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 5,
+      "seed": 1030509027,
+      "seed_short": "509027",
+      "filename": "soccer_var05_s509027_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:05:12Z",
+      "comfy_latency_s": 14.17,
+      "comfy_prompt_id": "eb2ad60e-9f28-4492-bdc3-d61d7d0f8e78",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var05_s509027_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00243_.png",
+      "histogram": {
+        "color_ratio": 0.0031,
+        "white_ratio": 0.79777,
+        "ink_ratio": 0.14201,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.779158353805542
+      },
+      "finished_at": "2026-05-06T22:05:29Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 6,
+      "seed": 2637987308,
+      "seed_short": "987308",
+      "filename": "soccer_var06_s987308_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:05:29Z",
+      "comfy_latency_s": 14.14,
+      "comfy_prompt_id": "6169ce5f-1ed3-4471-acb8-2d1189dd1a9f",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var06_s987308_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00244_.png",
+      "histogram": {
+        "color_ratio": 0.00245,
+        "white_ratio": 0.80191,
+        "ink_ratio": 0.14011,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.8120694160461426
+      },
+      "finished_at": "2026-05-06T22:05:46Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 7,
+      "seed": 475609845,
+      "seed_short": "609845",
+      "filename": "soccer_var07_s609845_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:05:46Z",
+      "comfy_latency_s": 14.1,
+      "comfy_prompt_id": "54ea6ad7-ad18-4b86-b998-fe8f848cccb7",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var07_s609845_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00245_.png",
+      "histogram": {
+        "color_ratio": 0.00261,
+        "white_ratio": 0.79373,
+        "ink_ratio": 0.14765,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.821230173110962
+      },
+      "finished_at": "2026-05-06T22:06:03Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 8,
+      "seed": 3507963309,
+      "seed_short": "963309",
+      "filename": "soccer_var08_s963309_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:06:03Z",
+      "comfy_latency_s": 14.15,
+      "comfy_prompt_id": "d79b30b0-a5b5-4514-a398-cf330f66ee55",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var08_s963309_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00246_.png",
+      "histogram": {
+        "color_ratio": 0.00257,
+        "white_ratio": 0.79183,
+        "ink_ratio": 0.14908,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.7499568462371826
+      },
+      "finished_at": "2026-05-06T22:06:20Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 9,
+      "seed": 1931252818,
+      "seed_short": "252818",
+      "filename": "soccer_var09_s252818_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:06:20Z",
+      "comfy_latency_s": 14.16,
+      "comfy_prompt_id": "98f1013e-75de-495e-b328-5314b27417d6",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var09_s252818_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00247_.png",
+      "histogram": {
+        "color_ratio": 0.00239,
+        "white_ratio": 0.80137,
+        "ink_ratio": 0.1448,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.769087791442871
+      },
+      "finished_at": "2026-05-06T22:06:37Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 10,
+      "seed": 2942817377,
+      "seed_short": "817377",
+      "filename": "soccer_var10_s817377_08s_karras_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T22:06:37Z",
+      "comfy_latency_s": 14.15,
+      "comfy_prompt_id": "d2a47abb-aeec-40dc-b204-2e08a48a95d9",
+      "image_path": "docs/reports/poc-soccer-karras/soccer_var10_s817377_08s_karras_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00248_.png",
+      "histogram": {
+        "color_ratio": 0.00282,
+        "white_ratio": 0.80155,
+        "ink_ratio": 0.14272,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 2.7770259380340576
+      },
+      "finished_at": "2026-05-06T22:06:54Z"
+    }
+  ]
+}

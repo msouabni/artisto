@@ -1,0 +1,108 @@
+{
+  "test": "negative-prompt-fix",
+  "date": "2026-05-06",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "seed": 42001,
+  "soccer_prompt": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.",
+  "variants": [
+    [
+      "neg_none",
+      " "
+    ],
+    [
+      "neg_standard",
+      "shading, gradients, color fills, shadows, text, watermark, realistic"
+    ],
+    [
+      "neg_anatomy",
+      "motion blur, action lines, extra limbs, three legs, deformed anatomy, multiple exposure"
+    ],
+    [
+      "neg_full",
+      "shading, gradients, color fills, shadows, text, watermark, realistic, motion blur, action lines, extra limbs, three legs, deformed anatomy, multiple exposure"
+    ]
+  ],
+  "results": [
+    {
+      "code": "neg_none",
+      "negative": " ",
+      "image_path": "docs/reports/test-negative-fix/soccer_neg_none.png",
+      "sha256": "511f7a0d1b627ffce43b1115976ceff16559a8f3f0992f229dad8be32fe01aac",
+      "histogram": {
+        "color_ratio": 0.00212,
+        "white_ratio": 0.78488,
+        "ink_ratio": 0.13031,
+        "histogram_ok": true,
+        "flags": []
+      },
+      "ok": true,
+      "comfy_latency_s": 20.22,
+      "prompt_id": "28ba7636-9b42-44a1-bc9f-436931eb2e00",
+      "negative_in_overrides": false,
+      "applied_negative": "<filtered out by sanitize>",
+      "seed": 42001,
+      "cfg": 1.0
+    },
+    {
+      "code": "neg_standard",
+      "negative": "shading, gradients, color fills, shadows, text, watermark, realistic",
+      "image_path": "docs/reports/test-negative-fix/soccer_neg_standard.png",
+      "sha256": "497e0bedf6ba92db644d9ba8c2a60abd3a1b275bed452815f1dd6a03e464dfac",
+      "histogram": {
+        "color_ratio": 0.00212,
+        "white_ratio": 0.78488,
+        "ink_ratio": 0.13031,
+        "histogram_ok": true,
+        "flags": []
+      },
+      "ok": true,
+      "comfy_latency_s": 20.22,
+      "prompt_id": "38b13662-9514-44e0-8748-ddbcac249266",
+      "negative_in_overrides": true,
+      "applied_negative": "shading, gradients, color fills, shadows, text, watermark, realistic",
+      "seed": 42001,
+      "cfg": 1.0
+    },
+    {
+      "code": "neg_anatomy",
+      "negative": "motion blur, action lines, extra limbs, three legs, deformed anatomy, multiple exposure",
+      "image_path": "docs/reports/test-negative-fix/soccer_neg_anatomy.png",
+      "sha256": "01137422fd94b6ced0a84ac59cd5e5700758dd636813063f4a39ae4fda60876f",
+      "histogram": {
+        "color_ratio": 0.00212,
+        "white_ratio": 0.78488,
+        "ink_ratio": 0.13031,
+        "histogram_ok": true,
+        "flags": []
+      },
+      "ok": true,
+      "comfy_latency_s": 18.33,
+      "prompt_id": "0fd3358d-9ddc-4b86-84d5-b4d3965022ef",
+      "negative_in_overrides": true,
+      "applied_negative": "motion blur, action lines, extra limbs, three legs, deformed anatomy, multiple exposure",
+      "seed": 42001,
+      "cfg": 1.0
+    },
+    {
+      "code": "neg_full",
+      "negative": "shading, gradients, color fills, shadows, text, watermark, realistic, motion blur, action lines, extra limbs, three legs, deformed anatomy, multiple exposure",
+      "image_path": "docs/reports/test-negative-fix/soccer_neg_full.png",
+      "sha256": "5b624a5ba73bb8b1ffe01001812b1b64dac87209dae2c3c32241a64f6169ac9a",
+      "histogram": {
+        "color_ratio": 0.00212,
+        "white_ratio": 0.78488,
+        "ink_ratio": 0.13031,
+        "histogram_ok": true,
+        "flags": []
+      },
+      "ok": true,
+      "comfy_latency_s": 18.23,
+      "prompt_id": "cf9fbb2c-6c94-4953-96af-8df08214cb73",
+      "negative_in_overrides": true,
+      "applied_negative": "shading, gradients, color fills, shadows, text, watermark, realistic, motion blur, action lines, extra limbs, three legs, deformed anatomy, multiple exposure",
+      "seed": 42001,
+      "cfg": 1.0
+    }
+  ],
+  "all_unique_sha": true
+}

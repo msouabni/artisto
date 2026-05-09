@@ -1,0 +1,759 @@
+{
+  "poc": "generator-benchmark",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "fixed": {
+    "steps": 8,
+    "sampler_name": "euler",
+    "scheduler": "normal",
+    "cfg": 1.0,
+    "seed_base": 4242,
+    "seed_stride": 7
+  },
+  "results": {
+    "lion_in_savanna": {
+      "leaf_id": "lion_in_savanna",
+      "leaf_name_en": "Lion in the Savanna",
+      "workflow_class": "Solo animal",
+      "technique": "Solo en profil + savane/jungle silhouette en arrière-plan",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single lion in the savanna standing in profile, full body view, all four legs visible on the ground, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Acacia tree à préciser 'fully visible' (Insight A)"
+      ],
+      "filename": "lion_in_savanna_1024x1024_euler8s.png",
+      "seed": 4242,
+      "status": "ok",
+      "comfy_latency_s": 18.36,
+      "comfy_prompt_id": "bf705e61-aa2b-4618-8bd9-1d22b0af0a30",
+      "color_ratio": 0.00074,
+      "ink_ratio": 0.09808,
+      "white_ratio": 0.88222,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "african_elephant": {
+      "leaf_id": "african_elephant",
+      "leaf_name_en": "African Elephant",
+      "workflow_class": "Solo animal",
+      "technique": "Solo en profil + savane/jungle silhouette en arrière-plan",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single african elephant standing in profile, full body view, all four legs visible on the ground, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Acacia tree à préciser 'fully visible' (Insight A)"
+      ],
+      "filename": "african_elephant_1024x1024_euler8s.png",
+      "seed": 4249,
+      "status": "ok",
+      "comfy_latency_s": 18.12,
+      "comfy_prompt_id": "d5f8f07b-8416-4416-8865-89851fb5cdd5",
+      "color_ratio": 0.00107,
+      "ink_ratio": 0.08796,
+      "white_ratio": 0.89096,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "farm_horse": {
+      "leaf_id": "farm_horse",
+      "leaf_name_en": "Farm Horse",
+      "workflow_class": "Solo animal",
+      "technique": "Solo classique avec décor de ferme simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single farm horse standing in profile, full body view, all four legs visible on the ground, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Préciser 'four legs visible on the ground' pour les ongulés"
+      ],
+      "filename": "farm_horse_1024x1024_euler8s.png",
+      "seed": 4256,
+      "status": "ok",
+      "comfy_latency_s": 18.17,
+      "comfy_prompt_id": "4c5a56a6-1c94-4973-9b63-b9ec13d70266",
+      "color_ratio": 0.00097,
+      "ink_ratio": 0.12142,
+      "white_ratio": 0.85272,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "pet_turtle": {
+      "leaf_id": "pet_turtle",
+      "leaf_name_en": "Pet Turtle",
+      "workflow_class": "Solo animal",
+      "technique": "Solo classique en profil + décor minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single pet turtle standing in profile, full body view, all four legs visible on the ground, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Vue frontale risquée pour chats/chiens — préférer profil ou trois-quarts"
+      ],
+      "filename": "pet_turtle_1024x1024_euler8s.png",
+      "seed": 4263,
+      "status": "ok",
+      "comfy_latency_s": 20.18,
+      "comfy_prompt_id": "1a2f9e3e-00cc-4990-8778-9073480a4cbb",
+      "color_ratio": 0.00069,
+      "ink_ratio": 0.08377,
+      "white_ratio": 0.89961,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "sea_turtle_swimming": {
+      "leaf_id": "sea_turtle_swimming",
+      "leaf_name_en": "Sea Turtle Swimming",
+      "workflow_class": "Solo fish",
+      "technique": "Solo en eau + bulles ou plantes marines simples",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one sea turtle swimming centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Requin de face risqué — préférer profil"
+      ],
+      "filename": "sea_turtle_swimming_1024x1024_euler8s.png",
+      "seed": 4270,
+      "status": "ok",
+      "comfy_latency_s": 18.14,
+      "comfy_prompt_id": "8a43aa17-d45a-4ec0-b1d1-f6a688de2d6e",
+      "color_ratio": 0.00118,
+      "ink_ratio": 0.08383,
+      "white_ratio": 0.89261,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "monarch_butterfly": {
+      "leaf_id": "monarch_butterfly",
+      "leaf_name_en": "Monarch Butterfly",
+      "workflow_class": "Solo insect",
+      "technique": "Solo + élément botanique simple (feuille, fleur)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one monarch butterfly centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Préciser nombre exact de pattes : 6 pour insectes, 8 pour araignées"
+      ],
+      "filename": "monarch_butterfly_1024x1024_euler8s.png",
+      "seed": 4277,
+      "status": "ok",
+      "comfy_latency_s": 18.15,
+      "comfy_prompt_id": "48bcff34-45cc-4a06-82d7-17863b18d72d",
+      "color_ratio": 0.00087,
+      "ink_ratio": 0.11229,
+      "white_ratio": 0.86309,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "garden_spider": {
+      "leaf_id": "garden_spider",
+      "leaf_name_en": "Garden Spider",
+      "workflow_class": "Solo insect",
+      "technique": "Solo + élément botanique simple (feuille, fleur)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one garden spider centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Préciser nombre exact de pattes : 6 pour insectes, 8 pour araignées"
+      ],
+      "filename": "garden_spider_1024x1024_euler8s.png",
+      "seed": 4284,
+      "status": "ok",
+      "comfy_latency_s": 18.17,
+      "comfy_prompt_id": "c5fbdeca-ab0f-49a7-a40b-8915065c427a",
+      "color_ratio": 0.00088,
+      "ink_ratio": 0.11685,
+      "white_ratio": 0.86921,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "honeybee_on_flower": {
+      "leaf_id": "honeybee_on_flower",
+      "workflow_class": "Solo insect",
+      "status": "skip_unknown_leaf",
+      "error": "Feuille introuvable : honeybee_on_flower"
+    },
+    "nowruz_goldfish_in_bowl": {
+      "leaf_id": "nowruz_goldfish_in_bowl",
+      "leaf_name_en": "Nowruz Goldfish in Bowl",
+      "workflow_class": "Variable",
+      "technique": "Solo ou scène",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one nowruz goldfish in bowl centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Chinese dragon : pose explicite"
+      ],
+      "filename": "nowruz_goldfish_in_bowl_1024x1024_euler8s.png",
+      "seed": 4298,
+      "status": "ok",
+      "comfy_latency_s": 18.16,
+      "comfy_prompt_id": "6ac30885-7fca-49ca-8d4d-ca65e3a4abfa",
+      "color_ratio": 0.00104,
+      "ink_ratio": 0.09705,
+      "white_ratio": 0.88439,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "playful_dolphin": {
+      "leaf_id": "playful_dolphin",
+      "leaf_name_en": "Playful Dolphin",
+      "workflow_class": "Solo fish",
+      "technique": "Solo en eau + bulles ou plantes marines simples",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one playful dolphin centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Requin de face risqué — préférer profil"
+      ],
+      "filename": "playful_dolphin_1024x1024_euler8s.png",
+      "seed": 4305,
+      "status": "ok",
+      "comfy_latency_s": 18.13,
+      "comfy_prompt_id": "d99e64f1-6a27-4ecf-9568-77e3f172ea60",
+      "color_ratio": 0.00081,
+      "ink_ratio": 0.07239,
+      "white_ratio": 0.91496,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "clownfish_in_anemone": {
+      "leaf_id": "clownfish_in_anemone",
+      "leaf_name_en": "Clownfish in Anemone",
+      "workflow_class": "Solo fish",
+      "technique": "Solo en eau + bulles ou plantes marines simples",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one clownfish in anemone centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Requin de face risqué — préférer profil"
+      ],
+      "filename": "clownfish_in_anemone_1024x1024_euler8s.png",
+      "seed": 4312,
+      "status": "ok",
+      "comfy_latency_s": 18.15,
+      "comfy_prompt_id": "7bcd4fb1-f610-4888-9c32-b0b4e2d6738b",
+      "color_ratio": 0.00063,
+      "ink_ratio": 0.13963,
+      "white_ratio": 0.83676,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "soaring_eagle": {
+      "leaf_id": "soaring_eagle",
+      "leaf_name_en": "Soaring Eagle",
+      "workflow_class": "Solo bird",
+      "technique": "Solo + posture explicite (Insight D critique)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one soaring eagle centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, bird standing in air, vertical flying body",
+      "pitfalls": [
+        "Insight D : oiseau en vol DOIT préciser 'flying with wings spread open and body horizontal in flight pose'",
+        "Sinon retour à pose de repos par défaut (oiseau debout)"
+      ],
+      "filename": "soaring_eagle_1024x1024_euler8s.png",
+      "seed": 4319,
+      "status": "ok",
+      "comfy_latency_s": 18.15,
+      "comfy_prompt_id": "0b3786d0-7e6f-43e8-9553-c6bb60f957d5",
+      "color_ratio": 0.00105,
+      "ink_ratio": 0.09048,
+      "white_ratio": 0.89152,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "peacock_with_open_tail": {
+      "leaf_id": "peacock_with_open_tail",
+      "leaf_name_en": "Peacock with Open Tail",
+      "workflow_class": "Solo bird",
+      "technique": "Solo + posture explicite (Insight D critique)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one peacock with open tail centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, bird standing in air, vertical flying body",
+      "pitfalls": [
+        "Insight D : oiseau en vol DOIT préciser 'flying with wings spread open and body horizontal in flight pose'",
+        "Sinon retour à pose de repos par défaut (oiseau debout)"
+      ],
+      "filename": "peacock_with_open_tail_1024x1024_euler8s.png",
+      "seed": 4326,
+      "status": "ok",
+      "comfy_latency_s": 18.15,
+      "comfy_prompt_id": "3f9770fc-6f14-44cb-9ffd-4f914ef4e891",
+      "color_ratio": 0.00134,
+      "ink_ratio": 0.13875,
+      "white_ratio": 0.82856,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "emperor_penguin": {
+      "leaf_id": "emperor_penguin",
+      "leaf_name_en": "Emperor Penguin",
+      "workflow_class": "Solo animal",
+      "technique": "Solo + paysage glacé minimaliste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single emperor penguin standing in profile, full body view, all four legs visible on the ground, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Pingouins en groupe : utiliser formule procession §6.4"
+      ],
+      "filename": "emperor_penguin_1024x1024_euler8s.png",
+      "seed": 4333,
+      "status": "ok",
+      "comfy_latency_s": 18.18,
+      "comfy_prompt_id": "e9e8dee0-83f2-4f57-98a3-c246a8dc9995",
+      "color_ratio": 0.00023,
+      "ink_ratio": 0.04972,
+      "white_ratio": 0.94161,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "firefighter_with_hose": {
+      "leaf_id": "firefighter_with_hose",
+      "leaf_name_en": "Firefighter with Hose",
+      "workflow_class": "Solo humain pose active",
+      "technique": "Solo + accessoire signature + énumération anti-bras",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        848,
+        1264
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single firefighter with hose, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, extra arm, third arm",
+      "pitfalls": [
+        "Firefighter validé cas 4. Énumération bras critique."
+      ],
+      "filename": "firefighter_with_hose_848x1264_euler8s.png",
+      "seed": 4340,
+      "status": "ok",
+      "comfy_latency_s": 18.13,
+      "comfy_prompt_id": "daf408ce-c929-46c1-8552-51b54f93e8f5",
+      "color_ratio": 0.00097,
+      "ink_ratio": 0.12457,
+      "white_ratio": 0.84962,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "baker_with_bread": {
+      "leaf_id": "baker_with_bread",
+      "leaf_name_en": "Baker with Bread",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outils cuisine",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single baker with bread, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "4+ chefs : frise 1×4 obligatoire (cas Z5b)"
+      ],
+      "filename": "baker_with_bread_1024x1024_euler8s.png",
+      "seed": 4347,
+      "status": "ok",
+      "comfy_latency_s": 18.11,
+      "comfy_prompt_id": "254703d3-3db1-4ff2-aa16-b6a2228f4cdb",
+      "color_ratio": 0.00063,
+      "ink_ratio": 0.06998,
+      "white_ratio": 0.91596,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "doctor_with_stethoscope": {
+      "leaf_id": "doctor_with_stethoscope",
+      "leaf_name_en": "Doctor with Stethoscope",
+      "workflow_class": "Humain + entité OU Solo humain pose statique",
+      "technique": "Formule asymétrie médecin+patient OU solo en pose",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of doctor with stethoscope, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "doctor_with_stethoscope_1024x1024_euler8s.png",
+      "seed": 4354,
+      "status": "ok",
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "8f3604a2-21b7-472f-a802-a53e6dc5a741",
+      "color_ratio": 0.00091,
+      "ink_ratio": 0.11869,
+      "white_ratio": 0.85409,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "ballet_dancer_pose": {
+      "leaf_id": "ballet_dancer_pose",
+      "leaf_name_en": "Ballet Dancer Pose",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outils artistiques",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single ballet dancer pose, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Painter at easel : préciser 'easel fully visible'"
+      ],
+      "filename": "ballet_dancer_pose_1024x1024_euler8s.png",
+      "seed": 4361,
+      "status": "ok",
+      "comfy_latency_s": 18.16,
+      "comfy_prompt_id": "5788802d-ea70-4cf3-88c1-f2522bcc61da",
+      "color_ratio": 0.00063,
+      "ink_ratio": 0.0528,
+      "white_ratio": 0.93415,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "astronaut_floating_in_space": {
+      "leaf_id": "astronaut_floating_in_space",
+      "leaf_name_en": "Astronaut Floating in Space",
+      "workflow_class": "Solo objet ou humain en scaphandre",
+      "technique": "Solo en pose + fond espace minimal",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        848,
+        1264
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one astronaut floating in space centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Astronaute en flottement : posture explicite (Insight D)"
+      ],
+      "filename": "astronaut_floating_in_space_848x1264_euler8s.png",
+      "seed": 4368,
+      "status": "ok",
+      "comfy_latency_s": 18.2,
+      "comfy_prompt_id": "adfc824c-0ef3-44bb-bd85-244890cc7a77",
+      "color_ratio": 0.00104,
+      "ink_ratio": 0.11718,
+      "white_ratio": 0.8538,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "princess_in_tower": {
+      "leaf_id": "princess_in_tower",
+      "leaf_name_en": "Princess in Tower",
+      "workflow_class": "Solo personnage ou créature",
+      "technique": "Pose épique + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        848,
+        1264
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Princess in Tower in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, blood, weapons threatening",
+      "pitfalls": [
+        "Dragons : version kid-friendly"
+      ],
+      "filename": "princess_in_tower_848x1264_euler8s.png",
+      "seed": 4375,
+      "status": "ok",
+      "comfy_latency_s": 18.21,
+      "comfy_prompt_id": "6dd99297-a3a3-410a-8f5c-3934b6cde5d2",
+      "color_ratio": 0.00168,
+      "ink_ratio": 0.09332,
+      "white_ratio": 0.88548,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "knight_in_shining_armor": {
+      "leaf_id": "knight_in_shining_armor",
+      "leaf_name_en": "Knight in Shining Armor",
+      "workflow_class": "Solo personnage ou créature",
+      "technique": "Pose épique + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        848,
+        1264
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Knight in Shining Armor in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, blood, weapons threatening",
+      "pitfalls": [
+        "Dragons : version kid-friendly"
+      ],
+      "filename": "knight_in_shining_armor_848x1264_euler8s.png",
+      "seed": 4382,
+      "status": "ok",
+      "comfy_latency_s": 18.18,
+      "comfy_prompt_id": "eb9596e1-4e26-481e-8cb7-56a1ea06d8fd",
+      "color_ratio": 0.00189,
+      "ink_ratio": 0.11138,
+      "white_ratio": 0.85423,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "wizard_with_staff": {
+      "leaf_id": "wizard_with_staff",
+      "leaf_name_en": "Wizard with Staff",
+      "workflow_class": "Solo personnage ou créature",
+      "technique": "Pose épique + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        848,
+        1264
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Wizard with Staff in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, blood, weapons threatening",
+      "pitfalls": [
+        "Dragons : version kid-friendly"
+      ],
+      "filename": "wizard_with_staff_848x1264_euler8s.png",
+      "seed": 4389,
+      "status": "ok",
+      "comfy_latency_s": 18.18,
+      "comfy_prompt_id": "e6e390d0-cb3e-4bdc-9e34-2883b30c063b",
+      "color_ratio": 0.00127,
+      "ink_ratio": 0.11824,
+      "white_ratio": 0.85347,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "pirate_ship_captain": {
+      "leaf_id": "pirate_ship_captain",
+      "workflow_class": "Solo humain (personnalite)",
+      "status": "skip_unknown_leaf",
+      "error": "Feuille introuvable : pirate_ship_captain"
+    },
+    "sailing_boat": {
+      "leaf_id": "sailing_boat",
+      "leaf_name_en": "Sailing Boat Race",
+      "workflow_class": "Solo humain en action",
+      "technique": "Idem + horizon mer (P3 validé)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1376,
+        768
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single sailing boat race, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Horizon mer comme séparation 2 plans naturelle"
+      ],
+      "filename": "sailing_boat_1376x768_euler8s.png",
+      "seed": 4403,
+      "status": "ok",
+      "comfy_latency_s": 18.16,
+      "comfy_prompt_id": "64924675-19ca-4811-bcc2-26c0d4499ba2",
+      "color_ratio": 0.00038,
+      "ink_ratio": 0.06634,
+      "white_ratio": 0.9165,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "hot_air_balloon": {
+      "leaf_id": "hot_air_balloon",
+      "leaf_name_en": "Hot Air Balloon",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1376,
+        768
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one hot air balloon centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "filename": "hot_air_balloon_1376x768_euler8s.png",
+      "seed": 4410,
+      "status": "ok",
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "4608f7c6-848b-498a-8bed-4b98ce1d0add",
+      "color_ratio": 0.00045,
+      "ink_ratio": 0.04042,
+      "white_ratio": 0.95189,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "first_steam_engine_train": {
+      "leaf_id": "first_steam_engine_train",
+      "leaf_name_en": "First Steam Engine Train",
+      "workflow_class": "Solo objet historique",
+      "technique": "Solo + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one first steam engine train centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "first_steam_engine_train_1024x1024_euler8s.png",
+      "seed": 4417,
+      "status": "ok",
+      "comfy_latency_s": 18.22,
+      "comfy_prompt_id": "7f1c43c5-a0ab-4054-b940-750adb77920f",
+      "color_ratio": 0.00072,
+      "ink_ratio": 0.14631,
+      "white_ratio": 0.82218,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "vintage_car_convertible": {
+      "leaf_id": "vintage_car_convertible",
+      "workflow_class": "Solo objet vehicule",
+      "status": "skip_unknown_leaf",
+      "error": "Feuille introuvable : vintage_car_convertible"
+    },
+    "birthday_cake_with_candles": {
+      "leaf_id": "birthday_cake_with_candles",
+      "leaf_name_en": "Birthday Cake with Candles",
+      "workflow_class": "Variable (solo objet ou frise pour party)",
+      "technique": "Solo cake/cadeau OU frise 1×4 pour party",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one birthday cake with candles centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Cas 8 validé pour party en frise"
+      ],
+      "filename": "birthday_cake_with_candles_1024x1024_euler8s.png",
+      "seed": 4431,
+      "status": "ok",
+      "comfy_latency_s": 18.16,
+      "comfy_prompt_id": "38066d19-26fa-4376-8ed8-262daa310fe0",
+      "color_ratio": 0.00095,
+      "ink_ratio": 0.09898,
+      "white_ratio": 0.8845,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "musician_with_guitar": {
+      "leaf_id": "musician_with_guitar",
+      "leaf_name_en": "Musician with Guitar",
+      "workflow_class": "Solo humain + accessoires",
+      "technique": "Solo + outils artistiques",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single musician with guitar, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Painter at easel : préciser 'easel fully visible'"
+      ],
+      "filename": "musician_with_guitar_1024x1024_euler8s.png",
+      "seed": 4438,
+      "status": "ok",
+      "comfy_latency_s": 18.12,
+      "comfy_prompt_id": "083bf96d-3a13-4113-a3c0-f03180a83260",
+      "color_ratio": 0.00098,
+      "ink_ratio": 0.08495,
+      "white_ratio": 0.89754,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "medieval_castle_with_moat": {
+      "leaf_id": "medieval_castle_with_moat",
+      "leaf_name_en": "Medieval Castle with Moat",
+      "workflow_class": "Solo personnage ou créature",
+      "technique": "Pose épique + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        848,
+        1264
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single Medieval Castle with Moat in mid-action, viewed from the side, dynamic pose with motion lines suggesting movement, two arms total, full body view, simple ground line, off-center composition, focused expression",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, scary, blood, weapons threatening",
+      "pitfalls": [
+        "Dragons : version kid-friendly"
+      ],
+      "filename": "medieval_castle_with_moat_848x1264_euler8s.png",
+      "seed": 4445,
+      "status": "ok",
+      "comfy_latency_s": 18.16,
+      "comfy_prompt_id": "aae02af0-7520-4bd0-bc29-d0a01e0628c6",
+      "color_ratio": 0.00107,
+      "ink_ratio": 0.14887,
+      "white_ratio": 0.81756,
+      "histogram_ok": true,
+      "flags": []
+    }
+  }
+}

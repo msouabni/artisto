@@ -1,0 +1,898 @@
+{
+  "poc": "seed-variance",
+  "date": "2026-05-06",
+  "comfy_url": "http://127.0.0.1:8188",
+  "ollama_base_url": "http://100.65.24.35:11434",
+  "vision_model": "qwen3.5:9b",
+  "params_fixes": {
+    "sampler_name": "euler",
+    "steps": 8,
+    "scheduler": "normal",
+    "cfg": 1.0,
+    "width": 1024,
+    "height": 1024,
+    "denoise": 1.0
+  },
+  "negatives_used": {
+    "soccer": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet, no motion",
+    "dragon": "",
+    "cat": "",
+    "hammer": ""
+  },
+  "seeds_recipe": "random.Random(2026); soccer:10, dragon:10, cat:5, hammer:5 (in this order)",
+  "seeds": {
+    "soccer": [
+      511616025,
+      2390402793,
+      3299030207,
+      2519087846,
+      1030509027,
+      2637987308,
+      475609845,
+      3507963309,
+      1931252818,
+      2942817377
+    ],
+    "dragon": [
+      2917953297,
+      902908032,
+      1080240572,
+      3991387404,
+      3458032352,
+      1461983573,
+      1254653888,
+      1964723331,
+      2480014448,
+      3053130464
+    ],
+    "cat": [
+      1561402013,
+      1813410345,
+      500140108,
+      2108960845,
+      2672799787
+    ],
+    "hammer": [
+      2018807828,
+      3805002643,
+      2343472742,
+      2404305743,
+      3798684234
+    ]
+  },
+  "prompts_used": {
+    "soccer": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.",
+    "dragon": "A wide shot centered on a friendly green dragon standing in a medieval castle courtyard with towers and a drawbridge, adventurous and cheerful mood. The scene features stone castle towers with arched windows, a drawbridge extending across the courtyard, red banners hanging from the towers, a stone fountain in the center, a large stone gate, green bushes, painted stone walls, and the dragon's large wings spread wide. Style: monochrome line art with black outlines on white background, simple shapes suitable for children, no shading, no gradients, no color fills, clean vector lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, clean layout.",
+    "cat": "A fluffy kitten sitting on a wooden table in a cozy children's library with warm lighting, centered composition with the kitten in the foreground, calm and peaceful mood. The scene features bookshelves filled with books, a stack of storybooks, a reading lamp, a wooden table, a window with curtains, a rug on the floor, bookmarks, and a small plant, all depicted as simple shapes suitable for children. Style: black and white line art only, monochrome outlines on white background, no shading, no gradients, no color fills, clean simple lines. Technical cleanup: no text, no watermark, no logos, no signatures, no written characters, no numbers, no letters, no signs, no labels, pure visual illustration.",
+    "hammer": "A centered composition featuring a friendly cartoon woodworker holding a hammer, standing in the middle of a cozy indoor workshop filled with tools, with a cheerful and industrious mood. The scene includes a wooden workbench cluttered with various items, a hammer resting nearby, a wooden saw lying flat, scattered nails, several wooden planks of different shapes, a small pile of sawdust, a wooden stool, and a tool chest in the background. All objects are depicted as simple geometric shapes and outlines without any specific paint colors, maintaining a clean and playful aesthetic suitable for children. Style: Black and white line art only with no color fills, white background, and no shading or gradients, ensuring the image is ready for coloring. Technical cleanup: No text, no watermark, no logos, no signatures, no written characters, and no labels anywhere in the scene, keeping the layout completely clean and free of any diegetic text elements."
+  },
+  "items_total": 30,
+  "items": [
+    {
+      "concept": "soccer",
+      "var_index": 1,
+      "seed": 511616025,
+      "seed_short": "616025",
+      "filename": "soccer_var01_s616025_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:05:52Z",
+      "comfy_latency_s": 18.12,
+      "comfy_prompt_id": "2da297ba-2cc1-495c-b4f7-a6c29af0e1fb",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var01_s616025_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00209_.png",
+      "histogram": {
+        "color_ratio": 0.00213,
+        "white_ratio": 0.81828,
+        "ink_ratio": 0.13579,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 7.854176044464111
+      },
+      "finished_at": "2026-05-06T17:06:18Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 2,
+      "seed": 2390402793,
+      "seed_short": "402793",
+      "filename": "soccer_var02_s402793_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:06:18Z",
+      "comfy_latency_s": 14.14,
+      "comfy_prompt_id": "547c2403-412a-4d4e-ba28-1ebc00475bc5",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var02_s402793_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00210_.png",
+      "histogram": {
+        "color_ratio": 0.0023,
+        "white_ratio": 0.82302,
+        "ink_ratio": 0.12358,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.2714855670928955
+      },
+      "finished_at": "2026-05-06T17:06:36Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 3,
+      "seed": 3299030207,
+      "seed_short": "030207",
+      "filename": "soccer_var03_s030207_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:06:36Z",
+      "comfy_latency_s": 14.13,
+      "comfy_prompt_id": "d9a13ee9-2155-4506-928f-8ef1b13eff83",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var03_s030207_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00211_.png",
+      "histogram": {
+        "color_ratio": 0.00232,
+        "white_ratio": 0.79622,
+        "ink_ratio": 0.15215,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.401317834854126
+      },
+      "finished_at": "2026-05-06T17:06:53Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 4,
+      "seed": 2519087846,
+      "seed_short": "087846",
+      "filename": "soccer_var04_s087846_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:06:53Z",
+      "comfy_latency_s": 14.18,
+      "comfy_prompt_id": "2ebde257-dffa-4409-834b-98d18bc2659c",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var04_s087846_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00212_.png",
+      "histogram": {
+        "color_ratio": 0.00192,
+        "white_ratio": 0.81721,
+        "ink_ratio": 0.13437,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.2470028400421143
+      },
+      "finished_at": "2026-05-06T17:07:11Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 5,
+      "seed": 1030509027,
+      "seed_short": "509027",
+      "filename": "soccer_var05_s509027_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:07:11Z",
+      "comfy_latency_s": 14.17,
+      "comfy_prompt_id": "b00eb056-88a2-46ff-8142-9a6992959cb5",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var05_s509027_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00213_.png",
+      "histogram": {
+        "color_ratio": 0.00267,
+        "white_ratio": 0.82317,
+        "ink_ratio": 0.12026,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.2460267543792725
+      },
+      "finished_at": "2026-05-06T17:07:28Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 6,
+      "seed": 2637987308,
+      "seed_short": "987308",
+      "filename": "soccer_var06_s987308_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:07:28Z",
+      "comfy_latency_s": 14.14,
+      "comfy_prompt_id": "b6ee0cec-285f-454a-af5c-d6106c49fd3c",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var06_s987308_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00214_.png",
+      "histogram": {
+        "color_ratio": 0.00277,
+        "white_ratio": 0.83353,
+        "ink_ratio": 0.11767,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.2575552463531494
+      },
+      "finished_at": "2026-05-06T17:07:46Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 7,
+      "seed": 475609845,
+      "seed_short": "609845",
+      "filename": "soccer_var07_s609845_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:07:46Z",
+      "comfy_latency_s": 14.09,
+      "comfy_prompt_id": "8e26ef2e-b074-46e5-b3ce-47e433d3ac67",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var07_s609845_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00215_.png",
+      "histogram": {
+        "color_ratio": 0.0023,
+        "white_ratio": 0.81422,
+        "ink_ratio": 0.13562,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.2965755462646484
+      },
+      "finished_at": "2026-05-06T17:08:03Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 8,
+      "seed": 3507963309,
+      "seed_short": "963309",
+      "filename": "soccer_var08_s963309_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:08:03Z",
+      "comfy_latency_s": 14.1,
+      "comfy_prompt_id": "12521fc8-f9d3-495b-9c25-70b3ada71e9a",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var08_s963309_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00216_.png",
+      "histogram": {
+        "color_ratio": 0.00175,
+        "white_ratio": 0.80973,
+        "ink_ratio": 0.14289,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.345407247543335
+      },
+      "finished_at": "2026-05-06T17:08:21Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 9,
+      "seed": 1931252818,
+      "seed_short": "252818",
+      "filename": "soccer_var09_s252818_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:08:21Z",
+      "comfy_latency_s": 14.13,
+      "comfy_prompt_id": "21c38d20-37a9-4441-a4dd-b0a0f775e35f",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var09_s252818_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00217_.png",
+      "histogram": {
+        "color_ratio": 0.00216,
+        "white_ratio": 0.81235,
+        "ink_ratio": 0.13232,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.215458393096924
+      },
+      "finished_at": "2026-05-06T17:08:38Z"
+    },
+    {
+      "concept": "soccer",
+      "var_index": 10,
+      "seed": 2942817377,
+      "seed_short": "817377",
+      "filename": "soccer_var10_s817377_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:08:38Z",
+      "comfy_latency_s": 14.09,
+      "comfy_prompt_id": "965c2e41-0766-4b37-a12d-a5e07f0c8cac",
+      "image_path": "docs/reports/poc-seed-variance/soccer_var10_s817377_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00218_.png",
+      "histogram": {
+        "color_ratio": 0.00208,
+        "white_ratio": 0.81404,
+        "ink_ratio": 0.13931,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.324073314666748
+      },
+      "finished_at": "2026-05-06T17:08:56Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 1,
+      "seed": 2917953297,
+      "seed_short": "953297",
+      "filename": "dragon_var01_s953297_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:08:56Z",
+      "comfy_latency_s": 18.32,
+      "comfy_prompt_id": "e254e9da-0b4d-48e1-a8ed-6f4498eb2540",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var01_s953297_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00219_.png",
+      "histogram": {
+        "color_ratio": 0.02039,
+        "white_ratio": 0.80857,
+        "ink_ratio": 0.12481,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.7944843769073486
+      },
+      "finished_at": "2026-05-06T17:09:18Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 2,
+      "seed": 902908032,
+      "seed_short": "908032",
+      "filename": "dragon_var02_s908032_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:09:18Z",
+      "comfy_latency_s": 14.19,
+      "comfy_prompt_id": "8cc7d491-ef0f-4bfe-877c-31503bd856ff",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var02_s908032_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00220_.png",
+      "histogram": {
+        "color_ratio": 0.0337,
+        "white_ratio": 0.80383,
+        "ink_ratio": 0.11602,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_color"
+        ],
+        "confidence": 95,
+        "latency_s": 3.591994047164917
+      },
+      "finished_at": "2026-05-06T17:09:36Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 3,
+      "seed": 1080240572,
+      "seed_short": "240572",
+      "filename": "dragon_var03_s240572_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:09:36Z",
+      "comfy_latency_s": 14.15,
+      "comfy_prompt_id": "8bcc3614-8b38-4bd1-983d-65f45ca348ca",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var03_s240572_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00221_.png",
+      "histogram": {
+        "color_ratio": 0.01762,
+        "white_ratio": 0.79716,
+        "ink_ratio": 0.13577,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.4881742000579834
+      },
+      "finished_at": "2026-05-06T17:09:53Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 4,
+      "seed": 3991387404,
+      "seed_short": "387404",
+      "filename": "dragon_var04_s387404_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:09:53Z",
+      "comfy_latency_s": 14.12,
+      "comfy_prompt_id": "0fe0b883-7e47-4f3d-92d9-9044d89afd75",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var04_s387404_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00222_.png",
+      "histogram": {
+        "color_ratio": 0.01963,
+        "white_ratio": 0.79879,
+        "ink_ratio": 0.12988,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.629077911376953
+      },
+      "finished_at": "2026-05-06T17:10:11Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 5,
+      "seed": 3458032352,
+      "seed_short": "032352",
+      "filename": "dragon_var05_s032352_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:10:11Z",
+      "comfy_latency_s": 14.18,
+      "comfy_prompt_id": "a587e767-6345-4266-9af4-cc61d26471c6",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var05_s032352_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00223_.png",
+      "histogram": {
+        "color_ratio": 0.01714,
+        "white_ratio": 0.80566,
+        "ink_ratio": 0.12638,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.644059419631958
+      },
+      "finished_at": "2026-05-06T17:10:29Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 6,
+      "seed": 1461983573,
+      "seed_short": "983573",
+      "filename": "dragon_var06_s983573_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:10:29Z",
+      "comfy_latency_s": 14.16,
+      "comfy_prompt_id": "b46e08fd-ef45-489f-8d39-a6a7245d0098",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var06_s983573_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00224_.png",
+      "histogram": {
+        "color_ratio": 0.02753,
+        "white_ratio": 0.78931,
+        "ink_ratio": 0.13358,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.4145619869232178
+      },
+      "finished_at": "2026-05-06T17:10:47Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 7,
+      "seed": 1254653888,
+      "seed_short": "653888",
+      "filename": "dragon_var07_s653888_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:10:47Z",
+      "comfy_latency_s": 14.16,
+      "comfy_prompt_id": "fe85c2b2-d7d1-4b88-962c-ebbc865cefef",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var07_s653888_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00225_.png",
+      "histogram": {
+        "color_ratio": 0.02074,
+        "white_ratio": 0.82543,
+        "ink_ratio": 0.10753,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.368358612060547
+      },
+      "finished_at": "2026-05-06T17:11:04Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 8,
+      "seed": 1964723331,
+      "seed_short": "723331",
+      "filename": "dragon_var08_s723331_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:11:04Z",
+      "comfy_latency_s": 14.16,
+      "comfy_prompt_id": "a4edea18-c441-4915-a82d-53173efa5858",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var08_s723331_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00226_.png",
+      "histogram": {
+        "color_ratio": 0.02793,
+        "white_ratio": 0.79739,
+        "ink_ratio": 0.12706,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.3877155780792236
+      },
+      "finished_at": "2026-05-06T17:11:22Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 9,
+      "seed": 2480014448,
+      "seed_short": "014448",
+      "filename": "dragon_var09_s014448_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:11:22Z",
+      "comfy_latency_s": 14.1,
+      "comfy_prompt_id": "0fc27f11-66cd-45a1-8bb5-eba12c1bcd41",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var09_s014448_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00227_.png",
+      "histogram": {
+        "color_ratio": 0.02728,
+        "white_ratio": 0.80556,
+        "ink_ratio": 0.11949,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.239065647125244
+      },
+      "finished_at": "2026-05-06T17:11:39Z"
+    },
+    {
+      "concept": "dragon",
+      "var_index": 10,
+      "seed": 3053130464,
+      "seed_short": "130464",
+      "filename": "dragon_var10_s130464_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:11:39Z",
+      "comfy_latency_s": 14.11,
+      "comfy_prompt_id": "fb552041-f447-447c-806c-791ac6f3348c",
+      "image_path": "docs/reports/poc-seed-variance/dragon_var10_s130464_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00228_.png",
+      "histogram": {
+        "color_ratio": 0.02832,
+        "white_ratio": 0.79406,
+        "ink_ratio": 0.12048,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.204633951187134
+      },
+      "finished_at": "2026-05-06T17:11:57Z"
+    },
+    {
+      "concept": "cat",
+      "var_index": 1,
+      "seed": 1561402013,
+      "seed_short": "402013",
+      "filename": "cat_var01_s402013_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:11:57Z",
+      "comfy_latency_s": 18.19,
+      "comfy_prompt_id": "d779500f-22d7-45fe-8acf-fd9709fade00",
+      "image_path": "docs/reports/poc-seed-variance/cat_var01_s402013_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00229_.png",
+      "histogram": {
+        "color_ratio": 0.00208,
+        "white_ratio": 0.80198,
+        "ink_ratio": 0.11582,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.8280868530273438
+      },
+      "finished_at": "2026-05-06T17:12:19Z"
+    },
+    {
+      "concept": "cat",
+      "var_index": 2,
+      "seed": 1813410345,
+      "seed_short": "410345",
+      "filename": "cat_var02_s410345_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:12:19Z",
+      "comfy_latency_s": 14.15,
+      "comfy_prompt_id": "2e29f2c5-53a1-492d-a1b5-bb2faafa4227",
+      "image_path": "docs/reports/poc-seed-variance/cat_var02_s410345_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00230_.png",
+      "histogram": {
+        "color_ratio": 0.00875,
+        "white_ratio": 0.77877,
+        "ink_ratio": 0.1477,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.4992291927337646
+      },
+      "finished_at": "2026-05-06T17:12:37Z"
+    },
+    {
+      "concept": "cat",
+      "var_index": 3,
+      "seed": 500140108,
+      "seed_short": "140108",
+      "filename": "cat_var03_s140108_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:12:37Z",
+      "comfy_latency_s": 14.13,
+      "comfy_prompt_id": "882adf2f-ebda-4e70-994c-e0f3e3b8aed9",
+      "image_path": "docs/reports/poc-seed-variance/cat_var03_s140108_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00231_.png",
+      "histogram": {
+        "color_ratio": 0.02057,
+        "white_ratio": 0.82288,
+        "ink_ratio": 0.09758,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.426729679107666
+      },
+      "finished_at": "2026-05-06T17:12:54Z"
+    },
+    {
+      "concept": "cat",
+      "var_index": 4,
+      "seed": 2108960845,
+      "seed_short": "960845",
+      "filename": "cat_var04_s960845_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:12:54Z",
+      "comfy_latency_s": 14.15,
+      "comfy_prompt_id": "17e3e42a-90ee-475e-92d5-09cb57abd46d",
+      "image_path": "docs/reports/poc-seed-variance/cat_var04_s960845_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00232_.png",
+      "histogram": {
+        "color_ratio": 0.07466,
+        "white_ratio": 0.62026,
+        "ink_ratio": 0.13933,
+        "flags": [
+          "noticeable_color"
+        ]
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.4610776901245117
+      },
+      "finished_at": "2026-05-06T17:13:12Z"
+    },
+    {
+      "concept": "cat",
+      "var_index": 5,
+      "seed": 2672799787,
+      "seed_short": "799787",
+      "filename": "cat_var05_s799787_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:13:12Z",
+      "comfy_latency_s": 14.14,
+      "comfy_prompt_id": "597d911b-dcb2-463e-afc4-c6b5be3619e1",
+      "image_path": "docs/reports/poc-seed-variance/cat_var05_s799787_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00233_.png",
+      "histogram": {
+        "color_ratio": 0.01601,
+        "white_ratio": 0.76771,
+        "ink_ratio": 0.15541,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [
+          "has_text"
+        ],
+        "confidence": 95,
+        "latency_s": 3.59458327293396
+      },
+      "finished_at": "2026-05-06T17:13:30Z"
+    },
+    {
+      "concept": "hammer",
+      "var_index": 1,
+      "seed": 2018807828,
+      "seed_short": "807828",
+      "filename": "hammer_var01_s807828_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:13:30Z",
+      "comfy_latency_s": 20.2,
+      "comfy_prompt_id": "0ce06b05-563a-417b-a9cf-1d3c07be3846",
+      "image_path": "docs/reports/poc-seed-variance/hammer_var01_s807828_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00234_.png",
+      "histogram": {
+        "color_ratio": 0.00137,
+        "white_ratio": 0.82718,
+        "ink_ratio": 0.12779,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.573800563812256
+      },
+      "finished_at": "2026-05-06T17:13:54Z"
+    },
+    {
+      "concept": "hammer",
+      "var_index": 2,
+      "seed": 3805002643,
+      "seed_short": "002643",
+      "filename": "hammer_var02_s002643_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:13:54Z",
+      "comfy_latency_s": 14.17,
+      "comfy_prompt_id": "6c8d715d-f149-4279-b5b5-a1dd2d177e49",
+      "image_path": "docs/reports/poc-seed-variance/hammer_var02_s002643_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00235_.png",
+      "histogram": {
+        "color_ratio": 0.00212,
+        "white_ratio": 0.81718,
+        "ink_ratio": 0.13796,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.2764103412628174
+      },
+      "finished_at": "2026-05-06T17:14:11Z"
+    },
+    {
+      "concept": "hammer",
+      "var_index": 3,
+      "seed": 2343472742,
+      "seed_short": "472742",
+      "filename": "hammer_var03_s472742_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:14:11Z",
+      "comfy_latency_s": 14.13,
+      "comfy_prompt_id": "33e1e9fd-c123-4686-abf5-cb51a16bdd1e",
+      "image_path": "docs/reports/poc-seed-variance/hammer_var03_s472742_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00236_.png",
+      "histogram": {
+        "color_ratio": 0.00251,
+        "white_ratio": 0.8184,
+        "ink_ratio": 0.12533,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.3142480850219727
+      },
+      "finished_at": "2026-05-06T17:14:29Z"
+    },
+    {
+      "concept": "hammer",
+      "var_index": 4,
+      "seed": 2404305743,
+      "seed_short": "305743",
+      "filename": "hammer_var04_s305743_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:14:29Z",
+      "comfy_latency_s": 14.18,
+      "comfy_prompt_id": "80fd4bf9-72df-4de5-8587-b858c192abdd",
+      "image_path": "docs/reports/poc-seed-variance/hammer_var04_s305743_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00237_.png",
+      "histogram": {
+        "color_ratio": 0.00323,
+        "white_ratio": 0.81768,
+        "ink_ratio": 0.11568,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.3411409854888916
+      },
+      "finished_at": "2026-05-06T17:14:46Z"
+    },
+    {
+      "concept": "hammer",
+      "var_index": 5,
+      "seed": 3798684234,
+      "seed_short": "684234",
+      "filename": "hammer_var05_s684234_08s_normal_euler_cfg10.png",
+      "status": "done",
+      "started_at": "2026-05-06T17:14:46Z",
+      "comfy_latency_s": 14.09,
+      "comfy_prompt_id": "74251ddb-cac2-4d73-8f5b-cfafd2977bce",
+      "image_path": "docs/reports/poc-seed-variance/hammer_var05_s684234_08s_normal_euler_cfg10.png",
+      "comfy_filename_returned": "ernie_turbo_q8_00238_.png",
+      "histogram": {
+        "color_ratio": 0.00199,
+        "white_ratio": 0.80757,
+        "ink_ratio": 0.14304,
+        "flags": []
+      },
+      "vision_qc": {
+        "json_ok": true,
+        "verdict": "good",
+        "issues": [],
+        "confidence": 100,
+        "latency_s": 3.263505697250366
+      },
+      "finished_at": "2026-05-06T17:15:04Z"
+    }
+  ]
+}

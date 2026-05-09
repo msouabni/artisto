@@ -1,0 +1,557 @@
+{
+  "poc": "qualitative-mickey",
+  "date": "2026-05-05",
+  "model": "qwen3.5:4b",
+  "theme": "Mickey Mouse",
+  "term_ar": "ميكي ماوس",
+  "term_en": "Mickey Mouse",
+  "concepts": [
+    {
+      "id": "mickey_in_adventure_island",
+      "slug": "mickey-adventure-island",
+      "name_en": "Mickey Mouse in an Adventure Island",
+      "name_fr": "Mickey dans une île aventure",
+      "description_en": "Exciting Mickey Mouse coloring page set on a tropical adventure island with palm trees.",
+      "description_fr": "Page de coloriage d'aventure de Mickey sur une île tropicale avec des palmiers.",
+      "weight": 0
+    },
+    {
+      "id": "mickey_in_pizza_party",
+      "slug": "mickey-pizza-party",
+      "name_en": "Mickey Mouse at a Pizza Party",
+      "name_fr": "Mickey à une fête de pizza",
+      "description_en": "Fun Mickey Mouse coloring page featuring a delicious pizza party scene for kids.",
+      "description_fr": "Page de coloriage amusante de Mickey lors d'une fête de pizza pour les enfants.",
+      "weight": 1
+    },
+    {
+      "id": "mickey_in_school_bus",
+      "slug": "mickey-school-bus",
+      "name_en": "Mickey Mouse on a School Bus",
+      "name_fr": "Mickey dans un bus scolaire",
+      "description_en": "Cute Mickey Mouse coloring page showing him riding a colorful school bus.",
+      "description_fr": "Page de coloriage mignonne de Mickey en train de monter dans un bus scolaire coloré.",
+      "weight": 2
+    },
+    {
+      "id": "mickey_in_battle_ship",
+      "slug": "mickey-battle-ship",
+      "name_en": "Mickey Mouse in a Battle Ship",
+      "name_fr": "Mickey dans un navire de bataille",
+      "description_en": "Action-packed Mickey Mouse coloring page featuring a brave battle ship at sea.",
+      "description_fr": "Page de coloriage d'action de Mickey avec un navire de bataille courageux en mer.",
+      "weight": 3
+    },
+    {
+      "id": "mickey_in_moon_base",
+      "slug": "mickey-moon-base",
+      "name_en": "Mickey Mouse in a Moon Base",
+      "name_fr": "Mickey dans une base lunaire",
+      "description_en": "Space-themed Mickey Mouse coloring page set inside a futuristic moon base.",
+      "description_fr": "Page de coloriage thématique espace de Mickey à l'intérieur d'une base lunaire futuriste.",
+      "weight": 4
+    },
+    {
+      "id": "mickey_in_banana_tree",
+      "slug": "mickey-banana-tree",
+      "name_en": "Mickey Mouse in a Banana Tree",
+      "name_fr": "Mickey dans un arbre de bananes",
+      "description_en": "Playful Mickey Mouse coloring page hanging from a giant banana tree in the jungle.",
+      "description_fr": "Page de coloriage ludique de Mickey accroché à un énorme arbre de bananes dans la jungle.",
+      "weight": 5
+    },
+    {
+      "id": "mickey_in_circus_camp",
+      "slug": "mickey-circus-camp",
+      "name_en": "Mickey Mouse in a Circus Camp",
+      "name_fr": "Mickey dans un camp de cirque",
+      "description_en": "Enthusiastic Mickey Mouse coloring page set in a lively circus camp with tents.",
+      "description_fr": "Page de coloriage enthousiaste de Mickey dans un camp de cirque animé avec des tentes.",
+      "weight": 6
+    },
+    {
+      "id": "mickey_in_tennis_match",
+      "slug": "mickey-tennis-match",
+      "name_en": "Mickey Mouse in a Tennis Match",
+      "name_fr": "Mickey dans un match de tennis",
+      "description_en": "Sports-themed Mickey Mouse coloring page playing an exciting tennis match.",
+      "description_fr": "Page de coloriage thématique sport de Mickey jouant un match de tennis excitant.",
+      "weight": 7
+    },
+    {
+      "id": "mickey_in_rainbow_bridge",
+      "slug": "mickey-rainbow-bridge",
+      "name_en": "Mickey Mouse on a Rainbow Bridge",
+      "name_fr": "Mickey sur un pont arc-en-ciel",
+      "description_en": "Magical Mickey Mouse coloring page crossing a vibrant rainbow bridge.",
+      "description_fr": "Page de coloriage magique de Mickey traversant un pont arc-en-ciel vibrant.",
+      "weight": 8
+    },
+    {
+      "id": "mickey_in_flying_car",
+      "slug": "mickey-flying-car",
+      "name_en": "Mickey Mouse in a Flying Car",
+      "name_fr": "Mickey dans une voiture volante",
+      "description_en": "Adventurous Mickey Mouse coloring page piloting a cool flying car through the sky.",
+      "description_fr": "Page de coloriage aventureuse de Mickey pilotant une voiture volante cool dans le ciel.",
+      "weight": 9
+    },
+    {
+      "id": "mickey_in_birthday_cake",
+      "slug": "mickey-birthday-cake",
+      "name_en": "Mickey Mouse at a Birthday Cake",
+      "name_fr": "Mickey à un gâteau d'anniversaire",
+      "description_en": "Sweet Mickey Mouse coloring page celebrating a special birthday cake.",
+      "description_fr": "Page de coloriage douce de Mickey célébrant un gâteau d'anniversaire spécial.",
+      "weight": 10
+    },
+    {
+      "id": "mickey_in_happy_house",
+      "slug": "mickey-happy-house",
+      "name_en": "Mickey Mouse in a Happy House",
+      "name_fr": "Mickey dans une maison heureuse",
+      "description_en": "Cozy Mickey Mouse coloring page inside a warm and happy house.",
+      "description_fr": "Page de coloriage confortable de Mickey à l'intérieur d'une maison chaleureuse et heureuse.",
+      "weight": 11
+    },
+    {
+      "id": "mickey_in_garden_party",
+      "slug": "mickey-garden-party",
+      "name_en": "Mickey Mouse in a Garden Party",
+      "name_fr": "Mickey dans une fête de jardin",
+      "description_en": "Charming Mickey Mouse coloring page hosting a beautiful garden party.",
+      "description_fr": "Page de coloriage charmante de Mickey organisant une belle fête de jardin.",
+      "weight": 12
+    },
+    {
+      "id": "mickey_in_space_station",
+      "slug": "mickey-space-station",
+      "name_en": "Mickey Mouse in a Space Station",
+      "name_fr": "Mickey dans une station spatiale",
+      "description_en": "Sci-fi Mickey Mouse coloring page exploring a detailed space station.",
+      "description_fr": "Page de coloriage de science-fiction de Mickey explorant une station spatiale détaillée.",
+      "weight": 13
+    },
+    {
+      "id": "mickey_in_pirate_ship",
+      "slug": "mickey-pirate-ship",
+      "name_en": "Mickey Mouse on a Pirate Ship",
+      "name_fr": "Mickey sur un navire pirate",
+      "description_en": "Exciting Mickey Mouse coloring page sailing on a classic pirate ship.",
+      "description_fr": "Page de coloriage excitante de Mickey naviguant sur un navire pirate classique.",
+      "weight": 14
+    },
+    {
+      "id": "mickey_in_fashion_show",
+      "slug": "mickey-fashion-show",
+      "name_en": "Mickey Mouse at a Fashion Show",
+      "name_fr": "Mickey à un défilé de mode",
+      "description_en": "Stylish Mickey Mouse coloring page attending a glamorous fashion show.",
+      "description_fr": "Page de coloriage élégante de Mickey assistant à un défilé de mode glamour.",
+      "weight": 15
+    },
+    {
+      "id": "mickey_in_galaxy_party",
+      "slug": "mickey-galaxy-party",
+      "name_en": "Mickey Mouse in a Galaxy Party",
+      "name_fr": "Mickey dans une fête galactique",
+      "description_en": "Cosmic Mickey Mouse coloring page celebrating a fun galaxy party.",
+      "description_fr": "Page de coloriage cosmique de Mickey célébrant une fête galactique amusante.",
+      "weight": 16
+    },
+    {
+      "id": "mickey_in_candy_shop",
+      "slug": "mickey-candy-shop",
+      "name_en": "Mickey Mouse in a Candy Shop",
+      "name_fr": "Mickey dans une boutique de bonbons",
+      "description_en": "Sweet Mickey Mouse coloring page browsing a colorful candy shop.",
+      "description_fr": "Page de coloriage douce de Mickey parcourant une boutique de bonbons colorée.",
+      "weight": 17
+    },
+    {
+      "id": "mickey_in_basketball_game",
+      "slug": "mickey-basketball-game",
+      "name_en": "Mickey Mouse in a Basketball Game",
+      "name_fr": "Mickey dans un match de basket",
+      "description_en": "Active Mickey Mouse coloring page playing an intense basketball game.",
+      "description_fr": "Page de coloriage active de Mickey jouant un match de basket intense.",
+      "weight": 18
+    },
+    {
+      "id": "mickey_in_magic_show",
+      "slug": "mickey-magic-show",
+      "name_en": "Mickey Mouse in a Magic Show",
+      "name_fr": "Mickey dans un spectacle de magie",
+      "description_en": "Wondrous Mickey Mouse coloring page performing in a spectacular magic show.",
+      "description_fr": "Page de coloriage wondrous de Mickey se produisant dans un spectacle de magie spectaculaire.",
+      "weight": 19
+    }
+  ],
+  "detailed_first_n": [
+    {
+      "concept": {
+        "id": "mickey_in_adventure_island",
+        "slug": "mickey-adventure-island",
+        "name_en": "Mickey Mouse in an Adventure Island",
+        "name_fr": "Mickey dans une île aventure",
+        "description_en": "Exciting Mickey Mouse coloring page set on a tropical adventure island with palm trees.",
+        "description_fr": "Page de coloriage d'aventure de Mickey sur une île tropicale avec des palmiers.",
+        "weight": 0
+      },
+      "locales": {
+        "en": {
+          "json_ok": true,
+          "raw": "{\"title\": \"Mickey Mouse Adventure Island Coloring Page\", \"title_card\": \"Mickey Adventure Island\", \"description\": \"Color this fun page featuring Mickey Mouse exploring a tropical island filled with palm trees, blue oceans, and exciting adventures for young children to enjoy.\", \"keywords\": [\"Mickey Mouse\", \"Adventure Island\", \"Coloring Page\", \"Childrens Art\", \"Tropical Fun\"]}",
+          "latency_s": 1.574221134185791,
+          "title": "Mickey Mouse Adventure Island Coloring Page",
+          "title_card": "Mickey Adventure Island",
+          "description": "Color this fun page featuring Mickey Mouse exploring a tropical island filled with palm trees, blue oceans, and exciting adventures for young children to enjoy.",
+          "keywords": [
+            "Mickey Mouse",
+            "Adventure Island",
+            "Coloring Page",
+            "Childrens Art",
+            "Tropical Fun"
+          ],
+          "title_len": 43,
+          "title_card_len": 23,
+          "description_len": 160,
+          "keywords_count": 5
+        },
+        "fr": {
+          "json_ok": true,
+          "raw": "{\n\"title\": \"Mickey Mouse dans une île aventure\",\n\"title_card\": \"Mickey sur une île\",\n\"description\": \"Découvrez Mickey Mouse en pleine exploration sur une île magique. Coloriez cette aventure fantastique avec vos enfants pour des heures de plaisir créatif.\",\n\"keywords\": [\"Mickey\", \"île\", \"aventure\", \"coloriage\", \"enfants\"]\n}",
+          "latency_s": 1.6336486339569092,
+          "title": "Mickey Mouse dans une île aventure",
+          "title_card": "Mickey sur une île",
+          "description": "Découvrez Mickey Mouse en pleine exploration sur une île magique. Coloriez cette aventure fantastique avec vos enfants pour des heures de plaisir créatif.",
+          "keywords": [
+            "Mickey",
+            "île",
+            "aventure",
+            "coloriage",
+            "enfants"
+          ],
+          "title_len": 34,
+          "title_card_len": 18,
+          "description_len": 154,
+          "keywords_count": 5
+        },
+        "ar": {
+          "json_ok": true,
+          "raw": "{\n  \"title\": \"ميكي ماوس في مغامرة جزيرة رائعة\",\n  \"title_card\": \"ميكي ماوس في مغامرة\",\n  \"description\": \"استمتع بلوحة تلوين مميزة لميكي ماوس في مغامرة جزيرة مليئة بالمرح والتحديات الممتعة للأطفال.\",\n  \"keywords\": [\n    \"ميكي ماوس\",\n    \"مغامرة\",\n    \"جزيرة\",\n    \"تلوين\",\n    \"أطفال\"\n  ]\n}",
+          "latency_s": 2.0007565021514893,
+          "title": "ميكي ماوس في مغامرة جزيرة رائعة",
+          "title_card": "ميكي ماوس في مغامرة",
+          "description": "استمتع بلوحة تلوين مميزة لميكي ماوس في مغامرة جزيرة مليئة بالمرح والتحديات الممتعة للأطفال.",
+          "keywords": [
+            "ميكي ماوس",
+            "مغامرة",
+            "جزيرة",
+            "تلوين",
+            "أطفال"
+          ],
+          "title_len": 31,
+          "title_card_len": 19,
+          "description_len": 91,
+          "keywords_count": 5,
+          "harakat_stripped": false,
+          "title_pre_strip": "ميكي ماوس في مغامرة جزيرة رائعة",
+          "description_pre_strip": "استمتع بلوحة تلوين مميزة لميكي ماوس في مغامرة جزيرة مليئة بالمرح والتحديات الممتعة للأطفال."
+        }
+      }
+    },
+    {
+      "concept": {
+        "id": "mickey_in_pizza_party",
+        "slug": "mickey-pizza-party",
+        "name_en": "Mickey Mouse at a Pizza Party",
+        "name_fr": "Mickey à une fête de pizza",
+        "description_en": "Fun Mickey Mouse coloring page featuring a delicious pizza party scene for kids.",
+        "description_fr": "Page de coloriage amusante de Mickey lors d'une fête de pizza pour les enfants.",
+        "weight": 1
+      },
+      "locales": {
+        "en": {
+          "json_ok": true,
+          "raw": "{\"title\": \"Mickey Mouse at a Pizza Party Coloring Page\", \"title_card\": \"Mickey Pizza Party\", \"description\": \"Join Mickey Mouse for a fun pizza party where he shares a delicious slice with his friends. This colorful page invites children to bring the happy gathering to life with their own creative crayons and markers.\", \"keywords\": [\"Mickey Mouse\", \"pizza party\", \"coloring page\", \"kids activity\", \"fun drawing\"]}",
+          "latency_s": 1.781832218170166,
+          "title": "Mickey Mouse at a Pizza Party Coloring Page",
+          "title_card": "Mickey Pizza Party",
+          "description": "Join Mickey Mouse for a fun pizza party where he shares a delicious slice with his friends. This colorful page invites children to bring the happy gathering to life with their own creative crayons and markers.",
+          "keywords": [
+            "Mickey Mouse",
+            "pizza party",
+            "coloring page",
+            "kids activity",
+            "fun drawing"
+          ],
+          "title_len": 43,
+          "title_card_len": 18,
+          "description_len": 209,
+          "keywords_count": 5
+        },
+        "fr": {
+          "json_ok": true,
+          "raw": "{\n\"title\": \"Mickey Mouse à la Fête de Pizza\",\n\"title_card\": \"Mickey et la pizza\",\n\"description\": \"Colorie Mickey Mouse en train de partager une délicieuse fête de pizza avec ses amis dans cette page d'activité amusante.\",\n\"keywords\": [\"Mickey\", \"pizza\", \"enfants\", \"coloriage\", \"fête\"]\n}",
+          "latency_s": 1.6309902667999268,
+          "title": "Mickey Mouse à la Fête de Pizza",
+          "title_card": "Mickey et la pizza",
+          "description": "Colorie Mickey Mouse en train de partager une délicieuse fête de pizza avec ses amis dans cette page d'activité amusante.",
+          "keywords": [
+            "Mickey",
+            "pizza",
+            "enfants",
+            "coloriage",
+            "fête"
+          ],
+          "title_len": 31,
+          "title_card_len": 18,
+          "description_len": 121,
+          "keywords_count": 5
+        },
+        "ar": {
+          "json_ok": true,
+          "raw": "{\n  \"title\": \"ميكي ماوس في حفلة البيتزا الملونة\",\n  \"title_card\": \"ميكي ماوس في حفلة البيتزا\",\n  \"description\": \"تصفح هذا القالب الملون لتمييز ميكي ماوس في حفلة البيتزا الممتعة مع أصدقائه في نشاط ترفيهي رائع للأطفال.\",\n  \"keywords\": [\n    \"ميكي ماوس\",\n    \"حفلة البيتزا\",\n    \"تلوين\",\n    \"أطفال\",\n    \"تعليمي\"\n  ]\n}",
+          "latency_s": 2.2462217807769775,
+          "title": "ميكي ماوس في حفلة البيتزا الملونة",
+          "title_card": "ميكي ماوس في حفلة البيتزا",
+          "description": "تصفح هذا القالب الملون لتمييز ميكي ماوس في حفلة البيتزا الممتعة مع أصدقائه في نشاط ترفيهي رائع للأطفال.",
+          "keywords": [
+            "ميكي ماوس",
+            "حفلة البيتزا",
+            "تلوين",
+            "أطفال",
+            "تعليمي"
+          ],
+          "title_len": 33,
+          "title_card_len": 25,
+          "description_len": 103,
+          "keywords_count": 5,
+          "harakat_stripped": false,
+          "title_pre_strip": "ميكي ماوس في حفلة البيتزا الملونة",
+          "description_pre_strip": "تصفح هذا القالب الملون لتمييز ميكي ماوس في حفلة البيتزا الممتعة مع أصدقائه في نشاط ترفيهي رائع للأطفال."
+        }
+      }
+    },
+    {
+      "concept": {
+        "id": "mickey_in_school_bus",
+        "slug": "mickey-school-bus",
+        "name_en": "Mickey Mouse on a School Bus",
+        "name_fr": "Mickey dans un bus scolaire",
+        "description_en": "Cute Mickey Mouse coloring page showing him riding a colorful school bus.",
+        "description_fr": "Page de coloriage mignonne de Mickey en train de monter dans un bus scolaire coloré.",
+        "weight": 2
+      },
+      "locales": {
+        "en": {
+          "json_ok": true,
+          "raw": "{\"title\": \"Mickey Mouse Coloring Page on School Bus\", \"title_card\": \"Mickey School Bus\", \"description\": \"Color this fun image of Mickey Mouse driving a yellow school bus with happy children ready for their day of learning and adventure.\", \"keywords\": [\"Mickey Mouse\", \"School Bus\", \"Children\", \"Coloring Page\", \"Cartoon\"]}",
+          "latency_s": 1.6259236335754395,
+          "title": "Mickey Mouse Coloring Page on School Bus",
+          "title_card": "Mickey School Bus",
+          "description": "Color this fun image of Mickey Mouse driving a yellow school bus with happy children ready for their day of learning and adventure.",
+          "keywords": [
+            "Mickey Mouse",
+            "School Bus",
+            "Children",
+            "Coloring Page",
+            "Cartoon"
+          ],
+          "title_len": 40,
+          "title_card_len": 17,
+          "description_len": 131,
+          "keywords_count": 5
+        },
+        "fr": {
+          "json_ok": true,
+          "raw": "{\"title\": \"Mickey Mouse dans un Bus Scolaire Coloriage\", \"title_card\": \"Mickey dans le bus\", \"description\": \"Colorie Mickey Mouse assis dans un bus scolaire jaune. Une activité amusante pour les enfants qui aiment les personnages Disney.\", \"keywords\": [\"Mickey Mouse\", \"bus scolaire\", \"coloriage\", \"enfants\", \"Disney\"]}",
+          "latency_s": 1.5566537380218506,
+          "title": "Mickey Mouse dans un Bus Scolaire Coloriage",
+          "title_card": "Mickey dans le bus",
+          "description": "Colorie Mickey Mouse assis dans un bus scolaire jaune. Une activité amusante pour les enfants qui aiment les personnages Disney.",
+          "keywords": [
+            "Mickey Mouse",
+            "bus scolaire",
+            "coloriage",
+            "enfants",
+            "Disney"
+          ],
+          "title_len": 43,
+          "title_card_len": 18,
+          "description_len": 128,
+          "keywords_count": 5
+        },
+        "ar": {
+          "json_ok": true,
+          "raw": "{\n  \"title\": \"ميكي ماوس في الحافلة المدرسية ملون\",\n  \"title_card\": \"ميكي ماوس في الحافلة\",\n  \"description\": \"تصفح هذا الرسم التوضيحي الجميل لميكي ماوس في الحافلة المدرسية واستمتع باللعب بالألوان في صفحة التلوين الخاصة بالطفل.\",\n  \"keywords\": [\n    \"ميكي ماوس\",\n    \"حافلة مدرسية\",\n    \"رسم توضيحي\",\n    \"صفحة تلوين\",\n    \"أطفال\"\n  ]\n}",
+          "latency_s": 2.355701208114624,
+          "title": "ميكي ماوس في الحافلة المدرسية ملون",
+          "title_card": "ميكي ماوس في الحافلة",
+          "description": "تصفح هذا الرسم التوضيحي الجميل لميكي ماوس في الحافلة المدرسية واستمتع باللعب بالألوان في صفحة التلوين الخاصة بالطفل.",
+          "keywords": [
+            "ميكي ماوس",
+            "حافلة مدرسية",
+            "رسم توضيحي",
+            "صفحة تلوين",
+            "أطفال"
+          ],
+          "title_len": 34,
+          "title_card_len": 20,
+          "description_len": 116,
+          "keywords_count": 5,
+          "harakat_stripped": false,
+          "title_pre_strip": "ميكي ماوس في الحافلة المدرسية ملون",
+          "description_pre_strip": "تصفح هذا الرسم التوضيحي الجميل لميكي ماوس في الحافلة المدرسية واستمتع باللعب بالألوان في صفحة التلوين الخاصة بالطفل."
+        }
+      }
+    },
+    {
+      "concept": {
+        "id": "mickey_in_battle_ship",
+        "slug": "mickey-battle-ship",
+        "name_en": "Mickey Mouse in a Battle Ship",
+        "name_fr": "Mickey dans un navire de bataille",
+        "description_en": "Action-packed Mickey Mouse coloring page featuring a brave battle ship at sea.",
+        "description_fr": "Page de coloriage d'action de Mickey avec un navire de bataille courageux en mer.",
+        "weight": 3
+      },
+      "locales": {
+        "en": {
+          "json_ok": true,
+          "raw": "{\"title\": \"Mickey Mouse Battles in a Giant Ship\", \"title_card\": \"Mickey Battle Ship\", \"description\": \"Join Mickey Mouse as he commands his mighty battle ship. Color the brave hero and his crew ready for action in this fun adventure.\", \"keywords\": [\"Mickey Mouse\", \"Battle Ship\", \"Coloring Page\", \"Adventure\", \"Kids Activity\"]}",
+          "latency_s": 1.6278119087219238,
+          "title": "Mickey Mouse Battles in a Giant Ship",
+          "title_card": "Mickey Battle Ship",
+          "description": "Join Mickey Mouse as he commands his mighty battle ship. Color the brave hero and his crew ready for action in this fun adventure.",
+          "keywords": [
+            "Mickey Mouse",
+            "Battle Ship",
+            "Coloring Page",
+            "Adventure",
+            "Kids Activity"
+          ],
+          "title_len": 36,
+          "title_card_len": 18,
+          "description_len": 130,
+          "keywords_count": 5
+        },
+        "fr": {
+          "json_ok": true,
+          "raw": "{\"title\": \"Mickey Mouse dans un Navire de Bataille\", \"title_card\": \"Mickey dans un navire\", \"description\": \"Colorie Mickey Mouse en action sur un grand navire de bataille avec ses amis et des ennemis à combattre.\", \"keywords\": [\"Mickey\", \"navire\", \"bataille\", \"enfants\", \"coloriage\"]}",
+          "latency_s": 1.6450636386871338,
+          "title": "Mickey Mouse dans un Navire de Bataille",
+          "title_card": "Mickey dans un navire",
+          "description": "Colorie Mickey Mouse en action sur un grand navire de bataille avec ses amis et des ennemis à combattre.",
+          "keywords": [
+            "Mickey",
+            "navire",
+            "bataille",
+            "enfants",
+            "coloriage"
+          ],
+          "title_len": 39,
+          "title_card_len": 21,
+          "description_len": 104,
+          "keywords_count": 5
+        },
+        "ar": {
+          "json_ok": true,
+          "raw": "{\n  \"title\": \"ميكي ماوس في سفينة الحروب الملونة\",\n  \"title_card\": \"ميكي في سفينة الحروب\",\n  \"description\": \"تصفح هذا القالب الملون لتمييز ميكي ماوس وهو يقود سفينة الحروب في مغامرة ممتعة مليئة بالخيال.\",\n  \"keywords\": [\n    \"ميكي ماوس\",\n    \"سفينة الحروب\",\n    \"تلوين\",\n    \"أطفال\",\n    \"مغامرات\"\n  ]\n}",
+          "latency_s": 2.4457285404205322,
+          "title": "ميكي ماوس في سفينة الحروب الملونة",
+          "title_card": "ميكي في سفينة الحروب",
+          "description": "تصفح هذا القالب الملون لتمييز ميكي ماوس وهو يقود سفينة الحروب في مغامرة ممتعة مليئة بالخيال.",
+          "keywords": [
+            "ميكي ماوس",
+            "سفينة الحروب",
+            "تلوين",
+            "أطفال",
+            "مغامرات"
+          ],
+          "title_len": 33,
+          "title_card_len": 20,
+          "description_len": 92,
+          "keywords_count": 5,
+          "harakat_stripped": false,
+          "title_pre_strip": "ميكي ماوس في سفينة الحروب الملونة",
+          "description_pre_strip": "تصفح هذا القالب الملون لتمييز ميكي ماوس وهو يقود سفينة الحروب في مغامرة ممتعة مليئة بالخيال."
+        }
+      }
+    },
+    {
+      "concept": {
+        "id": "mickey_in_moon_base",
+        "slug": "mickey-moon-base",
+        "name_en": "Mickey Mouse in a Moon Base",
+        "name_fr": "Mickey dans une base lunaire",
+        "description_en": "Space-themed Mickey Mouse coloring page set inside a futuristic moon base.",
+        "description_fr": "Page de coloriage thématique espace de Mickey à l'intérieur d'une base lunaire futuriste.",
+        "weight": 4
+      },
+      "locales": {
+        "en": {
+          "json_ok": true,
+          "raw": "{\"title\": \"Mickey Mouse in a Moon Base Coloring Page\", \"title_card\": \"Mickey on the Moon\", \"description\": \"Color this fun page featuring Mickey Mouse exploring a bright moon base with his friends and a big rocket ship.\", \"keywords\": [\"Mickey Mouse\", \"Moon Base\", \"Space Adventure\", \"Coloring Page\", \"Kids Activity\"]}",
+          "latency_s": 1.6377673149108887,
+          "title": "Mickey Mouse in a Moon Base Coloring Page",
+          "title_card": "Mickey on the Moon",
+          "description": "Color this fun page featuring Mickey Mouse exploring a bright moon base with his friends and a big rocket ship.",
+          "keywords": [
+            "Mickey Mouse",
+            "Moon Base",
+            "Space Adventure",
+            "Coloring Page",
+            "Kids Activity"
+          ],
+          "title_len": 41,
+          "title_card_len": 18,
+          "description_len": 111,
+          "keywords_count": 5
+        },
+        "fr": {
+          "json_ok": true,
+          "raw": "{\"title\": \"Mickey Mouse dans une base lunaire coloriage\", \"title_card\": \"Mickey en base lunaire\", \"description\": \"Colorie Mickey Mouse dans une base lunaire avec des astronautes et des étoiles brillantes pour un dessin amusant.\", \"keywords\": [\"Mickey\", \"lune\", \"espace\", \"enfant\", \"coloriage\"]}",
+          "latency_s": 1.7076315879821777,
+          "title": "Mickey Mouse dans une base lunaire coloriage",
+          "title_card": "Mickey en base lunaire",
+          "description": "Colorie Mickey Mouse dans une base lunaire avec des astronautes et des étoiles brillantes pour un dessin amusant.",
+          "keywords": [
+            "Mickey",
+            "lune",
+            "espace",
+            "enfant",
+            "coloriage"
+          ],
+          "title_len": 44,
+          "title_card_len": 22,
+          "description_len": 113,
+          "keywords_count": 5
+        },
+        "ar": {
+          "json_ok": true,
+          "raw": "{\n  \"title\": \"ميكي ماوس في قاعدة القمر\",\n  \"title_card\": \"ميكي في قاعدة القمر\",\n  \"description\": \"تصميم ملون لميكي ماوس داخل قاعدة القمر، جاهز للأطفال للتلوين والاستمتاع بالخيال العلمي.\",\n  \"keywords\": [\n    \"ميكي ماوس\",\n    \"قاعدة القمر\",\n    \"تلوين\",\n    \"خيال علمي\",\n    \"أطفال\"\n  ]\n}",
+          "latency_s": 2.1836822032928467,
+          "title": "ميكي ماوس في قاعدة القمر",
+          "title_card": "ميكي في قاعدة القمر",
+          "description": "تصميم ملون لميكي ماوس داخل قاعدة القمر، جاهز للأطفال للتلوين والاستمتاع بالخيال العلمي.",
+          "keywords": [
+            "ميكي ماوس",
+            "قاعدة القمر",
+            "تلوين",
+            "خيال علمي",
+            "أطفال"
+          ],
+          "title_len": 24,
+          "title_card_len": 19,
+          "description_len": 87,
+          "keywords_count": 5,
+          "harakat_stripped": false,
+          "title_pre_strip": "ميكي ماوس في قاعدة القمر",
+          "description_pre_strip": "تصميم ملون لميكي ماوس داخل قاعدة القمر، جاهز للأطفال للتلوين والاستمتاع بالخيال العلمي."
+        }
+      }
+    }
+  ]
+}

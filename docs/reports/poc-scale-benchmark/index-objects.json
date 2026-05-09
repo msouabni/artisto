@@ -1,0 +1,1538 @@
+{
+  "poc": "scale-benchmark-objects",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "selection": {
+    "classes": [
+      "Lettre + objet",
+      "Mandala",
+      "Solo objet",
+      "Solo objet (véhicule)",
+      "Solo objet en vol OU au sol",
+      "Solo objet historique",
+      "Solo objet véhicule",
+      "Variable",
+      "Variable (solo objet ou frise)",
+      "Éducatif"
+    ],
+    "seed": 2028,
+    "limit": 50,
+    "per_class_counts": {
+      "Lettre + objet": 52,
+      "Solo objet": 149,
+      "Solo objet (véhicule)": 37,
+      "Solo objet en vol OU au sol": 9,
+      "Solo objet historique": 8,
+      "Variable": 28
+    },
+    "selected_leaves": [
+      {
+        "leaf_id": "air_fryer",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "ancient_water_wheel",
+        "workflow_class": "Solo objet historique"
+      },
+      {
+        "leaf_id": "carpet_cleaner",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "city_car",
+        "workflow_class": "Solo objet (véhicule)"
+      },
+      {
+        "leaf_id": "claw_hammer",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "coast_guard_boat",
+        "workflow_class": "Solo objet (véhicule)"
+      },
+      {
+        "leaf_id": "crescent_moon_and_star",
+        "workflow_class": "Variable"
+      },
+      {
+        "leaf_id": "double_decker_bus",
+        "workflow_class": "Solo objet (véhicule)"
+      },
+      {
+        "leaf_id": "e_book_reader",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "eid_al_adha_sheep",
+        "workflow_class": "Variable"
+      },
+      {
+        "leaf_id": "eid_al_fitr_celebration",
+        "workflow_class": "Variable"
+      },
+      {
+        "leaf_id": "family_at_iftar_table",
+        "workflow_class": "Variable"
+      },
+      {
+        "leaf_id": "fighter_jet",
+        "workflow_class": "Solo objet en vol OU au sol"
+      },
+      {
+        "leaf_id": "fireplace",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "first_steam_engine_train",
+        "workflow_class": "Solo objet historique"
+      },
+      {
+        "leaf_id": "flat_screen_tv",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "hand_plane",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "industrial_3d_printer",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "industrial_press",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "kitchen_oven",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "ladle_spoon",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "latkes_potato_pancakes",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "letter_a_with_apple",
+        "workflow_class": "Lettre + objet"
+      },
+      {
+        "leaf_id": "letter_d_with_dog",
+        "workflow_class": "Lettre + objet"
+      },
+      {
+        "leaf_id": "letter_u_with_ufo",
+        "workflow_class": "Lettre + objet"
+      },
+      {
+        "leaf_id": "letter_u_with_umbrella",
+        "workflow_class": "Lettre + objet"
+      },
+      {
+        "leaf_id": "letter_w_with_whale",
+        "workflow_class": "Lettre + objet"
+      },
+      {
+        "leaf_id": "letter_x_with_xylo",
+        "workflow_class": "Lettre + objet"
+      },
+      {
+        "leaf_id": "letter_z_with_zebre",
+        "workflow_class": "Lettre + objet"
+      },
+      {
+        "leaf_id": "live_stream_setup",
+        "workflow_class": "Variable"
+      },
+      {
+        "leaf_id": "manure_spreader",
+        "workflow_class": "Solo objet (véhicule)"
+      },
+      {
+        "leaf_id": "masking_tape_roll",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "new_year_resolutions_list",
+        "workflow_class": "Variable"
+      },
+      {
+        "leaf_id": "old_steam_train",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "police_car",
+        "workflow_class": "Solo objet (véhicule)"
+      },
+      {
+        "leaf_id": "smart_thermostat",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "smartwatch",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "solar_panel_on_roof",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "spirit_level",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "steam_mop",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "subway_train",
+        "workflow_class": "Solo objet (véhicule)"
+      },
+      {
+        "leaf_id": "suv_off_road",
+        "workflow_class": "Solo objet (véhicule)"
+      },
+      {
+        "leaf_id": "thread_spool",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "vr_headset",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "watering_can",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "weighing_scale",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "wifi_router",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "wood_chisel",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "wooden_cutting_board",
+        "workflow_class": "Solo objet"
+      },
+      {
+        "leaf_id": "wright_brothers_first_plane",
+        "workflow_class": "Solo objet historique"
+      }
+    ]
+  },
+  "fixed": {
+    "steps": 8,
+    "sampler_name": "euler",
+    "scheduler": "normal",
+    "cfg": 1.0,
+    "seed_base": 7000,
+    "seed_stride": 7
+  },
+  "results": {
+    "air_fryer": {
+      "leaf_id": "air_fryer",
+      "leaf_name_en": "Air Fryer",
+      "workflow_class": "Solo objet",
+      "technique": "Objet centré + détails fonctionnels",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one air fryer centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Réfrigérateur : préciser 'door closed' ou 'door open' explicite"
+      ],
+      "filename": "air_fryer_1024x1024_euler8s.png",
+      "seed": 7000,
+      "status": "ok",
+      "comfy_latency_s": 36.48,
+      "comfy_prompt_id": "66699905-7393-476d-8667-3c0c26300d98",
+      "color_ratio": 0.00082,
+      "ink_ratio": 0.09444,
+      "white_ratio": 0.89011,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "ancient_water_wheel": {
+      "leaf_id": "ancient_water_wheel",
+      "leaf_name_en": "Ancient Water Wheel",
+      "workflow_class": "Solo objet historique",
+      "technique": "Solo + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one ancient water wheel centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "ancient_water_wheel_1024x1024_euler8s.png",
+      "seed": 7007,
+      "status": "ok",
+      "comfy_latency_s": 58.54,
+      "comfy_prompt_id": "b97ee5be-700c-4a10-9d66-db93fe6ac646",
+      "color_ratio": 0.00168,
+      "ink_ratio": 0.15129,
+      "white_ratio": 0.81704,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "carpet_cleaner": {
+      "leaf_id": "carpet_cleaner",
+      "leaf_name_en": "Carpet Cleaner",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one carpet cleaner centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "carpet_cleaner_1024x1024_euler8s.png",
+      "seed": 7014,
+      "status": "ok",
+      "comfy_latency_s": 54.45,
+      "comfy_prompt_id": "9f109cba-59c6-46d5-81db-9f89f1443225",
+      "color_ratio": 0.00094,
+      "ink_ratio": 0.08498,
+      "white_ratio": 0.8984,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "city_car": {
+      "leaf_id": "city_car",
+      "leaf_name_en": "City Car",
+      "workflow_class": "Solo objet (véhicule)",
+      "technique": "Vue profil ou trois-quarts",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one city car centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Voiture : 4 roues bien visibles"
+      ],
+      "filename": "city_car_1024x1024_euler8s.png",
+      "seed": 7021,
+      "status": "ok",
+      "comfy_latency_s": 52.37,
+      "comfy_prompt_id": "ffe1d2a7-e549-4a4e-8bf5-4859861f87e6",
+      "color_ratio": 0.001,
+      "ink_ratio": 0.08287,
+      "white_ratio": 0.90121,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "claw_hammer": {
+      "leaf_id": "claw_hammer",
+      "leaf_name_en": "Claw Hammer",
+      "workflow_class": "Solo objet",
+      "technique": "Objet centré sur fond blanc",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one claw hammer centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "claw_hammer_1024x1024_euler8s.png",
+      "seed": 7028,
+      "status": "ok",
+      "comfy_latency_s": 52.48,
+      "comfy_prompt_id": "b405343c-fa12-4d41-bad6-1ece107ba29e",
+      "color_ratio": 0.00069,
+      "ink_ratio": 0.05494,
+      "white_ratio": 0.93549,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "coast_guard_boat": {
+      "leaf_id": "coast_guard_boat",
+      "leaf_name_en": "Coast Guard Boat",
+      "workflow_class": "Solo objet (véhicule)",
+      "technique": "Idem + détails signaux lumineux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one coast guard boat centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "coast_guard_boat_1024x1024_euler8s.png",
+      "seed": 7035,
+      "status": "ok",
+      "comfy_latency_s": 52.4,
+      "comfy_prompt_id": "c1debb4d-401a-4099-bcbd-e795666e3320",
+      "color_ratio": 0.00081,
+      "ink_ratio": 0.08041,
+      "white_ratio": 0.89919,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "crescent_moon_and_star": {
+      "leaf_id": "crescent_moon_and_star",
+      "leaf_name_en": "Crescent Moon and Star",
+      "workflow_class": "Variable",
+      "technique": "Solo objet (lanterne) OU scène famille",
+      "pipeline": "ERNIE direct (objets) / Hybride (textes)",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one crescent moon and star centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Calligraphie arabe : pipeline hybride"
+      ],
+      "filename": "crescent_moon_and_star_1024x1024_euler8s.png",
+      "seed": 7042,
+      "status": "ok",
+      "comfy_latency_s": 52.44,
+      "comfy_prompt_id": "89245787-799e-4bc7-99a6-61ef7c9cd53d",
+      "color_ratio": 0.00063,
+      "ink_ratio": 0.06624,
+      "white_ratio": 0.9265,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "double_decker_bus": {
+      "leaf_id": "double_decker_bus",
+      "leaf_name_en": "Double Decker Bus",
+      "workflow_class": "Solo objet (véhicule)",
+      "technique": "Vue profil ou trois-quarts",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one double decker bus centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Voiture : 4 roues bien visibles"
+      ],
+      "filename": "double_decker_bus_1024x1024_euler8s.png",
+      "seed": 7049,
+      "status": "ok",
+      "comfy_latency_s": 52.42,
+      "comfy_prompt_id": "ab84d279-c171-4207-9512-c9ca95af54c6",
+      "color_ratio": 0.00126,
+      "ink_ratio": 0.11367,
+      "white_ratio": 0.85745,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "e_book_reader": {
+      "leaf_id": "e_book_reader",
+      "leaf_name_en": "E-Book Reader",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one e-book reader centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "e_book_reader_1024x1024_euler8s.png",
+      "seed": 7056,
+      "status": "ok",
+      "comfy_latency_s": 50.42,
+      "comfy_prompt_id": "4953670c-f06b-4cff-9169-d1c59fa72207",
+      "color_ratio": 0.00059,
+      "ink_ratio": 0.05954,
+      "white_ratio": 0.89827,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "eid_al_adha_sheep": {
+      "leaf_id": "eid_al_adha_sheep",
+      "leaf_name_en": "Eid al Adha Sheep",
+      "workflow_class": "Variable",
+      "technique": "Solo objet (lanterne) OU scène famille",
+      "pipeline": "ERNIE direct (objets) / Hybride (textes)",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one eid al adha sheep centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Calligraphie arabe : pipeline hybride"
+      ],
+      "filename": "eid_al_adha_sheep_1024x1024_euler8s.png",
+      "seed": 7063,
+      "status": "ok",
+      "comfy_latency_s": 52.65,
+      "comfy_prompt_id": "c255de10-b85c-44ed-a607-3544e002dd58",
+      "color_ratio": 0.00056,
+      "ink_ratio": 0.10243,
+      "white_ratio": 0.8825,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "eid_al_fitr_celebration": {
+      "leaf_id": "eid_al_fitr_celebration",
+      "leaf_name_en": "Eid al Fitr Celebration",
+      "workflow_class": "Variable",
+      "technique": "Solo objet (lanterne) OU scène famille",
+      "pipeline": "ERNIE direct (objets) / Hybride (textes)",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one eid al fitr celebration centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Calligraphie arabe : pipeline hybride"
+      ],
+      "filename": "eid_al_fitr_celebration_1024x1024_euler8s.png",
+      "seed": 7070,
+      "status": "ok",
+      "comfy_latency_s": 74.59,
+      "comfy_prompt_id": "4bb6eefe-3136-4aba-95ff-fa01f5f09f5c",
+      "color_ratio": 0.0011,
+      "ink_ratio": 0.10134,
+      "white_ratio": 0.87983,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "family_at_iftar_table": {
+      "leaf_id": "family_at_iftar_table",
+      "leaf_name_en": "Family at Iftar Table",
+      "workflow_class": "Variable",
+      "technique": "Solo objet (lanterne) OU scène famille",
+      "pipeline": "ERNIE direct (objets) / Hybride (textes)",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one family at iftar table centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Calligraphie arabe : pipeline hybride"
+      ],
+      "filename": "family_at_iftar_table_1024x1024_euler8s.png",
+      "seed": 7077,
+      "status": "ok",
+      "comfy_latency_s": 50.42,
+      "comfy_prompt_id": "06d22abb-8f95-408d-a428-1c7cb66cdb5a",
+      "color_ratio": 0.00186,
+      "ink_ratio": 0.11876,
+      "white_ratio": 0.84406,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "fighter_jet": {
+      "leaf_id": "fighter_jet",
+      "leaf_name_en": "Fighter Jet",
+      "workflow_class": "Solo objet en vol OU au sol",
+      "technique": "Solo + ciel ou piste",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1376,
+        768
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one fighter jet centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Si en vol : posture explicite (Insight D)"
+      ],
+      "filename": "fighter_jet_1376x768_euler8s.png",
+      "seed": 7084,
+      "status": "ok",
+      "comfy_latency_s": 50.45,
+      "comfy_prompt_id": "4d3e6e7d-94cf-4ca8-8f54-f3765f7768d9",
+      "color_ratio": 0.00067,
+      "ink_ratio": 0.073,
+      "white_ratio": 0.91093,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "fireplace": {
+      "leaf_id": "fireplace",
+      "leaf_name_en": "Fireplace",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one fireplace centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "fireplace_1024x1024_euler8s.png",
+      "seed": 7091,
+      "status": "ok",
+      "comfy_latency_s": 52.44,
+      "comfy_prompt_id": "d4d1c57d-b7a0-46f7-b0b3-3ad096b1ea3e",
+      "color_ratio": 0.0008,
+      "ink_ratio": 0.12982,
+      "white_ratio": 0.85183,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "first_steam_engine_train": {
+      "leaf_id": "first_steam_engine_train",
+      "leaf_name_en": "First Steam Engine Train",
+      "workflow_class": "Solo objet historique",
+      "technique": "Solo + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one first steam engine train centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "first_steam_engine_train_1024x1024_euler8s.png",
+      "seed": 7098,
+      "status": "ok",
+      "comfy_latency_s": 50.33,
+      "comfy_prompt_id": "c7772890-66fa-403d-96c8-10ebe325c4b5",
+      "color_ratio": 0.00053,
+      "ink_ratio": 0.16129,
+      "white_ratio": 0.80576,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "flat_screen_tv": {
+      "leaf_id": "flat_screen_tv",
+      "leaf_name_en": "Flat Screen TV",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one flat screen tv centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "flat_screen_tv_1024x1024_euler8s.png",
+      "seed": 7105,
+      "status": "ok",
+      "comfy_latency_s": 52.51,
+      "comfy_prompt_id": "c0368c66-c986-4cd1-9c5f-400d0357930a",
+      "color_ratio": 0.00047,
+      "ink_ratio": 0.07072,
+      "white_ratio": 0.91737,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "hand_plane": {
+      "leaf_id": "hand_plane",
+      "leaf_name_en": "Hand Plane",
+      "workflow_class": "Solo objet",
+      "technique": "Objet centré sur fond blanc",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one hand plane centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "hand_plane_1024x1024_euler8s.png",
+      "seed": 7112,
+      "status": "ok",
+      "comfy_latency_s": 74.66,
+      "comfy_prompt_id": "0c97c292-54ad-423f-8233-d625af2f5dfc",
+      "color_ratio": 0.00076,
+      "ink_ratio": 0.07597,
+      "white_ratio": 0.91276,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "industrial_3d_printer": {
+      "leaf_id": "industrial_3d_printer",
+      "leaf_name_en": "Industrial 3D Printer",
+      "workflow_class": "Solo objet",
+      "technique": "Solo objet centré",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one industrial 3d printer centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "industrial_3d_printer_1024x1024_euler8s.png",
+      "seed": 7119,
+      "status": "ok",
+      "comfy_latency_s": 52.42,
+      "comfy_prompt_id": "cfb14c00-cbcc-4313-baf7-9a113a4e3e14",
+      "color_ratio": 0.00101,
+      "ink_ratio": 0.09899,
+      "white_ratio": 0.87381,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "industrial_press": {
+      "leaf_id": "industrial_press",
+      "leaf_name_en": "Industrial Press",
+      "workflow_class": "Solo objet",
+      "technique": "Solo objet centré",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one industrial press centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "industrial_press_1024x1024_euler8s.png",
+      "seed": 7126,
+      "status": "ok",
+      "comfy_latency_s": 52.42,
+      "comfy_prompt_id": "a571bf4e-729e-48b2-b2d5-e37bfd552223",
+      "color_ratio": 0.00057,
+      "ink_ratio": 0.09902,
+      "white_ratio": 0.88453,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "kitchen_oven": {
+      "leaf_id": "kitchen_oven",
+      "leaf_name_en": "Kitchen Oven",
+      "workflow_class": "Solo objet",
+      "technique": "Objet centré + détails fonctionnels",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kitchen oven centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Réfrigérateur : préciser 'door closed' ou 'door open' explicite"
+      ],
+      "filename": "kitchen_oven_1024x1024_euler8s.png",
+      "seed": 7133,
+      "status": "ok",
+      "comfy_latency_s": 50.45,
+      "comfy_prompt_id": "9eed225a-7796-4cb6-90aa-621ec176f755",
+      "color_ratio": 0.00075,
+      "ink_ratio": 0.11028,
+      "white_ratio": 0.87097,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "ladle_spoon": {
+      "leaf_id": "ladle_spoon",
+      "leaf_name_en": "Ladle Spoon",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one ladle spoon centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "ladle_spoon_1024x1024_euler8s.png",
+      "seed": 7140,
+      "status": "ok",
+      "comfy_latency_s": 52.53,
+      "comfy_prompt_id": "30971d0c-e16a-46c1-b190-11e0e5891857",
+      "color_ratio": 0.00091,
+      "ink_ratio": 0.05939,
+      "white_ratio": 0.9341,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "latkes_potato_pancakes": {
+      "leaf_id": "latkes_potato_pancakes",
+      "leaf_name_en": "Latkes Potato Pancakes",
+      "workflow_class": "Solo objet",
+      "technique": "Solo objet centré",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one latkes potato pancakes centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Étoile de David : préciser '6 points exactly'"
+      ],
+      "filename": "latkes_potato_pancakes_1024x1024_euler8s.png",
+      "seed": 7147,
+      "status": "ok",
+      "comfy_latency_s": 52.37,
+      "comfy_prompt_id": "ba085461-32e0-49be-a4b3-d35b28f42a3b",
+      "color_ratio": 0.00082,
+      "ink_ratio": 0.1232,
+      "white_ratio": 0.85789,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "letter_a_with_apple": {
+      "leaf_id": "letter_a_with_apple",
+      "leaf_name_en": "Letter A with Apple",
+      "workflow_class": "Lettre + objet",
+      "technique": "Lettre géante + objet illustration",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one letter a with apple centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Préciser typographie thick"
+      ],
+      "filename": "letter_a_with_apple_1024x1024_euler8s.png",
+      "seed": 7154,
+      "status": "ok",
+      "comfy_latency_s": 50.47,
+      "comfy_prompt_id": "f357096f-d598-4aae-b6e0-6e908cdecba0",
+      "color_ratio": 0.00068,
+      "ink_ratio": 0.08356,
+      "white_ratio": 0.90447,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "letter_d_with_dog": {
+      "leaf_id": "letter_d_with_dog",
+      "leaf_name_en": "Letter D with Dog",
+      "workflow_class": "Lettre + objet",
+      "technique": "Lettre géante + objet illustration",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one letter d with dog centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Préciser typographie thick"
+      ],
+      "filename": "letter_d_with_dog_1024x1024_euler8s.png",
+      "seed": 7161,
+      "status": "ok",
+      "comfy_latency_s": 52.43,
+      "comfy_prompt_id": "31a16f3e-2177-442d-8b2a-e58dfd8af8f3",
+      "color_ratio": 0.00067,
+      "ink_ratio": 0.08154,
+      "white_ratio": 0.90758,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "letter_u_with_ufo": {
+      "leaf_id": "letter_u_with_ufo",
+      "leaf_name_en": "Letter U with UFO",
+      "workflow_class": "Lettre + objet",
+      "technique": "Idem English",
+      "pipeline": "ERNIE direct (lettres simples) / Hybride pour accents",
+      "confidence": "Moyenne",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one letter u with ufo centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Caractères accentués : préciser ou utiliser SVG"
+      ],
+      "filename": "letter_u_with_ufo_1024x1024_euler8s.png",
+      "seed": 7168,
+      "status": "ok",
+      "comfy_latency_s": 50.38,
+      "comfy_prompt_id": "7e15e12b-99d4-4891-9880-95b199343644",
+      "color_ratio": 0.00077,
+      "ink_ratio": 0.08431,
+      "white_ratio": 0.89126,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "letter_u_with_umbrella": {
+      "leaf_id": "letter_u_with_umbrella",
+      "leaf_name_en": "Letter U with Umbrella",
+      "workflow_class": "Lettre + objet",
+      "technique": "Lettre géante + objet illustration",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one letter u with umbrella centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Préciser typographie thick"
+      ],
+      "filename": "letter_u_with_umbrella_1024x1024_euler8s.png",
+      "seed": 7175,
+      "status": "ok",
+      "comfy_latency_s": 52.42,
+      "comfy_prompt_id": "a7fdea48-98ca-4a4c-a9a1-726414ab827e",
+      "color_ratio": 0.00044,
+      "ink_ratio": 0.0917,
+      "white_ratio": 0.89824,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "letter_w_with_whale": {
+      "leaf_id": "letter_w_with_whale",
+      "leaf_name_en": "Letter W with Whale",
+      "workflow_class": "Lettre + objet",
+      "technique": "Lettre géante + objet illustration",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one letter w with whale centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Préciser typographie thick"
+      ],
+      "filename": "letter_w_with_whale_1024x1024_euler8s.png",
+      "seed": 7182,
+      "status": "ok",
+      "comfy_latency_s": 74.68,
+      "comfy_prompt_id": "37d5cbba-e44e-4f42-a78a-31d3190b3d2c",
+      "color_ratio": 0.00067,
+      "ink_ratio": 0.06054,
+      "white_ratio": 0.93136,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "letter_x_with_xylo": {
+      "leaf_id": "letter_x_with_xylo",
+      "leaf_name_en": "Letter X with Xylophone (French)",
+      "workflow_class": "Lettre + objet",
+      "technique": "Idem English",
+      "pipeline": "ERNIE direct (lettres simples) / Hybride pour accents",
+      "confidence": "Moyenne",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one letter x with xylophone (french) centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Caractères accentués : préciser ou utiliser SVG"
+      ],
+      "filename": "letter_x_with_xylo_1024x1024_euler8s.png",
+      "seed": 7189,
+      "status": "ok",
+      "comfy_latency_s": 74.53,
+      "comfy_prompt_id": "8c0596cd-c824-47c8-b028-f7d06c6bb94e",
+      "color_ratio": 0.00053,
+      "ink_ratio": 0.12604,
+      "white_ratio": 0.85005,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "letter_z_with_zebre": {
+      "leaf_id": "letter_z_with_zebre",
+      "leaf_name_en": "Letter Z with Zebra (French)",
+      "workflow_class": "Lettre + objet",
+      "technique": "Idem English",
+      "pipeline": "ERNIE direct (lettres simples) / Hybride pour accents",
+      "confidence": "Moyenne",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one letter z with zebra (french) centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Caractères accentués : préciser ou utiliser SVG"
+      ],
+      "filename": "letter_z_with_zebre_1024x1024_euler8s.png",
+      "seed": 7196,
+      "status": "ok",
+      "comfy_latency_s": 52.44,
+      "comfy_prompt_id": "97367e85-edea-4da7-9c0a-a5c31813b359",
+      "color_ratio": 0.001,
+      "ink_ratio": 0.15703,
+      "white_ratio": 0.81181,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "live_stream_setup": {
+      "leaf_id": "live_stream_setup",
+      "leaf_name_en": "Live Stream Setup",
+      "workflow_class": "Variable",
+      "technique": "Solo objet (smartphone) ou scène simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one live stream setup centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Logos : remplacer par génériques"
+      ],
+      "filename": "live_stream_setup_1024x1024_euler8s.png",
+      "seed": 7203,
+      "status": "ok",
+      "comfy_latency_s": 50.57,
+      "comfy_prompt_id": "907fd2c0-1299-46d6-aa9b-52bc79510bf2",
+      "color_ratio": 0.00086,
+      "ink_ratio": 0.0656,
+      "white_ratio": 0.91508,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "manure_spreader": {
+      "leaf_id": "manure_spreader",
+      "leaf_name_en": "Manure Spreader",
+      "workflow_class": "Solo objet (véhicule)",
+      "technique": "Idem + sol champ",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one manure spreader centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "manure_spreader_1024x1024_euler8s.png",
+      "seed": 7210,
+      "status": "ok",
+      "comfy_latency_s": 50.44,
+      "comfy_prompt_id": "5ca1efcf-baa9-4c87-8d79-f6076c56538f",
+      "color_ratio": 0.00093,
+      "ink_ratio": 0.11699,
+      "white_ratio": 0.8585,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "masking_tape_roll": {
+      "leaf_id": "masking_tape_roll",
+      "leaf_name_en": "Masking Tape Roll",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one masking tape roll centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "masking_tape_roll_1024x1024_euler8s.png",
+      "seed": 7217,
+      "status": "ok",
+      "comfy_latency_s": 52.46,
+      "comfy_prompt_id": "2da38661-8879-4ad8-9227-bb2815cc42fc",
+      "color_ratio": 0.00109,
+      "ink_ratio": 0.07312,
+      "white_ratio": 0.91139,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "new_year_resolutions_list": {
+      "leaf_id": "new_year_resolutions_list",
+      "leaf_name_en": "New Year Resolutions List",
+      "workflow_class": "Variable",
+      "technique": "Solo ou scène",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one new year resolutions list centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Chinese dragon : pose explicite"
+      ],
+      "filename": "new_year_resolutions_list_1024x1024_euler8s.png",
+      "seed": 7224,
+      "status": "ok",
+      "comfy_latency_s": 52.46,
+      "comfy_prompt_id": "102c0b58-2447-4eef-aca3-792a742dbd2f",
+      "color_ratio": 0.00177,
+      "ink_ratio": 0.13499,
+      "white_ratio": 0.82856,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "old_steam_train": {
+      "leaf_id": "old_steam_train",
+      "leaf_name_en": "Old Steam Train",
+      "workflow_class": "Solo objet",
+      "technique": "Vue profil + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one old steam train centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Vintage car : préciser époque pour détails"
+      ],
+      "filename": "old_steam_train_1024x1024_euler8s.png",
+      "seed": 7231,
+      "status": "ok",
+      "comfy_latency_s": 50.42,
+      "comfy_prompt_id": "5651046c-e86e-4cb1-8f24-396ea853de7d",
+      "color_ratio": 0.00091,
+      "ink_ratio": 0.15687,
+      "white_ratio": 0.81061,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "police_car": {
+      "leaf_id": "police_car",
+      "leaf_name_en": "Police Car",
+      "workflow_class": "Solo objet (véhicule)",
+      "technique": "Idem + détails signaux lumineux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one police car centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "police_car_1024x1024_euler8s.png",
+      "seed": 7238,
+      "status": "ok",
+      "comfy_latency_s": 74.52,
+      "comfy_prompt_id": "50e3950b-14de-4ec6-8d68-6ff384c3c7e3",
+      "color_ratio": 0.00072,
+      "ink_ratio": 0.08126,
+      "white_ratio": 0.90332,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "smart_thermostat": {
+      "leaf_id": "smart_thermostat",
+      "leaf_name_en": "Smart Thermostat",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one smart thermostat centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "smart_thermostat_1024x1024_euler8s.png",
+      "seed": 7245,
+      "status": "ok",
+      "comfy_latency_s": 52.41,
+      "comfy_prompt_id": "5fd63d26-efad-438a-a54a-b22e644c45ea",
+      "color_ratio": 0.00077,
+      "ink_ratio": 0.07405,
+      "white_ratio": 0.9137,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "smartwatch": {
+      "leaf_id": "smartwatch",
+      "leaf_name_en": "Smartwatch",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one smartwatch centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "smartwatch_1024x1024_euler8s.png",
+      "seed": 7252,
+      "status": "ok",
+      "comfy_latency_s": 50.4,
+      "comfy_prompt_id": "6bf9c328-cf94-4b1d-b040-dde78946125f",
+      "color_ratio": 0.00077,
+      "ink_ratio": 0.09202,
+      "white_ratio": 0.89238,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "solar_panel_on_roof": {
+      "leaf_id": "solar_panel_on_roof",
+      "leaf_name_en": "Solar Panel on Roof",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Moyenne",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one solar panel on roof centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "solar_panel_on_roof_1024x1024_euler8s.png",
+      "seed": 7259,
+      "status": "ok",
+      "comfy_latency_s": 74.6,
+      "comfy_prompt_id": "a0da8bab-49dc-45ac-a688-1e20195b0e7b",
+      "color_ratio": 0.00099,
+      "ink_ratio": 0.0949,
+      "white_ratio": 0.88769,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "spirit_level": {
+      "leaf_id": "spirit_level",
+      "leaf_name_en": "Spirit Level",
+      "workflow_class": "Solo objet",
+      "technique": "Objet centré sur fond blanc",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one spirit level centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "spirit_level_1024x1024_euler8s.png",
+      "seed": 7266,
+      "status": "ok",
+      "comfy_latency_s": 74.55,
+      "comfy_prompt_id": "5f45dabf-e8ec-4d56-a0fb-d2b2b12477c2",
+      "color_ratio": 0.00076,
+      "ink_ratio": 0.08767,
+      "white_ratio": 0.90048,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "steam_mop": {
+      "leaf_id": "steam_mop",
+      "leaf_name_en": "Steam Mop",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one steam mop centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "steam_mop_1024x1024_euler8s.png",
+      "seed": 7273,
+      "status": "ok",
+      "comfy_latency_s": 72.52,
+      "comfy_prompt_id": "52693f18-2c16-4e94-90d9-f7ddc72242d7",
+      "color_ratio": 0.00093,
+      "ink_ratio": 0.06967,
+      "white_ratio": 0.91877,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "subway_train": {
+      "leaf_id": "subway_train",
+      "leaf_name_en": "Subway Train",
+      "workflow_class": "Solo objet (véhicule)",
+      "technique": "Vue profil ou trois-quarts",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one subway train centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Voiture : 4 roues bien visibles"
+      ],
+      "filename": "subway_train_1024x1024_euler8s.png",
+      "seed": 7280,
+      "status": "ok",
+      "comfy_latency_s": 50.53,
+      "comfy_prompt_id": "0bc0a74b-2601-4bbd-817a-e402c381d2fb",
+      "color_ratio": 0.0009,
+      "ink_ratio": 0.13148,
+      "white_ratio": 0.84322,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "suv_off_road": {
+      "leaf_id": "suv_off_road",
+      "leaf_name_en": "SUV Off Road",
+      "workflow_class": "Solo objet (véhicule)",
+      "technique": "Vue profil ou trois-quarts",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one suv off road centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Voiture : 4 roues bien visibles"
+      ],
+      "filename": "suv_off_road_1024x1024_euler8s.png",
+      "seed": 7287,
+      "status": "ok",
+      "comfy_latency_s": 52.49,
+      "comfy_prompt_id": "bba35eba-1805-40e2-b402-e95b8ad6d05b",
+      "color_ratio": 0.00126,
+      "ink_ratio": 0.12262,
+      "white_ratio": 0.85027,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "thread_spool": {
+      "leaf_id": "thread_spool",
+      "leaf_name_en": "Thread Spool",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one thread spool centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "thread_spool_1024x1024_euler8s.png",
+      "seed": 7294,
+      "status": "ok",
+      "comfy_latency_s": 50.32,
+      "comfy_prompt_id": "b0f6e471-cfa1-4d58-9686-01ddfe6ef427",
+      "color_ratio": 0.00078,
+      "ink_ratio": 0.09171,
+      "white_ratio": 0.89552,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "vr_headset": {
+      "leaf_id": "vr_headset",
+      "leaf_name_en": "VR Headset",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one vr headset centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "vr_headset_1024x1024_euler8s.png",
+      "seed": 7301,
+      "status": "ok",
+      "comfy_latency_s": 50.42,
+      "comfy_prompt_id": "01595765-5e50-4f28-9cce-889f50b8cbcd",
+      "color_ratio": 0.00084,
+      "ink_ratio": 0.08663,
+      "white_ratio": 0.89777,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "watering_can": {
+      "leaf_id": "watering_can",
+      "leaf_name_en": "Watering Can",
+      "workflow_class": "Solo objet",
+      "technique": "Idem hand_tools",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one watering can centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "watering_can_1024x1024_euler8s.png",
+      "seed": 7308,
+      "status": "ok",
+      "comfy_latency_s": 52.38,
+      "comfy_prompt_id": "15fc8eb6-27a1-4ca3-866b-dbd98310e386",
+      "color_ratio": 0.00086,
+      "ink_ratio": 0.07644,
+      "white_ratio": 0.91278,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "weighing_scale": {
+      "leaf_id": "weighing_scale",
+      "leaf_name_en": "Weighing Scale",
+      "workflow_class": "Solo objet",
+      "technique": "Idem + détails techniques",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one weighing scale centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Cadran d'horloge : préciser 'all 12 numbers visible'"
+      ],
+      "filename": "weighing_scale_1024x1024_euler8s.png",
+      "seed": 7315,
+      "status": "ok",
+      "comfy_latency_s": 52.3,
+      "comfy_prompt_id": "dc8ac435-6949-4896-b8e7-3279a14cc9da",
+      "color_ratio": 0.00078,
+      "ink_ratio": 0.10221,
+      "white_ratio": 0.88264,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "wifi_router": {
+      "leaf_id": "wifi_router",
+      "leaf_name_en": "WiFi Router",
+      "workflow_class": "Solo objet",
+      "technique": "Idem + écran simple",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one wifi router centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [
+        "Écran : préciser 'simple icons on screen, no real text'"
+      ],
+      "filename": "wifi_router_1024x1024_euler8s.png",
+      "seed": 7322,
+      "status": "ok",
+      "comfy_latency_s": 52.35,
+      "comfy_prompt_id": "53bc72e5-9016-4023-929b-e3c32272bb66",
+      "color_ratio": 0.00059,
+      "ink_ratio": 0.06048,
+      "white_ratio": 0.9288,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "wood_chisel": {
+      "leaf_id": "wood_chisel",
+      "leaf_name_en": "Wood Chisel",
+      "workflow_class": "Solo objet",
+      "technique": "Objet centré sur fond blanc",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one wood chisel centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "wood_chisel_1024x1024_euler8s.png",
+      "seed": 7329,
+      "status": "ok",
+      "comfy_latency_s": 50.58,
+      "comfy_prompt_id": "0577ea18-7f8f-4fdd-918c-9368b789df32",
+      "color_ratio": 0.00089,
+      "ink_ratio": 0.04877,
+      "white_ratio": 0.9443,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "wooden_cutting_board": {
+      "leaf_id": "wooden_cutting_board",
+      "leaf_name_en": "Wooden Cutting Board",
+      "workflow_class": "Solo objet",
+      "technique": "Idem",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one wooden cutting board centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "wooden_cutting_board_1024x1024_euler8s.png",
+      "seed": 7336,
+      "status": "ok",
+      "comfy_latency_s": 72.6,
+      "comfy_prompt_id": "47bd0de2-db60-456f-8e6e-ce1430ec371a",
+      "color_ratio": 0.001,
+      "ink_ratio": 0.06719,
+      "white_ratio": 0.91827,
+      "histogram_ok": true,
+      "flags": []
+    },
+    "wright_brothers_first_plane": {
+      "leaf_id": "wright_brothers_first_plane",
+      "leaf_name_en": "Wright Brothers First Plane",
+      "workflow_class": "Solo objet historique",
+      "technique": "Solo + détails époque",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one wright brothers first plane centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+      "pitfalls": [],
+      "filename": "wright_brothers_first_plane_1024x1024_euler8s.png",
+      "seed": 7343,
+      "status": "ok",
+      "comfy_latency_s": 74.79,
+      "comfy_prompt_id": "a76a0770-e9d2-4e0b-9a0a-bebe384c3e8b",
+      "color_ratio": 0.00095,
+      "ink_ratio": 0.09618,
+      "white_ratio": 0.87897,
+      "histogram_ok": true,
+      "flags": []
+    }
+  }
+}

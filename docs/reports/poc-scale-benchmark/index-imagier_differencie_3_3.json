@@ -1,0 +1,150 @@
+{
+  "source": "workflow_class='Imagier différencié 3×3' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Imagier différencié 3×3",
+  "subjects": [
+    {
+      "filename": "bread_and_pastries_1024x1024_euler8s.png",
+      "name_en": "Bread and Pastries",
+      "leaf_id": "bread_and_pastries",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to bread and pastries, each item clearly distinct from the others, every cell contains exactly one item, the title \"BREAD\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9490
+    },
+    {
+      "filename": "meat_and_fish_market_1024x1024_euler8s.png",
+      "name_en": "Meat and Fish Market",
+      "leaf_id": "meat_and_fish_market",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to meat and fish market, each item clearly distinct from the others, every cell contains exactly one item, the title \"MEAT\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9497
+    },
+    {
+      "filename": "cakes_and_desserts_1024x1024_euler8s.png",
+      "name_en": "Cakes and Desserts",
+      "leaf_id": "cakes_and_desserts",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to cakes and desserts, each item clearly distinct from the others, every cell contains exactly one item, the title \"CAKES\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9504
+    },
+    {
+      "filename": "ice_cream_and_sorbets_1024x1024_euler8s.png",
+      "name_en": "Ice Cream and Sorbets",
+      "leaf_id": "ice_cream_and_sorbets",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to ice cream and sorbets, each item clearly distinct from the others, every cell contains exactly one item, the title \"ICE\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9511
+    },
+    {
+      "filename": "candy_shop_display_1024x1024_euler8s.png",
+      "name_en": "Candy Shop Display",
+      "leaf_id": "candy_shop_display",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to candy shop display, each item clearly distinct from the others, every cell contains exactly one item, the title \"CANDY\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9518
+    },
+    {
+      "filename": "dairy_products_milk_1024x1024_euler8s.png",
+      "name_en": "Dairy Products and Milk",
+      "leaf_id": "dairy_products_milk",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to dairy products and milk, each item clearly distinct from the others, every cell contains exactly one item, the title \"DAIRY\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9525
+    },
+    {
+      "filename": "vegetables_basket_1024x1024_euler8s.png",
+      "name_en": "Vegetables Basket",
+      "leaf_id": "vegetables_basket",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to vegetables basket, each item clearly distinct from the others, every cell contains exactly one item, the title \"VEGETABLES\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9532
+    },
+    {
+      "filename": "fruits_basket_1024x1024_euler8s.png",
+      "name_en": "Fruits Basket",
+      "leaf_id": "fruits_basket",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one different item related to fruits basket, each item clearly distinct from the others, every cell contains exactly one item, the title \"FRUITS\" written above the grid in bold letters, no other elements",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9539
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+{
+  "source": "workflow_class='Solo humain OU objet' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo humain OU objet",
+  "subjects": [
+    {
+      "filename": "carnival_parade_float_1024x1024_euler8s.png",
+      "name_en": "Carnival Parade Float",
+      "leaf_id": "carnival_parade_float",
+      "tier": "Solo humain OU objet",
+      "workflow_class": "Solo humain OU objet",
+      "technique": "Costume détaillé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single carnival parade float, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10029
+    },
+    {
+      "filename": "mardi_gras_jester_costume_1024x1024_euler8s.png",
+      "name_en": "Mardi Gras Jester Costume",
+      "leaf_id": "mardi_gras_jester_costume",
+      "tier": "Solo humain OU objet",
+      "workflow_class": "Solo humain OU objet",
+      "technique": "Costume détaillé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single mardi gras jester costume, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10036
+    },
+    {
+      "filename": "venetian_carnival_mask_1024x1024_euler8s.png",
+      "name_en": "Venetian Carnival Mask",
+      "leaf_id": "venetian_carnival_mask",
+      "tier": "Solo humain OU objet",
+      "workflow_class": "Solo humain OU objet",
+      "technique": "Costume détaillé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single venetian carnival mask, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10043
+    },
+    {
+      "filename": "mardi_gras_beads_necklace_1024x1024_euler8s.png",
+      "name_en": "Mardi Gras Beads Necklace",
+      "leaf_id": "mardi_gras_beads_necklace",
+      "tier": "Solo humain OU objet",
+      "workflow_class": "Solo humain OU objet",
+      "technique": "Costume détaillé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single mardi gras beads necklace, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10050
+    },
+    {
+      "filename": "kids_with_carnival_confetti_1024x1024_euler8s.png",
+      "name_en": "Kids with Carnival Confetti",
+      "leaf_id": "kids_with_carnival_confetti",
+      "tier": "Solo humain OU objet",
+      "workflow_class": "Solo humain OU objet",
+      "technique": "Costume détaillé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single kids with carnival confetti, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10057
+    },
+    {
+      "filename": "rio_carnival_dancer_1024x1024_euler8s.png",
+      "name_en": "Rio Carnival Dancer",
+      "leaf_id": "rio_carnival_dancer",
+      "tier": "Solo humain OU objet",
+      "workflow_class": "Solo humain OU objet",
+      "technique": "Costume détaillé",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single rio carnival dancer, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10064
+    },
+    {
+      "filename": "magic_potion_cauldron_1024x1024_euler8s.png",
+      "name_en": "Magic Potion Cauldron",
+      "leaf_id": "magic_potion_cauldron",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Sorcière friendly, pas effrayante",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter pour kids"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single magic potion cauldron, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, dark, sharp teeth, evil",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10141
+    },
+    {
+      "filename": "carved_pumpkin_jack_o_lantern_1024x1024_euler8s.png",
+      "name_en": "Carved Pumpkin Jack o Lantern",
+      "leaf_id": "carved_pumpkin_jack_o_lantern",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Costume kid-friendly, pas effrayant",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter ton pour audience 3-12"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single carved pumpkin jack o lantern, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, blood, dark expression, sharp teeth",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10148
+    },
+    {
+      "filename": "haunted_house_at_night_1024x1024_euler8s.png",
+      "name_en": "Haunted House at Night",
+      "leaf_id": "haunted_house_at_night",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Costume kid-friendly, pas effrayant",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter ton pour audience 3-12"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single haunted house at night, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, blood, dark expression, sharp teeth",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10155
+    },
+    {
+      "filename": "crystal_ball_with_visions_1024x1024_euler8s.png",
+      "name_en": "Crystal Ball with Visions",
+      "leaf_id": "crystal_ball_with_visions",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Sorcière friendly, pas effrayante",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter pour kids"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single crystal ball with visions, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, dark, sharp teeth, evil",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10162
+    },
+    {
+      "filename": "magic_wand_with_stars_1024x1024_euler8s.png",
+      "name_en": "Magic Wand with Stars",
+      "leaf_id": "magic_wand_with_stars",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Sorcière friendly, pas effrayante",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter pour kids"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single magic wand with stars, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, dark, sharp teeth, evil",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10169
+    },
+    {
+      "filename": "black_cat_on_pumpkin_1024x1024_euler8s.png",
+      "name_en": "Black Cat on Pumpkin",
+      "leaf_id": "black_cat_on_pumpkin",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Costume kid-friendly, pas effrayant",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter ton pour audience 3-12"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single black cat on pumpkin, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, blood, dark expression, sharp teeth",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10176
+    },
+    {
+      "filename": "trick_or_treat_basket_1024x1024_euler8s.png",
+      "name_en": "Trick or Treat Basket",
+      "leaf_id": "trick_or_treat_basket",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Costume kid-friendly, pas effrayant",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter ton pour audience 3-12"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single trick or treat basket, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, blood, dark expression, sharp teeth",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10183
+    },
+    {
+      "filename": "spell_book_open_1024x1024_euler8s.png",
+      "name_en": "Spell Book Open",
+      "leaf_id": "spell_book_open",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Sorcière friendly, pas effrayante",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter pour kids"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single spell book open, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, dark, sharp teeth, evil",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10190
+    },
+    {
+      "filename": "kid_in_witch_costume_1024x1024_euler8s.png",
+      "name_en": "Kid in Witch Costume",
+      "leaf_id": "kid_in_witch_costume",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Costume kid-friendly, pas effrayant",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter ton pour audience 3-12"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single kid in witch costume, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, blood, dark expression, sharp teeth",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10197
+    },
+    {
+      "filename": "kid_in_ghost_costume_1024x1024_euler8s.png",
+      "name_en": "Kid in Ghost Costume",
+      "leaf_id": "kid_in_ghost_costume",
+      "tier": "Solo humain ou objet",
+      "workflow_class": "Solo humain ou objet",
+      "technique": "Costume kid-friendly, pas effrayant",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Adapter ton pour audience 3-12"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single kid in ghost costume, three-quarter view from the side, full body, simple ground line, off-center composition, friendly expression",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, scary, blood, dark expression, sharp teeth",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10204
+    }
+  ]
+}

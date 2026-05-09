@@ -1,0 +1,186 @@
+{
+  "source": "workflow_class='Variable selon sujet' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Variable selon sujet",
+  "subjects": [
+    {
+      "filename": "reindeer_pulling_sleigh_1024x1024_euler8s.png",
+      "name_en": "Reindeer Pulling Sleigh",
+      "leaf_id": "reindeer_pulling_sleigh",
+      "tier": "Variable selon sujet",
+      "workflow_class": "Variable selon sujet",
+      "technique": "Solo objet OU scène (4+ frise)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Reindeer pulling sleigh : multi-sujets, frise possible"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one reindeer pulling sleigh centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11107
+    },
+    {
+      "filename": "christmas_wreath_1024x1024_euler8s.png",
+      "name_en": "Christmas Wreath",
+      "leaf_id": "christmas_wreath",
+      "tier": "Variable selon sujet",
+      "workflow_class": "Variable selon sujet",
+      "technique": "Solo objet OU scène (4+ frise)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Reindeer pulling sleigh : multi-sujets, frise possible"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one christmas wreath centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11114
+    },
+    {
+      "filename": "gingerbread_house_1024x1024_euler8s.png",
+      "name_en": "Gingerbread House",
+      "leaf_id": "gingerbread_house",
+      "tier": "Variable selon sujet",
+      "workflow_class": "Variable selon sujet",
+      "technique": "Solo objet OU scène (4+ frise)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Reindeer pulling sleigh : multi-sujets, frise possible"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one gingerbread house centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11121
+    },
+    {
+      "filename": "santa_claus_with_sack_1024x1024_euler8s.png",
+      "name_en": "Santa Claus with Sack",
+      "leaf_id": "santa_claus_with_sack",
+      "tier": "Variable selon sujet",
+      "workflow_class": "Variable selon sujet",
+      "technique": "Solo objet OU scène (4+ frise)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Reindeer pulling sleigh : multi-sujets, frise possible"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one santa claus with sack centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11128
+    },
+    {
+      "filename": "christmas_stocking_fireplace_1024x1024_euler8s.png",
+      "name_en": "Christmas Stocking by Fireplace",
+      "leaf_id": "christmas_stocking_fireplace",
+      "tier": "Variable selon sujet",
+      "workflow_class": "Variable selon sujet",
+      "technique": "Solo objet OU scène (4+ frise)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Reindeer pulling sleigh : multi-sujets, frise possible"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one christmas stocking by fireplace centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11135
+    },
+    {
+      "filename": "decorated_christmas_tree_1024x1024_euler8s.png",
+      "name_en": "Decorated Christmas Tree",
+      "leaf_id": "decorated_christmas_tree",
+      "tier": "Variable selon sujet",
+      "workflow_class": "Variable selon sujet",
+      "technique": "Solo objet OU scène (4+ frise)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Reindeer pulling sleigh : multi-sujets, frise possible"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one decorated christmas tree centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11142
+    },
+    {
+      "filename": "nativity_scene_1024x1024_euler8s.png",
+      "name_en": "Nativity Scene",
+      "leaf_id": "nativity_scene",
+      "tier": "Variable selon sujet",
+      "workflow_class": "Variable selon sujet",
+      "technique": "Solo objet OU scène (4+ frise)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Reindeer pulling sleigh : multi-sujets, frise possible"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one nativity scene centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11149
+    },
+    {
+      "filename": "snowman_with_christmas_hat_1024x1024_euler8s.png",
+      "name_en": "Snowman with Christmas Hat",
+      "leaf_id": "snowman_with_christmas_hat",
+      "tier": "Variable selon sujet",
+      "workflow_class": "Variable selon sujet",
+      "technique": "Solo objet OU scène (4+ frise)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Reindeer pulling sleigh : multi-sujets, frise possible"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one snowman with christmas hat centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11156
+    },
+    {
+      "filename": "christmas_elves_workshop_1024x1024_euler8s.png",
+      "name_en": "Christmas Elves Workshop",
+      "leaf_id": "christmas_elves_workshop",
+      "tier": "Variable selon sujet",
+      "workflow_class": "Variable selon sujet",
+      "technique": "Solo objet OU scène (4+ frise)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Reindeer pulling sleigh : multi-sujets, frise possible"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one christmas elves workshop centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11163
+    }
+  ]
+}

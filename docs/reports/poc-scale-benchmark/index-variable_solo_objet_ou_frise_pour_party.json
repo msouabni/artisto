@@ -1,0 +1,126 @@
+{
+  "source": "workflow_class='Variable (solo objet ou frise pour party)' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Variable (solo objet ou frise pour party)",
+  "subjects": [
+    {
+      "filename": "birthday_pinata_with_candy_1024x1024_euler8s.png",
+      "name_en": "Birthday Pinata with Candy",
+      "leaf_id": "birthday_pinata_with_candy",
+      "tier": "Variable (solo objet ou frise pour party)",
+      "workflow_class": "Variable (solo objet ou frise pour party)",
+      "technique": "Solo cake/cadeau OU frise 1×4 pour party",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 8 validé pour party en frise"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one birthday pinata with candy centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11065
+    },
+    {
+      "filename": "birthday_party_hat_1024x1024_euler8s.png",
+      "name_en": "Birthday Party Hat",
+      "leaf_id": "birthday_party_hat",
+      "tier": "Variable (solo objet ou frise pour party)",
+      "workflow_class": "Variable (solo objet ou frise pour party)",
+      "technique": "Solo cake/cadeau OU frise 1×4 pour party",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 8 validé pour party en frise"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one birthday party hat centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11072
+    },
+    {
+      "filename": "birthday_party_with_friends_1024x1024_euler8s.png",
+      "name_en": "Birthday Party with Friends",
+      "leaf_id": "birthday_party_with_friends",
+      "tier": "Variable (solo objet ou frise pour party)",
+      "workflow_class": "Variable (solo objet ou frise pour party)",
+      "technique": "Solo cake/cadeau OU frise 1×4 pour party",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 8 validé pour party en frise"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one birthday party with friends centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11079
+    },
+    {
+      "filename": "birthday_balloons_bouquet_1024x1024_euler8s.png",
+      "name_en": "Birthday Balloons Bouquet",
+      "leaf_id": "birthday_balloons_bouquet",
+      "tier": "Variable (solo objet ou frise pour party)",
+      "workflow_class": "Variable (solo objet ou frise pour party)",
+      "technique": "Solo cake/cadeau OU frise 1×4 pour party",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 8 validé pour party en frise"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one birthday balloons bouquet centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11086
+    },
+    {
+      "filename": "wrapped_birthday_presents_1024x1024_euler8s.png",
+      "name_en": "Wrapped Birthday Presents",
+      "leaf_id": "wrapped_birthday_presents",
+      "tier": "Variable (solo objet ou frise pour party)",
+      "workflow_class": "Variable (solo objet ou frise pour party)",
+      "technique": "Solo cake/cadeau OU frise 1×4 pour party",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 8 validé pour party en frise"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one wrapped birthday presents centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11093
+    },
+    {
+      "filename": "birthday_cake_with_candles_1024x1024_euler8s.png",
+      "name_en": "Birthday Cake with Candles",
+      "leaf_id": "birthday_cake_with_candles",
+      "tier": "Variable (solo objet ou frise pour party)",
+      "workflow_class": "Variable (solo objet ou frise pour party)",
+      "technique": "Solo cake/cadeau OU frise 1×4 pour party",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Cas 8 validé pour party en frise"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one birthday cake with candles centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 11100
+    }
+  ]
+}

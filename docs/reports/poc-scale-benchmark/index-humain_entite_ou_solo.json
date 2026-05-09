@@ -1,0 +1,168 @@
+{
+  "source": "workflow_class='Humain + entité OU Solo' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Humain + entité OU Solo",
+  "subjects": [
+    {
+      "filename": "shop_clerk_1024x1024_euler8s.png",
+      "name_en": "Shop Clerk",
+      "leaf_id": "shop_clerk",
+      "tier": "Humain + entité OU Solo",
+      "workflow_class": "Humain + entité OU Solo",
+      "technique": "Solo + accessoires métier",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of shop clerk, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9287
+    },
+    {
+      "filename": "bookseller_at_shop_1024x1024_euler8s.png",
+      "name_en": "Bookseller at Shop",
+      "leaf_id": "bookseller_at_shop",
+      "tier": "Humain + entité OU Solo",
+      "workflow_class": "Humain + entité OU Solo",
+      "technique": "Solo + accessoires métier",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of bookseller at shop, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9294
+    },
+    {
+      "filename": "florist_arranging_flowers_1024x1024_euler8s.png",
+      "name_en": "Florist Arranging Flowers",
+      "leaf_id": "florist_arranging_flowers",
+      "tier": "Humain + entité OU Solo",
+      "workflow_class": "Humain + entité OU Solo",
+      "technique": "Solo + accessoires métier",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of florist arranging flowers, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9301
+    },
+    {
+      "filename": "real_estate_agent_1024x1024_euler8s.png",
+      "name_en": "Real Estate Agent",
+      "leaf_id": "real_estate_agent",
+      "tier": "Humain + entité OU Solo",
+      "workflow_class": "Humain + entité OU Solo",
+      "technique": "Solo + accessoires métier",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of real estate agent, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9308
+    },
+    {
+      "filename": "hairdresser_at_salon_1024x1024_euler8s.png",
+      "name_en": "Hairdresser at Salon",
+      "leaf_id": "hairdresser_at_salon",
+      "tier": "Humain + entité OU Solo",
+      "workflow_class": "Humain + entité OU Solo",
+      "technique": "Solo + accessoires métier",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of hairdresser at salon, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9315
+    },
+    {
+      "filename": "tailor_at_sewing_machine_1024x1024_euler8s.png",
+      "name_en": "Tailor at Sewing Machine",
+      "leaf_id": "tailor_at_sewing_machine",
+      "tier": "Humain + entité OU Solo",
+      "workflow_class": "Humain + entité OU Solo",
+      "technique": "Solo + accessoires métier",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of tailor at sewing machine, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9322
+    },
+    {
+      "filename": "jeweler_at_workshop_1024x1024_euler8s.png",
+      "name_en": "Jeweler at Workshop",
+      "leaf_id": "jeweler_at_workshop",
+      "tier": "Humain + entité OU Solo",
+      "workflow_class": "Humain + entité OU Solo",
+      "technique": "Solo + accessoires métier",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of jeweler at workshop, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9329
+    },
+    {
+      "filename": "banker_at_desk_1024x1024_euler8s.png",
+      "name_en": "Banker at Desk",
+      "leaf_id": "banker_at_desk",
+      "tier": "Humain + entité OU Solo",
+      "workflow_class": "Humain + entité OU Solo",
+      "technique": "Solo + accessoires métier",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of banker at desk, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9336
+    },
+    {
+      "filename": "esthetician_at_work_1024x1024_euler8s.png",
+      "name_en": "Esthetician at Work",
+      "leaf_id": "esthetician_at_work",
+      "tier": "Humain + entité OU Solo",
+      "workflow_class": "Humain + entité OU Solo",
+      "technique": "Solo + accessoires métier",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, asymmetric scene of esthetician at work, the human positioned on the left side, the other element on the right side, both fully visible, the human smiling, asymmetric composition, full body of both, simple ground line",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9343
+    }
+  ]
+}

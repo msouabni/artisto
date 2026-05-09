@@ -1,0 +1,207 @@
+{
+  "poc": "gray-replace",
+  "date": "2026-05-05",
+  "sources": [
+    "electromenager-refrigerator-in-a-kitchen_colored.png",
+    "fantasy-dragon-in-a-castle-courtyard_colored.png",
+    "sports-soccer-ball-on-a-field_colored.png"
+  ],
+  "thresholds": {
+    "L_black": 80,
+    "L_white": 200
+  },
+  "treatments": {
+    "W": "white (baseline)",
+    "D": "dots halftone (cell=6)",
+    "H": "hatching 45° (patch=32, spacing 2-8 px)",
+    "S": "stippling (seed=42, p=(200-L)/120)"
+  },
+  "results": [
+    {
+      "src": "electromenager-refrigerator-in-a-kitchen_colored.png",
+      "decomposition": {
+        "contour_pct": 0.0977,
+        "gray_zone_pct": 0.2393,
+        "white_pct": 0.663
+      },
+      "variants": [
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "code": "W",
+          "label": "white",
+          "ink_ratio": 0.0977,
+          "dot_density": 0.0977,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 3,
+          "out": "electromenager-refrigerator-in-a-kitchen_zone_W.png"
+        },
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "code": "D",
+          "label": "dots",
+          "ink_ratio": 0.1729,
+          "dot_density": 0.1729,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 86,
+          "out": "electromenager-refrigerator-in-a-kitchen_zone_D.png"
+        },
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "code": "H",
+          "label": "hatching",
+          "ink_ratio": 0.143,
+          "dot_density": 0.143,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 37,
+          "out": "electromenager-refrigerator-in-a-kitchen_zone_H.png"
+        },
+        {
+          "image": "electromenager-refrigerator-in-a-kitchen_colored.png",
+          "code": "S",
+          "label": "stippling",
+          "ink_ratio": 0.1864,
+          "dot_density": 0.1864,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 157,
+          "out": "electromenager-refrigerator-in-a-kitchen_zone_S.png"
+        }
+      ]
+    },
+    {
+      "src": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+      "decomposition": {
+        "contour_pct": 0.1557,
+        "gray_zone_pct": 0.5265,
+        "white_pct": 0.3179
+      },
+      "variants": [
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "code": "W",
+          "label": "white",
+          "ink_ratio": 0.1557,
+          "dot_density": 0.1557,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 3,
+          "out": "fantasy-dragon-in-a-castle-courtyard_zone_W.png"
+        },
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "code": "D",
+          "label": "dots",
+          "ink_ratio": 0.3398,
+          "dot_density": 0.3398,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 115,
+          "out": "fantasy-dragon-in-a-castle-courtyard_zone_D.png"
+        },
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "code": "H",
+          "label": "hatching",
+          "ink_ratio": 0.2789,
+          "dot_density": 0.2789,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 29,
+          "out": "fantasy-dragon-in-a-castle-courtyard_zone_H.png"
+        },
+        {
+          "image": "fantasy-dragon-in-a-castle-courtyard_colored.png",
+          "code": "S",
+          "label": "stippling",
+          "ink_ratio": 0.4257,
+          "dot_density": 0.4257,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 14,
+          "out": "fantasy-dragon-in-a-castle-courtyard_zone_S.png"
+        }
+      ]
+    },
+    {
+      "src": "sports-soccer-ball-on-a-field_colored.png",
+      "decomposition": {
+        "contour_pct": 0.0741,
+        "gray_zone_pct": 0.4623,
+        "white_pct": 0.4636
+      },
+      "variants": [
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "code": "W",
+          "label": "white",
+          "ink_ratio": 0.0741,
+          "dot_density": 0.0741,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 1,
+          "out": "sports-soccer-ball-on-a-field_zone_W.png"
+        },
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "code": "D",
+          "label": "dots",
+          "ink_ratio": 0.1628,
+          "dot_density": 0.1628,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 92,
+          "out": "sports-soccer-ball-on-a-field_zone_D.png"
+        },
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "code": "H",
+          "label": "hatching",
+          "ink_ratio": 0.1528,
+          "dot_density": 0.1528,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 20,
+          "out": "sports-soccer-ball-on-a-field_zone_H.png"
+        },
+        {
+          "image": "sports-soccer-ball-on-a-field_colored.png",
+          "code": "S",
+          "label": "stippling",
+          "ink_ratio": 0.2205,
+          "dot_density": 0.2205,
+          "shape": [
+            1024,
+            1024
+          ],
+          "latency_ms": 12,
+          "out": "sports-soccer-ball-on-a-field_zone_S.png"
+        }
+      ]
+    }
+  ]
+}

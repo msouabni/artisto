@@ -1,0 +1,206 @@
+{
+  "source": "workflow_class='Scène intérieure' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Scène intérieure",
+  "subjects": [
+    {
+      "filename": "balcony_with_plants_1024x1024_euler8s.png",
+      "name_en": "Balcony with Plants",
+      "leaf_id": "balcony_with_plants",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one balcony with plants centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9770
+    },
+    {
+      "filename": "attic_with_old_objects_1024x1024_euler8s.png",
+      "name_en": "Attic with Old Objects",
+      "leaf_id": "attic_with_old_objects",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one attic with old objects centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9777
+    },
+    {
+      "filename": "kid_bedroom_with_toys_1024x1024_euler8s.png",
+      "name_en": "Kid Bedroom with Toys",
+      "leaf_id": "kid_bedroom_with_toys",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kid bedroom with toys centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9784
+    },
+    {
+      "filename": "garage_with_car_1024x1024_euler8s.png",
+      "name_en": "Garage with Car",
+      "leaf_id": "garage_with_car",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one garage with car centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9791
+    },
+    {
+      "filename": "living_room_with_sofa_1024x1024_euler8s.png",
+      "name_en": "Living Room with Sofa",
+      "leaf_id": "living_room_with_sofa",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one living room with sofa centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9798
+    },
+    {
+      "filename": "dining_room_with_table_1024x1024_euler8s.png",
+      "name_en": "Dining Room with Table",
+      "leaf_id": "dining_room_with_table",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one dining room with table centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9805
+    },
+    {
+      "filename": "bedroom_with_bed_1024x1024_euler8s.png",
+      "name_en": "Bedroom with Bed",
+      "leaf_id": "bedroom_with_bed",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one bedroom with bed centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9812
+    },
+    {
+      "filename": "hallway_with_coat_rack_1024x1024_euler8s.png",
+      "name_en": "Hallway with Coat Rack",
+      "leaf_id": "hallway_with_coat_rack",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one hallway with coat rack centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9819
+    },
+    {
+      "filename": "bathroom_full_view_1024x1024_euler8s.png",
+      "name_en": "Bathroom Full View",
+      "leaf_id": "bathroom_full_view",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one bathroom full view centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9826
+    },
+    {
+      "filename": "kitchen_full_view_1024x1024_euler8s.png",
+      "name_en": "Kitchen Full View",
+      "leaf_id": "kitchen_full_view",
+      "tier": "Scène intérieure",
+      "workflow_class": "Scène intérieure",
+      "technique": "Pièce vue d'ensemble + meubles minimaux",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mobilier 'fully visible' (Insight A)"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kitchen full view centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9833
+    }
+  ]
+}

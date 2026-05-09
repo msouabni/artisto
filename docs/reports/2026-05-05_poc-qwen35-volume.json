@@ -1,0 +1,2016 @@
+{
+  "poc": "qwen35-volume",
+  "date": "2026-05-05",
+  "model": "qwen3.5:4b",
+  "target_pairs": 50,
+  "actual_pairs": 38,
+  "ar_bounds": {
+    "title": [
+      25,
+      55
+    ],
+    "description": [
+      40,
+      100
+    ]
+  },
+  "category_distribution": {
+    "animaux": 6,
+    "dinosaures": 1,
+    "mandalas": 3,
+    "voitures": 1,
+    "camions": 1,
+    "motos": 1,
+    "avions": 1,
+    "bateaux": 1,
+    "trains": 1,
+    "metiers": 1,
+    "super": 1,
+    "fantasy": 1,
+    "vie": 1,
+    "printemps": 1,
+    "ete": 1,
+    "automne": 1,
+    "hiver": 1,
+    "noel": 1,
+    "halloween": 1,
+    "paques": 1,
+    "anniversaire": 1,
+    "aid": 1,
+    "lettres": 1,
+    "chiffres": 1,
+    "formes": 1,
+    "cartes": 1,
+    "science": 1,
+    "divers": 1,
+    "cartoons": 3
+  },
+  "pairs": [
+    {
+      "concept_en": "Wild animals",
+      "term_id": "animaux_sauvages",
+      "term_ar": "حيوانات برية",
+      "term_en": "Wild animals"
+    },
+    {
+      "concept_en": "Dinosaurs",
+      "term_id": "dinosaures",
+      "term_ar": "الديناصورات",
+      "term_en": "Dinosaurs"
+    },
+    {
+      "concept_en": "Easy mandalas",
+      "term_id": "mandalas_faciles",
+      "term_ar": "مندالات سهلة",
+      "term_en": "Easy mandalas"
+    },
+    {
+      "concept_en": "Cars",
+      "term_id": "voitures",
+      "term_ar": "السيارات",
+      "term_en": "Cars"
+    },
+    {
+      "concept_en": "Trucks",
+      "term_id": "camions",
+      "term_ar": "الشاحنات",
+      "term_en": "Trucks"
+    },
+    {
+      "concept_en": "Motorbikes",
+      "term_id": "motos",
+      "term_ar": "الدراجات النارية",
+      "term_en": "Motorbikes"
+    },
+    {
+      "concept_en": "Planes",
+      "term_id": "avions",
+      "term_ar": "الطائرات",
+      "term_en": "Planes"
+    },
+    {
+      "concept_en": "Boats",
+      "term_id": "bateaux",
+      "term_ar": "القوارب",
+      "term_en": "Boats"
+    },
+    {
+      "concept_en": "Trains",
+      "term_id": "trains",
+      "term_ar": "القطارات",
+      "term_en": "Trains"
+    },
+    {
+      "concept_en": "Jobs",
+      "term_id": "metiers",
+      "term_ar": "المهن",
+      "term_en": "Jobs"
+    },
+    {
+      "concept_en": "Original superheroes",
+      "term_id": "super_heros_originaux",
+      "term_ar": "أبطال خارقون أصليون",
+      "term_en": "Original superheroes"
+    },
+    {
+      "concept_en": "Fantasy",
+      "term_id": "fantasy",
+      "term_ar": "فانتازيا",
+      "term_en": "Fantasy"
+    },
+    {
+      "concept_en": "Everyday life",
+      "term_id": "vie_quotidienne",
+      "term_ar": "الحياة اليومية",
+      "term_en": "Everyday life"
+    },
+    {
+      "concept_en": "Spring",
+      "term_id": "printemps",
+      "term_ar": "الربيع",
+      "term_en": "Spring"
+    },
+    {
+      "concept_en": "Summer",
+      "term_id": "ete",
+      "term_ar": "الصيف",
+      "term_en": "Summer"
+    },
+    {
+      "concept_en": "Autumn",
+      "term_id": "automne",
+      "term_ar": "الخريف",
+      "term_en": "Autumn"
+    },
+    {
+      "concept_en": "Winter",
+      "term_id": "hiver",
+      "term_ar": "الشتاء",
+      "term_en": "Winter"
+    },
+    {
+      "concept_en": "Christmas",
+      "term_id": "noel",
+      "term_ar": "عيد الميلاد",
+      "term_en": "Christmas"
+    },
+    {
+      "concept_en": "Halloween",
+      "term_id": "halloween",
+      "term_ar": "هالووين",
+      "term_en": "Halloween"
+    },
+    {
+      "concept_en": "Easter",
+      "term_id": "paques",
+      "term_ar": "عيد الفصح",
+      "term_en": "Easter"
+    },
+    {
+      "concept_en": "Birthday",
+      "term_id": "anniversaire",
+      "term_ar": "عيد ميلاد",
+      "term_en": "Birthday"
+    },
+    {
+      "concept_en": "Eid",
+      "term_id": "aid",
+      "term_ar": "عيد",
+      "term_en": "Eid"
+    },
+    {
+      "concept_en": "Letters",
+      "term_id": "lettres",
+      "term_ar": "الحروف",
+      "term_en": "Letters"
+    },
+    {
+      "concept_en": "Numbers",
+      "term_id": "chiffres",
+      "term_ar": "الأرقام",
+      "term_en": "Numbers"
+    },
+    {
+      "concept_en": "Shapes",
+      "term_id": "formes",
+      "term_ar": "الأشكال",
+      "term_en": "Shapes"
+    },
+    {
+      "concept_en": "Maps",
+      "term_id": "cartes",
+      "term_ar": "الخرائط",
+      "term_en": "Maps"
+    },
+    {
+      "concept_en": "Science",
+      "term_id": "science",
+      "term_ar": "العلوم",
+      "term_en": "Science"
+    },
+    {
+      "concept_en": "Miscellaneous",
+      "term_id": "divers",
+      "term_ar": "متنوع",
+      "term_en": "Miscellaneous"
+    },
+    {
+      "concept_en": "SpongeBob SquarePants",
+      "term_id": "cartoons_spongebob",
+      "term_ar": "سوبن بوب مربع",
+      "term_en": "SpongeBob SquarePants"
+    },
+    {
+      "concept_en": "Poodles",
+      "term_id": "animaux_domestiques_dogs_poodles",
+      "term_ar": "بوديل",
+      "term_en": "Poodles"
+    },
+    {
+      "concept_en": "Sea animals",
+      "term_id": "animaux_marins",
+      "term_ar": "حيوانات بحرية",
+      "term_en": "Sea animals"
+    },
+    {
+      "concept_en": "Complex mandalas",
+      "term_id": "mandalas_complexes",
+      "term_ar": "مندالات معقدة",
+      "term_en": "Complex mandalas"
+    },
+    {
+      "concept_en": "Peppa Pig",
+      "term_id": "cartoons_peppa-pig",
+      "term_ar": "بيپا الخنزير",
+      "term_en": "Peppa Pig"
+    },
+    {
+      "concept_en": "Retrievers",
+      "term_id": "animaux_domestiques_dogs_retrievers",
+      "term_ar": "المتلقون",
+      "term_en": "Retrievers"
+    },
+    {
+      "concept_en": "Farm animals",
+      "term_id": "animaux_ferme",
+      "term_ar": "حيوانات المزرعة",
+      "term_en": "Farm animals"
+    },
+    {
+      "concept_en": "Animal mandalas",
+      "term_id": "mandalas_animaux",
+      "term_ar": "مندالات الحيوانات",
+      "term_en": "Animal mandalas"
+    },
+    {
+      "concept_en": "Looney Tunes",
+      "term_id": "cartoons_looney-tunes",
+      "term_ar": "لووني تونز",
+      "term_en": "Looney Tunes"
+    },
+    {
+      "concept_en": "Pit Bulls",
+      "term_id": "animaux_domestiques_dogs_pitbulls",
+      "term_ar": "بولي",
+      "term_en": "Pit Bulls"
+    }
+  ],
+  "results": [
+    {
+      "pair": {
+        "concept_en": "Wild animals",
+        "term_id": "animaux_sauvages",
+        "term_ar": "حيوانات برية",
+        "term_en": "Wild animals"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الحيوانات البرية الجميلة\",\n  \"title_card\": \"حيوانات برية\",\n  \"description\": \"استمتع بلوحة تلوين مميزة للحيوانات البرية، وتعلم أسماء الحيوانات أثناء التلوين في هذه الصفحة الممتعة.\",\n  \"keywords\": [\n    \"حيوانات\",\n    \"برية\",\n    \"تلوين\",\n    \"أطفال\",\n    \"مغامرات\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الحيوانات البرية الجميلة",
+        "title_card": "حيوانات برية",
+        "description": "استمتع بلوحة تلوين مميزة للحيوانات البرية، وتعلم أسماء الحيوانات أثناء التلوين في هذه الصفحة الممتعة.",
+        "keywords": [
+          "حيوانات",
+          "برية",
+          "تلوين",
+          "أطفال",
+          "مغامرات"
+        ]
+      },
+      "latency_s": 3.1338133811950684,
+      "json_ok": true,
+      "title": "لوحة تلوين الحيوانات البرية الجميلة",
+      "title_card": "حيوانات برية",
+      "description": "استمتع بلوحة تلوين مميزة للحيوانات البرية، وتعلم أسماء الحيوانات أثناء التلوين في هذه الصفحة الممتعة.",
+      "keywords": [
+        "حيوانات",
+        "برية",
+        "تلوين",
+        "أطفال",
+        "مغامرات"
+      ],
+      "title_len": 35,
+      "title_in_bounds": true,
+      "title_card_len": 12,
+      "title_card_in_bounds": true,
+      "description_len": 101,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "token_match",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Dinosaurs",
+        "term_id": "dinosaures",
+        "term_ar": "الديناصورات",
+        "term_en": "Dinosaurs"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الديناصورات القديمة والمذهلة\",\n  \"title_card\": \"لوحة تلوين الديناصورات\",\n  \"description\": \"استمتع بلوحة تلوين الديناصورات المصممة خصيصاً للأطفال لتعليمهم الألوان والخيال من خلال رسم الديناصورات القديمة.\",\n  \"keywords\": [\n    \"ديناصورات\",\n    \"لوحة\",\n    \"تلوين\",\n    \"أطفال\",\n    \"مغامرات\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الديناصورات القديمة والمذهلة",
+        "title_card": "لوحة تلوين الديناصورات",
+        "description": "استمتع بلوحة تلوين الديناصورات المصممة خصيصاً للأطفال لتعليمهم الألوان والخيال من خلال رسم الديناصورات القديمة.",
+        "keywords": [
+          "ديناصورات",
+          "لوحة",
+          "تلوين",
+          "أطفال",
+          "مغامرات"
+        ]
+      },
+      "latency_s": 2.082547187805176,
+      "json_ok": true,
+      "title": "لوحة تلوين الديناصورات القديمة والمذهلة",
+      "title_card": "لوحة تلوين الديناصورات",
+      "description": "استمتع بلوحة تلوين الديناصورات المصممة خصيصاً للأطفال لتعليمهم الألوان والخيال من خلال رسم الديناصورات القديمة.",
+      "keywords": [
+        "ديناصورات",
+        "لوحة",
+        "تلوين",
+        "أطفال",
+        "مغامرات"
+      ],
+      "title_len": 39,
+      "title_in_bounds": true,
+      "title_card_len": 22,
+      "title_card_in_bounds": true,
+      "description_len": 111,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Easy mandalas",
+        "term_id": "mandalas_faciles",
+        "term_ar": "مندالات سهلة",
+        "term_en": "Easy mandalas"
+      },
+      "raw": "{\n  \"title\": \"مندالات سهلة للتلوين للأطفال والكبار\",\n  \"title_card\": \"مندالات سهلة\",\n  \"description\": \"استمتع بتلوين المندالات البسيطة والممتعة التي تناسب جميع الأعمار وتساعد على الاسترخاء والإبداع.\",\n  \"keywords\": [\n    \"مندالات\",\n    \"تلوين\",\n    \"فنون\",\n    \"استرخاء\",\n    \"إبداع\"\n  ]\n}",
+      "parsed": {
+        "title": "مندالات سهلة للتلوين للأطفال والكبار",
+        "title_card": "مندالات سهلة",
+        "description": "استمتع بتلوين المندالات البسيطة والممتعة التي تناسب جميع الأعمار وتساعد على الاسترخاء والإبداع.",
+        "keywords": [
+          "مندالات",
+          "تلوين",
+          "فنون",
+          "استرخاء",
+          "إبداع"
+        ]
+      },
+      "latency_s": 1.852203130722046,
+      "json_ok": true,
+      "title": "مندالات سهلة للتلوين للأطفال والكبار",
+      "title_card": "مندالات سهلة",
+      "description": "استمتع بتلوين المندالات البسيطة والممتعة التي تناسب جميع الأعمار وتساعد على الاسترخاء والإبداع.",
+      "keywords": [
+        "مندالات",
+        "تلوين",
+        "فنون",
+        "استرخاء",
+        "إبداع"
+      ],
+      "title_len": 36,
+      "title_in_bounds": true,
+      "title_card_len": 12,
+      "title_card_in_bounds": true,
+      "description_len": 95,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Cars",
+        "term_id": "voitures",
+        "term_ar": "السيارات",
+        "term_en": "Cars"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين السيارات لتعليم الأطفال\",\n  \"title_card\": \"لوحة تلوين السيارات\",\n  \"description\": \"استمتع بلوحة تلوين السيارات الملونة لتعليم الأطفال الألوان والتركيز في جو ممتع\",\n  \"keywords\": [\n    \"لوحة تلوين\",\n    \"سيارات\",\n    \"تعليم أطفال\",\n    \"نشاط ترفيهي\",\n    \"تعليمي\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين السيارات لتعليم الأطفال",
+        "title_card": "لوحة تلوين السيارات",
+        "description": "استمتع بلوحة تلوين السيارات الملونة لتعليم الأطفال الألوان والتركيز في جو ممتع",
+        "keywords": [
+          "لوحة تلوين",
+          "سيارات",
+          "تعليم أطفال",
+          "نشاط ترفيهي",
+          "تعليمي"
+        ]
+      },
+      "latency_s": 1.9120640754699707,
+      "json_ok": true,
+      "title": "لوحة تلوين السيارات لتعليم الأطفال",
+      "title_card": "لوحة تلوين السيارات",
+      "description": "استمتع بلوحة تلوين السيارات الملونة لتعليم الأطفال الألوان والتركيز في جو ممتع",
+      "keywords": [
+        "لوحة تلوين",
+        "سيارات",
+        "تعليم أطفال",
+        "نشاط ترفيهي",
+        "تعليمي"
+      ],
+      "title_len": 34,
+      "title_in_bounds": true,
+      "title_card_len": 19,
+      "title_card_in_bounds": true,
+      "description_len": 78,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Trucks",
+        "term_id": "camions",
+        "term_ar": "الشاحنات",
+        "term_en": "Trucks"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الشاحنات الثقيلة\",\n  \"title_card\": \"لوحة تلوين الشاحنات\",\n  \"description\": \"استمتع بلوحة تلوين ممتعة للشاحنات الثقيلة بتصاميم جذابة تناسب الأطفال والمصممين.\",\n  \"keywords\": [\n    \"الشاحنات\",\n    \"لوحة تلوين\",\n    \"النقل\",\n    \"السيارات\",\n    \"اللون\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الشاحنات الثقيلة",
+        "title_card": "لوحة تلوين الشاحنات",
+        "description": "استمتع بلوحة تلوين ممتعة للشاحنات الثقيلة بتصاميم جذابة تناسب الأطفال والمصممين.",
+        "keywords": [
+          "الشاحنات",
+          "لوحة تلوين",
+          "النقل",
+          "السيارات",
+          "اللون"
+        ]
+      },
+      "latency_s": 1.9483237266540527,
+      "json_ok": true,
+      "title": "لوحة تلوين الشاحنات الثقيلة",
+      "title_card": "لوحة تلوين الشاحنات",
+      "description": "استمتع بلوحة تلوين ممتعة للشاحنات الثقيلة بتصاميم جذابة تناسب الأطفال والمصممين.",
+      "keywords": [
+        "الشاحنات",
+        "لوحة تلوين",
+        "النقل",
+        "السيارات",
+        "اللون"
+      ],
+      "title_len": 27,
+      "title_in_bounds": true,
+      "title_card_len": 19,
+      "title_card_in_bounds": true,
+      "description_len": 80,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Motorbikes",
+        "term_id": "motos",
+        "term_ar": "الدراجات النارية",
+        "term_en": "Motorbikes"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الدراجات النارية الملونة\",\n  \"title_card\": \"لوحة تلوين الدراجات النارية\",\n  \"description\": \"استمتع بلوحة تلوين الدراجات النارية الجميلة المصممة خصيصاً للأطفال لتعليمهم الألوان والإبداع في نفس الوقت.\",\n  \"keywords\": [\n    \"دراجات نارية\",\n    \"لوحة تلوين\",\n    \"تعليم أطفال\",\n    \"نشاط ترفيهي\",\n    \"ألوان\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الدراجات النارية الملونة",
+        "title_card": "لوحة تلوين الدراجات النارية",
+        "description": "استمتع بلوحة تلوين الدراجات النارية الجميلة المصممة خصيصاً للأطفال لتعليمهم الألوان والإبداع في نفس الوقت.",
+        "keywords": [
+          "دراجات نارية",
+          "لوحة تلوين",
+          "تعليم أطفال",
+          "نشاط ترفيهي",
+          "ألوان"
+        ]
+      },
+      "latency_s": 2.115487575531006,
+      "json_ok": true,
+      "title": "لوحة تلوين الدراجات النارية الملونة",
+      "title_card": "لوحة تلوين الدراجات النارية",
+      "description": "استمتع بلوحة تلوين الدراجات النارية الجميلة المصممة خصيصاً للأطفال لتعليمهم الألوان والإبداع في نفس الوقت.",
+      "keywords": [
+        "دراجات نارية",
+        "لوحة تلوين",
+        "تعليم أطفال",
+        "نشاط ترفيهي",
+        "ألوان"
+      ],
+      "title_len": 35,
+      "title_in_bounds": true,
+      "title_card_len": 27,
+      "title_card_in_bounds": false,
+      "description_len": 106,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Planes",
+        "term_id": "avions",
+        "term_ar": "الطائرات",
+        "term_en": "Planes"
+      },
+      "raw": "{\n  \"title\": \"لوحة طائرات ملونة للتلوين للأطفال\",\n  \"title_card\": \"تلوين الطائرات\",\n  \"description\": \"استمتع بلوحة طائرات ملونة مخصصة للتلوين، مصممة خصيصاً للأطفال لتعليمهم الألوان والابتكار في الرسم.\",\n  \"keywords\": [\n    \"طائرات\",\n    \"تلوين\",\n    \"أطفال\",\n    \"لوحة\",\n    \"رسم\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة طائرات ملونة للتلوين للأطفال",
+        "title_card": "تلوين الطائرات",
+        "description": "استمتع بلوحة طائرات ملونة مخصصة للتلوين، مصممة خصيصاً للأطفال لتعليمهم الألوان والابتكار في الرسم.",
+        "keywords": [
+          "طائرات",
+          "تلوين",
+          "أطفال",
+          "لوحة",
+          "رسم"
+        ]
+      },
+      "latency_s": 1.9008815288543701,
+      "json_ok": true,
+      "title": "لوحة طائرات ملونة للتلوين للأطفال",
+      "title_card": "تلوين الطائرات",
+      "description": "استمتع بلوحة طائرات ملونة مخصصة للتلوين، مصممة خصيصاً للأطفال لتعليمهم الألوان والابتكار في الرسم.",
+      "keywords": [
+        "طائرات",
+        "تلوين",
+        "أطفال",
+        "لوحة",
+        "رسم"
+      ],
+      "title_len": 33,
+      "title_in_bounds": true,
+      "title_card_len": 14,
+      "title_card_in_bounds": true,
+      "description_len": 98,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "no_article",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Boats",
+        "term_id": "bateaux",
+        "term_ar": "القوارب",
+        "term_en": "Boats"
+      },
+      "raw": "{\n  \"title\": \"قالب تلوين القوارب البحرية والأنواع المختلفة\",\n  \"title_card\": \"قالب تلوين القوارب\",\n  \"description\": \"استمتع بتلوين القوارب البحرية والأنواع المختلفة في هذا القالب التعليمي الممتع للأطفال.\",\n  \"keywords\": [\n    \"قوارب\",\n    \"بحر\",\n    \"تلوين\",\n    \"أطفال\",\n    \"أنشطة\"\n  ]\n}",
+      "parsed": {
+        "title": "قالب تلوين القوارب البحرية والأنواع المختلفة",
+        "title_card": "قالب تلوين القوارب",
+        "description": "استمتع بتلوين القوارب البحرية والأنواع المختلفة في هذا القالب التعليمي الممتع للأطفال.",
+        "keywords": [
+          "قوارب",
+          "بحر",
+          "تلوين",
+          "أطفال",
+          "أنشطة"
+        ]
+      },
+      "latency_s": 1.8744118213653564,
+      "json_ok": true,
+      "title": "قالب تلوين القوارب البحرية والأنواع المختلفة",
+      "title_card": "قالب تلوين القوارب",
+      "description": "استمتع بتلوين القوارب البحرية والأنواع المختلفة في هذا القالب التعليمي الممتع للأطفال.",
+      "keywords": [
+        "قوارب",
+        "بحر",
+        "تلوين",
+        "أطفال",
+        "أنشطة"
+      ],
+      "title_len": 44,
+      "title_in_bounds": true,
+      "title_card_len": 18,
+      "title_card_in_bounds": true,
+      "description_len": 86,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Trains",
+        "term_id": "trains",
+        "term_ar": "القطارات",
+        "term_en": "Trains"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين القطارات المتنوعة\",\n  \"title_card\": \"لوحة تلوين القطارات\",\n  \"description\": \"استمتع بلوحة تلوين جميلة للقطارات المتنوعة، مناسبة للأطفال لتعليم الألوان والابتكار.\",\n  \"keywords\": [\n    \"لوحة تلوين\",\n    \"قطارات\",\n    \"تعليم\",\n    \"أطفال\",\n    \"فن\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين القطارات المتنوعة",
+        "title_card": "لوحة تلوين القطارات",
+        "description": "استمتع بلوحة تلوين جميلة للقطارات المتنوعة، مناسبة للأطفال لتعليم الألوان والابتكار.",
+        "keywords": [
+          "لوحة تلوين",
+          "قطارات",
+          "تعليم",
+          "أطفال",
+          "فن"
+        ]
+      },
+      "latency_s": 1.8665859699249268,
+      "json_ok": true,
+      "title": "لوحة تلوين القطارات المتنوعة",
+      "title_card": "لوحة تلوين القطارات",
+      "description": "استمتع بلوحة تلوين جميلة للقطارات المتنوعة، مناسبة للأطفال لتعليم الألوان والابتكار.",
+      "keywords": [
+        "لوحة تلوين",
+        "قطارات",
+        "تعليم",
+        "أطفال",
+        "فن"
+      ],
+      "title_len": 28,
+      "title_in_bounds": true,
+      "title_card_len": 19,
+      "title_card_in_bounds": true,
+      "description_len": 84,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Jobs",
+        "term_id": "metiers",
+        "term_ar": "المهن",
+        "term_en": "Jobs"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين المهن المختلفة للأطفال\",\n  \"title_card\": \"لوحة تلوين المهن\",\n  \"description\": \"استمتع بلوحة تلوين متنوعة تعرض مختلف المهن والمهنيين ليعرف الطفل عالم العمل.\",\n  \"keywords\": [\n    \"المهن\",\n    \"العمل\",\n    \"التلوين\",\n    \"الأطفال\",\n    \"الرسوم\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين المهن المختلفة للأطفال",
+        "title_card": "لوحة تلوين المهن",
+        "description": "استمتع بلوحة تلوين متنوعة تعرض مختلف المهن والمهنيين ليعرف الطفل عالم العمل.",
+        "keywords": [
+          "المهن",
+          "العمل",
+          "التلوين",
+          "الأطفال",
+          "الرسوم"
+        ]
+      },
+      "latency_s": 1.8200857639312744,
+      "json_ok": true,
+      "title": "لوحة تلوين المهن المختلفة للأطفال",
+      "title_card": "لوحة تلوين المهن",
+      "description": "استمتع بلوحة تلوين متنوعة تعرض مختلف المهن والمهنيين ليعرف الطفل عالم العمل.",
+      "keywords": [
+        "المهن",
+        "العمل",
+        "التلوين",
+        "الأطفال",
+        "الرسوم"
+      ],
+      "title_len": 33,
+      "title_in_bounds": true,
+      "title_card_len": 16,
+      "title_card_in_bounds": true,
+      "description_len": 76,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Original superheroes",
+        "term_id": "super_heros_originaux",
+        "term_ar": "أبطال خارقون أصليون",
+        "term_en": "Original superheroes"
+      },
+      "raw": "{\n  \"title\": \"بطولات أبطال خارقون أصليون للتلوين\",\n  \"title_card\": \"أبطال خارقون أصليون\",\n  \"description\": \"استمتع بتلوين بطولات أبطال خارقون أصليون في هذه الصفحة المصممة خصيصاً للأطفال لتعليمهم الإبداع والتركيز أثناء اللعب.\",\n  \"keywords\": [\n    \"أبطال خارقون\",\n    \"صفحة تلوين\",\n    \"أطفال\",\n    \"إبداع\",\n    \"تعليم\"\n  ]\n}",
+      "parsed": {
+        "title": "بطولات أبطال خارقون أصليون للتلوين",
+        "title_card": "أبطال خارقون أصليون",
+        "description": "استمتع بتلوين بطولات أبطال خارقون أصليون في هذه الصفحة المصممة خصيصاً للأطفال لتعليمهم الإبداع والتركيز أثناء اللعب.",
+        "keywords": [
+          "أبطال خارقون",
+          "صفحة تلوين",
+          "أطفال",
+          "إبداع",
+          "تعليم"
+        ]
+      },
+      "latency_s": 2.0749666690826416,
+      "json_ok": true,
+      "title": "بطولات أبطال خارقون أصليون للتلوين",
+      "title_card": "أبطال خارقون أصليون",
+      "description": "استمتع بتلوين بطولات أبطال خارقون أصليون في هذه الصفحة المصممة خصيصاً للأطفال لتعليمهم الإبداع والتركيز أثناء اللعب.",
+      "keywords": [
+        "أبطال خارقون",
+        "صفحة تلوين",
+        "أطفال",
+        "إبداع",
+        "تعليم"
+      ],
+      "title_len": 34,
+      "title_in_bounds": true,
+      "title_card_len": 19,
+      "title_card_in_bounds": true,
+      "description_len": 116,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Fantasy",
+        "term_id": "fantasy",
+        "term_ar": "فانتازيا",
+        "term_en": "Fantasy"
+      },
+      "raw": "{\n  \"title\": \"فانتازيا: عالم من الخيال والخيال الملون\",\n  \"title_card\": \"فانتازيا ملونة\",\n  \"description\": \"استمتع بتلوين صفحات فانتازيا غنية بالخيال، حيث تتجسد قصص خيالية ملونة في كل لون تضيفه.\",\n  \"keywords\": [\n    \"فانتازيا\",\n    \"تلوين\",\n    \"خيال\",\n    \"صفحات\",\n    \"ملون\"\n  ]\n}",
+      "parsed": {
+        "title": "فانتازيا: عالم من الخيال والخيال الملون",
+        "title_card": "فانتازيا ملونة",
+        "description": "استمتع بتلوين صفحات فانتازيا غنية بالخيال، حيث تتجسد قصص خيالية ملونة في كل لون تضيفه.",
+        "keywords": [
+          "فانتازيا",
+          "تلوين",
+          "خيال",
+          "صفحات",
+          "ملون"
+        ]
+      },
+      "latency_s": 2.0685272216796875,
+      "json_ok": true,
+      "title": "فانتازيا: عالم من الخيال والخيال الملون",
+      "title_card": "فانتازيا ملونة",
+      "description": "استمتع بتلوين صفحات فانتازيا غنية بالخيال، حيث تتجسد قصص خيالية ملونة في كل لون تضيفه.",
+      "keywords": [
+        "فانتازيا",
+        "تلوين",
+        "خيال",
+        "صفحات",
+        "ملون"
+      ],
+      "title_len": 39,
+      "title_in_bounds": true,
+      "title_card_len": 14,
+      "title_card_in_bounds": true,
+      "description_len": 86,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Everyday life",
+        "term_id": "vie_quotidienne",
+        "term_ar": "الحياة اليومية",
+        "term_en": "Everyday life"
+      },
+      "raw": "{\n  \"title\": \"مجموعة ألوان الحياة اليومية للأطفال\",\n  \"title_card\": \"ألوان الحياة اليومية\",\n  \"description\": \"استمتع بلوحة ألوان تفاعلية تعرض مشاهد من الحياة اليومية اليومية بأسلوب مبسط وممتع للأطفال.\",\n  \"keywords\": [\n    \"الحياة اليومية\",\n    \"لوحة ألوان\",\n    \"تعليم أطفال\",\n    \"نشاط ترفيهي\",\n    \"مهارات فنية\"\n  ]\n}",
+      "parsed": {
+        "title": "مجموعة ألوان الحياة اليومية للأطفال",
+        "title_card": "ألوان الحياة اليومية",
+        "description": "استمتع بلوحة ألوان تفاعلية تعرض مشاهد من الحياة اليومية اليومية بأسلوب مبسط وممتع للأطفال.",
+        "keywords": [
+          "الحياة اليومية",
+          "لوحة ألوان",
+          "تعليم أطفال",
+          "نشاط ترفيهي",
+          "مهارات فنية"
+        ]
+      },
+      "latency_s": 1.9170434474945068,
+      "json_ok": true,
+      "title": "مجموعة ألوان الحياة اليومية للأطفال",
+      "title_card": "ألوان الحياة اليومية",
+      "description": "استمتع بلوحة ألوان تفاعلية تعرض مشاهد من الحياة اليومية اليومية بأسلوب مبسط وممتع للأطفال.",
+      "keywords": [
+        "الحياة اليومية",
+        "لوحة ألوان",
+        "تعليم أطفال",
+        "نشاط ترفيهي",
+        "مهارات فنية"
+      ],
+      "title_len": 35,
+      "title_in_bounds": true,
+      "title_card_len": 20,
+      "title_card_in_bounds": true,
+      "description_len": 90,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Spring",
+        "term_id": "printemps",
+        "term_ar": "الربيع",
+        "term_en": "Spring"
+      },
+      "raw": "{\n  \"title\": \"صفحة تلوين الربيع مع صور وأشجار الزهور\",\n  \"title_card\": \"ألوان الربيع\",\n  \"description\": \"استمتع بتلوين صور الربيع الجميلة والأشجار الزاهية في هذه الصفحة المخصصة للأطفال.\",\n  \"keywords\": [\n    \"الربيع\",\n    \"تلوين\",\n    \"أطفال\",\n    \"أشجار\",\n    \"زهور\"\n  ]\n}",
+      "parsed": {
+        "title": "صفحة تلوين الربيع مع صور وأشجار الزهور",
+        "title_card": "ألوان الربيع",
+        "description": "استمتع بتلوين صور الربيع الجميلة والأشجار الزاهية في هذه الصفحة المخصصة للأطفال.",
+        "keywords": [
+          "الربيع",
+          "تلوين",
+          "أطفال",
+          "أشجار",
+          "زهور"
+        ]
+      },
+      "latency_s": 1.8624954223632812,
+      "json_ok": true,
+      "title": "صفحة تلوين الربيع مع صور وأشجار الزهور",
+      "title_card": "ألوان الربيع",
+      "description": "استمتع بتلوين صور الربيع الجميلة والأشجار الزاهية في هذه الصفحة المخصصة للأطفال.",
+      "keywords": [
+        "الربيع",
+        "تلوين",
+        "أطفال",
+        "أشجار",
+        "زهور"
+      ],
+      "title_len": 38,
+      "title_in_bounds": true,
+      "title_card_len": 12,
+      "title_card_in_bounds": true,
+      "description_len": 80,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Summer",
+        "term_id": "ete",
+        "term_ar": "الصيف",
+        "term_en": "Summer"
+      },
+      "raw": "{\n  \"title\": \"صفحة تلوين الصيف الملونة والممتعة للأطفال\",\n  \"title_card\": \"لوحي الصيف الملون\",\n  \"description\": \"استمتع بتلوين صور الصيف الجميلة مثل الشمس والشموع والنباتات الخضراء في هذه الصفحة المخصصة للأطفال.\",\n  \"keywords\": [\n    \"صفحة\",\n    \"تلوين\",\n    \"الصيف\",\n    \"أطفال\",\n    \"ممتعة\"\n  ]\n}",
+      "parsed": {
+        "title": "صفحة تلوين الصيف الملونة والممتعة للأطفال",
+        "title_card": "لوحي الصيف الملون",
+        "description": "استمتع بتلوين صور الصيف الجميلة مثل الشمس والشموع والنباتات الخضراء في هذه الصفحة المخصصة للأطفال.",
+        "keywords": [
+          "صفحة",
+          "تلوين",
+          "الصيف",
+          "أطفال",
+          "ممتعة"
+        ]
+      },
+      "latency_s": 1.9815373420715332,
+      "json_ok": true,
+      "title": "صفحة تلوين الصيف الملونة والممتعة للأطفال",
+      "title_card": "لوحي الصيف الملون",
+      "description": "استمتع بتلوين صور الصيف الجميلة مثل الشمس والشموع والنباتات الخضراء في هذه الصفحة المخصصة للأطفال.",
+      "keywords": [
+        "صفحة",
+        "تلوين",
+        "الصيف",
+        "أطفال",
+        "ممتعة"
+      ],
+      "title_len": 41,
+      "title_in_bounds": true,
+      "title_card_len": 17,
+      "title_card_in_bounds": true,
+      "description_len": 98,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Autumn",
+        "term_id": "automne",
+        "term_ar": "الخريف",
+        "term_en": "Autumn"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الخريف مع الأشجار المتساقطة\",\n  \"title_card\": \"لوحة تلوين الخريف\",\n  \"description\": \"استمتع بلوحة تلوين الخريف الجميلة التي تحتوي على أشجار متساقطة وأوراق ملونة بألوان العود والبرتقالي.\",\n  \"keywords\": [\n    \"الخريف\",\n    \"لوحة تلوين\",\n    \"أشجار\",\n    \"أوراق متساقطة\",\n    \"ألوان\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الخريف مع الأشجار المتساقطة",
+        "title_card": "لوحة تلوين الخريف",
+        "description": "استمتع بلوحة تلوين الخريف الجميلة التي تحتوي على أشجار متساقطة وأوراق ملونة بألوان العود والبرتقالي.",
+        "keywords": [
+          "الخريف",
+          "لوحة تلوين",
+          "أشجار",
+          "أوراق متساقطة",
+          "ألوان"
+        ]
+      },
+      "latency_s": 2.2475342750549316,
+      "json_ok": true,
+      "title": "لوحة تلوين الخريف مع الأشجار المتساقطة",
+      "title_card": "لوحة تلوين الخريف",
+      "description": "استمتع بلوحة تلوين الخريف الجميلة التي تحتوي على أشجار متساقطة وأوراق ملونة بألوان العود والبرتقالي.",
+      "keywords": [
+        "الخريف",
+        "لوحة تلوين",
+        "أشجار",
+        "أوراق متساقطة",
+        "ألوان"
+      ],
+      "title_len": 38,
+      "title_in_bounds": true,
+      "title_card_len": 17,
+      "title_card_in_bounds": true,
+      "description_len": 100,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Winter",
+        "term_id": "hiver",
+        "term_ar": "الشتاء",
+        "term_en": "Winter"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الشتاء الجميلة للأطفال\",\n  \"title_card\": \"لوحة تلوين الشتاء\",\n  \"description\": \"استمتع بلوحة تلوين شتاء رائعة تحتوي على ثلوج وأشجار متجمدة، مثالية للأنشطة الإبداعية في فصل الشتاء.\",\n  \"keywords\": [\n    \"لوحة تلوين\",\n    \"الشتاء\",\n    \"الثلوج\",\n    \"للأطفال\",\n    \"أنشطة إبداعية\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الشتاء الجميلة للأطفال",
+        "title_card": "لوحة تلوين الشتاء",
+        "description": "استمتع بلوحة تلوين شتاء رائعة تحتوي على ثلوج وأشجار متجمدة، مثالية للأنشطة الإبداعية في فصل الشتاء.",
+        "keywords": [
+          "لوحة تلوين",
+          "الشتاء",
+          "الثلوج",
+          "للأطفال",
+          "أنشطة إبداعية"
+        ]
+      },
+      "latency_s": 2.180192708969116,
+      "json_ok": true,
+      "title": "لوحة تلوين الشتاء الجميلة للأطفال",
+      "title_card": "لوحة تلوين الشتاء",
+      "description": "استمتع بلوحة تلوين شتاء رائعة تحتوي على ثلوج وأشجار متجمدة، مثالية للأنشطة الإبداعية في فصل الشتاء.",
+      "keywords": [
+        "لوحة تلوين",
+        "الشتاء",
+        "الثلوج",
+        "للأطفال",
+        "أنشطة إبداعية"
+      ],
+      "title_len": 33,
+      "title_in_bounds": true,
+      "title_card_len": 17,
+      "title_card_in_bounds": true,
+      "description_len": 99,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Christmas",
+        "term_id": "noel",
+        "term_ar": "عيد الميلاد",
+        "term_en": "Christmas"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين عيد الميلاد للأطفال\",\n  \"title_card\": \"لوحة تلوين عيد الميلاد\",\n  \"description\": \"استمتع بلوحة تلوين عيد الميلاد الجميلة للأطفال، تحتوي على صور عيد الميلاد والأشجار المتلألئة لتعليمهم الألوان.\",\n  \"keywords\": [\n    \"عيد الميلاد\",\n    \"لوحة تلوين\",\n    \"أطفال\",\n    \"تعليم\",\n    \"أشجار عيد الميلاد\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين عيد الميلاد للأطفال",
+        "title_card": "لوحة تلوين عيد الميلاد",
+        "description": "استمتع بلوحة تلوين عيد الميلاد الجميلة للأطفال، تحتوي على صور عيد الميلاد والأشجار المتلألئة لتعليمهم الألوان.",
+        "keywords": [
+          "عيد الميلاد",
+          "لوحة تلوين",
+          "أطفال",
+          "تعليم",
+          "أشجار عيد الميلاد"
+        ]
+      },
+      "latency_s": 2.0787315368652344,
+      "json_ok": true,
+      "title": "لوحة تلوين عيد الميلاد للأطفال",
+      "title_card": "لوحة تلوين عيد الميلاد",
+      "description": "استمتع بلوحة تلوين عيد الميلاد الجميلة للأطفال، تحتوي على صور عيد الميلاد والأشجار المتلألئة لتعليمهم الألوان.",
+      "keywords": [
+        "عيد الميلاد",
+        "لوحة تلوين",
+        "أطفال",
+        "تعليم",
+        "أشجار عيد الميلاد"
+      ],
+      "title_len": 30,
+      "title_in_bounds": true,
+      "title_card_len": 22,
+      "title_card_in_bounds": true,
+      "description_len": 110,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Halloween",
+        "term_id": "halloween",
+        "term_ar": "هالووين",
+        "term_en": "Halloween"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين هالووين للأطفال والمراهقين\",\n  \"title_card\": \"لوحة تلوين هالووين\",\n  \"description\": \"استمتع بلوحة تلوين هالووين المميزة للأطفال والمراهقين، تحتوي على شخصيات خيالية وألوان جذابة لتنمية الإبداع.\",\n  \"keywords\": [\n    \"هالووين\",\n    \"لوحة\",\n    \"تلوين\",\n    \"أطفال\",\n    \"مراهقين\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين هالووين للأطفال والمراهقين",
+        "title_card": "لوحة تلوين هالووين",
+        "description": "استمتع بلوحة تلوين هالووين المميزة للأطفال والمراهقين، تحتوي على شخصيات خيالية وألوان جذابة لتنمية الإبداع.",
+        "keywords": [
+          "هالووين",
+          "لوحة",
+          "تلوين",
+          "أطفال",
+          "مراهقين"
+        ]
+      },
+      "latency_s": 2.2793679237365723,
+      "json_ok": true,
+      "title": "لوحة تلوين هالووين للأطفال والمراهقين",
+      "title_card": "لوحة تلوين هالووين",
+      "description": "استمتع بلوحة تلوين هالووين المميزة للأطفال والمراهقين، تحتوي على شخصيات خيالية وألوان جذابة لتنمية الإبداع.",
+      "keywords": [
+        "هالووين",
+        "لوحة",
+        "تلوين",
+        "أطفال",
+        "مراهقين"
+      ],
+      "title_len": 37,
+      "title_in_bounds": true,
+      "title_card_len": 18,
+      "title_card_in_bounds": true,
+      "description_len": 107,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Easter",
+        "term_id": "paques",
+        "term_ar": "عيد الفصح",
+        "term_en": "Easter"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين عيد الفصح للأطفال\",\n  \"title_card\": \"لوحة تلوين عيد الفصح\",\n  \"description\": \"استمتع بلوحة تلوين عيد الفصح المصممة خصيصاً للأطفال لتعليمهم الألوان والقيم الدينية في هذا اليوم المبارك.\",\n  \"keywords\": [\n    \"عيد الفصح\",\n    \"لوحة تلوين\",\n    \"أطفال\",\n    \"تعليم\",\n    \"مهارات\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين عيد الفصح للأطفال",
+        "title_card": "لوحة تلوين عيد الفصح",
+        "description": "استمتع بلوحة تلوين عيد الفصح المصممة خصيصاً للأطفال لتعليمهم الألوان والقيم الدينية في هذا اليوم المبارك.",
+        "keywords": [
+          "عيد الفصح",
+          "لوحة تلوين",
+          "أطفال",
+          "تعليم",
+          "مهارات"
+        ]
+      },
+      "latency_s": 2.1913259029388428,
+      "json_ok": true,
+      "title": "لوحة تلوين عيد الفصح للأطفال",
+      "title_card": "لوحة تلوين عيد الفصح",
+      "description": "استمتع بلوحة تلوين عيد الفصح المصممة خصيصاً للأطفال لتعليمهم الألوان والقيم الدينية في هذا اليوم المبارك.",
+      "keywords": [
+        "عيد الفصح",
+        "لوحة تلوين",
+        "أطفال",
+        "تعليم",
+        "مهارات"
+      ],
+      "title_len": 28,
+      "title_in_bounds": true,
+      "title_card_len": 20,
+      "title_card_in_bounds": true,
+      "description_len": 105,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Birthday",
+        "term_id": "anniversaire",
+        "term_ar": "عيد ميلاد",
+        "term_en": "Birthday"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين عيد ميلاد للأطفال\",\n  \"title_card\": \"لوحة تلوين عيد ميلاد\",\n  \"description\": \"استمتع بلوحة تلوين عيد ميلاد مليئة بالاحتفالات والهدايا، مثالية للأطفال لتعليم الألوان والإبداع في وقت خاص.\",\n  \"keywords\": [\n    \"عيد ميلاد\",\n    \"لوحة تلوين\",\n    \"أطفال\",\n    \"احتفالات\",\n    \"هدايا\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين عيد ميلاد للأطفال",
+        "title_card": "لوحة تلوين عيد ميلاد",
+        "description": "استمتع بلوحة تلوين عيد ميلاد مليئة بالاحتفالات والهدايا، مثالية للأطفال لتعليم الألوان والإبداع في وقت خاص.",
+        "keywords": [
+          "عيد ميلاد",
+          "لوحة تلوين",
+          "أطفال",
+          "احتفالات",
+          "هدايا"
+        ]
+      },
+      "latency_s": 2.242887020111084,
+      "json_ok": true,
+      "title": "لوحة تلوين عيد ميلاد للأطفال",
+      "title_card": "لوحة تلوين عيد ميلاد",
+      "description": "استمتع بلوحة تلوين عيد ميلاد مليئة بالاحتفالات والهدايا، مثالية للأطفال لتعليم الألوان والإبداع في وقت خاص.",
+      "keywords": [
+        "عيد ميلاد",
+        "لوحة تلوين",
+        "أطفال",
+        "احتفالات",
+        "هدايا"
+      ],
+      "title_len": 28,
+      "title_in_bounds": true,
+      "title_card_len": 20,
+      "title_card_in_bounds": true,
+      "description_len": 107,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Eid",
+        "term_id": "aid",
+        "term_ar": "عيد",
+        "term_en": "Eid"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين العيد الجميلة للأطفال\",\n  \"title_card\": \"لوحة تلوين العيد\",\n  \"description\": \"استمتع بلوحة تلوين العيد الجميلة التي تحتوي على عناصر احتفالية وألوان زاهية لتنمية خيالك لدى الأطفال.\",\n  \"keywords\": [\n    \"عيد\",\n    \"تلوين\",\n    \"أطفال\",\n    \"احتفال\",\n    \"فن\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين العيد الجميلة للأطفال",
+        "title_card": "لوحة تلوين العيد",
+        "description": "استمتع بلوحة تلوين العيد الجميلة التي تحتوي على عناصر احتفالية وألوان زاهية لتنمية خيالك لدى الأطفال.",
+        "keywords": [
+          "عيد",
+          "تلوين",
+          "أطفال",
+          "احتفال",
+          "فن"
+        ]
+      },
+      "latency_s": 2.052898645401001,
+      "json_ok": true,
+      "title": "لوحة تلوين العيد الجميلة للأطفال",
+      "title_card": "لوحة تلوين العيد",
+      "description": "استمتع بلوحة تلوين العيد الجميلة التي تحتوي على عناصر احتفالية وألوان زاهية لتنمية خيالك لدى الأطفال.",
+      "keywords": [
+        "عيد",
+        "تلوين",
+        "أطفال",
+        "احتفال",
+        "فن"
+      ],
+      "title_len": 32,
+      "title_in_bounds": true,
+      "title_card_len": 16,
+      "title_card_in_bounds": true,
+      "description_len": 101,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Letters",
+        "term_id": "lettres",
+        "term_ar": "الحروف",
+        "term_en": "Letters"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الحروف العربية للأطفال\",\n  \"title_card\": \"لوحة تلوين الحروف\",\n  \"description\": \"استمتع بلوحة تلوين تفاعلية للحروف العربية، وتعلم الأبجدية مع الرسم الملون الممتع.\",\n  \"keywords\": [\n    \"الحروف\",\n    \"اللوحة\",\n    \"التلوين\",\n    \"الأطفال\",\n    \"الأبجدية\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الحروف العربية للأطفال",
+        "title_card": "لوحة تلوين الحروف",
+        "description": "استمتع بلوحة تلوين تفاعلية للحروف العربية، وتعلم الأبجدية مع الرسم الملون الممتع.",
+        "keywords": [
+          "الحروف",
+          "اللوحة",
+          "التلوين",
+          "الأطفال",
+          "الأبجدية"
+        ]
+      },
+      "latency_s": 2.145188570022583,
+      "json_ok": true,
+      "title": "لوحة تلوين الحروف العربية للأطفال",
+      "title_card": "لوحة تلوين الحروف",
+      "description": "استمتع بلوحة تلوين تفاعلية للحروف العربية، وتعلم الأبجدية مع الرسم الملون الممتع.",
+      "keywords": [
+        "الحروف",
+        "اللوحة",
+        "التلوين",
+        "الأطفال",
+        "الأبجدية"
+      ],
+      "title_len": 33,
+      "title_in_bounds": true,
+      "title_card_len": 17,
+      "title_card_in_bounds": true,
+      "description_len": 81,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Numbers",
+        "term_id": "chiffres",
+        "term_ar": "الأرقام",
+        "term_en": "Numbers"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الأرقام للأطفال\",\n  \"title_card\": \"لوحة تلوين الأرقام\",\n  \"description\": \"استمتع بلوحة تلوين مليئة بالأرقام الجميلة لتنمية مهارات الأطفال في التعرف على الأرقام والتلوين الإبداعي.\",\n  \"keywords\": [\n    \"الأرقام\",\n    \"لوحة تلوين\",\n    \"تعليم الأطفال\",\n    \"رياضيات\",\n    \"نشاط ترفيهي\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الأرقام للأطفال",
+        "title_card": "لوحة تلوين الأرقام",
+        "description": "استمتع بلوحة تلوين مليئة بالأرقام الجميلة لتنمية مهارات الأطفال في التعرف على الأرقام والتلوين الإبداعي.",
+        "keywords": [
+          "الأرقام",
+          "لوحة تلوين",
+          "تعليم الأطفال",
+          "رياضيات",
+          "نشاط ترفيهي"
+        ]
+      },
+      "latency_s": 2.1761863231658936,
+      "json_ok": true,
+      "title": "لوحة تلوين الأرقام للأطفال",
+      "title_card": "لوحة تلوين الأرقام",
+      "description": "استمتع بلوحة تلوين مليئة بالأرقام الجميلة لتنمية مهارات الأطفال في التعرف على الأرقام والتلوين الإبداعي.",
+      "keywords": [
+        "الأرقام",
+        "لوحة تلوين",
+        "تعليم الأطفال",
+        "رياضيات",
+        "نشاط ترفيهي"
+      ],
+      "title_len": 26,
+      "title_in_bounds": true,
+      "title_card_len": 18,
+      "title_card_in_bounds": true,
+      "description_len": 104,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Shapes",
+        "term_id": "formes",
+        "term_ar": "الأشكال",
+        "term_en": "Shapes"
+      },
+      "raw": "{\n  \"title\": \"لوحة ألوان الأشكال الهندسية للأطفال\",\n  \"title_card\": \"ألوان الأشكال\",\n  \"description\": \"استمتع بلوحة ألوان الأشكال الهندسية المصممة خصيصاً للأطفال لتعليمهم التعرف على الأشكال المختلفة من خلال الرسم الملون.\",\n  \"keywords\": [\n    \"ألوان\",\n    \"أشكال\",\n    \"رسم\",\n    \"أطفال\",\n    \"تعليم\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة ألوان الأشكال الهندسية للأطفال",
+        "title_card": "ألوان الأشكال",
+        "description": "استمتع بلوحة ألوان الأشكال الهندسية المصممة خصيصاً للأطفال لتعليمهم التعرف على الأشكال المختلفة من خلال الرسم الملون.",
+        "keywords": [
+          "ألوان",
+          "أشكال",
+          "رسم",
+          "أطفال",
+          "تعليم"
+        ]
+      },
+      "latency_s": 2.2140681743621826,
+      "json_ok": true,
+      "title": "لوحة ألوان الأشكال الهندسية للأطفال",
+      "title_card": "ألوان الأشكال",
+      "description": "استمتع بلوحة ألوان الأشكال الهندسية المصممة خصيصاً للأطفال لتعليمهم التعرف على الأشكال المختلفة من خلال الرسم الملون.",
+      "keywords": [
+        "ألوان",
+        "أشكال",
+        "رسم",
+        "أطفال",
+        "تعليم"
+      ],
+      "title_len": 35,
+      "title_in_bounds": true,
+      "title_card_len": 13,
+      "title_card_in_bounds": true,
+      "description_len": 117,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Maps",
+        "term_id": "cartes",
+        "term_ar": "الخرائط",
+        "term_en": "Maps"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين خرائط العالم الجغرافي\",\n  \"title_card\": \"خرائط العالم\",\n  \"description\": \"استمتع بلوحة تلوين خرائط العالم الجغرافي المصممة خصيصاً للأطفال لتعليمهم القارات والمحيطات\",\n  \"keywords\": [\n    \"خرائط\",\n    \"جغرافيا\",\n    \"تعليم\",\n    \"لوحة\",\n    \"تلوين\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين خرائط العالم الجغرافي",
+        "title_card": "خرائط العالم",
+        "description": "استمتع بلوحة تلوين خرائط العالم الجغرافي المصممة خصيصاً للأطفال لتعليمهم القارات والمحيطات",
+        "keywords": [
+          "خرائط",
+          "جغرافيا",
+          "تعليم",
+          "لوحة",
+          "تلوين"
+        ]
+      },
+      "latency_s": 2.188988208770752,
+      "json_ok": true,
+      "title": "لوحة تلوين خرائط العالم الجغرافي",
+      "title_card": "خرائط العالم",
+      "description": "استمتع بلوحة تلوين خرائط العالم الجغرافي المصممة خصيصاً للأطفال لتعليمهم القارات والمحيطات",
+      "keywords": [
+        "خرائط",
+        "جغرافيا",
+        "تعليم",
+        "لوحة",
+        "تلوين"
+      ],
+      "title_len": 32,
+      "title_in_bounds": true,
+      "title_card_len": 12,
+      "title_card_in_bounds": true,
+      "description_len": 90,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "no_article",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Science",
+        "term_id": "science",
+        "term_ar": "العلوم",
+        "term_en": "Science"
+      },
+      "raw": "{\n  \"title\": \"العلوم: عالم المعرفة والابتكار\",\n  \"title_card\": \"عالم العلوم\",\n  \"description\": \"استكشف عالم العلوم الذي يجمع بين المعرفة والابتكار لخدمة البشرية وتطوير المجتمعات.\",\n  \"keywords\": [\n    \"العلوم\",\n    \"المعرفة\",\n    \"الابتكار\",\n    \"التطور\",\n    \"البشرية\"\n  ]\n}",
+      "parsed": {
+        "title": "العلوم: عالم المعرفة والابتكار",
+        "title_card": "عالم العلوم",
+        "description": "استكشف عالم العلوم الذي يجمع بين المعرفة والابتكار لخدمة البشرية وتطوير المجتمعات.",
+        "keywords": [
+          "العلوم",
+          "المعرفة",
+          "الابتكار",
+          "التطور",
+          "البشرية"
+        ]
+      },
+      "latency_s": 1.9536919593811035,
+      "json_ok": true,
+      "title": "العلوم: عالم المعرفة والابتكار",
+      "title_card": "عالم العلوم",
+      "description": "استكشف عالم العلوم الذي يجمع بين المعرفة والابتكار لخدمة البشرية وتطوير المجتمعات.",
+      "keywords": [
+        "العلوم",
+        "المعرفة",
+        "الابتكار",
+        "التطور",
+        "البشرية"
+      ],
+      "title_len": 30,
+      "title_in_bounds": true,
+      "title_card_len": 11,
+      "title_card_in_bounds": true,
+      "description_len": 82,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Miscellaneous",
+        "term_id": "divers",
+        "term_ar": "متنوع",
+        "term_en": "Miscellaneous"
+      },
+      "raw": "{\n  \"title\": \"مجموعة متنوعة من صفحات التلوين الممتعة\",\n  \"title_card\": \"صفحات تلوين متنوعة\",\n  \"description\": \"استمتع بتلوين مجموعة متنوعة من الرسومات المختلفة التي تناسب جميع الأعمار وتوفر وقتاً ممتعاً للاسترخاء.\",\n  \"keywords\": [\n    \"تلوين\",\n    \"رسومات\",\n    \"تنويع\",\n    \"استرخاء\",\n    \"ممتعة\"\n  ]\n}",
+      "parsed": {
+        "title": "مجموعة متنوعة من صفحات التلوين الممتعة",
+        "title_card": "صفحات تلوين متنوعة",
+        "description": "استمتع بتلوين مجموعة متنوعة من الرسومات المختلفة التي تناسب جميع الأعمار وتوفر وقتاً ممتعاً للاسترخاء.",
+        "keywords": [
+          "تلوين",
+          "رسومات",
+          "تنويع",
+          "استرخاء",
+          "ممتعة"
+        ]
+      },
+      "latency_s": 2.179488182067871,
+      "json_ok": true,
+      "title": "مجموعة متنوعة من صفحات التلوين الممتعة",
+      "title_card": "صفحات تلوين متنوعة",
+      "description": "استمتع بتلوين مجموعة متنوعة من الرسومات المختلفة التي تناسب جميع الأعمار وتوفر وقتاً ممتعاً للاسترخاء.",
+      "keywords": [
+        "تلوين",
+        "رسومات",
+        "تنويع",
+        "استرخاء",
+        "ممتعة"
+      ],
+      "title_len": 38,
+      "title_in_bounds": true,
+      "title_card_len": 18,
+      "title_card_in_bounds": true,
+      "description_len": 102,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "SpongeBob SquarePants",
+        "term_id": "cartoons_spongebob",
+        "term_ar": "سوبن بوب مربع",
+        "term_en": "SpongeBob SquarePants"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين سوبن بوب مربع للأطفال\",\n  \"title_card\": \"لوحة سوبن بوب\",\n  \"description\": \"استمتع بلوحة تلوين مميزة لشخصية سوبن بوب المفضلة لديك، وتعلم الألوان مع الترفيه في هذه الصفحة الخاصة.\",\n  \"keywords\": [\n    \"سوبن بوب\",\n    \"لوحة تلوين\",\n    \"أطفال\",\n    \"أنمي\",\n    \"تعليم\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين سوبن بوب مربع للأطفال",
+        "title_card": "لوحة سوبن بوب",
+        "description": "استمتع بلوحة تلوين مميزة لشخصية سوبن بوب المفضلة لديك، وتعلم الألوان مع الترفيه في هذه الصفحة الخاصة.",
+        "keywords": [
+          "سوبن بوب",
+          "لوحة تلوين",
+          "أطفال",
+          "أنمي",
+          "تعليم"
+        ]
+      },
+      "latency_s": 2.3056976795196533,
+      "json_ok": true,
+      "title": "لوحة تلوين سوبن بوب مربع للأطفال",
+      "title_card": "لوحة سوبن بوب",
+      "description": "استمتع بلوحة تلوين مميزة لشخصية سوبن بوب المفضلة لديك، وتعلم الألوان مع الترفيه في هذه الصفحة الخاصة.",
+      "keywords": [
+        "سوبن بوب",
+        "لوحة تلوين",
+        "أطفال",
+        "أنمي",
+        "تعليم"
+      ],
+      "title_len": 32,
+      "title_in_bounds": true,
+      "title_card_len": 13,
+      "title_card_in_bounds": true,
+      "description_len": 101,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Poodles",
+        "term_id": "animaux_domestiques_dogs_poodles",
+        "term_ar": "بوديل",
+        "term_en": "Poodles"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الكلاب بوديل الجميلة\",\n  \"title_card\": \"لوحة تلوين بوديل\",\n  \"description\": \"استمتع بلوحة تلوين ممتعة للكلاب بوديل الجميلة، مناسبة للأطفال لتعليم الألوان والابتهاج.\",\n  \"keywords\": [\n    \"بوديل\",\n    \"كلاب\",\n    \"لوحة\",\n    \"تلوين\",\n    \"أطفال\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الكلاب بوديل الجميلة",
+        "title_card": "لوحة تلوين بوديل",
+        "description": "استمتع بلوحة تلوين ممتعة للكلاب بوديل الجميلة، مناسبة للأطفال لتعليم الألوان والابتهاج.",
+        "keywords": [
+          "بوديل",
+          "كلاب",
+          "لوحة",
+          "تلوين",
+          "أطفال"
+        ]
+      },
+      "latency_s": 2.193653106689453,
+      "json_ok": true,
+      "title": "لوحة تلوين الكلاب بوديل الجميلة",
+      "title_card": "لوحة تلوين بوديل",
+      "description": "استمتع بلوحة تلوين ممتعة للكلاب بوديل الجميلة، مناسبة للأطفال لتعليم الألوان والابتهاج.",
+      "keywords": [
+        "بوديل",
+        "كلاب",
+        "لوحة",
+        "تلوين",
+        "أطفال"
+      ],
+      "title_len": 31,
+      "title_in_bounds": true,
+      "title_card_len": 16,
+      "title_card_in_bounds": true,
+      "description_len": 87,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Sea animals",
+        "term_id": "animaux_marins",
+        "term_ar": "حيوانات بحرية",
+        "term_en": "Sea animals"
+      },
+      "raw": "{\n  \"title\": \"حيوانات بحرية ملونة للتلوين\",\n  \"title_card\": \"حيوانات بحرية\",\n  \"description\": \"صفحة تلوين مميزة تحتوي على صور حيوانات بحرية متنوعة وألوان زاهية للأطفال.\",\n  \"keywords\": [\n    \"تلوين\",\n    \"بحار\",\n    \"أطفال\",\n    \"حيوانات\",\n    \"مغامرات\"\n  ]\n}",
+      "parsed": {
+        "title": "حيوانات بحرية ملونة للتلوين",
+        "title_card": "حيوانات بحرية",
+        "description": "صفحة تلوين مميزة تحتوي على صور حيوانات بحرية متنوعة وألوان زاهية للأطفال.",
+        "keywords": [
+          "تلوين",
+          "بحار",
+          "أطفال",
+          "حيوانات",
+          "مغامرات"
+        ]
+      },
+      "latency_s": 2.004986047744751,
+      "json_ok": true,
+      "title": "حيوانات بحرية ملونة للتلوين",
+      "title_card": "حيوانات بحرية",
+      "description": "صفحة تلوين مميزة تحتوي على صور حيوانات بحرية متنوعة وألوان زاهية للأطفال.",
+      "keywords": [
+        "تلوين",
+        "بحار",
+        "أطفال",
+        "حيوانات",
+        "مغامرات"
+      ],
+      "title_len": 27,
+      "title_in_bounds": true,
+      "title_card_len": 13,
+      "title_card_in_bounds": true,
+      "description_len": 73,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Complex mandalas",
+        "term_id": "mandalas_complexes",
+        "term_ar": "مندالات معقدة",
+        "term_en": "Complex mandalas"
+      },
+      "raw": "{\n  \"title\": \"ألوان مندالات معقدة لتلوين\",\n  \"title_card\": \"مندالات معقدة\",\n  \"description\": \"استمتع بتلوين المندالات المعقدة بألوانك المفضلة في هذه الصفحة المصممة خصيصاً للتركيز والاسترخاء.\",\n  \"keywords\": [\n    \"مندالات\",\n    \"تلوين\",\n    \"فنون\",\n    \"هدوء\",\n    \"إبداع\"\n  ]\n}",
+      "parsed": {
+        "title": "ألوان مندالات معقدة لتلوين",
+        "title_card": "مندالات معقدة",
+        "description": "استمتع بتلوين المندالات المعقدة بألوانك المفضلة في هذه الصفحة المصممة خصيصاً للتركيز والاسترخاء.",
+        "keywords": [
+          "مندالات",
+          "تلوين",
+          "فنون",
+          "هدوء",
+          "إبداع"
+        ]
+      },
+      "latency_s": 2.2325451374053955,
+      "json_ok": true,
+      "title": "ألوان مندالات معقدة لتلوين",
+      "title_card": "مندالات معقدة",
+      "description": "استمتع بتلوين المندالات المعقدة بألوانك المفضلة في هذه الصفحة المصممة خصيصاً للتركيز والاسترخاء.",
+      "keywords": [
+        "مندالات",
+        "تلوين",
+        "فنون",
+        "هدوء",
+        "إبداع"
+      ],
+      "title_len": 26,
+      "title_in_bounds": true,
+      "title_card_len": 13,
+      "title_card_in_bounds": true,
+      "description_len": 96,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Peppa Pig",
+        "term_id": "cartoons_peppa-pig",
+        "term_ar": "بيپا الخنزير",
+        "term_en": "Peppa Pig"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين بيپا الخنزير للأطفال\",\n  \"title_card\": \"لوحة تلوين بيپا\",\n  \"description\": \"استمتع بلوحة تلوين بيپا الخنزير الممتعة للأطفال، وتعلم الألوان والرسوم الجميلة في هذه الصفحة الخاصة.\",\n  \"keywords\": [\n    \"بيپا\",\n    \"الخنزير\",\n    \"لوحة\",\n    \"تلوين\",\n    \"أطفال\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين بيپا الخنزير للأطفال",
+        "title_card": "لوحة تلوين بيپا",
+        "description": "استمتع بلوحة تلوين بيپا الخنزير الممتعة للأطفال، وتعلم الألوان والرسوم الجميلة في هذه الصفحة الخاصة.",
+        "keywords": [
+          "بيپا",
+          "الخنزير",
+          "لوحة",
+          "تلوين",
+          "أطفال"
+        ]
+      },
+      "latency_s": 2.2450857162475586,
+      "json_ok": true,
+      "title": "لوحة تلوين بيپا الخنزير للأطفال",
+      "title_card": "لوحة تلوين بيپا",
+      "description": "استمتع بلوحة تلوين بيپا الخنزير الممتعة للأطفال، وتعلم الألوان والرسوم الجميلة في هذه الصفحة الخاصة.",
+      "keywords": [
+        "بيپا",
+        "الخنزير",
+        "لوحة",
+        "تلوين",
+        "أطفال"
+      ],
+      "title_len": 31,
+      "title_in_bounds": true,
+      "title_card_len": 15,
+      "title_card_in_bounds": true,
+      "description_len": 100,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Retrievers",
+        "term_id": "animaux_domestiques_dogs_retrievers",
+        "term_ar": "المتلقون",
+        "term_en": "Retrievers"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين الكلاب المتلقية المتعة\",\n  \"title_card\": \"لوحة تلوين المتلقين\",\n  \"description\": \"استمتع بلوحة تلوين جميلة للكلاب المتلقية، وهي كائنات ذكية ومحبوبة، وتوفر لك وقتاً ممتعاً وهدوءاً.\",\n  \"keywords\": [\n    \"الكلاب\",\n    \"المتلقية\",\n    \"لوحة\",\n    \"تلوين\",\n    \"مستويات\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين الكلاب المتلقية المتعة",
+        "title_card": "لوحة تلوين المتلقين",
+        "description": "استمتع بلوحة تلوين جميلة للكلاب المتلقية، وهي كائنات ذكية ومحبوبة، وتوفر لك وقتاً ممتعاً وهدوءاً.",
+        "keywords": [
+          "الكلاب",
+          "المتلقية",
+          "لوحة",
+          "تلوين",
+          "مستويات"
+        ]
+      },
+      "latency_s": 2.471970319747925,
+      "json_ok": true,
+      "title": "لوحة تلوين الكلاب المتلقية المتعة",
+      "title_card": "لوحة تلوين المتلقين",
+      "description": "استمتع بلوحة تلوين جميلة للكلاب المتلقية، وهي كائنات ذكية ومحبوبة، وتوفر لك وقتاً ممتعاً وهدوءاً.",
+      "keywords": [
+        "الكلاب",
+        "المتلقية",
+        "لوحة",
+        "تلوين",
+        "مستويات"
+      ],
+      "title_len": 33,
+      "title_in_bounds": true,
+      "title_card_len": 19,
+      "title_card_in_bounds": true,
+      "description_len": 97,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "prefix_4",
+      "harakat_anywhere": true,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Farm animals",
+        "term_id": "animaux_ferme",
+        "term_ar": "حيوانات المزرعة",
+        "term_en": "Farm animals"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين حيوانات المزرعة للأطفال\",\n  \"title_card\": \"حيوانات المزرعة\",\n  \"description\": \"استمتع بلوحة تلوين جميلة تحتوي على حيوانات المزرعة مثل الغنم والماعز والأبقار لتعليم الأطفال الألوان.\",\n  \"keywords\": [\n    \"لوحة تلوين\",\n    \"حيوانات المزرعة\",\n    \"تعليم الأطفال\",\n    \"الغزال\",\n    \"الغنم\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين حيوانات المزرعة للأطفال",
+        "title_card": "حيوانات المزرعة",
+        "description": "استمتع بلوحة تلوين جميلة تحتوي على حيوانات المزرعة مثل الغنم والماعز والأبقار لتعليم الأطفال الألوان.",
+        "keywords": [
+          "لوحة تلوين",
+          "حيوانات المزرعة",
+          "تعليم الأطفال",
+          "الغزال",
+          "الغنم"
+        ]
+      },
+      "latency_s": 2.3556065559387207,
+      "json_ok": true,
+      "title": "لوحة تلوين حيوانات المزرعة للأطفال",
+      "title_card": "حيوانات المزرعة",
+      "description": "استمتع بلوحة تلوين جميلة تحتوي على حيوانات المزرعة مثل الغنم والماعز والأبقار لتعليم الأطفال الألوان.",
+      "keywords": [
+        "لوحة تلوين",
+        "حيوانات المزرعة",
+        "تعليم الأطفال",
+        "الغزال",
+        "الغنم"
+      ],
+      "title_len": 34,
+      "title_in_bounds": true,
+      "title_card_len": 15,
+      "title_card_in_bounds": true,
+      "description_len": 101,
+      "description_in_bounds": false,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Animal mandalas",
+        "term_id": "mandalas_animaux",
+        "term_ar": "مندالات الحيوانات",
+        "term_en": "Animal mandalas"
+      },
+      "raw": "{\n  \"title\": \"ألوان ممتعة لمندالات الحيوانات\",\n  \"title_card\": \"ألوان ممتعة\",\n  \"description\": \"استمتع بلوحة ألوان مذهلة لمندالات الحيوانات. ابدأ الرسم الآن وابدأ في إبداع ألوانك المفضلة.\",\n  \"keywords\": [\n    \"مندالات\",\n    \"الحيوانات\",\n    \"لوحة\",\n    \"ألوان\",\n    \"رسم\"\n  ]\n}",
+      "parsed": {
+        "title": "ألوان ممتعة لمندالات الحيوانات",
+        "title_card": "ألوان ممتعة",
+        "description": "استمتع بلوحة ألوان مذهلة لمندالات الحيوانات. ابدأ الرسم الآن وابدأ في إبداع ألوانك المفضلة.",
+        "keywords": [
+          "مندالات",
+          "الحيوانات",
+          "لوحة",
+          "ألوان",
+          "رسم"
+        ]
+      },
+      "latency_s": 2.1308767795562744,
+      "json_ok": true,
+      "title": "ألوان ممتعة لمندالات الحيوانات",
+      "title_card": "ألوان ممتعة",
+      "description": "استمتع بلوحة ألوان مذهلة لمندالات الحيوانات. ابدأ الرسم الآن وابدأ في إبداع ألوانك المفضلة.",
+      "keywords": [
+        "مندالات",
+        "الحيوانات",
+        "لوحة",
+        "ألوان",
+        "رسم"
+      ],
+      "title_len": 30,
+      "title_in_bounds": true,
+      "title_card_len": 11,
+      "title_card_in_bounds": true,
+      "description_len": 91,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Looney Tunes",
+        "term_id": "cartoons_looney-tunes",
+        "term_ar": "لووني تونز",
+        "term_en": "Looney Tunes"
+      },
+      "raw": "{\n  \"title\": \"لووني تونز صفحة تلوين للأطفال\",\n  \"title_card\": \"لووني تونز\",\n  \"description\": \"استمتع بصفحة تلوين مميزة لشخصيات لووني تونز المفضلة. ابدأ في إبداع فني رائع مع هذه الرسومات الملونة.\",\n  \"keywords\": [\n    \"لووني تونز\",\n    \"صفحة تلوين\",\n    \"أطفال\",\n    \"رسومات\",\n    \"تعليمي\"\n  ]\n}",
+      "parsed": {
+        "title": "لووني تونز صفحة تلوين للأطفال",
+        "title_card": "لووني تونز",
+        "description": "استمتع بصفحة تلوين مميزة لشخصيات لووني تونز المفضلة. ابدأ في إبداع فني رائع مع هذه الرسومات الملونة.",
+        "keywords": [
+          "لووني تونز",
+          "صفحة تلوين",
+          "أطفال",
+          "رسومات",
+          "تعليمي"
+        ]
+      },
+      "latency_s": 2.4123141765594482,
+      "json_ok": true,
+      "title": "لووني تونز صفحة تلوين للأطفال",
+      "title_card": "لووني تونز",
+      "description": "استمتع بصفحة تلوين مميزة لشخصيات لووني تونز المفضلة. ابدأ في إبداع فني رائع مع هذه الرسومات الملونة.",
+      "keywords": [
+        "لووني تونز",
+        "صفحة تلوين",
+        "أطفال",
+        "رسومات",
+        "تعليمي"
+      ],
+      "title_len": 29,
+      "title_in_bounds": true,
+      "title_card_len": 10,
+      "title_card_in_bounds": true,
+      "description_len": 100,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": true,
+      "anchor_match_kind": "exact",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    },
+    {
+      "pair": {
+        "concept_en": "Pit Bulls",
+        "term_id": "animaux_domestiques_dogs_pitbulls",
+        "term_ar": "بولي",
+        "term_en": "Pit Bulls"
+      },
+      "raw": "{\n  \"title\": \"لوحة تلوين كلاب بول تير العربية\",\n  \"title_card\": \"كلاب بول تير\",\n  \"description\": \"استمتع بلوحة تلوين مميزة لكلاب بول تير بألوان زاهية وممتعة للأطفال\",\n  \"keywords\": [\n    \"كلاب\",\n    \"بول تير\",\n    \"لوحة\",\n    \"تلوين\",\n    \"أطفال\"\n  ]\n}",
+      "parsed": {
+        "title": "لوحة تلوين كلاب بول تير العربية",
+        "title_card": "كلاب بول تير",
+        "description": "استمتع بلوحة تلوين مميزة لكلاب بول تير بألوان زاهية وممتعة للأطفال",
+        "keywords": [
+          "كلاب",
+          "بول تير",
+          "لوحة",
+          "تلوين",
+          "أطفال"
+        ]
+      },
+      "latency_s": 2.1835615634918213,
+      "json_ok": true,
+      "title": "لوحة تلوين كلاب بول تير العربية",
+      "title_card": "كلاب بول تير",
+      "description": "استمتع بلوحة تلوين مميزة لكلاب بول تير بألوان زاهية وممتعة للأطفال",
+      "keywords": [
+        "كلاب",
+        "بول تير",
+        "لوحة",
+        "تلوين",
+        "أطفال"
+      ],
+      "title_len": 31,
+      "title_in_bounds": true,
+      "title_card_len": 12,
+      "title_card_in_bounds": true,
+      "description_len": 66,
+      "description_in_bounds": true,
+      "keywords_count": 5,
+      "keywords_count_ok": true,
+      "anchor_present": false,
+      "anchor_match_kind": "absent",
+      "harakat_anywhere": false,
+      "latin_anywhere": false
+    }
+  ],
+  "summary": {
+    "total": 38,
+    "json_ok": 38,
+    "anchor_present": 37,
+    "title_in_bounds": 38,
+    "title_card_in_bounds": 37,
+    "description_in_bounds": 24,
+    "keywords_count_ok": 38,
+    "harakat_clean": 28,
+    "latin_clean": 38,
+    "title_min": 26,
+    "title_max": 44,
+    "title_avg": 33.0,
+    "title_median": 33.0,
+    "description_min": 66,
+    "description_max": 117,
+    "description_avg": 94.8,
+    "description_median": 98.0,
+    "title_card_min": 10,
+    "title_card_max": 27,
+    "title_card_avg": 16.2,
+    "latency_min_s": 1.82,
+    "latency_max_s": 3.13,
+    "latency_avg_s": 2.13,
+    "latency_median_s": 2.14
+  }
+}

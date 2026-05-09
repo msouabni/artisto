@@ -1,0 +1,49 @@
+{
+  "poc": "ar-vocalisation-ollama",
+  "date": "2026-05-05",
+  "model": "qwen2.5:7b",
+  "temperature": 0.0,
+  "corpus_size": 10,
+  "prompt": "Vocalise ce titre arabe en ajoutant les harakat (tashkil) complets. Réponds uniquement avec le titre vocalisé, rien d'autre.\nTitre : {titre}",
+  "summary": {
+    "responses_obtained": "10/10",
+    "regex_valid_slugs": "10/10",
+    "lexically_correct_vocalisation": "~5/10 (estimation au mot)",
+    "match_corpus_slug": "0/10",
+    "latency_min_seconds": 1.7,
+    "latency_max_seconds": 121.2
+  },
+  "results": [
+    {"titre": "أسد في الغابة", "vocalise": "أَسْدٌ فِي الْغَابَةِ", "slug": "aasdun-fii-al-ghaabaai", "regex_ok": true, "harakat_density": 0.73, "latency_s": 33.0, "lexical_note": "أَسْدٌ au lieu de أَسَدٌ — voyelle manquante"},
+    {"titre": "قط في المكتبة", "vocalise": "قَطٌ فِي الْمَكْتَبَةِ", "slug": "qatun-fii-al-maktabaai", "regex_ok": true, "harakat_density": 0.82, "latency_s": 67.8, "lexical_note": "qaṭ (sec/seulement) au lieu de qiṭṭ (chat)"},
+    {"titre": "دب صغير", "vocalise": "دَب صَغِير", "slug": "dab-saghiir", "regex_ok": true, "harakat_density": 0.50, "latency_s": 1.8, "lexical_note": "dab au lieu de dubb (ours)"},
+    {"titre": "فراشة ملونة", "vocalise": "فَرَاشَةٌ مُلْوَنَةٌ", "slug": "faraashaaun-muluanaaun", "regex_ok": true, "harakat_density": 0.90, "latency_s": 2.0, "lexical_note": "مُلْوَنَة (sans shadda) au lieu de مُلَوَّنَة"},
+    {"titre": "حصان يركض", "vocalise": "حصَّان يرْكِض", "slug": "hsaaan-yrkid", "regex_ok": true, "harakat_density": 0.50, "latency_s": 1.8, "lexical_note": "ḥaṣṣān (shadda fausse) au lieu de ḥiṣān"},
+    {"titre": "سمكة في البحر", "vocalise": "سُمْكَةٌ فِي الْبَحْرِ", "slug": "sumkaaun-fii-al-bahri", "regex_ok": true, "harakat_density": 0.82, "latency_s": 2.1, "lexical_note": "sumka au lieu de samaka"},
+    {"titre": "زهرة جميلة", "vocalise": "زهرَة جِمْلَة", "slug": "zhraa-jimlaa", "regex_ok": true, "harakat_density": 0.50, "latency_s": 1.7, "lexical_note": "vocalisation très partielle, jimla au lieu de jamīla"},
+    {"titre": "فيل كبير", "vocalise": "فيَّل كَبِير", "slug": "fiaal-kabiir", "regex_ok": true, "harakat_density": 0.57, "latency_s": 121.2, "lexical_note": "fayyal (shadda inventée) au lieu de fīl (éléphant)"},
+    {"titre": "كلب وفي", "vocalise": "كلَّب وَفي", "slug": "klaab-wafi", "regex_ok": true, "harakat_density": 0.50, "latency_s": 1.7, "lexical_note": "klāb (shadda inventée) au lieu de kalb (chien)"},
+    {"titre": "غزال رشيق", "vocalise": "غَزَالٌ رَشِيقٌ", "slug": "ghazaalun-rashiiqun", "regex_ok": true, "harakat_density": 0.75, "latency_s": 1.9, "lexical_note": "vocalisation correcte"}
+  ],
+  "problems_identified": [
+    {
+      "id": "P1_lexical_errors",
+      "severity": "blocker",
+      "description": "Vocalisations lexicalement fausses dans 5+ mots sur 10 — mauvais sens, non corrigeable downstream",
+      "examples": ["قَطٌ vs قِطٌّ", "دَب vs دُبٌّ", "فيَّل vs فِيل", "كلَّب vs كَلْب"]
+    },
+    {
+      "id": "P2_artefacts",
+      "severity": "fixable",
+      "description": "Tanwin, voyelles longues doublées, ـة + harakat — corrigeable par adaptation ar_to_slug",
+      "examples": ["aasdun-fii-al-ghaabaai", "kabiir vs kabir"]
+    },
+    {
+      "id": "P3_latency",
+      "severity": "production_blocker",
+      "description": "Latence variable 1.7s à 121.2s (factor 70x), cold-start imprévisible",
+      "examples": ["entry 1: 33s", "entry 8: 121.2s"]
+    }
+  ],
+  "decision": "Option A (LLM vocalise) ÉLIMINÉE. Voie retenue : Option B (Mishkal rule-based) — validée à 30/30 dans poc-ar-transliteration."
+}

@@ -1,0 +1,168 @@
+{
+  "source": "workflow_class='Solo objet style kawaii' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet style kawaii",
+  "subjects": [
+    {
+      "filename": "kawaii_unicorn_pastel_1024x1024_euler8s.png",
+      "name_en": "Kawaii Pastel Unicorn",
+      "leaf_id": "kawaii_unicorn_pastel",
+      "tier": "Solo objet style kawaii",
+      "workflow_class": "Solo objet style kawaii",
+      "technique": "Style kawaii avec gros yeux + visage",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kawaii pastel unicorn centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10932
+    },
+    {
+      "filename": "kawaii_cat_with_big_eyes_1024x1024_euler8s.png",
+      "name_en": "Kawaii Cat with Big Eyes",
+      "leaf_id": "kawaii_cat_with_big_eyes",
+      "tier": "Solo objet style kawaii",
+      "workflow_class": "Solo objet style kawaii",
+      "technique": "Style kawaii avec gros yeux + visage",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kawaii cat with big eyes centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10939
+    },
+    {
+      "filename": "chibi_anime_boy_1024x1024_euler8s.png",
+      "name_en": "Chibi Anime Boy",
+      "leaf_id": "chibi_anime_boy",
+      "tier": "Solo objet style kawaii",
+      "workflow_class": "Solo objet style kawaii",
+      "technique": "Style kawaii avec gros yeux + visage",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one chibi anime boy centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10946
+    },
+    {
+      "filename": "chibi_warrior_girl_1024x1024_euler8s.png",
+      "name_en": "Chibi Warrior Girl",
+      "leaf_id": "chibi_warrior_girl",
+      "tier": "Solo objet style kawaii",
+      "workflow_class": "Solo objet style kawaii",
+      "technique": "Style kawaii avec gros yeux + visage",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one chibi warrior girl centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10953
+    },
+    {
+      "filename": "kawaii_donut_with_face_1024x1024_euler8s.png",
+      "name_en": "Kawaii Donut with Face",
+      "leaf_id": "kawaii_donut_with_face",
+      "tier": "Solo objet style kawaii",
+      "workflow_class": "Solo objet style kawaii",
+      "technique": "Style kawaii avec gros yeux + visage",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kawaii donut with face centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10960
+    },
+    {
+      "filename": "kawaii_avocado_with_face_1024x1024_euler8s.png",
+      "name_en": "Kawaii Avocado with Face",
+      "leaf_id": "kawaii_avocado_with_face",
+      "tier": "Solo objet style kawaii",
+      "workflow_class": "Solo objet style kawaii",
+      "technique": "Style kawaii avec gros yeux + visage",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kawaii avocado with face centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10967
+    },
+    {
+      "filename": "kawaii_cloud_with_face_1024x1024_euler8s.png",
+      "name_en": "Kawaii Cloud with Face",
+      "leaf_id": "kawaii_cloud_with_face",
+      "tier": "Solo objet style kawaii",
+      "workflow_class": "Solo objet style kawaii",
+      "technique": "Style kawaii avec gros yeux + visage",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kawaii cloud with face centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10974
+    },
+    {
+      "filename": "kawaii_panda_with_bamboo_1024x1024_euler8s.png",
+      "name_en": "Kawaii Panda with Bamboo",
+      "leaf_id": "kawaii_panda_with_bamboo",
+      "tier": "Solo objet style kawaii",
+      "workflow_class": "Solo objet style kawaii",
+      "technique": "Style kawaii avec gros yeux + visage",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kawaii panda with bamboo centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10981
+    },
+    {
+      "filename": "kawaii_food_bento_box_1024x1024_euler8s.png",
+      "name_en": "Kawaii Food Bento Box",
+      "leaf_id": "kawaii_food_bento_box",
+      "tier": "Solo objet style kawaii",
+      "workflow_class": "Solo objet style kawaii",
+      "technique": "Style kawaii avec gros yeux + visage",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kawaii food bento box centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 10988
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "poc": "negative-prompt",
+  "mode": "only:soccer",
+  "date": "2026-05-06",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "vision_model": "qwen3.5:9b",
+  "seeds": {
+    "soccer": 1038277875074319
+  },
+  "neg_baseline": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo",
+  "neg_additional": {
+    "soccer": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet, no motion"
+  },
+  "results": [
+    {
+      "target": "soccer",
+      "concept": {
+        "target": "soccer",
+        "name_en": "Soccer Ball on a Field",
+        "category": "sports",
+        "final_prompt": "A wide shot centered on a child kicking a soccer ball on a sunny outdoor grass field with a goal, capturing a cheerful and energetic mood. The scene features a soccer ball in mid-air, green grass rendered as simple shapes, a white goal net with clear mesh patterns, stadium stands in the background, a blue sky with fluffy clouds, a goal post, and motion lines indicating the kick. Style: Black-and-white line art only, monochrome coloring book style with thick black outlines on a pure white background, no shading, no gradients, no color fills, no filled areas. Technical cleanup: No text, no letters, no numbers, no words, no signs, no labels, no watermarks, no logos, no signatures, no written characters anywhere in the image, clean layout with clear lines for easy coloring.",
+        "validator_score": 95
+      },
+      "seed": 1038277875074319,
+      "variants": [
+        {
+          "code": "v2_no_negative",
+          "negative": "",
+          "image_path": "docs/reports/poc-negative-prompt/sports-soccer-ball-on-a-field_v2_no_negative.png",
+          "histogram": {
+            "histogram_ok": true,
+            "color_ratio": 0.00151,
+            "white_ratio": 0.80505,
+            "ink_ratio": 0.12503,
+            "flags": []
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 7.591791391372681
+          },
+          "ok": true,
+          "comfy_latency_s": 18.15,
+          "comfy_prompt_id": "d544cd2b-b313-4fb8-be48-b8a8b393e981",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "seed": 1038277875074319,
+            "negative_applied": false,
+            "negative_text_used": " ",
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+          }
+        },
+        {
+          "code": "v3_baseline",
+          "negative": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo",
+          "image_path": "docs/reports/poc-negative-prompt/sports-soccer-ball-on-a-field_v3_baseline.png",
+          "histogram": {
+            "histogram_ok": true,
+            "color_ratio": 0.00151,
+            "white_ratio": 0.80505,
+            "ink_ratio": 0.12503,
+            "flags": []
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 3.5116090774536133
+          },
+          "ok": true,
+          "comfy_latency_s": 18.13,
+          "comfy_prompt_id": "979e1594-cb19-4583-b058-d2bed3202fb5",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "seed": 1038277875074319,
+            "negative_applied": true,
+            "negative_text_used": "shading, gradients, color fills, shadows, gray tones, watercolor, painting, photo, realistic, 3D render, blurry, low quality, text, watermark, signature, logo",
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+          }
+        },
+        {
+          "code": "v4_baseline_additif",
+          "negative": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet, no motion",
+          "image_path": "docs/reports/poc-negative-prompt/sports-soccer-ball-on-a-field_v4_baseline_additif.png",
+          "histogram": {
+            "histogram_ok": true,
+            "color_ratio": 0.00151,
+            "white_ratio": 0.80505,
+            "ink_ratio": 0.12503,
+            "flags": []
+          },
+          "vision_qc": {
+            "json_ok": true,
+            "raw": "{\"quality\": \"good\", \"issues\": [], \"confidence\": 100}",
+            "parsed": {
+              "quality": "good",
+              "issues": [],
+              "confidence": 100
+            },
+            "verdict": "good",
+            "issues": [],
+            "confidence": 100,
+            "latency_s": 3.508046865463257
+          },
+          "ok": true,
+          "comfy_latency_s": 18.23,
+          "comfy_prompt_id": "a68ee172-0d17-4cde-8a25-5b7bbb5750ad",
+          "generation_params": {
+            "workflow_template": "ernie-image-turbo-q8-api",
+            "seed": 1038277875074319,
+            "negative_applied": true,
+            "negative_text_used": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet, no motion",
+            "steps": 8,
+            "cfg": 1.0,
+            "sampler_name": "euler",
+            "scheduler": "normal",
+            "denoise": 1.0,
+            "width": 1024,
+            "height": 1024,
+            "batch_size": 1
+          }
+        }
+      ]
+    }
+  ]
+}

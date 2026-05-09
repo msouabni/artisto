@@ -1,0 +1,150 @@
+{
+  "source": "workflow_class='Solo objet en mouvement' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Solo objet en mouvement",
+  "subjects": [
+    {
+      "filename": "racing_speedboat_1376x768_euler8s.png",
+      "name_en": "Racing Speedboat",
+      "leaf_id": "racing_speedboat",
+      "tier": "Solo objet en mouvement",
+      "workflow_class": "Solo objet en mouvement",
+      "technique": "Solo + motion lines (Z7)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one racing speedboat centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10372
+    },
+    {
+      "filename": "snowmobile_1376x768_euler8s.png",
+      "name_en": "Snowmobile",
+      "leaf_id": "snowmobile",
+      "tier": "Solo objet en mouvement",
+      "workflow_class": "Solo objet en mouvement",
+      "technique": "Solo + motion lines (Z7)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one snowmobile centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10379
+    },
+    {
+      "filename": "kart_racing_1376x768_euler8s.png",
+      "name_en": "Kart Racing",
+      "leaf_id": "kart_racing",
+      "tier": "Solo objet en mouvement",
+      "workflow_class": "Solo objet en mouvement",
+      "technique": "Solo + motion lines (Z7)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one kart racing centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10386
+    },
+    {
+      "filename": "rally_car_1376x768_euler8s.png",
+      "name_en": "Rally Car",
+      "leaf_id": "rally_car",
+      "tier": "Solo objet en mouvement",
+      "workflow_class": "Solo objet en mouvement",
+      "technique": "Solo + motion lines (Z7)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one rally car centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10393
+    },
+    {
+      "filename": "racing_motorbike_1376x768_euler8s.png",
+      "name_en": "Racing Motorbike",
+      "leaf_id": "racing_motorbike",
+      "tier": "Solo objet en mouvement",
+      "workflow_class": "Solo objet en mouvement",
+      "technique": "Solo + motion lines (Z7)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one racing motorbike centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10400
+    },
+    {
+      "filename": "atv_quad_bike_1376x768_euler8s.png",
+      "name_en": "ATV Quad Bike",
+      "leaf_id": "atv_quad_bike",
+      "tier": "Solo objet en mouvement",
+      "workflow_class": "Solo objet en mouvement",
+      "technique": "Solo + motion lines (Z7)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one atv quad bike centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10407
+    },
+    {
+      "filename": "drag_racer_1376x768_euler8s.png",
+      "name_en": "Drag Racer",
+      "leaf_id": "drag_racer",
+      "tier": "Solo objet en mouvement",
+      "workflow_class": "Solo objet en mouvement",
+      "technique": "Solo + motion lines (Z7)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one drag racer centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10414
+    },
+    {
+      "filename": "formula_one_car_1376x768_euler8s.png",
+      "name_en": "Formula One Car",
+      "leaf_id": "formula_one_car",
+      "tier": "Solo objet en mouvement",
+      "workflow_class": "Solo objet en mouvement",
+      "technique": "Solo + motion lines (Z7)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one formula one car centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 10421
+    }
+  ]
+}

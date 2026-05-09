@@ -1,0 +1,132 @@
+{
+  "source": "workflow_class='Pattern décoratif simple' | confidence=Haute | sample seed=2027",
+  "workflow_class": "Pattern décoratif simple",
+  "subjects": [
+    {
+      "filename": "spirals_and_swirls_1024x1024_euler8s.png",
+      "name_en": "Spirals and Swirls",
+      "leaf_id": "spirals_and_swirls",
+      "tier": "Pattern décoratif simple",
+      "workflow_class": "Pattern décoratif simple",
+      "technique": "Pattern libre",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one spirals and swirls centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9721
+    },
+    {
+      "filename": "pop_art_pattern_1024x1024_euler8s.png",
+      "name_en": "Pop Art Pattern",
+      "leaf_id": "pop_art_pattern",
+      "tier": "Pattern décoratif simple",
+      "workflow_class": "Pattern décoratif simple",
+      "technique": "Pattern libre",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one pop art pattern centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9728
+    },
+    {
+      "filename": "rainbow_stripes_pattern_1024x1024_euler8s.png",
+      "name_en": "Rainbow Stripes Pattern",
+      "leaf_id": "rainbow_stripes_pattern",
+      "tier": "Pattern décoratif simple",
+      "workflow_class": "Pattern décoratif simple",
+      "technique": "Pattern libre",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one rainbow stripes pattern centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9735
+    },
+    {
+      "filename": "doodle_shapes_pattern_1024x1024_euler8s.png",
+      "name_en": "Doodle Shapes Pattern",
+      "leaf_id": "doodle_shapes_pattern",
+      "tier": "Pattern décoratif simple",
+      "workflow_class": "Pattern décoratif simple",
+      "technique": "Pattern libre",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one doodle shapes pattern centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9742
+    },
+    {
+      "filename": "abstract_zentangle_1024x1024_euler8s.png",
+      "name_en": "Abstract Zentangle",
+      "leaf_id": "abstract_zentangle",
+      "tier": "Pattern décoratif simple",
+      "workflow_class": "Pattern décoratif simple",
+      "technique": "Pattern libre",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one abstract zentangle centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9749
+    },
+    {
+      "filename": "circles_and_dots_pattern_1024x1024_euler8s.png",
+      "name_en": "Circles and Dots Pattern",
+      "leaf_id": "circles_and_dots_pattern",
+      "tier": "Pattern décoratif simple",
+      "workflow_class": "Pattern décoratif simple",
+      "technique": "Pattern libre",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one circles and dots pattern centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9756
+    },
+    {
+      "filename": "wavy_lines_abstract_1024x1024_euler8s.png",
+      "name_en": "Wavy Lines Abstract",
+      "leaf_id": "wavy_lines_abstract",
+      "tier": "Pattern décoratif simple",
+      "workflow_class": "Pattern décoratif simple",
+      "technique": "Pattern libre",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one wavy lines abstract centered on the page, viewed from a clear three-quarter angle, all main features fully visible, simple ground line beneath, clean uncluttered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 9763
+    }
+  ]
+}
