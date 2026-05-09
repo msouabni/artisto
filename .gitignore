@@ -32,3 +32,13 @@ Thumbs.db
 
 # Backups locaux (ex. générés par scripts/migrate_benchmark_annotations.py)
 *.bak
+
+# Configuration locale Claude Code (worktrees, scheduled tasks, settings perso)
+.claude/
+
+# Backups DB (dumps SQL/JSON locaux, ex. pré-purge)
+backups/
+
+# PNG générés par les POC benchmark (volumineux, ~635 MB sur 1055 fichiers).
+# Les rapports .md/.json à côté sont conservés.
+docs/reports/**/*.png
