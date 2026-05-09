@@ -6,7 +6,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 defaults:
-  model: qwen2.5:7b
+  model: qwen3.5:4b
   temperature: 0.3
   # Aligné avec OLLAMA_TIMEOUT côté API ; évite les 504 sur enrich-term (Ollama distant).
   timeout: 600

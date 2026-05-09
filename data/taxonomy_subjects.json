@@ -1,0 +1,1645 @@
+{
+  "generated_at": "2026-05-07T08:21:28.289944+00:00",
+  "taxonomy_version": "universal_v0",
+  "model": "qwen3.5:4b",
+  "temperature": 0.7,
+  "leaves_total": 34,
+  "leaves_processed": 34,
+  "leaves_failed_count": 0,
+  "total_subjects": 204,
+  "subjects": [
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Cute Pig",
+      "tier": "simple_animated",
+      "description": "A smiling pig standing on a green grass patch."
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sleeping Cat",
+      "tier": "simple_animated",
+      "description": "A fluffy kitten curled up on a sunny windowsill."
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Baby Bunny",
+      "tier": "simple_animated",
+      "description": "A small rabbit sitting inside a wooden flower pot."
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Farm Duck",
+      "tier": "simple_animated",
+      "description": "A yellow duckling wading in a shallow blue pond."
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sleeping Dog",
+      "tier": "simple_animated",
+      "description": "A golden retriever resting under a striped beach umbrella."
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Little Horse",
+      "tier": "simple_animated",
+      "description": "A foal standing next to a colorful rainbow in a field."
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Cute Lion with Mane",
+      "tier": "simple_animated",
+      "description": "A friendly lion with a fluffy mane sitting in a sunbeam."
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Busy Bees at Flowers",
+      "tier": "simple_animated",
+      "description": "Several bees flying around colorful flowers collecting nectar."
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sleeping Elephant",
+      "tier": "simple_animated",
+      "description": "A large elephant resting peacefully with its trunk curled up."
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Happy Giraffe",
+      "tier": "simple_animated",
+      "description": "A tall giraffe stretching its neck to eat leaves from a tree."
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Playful Panda",
+      "tier": "simple_animated",
+      "description": "A round panda holding a bamboo shoot with a smiling face."
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Singing Frog",
+      "tier": "simple_animated",
+      "description": "A bright green frog sitting on a lily pad with bubbles around it."
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Dolphin",
+      "tier": "simple_animated",
+      "description": "A friendly dolphin leaping out of the ocean with a smiling face."
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Starfish",
+      "tier": "simple_animated",
+      "description": "A colorful starfish resting on the sandy sea floor."
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Octopus",
+      "tier": "simple_animated",
+      "description": "An octopus with eight wiggly arms holding a single seashell."
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sea Turtle",
+      "tier": "simple_animated",
+      "description": "A large sea turtle swimming gracefully underwater."
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sea Urchin",
+      "tier": "simple_animated",
+      "description": "A spiky sea urchin covered in tiny colorful patterns."
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Jellyfish",
+      "tier": "simple_animated",
+      "description": "A glowing jellyfish drifting slowly with trailing tentacles."
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Cute Piglet",
+      "tier": "simple_animated",
+      "description": "A round pig with a curly tail standing on grass."
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Happy Chick",
+      "tier": "simple_animated",
+      "description": "A yellow chick with a comb and wattle pecking at the ground."
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Fluffy Sheep",
+      "tier": "simple_animated",
+      "description": "A white sheep with a woolly coat and a bow on its head."
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Busy Bee",
+      "tier": "simple_animated",
+      "description": "A striped bee flying near a flower with wings spread."
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Curious Goat",
+      "tier": "simple_animated",
+      "description": "A goat with curved horns and a long beard looking up."
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Chatty Rooster",
+      "tier": "simple_animated",
+      "description": "A red rooster with a comb and a tail feather fanned out."
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "T-Rex Head",
+      "tier": "simple_animated",
+      "description": "A friendly-looking Tyrannosaurus Rex head with big eyes and sharp teeth"
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Stegosaurus Back",
+      "tier": "simple_animated",
+      "description": "The rear half of a Stegosaurus showing its distinctive row of plates"
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Triceratops Horns",
+      "tier": "simple_animated",
+      "description": "A close-up of a Triceratops face featuring its three large horns and frill"
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Brachiosaurus Neck",
+      "tier": "simple_animated",
+      "description": "A long, gentle neck of a Brachiosaurus reaching for leaves"
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Dino Eggs",
+      "tier": "simple_inanimate",
+      "description": "A cluster of round, textured dinosaur eggs with cracks"
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Flying Pterodactyl",
+      "tier": "simple_animated",
+      "description": "A cartoon-style Pterodactyl flying with wings spread wide"
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bunny Flower",
+      "tier": "simple_animated",
+      "description": "A cute bunny sitting inside a blooming sunflower with simple round ears and petals."
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Starfish Spiral",
+      "tier": "simple_inanimate",
+      "description": "A five-armed starfish arranged in a repeating circular pattern on sandy ground."
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Balloon Dance",
+      "tier": "simple_animated",
+      "description": "Three colorful balloons floating in a circle around a smiling child's face."
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Rainbow Arch",
+      "tier": "simple_inanimate",
+      "description": "A bright rainbow arching over a small green hill with a sun at the top."
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Number 5",
+      "tier": "educational",
+      "description": "The number 5 written in large bold letters surrounded by five simple stars."
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "House of Waves",
+      "tier": "simple_inanimate",
+      "description": "A cozy house built from stacked seashells and rocks near a wavy ocean line."
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Flower Sun",
+      "tier": "mandala",
+      "description": "A bright yellow sun with petal rays arranged in a repeating circular pattern."
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bee Honeycomb",
+      "tier": "simple_animated",
+      "description": "A cute cartoon bee resting inside a large hexagonal honeycomb grid."
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Magic Star",
+      "tier": "simple_inanimate",
+      "description": "A glowing five-pointed star surrounded by concentric rings and sparkles."
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Rainbow Spiral",
+      "tier": "simple_inanimate",
+      "description": "A colorful spiral made of rainbows that winds inward toward a center circle."
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Butterfly Mandala",
+      "tier": "simple_animated",
+      "description": "A butterfly with symmetrical wings featuring intricate geometric patterns."
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Crystal Ball",
+      "tier": "simple_inanimate",
+      "description": "A round crystal ball with many small triangles radiating outward from the center."
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Cute Cat Sunburst",
+      "tier": "mandala",
+      "description": "A smiling cat face surrounded by radiating flower petals and geometric shapes."
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Funny Dog Circle",
+      "tier": "simple_animated",
+      "description": "A happy dog sitting in the center of concentric circles with simple spots."
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bunny Star Pattern",
+      "tier": "mandala",
+      "description": "A cute bunny face integrated into a pattern of stars and triangles."
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Panda Leaf Mandala",
+      "tier": "mandala",
+      "description": "A panda head made from bamboo leaves arranged in a circular geometric design."
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bird Wheel",
+      "tier": "simple_animated",
+      "description": "A colorful bird perched in the middle of a large, simple wheel pattern."
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Fish Spiral",
+      "tier": "mandala",
+      "description": "A friendly fish swimming through a spiral of fish scales and bubbles."
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bloom",
+      "tier": "mandala",
+      "description": "A colorful flower center surrounded by repeating petal and leaf patterns"
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Sunflower Spiral",
+      "tier": "simple_animated",
+      "description": "A bright yellow sunflower with a simple face made of black dots"
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Rose Garden",
+      "tier": "simple_inanimate",
+      "description": "Several red and pink roses growing in a neat row with green leaves"
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Butterfly Bloom",
+      "tier": "simple_animated",
+      "description": "A butterfly with patterned wings perched on a single large daisy"
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Star Flower",
+      "tier": "mandala",
+      "description": "A geometric flower design with eight-pointed star shapes at each petal tip"
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Lily Pad",
+      "tier": "simple_inanimate",
+      "description": "A single green lily pad floating with a simple leaf pattern"
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Classic Red Roadster",
+      "tier": "simple_inanimate",
+      "description": "A bright red car with large wheels and no people inside"
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Cute Cartoon Cat in a Car",
+      "tier": "simple_animated",
+      "description": "A small smiling cat sitting happily in the driver's seat"
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Superhero Driver Racing",
+      "tier": "anatomy",
+      "description": "A superhero character wearing a cape and driving fast on a track"
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Polka Dot Bicycle Race",
+      "tier": "simple_inanimate",
+      "description": "A colorful bicycle with round patterns and no riders"
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Space Rocket Launch",
+      "tier": "simple_animated",
+      "description": "A rocket ship flying through the stars with a smiling astronaut"
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "School Bus Driving",
+      "tier": "simple_animated",
+      "description": "A yellow school bus with a smiling driver and waving passengers"
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Red Fire Truck",
+      "tier": "simple_inanimate",
+      "description": "A classic red truck with hoses and a ladder for coloring."
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Blue Garbage Truck",
+      "tier": "simple_inanimate",
+      "description": "A blue truck with a large container on the back."
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Yellow School Bus",
+      "tier": "simple_inanimate",
+      "description": "A yellow bus with windows and wheels ready to drive."
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Green Farm Tractor",
+      "tier": "simple_inanimate",
+      "description": "A green tractor with big wheels and a plow."
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Space Rocket Ship",
+      "tier": "simple_inanimate",
+      "description": "A rocket ship with flames coming out of the bottom."
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Toy Train Engine",
+      "tier": "simple_inanimate",
+      "description": "A colorful steam engine pulling a small car."
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Little Red Firefighter Bike",
+      "tier": "simple_inanimate",
+      "description": "A bright red motorbike with a helmet and fire hose ready for action."
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Blue Police Patrol Bike",
+      "tier": "simple_inanimate",
+      "description": "A shiny blue police motorbike with a flashing light bar on top."
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Green Delivery Food Bike",
+      "tier": "simple_inanimate",
+      "description": "A fast green motorbike carrying a box of colorful pizzas."
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Yellow School Bus Bike",
+      "tier": "simple_inanimate",
+      "description": "A yellow motorbike designed to transport students to school safely."
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Pink Rescue Helicopter Bike",
+      "tier": "simple_inanimate",
+      "description": "A pink emergency motorbike equipped with a small rescue basket."
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Classic Vintage Coffee Bike",
+      "tier": "simple_inanimate",
+      "description": "An old-fashioned black motorbike with a large cup holder on the front."
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Red Airplane",
+      "tier": "simple_inanimate",
+      "description": "A bright red airplane flying in a clear blue sky without any people."
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Space Rocket",
+      "tier": "simple_inanimate",
+      "description": "A colorful rocket ship launching into space with stars in the background."
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Helicopter with Propeller",
+      "tier": "simple_inanimate",
+      "description": "A spinning helicopter hovering above green grass and a small tree."
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Old Airship",
+      "tier": "simple_inanimate",
+      "description": "A vintage silver blimp floating gently in the clouds."
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Glider Plane",
+      "tier": "simple_inanimate",
+      "description": "A sleek wooden glider soaring high above a mountain range."
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Ferry Boat",
+      "tier": "simple_inanimate",
+      "description": "A large blue boat carrying passengers across a calm ocean."
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Red Sailboat",
+      "tier": "simple_inanimate",
+      "description": "A classic boat with a single mast and colorful sails ready for a coloring adventure."
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Frog on a Boat",
+      "tier": "simple_animated",
+      "description": "A happy green frog sitting on the bow of a small wooden rowboat."
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Lighthouse Boat",
+      "tier": "simple_inanimate",
+      "description": "A tall boat designed to look like a lighthouse with a spiral tower and glowing window."
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Underwater Submarine",
+      "tier": "simple_inanimate",
+      "description": "A cute cartoon submarine with a periscope and porthole windows exploring the ocean."
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Ferris Wheel",
+      "tier": "simple_inanimate",
+      "description": "A large spinning ride with many passenger cars on a sunny day."
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Rocket Ship",
+      "tier": "simple_inanimate",
+      "description": "A space rocket with stripes and stars shooting through the sky."
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Red Steam Engine",
+      "tier": "simple_inanimate",
+      "description": "A classic red train with a large black smokestack and a smiling face."
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Blue Submarine",
+      "tier": "simple_inanimate",
+      "description": "A blue underwater boat with periscope and porthole windows."
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Yellow School Bus",
+      "tier": "simple_inanimate",
+      "description": "A yellow bus with six round windows and a green star on top."
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Purple Space Shuttle",
+      "tier": "simple_inanimate",
+      "description": "A purple rocket ship with fins and a flame shooting from the bottom."
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Green Garden Train",
+      "tier": "simple_inanimate",
+      "description": "A green train carrying flowers and vegetables through a field."
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Pink Fairy Train",
+      "tier": "simple_animated",
+      "description": "A pink train pulled by a friendly dragon wearing a pilot hat."
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "baker",
+      "tier": "anatomy",
+      "description": "A baker wearing a tall white hat and apron holding a tray of fresh bread."
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "firefighter",
+      "tier": "anatomy",
+      "description": "A firefighter in red gear and helmet standing next to a fire truck with a hose."
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "garden gardener",
+      "tier": "anatomy",
+      "description": "A gardener with overalls and a watering can tending to colorful flowers."
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "police officer",
+      "tier": "anatomy",
+      "description": "A police officer in a blue uniform and hat holding a stop sign."
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "doctor",
+      "tier": "anatomy",
+      "description": "A doctor in a white coat and stethoscope looking at a child's drawing."
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "construction worker",
+      "tier": "anatomy",
+      "description": "A construction worker wearing a hard hat and vest holding a hammer near a building."
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Little Rocket Astronaut",
+      "tier": "anatomy",
+      "description": "A young astronaut character floating in space holding a tiny rocket ship."
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Gigantic Friendly Dino",
+      "tier": "simple_animated",
+      "description": "A large, smiling dinosaur with simple limbs standing still in a grassy field."
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Flying Bat Hero",
+      "tier": "simple_animated",
+      "description": "A cute flying bat with big wings and a cape resting on a tree branch."
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Super Spidey Web",
+      "tier": "simple_animated",
+      "description": "A superhero character swinging on a long, thick green web line."
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Cute Cat Captain",
+      "tier": "simple_animated",
+      "description": "A small cat wearing a captain's hat and holding a ship's wheel."
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Mighty Dragon Guard",
+      "tier": "simple_animated",
+      "description": "A friendly dragon with big ears guarding a small castle gate."
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Giant Polka-Dot Elephant",
+      "tier": "simple_animated",
+      "description": "A large elephant with round spots and big ears standing on grass."
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Magic Wand Star",
+      "tier": "simple_inanimate",
+      "description": "A colorful wand topped with a shining star and sparkles."
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Flying Unicorn",
+      "tier": "simple_animated",
+      "description": "A one-horned horse with wings and a rainbow mane flying in the sky."
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Cute Witch Cat",
+      "tier": "anatomy",
+      "description": "A small cat wearing a pointed hat and holding a broomstick."
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Dragon Castle Door",
+      "tier": "simple_inanimate",
+      "description": "A heavy stone door guarded by a small friendly dragon."
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Enchanted Tree Heart",
+      "tier": "simple_inanimate",
+      "description": "A magical tree with a glowing heart shape in its trunk."
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Dancing Cats",
+      "tier": "simple_animated",
+      "description": "A group of cats in simple dance poses holding hands."
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Family Picnic",
+      "tier": "anatomy",
+      "description": "A mother, father, and two children sitting at a picnic table with food."
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Garden Tools",
+      "tier": "simple_inanimate",
+      "description": "A rake, watering can, and flower pot sitting in a grassy patch."
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Space Rocket",
+      "tier": "simple_inanimate",
+      "description": "A rocket ship flying through the stars with a trail of fire."
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "School Bus",
+      "tier": "simple_inanimate",
+      "description": "A yellow school bus driving on a road with flowers on the side."
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Happy Faces",
+      "tier": "simple_animated",
+      "description": "Three cartoon characters with big smiles waving hello."
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Bunny in a Flower Patch",
+      "tier": "simple_animated",
+      "description": "A cute bunny sitting among colorful spring flowers with simple ears and tail."
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Rainbow Dandelion",
+      "tier": "simple_inanimate",
+      "description": "A single dandelion plant with a bright rainbow stem and fluffy seeds blowing in the wind."
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Bird Building a Nest",
+      "tier": "simple_animated",
+      "description": "A small bird using its beak to arrange twigs and grass in a twig nest."
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Sprouting Seedling",
+      "tier": "simple_inanimate",
+      "description": "A small green shoot emerging from brown soil with broad leaves and roots visible."
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Butterfly on a Leaf",
+      "tier": "simple_animated",
+      "description": "A colorful butterfly with spread wings resting on a large green spring leaf."
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Squirrel with Acorn",
+      "tier": "simple_animated",
+      "description": "A fluffy squirrel holding an acorn in its paws near a tree trunk."
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Sunflower Field",
+      "tier": "simple_inanimate",
+      "description": "A row of yellow sunflowers with green stems and round leaves under a blue sky."
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Beach Ball",
+      "tier": "simple_inanimate",
+      "description": "A classic striped orange and white ball floating on calm blue water."
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Lion Cub",
+      "tier": "simple_animated",
+      "description": "A cute baby lion sitting in the grass with a fluffy mane and a big smile."
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Swimming Mermaid",
+      "tier": "simple_animated",
+      "description": "A friendly mermaid with a rainbow tail and bubble wand swimming in the ocean."
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Sandcastle",
+      "tier": "simple_inanimate",
+      "description": "A tall tower made of sand with a small flag and a tiny crab nearby."
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Ice Cream Cone",
+      "tier": "simple_inanimate",
+      "description": "A colorful waffle cone topped with scoops of pink, green, and yellow ice cream."
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "fallen orange leaves",
+      "tier": "simple_inanimate",
+      "description": "a pile of colorful leaves on the ground"
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "pumpkin patch",
+      "tier": "simple_inanimate",
+      "description": "rows of orange pumpkins in a garden"
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "acorn tree",
+      "tier": "simple_inanimate",
+      "description": "a tree dropping acorns and bearing fruit"
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "woodpecker",
+      "tier": "simple_animated",
+      "description": "a bird tapping on a tree trunk"
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "squirrel",
+      "tier": "simple_animated",
+      "description": "a small animal holding a nut"
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "leaf pattern",
+      "tier": "mandala",
+      "description": "symmetrical designs made from leaf shapes"
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Snowy Sled",
+      "tier": "simple_inanimate",
+      "description": "A bright red sled with a large basket full of colorful toys being pulled by a rope."
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Frosty Tree",
+      "tier": "simple_animated",
+      "description": "A cute snowman with carrot eyes, a coal mouth, and a striped scarf wearing a top hat."
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Polar Bear Family",
+      "tier": "simple_animated",
+      "description": "A mother polar bear and her two cubs standing on ice with icicles hanging from the background."
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Ice Skating Circle",
+      "tier": "simple_animated",
+      "description": "Three children on ice skates performing a happy circle dance on a frozen pond."
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Winter Snowflake",
+      "tier": "mandala",
+      "description": "An intricate, symmetrical six-pointed snowflake design made of swirling patterns."
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Number One Snowball",
+      "tier": "educational",
+      "description": "The numeral '1' drawn inside a large, textured snowball surrounded by snowflakes."
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Red Santa Hat",
+      "tier": "simple_inanimate",
+      "description": "A classic pointed red hat with a white pom-pom and trim."
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Frosty Snowman",
+      "tier": "simple_animated",
+      "description": "A round snowman with a carrot nose, coal eyes, and a scarf."
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Jingle Bell",
+      "tier": "simple_inanimate",
+      "description": "A shiny silver bell with a red ribbon tied around its neck."
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Christmas Tree Star",
+      "tier": "simple_inanimate",
+      "description": "A bright yellow five-pointed star sitting on top of a decorated tree."
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Christmas Letter",
+      "tier": "educational",
+      "description": "A red envelope with a white border and a large 'X' stamped on it."
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Santa's Sleigh",
+      "tier": "simple_inanimate",
+      "description": "A wooden sleigh with two large red wheels and a single reindeer pulling it."
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Jack-o'-lantern with cat face",
+      "tier": "simple_animated",
+      "description": "A carved pumpkin with a smiling cat face featuring big round eyes and a small nose."
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Spooky spiderweb with pumpkins",
+      "tier": "simple_inanimate",
+      "description": "A large spiderweb filled with small orange pumpkins and falling autumn leaves."
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Witch flying on broomstick",
+      "tier": "simple_animated",
+      "description": "A cartoon witch wearing a pointed hat and flying a simple broomstick through the sky."
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Trick-or-treating children",
+      "tier": "anatomy",
+      "description": "Three diverse children in colorful costumes holding bags of candy and smiling."
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Halloween spider mandala",
+      "tier": "mandala",
+      "description": "A symmetrical spider design with circular patterns and geometric shapes for coloring."
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Halloween ghost with letters",
+      "tier": "educational",
+      "description": "A friendly white ghost wearing a suit holding a sign with the letter 'A' and an apple."
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Bunny",
+      "tier": "simple_animated",
+      "description": "A cute bunny with long ears and a carrot wearing a bow tie."
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Egg Hunt",
+      "tier": "simple_animated",
+      "description": "A child digging in a garden to find colorful eggs hidden in the dirt."
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Basket",
+      "tier": "simple_inanimate",
+      "description": "A wicker basket filled with bunnies, eggs, and flowers."
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Egg",
+      "tier": "simple_inanimate",
+      "description": "A single egg decorated with polka dots and flowers."
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Tree",
+      "tier": "simple_inanimate",
+      "description": "A small tree decorated with eggs, baskets, and flowers."
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Chocolate Egg",
+      "tier": "simple_inanimate",
+      "description": "A round chocolate egg with a shiny wrapper and a bow on top."
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "balloon bouquet",
+      "tier": "simple_inanimate",
+      "description": "A cluster of colorful balloons tied with ribbons for a party."
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "cake with candles",
+      "tier": "simple_inanimate",
+      "description": "A decorated round cake with lit birthday candles on top."
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "birthday hat",
+      "tier": "simple_inanimate",
+      "description": "A tall cone-shaped hat with alternating colored stripes and a pom-pom."
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "party animals",
+      "tier": "simple_animated",
+      "description": "A happy clown and a dancing bear celebrating together."
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "gift boxes",
+      "tier": "simple_inanimate",
+      "description": "Several wrapped presents with bows and ribbons ready to be opened."
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "birthday cake slice",
+      "tier": "simple_animated",
+      "description": "A single piece of cake with frosting and a cherry on top."
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Colorful Eid Lantern",
+      "tier": "simple_inanimate",
+      "description": "A bright paper lantern with Islamic geometric patterns and hanging tassels."
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Happy Eid Elephant",
+      "tier": "simple_animated",
+      "description": "A friendly cartoon elephant wearing a festive turban and holding a gift."
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Prayer on a Rug",
+      "tier": "simple_animated",
+      "description": "A child in traditional clothes sitting cross-legged on a patterned prayer mat."
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Eid Cake Platter",
+      "tier": "simple_inanimate",
+      "description": "A round cake decorated with icing, fruits, and small candles on a table."
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Family Gift Exchange",
+      "tier": "anatomy",
+      "description": "A group of three children shaking hands and smiling while holding wrapped presents."
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Eid Tree Branch",
+      "tier": "simple_inanimate",
+      "description": "A decorated tree branch with red and gold ornaments and a small star at the top."
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter A",
+      "tier": "educational",
+      "description": "A large uppercase letter A with a leaf attached to one leg"
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter B",
+      "tier": "educational",
+      "description": "A large uppercase letter B shaped like a bouncy ball"
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter C",
+      "tier": "educational",
+      "description": "A large uppercase letter C formed from a smiling sun"
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter D",
+      "tier": "educational",
+      "description": "A large uppercase letter D shaped like a round cookie with sprinkles"
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter E",
+      "tier": "educational",
+      "description": "A large uppercase letter E made of colorful building blocks"
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter F",
+      "tier": "educational",
+      "description": "A large uppercase letter F shaped like a friendly frog sitting on a lily pad"
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number One Elephant",
+      "tier": "simple_animated",
+      "description": "A friendly elephant holding a sign that says '1'"
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Two Butterflies",
+      "tier": "simple_animated",
+      "description": "Two butterflies flying around the numeral two"
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Three Balloons",
+      "tier": "simple_inanimate",
+      "description": "Three colorful balloons shaped like the number three"
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Four Trees",
+      "tier": "simple_inanimate",
+      "description": "Four stylized trees arranged in the shape of a four"
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Five Fish",
+      "tier": "simple_animated",
+      "description": "Five swimming fish forming the outline of a five"
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Six Stars",
+      "tier": "simple_inanimate",
+      "description": "Six bright stars clustered together to look like a six"
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Square Pizza Slice",
+      "tier": "simple_inanimate",
+      "description": "A single slice of pepperoni pizza with a square crust outline."
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Round Sun",
+      "tier": "simple_animated",
+      "description": "A smiling yellow sun with wavy rays and a happy face."
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Blue Train",
+      "tier": "simple_inanimate",
+      "description": "A green and red steam train moving along a simple track."
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Happy Cat",
+      "tier": "simple_animated",
+      "description": "A chubby orange cat sitting down with big round eyes and whiskers."
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Red Ball",
+      "tier": "simple_inanimate",
+      "description": "A bright red soccer ball with black pentagons and a white stripe."
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Number Five",
+      "tier": "educational",
+      "description": "The numeral 5 written in a bold, bubbly font for kids to trace."
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Simple City Map",
+      "tier": "educational",
+      "description": "A basic outline of a city with labeled streets and parks for coloring."
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "School Bus Route",
+      "tier": "simple_animated",
+      "description": "A cartoon bus driving along a winding road with road signs."
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Forest Trail Sign",
+      "tier": "simple_inanimate",
+      "description": "A wooden signpost pointing the way through a tree-lined path."
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Ocean Map with Islands",
+      "tier": "educational",
+      "description": "A flat map of an ocean featuring several unpopulated islands and compass roses."
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Train on Tracks",
+      "tier": "simple_animated",
+      "description": "A friendly train engine moving along railroad tracks through a landscape."
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Beach Map with Lighthouse",
+      "tier": "simple_inanimate",
+      "description": "A seaside map showing a sandy beach and a tall lighthouse."
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Solar System",
+      "tier": "simple_inanimate",
+      "description": "A colorful drawing of the sun and planets with simple orbits for kids to color."
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Dinosaur Family",
+      "tier": "simple_animated",
+      "description": "Cute dinosaurs standing side by side with big smiles and simple tails."
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "School Bus",
+      "tier": "simple_inanimate",
+      "description": "A classic yellow bus with windows and wheels ready for a road trip."
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Rainbow Garden",
+      "tier": "simple_inanimate",
+      "description": "Flowers and trees painted in bright rainbow colors without any people or animals."
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Space Rocket",
+      "tier": "simple_inanimate",
+      "description": "A tall rocket ship blasting stars and comets with a trail of smoke."
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Animal Alphabet",
+      "tier": "educational",
+      "description": "Letters paired with simple animals like an A for Ant and B for Bear."
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "butterfly",
+      "tier": "simple_animated",
+      "description": "A colorful butterfly with detailed wings and antennae for easy tracing."
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "rainbow",
+      "tier": "simple_inanimate",
+      "description": "A bright curved rainbow arching over green grass with simple shapes."
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "cat",
+      "tier": "simple_animated",
+      "description": "A cute sleeping cat curled up with round ears and a fluffy tail."
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "car",
+      "tier": "simple_inanimate",
+      "description": "A red race car with wheels and windows on a plain road background."
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "star",
+      "tier": "mandala",
+      "description": "A symmetrical eight-pointed star with intricate patterns inside."
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "apple",
+      "tier": "simple_inanimate",
+      "description": "A red apple with a green leaf and a small brown stem."
+    }
+  ],
+  "failures": []
+}

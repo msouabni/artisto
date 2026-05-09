@@ -1,0 +1,4093 @@
+{
+  "generated_at": "2026-05-07T08:38:35.910533+00:00",
+  "finished_at": "2026-05-07T08:42:53.145946+00:00",
+  "model": "qwen3.5:4b",
+  "temperature": 0.4,
+  "total": 204,
+  "produced": 204,
+  "failures_count": 0,
+  "warnings_count": 0,
+  "subjects": [
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Cute Pig",
+      "tier": "simple_animated",
+      "description": "A smiling pig standing on a green grass patch.",
+      "positive_prompt": "A cute smiling pig standing on a green grass patch, centered in the frame with thick black outlines on a pure white background. The illustration features clean, simple shapes with no shading, gradients, or text to ensure it is perfect for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sleeping Cat",
+      "tier": "simple_animated",
+      "description": "A fluffy kitten curled up on a sunny windowsill.",
+      "positive_prompt": "A fluffy kitten curled up asleep on a sunny windowsill with soft dappled light patterns on its fur. The image features thick black outlines on a pure white background with no shading, gradients, or color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Baby Bunny",
+      "tier": "simple_animated",
+      "description": "A small rabbit sitting inside a wooden flower pot.",
+      "positive_prompt": "A cute baby bunny sits inside a wooden flower pot, with long ears and soft round ears visible against the wood grain. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. The composition is centered and clean, containing no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Farm Duck",
+      "tier": "simple_animated",
+      "description": "A yellow duckling wading in a shallow blue pond.",
+      "positive_prompt": "A centered yellow duckling wading in a shallow blue pond with clear water ripples. Thick black outlines on a pure white background with no shading, gradients, or color fills. No text, watermarks, or extra elements.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sleeping Dog",
+      "tier": "simple_animated",
+      "description": "A golden retriever resting under a striped beach umbrella.",
+      "positive_prompt": "A golden retriever puppy sleeping soundly under a striped beach umbrella in a centered composition. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure there is no text, watermarks, or extra details to keep the layout clean for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_domestiques",
+      "leaf_name_en": "Domestic animals",
+      "parent_name_en": "Animals",
+      "name_en": "Little Horse",
+      "tier": "simple_animated",
+      "description": "A foal standing next to a colorful rainbow in a field.",
+      "positive_prompt": "A cute foal standing in a green field next to a bright rainbow, depicted as black-and-white line art with thick outlines on a pure white background. The image features clean, centered composition with no shading, gradients, or text, ensuring a perfect layout for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Cute Lion with Mane",
+      "tier": "simple_animated",
+      "description": "A friendly lion with a fluffy mane sitting in a sunbeam.",
+      "positive_prompt": "A centered, single lion with a fluffy mane sitting in a sunbeam, rendered as black-and-white line art with thick black outlines on a pure white background, featuring no shading, gradients, or color fills. The illustration includes clean lines with no text, watermarks, or extra details to ensure a clear layout for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Busy Bees at Flowers",
+      "tier": "simple_animated",
+      "description": "Several bees flying around colorful flowers collecting nectar.",
+      "positive_prompt": "A centered illustration of several cute bees with large eyes flying around vibrant flowers with simple petals, depicted in black-and-white line art with thick black outlines on a pure white background. The image features no shading, gradients, or color fills, and includes no text or watermarks to ensure a clean layout for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sleeping Elephant",
+      "tier": "simple_animated",
+      "description": "A large elephant resting peacefully with its trunk curled up.",
+      "positive_prompt": "A large sleeping elephant centered on a pure white background with its trunk curled up over its head, featuring thick black outlines and no shading or color. The illustration includes simple, clean details like small ears and a gentle smile, with no text or watermarks to ensure a perfect coloring page layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Happy Giraffe",
+      "tier": "simple_animated",
+      "description": "A tall giraffe stretching its neck to eat leaves from a tree.",
+      "positive_prompt": "A tall giraffe stretching its long neck upward to eat leaves from a tree, centered on a pure white background. Thick black outlines define the animal's patterned coat, ossicones, and the tree branches without any shading, gradients, or color fills. The composition features clean lines and no text, watermarks, or background elements to ensure a perfect coloring page layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Playful Panda",
+      "tier": "simple_animated",
+      "description": "A round panda holding a bamboo shoot with a smiling face.",
+      "positive_prompt": "A centered, single illustration of a round, smiling panda holding a bamboo shoot with thick black outlines on a pure white background. The image features no shading, gradients, or color fills, ensuring a clean layout with no text or watermarks for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_sauvages",
+      "leaf_name_en": "Wild animals",
+      "parent_name_en": "Animals",
+      "name_en": "Singing Frog",
+      "tier": "simple_animated",
+      "description": "A bright green frog sitting on a lily pad with bubbles around it.",
+      "positive_prompt": "A centered black-and-white line art illustration of a bright green frog sitting on a lily pad surrounded by bubbles. The image features thick black outlines on a pure white background with no shading, gradients, or text, designed as a clean coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Dolphin",
+      "tier": "simple_animated",
+      "description": "A friendly dolphin leaping out of the ocean with a smiling face.",
+      "positive_prompt": "A friendly dolphin leaping out of the ocean with a smiling face, centered composition with thick black outlines on a pure white background, no shading or color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Starfish",
+      "tier": "simple_animated",
+      "description": "A colorful starfish resting on the sandy sea floor.",
+      "positive_prompt": "A large, cheerful starfish with five wavy arms and bright polka dots sits centered on a smooth, curved sandy sea floor. The illustration features thick black outlines on a pure white background with no shading, gradients, or color fills. The design includes clean, simple shapes and no text or watermarks for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Octopus",
+      "tier": "simple_animated",
+      "description": "An octopus with eight wiggly arms holding a single seashell.",
+      "positive_prompt": "A centered black-and-white line art illustration of a cute octopus with eight wiggly arms holding a single seashell, featuring thick black outlines on a pure white background with no shading, gradients, or color fills. The image includes no text, watermarks, or extra elements to ensure a clean layout suitable for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sea Turtle",
+      "tier": "simple_animated",
+      "description": "A large sea turtle swimming gracefully underwater.",
+      "positive_prompt": "A large sea turtle swimming gracefully underwater in a centered composition, featuring thick black outlines on a pure white background with no shading, gradients, or color fills. The turtle's shell and flippers are clearly defined with clean lines, and the surrounding water is represented by simple, sparse bubbles to maintain an uncluttered layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Sea Urchin",
+      "tier": "simple_animated",
+      "description": "A spiky sea urchin covered in tiny colorful patterns.",
+      "positive_prompt": "A centered, single sea urchin with a round body covered in numerous small, distinct spiky shapes and simple geometric patterns. The illustration features thick black outlines on a pure white background with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_marins",
+      "leaf_name_en": "Sea animals",
+      "parent_name_en": "Animals",
+      "name_en": "Jellyfish",
+      "tier": "simple_animated",
+      "description": "A glowing jellyfish drifting slowly with trailing tentacles.",
+      "positive_prompt": "A cute, smiling jellyfish with large eyes drifting slowly, featuring thick black outlines on a pure white background with no shading or color fills. Its trailing tentacles are wavy and detailed with clear lines for coloring, centered in a simple composition.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Cute Piglet",
+      "tier": "simple_animated",
+      "description": "A round pig with a curly tail standing on grass.",
+      "positive_prompt": "A cute round piglet with a curly tail standing on green grass, centered composition with thick black outlines on a pure white background. Clean line art with no shading, gradients, or color fills, and no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Happy Chick",
+      "tier": "simple_animated",
+      "description": "A yellow chick with a comb and wattle pecking at the ground.",
+      "positive_prompt": "A centered illustration of a cute yellow chick with a comb and wattle pecking at the ground, featuring thick black outlines on a pure white background with no shading or color fills. The image includes clean, simple details of the chick's feathers and beak, with no text or watermarks to ensure a perfect coloring page layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Fluffy Sheep",
+      "tier": "simple_animated",
+      "description": "A white sheep with a woolly coat and a bow on its head.",
+      "positive_prompt": "A centered, single white sheep with a fluffy woolly coat and a cute bow on its head, rendered in black-and-white line art with thick black outlines on a pure white background. Ensure no shading, gradients, or color fills are present, and the layout is clean with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Busy Bee",
+      "tier": "simple_animated",
+      "description": "A striped bee flying near a flower with wings spread.",
+      "positive_prompt": "A centered, single clear illustration of a striped bee with wings spread flying near a large flower. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the layout is clean with no text, watermarks, or extra elements.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Curious Goat",
+      "tier": "simple_animated",
+      "description": "A goat with curved horns and a long beard looking up.",
+      "positive_prompt": "A centered, single illustration of a curious goat with curved horns and a long beard looking upward. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the layout is clean with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "animaux_ferme",
+      "leaf_name_en": "Farm animals",
+      "parent_name_en": "Animals",
+      "name_en": "Chatty Rooster",
+      "tier": "simple_animated",
+      "description": "A red rooster with a comb and a tail feather fanned out.",
+      "positive_prompt": "A centered illustration of a cute red rooster with a large comb and a fanned tail feather on a pure white background, featuring thick black outlines with no shading, gradients, or color fills. The image includes clean lines only with no text, watermarks, or extra details to ensure an easy coloring experience for children.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "T-Rex Head",
+      "tier": "simple_animated",
+      "description": "A friendly-looking Tyrannosaurus Rex head with big eyes and sharp teeth",
+      "positive_prompt": "A centered, friendly Tyrannosaurus Rex head with large expressive eyes and sharp teeth, rendered as black-and-white line art with thick black outlines on a pure white background. The illustration features clean, unshaded lines with no text or watermarks, designed specifically for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Stegosaurus Back",
+      "tier": "simple_animated",
+      "description": "The rear half of a Stegosaurus showing its distinctive row of plates",
+      "positive_prompt": "A centered, black-and-white line art illustration of the rear half of a cute Stegosaurus on a pure white background, featuring thick black outlines with no shading, gradients, or color fills. The dinosaur displays its distinctive row of large triangular plates along its back and a fluffy tail with spikes, depicted in a simple, child-friendly style with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Triceratops Horns",
+      "tier": "simple_animated",
+      "description": "A close-up of a Triceratops face featuring its three large horns and frill",
+      "positive_prompt": "A centered close-up of a cute Triceratops face with three large, curved horns and a detailed frill, featuring thick black outlines on a pure white background with no shading or color fills. The illustration includes clean, bold lines for easy coloring, with no text, watermarks, or extra background elements.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Brachiosaurus Neck",
+      "tier": "simple_animated",
+      "description": "A long, gentle neck of a Brachiosaurus reaching for leaves",
+      "positive_prompt": "A centered, black-and-white line art illustration of a gentle Brachiosaurus reaching its long neck up toward leafy branches. Thick black outlines on a pure white background with no shading, gradients, or text for a clean children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Dino Eggs",
+      "tier": "simple_inanimate",
+      "description": "A cluster of round, textured dinosaur eggs with cracks",
+      "positive_prompt": "A centered cluster of round, textured dinosaur eggs with visible cracks on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, designed as a clean black-and-white line art coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "dinosaures",
+      "leaf_name_en": "Dinosaurs",
+      "parent_name_en": "Animals",
+      "name_en": "Flying Pterodactyl",
+      "tier": "simple_animated",
+      "description": "A cartoon-style Pterodactyl flying with wings spread wide",
+      "positive_prompt": "A cartoon pterodactyl with wings spread wide, flying in a centered composition against a pure white background. The illustration features thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bunny Flower",
+      "tier": "simple_animated",
+      "description": "A cute bunny sitting inside a blooming sunflower with simple round ears and petals.",
+      "positive_prompt": "A cute bunny with simple round ears sits inside a large blooming sunflower, with thick black outlines on a pure white background. The illustration features clean, unshaded lines with no text or watermarks, centered as a single clear subject for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Starfish Spiral",
+      "tier": "simple_inanimate",
+      "description": "A five-armed starfish arranged in a repeating circular pattern on sandy ground.",
+      "positive_prompt": "A centered black-and-white line art illustration of a five-armed starfish arranged in a repeating circular spiral pattern on a sandy ground. The image features thick black outlines on a pure white background with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Balloon Dance",
+      "tier": "simple_animated",
+      "description": "Three colorful balloons floating in a circle around a smiling child's face.",
+      "positive_prompt": "A centered mandala featuring a smiling child's face surrounded by three colorful balloons floating in a circle. The image is rendered in black-and-white line art with thick black outlines on a pure white background, containing no shading, gradients, or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Rainbow Arch",
+      "tier": "simple_inanimate",
+      "description": "A bright rainbow arching over a small green hill with a sun at the top.",
+      "positive_prompt": "A centered black-and-white line art illustration of a bright rainbow arching over a small green hill with a sun at the top, featuring thick black outlines on a pure white background with no shading, gradients, or color fills. The composition includes clean, uncluttered details suitable for easy coloring, with no text, watermarks, or background distractions.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Number 5",
+      "tier": "educational",
+      "description": "The number 5 written in large bold letters surrounded by five simple stars.",
+      "positive_prompt": "A large, bold number 5 centered on the page surrounded by five simple star outlines. The image features clean black-and-white line art with no shading or color, designed specifically for easy tracing and coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_faciles",
+      "leaf_name_en": "Easy mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "House of Waves",
+      "tier": "simple_inanimate",
+      "description": "A cozy house built from stacked seashells and rocks near a wavy ocean line.",
+      "positive_prompt": "A centered, black-and-white line art illustration of a cozy house built from stacked seashells and rocks sitting on a wavy ocean line. The image features thick black outlines on a pure white background with no shading, gradients, text, or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Flower Sun",
+      "tier": "mandala",
+      "description": "A bright yellow sun with petal rays arranged in a repeating circular pattern.",
+      "positive_prompt": "Create a perfectly symmetrical black-and-white line art mandala featuring a bright yellow sun at the center with intricate petal rays radiating outward in a repeating circular pattern. Use thick outlines on a pure white background to form a child-friendly geometric design with no color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bee Honeycomb",
+      "tier": "simple_animated",
+      "description": "A cute cartoon bee resting inside a large hexagonal honeycomb grid.",
+      "positive_prompt": "A centered cartoon bee with large round eyes and striped body rests inside a large hexagonal honeycomb grid. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. There is no text or watermarks, ensuring a clean layout suitable for a children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Magic Star",
+      "tier": "simple_inanimate",
+      "description": "A glowing five-pointed star surrounded by concentric rings and sparkles.",
+      "positive_prompt": "A centered, glowing five-pointed star surrounded by concentric rings and sparkles, rendered as black-and-white line art with thick black outlines on a pure white background. The design features no shading, gradients, or color fills, maintaining a clean layout with no text or watermarks for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Rainbow Spiral",
+      "tier": "simple_inanimate",
+      "description": "A colorful spiral made of rainbows that winds inward toward a center circle.",
+      "positive_prompt": "A centered black-and-white line art illustration of a thick, colorful rainbow spiral winding inward toward a central circle, featuring bold black outlines on a pure white background with no shading or gradients. The design includes clean, uncluttered curves suitable for children's coloring, with no text, watermarks, or extra elements present.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Butterfly Mandala",
+      "tier": "simple_animated",
+      "description": "A butterfly with symmetrical wings featuring intricate geometric patterns.",
+      "positive_prompt": "A centered butterfly mandala with symmetrical wings featuring intricate geometric patterns, rendered as black-and-white line art with thick black outlines on a pure white background, no shading, no gradients, no color fills, no text, no watermarks, and a clean layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_complexes",
+      "leaf_name_en": "Complex mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Crystal Ball",
+      "tier": "simple_inanimate",
+      "description": "A round crystal ball with many small triangles radiating outward from the center.",
+      "positive_prompt": "A centered round crystal ball with thick black outlines on a pure white background, featuring many small triangles radiating outward from the center in a complex mandala pattern. The design uses only clean black lines with no shading, gradients, or color fills, ensuring a clear and simple layout for children to color.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Cute Cat Sunburst",
+      "tier": "mandala",
+      "description": "A smiling cat face surrounded by radiating flower petals and geometric shapes.",
+      "positive_prompt": "Create a perfectly symmetrical black-and-white mandala featuring a cute smiling cat face at the center, surrounded by radiating flower petals and simple geometric shapes. Use thick, clean outlines on a pure white background to form an intricate yet child-friendly pattern ideal for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Funny Dog Circle",
+      "tier": "simple_animated",
+      "description": "A happy dog sitting in the center of concentric circles with simple spots.",
+      "positive_prompt": "A happy dog sitting in the center of concentric circles with simple spots, surrounded by a clean white border. The image features thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bunny Star Pattern",
+      "tier": "mandala",
+      "description": "A cute bunny face integrated into a pattern of stars and triangles.",
+      "positive_prompt": "Create a perfectly symmetrical black-and-white mandala featuring a cute bunny face at the center surrounded by radiating stars and triangles. Use thick, clean outlines on a pure white background to form an intricate yet child-friendly geometric pattern ready for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Panda Leaf Mandala",
+      "tier": "mandala",
+      "description": "A panda head made from bamboo leaves arranged in a circular geometric design.",
+      "positive_prompt": "Create a perfectly symmetrical mandala where a panda's head is formed by intricate bamboo leaves radiating from the center in a child-friendly geometric pattern. Render the design as black-and-white line art with thick outlines on a pure white background, ensuring no color fills are present.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bird Wheel",
+      "tier": "simple_animated",
+      "description": "A colorful bird perched in the middle of a large, simple wheel pattern.",
+      "positive_prompt": "A cute bird with large round eyes perched in the center of a simple large wheel pattern, featuring thick black outlines on a pure white background with no shading or color. The composition is centered with clean lines and no text or watermarks for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_animaux",
+      "leaf_name_en": "Animal mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Fish Spiral",
+      "tier": "mandala",
+      "description": "A friendly fish swimming through a spiral of fish scales and bubbles.",
+      "positive_prompt": "Create a perfectly symmetrical black-and-white mandala featuring a friendly fish swimming through a spiral of fish scales and bubbles. Use intricate but child-friendly geometric patterns with thick outlines on a pure white background, ensuring no color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Bloom",
+      "tier": "mandala",
+      "description": "A colorful flower center surrounded by repeating petal and leaf patterns",
+      "positive_prompt": "Create a perfectly symmetrical mandala radiating from a colorful flower center with intricate yet child-friendly repeating petal and leaf patterns. Render the design as black-and-white line art with thick outlines on a pure white background, featuring no color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Sunflower Spiral",
+      "tier": "simple_animated",
+      "description": "A bright yellow sunflower with a simple face made of black dots",
+      "positive_prompt": "A centered black-and-white line art illustration of a bright yellow sunflower with a simple face made of black dots, featuring thick black outlines on a pure white background with no shading or color fills. The composition is a clean, single-subject flower mandala with no text, watermarks, or gradients, designed as a child-friendly coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Rose Garden",
+      "tier": "simple_inanimate",
+      "description": "Several red and pink roses growing in a neat row with green leaves",
+      "positive_prompt": "A centered black-and-white line art illustration of several red and pink roses growing in a neat row with green leaves, featuring thick black outlines on a pure white background with no shading or color fills. The composition includes clean, uncluttered details suitable for children's coloring with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Butterfly Bloom",
+      "tier": "simple_animated",
+      "description": "A butterfly with patterned wings perched on a single large daisy",
+      "positive_prompt": "A centered black-and-white line art illustration of a cute butterfly with intricate patterned wings perched delicately on a single large daisy. The image features thick black outlines on a pure white background with no shading, gradients, or color fills, and includes no text or watermarks for a clean coloring page layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Star Flower",
+      "tier": "mandala",
+      "description": "A geometric flower design with eight-pointed star shapes at each petal tip",
+      "positive_prompt": "Create a perfectly symmetrical children's coloring mandala featuring a central star flower with eight-pointed geometric petals radiating outward. Use thick black-and-white line art on a pure white background with no color fills to ensure the intricate yet simple pattern is ideal for young children to color.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "mandalas_fleurs",
+      "leaf_name_en": "Flower mandalas",
+      "parent_name_en": "Mandalas",
+      "name_en": "Lily Pad",
+      "tier": "simple_inanimate",
+      "description": "A single green lily pad floating with a simple leaf pattern",
+      "positive_prompt": "A centered, single green lily pad with a simple leaf pattern floating on pure white water, rendered as black-and-white line art with thick black outlines. The image features no shading, gradients, or color fills, maintaining a clean layout with no text or watermarks for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Classic Red Roadster",
+      "tier": "simple_inanimate",
+      "description": "A bright red car with large wheels and no people inside",
+      "positive_prompt": "A bright red roadster with large wheels sits centered on a plain white background, featuring thick black outlines with no shading or color fills. The car is empty with no people inside, and the composition includes clean lines without any text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Cute Cartoon Cat in a Car",
+      "tier": "simple_animated",
+      "description": "A small smiling cat sitting happily in the driver's seat",
+      "positive_prompt": "A centered, black-and-white line art illustration of a small smiling cartoon cat sitting happily in the driver's seat of a simple car, featuring thick black outlines on a pure white background with no shading, gradients, or color fills, and no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Superhero Driver Racing",
+      "tier": "anatomy",
+      "description": "A superhero character wearing a cape and driving fast on a track",
+      "positive_prompt": "A superhero driver stands confidently on a race track with arms at their sides, wearing a cape that hangs straight down. The character is depicted as a single, centered figure in clear black-and-white line art with thick outlines and no shading or color.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Polka Dot Bicycle Race",
+      "tier": "simple_inanimate",
+      "description": "A colorful bicycle with round patterns and no riders",
+      "positive_prompt": "A centered black-and-white line art illustration of a colorful bicycle with round polka dot patterns and no riders, featuring thick black outlines on a pure white background. The image includes no shading, gradients, or color fills, with a clean layout containing no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "Space Rocket Launch",
+      "tier": "simple_animated",
+      "description": "A rocket ship flying through the stars with a smiling astronaut",
+      "positive_prompt": "A cute smiling astronaut in a space suit floats inside a large rocket ship flying through twinkling stars, with a friendly rocket bear peeking out from the side window. Thick black outlines on a pure white background with no shading, gradients, or text, centered composition.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "voitures",
+      "leaf_name_en": "Cars",
+      "parent_name_en": "Vehicles",
+      "name_en": "School Bus Driving",
+      "tier": "simple_animated",
+      "description": "A yellow school bus with a smiling driver and waving passengers",
+      "positive_prompt": "A centered black-and-white line art illustration of a yellow school bus with a smiling driver and waving passengers on a pure white background. Thick black outlines define the vehicle, windows, and characters without any shading, gradients, or color fills. The composition features no text, watermarks, or extra elements to ensure a clean layout for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Red Fire Truck",
+      "tier": "simple_inanimate",
+      "description": "A classic red truck with hoses and a ladder for coloring.",
+      "positive_prompt": "A classic red fire truck centered on a pure white background, featuring thick black outlines of the cab, wheels, ladders, and coiled hoses with no shading or color fills. The composition includes clear details like windows, door handles, and hose nozzles arranged in a clean, uncluttered layout suitable for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Blue Garbage Truck",
+      "tier": "simple_inanimate",
+      "description": "A blue truck with a large container on the back.",
+      "positive_prompt": "A centered blue garbage truck with a large open container on the back, featuring thick black outlines on a pure white background. The design includes simple, bold shapes for the cab and wheels, with no shading, gradients, or text to ensure a clean layout for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Yellow School Bus",
+      "tier": "simple_inanimate",
+      "description": "A yellow bus with windows and wheels ready to drive.",
+      "positive_prompt": "A centered, black-and-white line art illustration of a classic yellow school bus with large windows and detailed wheels, designed as a single clear subject for coloring. The image features thick black outlines on a pure white background with no shading, gradients, or text to ensure a clean layout for children.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Green Farm Tractor",
+      "tier": "simple_inanimate",
+      "description": "A green tractor with big wheels and a plow.",
+      "positive_prompt": "A centered black-and-white line art illustration of a green farm tractor with large wheels and a plow on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Space Rocket Ship",
+      "tier": "simple_inanimate",
+      "description": "A rocket ship with flames coming out of the bottom.",
+      "positive_prompt": "A centered black-and-white line art illustration of a large rocket ship with thick black outlines on a pure white background, featuring prominent flames shooting out from the bottom. The design includes bold, clean lines suitable for coloring with no shading, gradients, text, or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "camions",
+      "leaf_name_en": "Trucks",
+      "parent_name_en": "Vehicles",
+      "name_en": "Toy Train Engine",
+      "tier": "simple_inanimate",
+      "description": "A colorful steam engine pulling a small car.",
+      "positive_prompt": "A centered black-and-white line art illustration of a colorful steam train engine pulling a small car on a simple track. The image features thick black outlines on a pure white background with no shading, gradients, or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Little Red Firefighter Bike",
+      "tier": "simple_inanimate",
+      "description": "A bright red motorbike with a helmet and fire hose ready for action.",
+      "positive_prompt": "A centered black-and-white line art illustration of a bright red motorbike with a firefighter helmet and coiled fire hose, featuring thick black outlines on a pure white background with no shading, gradients, or color fills. The scene includes clean, bold details of the bike's wheels, handlebars, and hose without any text, watermarks, or complex backgrounds.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Blue Police Patrol Bike",
+      "tier": "simple_inanimate",
+      "description": "A shiny blue police motorbike with a flashing light bar on top.",
+      "positive_prompt": "A centered, single blue police motorbike with a flashing light bar on top, rendered in black-and-white line art with thick black outlines on a pure white background. The image features no shading, gradients, or color fills, and includes no text or watermarks to ensure a clean layout for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Green Delivery Food Bike",
+      "tier": "simple_inanimate",
+      "description": "A fast green motorbike carrying a box of colorful pizzas.",
+      "positive_prompt": "A fast green motorbike speeding forward with a large box of colorful pizzas on the back seat. Centered composition featuring thick black outlines on a pure white background with no shading, gradients, or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Yellow School Bus Bike",
+      "tier": "simple_inanimate",
+      "description": "A yellow motorbike designed to transport students to school safely.",
+      "positive_prompt": "A centered black-and-white line art illustration of a yellow school bus shaped like a friendly motorbike with large round wheels and smiling headlights. The image features thick black outlines on a pure white background with no shading, gradients, or text to ensure a clean layout for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Pink Rescue Helicopter Bike",
+      "tier": "simple_inanimate",
+      "description": "A pink emergency motorbike equipped with a small rescue basket.",
+      "positive_prompt": "A centered black-and-white line art illustration of a pink emergency motorbike with a small rescue basket, featuring thick black outlines on a pure white background with no shading or gradients. The scene includes clean, simple details of the bike's wheels, handlebars, and basket, with no text, watermarks, or color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "motos",
+      "leaf_name_en": "Motorbikes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Classic Vintage Coffee Bike",
+      "tier": "simple_inanimate",
+      "description": "An old-fashioned black motorbike with a large cup holder on the front.",
+      "positive_prompt": "A centered black-and-white line art illustration of a classic vintage motorbike with a large cup holder on the front, featuring thick black outlines on a pure white background with no shading, gradients, or color fills. The scene includes no text, watermarks, or extra elements to ensure a clean layout suitable for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Red Airplane",
+      "tier": "simple_inanimate",
+      "description": "A bright red airplane flying in a clear blue sky without any people.",
+      "positive_prompt": "A bright red airplane flying in a clear blue sky, centered on a pure white background. Thick black outlines with no shading, gradients, or color fills, featuring clean lines and no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Space Rocket",
+      "tier": "simple_inanimate",
+      "description": "A colorful rocket ship launching into space with stars in the background.",
+      "positive_prompt": "A centered black-and-white line art illustration of a colorful rocket ship launching into space with twinkling stars in the background. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the layout is clean with no text, watermarks, or extra elements.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Helicopter with Propeller",
+      "tier": "simple_inanimate",
+      "description": "A spinning helicopter hovering above green grass and a small tree.",
+      "positive_prompt": "A centered black-and-white line art illustration of a spinning helicopter hovering above green grass and a small tree. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the composition is clean with no text, watermarks, or extraneous details.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Old Airship",
+      "tier": "simple_inanimate",
+      "description": "A vintage silver blimp floating gently in the clouds.",
+      "positive_prompt": "A vintage silver blimp floats gently among fluffy white clouds in a centered composition. Thick black outlines define the airship's shape and the surrounding clouds on a pure white background with no shading or color.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Glider Plane",
+      "tier": "simple_inanimate",
+      "description": "A sleek wooden glider soaring high above a mountain range.",
+      "positive_prompt": "A sleek wooden glider plane soaring high above a mountain range, centered on a pure white background. Thick black outlines define the aircraft's wings and fuselage with no shading or gradients. The scene features clean, simple lines suitable for children's coloring with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "avions",
+      "leaf_name_en": "Planes",
+      "parent_name_en": "Vehicles",
+      "name_en": "Ferry Boat",
+      "tier": "simple_inanimate",
+      "description": "A large blue boat carrying passengers across a calm ocean.",
+      "positive_prompt": "A large blue ferry boat carrying happy passengers crosses a calm ocean in a centered composition. The image features thick black outlines on a pure white background with no shading, gradients, or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Red Sailboat",
+      "tier": "simple_inanimate",
+      "description": "A classic boat with a single mast and colorful sails ready for a coloring adventure.",
+      "positive_prompt": "A centered classic sailboat with a single mast and colorful triangular sails on calm blue water, rendered as black-and-white line art with thick black outlines on a pure white background. The design features clean, unshaded lines with no text or watermarks, creating a simple layout perfect for a children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Frog on a Boat",
+      "tier": "simple_animated",
+      "description": "A happy green frog sitting on the bow of a small wooden rowboat.",
+      "positive_prompt": "A centered black-and-white line art illustration of a happy green frog sitting on the bow of a small wooden rowboat. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the layout is clean with no text, watermarks, or extra details.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Lighthouse Boat",
+      "tier": "simple_inanimate",
+      "description": "A tall boat designed to look like a lighthouse with a spiral tower and glowing window.",
+      "positive_prompt": "A tall boat shaped like a lighthouse with a spiral tower and a glowing window, centered on a pure white background. Thick black outlines define the ship's hull and spiral structure with no shading, gradients, or color fills. The composition features no text or watermarks for a clean children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Underwater Submarine",
+      "tier": "simple_inanimate",
+      "description": "A cute cartoon submarine with a periscope and porthole windows exploring the ocean.",
+      "positive_prompt": "A centered cartoon submarine with a periscope and round porthole windows exploring the ocean, featuring thick black outlines on a pure white background with no shading or color. The image is a clean black-and-white line art design with no text, watermarks, or gradients, perfect for a children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Ferris Wheel",
+      "tier": "simple_inanimate",
+      "description": "A large spinning ride with many passenger cars on a sunny day.",
+      "positive_prompt": "A large Ferris wheel with many passenger cars spinning on a sunny day, centered in a clean white space. Thick black outlines define the structure and cars without any shading, gradients, or color fills. The image features no text, watermarks, or background details to ensure a perfect coloring page layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "bateaux",
+      "leaf_name_en": "Boats",
+      "parent_name_en": "Vehicles",
+      "name_en": "Rocket Ship",
+      "tier": "simple_inanimate",
+      "description": "A space rocket with stripes and stars shooting through the sky.",
+      "positive_prompt": "A centered black-and-white line art illustration of a space rocket with bold stripes and stars flying through a starry sky, featuring thick black outlines on a pure white background with no shading, gradients, or color fills. The image is a clean, single-subject composition suitable for children's coloring, with no text, watermarks, or extra details.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Red Steam Engine",
+      "tier": "simple_inanimate",
+      "description": "A classic red train with a large black smokestack and a smiling face.",
+      "positive_prompt": "A centered, classic red steam engine train with a large black smokestack and a friendly smiling face. Rendered as black-and-white line art with thick black outlines on a pure white background, featuring no shading, gradients, or color fills. The image includes no text, watermarks, or extra details to ensure a clean, single-subject layout suitable for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Blue Submarine",
+      "tier": "simple_inanimate",
+      "description": "A blue underwater boat with periscope and porthole windows.",
+      "positive_prompt": "A centered blue submarine with a periscope and round porthole windows on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Yellow School Bus",
+      "tier": "simple_inanimate",
+      "description": "A yellow bus with six round windows and a green star on top.",
+      "positive_prompt": "A centered black-and-white line art illustration of a yellow school bus with six round windows and a green star on top, featuring thick black outlines on a pure white background with no shading, gradients, or color fills. The image includes no text, watermarks, or extraneous details, ensuring a clean layout suitable for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Purple Space Shuttle",
+      "tier": "simple_inanimate",
+      "description": "A purple rocket ship with fins and a flame shooting from the bottom.",
+      "positive_prompt": "A centered black-and-white line art illustration of a purple rocket ship with fins and a flame shooting from the bottom, set against a pure white background. Thick black outlines define the vehicle and flame without any shading, gradients, or color fills. The composition is clean with no text or watermarks, featuring only the single subject of the rocket.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Green Garden Train",
+      "tier": "simple_inanimate",
+      "description": "A green train carrying flowers and vegetables through a field.",
+      "positive_prompt": "A centered green train with thick black outlines carrying red roses and green carrots through a field of tall grass. The train travels on simple tracks with clear windows and wheels, set against a plain white background. No shading, gradients, or text, only clean black lines on white for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "trains",
+      "leaf_name_en": "Trains",
+      "parent_name_en": "Vehicles",
+      "name_en": "Pink Fairy Train",
+      "tier": "simple_animated",
+      "description": "A pink train pulled by a friendly dragon wearing a pilot hat.",
+      "positive_prompt": "A centered black-and-white line art illustration of a friendly dragon wearing a pilot hat pulling a whimsical pink train, featuring thick black outlines on a pure white background with no shading or gradients. The scene includes clean, simple details of the dragon's scales, the train's windows, and wheels, designed as a single clear subject for a children's coloring page with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "baker",
+      "tier": "anatomy",
+      "description": "A baker wearing a tall white hat and apron holding a tray of fresh bread.",
+      "positive_prompt": "A single baker stands centered with a static pose, wearing a tall white hat and apron while holding a tray of fresh bread. The image features thick black outlines on a pure white background with no shading, gradients, or color fills.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "firefighter",
+      "tier": "anatomy",
+      "description": "A firefighter in red gear and helmet standing next to a fire truck with a hose.",
+      "positive_prompt": "A firefighter in red gear and helmet stands still next to a fire truck with a hose. The image features thick black outlines on a pure white background with no shading, text, or motion.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "garden gardener",
+      "tier": "anatomy",
+      "description": "A gardener with overalls and a watering can tending to colorful flowers.",
+      "positive_prompt": "A centered, static standing gardener wearing overalls and holding a watering can, tending to colorful flowers with clear, uncluttered anatomy. The image is a black-and-white line art coloring page with thick black outlines on a pure white background, featuring no shading, gradients, text, or watermarks.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "police officer",
+      "tier": "anatomy",
+      "description": "A police officer in a blue uniform and hat holding a stop sign.",
+      "positive_prompt": "A single police officer in a blue uniform and hat stands in a static pose holding a stop sign, centered with clear anatomy. The image is black-and-white line art with thick black outlines on a pure white background, featuring no shading, gradients, or text.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "doctor",
+      "tier": "anatomy",
+      "description": "A doctor in a white coat and stethoscope looking at a child's drawing.",
+      "positive_prompt": "A doctor in a white coat and stethoscope stands still while looking at a child's drawing, centered in the frame with clear anatomy. Black-and-white line art only, thick black outlines on a pure white background with no shading, gradients, or color fills.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "metiers",
+      "leaf_name_en": "Jobs",
+      "parent_name_en": "Characters",
+      "name_en": "construction worker",
+      "tier": "anatomy",
+      "description": "A construction worker wearing a hard hat and vest holding a hammer near a building.",
+      "positive_prompt": "A construction worker in a hard hat and safety vest stands still holding a hammer near a building, depicted as a single centered figure with clear anatomy and thick black outlines on a pure white background. The image features no shading, gradients, or color fills, maintaining a clean layout with no text or watermarks for easy coloring.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Little Rocket Astronaut",
+      "tier": "anatomy",
+      "description": "A young astronaut character floating in space holding a tiny rocket ship.",
+      "positive_prompt": "A young astronaut character stands in a static pose in space, holding a tiny rocket ship, with clear anatomy and no motion. The image is a black-and-white line art coloring page with thick black outlines on a pure white background, no shading or gradients.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Gigantic Friendly Dino",
+      "tier": "simple_animated",
+      "description": "A large, smiling dinosaur with simple limbs standing still in a grassy field.",
+      "positive_prompt": "A giant friendly smiling dinosaur with simple limbs stands still in a grassy field, centered in a pure white space. The image features thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Flying Bat Hero",
+      "tier": "simple_animated",
+      "description": "A cute flying bat with big wings and a cape resting on a tree branch.",
+      "positive_prompt": "A cute flying bat hero with big wings and a cape perched on a tree branch, centered composition. Style: Black-and-white line art only, thick black outlines on pure white background, no shading, no gradients, no color fills. Technical cleanup: No text, no watermarks, clean layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Super Spidey Web",
+      "tier": "simple_animated",
+      "description": "A superhero character swinging on a long, thick green web line.",
+      "positive_prompt": "A centered black-and-white line art illustration of a cute superhero character swinging on a long, thick green web line against a pure white background. The character has thick black outlines with no shading, gradients, or color fills, and the composition features no text or watermarks for clean coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Cute Cat Captain",
+      "tier": "simple_animated",
+      "description": "A small cat wearing a captain's hat and holding a ship's wheel.",
+      "positive_prompt": "A centered black-and-white line art illustration of a small cute cat wearing a captain's hat and holding a ship's wheel, featuring thick black outlines on a pure white background with no shading, gradients, or color fills. The image includes no text, watermarks, or background details, ensuring a clean layout suitable for a children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "super_heros_originaux",
+      "leaf_name_en": "Original superheroes",
+      "parent_name_en": "Characters",
+      "name_en": "Mighty Dragon Guard",
+      "tier": "simple_animated",
+      "description": "A friendly dragon with big ears guarding a small castle gate.",
+      "positive_prompt": "A friendly dragon with large round ears and a gentle smile stands guard in front of a small stone castle gate. The dragon has thick black outlines with no shading, set against a pure white background with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Giant Polka-Dot Elephant",
+      "tier": "simple_animated",
+      "description": "A large elephant with round spots and big ears standing on grass.",
+      "positive_prompt": "A giant elephant with large round polka-dot spots and oversized ears standing on a grassy field, centered in a single clear composition. The image features thick black outlines on a pure white background with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Magic Wand Star",
+      "tier": "simple_inanimate",
+      "description": "A colorful wand topped with a shining star and sparkles.",
+      "positive_prompt": "A centered black-and-white line art illustration of a colorful magic wand topped with a shining star and sparkles, featuring thick black outlines on a pure white background with no shading, gradients, or color fills. The design includes clean, uncluttered details suitable for children's coloring, with no text, watermarks, or extraneous elements.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Flying Unicorn",
+      "tier": "simple_animated",
+      "description": "A one-horned horse with wings and a rainbow mane flying in the sky.",
+      "positive_prompt": "A centered illustration of a cute one-horned unicorn with rainbow-colored mane and wings flying through a clear sky. The image features thick black outlines on a pure white background with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Cute Witch Cat",
+      "tier": "anatomy",
+      "description": "A small cat wearing a pointed hat and holding a broomstick.",
+      "positive_prompt": "A cute cat witch with a pointed hat and broomstick stands in a static pose, centered on a pure white background with thick black outlines and no shading. The image features clear anatomy suitable for coloring, with no motion, text, or watermarks.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Dragon Castle Door",
+      "tier": "simple_inanimate",
+      "description": "A heavy stone door guarded by a small friendly dragon.",
+      "positive_prompt": "A centered heavy stone castle door guarded by a small friendly dragon, featuring thick black outlines on a pure white background with no shading or gradients. The scene includes clear, simple shapes for the stone texture and dragon scales, designed as a clean black-and-white line art coloring page with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "fantasy",
+      "leaf_name_en": "Fantasy",
+      "parent_name_en": "Characters",
+      "name_en": "Enchanted Tree Heart",
+      "tier": "simple_inanimate",
+      "description": "A magical tree with a glowing heart shape in its trunk.",
+      "positive_prompt": "A centered fantasy tree with a glowing heart-shaped trunk on a pure white background, featuring thick black outlines with no shading, gradients, or color fills. The design includes clean lines with no text, watermarks, or extra details to ensure a clear, single subject suitable for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Dancing Cats",
+      "tier": "simple_animated",
+      "description": "A group of cats in simple dance poses holding hands.",
+      "positive_prompt": "A group of five cute kittens holding hands in a circle, performing a simple dance with paws raised and tails curled, set against a pure white background. The image features thick black outlines on a clean white canvas with no shading, gradients, or text to ensure easy coloring for children.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Family Picnic",
+      "tier": "anatomy",
+      "description": "A mother, father, and two children sitting at a picnic table with food.",
+      "positive_prompt": "A mother, father, and two children are sitting calmly at a picnic table with food in a clear, centered composition. The figures are in static poses with thick black outlines on a pure white background, featuring no shading, gradients, or text.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Garden Tools",
+      "tier": "simple_inanimate",
+      "description": "A rake, watering can, and flower pot sitting in a grassy patch.",
+      "positive_prompt": "A centered black-and-white line art illustration of a rake, watering can, and flower pot resting on a simple grassy patch. The image features thick, clean black outlines on a pure white background with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Space Rocket",
+      "tier": "simple_inanimate",
+      "description": "A rocket ship flying through the stars with a trail of fire.",
+      "positive_prompt": "A large rocket ship with a thick black outline flies through a starry night sky, leaving a bold, jagged trail of fire behind it. The scene features simple geometric shapes and clean lines on a pure white background with no shading or color fills. The composition is centered and uncluttered, designed specifically for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "School Bus",
+      "tier": "simple_inanimate",
+      "description": "A yellow school bus driving on a road with flowers on the side.",
+      "positive_prompt": "A centered yellow school bus driving on a paved road with colorful flowers lining the sides. The image features thick black outlines on a pure white background with no shading, gradients, or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "vie_quotidienne",
+      "leaf_name_en": "Everyday life",
+      "parent_name_en": "Characters",
+      "name_en": "Happy Faces",
+      "tier": "simple_animated",
+      "description": "Three cartoon characters with big smiles waving hello.",
+      "positive_prompt": "A centered coloring page featuring three cute cartoon animals with big happy smiles and waving hands, all drawn in thick black outlines on a pure white background with no shading or color fills. Ensure the layout is clean with no text or watermarks, focusing solely on the clear, bold lines of the waving characters.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Bunny in a Flower Patch",
+      "tier": "simple_animated",
+      "description": "A cute bunny sitting among colorful spring flowers with simple ears and tail.",
+      "positive_prompt": "A cute bunny with simple rounded ears and a fluffy tail sits among colorful spring flowers in a centered composition. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the layout is clean with no text, watermarks, or extra elements for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Rainbow Dandelion",
+      "tier": "simple_inanimate",
+      "description": "A single dandelion plant with a bright rainbow stem and fluffy seeds blowing in the wind.",
+      "positive_prompt": "A single dandelion plant with a bright rainbow stem and fluffy seeds blowing in the wind, centered on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, creating a clean black-and-white line art style suitable for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Bird Building a Nest",
+      "tier": "simple_animated",
+      "description": "A small bird using its beak to arrange twigs and grass in a twig nest.",
+      "positive_prompt": "A small fluffy bird with a curved beak is carefully arranging brown twigs and green grass to build a cozy twig nest on a soft branch. The illustration features thick black outlines on a pure white background with no shading, gradients, or text to create a clean, centered composition perfect for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Sprouting Seedling",
+      "tier": "simple_inanimate",
+      "description": "A small green shoot emerging from brown soil with broad leaves and roots visible.",
+      "positive_prompt": "A centered black-and-white line art illustration of a small green seedling sprouting from brown soil with visible roots and broad leaves. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the composition is clean with no text, watermarks, or extra elements for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Butterfly on a Leaf",
+      "tier": "simple_animated",
+      "description": "A colorful butterfly with spread wings resting on a large green spring leaf.",
+      "positive_prompt": "A centered black-and-white line art illustration of a colorful butterfly with spread wings resting on a large green spring leaf, featuring thick black outlines on a pure white background with no shading or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "printemps",
+      "leaf_name_en": "Spring",
+      "parent_name_en": "Seasons",
+      "name_en": "Squirrel with Acorn",
+      "tier": "simple_animated",
+      "description": "A fluffy squirrel holding an acorn in its paws near a tree trunk.",
+      "positive_prompt": "A fluffy squirrel with large expressive eyes stands in front of a textured tree trunk, holding a detailed acorn in its paws. The image features thick black outlines on a pure white background with no shading, gradients, or color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Sunflower Field",
+      "tier": "simple_inanimate",
+      "description": "A row of yellow sunflowers with green stems and round leaves under a blue sky.",
+      "positive_prompt": "A centered row of yellow sunflowers with green stems and round leaves stretching across a pure white background under a simple blue sky. The image features thick black outlines for coloring with no shading, gradients, or text, creating a clean summer scene.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Beach Ball",
+      "tier": "simple_inanimate",
+      "description": "A classic striped orange and white ball floating on calm blue water.",
+      "positive_prompt": "A centered, single beach ball with thick black outlines on a pure white background, featuring bold orange and white stripes floating on calm blue water. The image is a black-and-white line art illustration with no shading, gradients, or color fills, designed as a clean children's coloring page with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Lion Cub",
+      "tier": "simple_animated",
+      "description": "A cute baby lion sitting in the grass with a fluffy mane and a big smile.",
+      "positive_prompt": "A centered illustration of a cute baby lion sitting in green grass with a fluffy mane and a big smile, rendered in black-and-white line art only with thick black outlines on a pure white background, no shading, no gradients, no color fills, no text, no watermarks, and a clean layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Swimming Mermaid",
+      "tier": "simple_animated",
+      "description": "A friendly mermaid with a rainbow tail and bubble wand swimming in the ocean.",
+      "positive_prompt": "A friendly mermaid with a rainbow tail and bubble wand swimming in the ocean, centered composition with thick black outlines on a pure white background, no shading, no gradients, no color fills, no text, no watermarks, clean layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Sandcastle",
+      "tier": "simple_inanimate",
+      "description": "A tall tower made of sand with a small flag and a tiny crab nearby.",
+      "positive_prompt": "A tall, symmetrical sandcastle tower with a small flag on top sits on a white beach with a tiny crab nearby. The image features thick black outlines on a pure white background with no shading, gradients, or color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "ete",
+      "leaf_name_en": "Summer",
+      "parent_name_en": "Seasons",
+      "name_en": "Ice Cream Cone",
+      "tier": "simple_inanimate",
+      "description": "A colorful waffle cone topped with scoops of pink, green, and yellow ice cream.",
+      "positive_prompt": "A centered, single ice cream cone with a waffle texture, topped with three scoops of pink, green, and yellow ice cream. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the layout is clean with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "fallen orange leaves",
+      "tier": "simple_inanimate",
+      "description": "a pile of colorful leaves on the ground",
+      "positive_prompt": "A centered pile of colorful autumn leaves scattered on a white ground with thick black outlines. The leaves vary in shape and size, featuring clean lines without any shading, gradients, or color fills. Ensure the image is a black-and-white line art design with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "pumpkin patch",
+      "tier": "simple_inanimate",
+      "description": "rows of orange pumpkins in a garden",
+      "positive_prompt": "A centered, single clear subject of rows of orange pumpkins in a garden with thick black outlines on a pure white background. The image features no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "acorn tree",
+      "tier": "simple_inanimate",
+      "description": "a tree dropping acorns and bearing fruit",
+      "positive_prompt": "A centered black-and-white line art illustration of a large autumn tree dropping acorns and bearing fruit against a pure white background. The image features thick black outlines with no shading, gradients, or text, designed as a clean single subject for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "woodpecker",
+      "tier": "simple_animated",
+      "description": "a bird tapping on a tree trunk",
+      "positive_prompt": "A cute woodpecker with a red head and spotted chest is centered, tapping its beak on a textured tree trunk. The scene features autumn leaves in the background with thick black outlines on a pure white background, designed for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "squirrel",
+      "tier": "simple_animated",
+      "description": "a small animal holding a nut",
+      "positive_prompt": "A centered illustration of a cute squirrel holding a large acorn, with a few scattered autumn leaves around its feet. The image features thick black outlines on a pure white background with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "automne",
+      "leaf_name_en": "Autumn",
+      "parent_name_en": "Seasons",
+      "name_en": "leaf pattern",
+      "tier": "mandala",
+      "description": "symmetrical designs made from leaf shapes",
+      "positive_prompt": "Create a perfectly symmetrical mandala radiating from the center with intricate yet child-friendly geometric patterns formed by repeating leaf shapes. Render the design as black-and-white line art with thick outlines on a pure white background, ensuring no color fills are present.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Snowy Sled",
+      "tier": "simple_inanimate",
+      "description": "A bright red sled with a large basket full of colorful toys being pulled by a rope.",
+      "positive_prompt": "A bright red sled with a large basket full of colorful toys being pulled by a rope, centered on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Frosty Tree",
+      "tier": "simple_animated",
+      "description": "A cute snowman with carrot eyes, a coal mouth, and a striped scarf wearing a top hat.",
+      "positive_prompt": "A centered, single snowman with carrot eyes, a coal mouth, and a striped scarf wearing a top hat. Style: Black-and-white line art only, thick black outlines on pure white background, no shading, no gradients, no color fills. Technical cleanup: No text, no watermarks, clean layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Polar Bear Family",
+      "tier": "simple_animated",
+      "description": "A mother polar bear and her two cubs standing on ice with icicles hanging from the background.",
+      "positive_prompt": "A centered black-and-white line art illustration of a mother polar bear and two cubs standing on white ice with icicles hanging from the background, featuring thick black outlines, no shading, no gradients, no color fills, no text, and no watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Ice Skating Circle",
+      "tier": "simple_animated",
+      "description": "Three children on ice skates performing a happy circle dance on a frozen pond.",
+      "positive_prompt": "Three children in winter coats and hats are ice skating in a happy circle on a frozen pond. The scene features thick black outlines on a pure white background with no shading, gradients, or color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Winter Snowflake",
+      "tier": "mandala",
+      "description": "An intricate, symmetrical six-pointed snowflake design made of swirling patterns.",
+      "positive_prompt": "Create a perfectly symmetrical six-pointed snowflake mandala with intricate yet child-friendly swirling geometric patterns radiating from the center. Render this design as black-and-white line art with thick outlines on a pure white background, featuring no color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "hiver",
+      "leaf_name_en": "Winter",
+      "parent_name_en": "Seasons",
+      "name_en": "Number One Snowball",
+      "tier": "educational",
+      "description": "The numeral '1' drawn inside a large, textured snowball surrounded by snowflakes.",
+      "positive_prompt": "A large, textured snowball containing the clear numeral \"1\" surrounded by simple snowflake outlines. The image features clean black-and-white line art with no shading or color, designed for easy tracing and coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Red Santa Hat",
+      "tier": "simple_inanimate",
+      "description": "A classic pointed red hat with a white pom-pom and trim.",
+      "positive_prompt": "A centered, single red Santa hat with a white pom-pom and white trim on a pure white background, rendered in high-contrast black-and-white line art with thick, clean outlines and no shading or gradients. The composition features clear, uncluttered details suitable for coloring, with no text, watermarks, or extraneous elements.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Frosty Snowman",
+      "tier": "simple_animated",
+      "description": "A round snowman with a carrot nose, coal eyes, and a scarf.",
+      "positive_prompt": "A centered, single snowman with a round body, orange carrot nose, coal eyes, and a knitted scarf, designed as a black-and-white line art coloring page with thick black outlines on a pure white background, featuring no shading, gradients, or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Jingle Bell",
+      "tier": "simple_inanimate",
+      "description": "A shiny silver bell with a red ribbon tied around its neck.",
+      "positive_prompt": "A centered, shiny silver Christmas bell with a red ribbon tied around its neck, rendered in black-and-white line art with thick black outlines on a pure white background. The image features no shading, gradients, or color fills, ensuring a clean layout suitable for children's coloring with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Christmas Tree Star",
+      "tier": "simple_inanimate",
+      "description": "A bright yellow five-pointed star sitting on top of a decorated tree.",
+      "positive_prompt": "A centered, bright yellow five-pointed star sits atop a decorated Christmas tree with thick black outlines on a pure white background. The tree features simple ornaments and a clean, uncluttered design suitable for children's coloring. No shading, gradients, text, or watermarks are present.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Christmas Letter",
+      "tier": "educational",
+      "description": "A red envelope with a white border and a large 'X' stamped on it.",
+      "positive_prompt": "A large red Christmas letter with a white border and a big X stamp sits in the center of the page. Simple festive decorations like small stars and snowflakes surround it in a clean black-and-white line art style perfect for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "noel",
+      "leaf_name_en": "Christmas",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Santa's Sleigh",
+      "tier": "simple_inanimate",
+      "description": "A wooden sleigh with two large red wheels and a single reindeer pulling it.",
+      "positive_prompt": "A centered black-and-white line art illustration of a wooden sleigh with two large red wheels and a single reindeer pulling it on a pure white background. Thick black outlines define the shapes with no shading, gradients, or color fills. The composition is clean and simple, featuring no text or watermarks for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Jack-o'-lantern with cat face",
+      "tier": "simple_animated",
+      "description": "A carved pumpkin with a smiling cat face featuring big round eyes and a small nose.",
+      "positive_prompt": "A centered, black-and-white line art illustration of a carved pumpkin with a cute cat face featuring big round eyes and a small nose. The image uses thick black outlines on a pure white background with no shading, gradients, or text, designed as a single clear subject for a children's Halloween coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Spooky spiderweb with pumpkins",
+      "tier": "simple_inanimate",
+      "description": "A large spiderweb filled with small orange pumpkins and falling autumn leaves.",
+      "positive_prompt": "A centered, single large spiderweb filled with small orange pumpkins and scattered autumn leaves on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, designed as a clean, text-free coloring page for children.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Witch flying on broomstick",
+      "tier": "simple_animated",
+      "description": "A cartoon witch wearing a pointed hat and flying a simple broomstick through the sky.",
+      "positive_prompt": "A centered cartoon witch with a large pointed hat and a simple smiling face flies through the sky on a classic broomstick. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. The layout is clean with no text or watermarks to ensure it is ready for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Trick-or-treating children",
+      "tier": "anatomy",
+      "description": "Three diverse children in colorful costumes holding bags of candy and smiling.",
+      "positive_prompt": "A single centered child in a colorful Halloween costume standing still on a pure white background, holding a bag of candy with a clear smile. The image features thick black outlines with no shading, gradients, or motion, ensuring a clean, static pose suitable for coloring.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Halloween spider mandala",
+      "tier": "mandala",
+      "description": "A symmetrical spider design with circular patterns and geometric shapes for coloring.",
+      "positive_prompt": "A perfectly symmetrical Halloween spider mandala radiating from the center with intricate yet child-friendly geometric patterns. Black-and-white line art only, featuring thick outlines on a pure white background with no color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "halloween",
+      "leaf_name_en": "Halloween",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Halloween ghost with letters",
+      "tier": "educational",
+      "description": "A friendly white ghost wearing a suit holding a sign with the letter 'A' and an apple.",
+      "positive_prompt": "A friendly white ghost in a suit holds a large, clear sign displaying the letter 'A' next to a simple apple, surrounded by small floating letters and fruit for a Halloween theme. The image features only clean black-and-white line art with no shading or color, designed as a simple coloring page for children to trace.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Bunny",
+      "tier": "simple_animated",
+      "description": "A cute bunny with long ears and a carrot wearing a bow tie.",
+      "positive_prompt": "A centered, cute Easter bunny with long ears and a bow tie holding a large carrot, depicted in black-and-white line art with thick black outlines on a pure white background, no shading or color fills. The illustration features clean lines, no text or watermarks, and a simple layout suitable for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Egg Hunt",
+      "tier": "simple_animated",
+      "description": "A child digging in a garden to find colorful eggs hidden in the dirt.",
+      "positive_prompt": "A centered child in a garden digging in the dirt to find colorful Easter eggs, surrounded by flowers and a bright sun. Thick black outlines on a pure white background with no shading, gradients, or color fills, and no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Basket",
+      "tier": "simple_inanimate",
+      "description": "A wicker basket filled with bunnies, eggs, and flowers.",
+      "positive_prompt": "A centered wicker Easter basket overflowing with fluffy white bunnies, colorful eggs, and spring flowers on a pure white background. Thick black outlines define every shape with no shading, gradients, or color fills for easy coloring. The composition is clean and uncluttered, featuring no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Egg",
+      "tier": "simple_inanimate",
+      "description": "A single egg decorated with polka dots and flowers.",
+      "positive_prompt": "A centered, single Easter egg decorated with large polka dots and simple flowers on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Easter Tree",
+      "tier": "simple_inanimate",
+      "description": "A small tree decorated with eggs, baskets, and flowers.",
+      "positive_prompt": "A centered, black-and-white line art illustration of a small Easter tree decorated with colorful eggs, woven baskets, and spring flowers on a pure white background. The image features thick black outlines with no shading, gradients, or text, designed as a clean, single-subject coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "paques",
+      "leaf_name_en": "Easter",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Chocolate Egg",
+      "tier": "simple_inanimate",
+      "description": "A round chocolate egg with a shiny wrapper and a bow on top.",
+      "positive_prompt": "A centered, single round chocolate egg with a shiny wrapper and a bow on top, designed as a children's coloring page. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the layout is clean with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "balloon bouquet",
+      "tier": "simple_inanimate",
+      "description": "A cluster of colorful balloons tied with ribbons for a party.",
+      "positive_prompt": "A centered cluster of colorful balloons tied with ribbons for a birthday party. Black-and-white line art only, thick black outlines on a pure white background with no shading, gradients, or color fills. No text, watermarks, or extra details to ensure a clean layout for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "cake with candles",
+      "tier": "simple_inanimate",
+      "description": "A decorated round cake with lit birthday candles on top.",
+      "positive_prompt": "A centered, round birthday cake with colorful frosting swirls and three lit candles featuring simple flame shapes. Thick black outlines on a pure white background with no shading, gradients, or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "birthday hat",
+      "tier": "simple_inanimate",
+      "description": "A tall cone-shaped hat with alternating colored stripes and a pom-pom.",
+      "positive_prompt": "A centered, tall cone-shaped birthday hat with alternating thick black stripes and a large pom-pom on top, rendered in black-and-white line art with bold outlines on a pure white background. The image features no shading, gradients, or color fills, ensuring a clean, text-free layout ideal for a children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "party animals",
+      "tier": "simple_animated",
+      "description": "A happy clown and a dancing bear celebrating together.",
+      "positive_prompt": "A centered, single clear illustration of a happy clown and a dancing bear celebrating a birthday on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, depicting the clown holding a balloon and the bear wearing a party hat while dancing. Ensure the layout is clean with no text, watermarks, or extra details to keep it suitable for a children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "gift boxes",
+      "tier": "simple_inanimate",
+      "description": "Several wrapped presents with bows and ribbons ready to be opened.",
+      "positive_prompt": "Centered on a white background, several wrapped birthday presents with colorful bows and ribbons are arranged in a neat row with thick black outlines. The boxes feature simple patterns like polka dots and stripes, and the ribbons form clear loops and tails without any shading or gradients. Ensure the composition is clean with no text or watermarks for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "anniversaire",
+      "leaf_name_en": "Birthday",
+      "parent_name_en": "Holidays & events",
+      "name_en": "birthday cake slice",
+      "tier": "simple_animated",
+      "description": "A single piece of cake with frosting and a cherry on top.",
+      "positive_prompt": "A single slice of birthday cake with fluffy frosting and a bright red cherry on top, centered on a pure white background. Thick black outlines define the layers and decorations with no shading, gradients, or color fills. The image is a clean black-and-white line art illustration suitable for a children's coloring page with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Colorful Eid Lantern",
+      "tier": "simple_inanimate",
+      "description": "A bright paper lantern with Islamic geometric patterns and hanging tassels.",
+      "positive_prompt": "A centered, bright paper lantern featuring intricate Islamic geometric patterns and long hanging tassels. The image is rendered as black-and-white line art with thick black outlines on a pure white background, containing no shading, gradients, or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Happy Eid Elephant",
+      "tier": "simple_animated",
+      "description": "A friendly cartoon elephant wearing a festive turban and holding a gift.",
+      "positive_prompt": "A centered cartoon elephant wearing a festive Eid turban and holding a wrapped gift, depicted in thick black outlines on a pure white background with no shading or color fills. The image features clean lines and simple shapes suitable for children's coloring, with no text, watermarks, or background details.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Prayer on a Rug",
+      "tier": "simple_animated",
+      "description": "A child in traditional clothes sitting cross-legged on a patterned prayer mat.",
+      "positive_prompt": "A cute child in colorful traditional clothes sits cross-legged on a patterned prayer rug in the center of a clean white background. The image features thick black outlines with no shading, gradients, or text, creating a simple and clear design for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Eid Cake Platter",
+      "tier": "simple_inanimate",
+      "description": "A round cake decorated with icing, fruits, and small candles on a table.",
+      "positive_prompt": "A centered round cake on a white table decorated with thick black outlines of icing swirls, colorful fruit slices, and small candles. The scene features clean, bold lines with no shading, gradients, or text to create a clear subject for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Family Gift Exchange",
+      "tier": "anatomy",
+      "description": "A group of three children shaking hands and smiling while holding wrapped presents.",
+      "positive_prompt": "A centered group of three children standing still, shaking hands and smiling while holding wrapped presents, depicted in black-and-white line art with thick black outlines on a pure white background, no shading, no gradients, no color fills, no text, no watermarks, and clean layout.",
+      "negative_prompt": "extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet",
+      "generation_params": {
+        "width": 1024,
+        "height": 1024,
+        "batch_size": 3,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "aid",
+      "leaf_name_en": "Eid",
+      "parent_name_en": "Holidays & events",
+      "name_en": "Eid Tree Branch",
+      "tier": "simple_inanimate",
+      "description": "A decorated tree branch with red and gold ornaments and a small star at the top.",
+      "positive_prompt": "A centered tree branch extending diagonally across a pure white background, decorated with thick black outlines of red and gold baubles and a small star at the very top. The design features clean, bold lines with no shading, gradients, or text, creating a simple and festive Eid coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter A",
+      "tier": "educational",
+      "description": "A large uppercase letter A with a leaf attached to one leg",
+      "positive_prompt": "A large, bold uppercase letter A with a simple leaf attached to one leg, surrounded by small scattered leaves and dots. The image features clean black-and-white line art with no shading or color, perfect for children to trace and color.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter B",
+      "tier": "educational",
+      "description": "A large uppercase letter B shaped like a bouncy ball",
+      "positive_prompt": "A large uppercase letter B shaped like a bouncy ball sits in the center of a clean white page surrounded by simple bouncy ball patterns. The image features black-and-white line art only with very clean simple outlines, no shading, no color fills, and no background details.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter C",
+      "tier": "educational",
+      "description": "A large uppercase letter C formed from a smiling sun",
+      "positive_prompt": "A large, smiling sun shaped like the uppercase letter C sits in the center of a clean white page. Surrounding it are simple, thin black outlines of clouds, stars, and leaves for a child-friendly coloring activity.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter D",
+      "tier": "educational",
+      "description": "A large uppercase letter D shaped like a round cookie with sprinkles",
+      "positive_prompt": "A large uppercase letter D shaped like a round cookie with sprinkles, centered on a white background. Surround it with simple, small decorative elements like stars and clouds, all rendered in clean black-and-white line art suitable for tracing.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter E",
+      "tier": "educational",
+      "description": "A large uppercase letter E made of colorful building blocks",
+      "positive_prompt": "A large, clear uppercase letter E constructed from colorful building blocks sits in the center of the page. Surrounding it are simple, playful decorative elements like small stars and dots, all rendered as clean black-and-white line art suitable for coloring and tracing.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "lettres",
+      "leaf_name_en": "Letters",
+      "parent_name_en": "Educational",
+      "name_en": "Letter F",
+      "tier": "educational",
+      "description": "A large uppercase letter F shaped like a friendly frog sitting on a lily pad",
+      "positive_prompt": "A large, friendly uppercase letter F shaped like a frog sitting on a lily pad, surrounded by simple water lilies and bubbles. Black-and-white line art with clean, thick outlines suitable for tracing, no shading or color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number One Elephant",
+      "tier": "simple_animated",
+      "description": "A friendly elephant holding a sign that says '1'",
+      "positive_prompt": "A friendly elephant stands centered on a pure white background, holding a large bold sign with the number \"1\" in thick black outlines. The illustration features clean, thick black lines with no shading, gradients, or text beyond the number, designed for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Two Butterflies",
+      "tier": "simple_animated",
+      "description": "Two butterflies flying around the numeral two",
+      "positive_prompt": "Two large, cute butterflies with thick black outlines and white bodies fly around a large, bold numeral two in the center of the page. The scene features simple, clean shapes with no shading, gradients, or text on a pure white background.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Three Balloons",
+      "tier": "simple_inanimate",
+      "description": "Three colorful balloons shaped like the number three",
+      "positive_prompt": "Three large, stylized balloons shaped like the number three float in a centered composition on a pure white background. The design features thick, bold black outlines with no shading, gradients, or color fills to ensure easy coloring for children.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Four Trees",
+      "tier": "simple_inanimate",
+      "description": "Four stylized trees arranged in the shape of a four",
+      "positive_prompt": "Four stylized trees arranged in the shape of the number four with thick black outlines on a pure white background. The design features clean, bold lines with no shading, gradients, or color fills, centered on the page for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Five Fish",
+      "tier": "simple_animated",
+      "description": "Five swimming fish forming the outline of a five",
+      "positive_prompt": "Five swimming fish with thick black outlines swim in a circular formation to create the shape of the number five against a pure white background. The illustration features simple, clean curves with no shading, gradients, or color fills, ensuring a clear, centered composition ideal for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "chiffres",
+      "leaf_name_en": "Numbers",
+      "parent_name_en": "Educational",
+      "name_en": "Number Six Stars",
+      "tier": "simple_inanimate",
+      "description": "Six bright stars clustered together to look like a six",
+      "positive_prompt": "Six bright stars arranged in a cluster to form the number six, featuring thick black outlines on a pure white background. The design uses clean, bold lines with no shading, gradients, or color fills to ensure easy coloring for children. The composition is centered with no text or watermarks for a tidy layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Square Pizza Slice",
+      "tier": "simple_inanimate",
+      "description": "A single slice of pepperoni pizza with a square crust outline.",
+      "positive_prompt": "A single square slice of pepperoni pizza centered on a pure white background, featuring thick black outlines for the crust and round pepperoni pieces with no shading or color fills. The image uses clean, bold lines suitable for children's coloring, with no text, watermarks, or gradients present.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Round Sun",
+      "tier": "simple_animated",
+      "description": "A smiling yellow sun with wavy rays and a happy face.",
+      "positive_prompt": "A centered, single yellow sun with a smiling face and wavy rays on a pure white background, rendered in thick black line art with no shading or color. The sun features simple, clean curves and a happy expression, designed as a clear, uncluttered coloring page with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Blue Train",
+      "tier": "simple_inanimate",
+      "description": "A green and red steam train moving along a simple track.",
+      "positive_prompt": "A centered black-and-white line art illustration of a green and red steam train on a simple track, featuring thick black outlines on a pure white background with no shading or color fills. The train moves along the rails in a single clear composition, designed as a clean coloring page with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Happy Cat",
+      "tier": "simple_animated",
+      "description": "A chubby orange cat sitting down with big round eyes and whiskers.",
+      "positive_prompt": "A centered illustration of a chubby orange cat sitting down with large round eyes and long whiskers. The image features thick black outlines on a pure white background with no shading, gradients, or color fills. Ensure the layout is clean with no text or watermarks for easy coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Red Ball",
+      "tier": "simple_inanimate",
+      "description": "A bright red soccer ball with black pentagons and a white stripe.",
+      "positive_prompt": "A centered, bright red soccer ball with black pentagons and a white stripe on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, creating a clean black-and-white line art style perfect for coloring. No text, watermarks, or extra elements are present to ensure a clear, single subject composition.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "formes",
+      "leaf_name_en": "Shapes",
+      "parent_name_en": "Educational",
+      "name_en": "Number Five",
+      "tier": "educational",
+      "description": "The numeral 5 written in a bold, bubbly font for kids to trace.",
+      "positive_prompt": "A large, bold, and bubbly numeral 5 centered on a white background with thick, clean outlines for easy tracing. Surround the number with simple, small decorative shapes like stars and dots in the same black-and-white line art style.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Simple City Map",
+      "tier": "educational",
+      "description": "A basic outline of a city with labeled streets and parks for coloring.",
+      "positive_prompt": "A large, bold letter \"A\" sits in the center of a simple city map outline featuring clear streets and parks. The image features only clean black-and-white line art with no shading or color fills, perfect for children to trace and color.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "School Bus Route",
+      "tier": "simple_animated",
+      "description": "A cartoon bus driving along a winding road with road signs.",
+      "positive_prompt": "A cute cartoon bus driving along a winding road with colorful road signs in the distance. Thick black outlines on a pure white background with no shading, gradients, or text for a clean children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Forest Trail Sign",
+      "tier": "simple_inanimate",
+      "description": "A wooden signpost pointing the way through a tree-lined path.",
+      "positive_prompt": "A centered black-and-white line art illustration of a sturdy wooden signpost with a clear arrow pointing right, set against a simple background of evenly spaced tree trunks on a forest path. Thick black outlines define the sign and trees on a pure white background with no shading, gradients, or text.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Ocean Map with Islands",
+      "tier": "educational",
+      "description": "A flat map of an ocean featuring several unpopulated islands and compass roses.",
+      "positive_prompt": "A large, bold letter \"O\" representing the ocean center on a flat map with simple black-and-white outlines of unpopulated islands and compass roses. Clean, thick lines with no shading or color fills, designed as a clear tracing page for young children.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Train on Tracks",
+      "tier": "simple_animated",
+      "description": "A friendly train engine moving along railroad tracks through a landscape.",
+      "positive_prompt": "A friendly cartoon train engine with big round eyes travels along railroad tracks through a field of tall grass and rolling hills. The scene features simple geometric shapes and thick black outlines on a pure white background with no shading, text, or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "cartes",
+      "leaf_name_en": "Maps",
+      "parent_name_en": "Educational",
+      "name_en": "Beach Map with Lighthouse",
+      "tier": "simple_inanimate",
+      "description": "A seaside map showing a sandy beach and a tall lighthouse.",
+      "positive_prompt": "A centered black-and-white line art map of a sandy beach with a tall lighthouse on a pure white background. Thick black outlines define the coastline, sand texture, and lighthouse structure without any shading, gradients, or color fills. The layout is clean with no text or watermarks, featuring clear, bold shapes suitable for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Solar System",
+      "tier": "simple_inanimate",
+      "description": "A colorful drawing of the sun and planets with simple orbits for kids to color.",
+      "positive_prompt": "A centered black-and-white line art illustration of the sun and four planets with simple circular orbits on a pure white background, featuring thick black outlines with no shading, gradients, or color fills. The composition includes Earth with a blue ring, Mars with a red ring, Jupiter with a striped ring, and Saturn with a prominent ring, all arranged in a clean, uncluttered layout without any text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Dinosaur Family",
+      "tier": "simple_animated",
+      "description": "Cute dinosaurs standing side by side with big smiles and simple tails.",
+      "positive_prompt": "A centered black-and-white line art illustration of three cute dinosaurs standing side by side with big smiles and simple tails on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks for a clean children's coloring page layout.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "School Bus",
+      "tier": "simple_inanimate",
+      "description": "A classic yellow bus with windows and wheels ready for a road trip.",
+      "positive_prompt": "A classic yellow school bus centered on a pure white background with thick black outlines, featuring detailed windows, wheels, and a road trip scene in front. The image uses only black lines with no shading, gradients, text, or watermarks to ensure a clean layout for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Rainbow Garden",
+      "tier": "simple_inanimate",
+      "description": "Flowers and trees painted in bright rainbow colors without any people or animals.",
+      "positive_prompt": "A centered rainbow garden featuring stylized trees and flowers with thick black outlines on a pure white background, painted in bright rainbow colors. The scene includes simple geometric shapes and clean curves with no shading, gradients, or color fills, ensuring a clear single subject for children to color. No text, watermarks, people, or animals are present.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Space Rocket",
+      "tier": "simple_inanimate",
+      "description": "A tall rocket ship blasting stars and comets with a trail of smoke.",
+      "positive_prompt": "A tall rocket ship blasting through space with a trail of smoke and stars, centered on a pure white background. Thick black outlines define the rocket, stars, and comets with no shading, gradients, or color fills. The image is a clean, single-subject line art design suitable for children's coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "science",
+      "leaf_name_en": "Science",
+      "parent_name_en": "Educational",
+      "name_en": "Animal Alphabet",
+      "tier": "educational",
+      "description": "Letters paired with simple animals like an A for Ant and B for Bear.",
+      "positive_prompt": "A large, bold black-and-white outline of the letter \"A\" paired with a simple ant, surrounded by clean, simple decorative elements like flowers and clouds. The image features very clean, simple outlines with no shading or color fills, designed specifically for young children to trace and color.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 512,
+        "height": 512,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "butterfly",
+      "tier": "simple_animated",
+      "description": "A colorful butterfly with detailed wings and antennae for easy tracing.",
+      "positive_prompt": "A centered, single butterfly with large, detailed wings featuring distinct patterns and visible antennae on a pure white background. The image consists of thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "rainbow",
+      "tier": "simple_inanimate",
+      "description": "A bright curved rainbow arching over green grass with simple shapes.",
+      "positive_prompt": "A centered black-and-white line art illustration of a bright curved rainbow arching over green grass with simple geometric shapes. Thick black outlines on a pure white background with no shading, gradients, or color fills. Clean layout with no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "cat",
+      "tier": "simple_animated",
+      "description": "A cute sleeping cat curled up with round ears and a fluffy tail.",
+      "positive_prompt": "A cute sleeping cat curled up with large round ears and a fluffy tail, centered on a pure white background. Thick black outlines define the fluffy fur and soft curves, with no shading, gradients, or color fills. The image features no text or watermarks, ensuring a clean layout perfect for a children's coloring page.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "car",
+      "tier": "simple_inanimate",
+      "description": "A red race car with wheels and windows on a plain road background.",
+      "positive_prompt": "A red race car with visible wheels and windows sits centered on a plain white road. Rendered as black-and-white line art with thick black outlines, no shading, gradients, or color fills. The composition features no text, watermarks, or background details to ensure a clean layout for coloring.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "star",
+      "tier": "mandala",
+      "description": "A symmetrical eight-pointed star with intricate patterns inside.",
+      "positive_prompt": "Create a perfectly symmetrical eight-pointed star mandala radiating from the center with intricate yet child-friendly geometric patterns. Render the design as black-and-white line art with thick outlines on a pure white background, ensuring no color fills.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    },
+    {
+      "leaf_id": "divers",
+      "leaf_name_en": "Miscellaneous",
+      "parent_name_en": "(root)",
+      "name_en": "apple",
+      "tier": "simple_inanimate",
+      "description": "A red apple with a green leaf and a small brown stem.",
+      "positive_prompt": "A centered, single red apple with a green leaf and small brown stem on a pure white background. The image features thick black outlines with no shading, gradients, or color fills, and includes no text or watermarks.",
+      "negative_prompt": "",
+      "generation_params": {
+        "width": 768,
+        "height": 768,
+        "batch_size": 1,
+        "steps": 8,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "cfg": 1.0,
+        "denoise": 1.0
+      }
+    }
+  ],
+  "failures": []
+}

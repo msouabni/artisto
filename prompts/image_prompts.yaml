@@ -5,7 +5,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 defaults:
-  model: qwen2.5:7b
+  model: qwen3.5:4b
   temperature: 0.4
   timeout: 90
 
@@ -29,29 +29,51 @@ prompts:
       - Distinct from other concepts in the list (no near-duplicates)
       - SEO: short English slug, natural descriptions that include the word "coloring"
       SCENE TITLE ALIGNMENT FOR IMAGE PIPELINES (MANDATORY):
-      - name_en MUST be a SCENE TITLE that contains BOTH a clear SUBJECT and a clear SETTING.
-      - Prefer the pattern: "<Subject> in <Setting>" (or on/at/under/inside/near).
-      - Avoid vague titles without a setting (e.g. "Cute Cat").
-      Examples of GOOD scene titles: "Cat in a Library", "Dinosaur in a Jungle", "Tractor on a Farm"
-      Examples of BAD titles: "Cute Cat", "Freedom", "Joy", "Nature Philosophy"
+      - name_en MUST follow the STRICT pattern: "<Subject> in/at/on/under/inside/near a <Location>".
+      - The structure is "Subject + Locative Preposition + Location" — NO action verbs in name_en.
+        ✗ BAD: "Hammer Smashing a Nail" (action verb in title)
+        ✓ GOOD: "Hammer on a Workbench" (subject + location)
+        ✗ BAD: "Cat Playing with Yarn" (action verb)
+        ✓ GOOD: "Cat in a Living Room" (subject + location)
+      - Action verbs and dynamic detail go in description_en, NOT in name_en.
+      - The Location must be a REAL, PLAUSIBLE place where this Subject would NATURALLY appear.
+        ✗ BAD: "Hammer in a Kitchen" (a hammer does not belong in a kitchen)
+        ✓ GOOD: "Hammer on a Workbench" (workbench is where hammers live)
+        ✗ BAD: "Doctor in a Forest" (forest is not a doctor's natural setting)
+        ✓ GOOD: "Doctor in a Hospital Room" (hospital is the natural setting)
+      - Avoid vague titles without a setting (e.g. "Cute Cat", "A Hammer").
+      Examples of GOOD scene titles: "Cat in a Library", "Dinosaur in a Jungle", "Tractor on a Farm", "Firefighter in a Burning Building", "Letter A on a School Blackboard"
+      Examples of BAD titles: "Cute Cat", "Hammer Smashing", "Doctor on the Moon", "Freedom", "Joy"
+      ARABIC NAME RULE (MSA / fusha):
+      - name_ar : Modern Standard Arabic translation of the scene title, 1-3 words MAXIMUM (sujet + lieu très condensé).
+      - NO harakat (diacritics) in name_ar.
+      - Anchor on the AR theme reference (theme_name_ar) provided in the user prompt — re-use the same Arabic root word for the subject.
+      - If a literal translation exceeds 3 words, prefer a concise nominal phrase over a verb construction.
+      FRENCH NAME RULE:
+      - name_fr : direct, natural French translation. 2-5 words.
+      - NEVER concatenate or invent compounds (don't translate "firefighter" as "infirmier de pompier" or "homme du feu" — use simply "pompier").
+      - When the EN noun has a single canonical FR equivalent, use it (firefighter → pompier ; surgeon → chirurgien ; lawyer → avocat).
       IMPORTANT: Reply ONLY with the requested JSON. No thinking, no markdown. Raw JSON only.
     user: |
       Theme: {theme}
+      AR anchor (term.name_ar): {theme_name_ar}
       {taxonomy_context}
 
       Generate exactly {count} concepts (precise, drawable image ideas) for this theme.
       For each concept, provide:
       - id : snake_case unique identifier (e.g. animals_sitting_cat, vehicles_farm_tractor)
       - slug : kebab-case URL slug in English, short (2-4 words)
-      - name_en : English SCENE TITLE that explicitly includes SUBJECT + SETTING (prefer "X in Y"), 3-8 words
-      - name_fr : French name, short (2-5 words), natural
-      - description_en : 15-25 words, SEO-friendly, mention "coloring"
+      - name_en : SCENE TITLE strict format "<Subject> <preposition (in/at/on/under/inside/near)> a <Location>", 3-8 words. NO action verbs. Location must be plausible (real place where this subject would naturally appear).
+      - name_fr : direct French translation, 2-5 words. NEVER invent compound translations.
+      - name_ar : MSA translation, 1-3 words MAXIMUM, NO harakat, anchored on the AR theme above
+      - description_en : 15-25 words, SEO-friendly, mention "coloring". Action verbs and dynamic detail GO HERE (not in name_en).
       - description_fr : 15-25 words, SEO-friendly, mention "coloriage" or "colorier"
       - weight : display order (0, 1, 2...)
 
       Expected JSON array format:
       [
         {{"id": "animals_sitting_cat", "slug": "sitting-cat", "name_en": "Cute Sitting Cat", "name_fr": "Chat assis mignon",
+          "name_ar": "قطة جالسة",
           "description_en": "Cute sitting cat coloring page, ideal for young children to color.", "description_fr": "Coloriage d'un chat assis souriant, parfait pour les enfants.", "weight": 0}},
         ...
       ]
@@ -62,6 +84,7 @@ prompts:
         slug: "string — kebab-case English (2-4 words)"
         name_en: "string — 2-5 words"
         name_fr: "string — 2-5 words"
+        name_ar: "string — 1-3 words MSA, no harakat"
         description_en: "string — 15-25 words, mention coloring"
         description_fr: "string — 15-25 words, mention coloriage"
         weight: "integer"
@@ -278,7 +301,7 @@ prompts:
 
   prompt_planner:
     description: "Étape 1 — plan JSON (sujet, décor, composition) à partir de mots-clés / titre / tags."
-    model: qwen3:8b
+    model: qwen3.5:4b
     temperature: 0.35
     timeout: 180
     system: |
@@ -386,13 +409,15 @@ prompts:
 
   prompt_writer_ernie:
     description: "Étape 2 — prompt positif pour ERNIE-Image-Turbo (contraintes dans le positif ; pas de negative_prompt côté workflow)."
-    model: qwen3:8b
+    model: qwen3.5:4b
     temperature: 0.4
     timeout: 180
     system: |
       You are an expert prompt writer for ERNIE-Image-Turbo text-to-image for kids coloring pages.
       This model follows clear positive instructions; do NOT rely on a separate negative prompt at inference.
       Put all important constraints (monochrome line art, white background, no shading, child-safe) inside the positive prompt.
+      CRITICAL: Never include any readable text, letters, words, numbers, signs, labels or written characters anywhere in the scene description — not on objects, not on walls, not on boards, not as diegetic elements. The scene must be purely visual with no text of any kind.
+      CRITICAL: Strip any color-related adjective inherited from the mood or scene fields (e.g. "colorful", "bright", "vibrant", "rainbow", "multicolored") — they contradict the monochrome line-art constraint. Translate them into neutral mood words instead (e.g. "cheerful", "lively", "calm", "inviting").
       Output ONLY valid JSON with keys:
         - "prompt" : full English positive prompt text (required)
         - "negative_prompt" : may be an empty string "" (preferred) or a very short comma-separated list for bookkeeping only
@@ -428,7 +453,7 @@ prompts:
 
   validate_prompt_ernie:
     description: "Contrôle qualité heuristique du prompt pour ERNIE-Image-Turbo (structure, line art, cleanup)."
-    model: qwen3:8b
+    model: qwen3.5:4b
     temperature: 0.2
     timeout: 120
     system: |
