@@ -23,6 +23,7 @@ from api.job_review_artifact import (
 from services.ai_jobs_sync import (
     run_generate_concepts_sync,
     run_generate_prompts_sync,
+    run_image_prompt_chain_sync,
     run_image_prompt_create_sync,
     run_image_prompt_improve_sync,
     run_image_prompt_validate_sync,
@@ -50,6 +51,7 @@ AI_PIPELINE_JOB_TYPES = (
     "image_prompt_create",
     "image_prompt_improve",
     "image_prompt_validate",
+    "image_prompt_chain",
     "image_generate_concepts",
     "image_generate_prompts",
     "image_prompt_suggest",
@@ -131,6 +133,8 @@ class AiPipelineWorker(BaseWorker):
                 return run_image_prompt_improve_sync(conn, config)
             if jt == "image_prompt_validate":
                 return run_image_prompt_validate_sync(conn, config)
+            if jt == "image_prompt_chain":
+                return run_image_prompt_chain_sync(conn, config)
             if jt == "image_generate_concepts":
                 return run_generate_concepts_sync(conn, config)
             if jt == "image_generate_prompts":
@@ -289,6 +293,30 @@ class AiPipelineWorker(BaseWorker):
                         "checks": result.get("checks"),
                         "recommendations": result.get("recommendations"),
                     },
+                },
+                job_type=jt,
+            )
+
+        elif jt == "image_prompt_chain":
+            image_id = str(config.get("image_id") or job.get("entity_id") or "").strip()
+            if not image_id:
+                raise ValueError("config.image_id ou entity_id requis pour image_prompt_chain")
+            artifact = build_image_text_patch_artifact(
+                entity_id=image_id,
+                proposal={
+                    "prompt": result.get("prompt", ""),
+                    "negative_prompt": result.get("negative_prompt", ""),
+                    "chain_score": result.get("score"),
+                    "chain_checks": result.get("checks", []),
+                    "chain_recommendations": result.get("recommendations", []),
+                    "chain_low_score": bool(result.get("low_score")),
+                    "chain_latencies_ms": {
+                        "planner": result.get("planner_latency_ms"),
+                        "writer": result.get("writer_latency_ms"),
+                        "validator": result.get("validator_latency_ms"),
+                        "total": result.get("total_latency_ms"),
+                    },
+                    "chain_drift_retried": bool(result.get("drift_retried")),
                 },
                 job_type=jt,
             )

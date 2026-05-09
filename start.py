@@ -386,9 +386,14 @@ def main() -> int:
         parser.add_argument("--api-port", type=int, default=int(os.environ.get("ARTISTE_API_PORT", "8000")))
         args = parser.parse_args()
 
-        api_host = "127.0.0.1"
+        # Bind host : ARTISTE_API_HOST (défaut 0.0.0.0) pour exposer l'API à
+        # d'autres machines (Tailscale, LAN…). Les health checks et
+        # probes locaux ciblent 127.0.0.1 indépendamment, car connect(0.0.0.0)
+        # n'est pas portable.
+        api_host = os.environ.get("ARTISTE_API_HOST", "0.0.0.0").strip() or "0.0.0.0"
         api_port = args.api_port
-        api_base = f"http://{api_host}:{api_port}"
+        api_probe_host = "127.0.0.1"
+        api_base = f"http://{api_probe_host}:{api_port}"
 
         ollama_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434").rstrip("/")
         comfy_url = os.environ.get("COMFY_URL", "http://127.0.0.1:8188").rstrip("/")
@@ -458,7 +463,12 @@ def main() -> int:
             comfy_exe, comfy_py_src = _resolve_comfyui_python(home)
             print(f"[comfy] Dossier : {home} (détecté via {comfy_home_reason})", flush=True)
             print(f"[comfy] Python : {comfy_exe} ({comfy_py_src})", flush=True)
-            proc = _popen("ComfyUI", [comfy_exe, str(home / "main.py")], cwd=home)
+            # Bind host ComfyUI : COMFYUI_HOST (défaut 0.0.0.0) pour Tailscale/LAN.
+            # ComfyUI accepte --listen <ip>. Sans flag, il bind 127.0.0.1.
+            comfy_bind_host = os.environ.get("COMFYUI_HOST", "0.0.0.0").strip() or "0.0.0.0"
+            comfy_args = [comfy_exe, str(home / "main.py"), "--listen", comfy_bind_host]
+            print(f"[comfy] Bind  : --listen {comfy_bind_host} (env COMFYUI_HOST)", flush=True)
+            proc = _popen("ComfyUI", comfy_args, cwd=home)
             time.sleep(2.5)
             if proc.poll() is not None:
                 print(
@@ -470,7 +480,7 @@ def main() -> int:
                 print("[comfy] Démarrage en cours… (le port peut prendre quelques secondes)", flush=True)
 
         # --- API ---
-        if _tcp_open(api_host, api_port):
+        if _tcp_open(api_probe_host, api_port):
             if _is_artiste_api(api_base):
                 print(f"[api] Déjà actif : {api_base}", flush=True)
             else:

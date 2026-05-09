@@ -7,7 +7,12 @@ from typing import Any
 
 from fastapi import HTTPException
 
-from services.ollama_json import OLLAMA_MODEL, OLLAMA_TIMEOUT, call_ollama_sync
+from services.ollama_json import (
+    OLLAMA_MODEL,
+    OLLAMA_TIMEOUT,
+    call_ollama_sync,
+    call_ollama_sync_with_drift_retry,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -433,10 +438,12 @@ def run_generate_concepts_sync(conn: Any, config: dict[str, Any]) -> dict[str, A
     vocabulary_id = (config.get("vocabulary_id") or "").strip() or None
 
     taxonomy_context = ""
+    theme_name_ar = ""
     if term_id and vocabulary_id:
         try:
             term = ai_mod._get_term(conn, vocabulary_id, term_id)
             children = ai_mod._get_term_children(conn, vocabulary_id, term_id)
+            theme_name_ar = (term.get("name_ar") or "").strip()
             branch = [term] + children
             taxonomy_context = (
                 "Taxonomy context (anchor) — parent term and existing children:\n"
@@ -464,6 +471,7 @@ def run_generate_concepts_sync(conn: Any, config: dict[str, Any]) -> dict[str, A
     else:
         prompt = tpl["user"].format(
             theme=theme,
+            theme_name_ar=theme_name_ar or "(no AR anchor — generate AR names organically)",
             taxonomy_context=taxonomy_context or "No taxonomy anchor provided.",
             count=count,
         )
@@ -604,7 +612,12 @@ def run_image_prompt_create_sync(conn: Any, config: dict[str, Any]) -> dict[str,
             tags_context=tags_context or "(none)",
         )
     planner_system = config["custom_system"] if config.get("custom_system") is not None else planner_tpl["system"]
-    raw_plan = call_ollama_sync(planner_user, planner_system, p_model, p_temp, p_timeout)
+    raw_plan, drift_meta = call_ollama_sync_with_drift_retry(
+        planner_user, planner_system,
+        model=p_model, temperature=p_temp, timeout=p_timeout,
+    )
+    if drift_meta.get("drift_retry"):
+        logger.info("planner drift recovered via retry @ T=0 (model=%s)", p_model)
     plan = _parse_json_ai(raw_plan)
     if not isinstance(plan, dict):
         raise ValueError("Le planificateur n'a pas renvoyé un objet JSON attendu.")
@@ -1050,7 +1063,9 @@ def run_image_prompt_validate_sync(conn: Any, config: dict[str, Any]) -> dict[st
     else:
         user_prompt = tpl["user"].format(profile=profile, prompt=prompt)
     system = config["custom_system"] if config.get("custom_system") is not None else tpl["system"]
-    raw = call_ollama_sync(user_prompt, system, mdl, temp, timeout)
+    # num_ctx=8192 : le validator produit du JSON long (5 checks détaillés +
+    # recommandations) qui dépassait 4096 tokens et tronquait mid-objet (POC-3).
+    raw = call_ollama_sync(user_prompt, system, mdl, temp, timeout, num_ctx=8192)
     data = _parse_json_ai(raw)
     if not isinstance(data, dict):
         raise ValueError("La validation n'a pas renvoyé un objet JSON.")
@@ -1081,4 +1096,177 @@ def run_image_prompt_validate_sync(conn: Any, config: dict[str, Any]) -> dict[st
         "model": mdl,
         "temperature": temp,
         "raw_response": raw,
+    }
+
+
+def run_image_prompt_chain_sync(conn: Any, config: dict[str, Any]) -> dict[str, Any]:
+    """Chaîne complète planner → writer → validator en une seule passe.
+
+    Validé par POC-3 v2 (95 % succès, p50 17.6 s — cf.
+    `docs/reports/2026-05-05_poc-prompt-chain-v2.md`). Fixes embarqués déjà :
+      - planner via ``call_ollama_sync_with_drift_retry`` (retry T=0 sur drift)
+      - validator avec ``num_ctx=8192`` pour ne pas tronquer le JSON long
+
+    Config attendu :
+        {image_id?, concept_name_en?, title?, keywords?, tags_context?,
+         profile?, model?, temperature?, workflow_template?}
+    Au moins un parmi ``concept_name_en``, ``title`` ou ``keywords`` requis ;
+    si ``image_id`` fourni, la fonction tente de remplir les champs manquants
+    depuis la table ``image``.
+
+    Retour :
+        {prompt, negative_prompt, score, checks, recommendations,
+         low_score, drift_retried, planner_latency_ms, writer_latency_ms,
+         validator_latency_ms, total_latency_ms, plan, image_id, …}
+    ``low_score = True`` si ``score < 75`` (l'admin tranche, pas d'erreur).
+    """
+    import time
+    from api.routes.ai import (
+        _default_negative_prompt_for_profile,
+        _get_image_prompt_template,
+        _image_prompt_timeout,
+        _resolve_model_temp,
+        resolve_image_prompt_template_keys,
+    )
+
+    image_id = (config.get("image_id") or "").strip() or None
+    concept_name_en = (config.get("concept_name_en") or "").strip()
+    title = (config.get("title") or "").strip() or concept_name_en
+    keywords = (config.get("keywords") or "").strip()
+    tags_context = (config.get("tags_context") or "").strip()
+    profile = (config.get("profile") or "kids_coloring_lineart_v1").strip()
+
+    if image_id and conn is not None and (not title or not keywords or not tags_context):
+        try:
+            rows = conn.execute(
+                "SELECT title, keywords FROM image WHERE id = ?",
+                [image_id],
+            ).fetchall()
+            if rows:
+                if not title:
+                    title = str(rows[0][0] or "")
+                if not keywords:
+                    keywords = str(rows[0][1] or "")
+            tag_rows = conn.execute(
+                """
+                SELECT t.name_i18n FROM image_taxonomy_tag it
+                JOIN vocabulary v ON v.taxonomy_id = it.taxonomy_id
+                JOIN term t ON t.id = it.term_id AND t.vocabulary_id = v.id
+                WHERE it.image_id = ?
+                """,
+                [image_id],
+            ).fetchall()
+            if tag_rows and not tags_context:
+                from api.helpers import get_i18n
+                names = [get_i18n(r[0], "fr") or "" for r in tag_rows if r[0]]
+                joined = ", ".join(n for n in names if n)
+                if joined:
+                    tags_context = joined
+        except Exception:
+            pass
+
+    if not title and not keywords:
+        raise ValueError(
+            "Au moins un parmi config.concept_name_en, config.title ou config.keywords requis."
+        )
+    if not keywords:
+        keywords = title
+
+    # ── Étape 1 : planner (drift retry) ───────────────────────────────────────
+    planner_tpl = _get_image_prompt_template("prompt_planner")
+    p_model, p_temp = _resolve_model_temp(planner_tpl, config.get("model"), config.get("temperature"))
+    p_timeout = _image_timeout(planner_tpl)
+    planner_user = planner_tpl["user"].format(
+        profile=profile or "(default)",
+        keywords=keywords or "(none)",
+        title=title or "(none)",
+        tags_context=tags_context or "(none)",
+    )
+    planner_system = planner_tpl["system"]
+    t0 = time.time()
+    raw_plan, drift_meta = call_ollama_sync_with_drift_retry(
+        planner_user, planner_system,
+        model=p_model, temperature=p_temp, timeout=p_timeout,
+    )
+    planner_latency_ms = int((time.time() - t0) * 1000)
+    drift_retried = bool(drift_meta.get("drift_retry"))
+    if drift_retried:
+        logger.info("chain: planner drift recovered via retry @ T=0 (model=%s)", p_model)
+    plan = _parse_json_ai(raw_plan)
+    if not isinstance(plan, dict):
+        raise ValueError("Le planificateur n'a pas renvoyé un objet JSON exploitable.")
+
+    # ── Étape 2 : writer ──────────────────────────────────────────────────────
+    wf_tpl = (config.get("workflow_template") or "").strip() or None
+    tpl_keys = resolve_image_prompt_template_keys(wf_tpl)
+    writer_tpl = _get_image_prompt_template(tpl_keys["writer"])
+    w_model, w_temp = _resolve_model_temp(writer_tpl, config.get("model"), config.get("temperature"))
+    w_timeout = _image_timeout(writer_tpl)
+    plan_json = json.dumps(plan, ensure_ascii=False, indent=2)
+    writer_user = writer_tpl["user"].format(plan_json=plan_json)
+    writer_system = writer_tpl["system"]
+    t0 = time.time()
+    raw_writer = call_ollama_sync(writer_user, writer_system, w_model, w_temp, w_timeout)
+    writer_latency_ms = int((time.time() - t0) * 1000)
+    parsed_writer = _parse_json_ai(raw_writer)
+    if not isinstance(parsed_writer, dict):
+        raise ValueError("Le writer n'a pas renvoyé un objet JSON.")
+    final_prompt = (parsed_writer.get("prompt") or "").strip()
+    if not final_prompt:
+        raise ValueError("Le writer n'a pas renvoyé de champ 'prompt'.")
+    final_negative = (parsed_writer.get("negative_prompt") or "").strip()
+    if not final_negative:
+        final_negative = _default_negative_prompt_for_profile(profile)
+
+    # ── Étape 3 : validator (num_ctx=8192) ───────────────────────────────────
+    validator_tpl = _get_image_prompt_template(tpl_keys["validate"])
+    v_model, v_temp = _resolve_model_temp(validator_tpl, config.get("model"), config.get("temperature"))
+    v_timeout = _image_prompt_timeout(validator_tpl)
+    validator_user = validator_tpl["user"].format(profile=profile, prompt=final_prompt)
+    validator_system = validator_tpl["system"]
+    t0 = time.time()
+    raw_validator = call_ollama_sync(
+        validator_user, validator_system, v_model, v_temp, v_timeout, num_ctx=8192,
+    )
+    validator_latency_ms = int((time.time() - t0) * 1000)
+    validation = _parse_json_ai(raw_validator)
+    if not isinstance(validation, dict):
+        raise ValueError("Le validator n'a pas renvoyé un objet JSON.")
+    score = validation.get("score")
+    if isinstance(score, bool):
+        score = int(score)
+    elif score is not None:
+        try:
+            score = int(score)
+        except (TypeError, ValueError):
+            score = None
+    if score is None:
+        score = 0
+    score = max(0, min(100, score))
+    checks = validation.get("checks") if isinstance(validation.get("checks"), list) else []
+    recs = validation.get("recommendations") if isinstance(validation.get("recommendations"), list) else []
+
+    total_latency_ms = planner_latency_ms + writer_latency_ms + validator_latency_ms
+
+    return {
+        "prompt": final_prompt,
+        "negative_prompt": final_negative,
+        "score": score,
+        "checks": checks,
+        "recommendations": recs,
+        "low_score": score < 75,
+        "drift_retried": drift_retried,
+        "planner_latency_ms": planner_latency_ms,
+        "writer_latency_ms": writer_latency_ms,
+        "validator_latency_ms": validator_latency_ms,
+        "total_latency_ms": total_latency_ms,
+        "plan": plan,
+        "image_id": image_id,
+        "model_planner": p_model,
+        "model_writer": w_model,
+        "model_validator": v_model,
+        "profile": profile,
+        "raw_plan": raw_plan,
+        "raw_writer": raw_writer,
+        "raw_validator": raw_validator,
     }

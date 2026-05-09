@@ -115,10 +115,20 @@ def _get_ollama_http_client() -> httpx.AsyncClient:
 
 
 def _apply_no_think_system(model: str, system: str) -> str:
-    """Préfixe /no_think pour Qwen3 afin de réduire la génération de tokens thinking."""
-    if "qwen3" in (model or "").lower():
+    """Préfixe /no_think pour qwen3:* strict (le tag n'opère pas sur qwen3.5+).
+
+    Pour qwen3.5 et ultérieurs, utiliser ``"think": false`` natif Ollama dans le
+    body (cf. ``_native_think_disable`` ci-dessous).
+    """
+    m = (model or "").lower()
+    if "qwen3:" in m and "qwen3." not in m:
         return "/no_think\n" + (system or "")
     return system
+
+
+def _native_think_disable(model: str) -> bool:
+    """qwen3.5+ : Ollama accepte le paramètre natif ``"think": false`` dans le body."""
+    return "qwen3." in (model or "").lower()
 
 
 # ─── Modèles de requêtes ──────────────────────────────────────────────────────
@@ -131,6 +141,26 @@ class EnrichTermRequest(BaseModel):
     temperature: float | None = None
     custom_system: str | None = None
     custom_prompt: str | None = None
+
+
+class GenerateContentRequest(BaseModel):
+    concept_name_en: str
+    concept_name_fr: str
+    term_name_ar: str
+    model: str | None = None
+    max_retries: int | None = None
+
+
+class PromptChainRequest(BaseModel):
+    image_id: str | None = None
+    concept_name_en: str | None = None
+    title: str | None = None
+    keywords: str | None = None
+    tags_context: str | None = None
+    profile: str | None = None
+    workflow_template: str | None = None
+    model: str | None = None
+    temperature: float | None = None
 
 
 class SuggestChildrenRequest(BaseModel):
@@ -429,13 +459,15 @@ async def _call_ollama(
     # le JSON, ce qui rend la sortie invalide pour la validation d'Ollama.
     # Notre _parse_json_response() gère déjà les think-tags et extrait le JSON.
     system = _apply_no_think_system(model, system)
-    payload = {
+    payload: dict = {
         "model": model,
         "prompt": prompt,
         "system": system,
         "stream": False,
         "options": {"temperature": temperature},
     }
+    if _native_think_disable(model):
+        payload["think"] = False
     logger.debug("Ollama → %s model=%s temp=%s", url, model, temperature)
     try:
         client = _get_ollama_http_client()
@@ -982,6 +1014,66 @@ async def enrich_terms_batch(
         "taxonomy_enrich_terms_batch", config, "taxonomy_batch", body.vocabulary_id, conn=conn
     )
     return JSONResponse(content=result, status_code=202)
+
+
+@router.post("/prompt-chain")
+async def prompt_chain_endpoint(
+    body: PromptChainRequest,
+    conn: DBConnAdapter = Depends(get_db_read),
+) -> dict[str, Any]:
+    """Exécute la chaîne planner→writer→validator en une passe (P2 ⑥a — POC-3 v2).
+
+    Synchrone (pas de queue). Retourne le prompt line-art final + score validator
+    + latences par étape. Pour appel async batch via worker, utiliser le job type
+    ``image_prompt_chain`` (cf. POST /api/jobs/enqueue).
+    """
+    from services.ai_jobs_sync import run_image_prompt_chain_sync
+    config: dict[str, Any] = {}
+    for f in (
+        "image_id", "concept_name_en", "title", "keywords", "tags_context",
+        "profile", "workflow_template", "model", "temperature",
+    ):
+        v = getattr(body, f, None)
+        if v is not None and v != "":
+            config[f] = v
+    try:
+        result = run_image_prompt_chain_sync(conn, config)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502, detail=f"prompt-chain failed: {type(exc).__name__}: {exc}",
+        ) from exc
+    # Pas de raw_* dans la réponse HTTP par défaut (lourd).
+    public = {k: v for k, v in result.items() if not k.startswith("raw_")}
+    return public
+
+
+@router.post("/generate-content")
+async def generate_content_endpoint(body: GenerateContentRequest) -> dict[str, Any]:
+    """Génère le contenu éditorial i18n EN+FR+AR pour un concept (P2 ⑥b).
+
+    Synchrone : retourne le ContentResult sérialisé en JSON. Latence typique
+    ~10-30 s (3 appels LLM séquentiels + jusqu'à `max_retries` retries AR).
+    """
+    from services.content_generator import (
+        content_result_to_dict,
+        generate_content,
+    )
+    kwargs: dict[str, Any] = {
+        "concept_name_en": body.concept_name_en,
+        "concept_name_fr": body.concept_name_fr,
+        "term_name_ar": body.term_name_ar,
+    }
+    if body.model is not None:
+        kwargs["model"] = body.model
+    if body.max_retries is not None:
+        kwargs["max_retries"] = body.max_retries
+    try:
+        result = generate_content(**kwargs)
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail=f"generate_content failed: {type(exc).__name__}: {exc}") from exc
+    return content_result_to_dict(result)
 
 
 @router.post("/suggest-children")

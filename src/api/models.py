@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from sqlalchemy import Boolean, Float, ForeignKey, Integer, String, Text
+from sqlalchemy import JSON, Boolean, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -45,6 +45,10 @@ class Term(Base):
     description_i18n: Mapped[str | None] = mapped_column(Text)
     weight: Mapped[int | None] = mapped_column(Integer, default=0)
     keywords: Mapped[str | None] = mapped_column(Text)
+    # Colonne `metadata` (JSONB côté Postgres, JSON côté SQLite via JSON type
+    # cross-dialect). Attribut Python renommé `node_metadata` pour éviter le
+    # conflit avec `Base.metadata` (réservé SQLAlchemy).
+    node_metadata: Mapped[dict | None] = mapped_column("metadata", JSON, nullable=True)
     created_at: Mapped[str | None] = mapped_column(Text)
     updated_at: Mapped[str | None] = mapped_column(Text)
 

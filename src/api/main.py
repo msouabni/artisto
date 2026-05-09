@@ -19,7 +19,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from api.routes import ai, generation, images, jobs, sites, taxonomy
+from api.routes import ai, benchmark, generation, images, jobs, sites, taxonomy
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
@@ -96,6 +96,7 @@ app.include_router(generation.router)
 app.include_router(images.router)
 app.include_router(jobs.router)
 app.include_router(sites.router)
+app.include_router(benchmark.router)
 
 if DATA_DIR.exists():
     app.mount("/data", StaticFiles(directory=str(DATA_DIR), html=True), name="data")

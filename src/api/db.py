@@ -105,6 +105,14 @@ DEFAULT_JOB_TYPES = (
         "category": "text",
     },
     {
+        "type": "image_prompt_chain",
+        "label": "Prompt image : chaine complete (planner->writer->validator)",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "Genere et valide un prompt line-art en une seule passe (POC-3 v2)",
+        "category": "text",
+    },
+    {
         "type": "image_generate_concepts",
         "label": "Concepts image (themes / sous-themes)",
         "enabled": False,
