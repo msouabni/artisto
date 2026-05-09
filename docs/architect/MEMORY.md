@@ -1,6 +1,6 @@
 # Architect Memory — Artiste Coloriage
 
-Mis à jour : 2026-05-09 (livraison annotateur v2)
+Mis à jour : 2026-05-09 (livraison annotateur v2 + greffon prod)
 
 ## État courant du projet
 
@@ -16,9 +16,9 @@ Pipeline opérationnelle de bout en bout : taxonomie 1376 feuilles → `PromptGe
   - Classes "OU" (12 cas) : variante choisie par PromptGenerator validée comme cohérente
   - Décision sur les ~31 classes restantes (confidence non-Haute strict) : couverture partielle, run dédié ou exclusion
   - ✅ **Annotateur v2 livré 2026-05-09** (UI compacte + raccourcis chord + grille 3 axes + score 1-6, migration v1→v2 appliquée sur les 9 fichiers existants — 539 annotations, 0 anomalie). Réf. `2026-05-09_phase-annotateur-v2.md`.
-  - **Greffon prod livré** (table `annotation` polymorphe + endpoints `/api/review/*` + mode switch UI) pour brancher l'annotateur sur les `image_output` prod (pas avant fin annotation POC)
+  - ✅ **Greffon prod livré 2026-05-09** (table `annotation` polymorphe + endpoints `/api/review/*` + mode switch UI + badge PROD) pour brancher l'annotateur sur les `image_output` prod (pas avant fin annotation POC). Réf. `2026-05-09_phase-greffon-prod.md`.
 - **Bloqueurs** :
-  - Helper `find_metrics_entry` (annotateur) n'itère pas le schéma `subjects` → `pos_v1_chars=0` sur certains diffs (mineur, pas bloquant)
+  - _(aucun bloqueur actif — le sujet `find_metrics_entry` du POC `2_objets` est en réalité dans `scripts/poc_rerun_2objets.py:71` et a été reclassé en dette technique mineure, voir `Dette technique connue` ci-dessous)_
 
 ## Échéances / Deadlines
 
@@ -30,7 +30,9 @@ Pipeline opérationnelle de bout en bout : taxonomie 1376 feuilles → `PromptGe
 | 2026-05-16 | Annotation des méta-patterns prioritaires (Grille imagier, Imagier 3×3, Frise narrative, Multi-sujets) | à faire | Volume plus important. Critique car `color_ratio` aveugle à la composition — seule validation visuelle peut confirmer la structure. |
 | 2026-05-09 | Briefs annotateur (v2 + greffon prod) rédigés | fait | `docs/architect/briefs/2026-05-09_brief-annotateur-v2.md` (P1+P2+P3 consolidés) et `2026-05-09_brief-greffon-prod.md` (P4). Estimés ~6.5h dev chacun. |
 | 2026-05-09 | Annotateur v2 livré (claude-code dev) — UI compacte + raccourcis chord + grille 3 axes + score 1-6 + script migration `annotations.json` | fait | Livré en 1 cycle agent. 24/24 tests verts. Migration `--apply` effectuée (539 annotations, 0 anomalie, `.bak` supprimés). Commits : `164c02c` (feat consolidé) + `ca7118f` (fix score-row au-dessus de l'image). Validation visuelle UI confirmée par l'utilisateur 2026-05-09. Réf. `2026-05-09_phase-annotateur-v2.md` + `2026-05-09_migration-annotateur-grille-v2.md`. |
-| 2026-05-19 | Greffon prod livré (claude-code dev) — table `annotation` polymorphe + endpoints `/api/review/*` + mode switch UI | à faire | Bloqué par annotateur v2. Pas d'apply/reject : pipeline existante intacte. |
+| 2026-05-09 | Greffon prod livré (claude-code dev) — table `annotation` polymorphe + endpoints `/api/review/*` + mode switch UI | fait | Livré en 1 cycle agent (10 j d'avance sur la cible 2026-05-19). 63/63 tests verts (21 nouveaux + 42 préexistants intacts). Migration 0006 appliquée Postgres OK. Commit consolidé `8b96c32`. Refactor vocab `IMAGE_TAGS_VOCAB`/`PROMPT_TAGS_VOCAB` extrait vers `src/api/annotation_vocab.py` (single source of truth back) — réduit le scope du brief F. Réf. `2026-05-09_phase-greffon-prod.md`. |
+| 2026-05-12 | Brief F "Vocabulaires source unique" rédigé | fait | `docs/architect/briefs/2026-05-09_brief-vocabulaires-source-unique.md`. Refonte iso-fonctionnelle pour éliminer la duplication back/front. ~1h dev estimé. |
+| 2026-05-13 | Brief F livré (claude-code dev) — endpoint `/api/benchmark/vocabularies` + front consume au boot | scope réduit | **Moitié back déjà acquise via greffon prod 2026-05-09** : `src/api/annotation_vocab.py` est désormais la source unique côté Python (importé par `benchmark.py` + `review.py`). Reste à faire : (1) endpoint `GET /api/benchmark/vocabularies` qui sérialise les frozensets en JSON ; (2) front consume au boot (purger les vocabs JS hardcodés dans `benchmark-annotator.html`). Estim ~30 min. |
 
 ## Décisions architecturales actées
 
@@ -47,7 +49,17 @@ Pipeline opérationnelle de bout en bout : taxonomie 1376 feuilles → `PromptGe
 | 2026-05-09 | Bind réseau configurable via `ARTISTE_API_HOST` / `COMFYUI_HOST` (défaut `0.0.0.0`). Sondes santé restent sur `127.0.0.1`. API + ComfyUI testés Tailscale OK | Actée | `2026-05-09_tailscale-access.md` |
 | 2026-05-09 | QC anatomie ligne-art = validation humaine uniquement (LLM vision recall=0% sur 5 variantes de prompt sur défauts `3_jambes`). Pas de QC automatique anatomique en pipeline | Actée — invalidation P3 partielle | `2026-05-07_poc-vision-qc-prompts.md` (réf.) + CLAUDE.md §PromptGenerator |
 | 2026-05-09 | Annotateur v2 — refonte UI compacte + raccourcis chord + grille 3 axes (Image 18 / Prompt 8 / Custom libre) + flags pattern/sample/publishable + score 1-6 (migration auto 1-10 → 1-6, `score_legacy` conservé). Storage benchmark reste fichier `annotations.json`. Schéma annotation **figé** dès cette refonte (sera réutilisé tel quel par le greffon prod). | Actée — livrée 2026-05-09 (commits `164c02c` + `ca7118f`) | `2026-05-09_brief-annotateur-v2.md` + `2026-05-09_phase-annotateur-v2.md` |
-| 2026-05-09 | Greffon prod via mapping (pas d'intégration profonde) : table `annotation` **polymorphe** (`target_type`, `target_id`, sans FK explicite, whitelist côté API) — peut s'attacher à `image_output` (cible prod), `image`, `term`, etc. Endpoints REST `/api/review/queue`, `/api/review/file`, `/api/annotation`. **Pas de boutons apply/reject** dans l'annotateur — pipeline existante intacte. GraphQL/BFF → backlog. | Actée — brief rédigé, dev pendant | `2026-05-09_brief-greffon-prod.md` |
+| 2026-05-09 | Greffon prod via mapping (pas d'intégration profonde) : table `annotation` **polymorphe** (`target_type`, `target_id`, sans FK explicite, whitelist côté API) — peut s'attacher à `image_output` (cible prod), `image`, `term`, etc. Endpoints REST `/api/review/queue`, `/api/review/file`, `/api/annotation`. **Pas de boutons apply/reject** dans l'annotateur — pipeline existante intacte. GraphQL/BFF → backlog. | Actée — livrée 2026-05-09 (commit `8b96c32`) | `2026-05-09_brief-greffon-prod.md` + `2026-05-09_phase-greffon-prod.md` |
+
+## Dette technique connue
+
+| Sujet | Origine / détail | Sévérité | Suite |
+|---|---|---|---|
+| Vocabulaires annotateur dupliqués back/front | **Back unifié 2026-05-09** : `src/api/annotation_vocab.py` source unique Python, importé par `benchmark.py` + `review.py`. Reste : `IMAGE_AXIS`/`PROMPT_AXIS` JS hardcodés dans `benchmark-annotator.html` (2e source de vérité). | Mineure | Brief F scope réduit : endpoint `/api/benchmark/vocabularies` + front consume au boot. Estim ~30 min. |
+| Helper `find_metrics_entry` n'itère pas le schéma `subjects` | `scripts/poc_rerun_2objets.py:71` — produit `pos_v1_chars=0` pour 1 cas (`house_painter_with_roller`). Cf. `2026-05-09_poc-rerun-2objets.md` §A. Le rerun a fonctionné quand même. | Mineure | À corriger si on relance des POC `2_objets` ou si on réutilise ce script ailleurs |
+| 5 tests préexistants en échec dans la suite | Workflow Ernie / negative-prompt — non liés à l'annotateur v2, remontés explicitement par le pytest run de la phase | À investiguer | Cycle dédié "stabiliser tests legacy" — pas urgent, mais à inscrire avant qu'un nouveau test casse |
+| Import `HARAKAT_RE` cassé dans `tests/test_content_generator.py` | Empêche le module de s'importer ; pytest doit ignorer ce fichier (`--ignore=tests/test_content_generator.py`) pour passer la suite | À investiguer | Idem — stabilisation tests legacy |
+| `data/artiste_coloriage.duckdb` checked-in mais legacy | Cf. CLAUDE.md "Things easy to get wrong" | Documentaire | Ne pas écrire de code qui le lit en prod ; à supprimer un jour |
 
 ## Hypothèses en cours de validation
 
