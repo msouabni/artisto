@@ -565,58 +565,54 @@
 
   <script>
     // ── Vocabulaires fermés (axes IMAGE / PROMPT) ─────────────────────────
-    // Doivent rester synchrones avec IMAGE_TAGS_VOCAB / PROMPT_TAGS_VOCAB
-    // dans src/api/routes/benchmark.py.
-    const IMAGE_AXIS = {
-      POS:  [
-        { key: "image_compo_bonne",        label: "Bonne compo" },
-        { key: "image_coherente",          label: "Cohérente" },
-        { key: "image_creative",           label: "Créative" },
-      ],
-      NEUT: [
-        { key: "image_complexe",           label: "Complexe" },
-      ],
-      NEG:  [
-        { key: "image_compo_mauvaise",     label: "Mauv. compo" },
-        { key: "image_pas_coherente",      label: "Pas cohér." },
-        { key: "image_simpliste",          label: "Simpliste" },
-        { key: "image_incomprehensible",   label: "Incompr." },
-        { key: "image_traces_couleur",     label: "Couleurs" },
-        { key: "image_gris_residuel",      label: "Gris résid." },
-        { key: "image_symetrie_incomplete",label: "Sym. inc." },
-        { key: "image_duplication",        label: "Duplication" },
-        { key: "image_flou",               label: "Flou" },
-        { key: "image_anatomie_pb",        label: "Anatomie" },
-        { key: "image_physique_pb",        label: "Pb physique" },
-        { key: "image_traits_pb",          label: "Pb traits" },
-        { key: "image_hors_sujet",         label: "Hors sujet" },
-        { key: "image_prompt_non_respecte",label: "Prompt KO" },
-      ],
-    };
-    const PROMPT_AXIS = {
-      POS:  [
-        { key: "prompt_interessant",       label: "Intéressant" },
-        { key: "prompt_creatif",           label: "Créatif" },
-      ],
-      NEUT: [
-        { key: "prompt_complexe",          label: "Complexe" },
-      ],
-      NEG:  [
-        { key: "prompt_ambigu",            label: "Ambigu" },
-        { key: "prompt_approximatif",      label: "Approx." },
-        { key: "prompt_vide",              label: "Vide" },
-        { key: "prompt_creux",             label: "Creux" },
-        { key: "prompt_ennuyeux",          label: "Ennuyeux" },
-      ],
-    };
+    // Source unique : src/api/annotation_vocab.py (côté back). Le front les
+    // découvre au boot via GET /api/benchmark/vocabularies. Schéma des
+    // entrées : { key, label, polarity: "pos"|"neut"|"neg" }.
+    //
+    // L'ordre des listes côté back détermine la numérotation chord
+    // (touche D pour image, T pour prompt — k-ième entrée → touche k+1,
+    // jusqu'à 9). Ne pas réordonner sans synchroniser.
+    let IMAGE_AXIS = [];          // populé par fetchVocabularies()
+    let PROMPT_AXIS = [];
+    let IMAGE_KEYS_BY_NUM = [];   // ordre flat utilisé pour les chords D/T
+    let PROMPT_KEYS_BY_NUM = [];
+    let SCORE_RANGE = { min: 1, max: 6 };  // surchargé par le fetch
+    let VOCAB_SCHEMA_VERSION = null;
 
-    // Numbered binding orders (pour chord D et T : index 0 = touche 1, etc.)
-    // L'ordre doit rester stable (utilisé pour la cheat-sheet ET les chords).
-    function flatAxisKeys(axis) {
-      return [...axis.POS, ...axis.NEUT, ...axis.NEG].map(t => t.key);
+    async function fetchVocabularies() {
+      const r = await fetch("/api/benchmark/vocabularies");
+      if (!r.ok) {
+        throw new Error(`HTTP ${r.status}`);
+      }
+      const data = await r.json();
+      if (!Array.isArray(data.image_axis) || !Array.isArray(data.prompt_axis)) {
+        throw new Error("payload malformé : image_axis/prompt_axis manquants");
+      }
+      IMAGE_AXIS = data.image_axis;
+      PROMPT_AXIS = data.prompt_axis;
+      IMAGE_KEYS_BY_NUM = IMAGE_AXIS.map(t => t.key);
+      PROMPT_KEYS_BY_NUM = PROMPT_AXIS.map(t => t.key);
+      if (data.score_range && typeof data.score_range.min === "number" && typeof data.score_range.max === "number") {
+        SCORE_RANGE = data.score_range;
+      }
+      VOCAB_SCHEMA_VERSION = data.schema_version || null;
+      // Exposé global pour debug / extensions futures.
+      window.__VOCAB__ = data;
     }
-    const IMAGE_KEYS_BY_NUM = flatAxisKeys(IMAGE_AXIS);   // 18 entrées (max touche 9 → 9 premiers)
-    const PROMPT_KEYS_BY_NUM = flatAxisKeys(PROMPT_AXIS); // 8 entrées (touches 1-8)
+
+    function showVocabularyError(err) {
+      // Affiche une bannière d'erreur visible (pas de plantage silencieux).
+      const banner = document.createElement("div");
+      banner.style.cssText = (
+        "position:fixed;top:0;left:0;right:0;z-index:9999;" +
+        "background:#dc2626;color:#fff;padding:12px 16px;" +
+        "font:600 14px sans-serif;text-align:center;" +
+        "box-shadow:0 2px 6px rgba(0,0,0,0.25);"
+      );
+      banner.textContent = `Vocabulaires inaccessibles (${err.message || err}) — recharger la page`;
+      document.body.prepend(banner);
+      console.error("benchmark-annotator: vocabularies fetch failed", err);
+    }
 
     // Mappings v1 → v2 (pour la lecture rétro-compat seule)
     const V1_DEFECTS_TO_V2_IMAGE = {
@@ -713,27 +709,37 @@
       row.appendChild(legacy);
     }
 
-    function buildAxisPills(containerId, axis, numberOffsetOrder) {
+    function buildAxisPills(containerId, axisList, numberOffsetOrder) {
+      // axisList est désormais un tableau plat de { key, label, polarity }
+      // (issu de /api/benchmark/vocabularies). On regroupe par polarité
+      // pour l'affichage tout en préservant l'ordre fourni par le back
+      // (lequel détermine la numérotation chord 1..9).
       const container = document.getElementById(containerId);
       container.innerHTML = "";
-      const polarities = ["POS", "NEUT", "NEG"];
-      const labels = { POS: "🟢 POS", NEUT: "⚪ NEUT", NEG: "🔴 NEG" };
-      let runningIdx = 0;  // 0-based; touche affichée = runningIdx + 1
-      for (const pol of polarities) {
-        const tags = axis[pol] || [];
+      const POLARITIES = ["pos", "neut", "neg"];
+      const HEADERS = { pos: "🟢 POS", neut: "⚪ NEUT", neg: "🔴 NEG" };
+      const grouped = { pos: [], neut: [], neg: [] };
+      for (const t of axisList) {
+        const pol = (t.polarity || "neg").toLowerCase();
+        if (grouped[pol]) grouped[pol].push(t);
+        else grouped.neg.push(t);  // fallback défensif
+      }
+
+      for (const pol of POLARITIES) {
+        const tags = grouped[pol];
         if (tags.length === 0) continue;
         const block = document.createElement("div");
         block.className = "polarity-block";
-        block.dataset.pol = pol;
+        block.dataset.pol = pol.toUpperCase();
 
         const lab = document.createElement("div");
         lab.className = "polarity-label";
-        lab.textContent = labels[pol];
+        lab.textContent = HEADERS[pol];
         block.appendChild(lab);
 
         const grid = document.createElement("div");
         grid.className = "pill-grid";
-        if (pol === "NEUT") grid.classList.add("single");
+        if (pol === "neut") grid.classList.add("single");
 
         for (const t of tags) {
           const pill = document.createElement("button");
@@ -753,7 +759,6 @@
           pill.appendChild(document.createTextNode(t.label));
           pill.addEventListener("click", () => { pill.classList.toggle("active"); onAnyChange(); });
           grid.appendChild(pill);
-          runningIdx++;
         }
         block.appendChild(grid);
         container.appendChild(block);
@@ -1549,41 +1554,54 @@
     });
 
     // ── Bootstrap ─────────────────────────────────────────────────────────
-    buildScoreRow();
-    buildAllPills();
-    loadDirSuggestions();
-    loadCustomTagSuggestions();
-
-    // Détermine le mode initial (priorité URL > localStorage > défaut benchmark).
-    const url = new URL(window.location.href);
-    const urlMode = url.searchParams.get("mode");
-    let initialMode = MODE_BENCHMARK;
-    if (urlMode === MODE_PRODUCTION || urlMode === MODE_BENCHMARK) {
-      initialMode = urlMode;
-    } else {
+    // Le boot est async : on fetch d'abord les vocabulaires (source unique
+    // back) avant de construire les pills + cheat-sheet. Si le fetch
+    // échoue, on affiche une bannière d'erreur visible et on n'initialise
+    // pas le reste (l'UI sans vocab serait inutilisable).
+    (async function bootstrap() {
       try {
-        const stored = localStorage.getItem("benchmarkAnnotatorMode");
-        if (stored === MODE_PRODUCTION || stored === MODE_BENCHMARK) initialMode = stored;
-      } catch {}
-    }
-
-    // Pré-remplit dir / status depuis l'URL.
-    const initDir = url.searchParams.get("dir");
-    if (initDir) document.getElementById("dir-input").value = initDir;
-    const initStatus = url.searchParams.get("status");
-    if (initStatus) {
-      const sel = document.getElementById("status-select");
-      // n'applique que si l'option existe vraiment
-      if (Array.from(sel.options).some(o => o.value === initStatus)) {
-        sel.value = initStatus;
+        await fetchVocabularies();
+      } catch (err) {
+        showVocabularyError(err);
+        return;  // ne pas continuer — l'UI a besoin du vocab pour rendre
       }
-    }
 
-    // Applique le mode (sans persist auto pour ne pas écraser la pref si
-    // l'utilisateur ouvre un lien explicitement en l'autre mode), puis
-    // déclenche un seul loadItems().
-    setMode(initialMode, { skipPersist: false, skipLoad: true });
-    loadItems();
+      buildScoreRow();
+      buildAllPills();
+      loadDirSuggestions();
+      loadCustomTagSuggestions();
+
+      // Détermine le mode initial (priorité URL > localStorage > défaut benchmark).
+      const url = new URL(window.location.href);
+      const urlMode = url.searchParams.get("mode");
+      let initialMode = MODE_BENCHMARK;
+      if (urlMode === MODE_PRODUCTION || urlMode === MODE_BENCHMARK) {
+        initialMode = urlMode;
+      } else {
+        try {
+          const stored = localStorage.getItem("benchmarkAnnotatorMode");
+          if (stored === MODE_PRODUCTION || stored === MODE_BENCHMARK) initialMode = stored;
+        } catch {}
+      }
+
+      // Pré-remplit dir / status depuis l'URL.
+      const initDir = url.searchParams.get("dir");
+      if (initDir) document.getElementById("dir-input").value = initDir;
+      const initStatus = url.searchParams.get("status");
+      if (initStatus) {
+        const sel = document.getElementById("status-select");
+        // n'applique que si l'option existe vraiment
+        if (Array.from(sel.options).some(o => o.value === initStatus)) {
+          sel.value = initStatus;
+        }
+      }
+
+      // Applique le mode (sans persist auto pour ne pas écraser la pref si
+      // l'utilisateur ouvre un lien explicitement en l'autre mode), puis
+      // déclenche un seul loadItems().
+      setMode(initialMode, { skipPersist: false, skipLoad: true });
+      loadItems();
+    })();
   </script>
 </body>
 </html>

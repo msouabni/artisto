@@ -232,14 +232,17 @@ domains:
         phase: 4
         actors: ["admin_plateforme"]
         status: done
-        description: "Refonte de l'annotateur benchmark : header sticky, score 1-6, raccourcis chord (D pour image_tags, T pour prompt_tags), grille structurée 3 axes (Image 18 / Prompt 8 / Custom libre) + flags pattern/sample/publishable. Migration auto v1 → v2 (mappings defects→image_tags, notes pills→tags, score 1-10 → 1-6 avec score_legacy conservé). Storage benchmark reste fichier annotations.json sous docs/reports/<dir>/. Schéma annotation figé (sera réutilisé tel quel par le greffon prod, cf. brief 2026-05-09_brief-greffon-prod.md)."
+        description: "Refonte de l'annotateur benchmark : header sticky, score 1-6, raccourcis chord (D pour image_tags, T pour prompt_tags), grille structurée 3 axes (Image 18 / Prompt 8 / Custom libre) + flags pattern/sample/publishable. Migration auto v1 → v2 (mappings defects→image_tags, notes pills→tags, score 1-10 → 1-6 avec score_legacy conservé). Storage benchmark reste fichier annotations.json sous docs/reports/<dir>/. Schéma annotation figé (sera réutilisé tel quel par le greffon prod, cf. brief 2026-05-09_brief-greffon-prod.md). Vocabulaires (key+label+polarity) centralisés dans src/api/annotation_vocab.py avec endpoint de découverte GET /api/benchmark/vocabularies — front fetch au boot, plus aucun vocab JS hardcodé."
         related_files:
           - "data/benchmark-annotator.html"
+          - "src/api/annotation_vocab.py"
           - "src/api/routes/benchmark.py"
           - "scripts/migrate_benchmark_annotations.py"
           - "tests/test_benchmark_routes.py"
           - "docs/architect/briefs/2026-05-09_brief-annotateur-v2.md"
+          - "docs/architect/briefs/2026-05-09_brief-vocabulaires-source-unique.md"
           - "docs/reports/2026-05-09_phase-annotateur-v2.md"
+          - "docs/reports/2026-05-09_phase-vocabulaires-source-unique.md"
           - "docs/reports/2026-05-09_migration-annotateur-grille-v2.md"
       - id: REVIEW_PROD_ANNOTATE
         title: "Annoter les image_output produits par la pipeline (greffon prod)"

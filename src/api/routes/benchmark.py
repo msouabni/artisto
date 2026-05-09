@@ -31,7 +31,12 @@ from pydantic import BaseModel, Field
 # partagée avec le routeur ``review`` (mode prod). Toute clé non listée
 # ici est rejetée côté API si soumise dans ``image_tags`` ou
 # ``prompt_tags``. Les ``custom_tags`` restent libres.
-from api.annotation_vocab import IMAGE_TAGS_VOCAB, PROMPT_TAGS_VOCAB
+from api.annotation_vocab import (
+    IMAGE_AXIS,
+    IMAGE_TAGS_VOCAB,
+    PROMPT_AXIS,
+    PROMPT_TAGS_VOCAB,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -530,6 +535,36 @@ class AnnotatePayload(BaseModel):
     defects: list[str] | None = None
     notes: str | None = None
     publishable: bool | None = None
+
+
+@router.get("/vocabularies")
+def get_vocabularies():
+    """Expose les vocabulaires fermés (axes IMAGE / PROMPT) + score range.
+
+    Endpoint de découverte consommé par le front au boot
+    (``data/benchmark-annotator.html``) pour construire les pills et la
+    numérotation chord. Source unique : ``src/api/annotation_vocab.py``.
+
+    Pas de query params, idempotent, cacheable côté client (1 fetch par
+    session — le HTML stocke en mémoire et ne re-fetch pas).
+
+    Réponse :
+        {
+          "image_axis":  [{"key", "label", "polarity"}, ...],   # 18 entrées
+          "prompt_axis": [{"key", "label", "polarity"}, ...],   # 8 entrées
+          "score_range": {"min": 1, "max": 6},
+          "schema_version": 2
+        }
+
+    L'ordre des listes détermine la numérotation chord (touche ``D``
+    pour image_axis, ``T`` pour prompt_axis ; k-ième entrée → touche k+1).
+    """
+    return JSONResponse({
+        "image_axis": [dict(t) for t in IMAGE_AXIS],
+        "prompt_axis": [dict(t) for t in PROMPT_AXIS],
+        "score_range": {"min": 1, "max": 6},
+        "schema_version": 2,
+    })
 
 
 @router.get("/dirs")

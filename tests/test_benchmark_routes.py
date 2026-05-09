@@ -20,7 +20,9 @@ from fastapi.testclient import TestClient
 import api.routes.benchmark as bm
 from api.main import app
 from api.routes.benchmark import (  # noqa: E402
+    IMAGE_AXIS,
     IMAGE_TAGS_VOCAB,
+    PROMPT_AXIS,
     PROMPT_TAGS_VOCAB,
     _find_prompt_index,
     _resolve_prompt_meta,
@@ -544,6 +546,88 @@ def test_images_endpoint_serves_v2(reports_root):
 
 
 def test_vocabularies_match_brief_count():
-    """Les vocabulaires fermés doivent matcher le brief (18 image, 8 prompt)."""
+    """Les vocabulaires doivent matcher le brief (18 image, 8 prompt).
+
+    Source désormais : ``IMAGE_AXIS`` / ``PROMPT_AXIS`` (listes ordonnées).
+    Les frozensets ``IMAGE_TAGS_VOCAB`` / ``PROMPT_TAGS_VOCAB`` en sont
+    dérivés et doivent rester cohérents — ce test verrouille les deux
+    représentations à la fois.
+    """
+    assert len(IMAGE_AXIS) == 18
+    assert len(PROMPT_AXIS) == 8
     assert len(IMAGE_TAGS_VOCAB) == 18
     assert len(PROMPT_TAGS_VOCAB) == 8
+    # Cohérence : chaque clé de la liste ordonnée est dans le frozenset
+    assert {t["key"] for t in IMAGE_AXIS} == set(IMAGE_TAGS_VOCAB)
+    assert {t["key"] for t in PROMPT_AXIS} == set(PROMPT_TAGS_VOCAB)
+
+
+def test_image_axis_order_preserved():
+    """L'ordre des entrées détermine la numérotation chord côté front
+    (touche ``D`` + chiffre 1-9). Toute permutation accidentelle change
+    l'expérience utilisateur — on verrouille la première et la dernière
+    clé pour détecter une dérive triviale.
+    """
+    assert IMAGE_AXIS[0]["key"] == "image_compo_bonne"
+    assert IMAGE_AXIS[-1]["key"] == "image_prompt_non_respecte"
+    # Les 9 premiers (touches 1-9) doivent rester stables : on les fige.
+    expected_first_nine = [
+        "image_compo_bonne",
+        "image_coherente",
+        "image_creative",
+        "image_complexe",
+        "image_compo_mauvaise",
+        "image_pas_coherente",
+        "image_simpliste",
+        "image_incomprehensible",
+        "image_traces_couleur",
+    ]
+    assert [t["key"] for t in IMAGE_AXIS[:9]] == expected_first_nine
+
+
+def test_prompt_axis_order_preserved():
+    """Idem pour le chord ``T`` + chiffre 1-8 (les 8 entrées entières
+    sont chord-bindées sur prompt_axis).
+    """
+    expected = [
+        "prompt_interessant",
+        "prompt_creatif",
+        "prompt_complexe",
+        "prompt_ambigu",
+        "prompt_approximatif",
+        "prompt_vide",
+        "prompt_creux",
+        "prompt_ennuyeux",
+    ]
+    assert [t["key"] for t in PROMPT_AXIS] == expected
+
+
+def test_vocabularies_endpoint_returns_axes():
+    """``GET /api/benchmark/vocabularies`` expose les 2 axes + score range
+    + schema_version. Pas de DB, idempotent."""
+    client = _client()
+    r = client.get("/api/benchmark/vocabularies")
+    assert r.status_code == 200, r.text
+    body = r.json()
+    # Présence des clés top-level
+    assert set(body.keys()) >= {"image_axis", "prompt_axis", "score_range", "schema_version"}
+    # Comptes
+    assert len(body["image_axis"]) == 18
+    assert len(body["prompt_axis"]) == 8
+    # Schema version
+    assert body["schema_version"] == 2
+    # Score range
+    assert body["score_range"] == {"min": 1, "max": 6}
+    # Structure de chaque entrée
+    for axis_name in ("image_axis", "prompt_axis"):
+        for entry in body[axis_name]:
+            assert set(entry.keys()) == {"key", "label", "polarity"}
+            assert isinstance(entry["key"], str) and entry["key"]
+            assert isinstance(entry["label"], str) and entry["label"]
+            assert entry["polarity"] in {"pos", "neut", "neg"}
+    # Les clés exposées matchent les frozensets côté validation
+    assert {t["key"] for t in body["image_axis"]} == set(IMAGE_TAGS_VOCAB)
+    assert {t["key"] for t in body["prompt_axis"]} == set(PROMPT_TAGS_VOCAB)
+    # L'ordre est préservé entre la liste back et la réponse API
+    assert [t["key"] for t in body["image_axis"]] == [t["key"] for t in IMAGE_AXIS]
+    assert [t["key"] for t in body["prompt_axis"]] == [t["key"] for t in PROMPT_AXIS]
