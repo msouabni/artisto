@@ -90,7 +90,9 @@ pytest tests/test_benchmark_routes.py -v
 
 Le reste de la suite (`pytest --ignore=tests/test_content_generator.py`) montre **5 tests préexistants en échec** (workflow Ernie / negative-prompt) **non liés à ce chantier** — l'erreur d'import de `tests/test_content_generator.py` (`HARAKAT_RE`) est aussi préexistante. Aucune régression introduite par la phase Annotateur v2.
 
-### Migration dry-run
+### Migration — dry-run puis --apply effectués
+
+Dry-run initial (validation) :
 
 ```
 python scripts/migrate_benchmark_annotations.py
@@ -107,6 +109,8 @@ python scripts/migrate_benchmark_annotations.py
 TOTAL : 9 fichiers, 539 annotations, 0 anomalie
 ```
 
+`--apply` ensuite exécuté avec succès (0 anomalie, mode APPLY confirmé) — cf. `docs/reports/2026-05-09_migration-annotateur-grille-v2.md`. Les `.bak` ont été inspectés puis supprimés après vérification.
+
 Mappings appliqués (cf. brief table) :
 - `score 1-10 → 1-6` via mapping `{1:1,2:1,3:2,4:2,5:3,6:4,7:4,8:5,9:5,10:6}`, `score_legacy = old`
 - `defects[]` → `image_tags[]` (9 mappings : `3_jambes`→`image_anatomie_pb`, etc.)
@@ -120,7 +124,7 @@ Rapport détaillé : `docs/reports/2026-05-09_migration-annotateur-grille-v2.md`
 
 ## Points d'attention
 
-- **Migration --apply non lancée** : volontairement laissée en dry-run pour décision architecte (si OK, `python scripts/migrate_benchmark_annotations.py --apply`). Une fois appliqué, les `.bak` peuvent être inspectés / supprimés manuellement.
+- **Migration --apply effectuée 2026-05-09** après revue dry-run par l'architecte. 539 annotations migrées, 0 anomalie, `.bak` inspectés puis supprimés. Schéma annotation v2 désormais en vigueur sur les 9 dirs.
 - **Touches 7-9 et 0 désormais libres** côté score : le brief les laisse explicitement « pas de binding par défaut ». Les anciennes annotations qui exploitaient `0`=10 et `7-9` sont préservées via `score_legacy`.
 - **Frontend rétro-compat lecture** : tant qu'un dir n'est pas migré (v1 sur disque), le front normalise à la volée (mappings synchros avec le script de migration). Dès qu'on save → écriture v2. Pas de perte tant que le `.bak` est conservé.
 - **`score_legacy` n'est pas modifié par l'UI** : préservé intact entre saves successifs (le front renvoie le `score_legacy` lu à la précédente lecture). Si l'utilisateur change le score, seul `score` (1-6) est modifié.
@@ -130,7 +134,9 @@ Rapport détaillé : `docs/reports/2026-05-09_migration-annotateur-grille-v2.md`
 
 ## Décision / Action suivante
 
-Code prêt à review architecte. À décider :
-1. Lancer `python scripts/migrate_benchmark_annotations.py --apply` pour migrer les 9 fichiers (539 annotations) — sécurisé (.bak créé, 0 anomalie en dry-run).
-2. Ouvrir `data/benchmark-annotator.html` sur 1 dir représentatif (ex. `poc-scale-benchmark` 213 entrées) pour valider visuellement P1 + P2 + P3.
-3. Si OK : commit (l'agent n'a pas committé volontairement).
+**Phase clôturée 2026-05-09.** Actions réalisées :
+1. ✅ Migration `--apply` exécutée (9 fichiers, 539 annotations, 0 anomalie). Cf. `2026-05-09_migration-annotateur-grille-v2.md`.
+2. ✅ Validation visuelle UI confirmée par l'utilisateur (refonte P1 + chord P2 + grille P3).
+3. ✅ Commits : `164c02c` (feat consolidé) + `ca7118f` (fix score-row au-dessus de l'image).
+
+Suivi architecte : entrée `BENCHMARK_ANNOTATOR_V2` ajoutée à `docs/use-cases/use_cases.yaml` (status=done). Dette mineure inscrite dans MEMORY architecte (factorisation des vocabulaires back/front, à traiter via brief `F`).
