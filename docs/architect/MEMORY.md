@@ -1,6 +1,6 @@
 # Architect Memory — Artiste Coloriage
 
-Mis à jour : 2026-05-09 (livraison annotateur v2 + greffon prod)
+Mis à jour : 2026-05-09 (livraison annotateur v2 + greffon prod + vocabulaires source unique)
 
 ## État courant du projet
 
@@ -32,7 +32,7 @@ Pipeline opérationnelle de bout en bout : taxonomie 1376 feuilles → `PromptGe
 | 2026-05-09 | Annotateur v2 livré (claude-code dev) — UI compacte + raccourcis chord + grille 3 axes + score 1-6 + script migration `annotations.json` | fait | Livré en 1 cycle agent. 24/24 tests verts. Migration `--apply` effectuée (539 annotations, 0 anomalie, `.bak` supprimés). Commits : `164c02c` (feat consolidé) + `ca7118f` (fix score-row au-dessus de l'image). Validation visuelle UI confirmée par l'utilisateur 2026-05-09. Réf. `2026-05-09_phase-annotateur-v2.md` + `2026-05-09_migration-annotateur-grille-v2.md`. |
 | 2026-05-09 | Greffon prod livré (claude-code dev) — table `annotation` polymorphe + endpoints `/api/review/*` + mode switch UI | fait | Livré en 1 cycle agent (10 j d'avance sur la cible 2026-05-19). 63/63 tests verts (21 nouveaux + 42 préexistants intacts). Migration 0006 appliquée Postgres OK. Commit consolidé `8b96c32`. Refactor vocab `IMAGE_TAGS_VOCAB`/`PROMPT_TAGS_VOCAB` extrait vers `src/api/annotation_vocab.py` (single source of truth back) — réduit le scope du brief F. Réf. `2026-05-09_phase-greffon-prod.md`. |
 | 2026-05-12 | Brief F "Vocabulaires source unique" rédigé | fait | `docs/architect/briefs/2026-05-09_brief-vocabulaires-source-unique.md`. Refonte iso-fonctionnelle pour éliminer la duplication back/front. ~1h dev estimé. |
-| 2026-05-13 | Brief F livré (claude-code dev) — endpoint `/api/benchmark/vocabularies` + front consume au boot | scope réduit | **Moitié back déjà acquise via greffon prod 2026-05-09** : `src/api/annotation_vocab.py` est désormais la source unique côté Python (importé par `benchmark.py` + `review.py`). Reste à faire : (1) endpoint `GET /api/benchmark/vocabularies` qui sérialise les frozensets en JSON ; (2) front consume au boot (purger les vocabs JS hardcodés dans `benchmark-annotator.html`). Estim ~30 min. |
+| 2026-05-09 | Brief F livré (claude-code dev) — endpoint `/api/benchmark/vocabularies` + front consume au boot | fait | Livré en 1 cycle agent (4 j d'avance sur la cible 2026-05-13). `IMAGE_AXIS`/`PROMPT_AXIS` enrichis (key+label+polarity) dans `src/api/annotation_vocab.py`, frozensets dérivés (rétrocompat). Endpoint `GET /api/benchmark/vocabularies` (schema_version=2). Front fetch au boot avec fallback bannière rouge si fetch KO. Plus aucun vocab JS hardcodé dans `benchmark-annotator.html`. 48/48 tests verts (27 benchmark + 21 review). Commit consolidé `b89cb8d`. Validation visuelle UI à faire en run réel. Réf. `2026-05-09_phase-vocabulaires-source-unique.md`. |
 
 ## Décisions architecturales actées
 
