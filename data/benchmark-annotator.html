@@ -43,6 +43,61 @@
     body[data-theme="dark"] .header .save-status.saving { color: #90cdf4; }
     body[data-theme="dark"] .header .save-status.error  { color: #f28b82; }
 
+    /* ── Mode switch + PROD badge ───────────────────────────────────────── */
+    .mode-switch {
+      display: inline-flex; gap: 0; border-radius: 4px; overflow: hidden;
+      border: 1px solid #dadce0;
+    }
+    body[data-theme="dark"] .mode-switch { border-color: #4a5568; }
+    .mode-switch button {
+      padding: 0.3rem 0.7rem; border: none; background: transparent;
+      cursor: pointer; font-size: 0.8rem; border-radius: 0;
+    }
+    .mode-switch button.active {
+      background: #1a73e8; color: #fff;
+    }
+    .mode-switch button.active.prod {
+      background: #d97706; color: #fff;
+    }
+    body[data-theme="dark"] .mode-switch button.active.prod { background: #f59e0b; }
+
+    .prod-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.18rem 0.55rem; border-radius: 4px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.7px;
+      background: #d97706; color: #fff; text-transform: uppercase;
+      box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.25);
+    }
+    body[data-theme="dark"] .prod-badge { background: #f59e0b; box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.3); }
+    .prod-badge[hidden] { display: none; }
+
+    /* Status select (mode prod) */
+    .header select.status-select {
+      padding: 0.3rem 0.5rem; border-radius: 4px; border: 1px solid #dadce0;
+      font-size: 0.82rem; background: #fff; color: #202124;
+    }
+    body[data-theme="dark"] .header select.status-select { background: #2d3748; color: #f7fafc; border-color: #4a5568; }
+    .header select.status-select[hidden] { display: none; }
+
+    /* Sub-filename (mode prod : image_id + job_id) */
+    .filename-sub {
+      font-size: 0.72rem; opacity: 0.7; font-family: "Consolas","Monaco",monospace;
+      margin-top: 0.15rem;
+    }
+    .filename-sub[hidden] { display: none; }
+    .filename-sub .label {
+      opacity: 0.6; margin-right: 0.2rem; text-transform: uppercase;
+      font-size: 0.65rem; letter-spacing: 0.5px;
+    }
+
+    /* Hide elements per mode (cibles : .group + autres). data-mode-only sur
+       un .group reprend le inline-flex original ; sinon défaut block. */
+    .group[data-mode-only] { display: inline-flex; }
+    body[data-mode="production"] [data-mode-only="benchmark"] { display: none !important; }
+    [data-mode-only="production"] { display: none !important; }
+    body[data-mode="production"] .group[data-mode-only="production"] { display: inline-flex !important; }
+    body[data-mode="production"] [data-mode-only="production"]:not(.group) { display: initial !important; }
+
     /* ── Layout ────────────────────────────────────────────────────────── */
     .layout { display: grid; grid-template-columns: 1fr 380px; gap: 1rem; padding: 1rem; }
     @media (max-width: 960px) {
@@ -84,7 +139,7 @@
     .metrics-overlay[hidden] { display: none; }
     .metrics-overlay .warn { color: #fbbf24; }
 
-    /* ── Score row sous l'image ────────────────────────────────────────── */
+    /* ── Score row au-dessus de l'image ────────────────────────────────── */
     .score-row { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
     .score-row .score-label { font-size: 0.78rem; opacity: 0.65; margin-right: 0.4rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
     .score-btn {
@@ -301,10 +356,33 @@
   <div class="header">
     <h1>Annotator v2</h1>
 
+    <span class="prod-badge" id="prod-badge" hidden title="Mode production : annotations sauvegardées en table annotation">PROD</span>
+
     <div class="group">
+      <div class="mode-switch" role="tablist" aria-label="Source des images à annoter">
+        <button id="mode-bench-btn" class="active" data-mode="benchmark" role="tab" title="Sources benchmark (docs/reports/)">Benchmark</button>
+        <button id="mode-prod-btn"  data-mode="production" role="tab" title="Sources production (image_output)">Production</button>
+      </div>
+    </div>
+
+    <div class="group" data-mode-only="benchmark">
       <label style="font-size: 0.82rem; opacity: 0.65;">dir:</label>
       <input class="dir-input" id="dir-input" list="dir-suggest" value="poc-sampler-benchmark" placeholder="ex. poc-sampler-benchmark">
       <datalist id="dir-suggest"></datalist>
+    </div>
+
+    <div class="group" data-mode-only="production">
+      <label style="font-size: 0.82rem; opacity: 0.65;">status:</label>
+      <select class="status-select" id="status-select">
+        <option value="awaiting_validation">awaiting_validation</option>
+        <option value="generated">generated</option>
+        <option value="approved">approved</option>
+        <option value="rejected">rejected</option>
+        <option value="all">all</option>
+      </select>
+    </div>
+
+    <div class="group">
       <button id="reload-btn" class="primary">Charger</button>
     </div>
 
@@ -345,6 +423,7 @@
         <summary>Détails</summary>
         <div class="details-body">
           <div class="filename" id="filename">—</div>
+          <div class="filename-sub" id="filename-sub" hidden></div>
           <div class="meta-badges" id="meta-badges" hidden></div>
 
           <div class="prompt-info" id="prompt-info" hidden>
@@ -564,8 +643,20 @@
     };
     const V1_SCORE_TO_V2 = { 1:1, 2:1, 3:2, 4:2, 5:3, 6:4, 7:4, 8:5, 9:5, 10:6 };
 
+    // ── Mode (benchmark | production) ─────────────────────────────────────
+    // Le mode contrôle :
+    //   - la source des items (GET /api/benchmark/images vs /api/review/queue)
+    //   - la cible de persistance (POST /api/benchmark/annotate vs /api/annotation)
+    //   - l'affichage du badge PROD + sub-filename (image_id + job_id)
+    //   - le visible/hidden des sélecteurs dir-input vs status-select
+    // Persistance localStorage + override via URL ?mode=production.
+    const MODE_BENCHMARK = "benchmark";
+    const MODE_PRODUCTION = "production";
+
     let state = {
-      dir: "",
+      mode: MODE_BENCHMARK,
+      dir: "",                // mode benchmark
+      status: "awaiting_validation",  // mode prod
       items: [],
       idx: 0,
       saveTimer: null,
@@ -573,6 +664,22 @@
       chordTimer: null,
       knownCustomTags: [],
     };
+
+    function isProdMode() { return state.mode === MODE_PRODUCTION; }
+
+    function applyModeToUI() {
+      document.body.setAttribute("data-mode", state.mode);
+      document.getElementById("prod-badge").hidden = !isProdMode();
+      const benchBtn = document.getElementById("mode-bench-btn");
+      const prodBtn  = document.getElementById("mode-prod-btn");
+      benchBtn.classList.toggle("active", !isProdMode());
+      prodBtn.classList.toggle("active", isProdMode());
+      prodBtn.classList.toggle("prod", isProdMode());
+      // Title de la fenêtre — repère visuel supplémentaire
+      document.title = isProdMode()
+        ? "Annotator v2 — PROD (image_output)"
+        : "Annotation benchmark v2 — Artiste Coloriage";
+    }
 
     // ── Theme ─────────────────────────────────────────────────────────────
     const themeToggle = document.getElementById("theme-toggle");
@@ -751,26 +858,51 @@
     }
 
     async function loadDir() {
-      const dir = document.getElementById("dir-input").value.trim();
-      if (!dir) return;
+      // Conservé pour compat — délègue à loadItems() qui branche selon mode.
+      return loadItems();
+    }
+
+    async function loadItems() {
       try {
-        const r = await fetch(`/api/benchmark/images?dir=${encodeURIComponent(dir)}`);
+        let url, emptyMsg;
+        if (isProdMode()) {
+          const status = document.getElementById("status-select").value || "awaiting_validation";
+          state.status = status;
+          url = `/api/review/queue?status=${encodeURIComponent(status)}`;
+          emptyMsg = `Aucune image en status="${status}".`;
+        } else {
+          const dir = document.getElementById("dir-input").value.trim();
+          if (!dir) return;
+          url = `/api/benchmark/images?dir=${encodeURIComponent(dir)}`;
+          emptyMsg = "Aucune image dans ce dossier.";
+        }
+        const r = await fetch(url);
         if (!r.ok) {
           const txt = await r.text();
           alert(`Erreur ${r.status} : ${txt}`);
           return;
         }
         const data = await r.json();
-        state.dir = data.dir;
+        if (!isProdMode()) state.dir = data.dir;
         state.items = data.items || [];
         state.idx = 0;
         if (state.items.length === 0) {
-          document.getElementById("image-frame").innerHTML = '<div class="empty">Aucune image dans ce dossier.</div>';
+          document.getElementById("image-frame").innerHTML = `<div class="empty">${emptyMsg}</div>`;
         }
         renderCurrent();
       } catch (e) {
         alert(`Erreur réseau : ${e.message}`);
       }
+    }
+
+    // Construit l'URL du fichier image en respectant le mode.
+    // En mode prod, l'API renvoie déjà ``item.image_url`` ; on l'utilise tel
+    // quel pour ne pas dupliquer la logique de routage.
+    function imageUrlFor(item) {
+      if (isProdMode()) {
+        return item.image_url || `/api/review/file?image_output_id=${encodeURIComponent(item.target_id)}`;
+      }
+      return `/api/benchmark/file?dir=${encodeURIComponent(state.dir)}&name=${encodeURIComponent(item.filename)}`;
     }
 
     // ── Annotation normalization (lecture rétro-compat v1 → mémoire v2) ───
@@ -891,9 +1023,29 @@
       const overlayHtml = `<div class="metrics-overlay" ${overlayHidden}>${overlayMain}${overlayWarn}</div>`;
 
       const safeAlt = String(item.filename).replace(/"/g, "&quot;");
-      const imgUrl = `/api/benchmark/file?dir=${encodeURIComponent(dir)}&name=${encodeURIComponent(item.filename)}`;
+      const imgUrl = imageUrlFor(item);
       document.getElementById("image-frame").innerHTML = `<img src="${imgUrl}" alt="${safeAlt}">${overlayHtml}`;
       document.getElementById("filename").textContent = item.filename;
+
+      // Sub-filename : en mode prod, on affiche image_id + job_id pour la
+      // traçabilité ; en mode benchmark, masqué.
+      const subEl = document.getElementById("filename-sub");
+      if (isProdMode()) {
+        const parts = [];
+        if (item.image_id) parts.push(`<span class="label">image</span>${item.image_id}`);
+        if (item.job_id)   parts.push(`<span class="label">job</span>${item.job_id}`);
+        if (item.image_status) parts.push(`<span class="label">status</span>${item.image_status}`);
+        if (item.job_status && item.job_status !== item.image_status) parts.push(`<span class="label">job_status</span>${item.job_status}`);
+        if (parts.length) {
+          subEl.hidden = false;
+          subEl.innerHTML = parts.join(" · ");
+        } else {
+          subEl.hidden = true;
+        }
+      } else {
+        subEl.hidden = true;
+        subEl.innerHTML = "";
+      }
 
       // Tags row (filename decomposition)
       const tagsRow = document.getElementById("tags-row");
@@ -1093,14 +1245,29 @@
       const item = state.items[state.idx];
       const ui = currentAnnotationFromUI();
       const status = document.getElementById("save-status");
-      // Conserver score_legacy si déjà présent (lecture v1)
-      const prevAnn = normalizeAnnotation(item.annotation || {});
-      const score_legacy = prevAnn.score_legacy ?? null;
       try {
-        const r = await fetch("/api/benchmark/annotate", {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({
+        let url, body;
+        if (isProdMode()) {
+          // Mode prod : POST /api/annotation (table polymorphe).
+          // Le payload utilise target_type='image_output' + target_id =
+          // image_output.id (fourni par /api/review/queue).
+          url = "/api/annotation";
+          body = JSON.stringify({
+            target_type: item.target_type || "image_output",
+            target_id: String(item.target_id),
+            score: ui.score,
+            image_tags: ui.image_tags,
+            prompt_tags: ui.prompt_tags,
+            custom_tags: ui.custom_tags,
+            flags: ui.flags,
+          });
+        } else {
+          // Mode benchmark : statu quo (POST /api/benchmark/annotate sur disque).
+          // Conserver score_legacy si déjà présent (lecture v1).
+          const prevAnn = normalizeAnnotation(item.annotation || {});
+          const score_legacy = prevAnn.score_legacy ?? null;
+          url = "/api/benchmark/annotate";
+          body = JSON.stringify({
             dir: state.dir,
             filename: item.filename,
             score: ui.score,
@@ -1109,7 +1276,12 @@
             prompt_tags: ui.prompt_tags,
             custom_tags: ui.custom_tags,
             flags: ui.flags,
-          }),
+          });
+        }
+        const r = await fetch(url, {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: body,
         });
         if (!r.ok) {
           const txt = await r.text();
@@ -1166,15 +1338,56 @@
     document.getElementById("next-btn").addEventListener("click", gotoNext);
     document.getElementById("next-unannotated-btn").addEventListener("click", gotoNextUnannotated);
     document.getElementById("reload-btn").addEventListener("click", async () => {
-      await loadDir();
+      await loadItems();
       loadCustomTagSuggestions();
+    });
+
+    // ── Mode switch ──────────────────────────────────────────────────────
+    function setMode(mode, opts = {}) {
+      if (mode !== MODE_BENCHMARK && mode !== MODE_PRODUCTION) return;
+      state.mode = mode;
+      applyModeToUI();
+      // Persistance localStorage (sauf si on demande explicitement de ne pas).
+      if (!opts.skipPersist) {
+        try { localStorage.setItem("benchmarkAnnotatorMode", mode); } catch {}
+      }
+      // Mise à jour URL (sans recharger). On garde dir/status pour les bookmarks.
+      try {
+        const u = new URL(window.location.href);
+        u.searchParams.set("mode", mode);
+        if (mode === MODE_PRODUCTION) {
+          const sel = document.getElementById("status-select").value;
+          if (sel) u.searchParams.set("status", sel);
+          u.searchParams.delete("dir");
+        } else {
+          const dirVal = document.getElementById("dir-input").value.trim();
+          if (dirVal) u.searchParams.set("dir", dirVal);
+          u.searchParams.delete("status");
+        }
+        window.history.replaceState(null, "", u.toString());
+      } catch {}
+      // Reload items pour le nouveau mode (sauf si on initialise et qu'on
+      // veut faire un seul reload après l'init complète).
+      if (!opts.skipLoad) {
+        loadItems();
+      }
+    }
+
+    document.getElementById("mode-bench-btn").addEventListener("click", () => setMode(MODE_BENCHMARK));
+    document.getElementById("mode-prod-btn").addEventListener("click",  () => setMode(MODE_PRODUCTION));
+    document.getElementById("status-select").addEventListener("change", () => {
+      // Update URL + reload items quand le user change le filtre status.
+      const u = new URL(window.location.href);
+      u.searchParams.set("status", document.getElementById("status-select").value);
+      window.history.replaceState(null, "", u.toString());
+      loadItems();
     });
 
     // ── Lightbox ──────────────────────────────────────────────────────────
     function openLightbox() {
       if (!state.items.length) return;
       const item = state.items[state.idx];
-      const url = `/api/benchmark/file?dir=${encodeURIComponent(state.dir)}&name=${encodeURIComponent(item.filename)}`;
+      const url = imageUrlFor(item);
       document.getElementById("lightbox-img").src = url;
       document.getElementById("lightbox").hidden = false;
     }
@@ -1341,10 +1554,36 @@
     loadDirSuggestions();
     loadCustomTagSuggestions();
 
+    // Détermine le mode initial (priorité URL > localStorage > défaut benchmark).
     const url = new URL(window.location.href);
+    const urlMode = url.searchParams.get("mode");
+    let initialMode = MODE_BENCHMARK;
+    if (urlMode === MODE_PRODUCTION || urlMode === MODE_BENCHMARK) {
+      initialMode = urlMode;
+    } else {
+      try {
+        const stored = localStorage.getItem("benchmarkAnnotatorMode");
+        if (stored === MODE_PRODUCTION || stored === MODE_BENCHMARK) initialMode = stored;
+      } catch {}
+    }
+
+    // Pré-remplit dir / status depuis l'URL.
     const initDir = url.searchParams.get("dir");
     if (initDir) document.getElementById("dir-input").value = initDir;
-    loadDir();
+    const initStatus = url.searchParams.get("status");
+    if (initStatus) {
+      const sel = document.getElementById("status-select");
+      // n'applique que si l'option existe vraiment
+      if (Array.from(sel.options).some(o => o.value === initStatus)) {
+        sel.value = initStatus;
+      }
+    }
+
+    // Applique le mode (sans persist auto pour ne pas écraser la pref si
+    // l'utilisateur ouvre un lien explicitement en l'autre mode), puis
+    // déclenche un seul loadItems().
+    setMode(initialMode, { skipPersist: false, skipLoad: true });
+    loadItems();
   </script>
 </body>
 </html>

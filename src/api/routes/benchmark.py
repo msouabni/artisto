@@ -27,6 +27,12 @@ from fastapi import APIRouter, Body, HTTPException, Query
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
 
+# Vocabulaires fermés (axes IMAGE / PROMPT) : source de vérité unique
+# partagée avec le routeur ``review`` (mode prod). Toute clé non listée
+# ici est rejetée côté API si soumise dans ``image_tags`` ou
+# ``prompt_tags``. Les ``custom_tags`` restent libres.
+from api.annotation_vocab import IMAGE_TAGS_VOCAB, PROMPT_TAGS_VOCAB
+
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/benchmark", tags=["benchmark"])
@@ -36,42 +42,6 @@ REPORTS_DIR = PROJECT_ROOT / "docs" / "reports"
 
 _DIR_RE = re.compile(r"^[a-zA-Z0-9._-]+$")
 _NAME_RE = re.compile(r"^[a-zA-Z0-9._-]+\.png$")
-
-# ── Vocabulaires fermés v2 (axes IMAGE / PROMPT) ─────────────────────────────
-# Source : brief 2026-05-09_brief-annotateur-v2.md §P3.
-# Toute clé non listée ici est rejetée côté API si soumise dans `image_tags`
-# ou `prompt_tags`. Les `custom_tags` restent libres (vocabulaire ouvert).
-IMAGE_TAGS_VOCAB: set[str] = {
-    "image_compo_bonne",
-    "image_coherente",
-    "image_creative",
-    "image_complexe",
-    "image_compo_mauvaise",
-    "image_pas_coherente",
-    "image_simpliste",
-    "image_incomprehensible",
-    "image_traces_couleur",
-    "image_gris_residuel",
-    "image_symetrie_incomplete",
-    "image_duplication",
-    "image_flou",
-    "image_anatomie_pb",
-    "image_physique_pb",
-    "image_traits_pb",
-    "image_hors_sujet",
-    "image_prompt_non_respecte",
-}
-
-PROMPT_TAGS_VOCAB: set[str] = {
-    "prompt_interessant",
-    "prompt_creatif",
-    "prompt_complexe",
-    "prompt_ambigu",
-    "prompt_approximatif",
-    "prompt_vide",
-    "prompt_creux",
-    "prompt_ennuyeux",
-}
 
 
 def _safe_dir(dir_name: str) -> Path:

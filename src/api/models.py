@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from sqlalchemy import JSON, Boolean, Float, ForeignKey, Integer, String, Text
+from sqlalchemy import JSON, Boolean, Float, ForeignKey, Index, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -225,3 +225,40 @@ class AiPromptTemplate(Base):
     model: Mapped[str | None] = mapped_column(String)
     temperature: Mapped[float | None] = mapped_column(Float)
     updated_at: Mapped[str | None] = mapped_column(Text)
+
+
+class Annotation(Base):
+    """Table polymorphe d'annotation humaine (greffon prod, brief 2026-05-09).
+
+    Une seule table qui peut s'attacher à n'importe quel objet de la pipeline
+    (initialement ``image_output`` côté prod ; ``image``, ``term``, etc. en
+    extension future). Pas de FK explicite : l'intégrité polymorphe est gérée
+    applicativement (whitelist côté API, vérification light d'existence du
+    ``target_id`` selon le ``target_type``).
+
+    Les colonnes JSON utilisent ``sqlalchemy.JSON`` cross-dialect (TEXT côté
+    SQLite, JSONB côté Postgres via la migration). Le code applicatif ne doit
+    **pas** s'appuyer sur des opérateurs JSON Postgres-only — sérialiser /
+    désérialiser explicitement.
+    """
+
+    __tablename__ = "annotation"
+    __table_args__ = (
+        UniqueConstraint("target_type", "target_id", name="uq_annotation_target"),
+        Index("idx_annotation_target", "target_type", "target_id"),
+        Index("idx_annotation_updated", "updated_at"),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    target_type: Mapped[str] = mapped_column(String, nullable=False)
+    target_id: Mapped[str] = mapped_column(String, nullable=False)
+    score: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    image_tags: Mapped[list | None] = mapped_column(JSON, nullable=True)
+    prompt_tags: Mapped[list | None] = mapped_column(JSON, nullable=True)
+    custom_tags: Mapped[list | None] = mapped_column(JSON, nullable=True)
+    pattern: Mapped[bool | None] = mapped_column(Boolean, default=False)
+    pattern_note: Mapped[str | None] = mapped_column(Text)
+    sample: Mapped[bool | None] = mapped_column(Boolean, default=False)
+    publishable: Mapped[bool | None] = mapped_column(Boolean, default=False)
+    created_at: Mapped[str] = mapped_column(Text, nullable=False)
+    updated_at: Mapped[str] = mapped_column(Text, nullable=False)

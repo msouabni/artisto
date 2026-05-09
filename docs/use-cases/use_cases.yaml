@@ -227,6 +227,37 @@ domains:
         description: "Mesurer combien d’images existent par branche de la taxonomie pour identifier les manques."
         related_files:
           - "architecture.md"
+      - id: BENCHMARK_ANNOTATOR_V2
+        title: "Annoter les benchmarks POC via la grille structurée v2"
+        phase: 4
+        actors: ["admin_plateforme"]
+        status: done
+        description: "Refonte de l'annotateur benchmark : header sticky, score 1-6, raccourcis chord (D pour image_tags, T pour prompt_tags), grille structurée 3 axes (Image 18 / Prompt 8 / Custom libre) + flags pattern/sample/publishable. Migration auto v1 → v2 (mappings defects→image_tags, notes pills→tags, score 1-10 → 1-6 avec score_legacy conservé). Storage benchmark reste fichier annotations.json sous docs/reports/<dir>/. Schéma annotation figé (sera réutilisé tel quel par le greffon prod, cf. brief 2026-05-09_brief-greffon-prod.md)."
+        related_files:
+          - "data/benchmark-annotator.html"
+          - "src/api/routes/benchmark.py"
+          - "scripts/migrate_benchmark_annotations.py"
+          - "tests/test_benchmark_routes.py"
+          - "docs/architect/briefs/2026-05-09_brief-annotateur-v2.md"
+          - "docs/reports/2026-05-09_phase-annotateur-v2.md"
+          - "docs/reports/2026-05-09_migration-annotateur-grille-v2.md"
+      - id: REVIEW_PROD_ANNOTATE
+        title: "Annoter les image_output produits par la pipeline (greffon prod)"
+        phase: 4
+        actors: ["admin_plateforme"]
+        status: done
+        description: "Greffon prod sur l'annotateur v2. Table polymorphe `annotation` (target_type/target_id, JSONB tags) accessible via 3 endpoints REST : GET /api/review/queue (image_output joints à image+job+annotation, filtres status/workflow_class), GET /api/review/file (sert le PNG, garde-fou path traversal), POST /api/annotation (upsert sur (target_type, target_id), whitelist target_type=image_output initialement, validation tags via vocabulaires partagés). UI : mode switch Benchmark/Production dans le header sticky, badge PROD orange non négociable, sous-titre image_id+job_id pour traçabilité. Aucun bouton apply/reject côté annotateur — la validation jobs reste dans jobs_editor.html. Vocabulaires IMAGE_TAGS_VOCAB (18) et PROMPT_TAGS_VOCAB (8) extraits dans src/api/annotation_vocab.py (single source of truth pour benchmark.py + review.py)."
+        related_files:
+          - "alembic/versions/0006_annotation_polymorphic.py"
+          - "src/api/annotation_vocab.py"
+          - "src/api/routes/review.py"
+          - "src/api/models.py"
+          - "src/api/main.py"
+          - "data/benchmark-annotator.html"
+          - "tests/test_review_routes.py"
+          - "docs/architect/briefs/2026-05-09_brief-greffon-prod.md"
+          - "docs/reports/2026-05-09_phase-greffon-prod.md"
+          - "docs/workflow-pipeline.md"
 
   - id: agent
     label: "Agent de pilotage"

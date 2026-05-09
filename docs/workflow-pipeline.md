@@ -295,6 +295,54 @@ Tant que la table n'est pas créée, les annotations vivent dans `docs/reports/<
 
 ---
 
+## Annotation humaine en mode prod (greffon, 2026-05-09)
+
+Brief source : `docs/architect/briefs/2026-05-09_brief-greffon-prod.md`. Implémentation : migration `0006_annotation_polymorphic`, routeur `src/api/routes/review.py`, mode switch dans `data/benchmark-annotator.html`.
+
+### Schéma
+
+Table **`annotation`** polymorphe (single source pour benchmark futur ET prod actuel) :
+
+```
+id (PK auto), target_type TEXT, target_id TEXT,
+score INTEGER (1-6 ou NULL),
+image_tags JSONB, prompt_tags JSONB, custom_tags JSONB,
+pattern BOOLEAN, pattern_note TEXT, sample BOOLEAN, publishable BOOLEAN,
+created_at TEXT, updated_at TEXT,
+UNIQUE (target_type, target_id) → upsert
+```
+
+Pas de FK explicite — l'intégrité est gérée applicativement (whitelist `target_type` côté API + lookup léger `target_id`). Initialement `target_type ∈ {'image_output'}` ; extensions futures (`image`, `term`, …) à valider explicitement.
+
+### Vocabulaires partagés
+
+`src/api/annotation_vocab.py` est la source unique : 18 `IMAGE_TAGS_VOCAB` + 8 `PROMPT_TAGS_VOCAB`. Importé par `routes/benchmark.py` (mode disque) ET `routes/review.py` (mode DB). Tout payload soumettant un tag hors whitelist → 400.
+
+### Endpoints
+
+| Endpoint | Rôle |
+|---|---|
+| `GET /api/review/queue?status=...&workflow_class=...&limit=&offset=` | Liste les `image_output` joints à `image` / `job` / `annotation`. Statuses acceptés : `awaiting_validation` (défaut), `generated`, `approved`, `rejected`, `generating`, `scheduled`, `all`. |
+| `GET /api/review/file?image_output_id=<id>` | Sert le PNG. Valide l'existence en DB (404) + garde-fou path traversal (refuse si la résolution sort de `data/`). |
+| `POST /api/annotation` | Upsert sur `(target_type, target_id)`. Validation : `score ∈ [1,6] ou null`, tags ∈ whitelists, `target_type ∈ ALLOWED_TARGET_TYPES`, `target_id` doit exister. |
+
+### UI mode switch (`data/benchmark-annotator.html`)
+
+- Toggle **Benchmark / Production** dans le header sticky.
+- URL paramétrée : `?mode=benchmark&dir=...` (rétro-compat) ou `?mode=production&status=...`. Persisté en `localStorage` (clé `benchmarkAnnotatorMode`).
+- Mode prod : badge **PROD orange** dans le header (non négociable) + sous-titre `image_id` / `job_id` / `image_status` / `job_status` sous le filename pour traçabilité.
+- Le rendu (grille P3, score, raccourcis P2, lightbox P1) est **identique** dans les 2 modes — un seul code de rendu. Seules diffèrent la source des items et la cible du POST.
+
+### Pas d'apply/reject côté annotateur
+
+L'annotateur **n'altère jamais** le statut d'un job. La validation effective `awaiting_validation → apply/reject` reste dans `jobs_editor.html` (route `/api/jobs/{id}/validate`). Une annotation reste après apply/reject — c'est une trace audit immuable.
+
+### Métriques exposées (best-effort)
+
+`GET /api/review/queue` lit `job.result` (JSON déserialisé en Python — pas d'opérateur JSONB Postgres-only) pour exposer `metrics.histogram` et `metrics.vision_qc` si présents. Le `workflow_class` est lu depuis `job.config` (LIKE substring pour le filtre — laxiste par design).
+
+---
+
 ## Décisions architecturales actées
 
 | Sujet | Décision |
