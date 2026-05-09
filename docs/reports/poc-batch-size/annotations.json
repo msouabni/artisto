@@ -1,0 +1,634 @@
+{
+  "dir": "poc-batch-size",
+  "annotations": {
+    "soccer_var01_s616025_b1_08s_normal_euler_cfg10.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:33:57.313980+00:00"
+    },
+    "soccer_var01_s616025_b2_08s_normal_euler_cfg10.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:34:11.214757+00:00"
+    },
+    "soccer_var01_s616025_b3_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_duplication",
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:34:32.987514+00:00"
+    },
+    "soccer_var01_s616025_best_08s_normal_euler_cfg10.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:34:41.246940+00:00"
+    },
+    "soccer_var02_s402793_b1_08s_normal_euler_cfg10.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:34:53.223840+00:00"
+    },
+    "soccer_var02_s402793_b2_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:35:01.428451+00:00"
+    },
+    "soccer_var02_s402793_b3_08s_normal_euler_cfg10.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:35:25.462057+00:00"
+    },
+    "soccer_var02_s402793_best_08s_normal_euler_cfg10.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:36:16.223768+00:00"
+    },
+    "soccer_var03_s030207_b1_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:36:25.351965+00:00"
+    },
+    "soccer_var03_s030207_b2_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:38:56.310934+00:00"
+    },
+    "soccer_var03_s030207_b3_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:39:11.651644+00:00"
+    },
+    "soccer_var03_s030207_best_08s_normal_euler_cfg10.png": {
+      "score": 2,
+      "score_legacy": 4,
+      "image_tags": [
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:40:09.954580+00:00"
+    },
+    "soccer_var04_s087846_b1_08s_normal_euler_cfg10.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:40:19.953653+00:00"
+    },
+    "soccer_var04_s087846_b2_08s_normal_euler_cfg10.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:45:42.779465+00:00"
+    },
+    "soccer_var04_s087846_b3_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:45:54.656062+00:00"
+    },
+    "soccer_var04_s087846_best_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:46:14.599200+00:00"
+    },
+    "soccer_var05_s509027_b1_08s_normal_euler_cfg10.png": {
+      "score": 2,
+      "score_legacy": 4,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:46:28.241482+00:00"
+    },
+    "soccer_var05_s509027_b2_08s_normal_euler_cfg10.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:46:36.266917+00:00"
+    },
+    "soccer_var05_s509027_b3_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:47:13.520066+00:00"
+    },
+    "soccer_var05_s509027_best_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:47:20.690047+00:00"
+    },
+    "soccer_var06_s987308_b1_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:47:31.625616+00:00"
+    },
+    "soccer_var06_s987308_b2_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb",
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:47:42.470211+00:00"
+    },
+    "soccer_var06_s987308_b3_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:47:54.417423+00:00"
+    },
+    "soccer_var06_s987308_best_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:48:01.182539+00:00"
+    },
+    "soccer_var07_s609845_b1_08s_normal_euler_cfg10.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:48:13.540154+00:00"
+    },
+    "soccer_var07_s609845_b2_08s_normal_euler_cfg10.png": {
+      "score": null,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:48:20.529790+00:00"
+    },
+    "soccer_var07_s609845_b3_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:48:30.050031+00:00"
+    },
+    "soccer_var07_s609845_best_08s_normal_euler_cfg10.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:48:38.134871+00:00"
+    },
+    "soccer_var08_s963309_b1_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:49:14.452248+00:00"
+    },
+    "soccer_var08_s963309_b2_08s_normal_euler_cfg10.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:49:23.843248+00:00"
+    },
+    "soccer_var08_s963309_b3_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:49:35.990946+00:00"
+    },
+    "soccer_var08_s963309_best_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:49:43.233000+00:00"
+    },
+    "soccer_var09_s252818_b1_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:49:49.770027+00:00"
+    },
+    "soccer_var09_s252818_b2_08s_normal_euler_cfg10.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T22:50:05.757587+00:00"
+    },
+    "soccer_var09_s252818_b3_08s_normal_euler_cfg10.png": {
+      "score": null,
+      "score_legacy": null,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:50:14.674281+00:00"
+    },
+    "soccer_var09_s252818_best_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:50:42.017283+00:00"
+    },
+    "soccer_var10_s817377_b1_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:50:48.599714+00:00"
+    },
+    "soccer_var10_s817377_b2_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:51:01.389913+00:00"
+    },
+    "soccer_var10_s817377_b3_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:51:08.581356+00:00"
+    },
+    "soccer_var10_s817377_best_08s_normal_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:51:14.629624+00:00"
+    }
+  },
+  "schema_version": "v2"
+}

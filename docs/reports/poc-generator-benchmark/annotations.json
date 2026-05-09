@@ -1,0 +1,400 @@
+{
+  "dir": "poc-generator-benchmark",
+  "annotations": {
+    "african_elephant_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:35:22.026180+00:00"
+    },
+    "baker_with_bread_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:35:26.587510+00:00"
+    },
+    "clownfish_in_anemone_1024x1024_euler8s.png": {
+      "score": null,
+      "score_legacy": null,
+      "image_tags": [
+        "image_duplication",
+        "image_physique_pb",
+        "image_compo_mauvaise"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-08T23:36:13.337484+00:00"
+    },
+    "doctor_with_stethoscope_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:36:33.414908+00:00"
+    },
+    "emperor_penguin_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:36:44.871114+00:00"
+    },
+    "farm_horse_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [
+        "image_duplication",
+        "image_prompt_non_respecte"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-08T23:37:11.840198+00:00"
+    },
+    "firefighter_with_hose_848x1264_euler8s.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:37:26.806909+00:00"
+    },
+    "garden_spider_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": 7,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:38:07.235802+00:00"
+    },
+    "lion_in_savanna_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:38:10.277520+00:00"
+    },
+    "monarch_butterfly_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:38:13.553943+00:00"
+    },
+    "nowruz_goldfish_in_bowl_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:38:16.325161+00:00"
+    },
+    "peacock_with_open_tail_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:38:20.114863+00:00"
+    },
+    "pet_turtle_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:38:24.362011+00:00"
+    },
+    "playful_dolphin_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_duplication",
+        "image_prompt_non_respecte"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-08T23:38:29.742863+00:00"
+    },
+    "sea_turtle_swimming_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:38:36.353485+00:00"
+    },
+    "soaring_eagle_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:38:41.891653+00:00"
+    },
+    "astronaut_floating_in_space_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:39:28.296564+00:00"
+    },
+    "ballet_dancer_pose_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-08T23:39:44.121124+00:00"
+    },
+    "birthday_cake_with_candles_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:39:54.059089+00:00"
+    },
+    "first_steam_engine_train_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:40:04.453678+00:00"
+    },
+    "hot_air_balloon_1376x768_euler8s.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:40:12.446117+00:00"
+    },
+    "knight_in_shining_armor_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:40:19.182446+00:00"
+    },
+    "medieval_castle_with_moat_848x1264_euler8s.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_compo_mauvaise"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-08T23:40:39.438652+00:00"
+    },
+    "musician_with_guitar_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:40:48.370184+00:00"
+    },
+    "princess_in_tower_848x1264_euler8s.png": {
+      "score": null,
+      "score_legacy": null,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:40:55.768683+00:00"
+    },
+    "sailing_boat_1376x768_euler8s.png": {
+      "score": 4,
+      "score_legacy": 7,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:41:10.006344+00:00"
+    },
+    "wizard_with_staff_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-08T23:41:17.566740+00:00"
+    }
+  },
+  "schema_version": "v2"
+}

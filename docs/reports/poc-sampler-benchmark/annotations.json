@@ -1,0 +1,436 @@
+{
+  "dir": "poc-sampler-benchmark",
+  "annotations": {
+    "soccer_04s_normal_euler_cfg10_074319.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "qualité médiocre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.755626+00:00"
+    },
+    "soccer_04s_karras_euler_cfg10_074319.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_duplication",
+        "image_anatomie_pb",
+        "image_flou"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "deux ballons et trois jambes, le traçage du terrain est flou"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.763284+00:00"
+    },
+    "soccer_08s_normal_euler_cfg10_074319.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_duplication",
+        "image_anatomie_pb",
+        "image_flou",
+        "image_traits_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "2 ballons + trois jambes + flou + 1 seul oeil, traits discontinus"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.774663+00:00"
+    },
+    "soccer_08s_karras_euler_cfg10_074319.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_traits_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "parfait : cheveux non colorié, beaucoup de détails à colorier. Traçage terrain correct avec quelques discontinuités près du personnage. 8/10 publiable"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T12:19:27.793946+00:00"
+    },
+    "soccer_12s_normal_euler_cfg10_074319.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_duplication",
+        "image_anatomie_pb",
+        "image_flou",
+        "image_traits_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "2 ballons + trois jambes + flou + 1 seul oeil, traits discontinus"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.808752+00:00"
+    },
+    "soccer_12s_karras_euler_cfg10_074319.png": {
+      "score": 3,
+      "score_legacy": 5,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "ressemble à soccer_08s_karras mais troisième jambe non connectée au corps"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.820090+00:00"
+    },
+    "soccer_20s_normal_euler_cfg10_074319.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "parfaite 9/10. Cheveux plus longs. Gris sur ombres et zone de marquage terrain devant le but. On y est presque"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.841973+00:00"
+    },
+    "soccer_20s_karras_euler_cfg10_074319.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_duplication",
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "2 ballons trois jambes, pas de flou, inexploitable"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.862789+00:00"
+    },
+    "refrigerator_04s_normal_euler_cfg10_42002.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traits_pb",
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "approximatif, trait en double, inexploitable, banane bleue, coeur inexpliqué"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.878888+00:00"
+    },
+    "refrigerator_04s_karras_euler_cfg10_42002.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "catastrophique"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.896139+00:00"
+    },
+    "refrigerator_08s_normal_euler_cfg10_42002.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [
+        "image_traces_couleur",
+        "image_physique_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "lignes déformées du plan de travail, banane bleue, perspective frigo incompréhensible, fenêtre OK"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.916741+00:00"
+    },
+    "refrigerator_08s_karras_euler_cfg10_42002.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_traits_pb",
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "catastrophique, lignes en double, formes déformées, couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.933342+00:00"
+    },
+    "refrigerator_12s_normal_euler_cfg10_42002.png": {
+      "score": 3,
+      "score_legacy": 5,
+      "image_tags": [
+        "image_duplication",
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "pas mal sauf frigo fermé + porte ouverte en double. Banane bleue, coeur hors du plan de travail, perspective changée"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.951008+00:00"
+    },
+    "refrigerator_12s_karras_euler_cfg10_42002.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "catastrophique"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.963039+00:00"
+    },
+    "refrigerator_20s_normal_euler_cfg10_42002.png": {
+      "score": 3,
+      "score_legacy": 5,
+      "image_tags": [
+        "image_duplication",
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "pas mal, banane bleue, porte en double, plus de table"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.984607+00:00"
+    },
+    "refrigerator_20s_karras_euler_cfg10_42002.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "catastrophique"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:27.995112+00:00"
+    },
+    "dragon_04s_normal_euler_cfg10_42003.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "pas mal, beaucoup de détails, juste les drapeaux en rouge"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:28.015097+00:00"
+    },
+    "dragon_04s_karras_euler_cfg10_42003.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "catastrophique"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:28.032104+00:00"
+    },
+    "dragon_08s_normal_euler_cfg10_42003.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "parfaite à part les drapeaux en rouge"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:28.049099+00:00"
+    },
+    "dragon_08s_karras_euler_cfg10_42003.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "catastrophique"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:28.073952+00:00"
+    },
+    "dragon_12s_normal_euler_cfg10_42003.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "parfaite à part les drapeaux en rouge"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:28.097050+00:00"
+    },
+    "dragon_12s_karras_euler_cfg10_42003.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "catastrophique"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:28.111519+00:00"
+    },
+    "dragon_20s_normal_euler_cfg10_42003.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "parfaite, plus de détails, mais les drapeaux en rouge"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:28.137021+00:00"
+    },
+    "dragon_20s_karras_euler_cfg10_42003.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "catastrophique"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-06T12:19:28.149880+00:00"
+    }
+  },
+  "schema_version": "v2"
+}

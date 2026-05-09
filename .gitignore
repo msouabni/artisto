@@ -29,3 +29,6 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# Backups locaux (ex. générés par scripts/migrate_benchmark_annotations.py)
+*.bak

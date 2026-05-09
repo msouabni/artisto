@@ -1,0 +1,503 @@
+{
+  "dir": "poc-sampler-benchmark-v3",
+  "annotations": {
+    "castle_08s_normal_euler_cfg10_43003.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:40:51.422820+00:00"
+    },
+    "cat_08s_normal_euler_cfg10_1024x1024_42004.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "traits discontinus"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:41:16.268657+00:00"
+    },
+    "cat_08s_normal_euler_cfg10_42004.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "traits discontinus"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:41:39.151538+00:00"
+    },
+    "cat_08s_normal_euler_cfg10_512x512_42004.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:41:55.085168+00:00"
+    },
+    "cat_08s_normal_euler_cfg10_768x768_42004.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "parfait\ndetails coloriables"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:42:48.036529+00:00"
+    },
+    "cat_08s_normal_euler_cfg15_42004.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "details coloriables"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:43:07.652096+00:00"
+    },
+    "cat_08s_normal_euler_cfg20_42004.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:43:24.190605+00:00"
+    },
+    "cat_08s_normal_euler_cfg30_42004.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [
+        "image_traces_couleur",
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T16:43:40.949064+00:00"
+    },
+    "dragon_08s_normal_euler_cfg10_1024x1024_42003.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:43:53.652532+00:00"
+    },
+    "dragon_08s_normal_euler_cfg10_42003.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T16:44:11.536643+00:00"
+    },
+    "dragon_08s_normal_euler_cfg10_512x512_42003.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T16:44:35.561641+00:00"
+    },
+    "dragon_08s_normal_euler_cfg10_768x768_42003.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "details coloriables"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:45:00.210500+00:00"
+    },
+    "dragon_08s_normal_euler_cfg15_42003.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "details coloriables"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T16:45:33.488300+00:00"
+    },
+    "dragon_08s_normal_euler_cfg20_42003.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "details coloriables"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:45:51.625129+00:00"
+    },
+    "dragon_08s_normal_euler_cfg30_42003.png": {
+      "score": 2,
+      "score_legacy": 4,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T16:46:03.360581+00:00"
+    },
+    "fish_08s_normal_euler_cfg10_43002.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simple"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:46:17.560886+00:00"
+    },
+    "flower_08s_normal_euler_cfg10_43001.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simple"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:46:29.811755+00:00"
+    },
+    "hammer_08s_normal_euler_cfg10_42005.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "parfait\nscene interessante\ndetails coloriables"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:47:04.610348+00:00"
+    },
+    "hammer_08s_normal_euler_cfg15_42005.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "traits epais"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:47:20.593322+00:00"
+    },
+    "hammer_08s_normal_euler_cfg20_42005.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:47:32.600849+00:00"
+    },
+    "hammer_08s_normal_euler_cfg30_42005.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:47:41.944974+00:00"
+    },
+    "house_08s_normal_euler_cfg10_43006.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "traits non fermés"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:48:39.895279+00:00"
+    },
+    "lion_08s_normal_euler_cfg10_43005.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simple"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:48:58.365527+00:00"
+    },
+    "soccer_08s_normal_euler_cfg10_074319.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "mouvenent interessant\ncontour blanc autour de la personne\ntraits non femés"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:50:15.504483+00:00"
+    },
+    "soccer_08s_normal_euler_cfg10_1024x1024_074319.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:50:31.302882+00:00"
+    },
+    "soccer_08s_normal_euler_cfg10_512x512_074319.png": {
+      "score": 4,
+      "score_legacy": 7,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "traits epais\ncontour blanc\ntraits non fernés\nsimple"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:51:28.005156+00:00"
+    },
+    "soccer_08s_normal_euler_cfg10_768x768_074319.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T16:51:39.061983+00:00"
+    },
+    "soccer_08s_normal_euler_cfg15_074319.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T16:51:50.986442+00:00"
+    },
+    "soccer_08s_normal_euler_cfg20_074319.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T16:52:03.131929+00:00"
+    },
+    "soccer_08s_normal_euler_cfg30_074319.png": {
+      "score": 2,
+      "score_legacy": 4,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "details interssants"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T16:52:30.250956+00:00"
+    },
+    "train_08s_normal_euler_cfg10_43004.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simple"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-06T16:52:49.724255+00:00"
+    }
+  },
+  "schema_version": "v2"
+}

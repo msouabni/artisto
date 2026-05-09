@@ -1,0 +1,173 @@
+{
+  "dir": "poc-soccer-karras",
+  "annotations": {
+    "soccer_var01_s616025_08s_karras_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb",
+        "image_flou"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:12:38.887897+00:00"
+    },
+    "soccer_var02_s402793_08s_karras_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb",
+        "image_flou"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:12:54.695967+00:00"
+    },
+    "soccer_var03_s030207_08s_karras_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb",
+        "image_flou"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:13:08.976511+00:00"
+    },
+    "soccer_var04_s087846_08s_karras_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb",
+        "image_flou"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:13:33.909210+00:00"
+    },
+    "soccer_var05_s509027_08s_karras_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb",
+        "image_flou"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:13:26.804653+00:00"
+    },
+    "soccer_var06_s987308_08s_karras_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb",
+        "image_flou"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:13:43.776878+00:00"
+    },
+    "soccer_var07_s609845_08s_karras_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:13:50.443015+00:00"
+    },
+    "soccer_var08_s963309_08s_karras_euler_cfg10.png": {
+      "score": null,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb",
+        "image_flou"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:13:59.623309+00:00"
+    },
+    "soccer_var09_s252818_08s_karras_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:14:08.212105+00:00"
+    },
+    "soccer_var10_s817377_08s_karras_euler_cfg10.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-06T22:14:14.872974+00:00"
+    }
+  },
+  "schema_version": "v2"
+}

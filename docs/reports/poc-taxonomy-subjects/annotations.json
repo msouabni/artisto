@@ -1,0 +1,1376 @@
+{
+  "dir": "poc-taxonomy-subjects",
+  "annotations": {
+    "001_cute_pig_50000.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:22:12.288752+00:00"
+    },
+    "002_sleeping_cat_50001.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:22:23.752692+00:00"
+    },
+    "003_baby_bunny_50002.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:22:37.797339+00:00"
+    },
+    "004_farm_duck_50003.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:22:49.297042+00:00"
+    },
+    "005_sleeping_dog_50004.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:22:58.759038+00:00"
+    },
+    "006_little_horse_50005.png": {
+      "score": 4,
+      "score_legacy": 7,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:23:12.321964+00:00"
+    },
+    "007_cute_lion_with_mane_50006.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:23:28.918230+00:00"
+    },
+    "008_busy_bees_at_flowers_50007.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:23:39.350576+00:00"
+    },
+    "009_sleeping_elephant_50008.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:23:59.002802+00:00"
+    },
+    "010_happy_giraffe_50009.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:24:16.212546+00:00"
+    },
+    "011_playful_panda_50010.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:24:25.798799+00:00"
+    },
+    "012_singing_frog_50011.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:24:33.562691+00:00"
+    },
+    "013_dolphin_50012.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:24:42.032773+00:00"
+    },
+    "014_starfish_50013.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:24:50.254395+00:00"
+    },
+    "015_octopus_50014.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:25:01.814857+00:00"
+    },
+    "016_sea_turtle_50015.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:25:09.505208+00:00"
+    },
+    "017_sea_urchin_50016.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "sans arriere plan"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:25:47.997583+00:00"
+    },
+    "018_jellyfish_50017.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:26:06.565006+00:00"
+    },
+    "019_cute_piglet_50018.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:26:15.212376+00:00"
+    },
+    "020_happy_chick_50019.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_duplication",
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:26:34.911811+00:00"
+    },
+    "021_fluffy_sheep_50020.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "manque decor"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:27:16.472869+00:00"
+    },
+    "022_busy_bee_50021.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:27:30.134542+00:00"
+    },
+    "023_curious_goat_50022.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "portrait"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:28:14.046911+00:00"
+    },
+    "024_chatty_rooster_50023.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:28:23.662635+00:00"
+    },
+    "025_t_rex_head_50024.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "portrait"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:28:35.195699+00:00"
+    },
+    "026_stegosaurus_back_50025.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "posture bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:29:06.312405+00:00"
+    },
+    "027_triceratops_horns_50026.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "portrait"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:29:31.504180+00:00"
+    },
+    "028_brachiosaurus_neck_50027.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:29:48.610284+00:00"
+    },
+    "029_dino_eggs_50028.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "sans decor"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:30:06.322915+00:00"
+    },
+    "030_flying_pterodactyl_50029.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:30:15.692971+00:00"
+    },
+    "031_bunny_flower_50030.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:30:27.896005+00:00"
+    },
+    "032_starfish_spiral_50031.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:30:46.363889+00:00"
+    },
+    "033_balloon_dance_50032.png": {
+      "score": 3,
+      "score_legacy": 5,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:31:00.063434+00:00"
+    },
+    "034_rainbow_arch_50033.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:31:08.179702+00:00"
+    },
+    "035_number_5_50034.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "incoherence"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:32:16.364569+00:00"
+    },
+    "036_house_of_waves_50035.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:32:40.042658+00:00"
+    },
+    "037_flower_sun_50036.png": {
+      "score": 4,
+      "score_legacy": 7,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:32:50.163080+00:00"
+    },
+    "038_bee_honeycomb_50037.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:33:00.951912+00:00"
+    },
+    "039_magic_star_50038.png": {
+      "score": 2,
+      "score_legacy": 4,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:34:10.841629+00:00"
+    },
+    "040_rainbow_spiral_50039.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simpliste"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:34:21.944823+00:00"
+    },
+    "041_butterfly_mandala_50040.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:34:56.165775+00:00"
+    },
+    "042_crystal_ball_50041.png": {
+      "score": 3,
+      "score_legacy": 5,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:35:08.616927+00:00"
+    },
+    "043_cute_cat_sunburst_50042.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:35:17.455503+00:00"
+    },
+    "044_funny_dog_circle_50043.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:35:34.700757+00:00"
+    },
+    "045_bunny_star_pattern_50044.png": {
+      "score": 3,
+      "score_legacy": 5,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:36:00.541988+00:00"
+    },
+    "046_panda_leaf_mandala_50045.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:36:15.841483+00:00"
+    },
+    "047_bird_wheel_50046.png": {
+      "score": 4,
+      "score_legacy": 7,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:36:29.873123+00:00"
+    },
+    "048_fish_spiral_50047.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:36:44.039080+00:00"
+    },
+    "049_bloom_50048.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:36:53.244473+00:00"
+    },
+    "050_sunflower_spiral_50049.png": {
+      "score": 4,
+      "score_legacy": 7,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:37:02.761127+00:00"
+    },
+    "051_rose_garden_50050.png": {
+      "score": 2,
+      "score_legacy": 4,
+      "image_tags": [
+        "image_anatomie_pb",
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:37:19.717437+00:00"
+    },
+    "052_butterfly_bloom_50051.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:37:35.025596+00:00"
+    },
+    "053_star_flower_50052.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:37:47.120219+00:00"
+    },
+    "054_lily_pad_50053.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simpliste"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:38:05.764486+00:00"
+    },
+    "055_classic_red_roadster_50054.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:38:19.221210+00:00"
+    },
+    "056_cute_cartoon_cat_in_a_car_50055.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:38:30.850307+00:00"
+    },
+    "057_superhero_driver_racing_50056.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_flou",
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:38:59.265389+00:00"
+    },
+    "058_polka_dot_bicycle_race_50057.png": {
+      "score": 3,
+      "score_legacy": 5,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:39:22.066909+00:00"
+    },
+    "059_space_rocket_launch_50058.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "composiition interessante"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:39:44.740623+00:00"
+    },
+    "060_school_bus_driving_50059.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:40:05.751571+00:00"
+    },
+    "061_red_fire_truck_50060.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:40:21.311890+00:00"
+    },
+    "062_blue_garbage_truck_50061.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simpliste"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:40:38.655762+00:00"
+    },
+    "063_yellow_school_bus_50062.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:40:48.866297+00:00"
+    },
+    "064_green_farm_tractor_50063.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:41:00.544986+00:00"
+    },
+    "065_space_rocket_ship_50064.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "sans decors"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:41:20.063319+00:00"
+    },
+    "066_toy_train_engine_50065.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "formes ouvertes"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:41:39.277645+00:00"
+    },
+    "067_little_red_firefighter_bike_50066.png": {
+      "score": 4,
+      "score_legacy": 7,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:42:02.537772+00:00"
+    },
+    "068_blue_police_patrol_bike_50067.png": {
+      "score": 5,
+      "score_legacy": 8,
+      "image_tags": [
+        "image_physique_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:42:20.929674+00:00"
+    },
+    "069_green_delivery_food_bike_50068.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "incoherent"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:42:41.262134+00:00"
+    },
+    "070_yellow_school_bus_bike_50069.png": {
+      "score": 5,
+      "score_legacy": 9,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:42:52.017548+00:00"
+    },
+    "071_pink_rescue_helicopter_bike_50070.png": {
+      "score": 6,
+      "score_legacy": 10,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "hallucination prompt"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:43:29.806551+00:00"
+    },
+    "072_classic_vintage_coffee_bike_50071.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "hors sujet"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:45:34.419917+00:00"
+    },
+    "073_red_airplane_50072.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simpliste"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:46:03.137417+00:00"
+    },
+    "074_space_rocket_50073.png": {
+      "score": 2,
+      "score_legacy": 4,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "formes ouvertes"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:49:11.953230+00:00"
+    },
+    "075_helicopter_with_propeller_50074.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:50:12.894012+00:00"
+    },
+    "076_old_airship_50075.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traces_couleur",
+        "image_gris_residuel"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:50:25.759326+00:00"
+    },
+    "077_glider_plane_50076.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "incoherences"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:51:04.302591+00:00"
+    },
+    "078_ferry_boat_50077.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "composition interessante"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:51:27.640912+00:00"
+    },
+    "079_red_sailboat_50078.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simpliste"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:51:43.015924+00:00"
+    },
+    "080_frog_on_a_boat_50079.png": {
+      "score": 3,
+      "score_legacy": 5,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "pas de decors"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:52:00.146857+00:00"
+    },
+    "081_lighthouse_boat_50080.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "incoherence"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:58:51.631177+00:00"
+    },
+    "082_underwater_submarine_50081.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simpliste"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:59:11.809557+00:00"
+    },
+    "083_ferris_wheel_50082.png": {
+      "score": 4,
+      "score_legacy": 6,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:59:25.625977+00:00"
+    },
+    "084_rocket_ship_50083.png": {
+      "score": 3,
+      "score_legacy": 5,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:59:38.031194+00:00"
+    },
+    "085_red_steam_engine_50084.png": {
+      "score": 4,
+      "score_legacy": 7,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T09:59:45.525310+00:00"
+    },
+    "086_blue_submarine_50085.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T09:59:51.473473+00:00"
+    },
+    "087_yellow_school_bus_50086.png": {
+      "score": 1,
+      "score_legacy": 2,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simpliste"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T10:00:04.585743+00:00"
+    },
+    "088_purple_space_shuttle_50087.png": {
+      "score": 1,
+      "score_legacy": 1,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "simpliste"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-07T10:00:14.076998+00:00"
+    },
+    "089_green_garden_train_50088.png": {
+      "score": 2,
+      "score_legacy": 3,
+      "image_tags": [
+        "image_traces_couleur"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": null
+      },
+      "updated_at": "2026-05-07T10:00:34.170168+00:00"
+    }
+  },
+  "schema_version": "v2"
+}

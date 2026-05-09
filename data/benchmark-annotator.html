@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annotation benchmark v2 — Artiste Coloriage</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; margin: 0; padding: 0; transition: background 0.2s, color 0.2s; }
+    body[data-theme="light"] { background: #f8f9fa; color: #202124; }
+    body[data-theme="dark"]  { background: #1a1a2e; color: #f7fafc; }
+
+    /* ── Header sticky ─────────────────────────────────────────────────── */
+    .header {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem;
+      padding: 0.55rem 1rem; border-bottom: 1px solid;
+    }
+    body[data-theme="light"] .header { background: #fff; border-color: #dadce0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    body[data-theme="dark"]  .header { background: #16213e; border-color: #2d3748; box-shadow: 0 1px 3px rgba(0,0,0,0.25); }
+    .header h1 { margin: 0; font-size: 1rem; font-weight: 600; white-space: nowrap; }
+    .header .group { display: inline-flex; align-items: center; gap: 0.35rem; }
+    .header .spacer { flex: 1; }
+    .header input.dir-input {
+      padding: 0.3rem 0.55rem; border-radius: 4px; border: 1px solid #dadce0;
+      font-size: 0.85rem; min-width: 230px;
+    }
+    body[data-theme="dark"] .header input.dir-input { background: #2d3748; color: #f7fafc; border-color: #4a5568; }
+    .header button {
+      padding: 0.3rem 0.6rem; border-radius: 4px; border: 1px solid #dadce0;
+      background: #fff; color: #202124; font-size: 0.82rem; cursor: pointer;
+    }
+    body[data-theme="dark"] .header button { background: #2d3748; color: #f7fafc; border-color: #4a5568; }
+    .header button.primary { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+    .header button.primary:hover { background: #1557b0; }
+    .header button:disabled { opacity: 0.4; cursor: not-allowed; }
+    .header .counter { font-weight: 600; min-width: 80px; text-align: center; font-variant-numeric: tabular-nums; font-size: 0.85rem; }
+    .header .save-status { font-size: 0.78rem; opacity: 0.7; min-width: 12em; }
+    .header .save-status.saved   { color: #137333; opacity: 0.85; }
+    .header .save-status.saving  { color: #1a73e8; }
+    .header .save-status.error   { color: #c5221f; }
+    body[data-theme="dark"] .header .save-status.saved  { color: #81c995; }
+    body[data-theme="dark"] .header .save-status.saving { color: #90cdf4; }
+    body[data-theme="dark"] .header .save-status.error  { color: #f28b82; }
+
+    /* ── Layout ────────────────────────────────────────────────────────── */
+    .layout { display: grid; grid-template-columns: 1fr 380px; gap: 1rem; padding: 1rem; }
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; padding-bottom: 200px; }
+      .side-pane {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        max-height: 50vh; overflow-y: auto; z-index: 40;
+        padding: 0.6rem; border-top: 2px solid;
+      }
+      body[data-theme="light"] .side-pane { background: #fff; border-color: #dadce0; }
+      body[data-theme="dark"]  .side-pane { background: #16213e; border-color: #2d3748; }
+    }
+
+    .image-pane { display: flex; flex-direction: column; align-items: center; gap: 0.55rem; }
+    .tags-row { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; }
+    .tag { padding: 0.18rem 0.5rem; border-radius: 999px; font-size: 0.75rem; }
+    body[data-theme="light"] .tag { background: #e8f0fe; color: #1a73e8; }
+    body[data-theme="dark"]  .tag { background: #1e3a5f; color: #90cdf4; }
+    .tag .k { opacity: 0.7; margin-right: 0.2rem; }
+    .tag .v { font-weight: 600; }
+
+    .image-frame {
+      position: relative; display: flex; align-items: center; justify-content: center;
+      padding: 0.5rem; border-radius: 8px; min-height: 380px;
+      cursor: zoom-in;
+    }
+    body[data-theme="light"] .image-frame { background: #fff; border: 1px solid #dadce0; }
+    body[data-theme="dark"]  .image-frame { background: #16213e; border: 1px solid #2d3748; }
+    .image-frame img { max-width: 600px; max-height: 600px; width: auto; height: auto; display: block; }
+    .image-frame .empty { color: #9aa0a6; font-style: italic; padding: 2rem; cursor: default; }
+    .metrics-overlay {
+      position: absolute; bottom: 8px; left: 8px;
+      background: rgba(0,0,0,0.42); color: #e2e8f0;
+      border-radius: 4px; padding: 3px 8px;
+      font: 0.66rem/1.4 "Consolas","Monaco",monospace;
+      pointer-events: none; max-width: calc(100% - 16px);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; z-index: 5;
+    }
+    .metrics-overlay[hidden] { display: none; }
+    .metrics-overlay .warn { color: #fbbf24; }
+
+    /* ── Score row sous l'image ────────────────────────────────────────── */
+    .score-row { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+    .score-row .score-label { font-size: 0.78rem; opacity: 0.65; margin-right: 0.4rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
+    .score-btn {
+      width: 42px; height: 42px; border-radius: 6px;
+      border: 1px solid #dadce0; background: #fff; color: #202124;
+      cursor: pointer; font-weight: 600; font-size: 1rem;
+    }
+    body[data-theme="dark"] .score-btn { background: #2d3748; color: #f7fafc; border-color: #4a5568; }
+    .score-btn:hover { background: #e8f0fe; }
+    .score-btn:focus-visible { outline: 2px solid #1a73e8; outline-offset: 1px; }
+    body[data-theme="dark"] .score-btn:hover { background: #1e3a5f; }
+    .score-btn.active { background: #1a73e8; color: #fff; border-color: #1a73e8; }
+    .score-btn.active:hover { background: #1557b0; }
+    .score-legacy {
+      font-size: 0.7rem; opacity: 0.55; margin-left: 0.4rem; font-style: italic;
+    }
+
+    /* ── Accordéon Détails ─────────────────────────────────────────────── */
+    .details-accordion { width: 100%; max-width: 720px; }
+    .details-accordion summary {
+      cursor: pointer; padding: 0.4rem 0.6rem; border-radius: 4px;
+      font-size: 0.82rem; opacity: 0.75; user-select: none;
+      list-style: none;
+    }
+    .details-accordion summary::-webkit-details-marker { display: none; }
+    .details-accordion summary::before { content: "▸ "; opacity: 0.6; }
+    .details-accordion[open] summary::before { content: "▾ "; }
+    .details-accordion summary:hover { background: rgba(128,128,128,0.08); }
+    .details-body { padding: 0.4rem 0.7rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .details-body .filename { font-family: "Consolas","Monaco",monospace; font-size: 0.8rem; word-break: break-all; opacity: 0.85; }
+    .details-body .copy-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .details-body .copy-btn {
+      padding: 0.25rem 0.55rem; border-radius: 4px;
+      border: 1px solid #dadce0; background: #fff; color: #202124;
+      cursor: pointer; font-size: 0.78rem;
+    }
+    body[data-theme="dark"] .details-body .copy-btn { background: #2d3748; color: #f7fafc; border-color: #4a5568; }
+    .details-body .copy-btn:hover { background: #e8f0fe; }
+    body[data-theme="dark"] .details-body .copy-btn:hover { background: #1e3a5f; }
+    .details-body .copy-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .details-body .copy-btn.copied { background: #137333; color: #fff; border-color: #137333; }
+    body[data-theme="dark"] .details-body .copy-btn.copied { background: #2d6a3f; border-color: #2d6a3f; }
+
+    .prompt-info { display: flex; flex-direction: column; gap: 0.25rem; }
+    .prompt-title { font-weight: 700; font-size: 0.95rem; }
+    .prompt-tier { font-size: 0.72rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.5px; }
+    .prompt-pre {
+      margin: 0; white-space: pre-wrap; word-break: break-word;
+      font-family: "Consolas","Monaco",monospace; font-size: 0.78rem; line-height: 1.45;
+      padding: 0.4rem 0.55rem; border-radius: 4px;
+      max-height: 160px; overflow-y: auto;
+    }
+    body[data-theme="light"] .prompt-pre { background: #f1f3f4; }
+    body[data-theme="dark"]  .prompt-pre { background: #0f172a; color: #cbd5e1; }
+    .prompt-pre.label { font-size: 0.7rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 0.2rem; }
+
+    .meta-badges { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .meta-badges[hidden] { display: none; }
+    .meta-badge { border-radius: 10px; padding: 2px 8px; font-size: 0.7rem; line-height: 1.4; white-space: nowrap; }
+    .meta-badge.workflow-class { background: #3b4a6b; color: #fff; }
+    .meta-badge.confidence-haute   { background: #166534; color: #fff; }
+    .meta-badge.confidence-moyenne { background: #92400e; color: #fff; }
+    .meta-badge.confidence-faible  { background: #7f1d1d; color: #fff; }
+    .meta-badge.pipeline { background: transparent; border: 1px solid #9aa0a6; color: #9aa0a6; }
+    body[data-theme="dark"] .meta-badge.pipeline { border-color: #64748b; color: #94a3b8; }
+
+    /* ── Progression ──────────────────────────────────────────────────── */
+    .progress-wrap { width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 0.2rem; }
+    .progress-bar { height: 5px; background: rgba(128,128,128,0.18); border-radius: 3px; overflow: hidden; }
+    .progress-bar > .fill { height: 100%; background: #1a73e8; transition: width 0.2s; }
+    .progress-text { font-size: 0.74rem; opacity: 0.7; text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* ── Side-pane (grille P3) ────────────────────────────────────────── */
+    .side-pane { display: flex; flex-direction: column; gap: 0.6rem; }
+    .card { border-radius: 8px; padding: 0.6rem 0.75rem; }
+    body[data-theme="light"] .card { background: #fff; border: 1px solid #dadce0; }
+    body[data-theme="dark"]  .card { background: #16213e; border: 1px solid #2d3748; }
+    .card h3 {
+      margin: 0 0 0.45rem 0; font-size: 0.78rem; font-weight: 700;
+      opacity: 0.7; text-transform: uppercase; letter-spacing: 0.6px;
+      display: flex; align-items: center; gap: 0.35rem;
+    }
+    .polarity-block { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.4rem; }
+    .polarity-block:last-child { margin-bottom: 0; }
+    .polarity-label { font-size: 0.7rem; opacity: 0.55; font-weight: 600; }
+    .pill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem; }
+    .pill-grid.single { grid-template-columns: 1fr; }
+    .axis-pill {
+      border-radius: 12px; padding: 4px 10px; font-size: 0.78rem;
+      cursor: pointer; user-select: none; border: 1px solid;
+      background: transparent; transition: background 0.12s, color 0.12s, border-color 0.12s;
+      text-align: center;
+    }
+    .axis-pill:focus-visible { outline: 2px solid #1a73e8; outline-offset: 1px; }
+    /* polarity OFF colors */
+    body[data-theme="light"] .polarity-block[data-pol="POS"] .axis-pill { border-color: #b7e0bf; color: #137333; }
+    body[data-theme="light"] .polarity-block[data-pol="NEUT"] .axis-pill { border-color: #cbd5e1; color: #475569; }
+    body[data-theme="light"] .polarity-block[data-pol="NEG"] .axis-pill { border-color: #fed7aa; color: #9a3412; }
+    body[data-theme="dark"]  .polarity-block[data-pol="POS"] .axis-pill { border-color: #2d6a3f; color: #81c995; }
+    body[data-theme="dark"]  .polarity-block[data-pol="NEUT"] .axis-pill { border-color: #4a5568; color: #94a3b8; }
+    body[data-theme="dark"]  .polarity-block[data-pol="NEG"] .axis-pill { border-color: #7f1d1d; color: #fcd34d; }
+    /* polarity ON colors */
+    .polarity-block[data-pol="POS"] .axis-pill.active { background: #137333; color: #fff; border-color: #137333; }
+    .polarity-block[data-pol="NEUT"] .axis-pill.active { background: #475569; color: #fff; border-color: #475569; }
+    .polarity-block[data-pol="NEG"] .axis-pill.active { background: #d97706; color: #fff; border-color: #d97706; }
+    body[data-theme="dark"] .polarity-block[data-pol="POS"] .axis-pill.active { background: #2d6a3f; border-color: #2d6a3f; }
+    body[data-theme="dark"] .polarity-block[data-pol="NEUT"] .axis-pill.active { background: #64748b; border-color: #64748b; }
+    body[data-theme="dark"] .polarity-block[data-pol="NEG"] .axis-pill.active { background: #f59e0b; border-color: #f59e0b; }
+
+    /* Numbered-binding hint on pill */
+    .axis-pill .num-hint {
+      font-size: 0.66rem; opacity: 0.55; margin-right: 0.3rem;
+      font-weight: 700; font-variant-numeric: tabular-nums;
+    }
+
+    /* Custom tags */
+    .custom-input-row { display: flex; gap: 0.3rem; }
+    .custom-input-row input {
+      flex: 1; padding: 0.3rem 0.55rem; border-radius: 4px;
+      border: 1px solid #dadce0; font-size: 0.82rem;
+    }
+    body[data-theme="dark"] .custom-input-row input { background: #2d3748; color: #f7fafc; border-color: #4a5568; }
+    .custom-input-row button {
+      padding: 0.25rem 0.6rem; border-radius: 4px;
+      border: 1px solid #dadce0; background: #fff; color: #202124;
+      cursor: pointer; font-size: 0.82rem;
+    }
+    body[data-theme="dark"] .custom-input-row button { background: #2d3748; color: #f7fafc; border-color: #4a5568; }
+    .custom-tags-row { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.4rem; }
+    .custom-pill {
+      border-radius: 12px; padding: 3px 6px 3px 10px;
+      font-size: 0.78rem; cursor: pointer; font-style: italic;
+    }
+    body[data-theme="light"] .custom-pill { background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; }
+    body[data-theme="dark"]  .custom-pill { background: #422006; border: 1px solid #92400e; color: #fcd34d; }
+    .custom-pill .x { margin-left: 4px; opacity: 0.7; font-style: normal; font-weight: 700; }
+    .custom-pill:hover .x { opacity: 1; }
+
+    /* Flags */
+    .flags-list { display: flex; flex-direction: column; gap: 0.3rem; }
+    .flags-list label {
+      display: flex; align-items: center; gap: 0.45rem;
+      cursor: pointer; font-size: 0.85rem;
+      padding: 0.2rem 0.35rem; border-radius: 4px;
+    }
+    .flags-list label:hover { background: rgba(128,128,128,0.08); }
+    .flags-list .pub { font-weight: 600; color: #137333; }
+    body[data-theme="dark"] .flags-list .pub { color: #81c995; }
+    .pattern-note-wrap { margin-left: 1.6rem; }
+    .pattern-note-wrap[hidden] { display: none; }
+    .pattern-note-wrap textarea {
+      width: 100%; min-height: 50px; max-height: 120px;
+      padding: 0.35rem; border-radius: 4px; font-size: 0.8rem;
+      border: 1px solid #dadce0; resize: vertical;
+      font-family: inherit;
+    }
+    body[data-theme="dark"] .pattern-note-wrap textarea { background: #2d3748; color: #f7fafc; border-color: #4a5568; }
+
+    /* ── Lightbox ─────────────────────────────────────────────────────── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox[hidden] { display: none; }
+    .lightbox img { max-width: 95vw; max-height: 95vh; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+    .lightbox .lightbox-hint {
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      color: #cbd5e1; font-size: 0.8rem; opacity: 0.7; pointer-events: none;
+    }
+
+    /* ── Chord overlay ────────────────────────────────────────────────── */
+    .chord-overlay {
+      position: fixed; bottom: 32px; right: 32px; z-index: 150;
+      padding: 0.8rem 1.2rem; border-radius: 8px;
+      background: rgba(15,15,30,0.92); color: #fbbf24;
+      font-family: "Consolas","Monaco",monospace; font-size: 0.85rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+    .chord-overlay[hidden] { display: none; }
+    .chord-overlay .chord-key { font-weight: 700; font-size: 1rem; color: #fff; }
+
+    /* ── Cheat-sheet modale ───────────────────────────────────────────── */
+    .cheat-sheet {
+      position: fixed; inset: 0; z-index: 250;
+      background: rgba(0,0,0,0.6);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .cheat-sheet[hidden] { display: none; }
+    .cheat-sheet .panel {
+      max-width: 720px; max-height: 90vh; overflow-y: auto;
+      border-radius: 10px; padding: 1.2rem 1.5rem;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+    }
+    body[data-theme="light"] .cheat-sheet .panel { background: #fff; color: #202124; }
+    body[data-theme="dark"]  .cheat-sheet .panel { background: #16213e; color: #f7fafc; }
+    .cheat-sheet h2 { margin: 0 0 0.7rem 0; font-size: 1.1rem; }
+    .cheat-sheet table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .cheat-sheet td { padding: 0.25rem 0.5rem; vertical-align: top; }
+    .cheat-sheet td:first-child { white-space: nowrap; opacity: 0.85; }
+    .cheat-sheet h3 { margin: 0.8rem 0 0.3rem 0; font-size: 0.8rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.6px; }
+    .cheat-sheet kbd {
+      padding: 1px 6px; border: 1px solid currentColor; border-radius: 3px;
+      font-family: "Consolas","Monaco",monospace; font-size: 0.78rem;
+      margin: 0 1px;
+    }
+    .cheat-sheet .close-hint { margin-top: 1rem; font-size: 0.75rem; opacity: 0.6; text-align: center; }
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- ── HEADER STICKY ────────────────────────────────────────────────── -->
+  <div class="header">
+    <h1>Annotator v2</h1>
+
+    <div class="group">
+      <label style="font-size: 0.82rem; opacity: 0.65;">dir:</label>
+      <input class="dir-input" id="dir-input" list="dir-suggest" value="poc-sampler-benchmark" placeholder="ex. poc-sampler-benchmark">
+      <datalist id="dir-suggest"></datalist>
+      <button id="reload-btn" class="primary">Charger</button>
+    </div>
+
+    <div class="group">
+      <button id="prev-btn" title="Précédent (←)">‹</button>
+      <span class="counter" id="counter">— / —</span>
+      <button id="next-btn" title="Suivant (→)">›</button>
+      <button id="next-unannotated-btn" title="Non-annotée suivante (U / Shift+→)">⏭</button>
+    </div>
+
+    <div class="spacer"></div>
+
+    <span class="save-status" id="save-status">&nbsp;</span>
+    <button id="help-btn" title="Aide raccourcis (?)">?</button>
+    <button class="theme-toggle" id="theme-toggle">🌙</button>
+  </div>
+
+  <!-- ── LAYOUT ───────────────────────────────────────────────────────── -->
+  <div class="layout">
+
+    <!-- Image pane -->
+    <div class="image-pane">
+      <div class="tags-row" id="tags-row"></div>
+
+      <div class="image-frame" id="image-frame" title="Cliquer pour zoomer (Z)">
+        <div class="empty">Charge un dossier pour commencer.</div>
+      </div>
+
+      <!-- Score 1-6 (sous l'image) -->
+      <div class="score-row" id="score-row">
+        <span class="score-label">Score</span>
+        <!-- 6 buttons injected by JS -->
+        <span class="score-legacy" id="score-legacy" hidden></span>
+      </div>
+
+      <!-- Accordéon Détails -->
+      <details class="details-accordion" id="details-accordion">
+        <summary>Détails</summary>
+        <div class="details-body">
+          <div class="filename" id="filename">—</div>
+          <div class="meta-badges" id="meta-badges" hidden></div>
+
+          <div class="prompt-info" id="prompt-info" hidden>
+            <span class="prompt-title" id="prompt-title"></span>
+            <span class="prompt-tier" id="prompt-tier" hidden></span>
+
+            <div class="copy-row">
+              <button class="copy-btn" id="copy-prompt-btn" disabled>📋 Copier prompt</button>
+              <button class="copy-btn" id="copy-negative-btn" disabled>📋 Copier négatif</button>
+            </div>
+
+            <div id="prompt-pos-block" hidden>
+              <div class="prompt-pre label">Prompt</div>
+              <pre class="prompt-pre" id="prompt-pos-pre"></pre>
+            </div>
+            <div id="prompt-neg-block" hidden>
+              <div class="prompt-pre label">Négatif</div>
+              <pre class="prompt-pre" id="prompt-neg-pre"></pre>
+            </div>
+            <div id="prompt-tech-block" hidden>
+              <div class="prompt-pre label">Technique</div>
+              <pre class="prompt-pre" id="prompt-tech-pre"></pre>
+            </div>
+            <div id="prompt-pitfalls-block" hidden>
+              <div class="prompt-pre label">Pièges</div>
+              <pre class="prompt-pre" id="prompt-pitfalls-pre"></pre>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="fill" id="progress-fill" style="width:0%"></div></div>
+        <div class="progress-text" id="progress-text">— annotés / — total</div>
+      </div>
+    </div>
+
+    <!-- Side-pane (grille P3) -->
+    <div class="side-pane">
+
+      <div class="card">
+        <h3>━━ IMAGE ━━</h3>
+        <div id="image-axis-pills"></div>
+      </div>
+
+      <div class="card">
+        <h3>━━ PROMPT ━━</h3>
+        <div id="prompt-axis-pills"></div>
+      </div>
+
+      <div class="card">
+        <h3>━━ CUSTOM ━━</h3>
+        <div class="custom-input-row">
+          <input type="text" id="custom-input" list="custom-tag-suggest" placeholder="ajouter un tag…">
+          <datalist id="custom-tag-suggest"></datalist>
+          <button id="custom-add-btn">+</button>
+        </div>
+        <div class="custom-tags-row" id="custom-tags-row"></div>
+      </div>
+
+      <div class="card">
+        <h3>━━ FLAGS ━━</h3>
+        <div class="flags-list">
+          <label>
+            <input type="checkbox" id="flag-pattern">
+            <span>🔍 Pattern à analyser</span>
+          </label>
+          <div class="pattern-note-wrap" id="pattern-note-wrap" hidden>
+            <textarea id="flag-pattern-note" placeholder="note libre (ex. symétrie systémique)…"></textarea>
+          </div>
+          <label>
+            <input type="checkbox" id="flag-sample">
+            <span>📌 Échantillon</span>
+          </label>
+          <label>
+            <input type="checkbox" id="flag-publishable">
+            <span class="pub">✅ Publiable</span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Lightbox ──────────────────────────────────────────────────────── -->
+  <div class="lightbox" id="lightbox" hidden>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-hint">Échap pour fermer · clic dehors pour fermer</div>
+  </div>
+
+  <!-- ── Chord overlay ────────────────────────────────────────────────── -->
+  <div class="chord-overlay" id="chord-overlay" hidden>
+    <span class="chord-key" id="chord-key">D</span>-mode actif — appuie <span id="chord-range">1-9</span> (Échap annule)
+  </div>
+
+  <!-- ── Cheat-sheet modale ────────────────────────────────────────────── -->
+  <div class="cheat-sheet" id="cheat-sheet" hidden>
+    <div class="panel">
+      <h2>Raccourcis clavier</h2>
+
+      <h3>Navigation</h3>
+      <table>
+        <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>précédent / suivant</td></tr>
+        <tr><td><kbd>Shift</kbd>+<kbd>←</kbd> <kbd>Shift</kbd>+<kbd>→</kbd></td><td>prev/next non-annotée</td></tr>
+        <tr><td><kbd>U</kbd></td><td>non-annotée suivante (legacy)</td></tr>
+        <tr><td><kbd>Home</kbd> <kbd>End</kbd></td><td>première / dernière</td></tr>
+      </table>
+
+      <h3>Score</h3>
+      <table>
+        <tr><td><kbd>1</kbd>–<kbd>6</kbd></td><td>score 1 à 6</td></tr>
+      </table>
+
+      <h3>Image</h3>
+      <table>
+        <tr><td><kbd>Z</kbd></td><td>toggle lightbox zoom</td></tr>
+        <tr><td><kbd>Échap</kbd></td><td>fermer lightbox / annuler chord</td></tr>
+        <tr><td><kbd>C</kbd></td><td>copier prompt</td></tr>
+        <tr><td><kbd>Shift</kbd>+<kbd>C</kbd></td><td>copier négatif</td></tr>
+      </table>
+
+      <h3>Annotation rapide (chord)</h3>
+      <table>
+        <tr><td><kbd>D</kbd> puis <kbd>1</kbd>–<kbd>9</kbd></td><td>toggle tag IMAGE n° N</td></tr>
+        <tr><td><kbd>T</kbd> puis <kbd>1</kbd>–<kbd>8</kbd></td><td>toggle tag PROMPT n° N</td></tr>
+        <tr><td><kbd>M</kbd></td><td>toggle flag pattern</td></tr>
+        <tr><td><kbd>S</kbd></td><td>toggle flag sample</td></tr>
+        <tr><td><kbd>P</kbd></td><td>toggle publishable</td></tr>
+      </table>
+
+      <h3>Aide</h3>
+      <table>
+        <tr><td><kbd>?</kbd></td><td>afficher cette cheat-sheet</td></tr>
+      </table>
+
+      <div class="close-hint">Échap ou clic hors panneau pour fermer</div>
+    </div>
+  </div>
+
+  <script>
+    // ── Vocabulaires fermés (axes IMAGE / PROMPT) ─────────────────────────
+    // Doivent rester synchrones avec IMAGE_TAGS_VOCAB / PROMPT_TAGS_VOCAB
+    // dans src/api/routes/benchmark.py.
+    const IMAGE_AXIS = {
+      POS:  [
+        { key: "image_compo_bonne",        label: "Bonne compo" },
+        { key: "image_coherente",          label: "Cohérente" },
+        { key: "image_creative",           label: "Créative" },
+      ],
+      NEUT: [
+        { key: "image_complexe",           label: "Complexe" },
+      ],
+      NEG:  [
+        { key: "image_compo_mauvaise",     label: "Mauv. compo" },
+        { key: "image_pas_coherente",      label: "Pas cohér." },
+        { key: "image_simpliste",          label: "Simpliste" },
+        { key: "image_incomprehensible",   label: "Incompr." },
+        { key: "image_traces_couleur",     label: "Couleurs" },
+        { key: "image_gris_residuel",      label: "Gris résid." },
+        { key: "image_symetrie_incomplete",label: "Sym. inc." },
+        { key: "image_duplication",        label: "Duplication" },
+        { key: "image_flou",               label: "Flou" },
+        { key: "image_anatomie_pb",        label: "Anatomie" },
+        { key: "image_physique_pb",        label: "Pb physique" },
+        { key: "image_traits_pb",          label: "Pb traits" },
+        { key: "image_hors_sujet",         label: "Hors sujet" },
+        { key: "image_prompt_non_respecte",label: "Prompt KO" },
+      ],
+    };
+    const PROMPT_AXIS = {
+      POS:  [
+        { key: "prompt_interessant",       label: "Intéressant" },
+        { key: "prompt_creatif",           label: "Créatif" },
+      ],
+      NEUT: [
+        { key: "prompt_complexe",          label: "Complexe" },
+      ],
+      NEG:  [
+        { key: "prompt_ambigu",            label: "Ambigu" },
+        { key: "prompt_approximatif",      label: "Approx." },
+        { key: "prompt_vide",              label: "Vide" },
+        { key: "prompt_creux",             label: "Creux" },
+        { key: "prompt_ennuyeux",          label: "Ennuyeux" },
+      ],
+    };
+
+    // Numbered binding orders (pour chord D et T : index 0 = touche 1, etc.)
+    // L'ordre doit rester stable (utilisé pour la cheat-sheet ET les chords).
+    function flatAxisKeys(axis) {
+      return [...axis.POS, ...axis.NEUT, ...axis.NEG].map(t => t.key);
+    }
+    const IMAGE_KEYS_BY_NUM = flatAxisKeys(IMAGE_AXIS);   // 18 entrées (max touche 9 → 9 premiers)
+    const PROMPT_KEYS_BY_NUM = flatAxisKeys(PROMPT_AXIS); // 8 entrées (touches 1-8)
+
+    // Mappings v1 → v2 (pour la lecture rétro-compat seule)
+    const V1_DEFECTS_TO_V2_IMAGE = {
+      "3_jambes":              "image_anatomie_pb",
+      "2_objets":              "image_duplication",
+      "couleurs_résiduelles":  "image_traces_couleur",
+      "traits_flous":          "image_flou",
+      "traits_doubles":        "image_traits_pb",
+      "traits_discontinus":    "image_traits_pb",
+      "perspective_KO":        "image_physique_pb",
+      "gris_résiduel":         "image_gris_residuel",
+      "prompt_incohérent":     "image_prompt_non_respecte",
+    };
+    const V1_NOTES_TO_V2 = {
+      "prompt_trop_vague":         { axis: "prompt", key: "prompt_ambigu" },
+      "prompt_trop_complexe":      { axis: "prompt", key: "prompt_complexe" },
+      "sujet_hors_catégorie":      { axis: "image",  key: "image_hors_sujet" },
+      "sujet_tronqué":             { axis: "image",  key: "image_compo_mauvaise" },
+      "composition_déséquilibrée": { axis: "image",  key: "image_compo_mauvaise" },
+      "trop_chargé":               { axis: "image",  key: "image_complexe" },
+      "couleurs_persistantes":     { axis: "image",  key: "image_traces_couleur" },
+      "traits_incomplets":         { axis: "image",  key: "image_traits_pb" },
+      "concept_difficile":         { axis: "prompt", key: "prompt_complexe" },
+    };
+    const V1_SCORE_TO_V2 = { 1:1, 2:1, 3:2, 4:2, 5:3, 6:4, 7:4, 8:5, 9:5, 10:6 };
+
+    let state = {
+      dir: "",
+      items: [],
+      idx: 0,
+      saveTimer: null,
+      chord: null,           // null | "D" | "T"
+      chordTimer: null,
+      knownCustomTags: [],
+    };
+
+    // ── Theme ─────────────────────────────────────────────────────────────
+    const themeToggle = document.getElementById("theme-toggle");
+    const savedTheme = localStorage.getItem("benchmarkAnnotatorTheme") || "light";
+    document.body.setAttribute("data-theme", savedTheme);
+    themeToggle.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+    themeToggle.addEventListener("click", () => {
+      const cur = document.body.getAttribute("data-theme");
+      const next = cur === "dark" ? "light" : "dark";
+      document.body.setAttribute("data-theme", next);
+      themeToggle.textContent = next === "dark" ? "☀️" : "🌙";
+      localStorage.setItem("benchmarkAnnotatorTheme", next);
+    });
+
+    // ── UI builders ───────────────────────────────────────────────────────
+    function buildScoreRow() {
+      const row = document.getElementById("score-row");
+      // Reset (keep label + legacy span)
+      const label = row.querySelector(".score-label");
+      const legacy = document.getElementById("score-legacy");
+      row.innerHTML = "";
+      row.appendChild(label);
+      for (let i = 1; i <= 6; i++) {
+        const btn = document.createElement("button");
+        btn.className = "score-btn";
+        btn.textContent = i;
+        btn.dataset.score = String(i);
+        btn.addEventListener("click", () => setScore(i));
+        row.appendChild(btn);
+      }
+      row.appendChild(legacy);
+    }
+
+    function buildAxisPills(containerId, axis, numberOffsetOrder) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      const polarities = ["POS", "NEUT", "NEG"];
+      const labels = { POS: "🟢 POS", NEUT: "⚪ NEUT", NEG: "🔴 NEG" };
+      let runningIdx = 0;  // 0-based; touche affichée = runningIdx + 1
+      for (const pol of polarities) {
+        const tags = axis[pol] || [];
+        if (tags.length === 0) continue;
+        const block = document.createElement("div");
+        block.className = "polarity-block";
+        block.dataset.pol = pol;
+
+        const lab = document.createElement("div");
+        lab.className = "polarity-label";
+        lab.textContent = labels[pol];
+        block.appendChild(lab);
+
+        const grid = document.createElement("div");
+        grid.className = "pill-grid";
+        if (pol === "NEUT") grid.classList.add("single");
+
+        for (const t of tags) {
+          const pill = document.createElement("button");
+          pill.type = "button";
+          pill.className = "axis-pill";
+          pill.dataset.tag = t.key;
+          pill.dataset.axis = (containerId === "image-axis-pills") ? "image" : "prompt";
+          pill.tabIndex = 0;
+          // Numbered binding hint (seulement pour les N premiers binds, max 9 image / 8 prompt)
+          const numIdx = numberOffsetOrder.indexOf(t.key);
+          if (numIdx >= 0 && numIdx < 9) {
+            const hint = document.createElement("span");
+            hint.className = "num-hint";
+            hint.textContent = String(numIdx + 1);
+            pill.appendChild(hint);
+          }
+          pill.appendChild(document.createTextNode(t.label));
+          pill.addEventListener("click", () => { pill.classList.toggle("active"); onAnyChange(); });
+          grid.appendChild(pill);
+          runningIdx++;
+        }
+        block.appendChild(grid);
+        container.appendChild(block);
+      }
+    }
+
+    function buildAllPills() {
+      buildAxisPills("image-axis-pills", IMAGE_AXIS, IMAGE_KEYS_BY_NUM);
+      buildAxisPills("prompt-axis-pills", PROMPT_AXIS, PROMPT_KEYS_BY_NUM);
+    }
+
+    // ── Custom tags ───────────────────────────────────────────────────────
+    function addCustomPill(text) {
+      if (!text) return;
+      const t = String(text).trim();
+      if (!t) return;
+      // Dédup
+      const existing = document.querySelectorAll('.custom-pill[data-tag]');
+      for (const p of existing) {
+        if (p.dataset.tag === t) return;
+      }
+      const row = document.getElementById("custom-tags-row");
+      const pill = document.createElement("span");
+      pill.className = "custom-pill";
+      pill.dataset.tag = t;
+      pill.tabIndex = 0;
+      pill.appendChild(document.createTextNode(t));
+      const x = document.createElement("span");
+      x.className = "x"; x.textContent = "×";
+      pill.appendChild(x);
+      pill.title = "Cliquer pour retirer";
+      const remove = () => { pill.remove(); onAnyChange(); };
+      pill.addEventListener("click", remove);
+      pill.addEventListener("keydown", (ev) => {
+        if (ev.key === " " || ev.key === "Enter" || ev.key === "Delete" || ev.key === "Backspace") {
+          remove(); ev.preventDefault();
+        }
+      });
+      row.appendChild(pill);
+    }
+    function clearCustomPills() {
+      document.getElementById("custom-tags-row").innerHTML = "";
+    }
+    function getCurrentCustomTags() {
+      return Array.from(document.querySelectorAll('.custom-pill[data-tag]'))
+        .map(p => p.dataset.tag);
+    }
+
+    document.getElementById("custom-add-btn").addEventListener("click", () => {
+      const inp = document.getElementById("custom-input");
+      const v = inp.value.trim();
+      if (v) { addCustomPill(v); inp.value = ""; onAnyChange(); }
+    });
+    document.getElementById("custom-input").addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter") {
+        const v = ev.target.value.trim();
+        if (v) { addCustomPill(v); ev.target.value = ""; onAnyChange(); }
+        ev.preventDefault();
+      }
+    });
+
+    // ── Flags ─────────────────────────────────────────────────────────────
+    document.getElementById("flag-pattern").addEventListener("change", (ev) => {
+      document.getElementById("pattern-note-wrap").hidden = !ev.target.checked;
+      onAnyChange();
+    });
+    document.getElementById("flag-pattern-note").addEventListener("input", onAnyChange);
+    document.getElementById("flag-sample").addEventListener("change", onAnyChange);
+    document.getElementById("flag-publishable").addEventListener("change", onAnyChange);
+
+    // ── Load dirs autocomplete + images ───────────────────────────────────
+    async function loadDirSuggestions() {
+      try {
+        const r = await fetch("/api/benchmark/dirs");
+        if (!r.ok) return;
+        const data = await r.json();
+        const dl = document.getElementById("dir-suggest");
+        dl.innerHTML = "";
+        for (const d of (data.dirs || [])) {
+          const opt = document.createElement("option");
+          opt.value = d.name;
+          if (d.png_count) opt.label = `${d.name} (${d.png_count})`;
+          dl.appendChild(opt);
+        }
+      } catch {}
+    }
+
+    async function loadCustomTagSuggestions() {
+      try {
+        const r = await fetch("/api/benchmark/custom-tags");
+        if (!r.ok) return;
+        const data = await r.json();
+        state.knownCustomTags = data.tags || [];
+        const dl = document.getElementById("custom-tag-suggest");
+        dl.innerHTML = "";
+        for (const t of state.knownCustomTags) {
+          const opt = document.createElement("option");
+          opt.value = t;
+          dl.appendChild(opt);
+        }
+      } catch {}
+    }
+
+    async function loadDir() {
+      const dir = document.getElementById("dir-input").value.trim();
+      if (!dir) return;
+      try {
+        const r = await fetch(`/api/benchmark/images?dir=${encodeURIComponent(dir)}`);
+        if (!r.ok) {
+          const txt = await r.text();
+          alert(`Erreur ${r.status} : ${txt}`);
+          return;
+        }
+        const data = await r.json();
+        state.dir = data.dir;
+        state.items = data.items || [];
+        state.idx = 0;
+        if (state.items.length === 0) {
+          document.getElementById("image-frame").innerHTML = '<div class="empty">Aucune image dans ce dossier.</div>';
+        }
+        renderCurrent();
+      } catch (e) {
+        alert(`Erreur réseau : ${e.message}`);
+      }
+    }
+
+    // ── Annotation normalization (lecture rétro-compat v1 → mémoire v2) ───
+    function normalizeAnnotation(raw) {
+      // Format v2 attendu : { score, score_legacy, image_tags, prompt_tags,
+      //                        custom_tags, flags{pattern,pattern_note,sample,publishable}, updated_at }
+      // Format v1 legacy : { score (1-10), defects[], notes (string ou JSON), publishable, updated_at }
+      const out = {
+        score: null,
+        score_legacy: null,
+        image_tags: [],
+        prompt_tags: [],
+        custom_tags: [],
+        flags: { pattern: false, pattern_note: "", sample: false, publishable: null },
+        updated_at: null,
+      };
+      if (!raw || typeof raw !== "object") return out;
+      out.updated_at = raw.updated_at || null;
+
+      // Détection v2 explicite
+      const hasV2 = ("image_tags" in raw) || ("prompt_tags" in raw) || ("flags" in raw) || ("score_legacy" in raw);
+      if (hasV2) {
+        if (typeof raw.score === "number" && raw.score >= 1 && raw.score <= 6) {
+          out.score = raw.score;
+        }
+        if (typeof raw.score_legacy === "number") out.score_legacy = raw.score_legacy;
+        if (Array.isArray(raw.image_tags))  out.image_tags  = raw.image_tags.filter(t => typeof t === "string");
+        if (Array.isArray(raw.prompt_tags)) out.prompt_tags = raw.prompt_tags.filter(t => typeof t === "string");
+        if (Array.isArray(raw.custom_tags)) out.custom_tags = raw.custom_tags.filter(t => typeof t === "string");
+        if (raw.flags && typeof raw.flags === "object") {
+          out.flags.pattern      = !!raw.flags.pattern;
+          out.flags.pattern_note = raw.flags.pattern_note || "";
+          out.flags.sample       = !!raw.flags.sample;
+          out.flags.publishable  = (raw.flags.publishable === true || raw.flags.publishable === false)
+            ? raw.flags.publishable : null;
+        }
+        return out;
+      }
+
+      // === v1 legacy → projection v2 (lecture seule, pas réécrit tant que pas save) ===
+      if (typeof raw.score === "number") {
+        out.score_legacy = raw.score;
+        if (raw.score >= 1 && raw.score <= 10) {
+          out.score = V1_SCORE_TO_V2[raw.score];
+        }
+      }
+      // defects → image_tags
+      if (Array.isArray(raw.defects)) {
+        const seen = new Set();
+        for (const d of raw.defects) {
+          const m = V1_DEFECTS_TO_V2_IMAGE[d];
+          if (m && !seen.has(m)) { seen.add(m); out.image_tags.push(m); }
+        }
+      }
+      // notes : soit JSON array (pills), soit string libre
+      if (typeof raw.notes === "string" && raw.notes.trim()) {
+        const t = raw.notes.trim();
+        let parsed = null;
+        if (t.startsWith("[")) {
+          try { parsed = JSON.parse(t); } catch {}
+        }
+        if (Array.isArray(parsed)) {
+          for (const k of parsed) {
+            if (typeof k !== "string" || !k) continue;
+            const m = V1_NOTES_TO_V2[k];
+            if (m) {
+              const arr = (m.axis === "image") ? out.image_tags : out.prompt_tags;
+              if (!arr.includes(m.key)) arr.push(m.key);
+            } else {
+              if (!out.custom_tags.includes(k)) out.custom_tags.push(k);
+            }
+          }
+        } else {
+          // Texte libre → custom tag unique
+          if (!out.custom_tags.includes(t)) out.custom_tags.push(t);
+        }
+      }
+      // publishable
+      if (raw.publishable === true || raw.publishable === false) {
+        out.flags.publishable = raw.publishable;
+      }
+      return out;
+    }
+
+    // ── Render ────────────────────────────────────────────────────────────
+    function renderCurrent() {
+      const total = state.items.length;
+      document.getElementById("counter").textContent = total ? `${state.idx + 1} / ${total}` : "— / —";
+      // progress: count annotated (score != null)
+      const annotated = state.items.filter(it => {
+        const a = normalizeAnnotation(it.annotation || {});
+        return a.score !== null;
+      }).length;
+      document.getElementById("progress-fill").style.width =
+        total ? `${(annotated / total) * 100}%` : "0%";
+      document.getElementById("progress-text").textContent =
+        total ? `${annotated} annotés / ${total} total · ${total - annotated} restants` : "—";
+      document.getElementById("prev-btn").disabled = state.idx <= 0;
+      document.getElementById("next-btn").disabled = state.idx >= total - 1;
+
+      if (total === 0) return;
+      const item = state.items[state.idx];
+      const dir = state.dir;
+
+      // Image + metrics overlay
+      const m = item.metrics || {};
+      const hist = (m.histogram || {});
+      const v = (m.vision_qc || {});
+      const overlayParts = [];
+      if (hist.color_ratio !== undefined && hist.color_ratio !== null) overlayParts.push(`color=${Number(hist.color_ratio).toFixed(3)}`);
+      if (hist.ink_ratio !== undefined && hist.ink_ratio !== null)   overlayParts.push(`ink=${Number(hist.ink_ratio).toFixed(3)}`);
+      const verdict = v.verdict || (v.json_ok === false ? "json_err" : null);
+      if (verdict) overlayParts.push(`vision=${verdict}`);
+      const flags = Array.isArray(hist.flags) ? hist.flags.filter(Boolean) : [];
+      const overlayMain = overlayParts.join(" | ");
+      const overlayWarn = flags.length ? ` | <span class="warn">⚠️ ${flags.join(",")}</span>` : "";
+      const overlayHidden = overlayParts.length === 0 ? "hidden" : "";
+      const overlayHtml = `<div class="metrics-overlay" ${overlayHidden}>${overlayMain}${overlayWarn}</div>`;
+
+      const safeAlt = String(item.filename).replace(/"/g, "&quot;");
+      const imgUrl = `/api/benchmark/file?dir=${encodeURIComponent(dir)}&name=${encodeURIComponent(item.filename)}`;
+      document.getElementById("image-frame").innerHTML = `<img src="${imgUrl}" alt="${safeAlt}">${overlayHtml}`;
+      document.getElementById("filename").textContent = item.filename;
+
+      // Tags row (filename decomposition)
+      const tagsRow = document.getElementById("tags-row");
+      tagsRow.innerHTML = "";
+      const t = item.tags || {};
+      const order = ["concept", "steps", "scheduler", "sampler", "cfg", "seed_short"];
+      for (const k of order) {
+        if (t[k] === null || t[k] === undefined) continue;
+        const span = document.createElement("span");
+        span.className = "tag";
+        span.innerHTML = `<span class="k">${k}</span><span class="v">${t[k]}</span>`;
+        tagsRow.appendChild(span);
+      }
+
+      // Prompt info (in details accordion)
+      const piEl   = document.getElementById("prompt-info");
+      const pTitle = document.getElementById("prompt-title");
+      const pTier  = document.getElementById("prompt-tier");
+      const cpBtn  = document.getElementById("copy-prompt-btn");
+      const cnBtn  = document.getElementById("copy-negative-btn");
+      const posBlock = document.getElementById("prompt-pos-block");
+      const negBlock = document.getElementById("prompt-neg-block");
+      const techBlock = document.getElementById("prompt-tech-block");
+      const pitBlock = document.getElementById("prompt-pitfalls-block");
+
+      const hasTitle = !!(item.title && String(item.title).trim());
+      const hasPrompt = !!(item.prompt && String(item.prompt).trim());
+      const hasNegative = !!(item.negative && String(item.negative).trim());
+      const hasTechnique = !!(item.technique && String(item.technique).trim());
+      const pitfallsList = Array.isArray(item.pitfalls) ? item.pitfalls.filter(p => p && String(p).trim()) : [];
+      const hasPitfalls = pitfallsList.length > 0;
+
+      if (hasTitle || hasPrompt) {
+        piEl.hidden = false;
+        pTitle.textContent = hasTitle ? item.title : "";
+        pTitle.style.display = hasTitle ? "" : "none";
+        if (item.tier) { pTier.hidden = false; pTier.textContent = `tier · ${item.tier}`; }
+        else           { pTier.hidden = true;  pTier.textContent = ""; }
+
+        if (hasPrompt) {
+          posBlock.hidden = false;
+          document.getElementById("prompt-pos-pre").textContent = item.prompt;
+          cpBtn.disabled = false;
+          cpBtn.dataset.text = item.prompt;
+        } else {
+          posBlock.hidden = true;
+          cpBtn.disabled = true;
+          cpBtn.dataset.text = "";
+        }
+        if (hasNegative) {
+          negBlock.hidden = false;
+          document.getElementById("prompt-neg-pre").textContent = item.negative;
+          cnBtn.disabled = false;
+          cnBtn.dataset.text = item.negative;
+        } else {
+          negBlock.hidden = true;
+          cnBtn.disabled = true;
+          cnBtn.dataset.text = "";
+        }
+        if (hasTechnique) {
+          techBlock.hidden = false;
+          document.getElementById("prompt-tech-pre").textContent = item.technique;
+        } else {
+          techBlock.hidden = true;
+        }
+        if (hasPitfalls) {
+          pitBlock.hidden = false;
+          document.getElementById("prompt-pitfalls-pre").textContent = pitfallsList.join(" • ");
+        } else {
+          pitBlock.hidden = true;
+        }
+        // reset copy button visual
+        cpBtn.classList.remove("copied"); cpBtn.textContent = "📋 Copier prompt";
+        cnBtn.classList.remove("copied"); cnBtn.textContent = "📋 Copier négatif";
+      } else {
+        piEl.hidden = true;
+        cpBtn.disabled = true; cnBtn.disabled = true;
+      }
+
+      // Metadata badges
+      const badgesEl = document.getElementById("meta-badges");
+      badgesEl.innerHTML = "";
+      const badgeNodes = [];
+      if (item.workflow_class && String(item.workflow_class).trim()) {
+        const b = document.createElement("span");
+        b.className = "meta-badge workflow-class";
+        b.textContent = item.workflow_class;
+        badgeNodes.push(b);
+      }
+      if (item.confidence && String(item.confidence).trim()) {
+        const conf = String(item.confidence).trim();
+        const slug = conf.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+        const known = ["haute", "moyenne", "faible"];
+        const cls = known.includes(slug) ? `confidence-${slug}` : "";
+        const b = document.createElement("span");
+        b.className = `meta-badge ${cls}`.trim();
+        b.textContent = `confidence: ${conf}`;
+        badgeNodes.push(b);
+      }
+      if (item.pipeline && String(item.pipeline).trim()) {
+        const b = document.createElement("span");
+        b.className = "meta-badge pipeline";
+        b.textContent = item.pipeline;
+        badgeNodes.push(b);
+      }
+      if (badgeNodes.length) {
+        badgeNodes.forEach(n => badgesEl.appendChild(n));
+        badgesEl.hidden = false;
+      } else {
+        badgesEl.hidden = true;
+      }
+
+      // Restore annotation (with v1→v2 read-projection)
+      const a = normalizeAnnotation(item.annotation || {});
+
+      // score 1-6
+      document.querySelectorAll(".score-btn").forEach(b =>
+        b.classList.toggle("active", Number(b.dataset.score) === a.score));
+      const legacySpan = document.getElementById("score-legacy");
+      if (a.score_legacy !== null && a.score_legacy !== undefined) {
+        legacySpan.hidden = false;
+        legacySpan.textContent = `(legacy: ${a.score_legacy}/10)`;
+      } else {
+        legacySpan.hidden = true;
+        legacySpan.textContent = "";
+      }
+
+      // image / prompt axis pills
+      document.querySelectorAll('.axis-pill[data-tag]').forEach(p => {
+        const axis = p.dataset.axis;
+        const set = (axis === "image") ? a.image_tags : a.prompt_tags;
+        p.classList.toggle("active", set.includes(p.dataset.tag));
+      });
+
+      // custom tags
+      clearCustomPills();
+      for (const c of a.custom_tags) addCustomPill(c);
+
+      // flags
+      document.getElementById("flag-pattern").checked      = !!a.flags.pattern;
+      document.getElementById("flag-pattern-note").value   = a.flags.pattern_note || "";
+      document.getElementById("pattern-note-wrap").hidden  = !a.flags.pattern;
+      document.getElementById("flag-sample").checked       = !!a.flags.sample;
+      document.getElementById("flag-publishable").checked  = a.flags.publishable === true;
+
+      // save status
+      const status = document.getElementById("save-status");
+      if (a.updated_at) {
+        status.className = "save-status saved";
+        status.textContent = `Sauvegardé · ${new Date(a.updated_at).toLocaleTimeString()}`;
+      } else {
+        status.className = "save-status";
+        status.textContent = " ";
+      }
+    }
+
+    // ── State extraction → save payload ───────────────────────────────────
+    function currentAnnotationFromUI() {
+      const score = (() => {
+        const active = document.querySelector(".score-btn.active");
+        return active ? Number(active.dataset.score) : null;
+      })();
+      const image_tags = Array.from(document.querySelectorAll('.axis-pill[data-axis="image"].active'))
+        .map(p => p.dataset.tag);
+      const prompt_tags = Array.from(document.querySelectorAll('.axis-pill[data-axis="prompt"].active'))
+        .map(p => p.dataset.tag);
+      const custom_tags = getCurrentCustomTags();
+      const flags = {
+        pattern: document.getElementById("flag-pattern").checked,
+        pattern_note: document.getElementById("flag-pattern-note").value || "",
+        sample: document.getElementById("flag-sample").checked,
+        publishable: document.getElementById("flag-publishable").checked
+          ? true
+          : (document.getElementById("flag-publishable").checked === false ? false : null),
+      };
+      // Normalize : pas de note si pas de pattern
+      if (!flags.pattern) flags.pattern_note = "";
+      return { score, image_tags, prompt_tags, custom_tags, flags };
+    }
+
+    function setScore(n) {
+      document.querySelectorAll(".score-btn").forEach(b =>
+        b.classList.toggle("active", Number(b.dataset.score) === n));
+      onAnyChange();
+    }
+
+    function onAnyChange() {
+      const status = document.getElementById("save-status");
+      status.className = "save-status saving";
+      status.textContent = "…";
+      clearTimeout(state.saveTimer);
+      state.saveTimer = setTimeout(saveCurrent, 250);
+    }
+
+    async function saveCurrent() {
+      if (!state.items.length) return;
+      const item = state.items[state.idx];
+      const ui = currentAnnotationFromUI();
+      const status = document.getElementById("save-status");
+      // Conserver score_legacy si déjà présent (lecture v1)
+      const prevAnn = normalizeAnnotation(item.annotation || {});
+      const score_legacy = prevAnn.score_legacy ?? null;
+      try {
+        const r = await fetch("/api/benchmark/annotate", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            dir: state.dir,
+            filename: item.filename,
+            score: ui.score,
+            score_legacy: score_legacy,
+            image_tags: ui.image_tags,
+            prompt_tags: ui.prompt_tags,
+            custom_tags: ui.custom_tags,
+            flags: ui.flags,
+          }),
+        });
+        if (!r.ok) {
+          const txt = await r.text();
+          status.className = "save-status error";
+          status.textContent = `Erreur ${r.status} : ${txt.slice(0, 100)}`;
+          return;
+        }
+        const data = await r.json();
+        item.annotation = data.annotation;
+        status.className = "save-status saved";
+        status.textContent = `Sauvegardé · ${new Date(data.annotation.updated_at).toLocaleTimeString()}`;
+        // Update progress
+        const total = state.items.length;
+        const annotated = state.items.filter(it => {
+          const a = normalizeAnnotation(it.annotation || {});
+          return a.score !== null;
+        }).length;
+        document.getElementById("progress-fill").style.width = total ? `${(annotated / total) * 100}%` : "0%";
+        document.getElementById("progress-text").textContent =
+          total ? `${annotated} annotés / ${total} total · ${total - annotated} restants` : "—";
+      } catch (e) {
+        status.className = "save-status error";
+        status.textContent = `Erreur réseau : ${e.message}`;
+      }
+    }
+
+    // ── Navigation ────────────────────────────────────────────────────────
+    function gotoNext()  { if (state.idx < state.items.length - 1) { state.idx++; renderCurrent(); } }
+    function gotoPrev()  { if (state.idx > 0) { state.idx--; renderCurrent(); } }
+    function gotoFirst() { if (state.items.length) { state.idx = 0; renderCurrent(); } }
+    function gotoLast()  { if (state.items.length) { state.idx = state.items.length - 1; renderCurrent(); } }
+    function isAnnotated(item) {
+      const a = normalizeAnnotation(item.annotation || {});
+      return a.score !== null;
+    }
+    function gotoNextUnannotated() {
+      for (let i = state.idx + 1; i < state.items.length; i++) {
+        if (!isAnnotated(state.items[i])) { state.idx = i; renderCurrent(); return; }
+      }
+      for (let i = 0; i < state.idx; i++) {
+        if (!isAnnotated(state.items[i])) { state.idx = i; renderCurrent(); return; }
+      }
+    }
+    function gotoPrevUnannotated() {
+      for (let i = state.idx - 1; i >= 0; i--) {
+        if (!isAnnotated(state.items[i])) { state.idx = i; renderCurrent(); return; }
+      }
+      for (let i = state.items.length - 1; i > state.idx; i--) {
+        if (!isAnnotated(state.items[i])) { state.idx = i; renderCurrent(); return; }
+      }
+    }
+
+    document.getElementById("prev-btn").addEventListener("click", gotoPrev);
+    document.getElementById("next-btn").addEventListener("click", gotoNext);
+    document.getElementById("next-unannotated-btn").addEventListener("click", gotoNextUnannotated);
+    document.getElementById("reload-btn").addEventListener("click", async () => {
+      await loadDir();
+      loadCustomTagSuggestions();
+    });
+
+    // ── Lightbox ──────────────────────────────────────────────────────────
+    function openLightbox() {
+      if (!state.items.length) return;
+      const item = state.items[state.idx];
+      const url = `/api/benchmark/file?dir=${encodeURIComponent(state.dir)}&name=${encodeURIComponent(item.filename)}`;
+      document.getElementById("lightbox-img").src = url;
+      document.getElementById("lightbox").hidden = false;
+    }
+    function closeLightbox() {
+      document.getElementById("lightbox").hidden = true;
+      document.getElementById("lightbox-img").src = "";
+    }
+    document.getElementById("image-frame").addEventListener("click", (ev) => {
+      if (ev.target && ev.target.tagName === "IMG") openLightbox();
+    });
+    document.getElementById("lightbox").addEventListener("click", closeLightbox);
+
+    // ── Copy buttons ──────────────────────────────────────────────────────
+    async function copyToClipboard(btn) {
+      const text = btn.dataset.text || "";
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        const orig = btn.textContent;
+        btn.classList.add("copied");
+        btn.textContent = "✓ Copié";
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = orig;
+        }, 1200);
+      } catch (e) {
+        alert(`Échec copie : ${e.message}`);
+      }
+    }
+    document.getElementById("copy-prompt-btn").addEventListener("click", (ev) => copyToClipboard(ev.currentTarget));
+    document.getElementById("copy-negative-btn").addEventListener("click", (ev) => copyToClipboard(ev.currentTarget));
+
+    // ── Cheat-sheet modale ────────────────────────────────────────────────
+    function openCheatSheet() { document.getElementById("cheat-sheet").hidden = false; }
+    function closeCheatSheet() { document.getElementById("cheat-sheet").hidden = true; }
+    document.getElementById("help-btn").addEventListener("click", openCheatSheet);
+    document.getElementById("cheat-sheet").addEventListener("click", (ev) => {
+      if (ev.target.id === "cheat-sheet") closeCheatSheet();
+    });
+
+    // ── Chord (D / T) ─────────────────────────────────────────────────────
+    function startChord(letter) {
+      state.chord = letter;
+      const range = (letter === "D") ? "1-9" : "1-8";
+      document.getElementById("chord-key").textContent = letter;
+      document.getElementById("chord-range").textContent = range;
+      document.getElementById("chord-overlay").hidden = false;
+      clearTimeout(state.chordTimer);
+      state.chordTimer = setTimeout(cancelChord, 1500);
+    }
+    function cancelChord() {
+      state.chord = null;
+      clearTimeout(state.chordTimer);
+      document.getElementById("chord-overlay").hidden = true;
+    }
+    function chordToggleTag(letter, num) {
+      const list = (letter === "D") ? IMAGE_KEYS_BY_NUM : PROMPT_KEYS_BY_NUM;
+      const max = (letter === "D") ? 9 : 8;
+      if (num < 1 || num > max) return;
+      const key = list[num - 1];
+      if (!key) return;
+      const pill = document.querySelector(`.axis-pill[data-tag="${key}"]`);
+      if (pill) {
+        pill.classList.toggle("active");
+        onAnyChange();
+      }
+    }
+
+    // ── Keyboard global ───────────────────────────────────────────────────
+    document.addEventListener("keydown", (ev) => {
+      const tgt = ev.target;
+      const isInput = tgt && (tgt.tagName === "INPUT" || tgt.tagName === "TEXTAREA" || tgt.isContentEditable === true);
+
+      // Cheat-sheet ouvert → seul Échap ferme
+      if (!document.getElementById("cheat-sheet").hidden) {
+        if (ev.key === "Escape") { closeCheatSheet(); ev.preventDefault(); }
+        return;
+      }
+      // Lightbox ouverte → Échap ou Z ferme
+      if (!document.getElementById("lightbox").hidden) {
+        if (ev.key === "Escape" || ev.key === "z" || ev.key === "Z") { closeLightbox(); ev.preventDefault(); }
+        return;
+      }
+      // Inputs : ne pas intercepter (sauf Escape pour annuler chord)
+      if (isInput) {
+        if (ev.key === "Escape" && state.chord) { cancelChord(); ev.preventDefault(); }
+        return;
+      }
+
+      // Chord en cours : seuls 1-9 et Escape passent
+      if (state.chord) {
+        if (ev.key === "Escape") { cancelChord(); ev.preventDefault(); return; }
+        if (ev.key >= "1" && ev.key <= "9") {
+          chordToggleTag(state.chord, Number(ev.key));
+          cancelChord();
+          ev.preventDefault();
+          return;
+        }
+        // Toute autre touche annule le chord
+        cancelChord();
+        return;
+      }
+
+      // ?  → cheat-sheet
+      if (ev.key === "?") { openCheatSheet(); ev.preventDefault(); return; }
+
+      // Navigation
+      if (ev.key === "ArrowRight") {
+        if (ev.shiftKey) gotoNextUnannotated(); else gotoNext();
+        ev.preventDefault(); return;
+      }
+      if (ev.key === "ArrowLeft") {
+        if (ev.shiftKey) gotoPrevUnannotated(); else gotoPrev();
+        ev.preventDefault(); return;
+      }
+      if (ev.key === "Home") { gotoFirst(); ev.preventDefault(); return; }
+      if (ev.key === "End")  { gotoLast(); ev.preventDefault(); return; }
+      if (ev.key === "u" || ev.key === "U") { gotoNextUnannotated(); ev.preventDefault(); return; }
+
+      // Score 1-6
+      if (ev.key >= "1" && ev.key <= "6") { setScore(Number(ev.key)); ev.preventDefault(); return; }
+
+      // Image
+      if (ev.key === "z" || ev.key === "Z") { openLightbox(); ev.preventDefault(); return; }
+      if (ev.key === "c") {
+        const btn = document.getElementById("copy-prompt-btn");
+        if (!btn.disabled) copyToClipboard(btn);
+        ev.preventDefault(); return;
+      }
+      if (ev.key === "C") {
+        const btn = document.getElementById("copy-negative-btn");
+        if (!btn.disabled) copyToClipboard(btn);
+        ev.preventDefault(); return;
+      }
+
+      // Chords D / T
+      if (ev.key === "d" || ev.key === "D") { startChord("D"); ev.preventDefault(); return; }
+      if (ev.key === "t" || ev.key === "T") { startChord("T"); ev.preventDefault(); return; }
+
+      // Flags
+      if (ev.key === "m" || ev.key === "M") {
+        const cb = document.getElementById("flag-pattern");
+        cb.checked = !cb.checked;
+        cb.dispatchEvent(new Event("change"));
+        ev.preventDefault(); return;
+      }
+      if (ev.key === "s" || ev.key === "S") {
+        const cb = document.getElementById("flag-sample");
+        cb.checked = !cb.checked;
+        onAnyChange();
+        ev.preventDefault(); return;
+      }
+      if (ev.key === "p" || ev.key === "P") {
+        const cb = document.getElementById("flag-publishable");
+        cb.checked = !cb.checked;
+        onAnyChange();
+        ev.preventDefault(); return;
+      }
+    });
+
+    // ── Bootstrap ─────────────────────────────────────────────────────────
+    buildScoreRow();
+    buildAllPills();
+    loadDirSuggestions();
+    loadCustomTagSuggestions();
+
+    const url = new URL(window.location.href);
+    const initDir = url.searchParams.get("dir");
+    if (initDir) document.getElementById("dir-input").value = initDir;
+    loadDir();
+  </script>
+</body>
+</html>
