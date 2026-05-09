@@ -1,0 +1,2743 @@
+{
+  "version": "1.0",
+  "based_on_checklist": "v2.2",
+  "validation_status": "Validé empiriquement sur 14 phases de tests + 14 cas d'échantillon production (moyenne 8.5/10)",
+  "default_negative_v3": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke",
+  "default_workflow": "WF_baseline (ERNIE-Image-Turbo Q8 GGUF + flux2-vae + ministral-3-3b, euler/normal, 8 steps, CFG 1.0)",
+  "categories": [
+    {
+      "id": "animals",
+      "name_en": "Animals",
+      "name_fr": "Animaux",
+      "subcategories": [
+        {
+          "id": "pet_animals",
+          "name_en": "Pet Animals",
+          "name_fr": "Animaux domestiques",
+          "leaf_count": 15,
+          "production_strategy": {
+            "class": "Solo animal",
+            "technique": "Solo classique en profil + décor minimal",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Vue frontale risquée pour chats/chiens — préférer profil ou trois-quarts"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Phase A1 validée (lion). Animaux domestiques très représentés dans datasets."
+          }
+        },
+        {
+          "id": "farm_animals",
+          "name_en": "Farm Animals",
+          "name_fr": "Animaux de la ferme",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo animal",
+            "technique": "Solo classique avec décor de ferme simple",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Préciser 'four legs visible on the ground' pour les ongulés"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Validé Phase A (farm horse). Peut nécessiter pose statique pour anatomie correcte."
+          }
+        },
+        {
+          "id": "african_wild_animals",
+          "name_en": "African Wild Animals",
+          "name_fr": "Animaux sauvages d'Afrique",
+          "leaf_count": 13,
+          "production_strategy": {
+            "class": "Solo animal",
+            "technique": "Solo en profil + savane/jungle silhouette en arrière-plan",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Acacia tree à préciser 'fully visible' (Insight A)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Validé sur lion. Éléphant, girafe, zèbre devraient suivre."
+          }
+        },
+        {
+          "id": "asian_wild_animals",
+          "name_en": "Asian Wild Animals",
+          "name_fr": "Animaux sauvages d'Asie",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo animal",
+            "technique": "Solo en profil + bambou/montagne stylisée",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Panda risque de fusion noir/blanc — bien définir les zones par contour"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Animaux asiatiques bien représentés (bias dataset Baidu)."
+          }
+        },
+        {
+          "id": "american_wild_animals",
+          "name_en": "American Wild Animals",
+          "name_fr": "Animaux sauvages d'Amérique",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo animal",
+            "technique": "Solo en profil + paysage américain stylisé",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards, faible risque."
+          }
+        },
+        {
+          "id": "arctic_animals",
+          "name_en": "Arctic Animals",
+          "name_fr": "Animaux de l'Arctique",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo animal",
+            "technique": "Solo + paysage glacé minimaliste",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Pingouins en groupe : utiliser formule procession §6.4"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Iceberg/glace à préciser 'fully visible' (Insight A)."
+          }
+        },
+        {
+          "id": "marine_animals",
+          "name_en": "Marine Animals",
+          "name_fr": "Animaux marins",
+          "leaf_count": 15,
+          "production_strategy": {
+            "class": "Solo fish",
+            "technique": "Solo en eau + bulles ou plantes marines simples",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Requin de face risqué — préférer profil"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Validé sur monarch butterfly principe similaire (corps + ailes/nageoires symétriques)."
+          }
+        },
+        {
+          "id": "insects_and_minibeasts",
+          "name_en": "Insects and Minibeasts",
+          "name_fr": "Insectes et petites bêtes",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo insect",
+            "technique": "Solo + élément botanique simple (feuille, fleur)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Préciser nombre exact de pattes : 6 pour insectes, 8 pour araignées"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Symétrie volontaire OK pour papillons/coccinelles (Z6 perfect)."
+          }
+        },
+        {
+          "id": "birds",
+          "name_en": "Birds",
+          "name_fr": "Oiseaux",
+          "leaf_count": 14,
+          "production_strategy": {
+            "class": "Solo bird",
+            "technique": "Solo + posture explicite (Insight D critique)",
+            "resolution": "1024x1024",
+            "negative_extra": [
+              "bird standing in air",
+              "vertical flying body"
+            ],
+            "pitfalls": [
+              "Insight D : oiseau en vol DOIT préciser 'flying with wings spread open and body horizontal in flight pose'",
+              "Sinon retour à pose de repos par défaut (oiseau debout)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Cas 15 a montré le bug 'oiseau debout dans le ciel'. Vigilance forte."
+          }
+        },
+        {
+          "id": "dinosaurs_and_prehistoric",
+          "name_en": "Dinosaurs and Prehistoric Animals",
+          "name_fr": "Dinosaures et préhistoire",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo animal",
+            "technique": "Solo en profil + paysage préhistorique stylisé",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "T-Rex : préciser 'two short arms' pour éviter membres en trop"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Anatomie spécifique. Validation cas par cas recommandée."
+          }
+        },
+        {
+          "id": "fantasy_animals",
+          "name_en": "Fantasy Animals",
+          "name_fr": "Animaux fantastiques",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo animal",
+            "technique": "Solo en pose épique + éléments fantastiques",
+            "resolution": "1024x1024",
+            "negative_extra": [
+              "scary, menacing, sharp teeth visible"
+            ],
+            "pitfalls": [
+              "Dragon : version kid-friendly, pas effrayant"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Animaux fantastiques très représentés. Adapter pour audience enfants 3-12."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fictional_characters",
+      "name_en": "Fictional Characters",
+      "name_fr": "Personnages fictifs",
+      "subcategories": [
+        {
+          "id": "disney_universe",
+          "name_en": "Disney Universe",
+          "name_fr": "Univers Disney",
+          "leaf_count": 15,
+          "production_strategy": {
+            "class": "Solo humain (personnalité)",
+            "technique": "Personnage nommé OU version générique (cf. risque IP §4.2)",
+            "resolution": "1024x1024",
+            "negative_extra": [
+              "scary, dark expression"
+            ],
+            "pitfalls": [
+              "IP risk : production version générique pour usage commercial"
+            ],
+            "pipeline": "ERNIE direct (test) / Production version générique",
+            "confidence": "Haute (pour test), Moyenne (commercial)",
+            "notes": "Phase F validée que les versions A nommées sont reconnaissables. ATTENTION IP en commercial."
+          }
+        },
+        {
+          "id": "pixar_universe",
+          "name_en": "Pixar Universe",
+          "name_fr": "Univers Pixar",
+          "leaf_count": 13,
+          "production_strategy": {
+            "class": "Solo humain ou objet",
+            "technique": "Idem Disney (IP risk identique)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "IP risk fort, surtout characters récents (Lightning McQueen)"
+            ],
+            "pipeline": "ERNIE direct (test) / Production version générique",
+            "confidence": "Moyenne",
+            "notes": "Privilégier versions génériques pour production commerciale."
+          }
+        },
+        {
+          "id": "marvel_universe",
+          "name_en": "Marvel Universe",
+          "name_fr": "Univers Marvel",
+          "leaf_count": 13,
+          "production_strategy": {
+            "class": "Solo humain (personnalité)",
+            "technique": "Personnage nommé en pose héroïque + accessoire signature",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "scary, dark expression, blood, weapons"
+            ],
+            "pitfalls": [
+              "IP risk Disney+Marvel"
+            ],
+            "pipeline": "ERNIE direct (test) / Production version générique",
+            "confidence": "Moyenne",
+            "notes": "Format portrait pour mettre en valeur la pose héroïque verticale."
+          }
+        },
+        {
+          "id": "dc_universe",
+          "name_en": "DC Universe",
+          "name_fr": "Univers DC",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo humain (personnalité)",
+            "technique": "Idem Marvel",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "scary, dark expression, blood, weapons"
+            ],
+            "pitfalls": [
+              "IP risk Warner Bros"
+            ],
+            "pipeline": "ERNIE direct (test) / Production version générique",
+            "confidence": "Moyenne",
+            "notes": "Idem Marvel."
+          }
+        },
+        {
+          "id": "popular_anime",
+          "name_en": "Popular Anime",
+          "name_fr": "Anime populaires",
+          "leaf_count": 15,
+          "production_strategy": {
+            "class": "Solo humain ou créature",
+            "technique": "Personnage nommé style anime simplifié",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "IP risk Pokemon/Naruto/etc."
+            ],
+            "pipeline": "ERNIE direct (test) / Production version générique",
+            "confidence": "Moyenne",
+            "notes": "Pikachu et co fortement représentés dans datasets — bonne reconnaissance."
+          }
+        },
+        {
+          "id": "classic_cartoons",
+          "name_en": "Classic Cartoons",
+          "name_fr": "Cartoons classiques",
+          "leaf_count": 11,
+          "production_strategy": {
+            "class": "Solo humain/animal cartoon",
+            "technique": "Personnage en pose iconique",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "IP variable selon âge des personnages"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Bugs Bunny, Tweety très représentés."
+          }
+        },
+        {
+          "id": "modern_cartoons",
+          "name_en": "Modern Cartoons",
+          "name_fr": "Cartoons modernes",
+          "leaf_count": 13,
+          "production_strategy": {
+            "class": "Solo humain/animal cartoon",
+            "technique": "Personnage en pose iconique",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "IP risk fort (Bluey, Miraculous)"
+            ],
+            "pipeline": "ERNIE direct (test) / Production version générique",
+            "confidence": "Moyenne",
+            "notes": "Productions récentes, IP active."
+          }
+        },
+        {
+          "id": "video_games",
+          "name_en": "Video Game Characters",
+          "name_fr": "Personnages de jeux vidéo",
+          "leaf_count": 15,
+          "production_strategy": {
+            "class": "Solo humain (personnalité)",
+            "technique": "Personnage nommé en pose iconique",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "IP risk Nintendo/Sony/etc."
+            ],
+            "pipeline": "ERNIE direct (test) / Production version générique",
+            "confidence": "Moyenne",
+            "notes": "Mario et co très représentés. Mais IP forte."
+          }
+        },
+        {
+          "id": "original_superheroes",
+          "name_en": "Original Superheroes",
+          "name_fr": "Super-héros originaux",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo humain (générique)",
+            "technique": "Super-héros générique sans IP",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "scary, dark, weapons"
+            ],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Aucun IP risk. Catégorie sûre."
+          }
+        }
+      ]
+    },
+    {
+      "id": "sports_personalities",
+      "name_en": "Sports Personalities",
+      "name_fr": "Personnalités sportives",
+      "subcategories": [
+        {
+          "id": "football_stars",
+          "name_en": "Football Stars",
+          "name_fr": "Stars du football",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo humain (personnalité) + action figée",
+            "technique": "Personnage nommé en mid-action (Z7 perfect)",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "extra arm, third arm"
+            ],
+            "pitfalls": [
+              "Pose dynamique → risque membres en trop. Énumérer les bras."
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Validé cas 14 Messi = perfect. Pattern reproductible pour tous les joueurs."
+          }
+        },
+        {
+          "id": "basketball_stars",
+          "name_en": "Basketball Stars",
+          "name_fr": "Stars du basketball",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo humain (personnalité) + action figée",
+            "technique": "Personnage nommé en mid-action (dunk, shoot, dribble)",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "extra arm, third arm"
+            ],
+            "pitfalls": [
+              "Idem football"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Reproduire pattern Messi sur LeBron, Curry, etc."
+          }
+        },
+        {
+          "id": "tennis_stars",
+          "name_en": "Tennis Stars",
+          "name_fr": "Stars du tennis",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo humain (personnalité) + action figée",
+            "technique": "Personnage nommé avec raquette en service ou frappe",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "extra arm, third arm"
+            ],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern stable."
+          }
+        },
+        {
+          "id": "olympic_athletes",
+          "name_en": "Olympic Athletes",
+          "name_fr": "Athlètes olympiques",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo humain (personnalité) + action figée",
+            "technique": "Personnage nommé selon discipline",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "extra arm, third arm, extra leg"
+            ],
+            "pitfalls": [
+              "Gymnastique : poses très complexes, tester chaque cas"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Variabilité selon discipline. Sprint OK, gymnastique à valider."
+          }
+        },
+        {
+          "id": "boxing_martial_arts_stars",
+          "name_en": "Boxing and Martial Arts Stars",
+          "name_fr": "Stars de la boxe et arts martiaux",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo humain (personnalité) + action figée",
+            "technique": "Personnage nommé en pose de combat",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "scary, blood, violence"
+            ],
+            "pitfalls": [
+              "Adapter pour audience enfants 3-12"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Tonalité : focus sur la pose technique, pas le combat agressif."
+          }
+        },
+        {
+          "id": "cycling_stars",
+          "name_en": "Cycling Stars",
+          "name_fr": "Stars du cyclisme",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo humain (personnalité) sur vélo",
+            "technique": "Personnage nommé sur vélo en course",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Interaction main-guidon : préférer 'riding it' à 'holding handlebars' (cf. C3)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Format panoramique pour le mouvement horizontal."
+          }
+        },
+        {
+          "id": "winter_sports_stars",
+          "name_en": "Winter Sports Stars",
+          "name_fr": "Stars des sports d'hiver",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo humain (personnalité) en action",
+            "technique": "Personnage nommé sur skis/snowboard en mouvement",
+            "resolution": "848x1264",
+            "negative_extra": [],
+            "pitfalls": [
+              "Posture explicite (Insight D) — pas de skieur 'debout dans la pente'"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Posture du corps en descente à expliciter."
+          }
+        },
+        {
+          "id": "national_teams_and_clubs",
+          "name_en": "National Teams and Iconic Clubs",
+          "name_fr": "Équipes nationales et clubs emblématiques",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Multi-sujets ou Scène",
+            "technique": "Frise 1×N (pas panoramique partagé — anti-pattern Z5b)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "IP risk logos clubs"
+            ],
+            "pipeline": "ERNIE direct (test) / Production simplifiée",
+            "confidence": "Faible",
+            "notes": "Logos officiels = IP. Privilégier scènes sans logos identifiables."
+          }
+        }
+      ]
+    },
+    {
+      "id": "sports_and_physical_activities",
+      "name_en": "Sports and Physical Activities",
+      "name_fr": "Sports et activités physiques",
+      "subcategories": [
+        {
+          "id": "team_sports",
+          "name_en": "Team Sports",
+          "name_fr": "Sports collectifs",
+          "leaf_count": 11,
+          "production_strategy": {
+            "class": "Multi-sujets ou Scène d'action",
+            "technique": "Action figée du moment-clé (Z7) en cadrage panoramique",
+            "resolution": "1376x768",
+            "negative_extra": [
+              "extra arm, third arm, extra leg"
+            ],
+            "pitfalls": [
+              "4+ joueurs dans même scène : utiliser frise 1×N (anti-pattern Z5b)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Préférer 1-3 joueurs dans la scène, ou frise."
+          }
+        },
+        {
+          "id": "individual_sports",
+          "name_en": "Individual Sports",
+          "name_fr": "Sports individuels",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo humain en action",
+            "technique": "Solo + pose dynamique (Z7)",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "extra arm, third arm, extra leg"
+            ],
+            "pitfalls": [
+              "Posture explicite obligatoire (Insight D)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Une feuille = un sportif générique = un mouvement précis."
+          }
+        },
+        {
+          "id": "winter_sports_activities",
+          "name_en": "Winter Sports Activities",
+          "name_fr": "Sports d'hiver",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo humain en action",
+            "technique": "Idem individual_sports + paysage neige",
+            "resolution": "848x1264",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Paysage neige minimaliste."
+          }
+        },
+        {
+          "id": "water_sports",
+          "name_en": "Water Sports",
+          "name_fr": "Sports nautiques",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo humain en action",
+            "technique": "Idem + horizon mer (P3 validé)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Horizon mer comme séparation 2 plans naturelle"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern P3 réutilisable."
+          }
+        },
+        {
+          "id": "extreme_sports",
+          "name_en": "Extreme Sports",
+          "name_fr": "Sports extrêmes",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo humain en action",
+            "technique": "Action figée + motion lines (Z7)",
+            "resolution": "848x1264",
+            "negative_extra": [],
+            "pitfalls": [
+              "Posture aérienne explicite (Insight D)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sports aériens (BMX, parachute) : posture critique."
+          }
+        },
+        {
+          "id": "equestrian_sports",
+          "name_en": "Equestrian Sports",
+          "name_fr": "Sports équestres",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Humain + entité (cheval)",
+            "technique": "Formule asymétrie OU humain SUR cheval",
+            "resolution": "848x1264",
+            "negative_extra": [],
+            "pitfalls": [
+              "Si humain sur cheval : 'rider seated on the horse, both clearly visible'"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern humain+entité validé en C."
+          }
+        },
+        {
+          "id": "martial_arts_disciplines",
+          "name_en": "Martial Arts Disciplines",
+          "name_fr": "Disciplines d'arts martiaux",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo humain en action",
+            "technique": "Pose technique précise",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "scary, blood, violence"
+            ],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pose technique > combat."
+          }
+        },
+        {
+          "id": "dance_styles",
+          "name_en": "Dance Styles",
+          "name_fr": "Styles de danse",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo humain en action",
+            "technique": "Solo + pose dynamique (jambes/bras explicites)",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "extra arm, third arm, extra leg"
+            ],
+            "pitfalls": [
+              "Poses ballet très complexes — tester individuellement"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Énumérer membres pour éviter ajouts."
+          }
+        },
+        {
+          "id": "yoga_and_wellbeing",
+          "name_en": "Yoga and Wellbeing",
+          "name_fr": "Yoga et bien-être",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo humain en pose",
+            "technique": "Pose statique précise",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "extra arm, extra leg"
+            ],
+            "pitfalls": [
+              "Tree pose validé Phase B5. Étendre aux autres poses."
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Validé empiriquement."
+          }
+        },
+        {
+          "id": "esports_and_gaming",
+          "name_en": "E-Sports and Competitive Gaming",
+          "name_fr": "E-sport et gaming compétitif",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo humain ou Scène",
+            "technique": "Solo gamer + setup OU foule arena",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Foule = pattern multi-sujets, basculer en frise"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Cas 'arena crowd' : utiliser frise 1×N."
+          }
+        }
+      ]
+    },
+    {
+      "id": "professions",
+      "name_en": "Professions and Jobs",
+      "name_fr": "Métiers et professions",
+      "subcategories": [
+        {
+          "id": "health_professions",
+          "name_en": "Health Professions",
+          "name_fr": "Métiers de la santé",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Humain + entité OU Solo humain pose statique",
+            "technique": "Formule asymétrie médecin+patient OU solo en pose",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Cas 5 doctor+child validé. Pattern reproductible."
+          }
+        },
+        {
+          "id": "security_and_emergency",
+          "name_en": "Security and Emergency",
+          "name_fr": "Sécurité et urgences",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo humain pose active",
+            "technique": "Solo + accessoire signature + énumération anti-bras",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "extra arm, third arm"
+            ],
+            "pitfalls": [
+              "Firefighter validé cas 4. Énumération bras critique."
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern validé."
+          }
+        },
+        {
+          "id": "education_and_culture",
+          "name_en": "Education and Culture",
+          "name_fr": "Éducation et culture",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Humain + entité OU Multi-sujets",
+            "technique": "Teacher solo OU classroom en frise 1×N",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Classroom multi-élèves : frise 1×4 obligatoire (cas 13 anti-pattern Z5b)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Choix éditorial : solo ou frise selon le visuel souhaité."
+          }
+        },
+        {
+          "id": "science_and_technology_jobs",
+          "name_en": "Science and Technology Jobs",
+          "name_fr": "Métiers science et technologie",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo humain + accessoires",
+            "technique": "Solo + outils scientifiques",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "arts_and_creation_jobs",
+          "name_en": "Arts and Creative Jobs",
+          "name_fr": "Métiers d'arts et de création",
+          "leaf_count": 11,
+          "production_strategy": {
+            "class": "Solo humain + accessoires",
+            "technique": "Solo + outils artistiques",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Painter at easel : préciser 'easel fully visible'"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Décors d'atelier à préciser fully visible."
+          }
+        },
+        {
+          "id": "food_jobs",
+          "name_en": "Food Industry Jobs",
+          "name_fr": "Métiers de l'alimentation",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo humain + accessoires",
+            "technique": "Solo + outils cuisine",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "4+ chefs : frise 1×4 obligatoire (cas Z5b)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Validé cas Z5b pour multi-chefs."
+          }
+        },
+        {
+          "id": "agriculture_and_nature_jobs",
+          "name_en": "Agriculture and Nature Jobs",
+          "name_fr": "Métiers de l'agriculture et de la nature",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Humain + entité",
+            "technique": "Formule asymétrie humain+outil OU humain+animal",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern asymétrie validé."
+          }
+        },
+        {
+          "id": "construction_and_crafts",
+          "name_en": "Construction and Crafts",
+          "name_fr": "Bâtiment et artisanat",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo humain + accessoires",
+            "technique": "Solo + outil + pose active",
+            "resolution": "1024x1024",
+            "negative_extra": [
+              "extra arm, third arm"
+            ],
+            "pitfalls": [
+              "Énumérer bras pour pose active"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern firefighter étendu."
+          }
+        },
+        {
+          "id": "transport_and_logistics",
+          "name_en": "Transport and Logistics",
+          "name_fr": "Transport et logistique",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Humain + véhicule",
+            "technique": "Pilote/conducteur dans cabine OU à côté",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Si dans cabine : préciser 'pilot seen through windshield'"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Variabilité selon véhicule."
+          }
+        },
+        {
+          "id": "commerce_and_services",
+          "name_en": "Commerce and Services",
+          "name_fr": "Commerce et services",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Humain + entité OU Solo",
+            "technique": "Solo + accessoires métier",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "media_and_communication",
+          "name_en": "Media and Communication",
+          "name_fr": "Communication et média",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo humain + accessoires",
+            "technique": "Solo + micro/caméra/etc.",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "sports_and_leisure_jobs",
+          "name_en": "Sports and Leisure Jobs",
+          "name_fr": "Métiers du sport et des loisirs",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo humain + accessoires",
+            "technique": "Solo + sifflet/raquette/etc.",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tools_and_tooling",
+      "name_en": "Tools and Tooling",
+      "name_fr": "Outils et outillage",
+      "subcategories": [
+        {
+          "id": "hand_tools",
+          "name_en": "Hand Tools",
+          "name_fr": "Outils manuels",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Objet centré sur fond blanc",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Catégorie la plus simple. Faible volume SEO mais essentielle pour le complétisme."
+          }
+        },
+        {
+          "id": "gardening_tools",
+          "name_en": "Gardening Tools",
+          "name_fr": "Outils de jardinage",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem hand_tools",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        },
+        {
+          "id": "kitchen_tools",
+          "name_en": "Kitchen Tools",
+          "name_fr": "Outils de cuisine",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        },
+        {
+          "id": "power_tools",
+          "name_en": "Power Tools",
+          "name_fr": "Outils électroportatifs",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        },
+        {
+          "id": "painting_and_decoration_tools",
+          "name_en": "Painting and Decoration Tools",
+          "name_fr": "Outils de peinture et décoration",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        },
+        {
+          "id": "measuring_instruments",
+          "name_en": "Measuring Instruments",
+          "name_fr": "Instruments de mesure",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem + détails techniques",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Cadran d'horloge : préciser 'all 12 numbers visible'"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Détails internes à préciser."
+          }
+        },
+        {
+          "id": "traditional_farm_tools",
+          "name_en": "Traditional Farm Tools",
+          "name_fr": "Outils agricoles traditionnels",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem hand_tools",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Outils anciens moins représentés. Tester."
+          }
+        },
+        {
+          "id": "sewing_tools",
+          "name_en": "Sewing Tools",
+          "name_fr": "Outils de couture",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vehicles_and_machines",
+      "name_en": "Vehicles and Machines",
+      "name_fr": "Engins, machines et véhicules",
+      "subcategories": [
+        {
+          "id": "construction_machinery",
+          "name_en": "Construction Machinery",
+          "name_fr": "Engins de chantier",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo objet (véhicule)",
+            "technique": "Vue trois-quarts + sol simple",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Préciser nombre de roues/chenilles"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Engins très représentés."
+          }
+        },
+        {
+          "id": "agricultural_machinery",
+          "name_en": "Agricultural Machinery",
+          "name_fr": "Engins agricoles",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet (véhicule)",
+            "technique": "Idem + sol champ",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        },
+        {
+          "id": "emergency_vehicles",
+          "name_en": "Emergency Vehicles",
+          "name_fr": "Véhicules d'urgence",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet (véhicule)",
+            "technique": "Idem + détails signaux lumineux",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        },
+        {
+          "id": "land_transport",
+          "name_en": "Land Transport",
+          "name_fr": "Transports terrestres",
+          "leaf_count": 13,
+          "production_strategy": {
+            "class": "Solo objet (véhicule)",
+            "technique": "Vue profil ou trois-quarts",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Voiture : 4 roues bien visibles"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Catégorie volumineuse, sujets standards."
+          }
+        },
+        {
+          "id": "air_transport",
+          "name_en": "Air Transport",
+          "name_fr": "Transports aériens",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo objet en vol OU au sol",
+            "technique": "Solo + ciel ou piste",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Si en vol : posture explicite (Insight D)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Format panoramique pour avion en vol."
+          }
+        },
+        {
+          "id": "sea_transport",
+          "name_en": "Sea Transport",
+          "name_fr": "Transports maritimes",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo objet sur eau",
+            "technique": "Solo + horizon mer (P3 pattern)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern 2 plans avec horizon mer validé."
+          }
+        },
+        {
+          "id": "space_vehicles",
+          "name_en": "Space Vehicles",
+          "name_fr": "Engins spatiaux",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet en espace",
+            "technique": "Solo + ciel étoilé minimal",
+            "resolution": "848x1264",
+            "negative_extra": [],
+            "pitfalls": [
+              "Fond noir étoilé : exception au fond blanc, à éviter pour coloriage simple"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Préférer fond blanc avec étoiles dessinées plutôt que vrai fond noir."
+          }
+        },
+        {
+          "id": "industrial_machines",
+          "name_en": "Industrial Machines",
+          "name_fr": "Machines industrielles",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Solo objet centré",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "sport_vehicles",
+          "name_en": "Sport Vehicles",
+          "name_fr": "Véhicules de sport",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet en mouvement",
+            "technique": "Solo + motion lines (Z7)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Format panoramique pour vitesse."
+          }
+        },
+        {
+          "id": "historic_vehicles",
+          "name_en": "Historic Vehicles",
+          "name_fr": "Véhicules historiques",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Vue profil + détails époque",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Vintage car : préciser époque pour détails"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Détails historiques à préciser."
+          }
+        }
+      ]
+    },
+    {
+      "id": "household_appliances",
+      "name_en": "Household Appliances",
+      "name_fr": "Électroménager et appareils du quotidien",
+      "subcategories": [
+        {
+          "id": "kitchen_appliances",
+          "name_en": "Kitchen Appliances",
+          "name_fr": "Appareils de cuisine",
+          "leaf_count": 11,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Objet centré + détails fonctionnels",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Réfrigérateur : préciser 'door closed' ou 'door open' explicite"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "cleaning_appliances",
+          "name_en": "Cleaning Appliances",
+          "name_fr": "Appareils d'entretien ménager",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        },
+        {
+          "id": "climate_appliances",
+          "name_en": "Climate Appliances",
+          "name_fr": "Climatisation et chauffage",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        },
+        {
+          "id": "sound_and_image",
+          "name_en": "Sound and Image",
+          "name_fr": "Son et image",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Idem."
+          }
+        },
+        {
+          "id": "computing_and_phones",
+          "name_en": "Computing and Phones",
+          "name_fr": "Informatique et téléphonie",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem + écran simple",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Écran : préciser 'simple icons on screen, no real text'"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Texte sur écran à éviter."
+          }
+        },
+        {
+          "id": "consumer_electronics",
+          "name_en": "Consumer Electronics",
+          "name_fr": "Électronique grand public",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "smart_home_and_energy",
+          "name_en": "Smart Home and Energy",
+          "name_fr": "Maison connectée et énergie",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Idem",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Sujets récents, moyennement représentés."
+          }
+        }
+      ]
+    },
+    {
+      "id": "geometry_and_math",
+      "name_en": "Geometry and Visual Mathematics",
+      "name_fr": "Géométrie et mathématiques visuelles",
+      "subcategories": [
+        {
+          "id": "basic_shapes",
+          "name_en": "Basic Shapes",
+          "name_fr": "Formes de base",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo objet géométrique",
+            "technique": "Forme centrée simple",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Précisions exactes : préciser 'perfect [shape]' (perfect circle, perfect square)"
+            ],
+            "pipeline": "ERNIE direct (test) / SVG paramétrique si imprécis",
+            "confidence": "Moyenne",
+            "notes": "Formes simples OK, précisions géométriques peu fiables."
+          }
+        },
+        {
+          "id": "geometric_solids",
+          "name_en": "Geometric Solids",
+          "name_fr": "Solides géométriques",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Pipeline alternatif",
+            "technique": "Hors capacité ERNIE selon checklist §4.3",
+            "resolution": "N/A",
+            "negative_extra": [],
+            "pitfalls": [
+              "3D pure non-fiable"
+            ],
+            "pipeline": "SVG paramétrique / Pythreejs",
+            "confidence": "Haute (pour SVG)",
+            "notes": "Catégorie hors-périmètre ERNIE. Pipeline parallèle obligatoire."
+          }
+        },
+        {
+          "id": "geometric_patterns",
+          "name_en": "Geometric Patterns",
+          "name_fr": "Motifs géométriques",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Pattern décoratif",
+            "technique": "Pattern simple OK, complexe à éviter",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Tessellations strictes : hors capacité (cf. §4.3)"
+            ],
+            "pipeline": "ERNIE direct (simples) / SVG paramétrique (complexes)",
+            "confidence": "Moyenne",
+            "notes": "Stripes/chevrons OK. Tessellations parfaites en SVG."
+          }
+        },
+        {
+          "id": "symmetry_and_tessellation",
+          "name_en": "Symmetry and Tessellation",
+          "name_fr": "Symétrie et pavage",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Pattern décoratif (avec symétrie volontaire)",
+            "technique": "Symétrie volontaire (Z6 perfect)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Tessellations parfaites : SVG pas ERNIE"
+            ],
+            "pipeline": "ERNIE direct (symétrie) / SVG (tessellation)",
+            "confidence": "Haute (symétrie), Faible (tessellation)",
+            "notes": "Pattern Z6 réutilisable pour butterfly et mandalas."
+          }
+        },
+        {
+          "id": "illustrated_numbers",
+          "name_en": "Illustrated Numbers",
+          "name_fr": "Nombres illustrés",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Multi-sujets via grille (méta-pattern §2)",
+            "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+              "Comptage 10+ : composition PIL post-traitement"
+            ],
+            "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+            "confidence": "Haute",
+            "notes": "Game-changer Phase E.six/E.sept. Pattern documenté §6.5."
+          }
+        },
+        {
+          "id": "fractions_and_proportions",
+          "name_en": "Fractions and Proportions",
+          "name_fr": "Fractions et proportions",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet géométrique",
+            "technique": "Pizza/cake en parts identifiables",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Préciser le compte exact des parts"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Comptage parts ≤ 6 OK. Au-delà : pipeline alternatif."
+          }
+        },
+        {
+          "id": "angles_and_measurements",
+          "name_en": "Angles and Measurements",
+          "name_fr": "Angles et mesures",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Pipeline alternatif",
+            "technique": "Géométrie pure : SVG",
+            "resolution": "N/A",
+            "negative_extra": [],
+            "pitfalls": [
+              "Hors capacité ERNIE"
+            ],
+            "pipeline": "SVG paramétrique",
+            "confidence": "Haute (pour SVG)",
+            "notes": "Catégorie hors-périmètre ERNIE."
+          }
+        }
+      ]
+    },
+    {
+      "id": "alphabet_and_visual_language",
+      "name_en": "Alphabet and Visual Language",
+      "name_fr": "Alphabet et langage visuel",
+      "subcategories": [
+        {
+          "id": "english_alphabet_illustrated",
+          "name_en": "English Alphabet Illustrated",
+          "name_fr": "Alphabet anglais illustré",
+          "leaf_count": 26,
+          "production_strategy": {
+            "class": "Lettre + objet",
+            "technique": "Lettre géante + objet illustration",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Préciser typographie thick"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern 'Letter X with Object' standard."
+          }
+        },
+        {
+          "id": "french_alphabet_illustrated",
+          "name_en": "French Alphabet Illustrated",
+          "name_fr": "Alphabet français illustré",
+          "leaf_count": 26,
+          "production_strategy": {
+            "class": "Lettre + objet",
+            "technique": "Idem English",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Caractères accentués : préciser ou utiliser SVG"
+            ],
+            "pipeline": "ERNIE direct (lettres simples) / Hybride pour accents",
+            "confidence": "Moyenne",
+            "notes": "Caractères É È etc. à valider."
+          }
+        },
+        {
+          "id": "arabic_alphabet_illustrated",
+          "name_en": "Arabic Alphabet Illustrated",
+          "name_fr": "Alphabet arabe illustré",
+          "leaf_count": 28,
+          "production_strategy": {
+            "class": "Pipeline alternatif (lettre) + ERNIE (objet)",
+            "technique": "Texte arabe en SVG, objet en ERNIE, composition",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Texte arabe HORS CAPACITÉ ERNIE (§4.3)"
+            ],
+            "pipeline": "Hybride : SVG (lettre) + ERNIE (illustration) + composition PIL",
+            "confidence": "Haute (avec hybride)",
+            "notes": "Catégorie majeure pour Alwan Books. Hybride documenté."
+          }
+        },
+        {
+          "id": "decorative_letters",
+          "name_en": "Decorative Letters",
+          "name_fr": "Lettres décoratives",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Pattern décoratif",
+            "technique": "Lettre stylisée",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Styles spécifiques à tester (graffiti, médiéval)."
+          }
+        },
+        {
+          "id": "decorative_numbers",
+          "name_en": "Decorative Numbers",
+          "name_fr": "Chiffres décoratifs",
+          "leaf_count": 11,
+          "production_strategy": {
+            "class": "Multi-sujets via grille (méta-pattern §2)",
+            "technique": "Chiffre + N objets : grille 3×3 (validé E.sept perfect)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "1 à 5 : énumération directe",
+              "6 à 9 : grille 3×3 (Phase E.six/E.sept)",
+              "10+ : composition PIL"
+            ],
+            "pipeline": "ERNIE direct + grille",
+            "confidence": "Haute",
+            "notes": "Pattern le plus emblématique de la session de tests."
+          }
+        },
+        {
+          "id": "picture_word_imagier",
+          "name_en": "Picture Word Imagier",
+          "name_fr": "Imagier mot-image",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Grille imagier annoté",
+            "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Mots simples seulement, pas de phrases"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Catégorie majeure validée. Reproductible pour fruits, légumes, couleurs, vêtements, etc."
+          }
+        },
+        {
+          "id": "comic_bubbles_and_onomatopoeia",
+          "name_en": "Comic Bubbles and Onomatopoeia",
+          "name_fr": "Bulles de BD et onomatopées",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet (bulle texte)",
+            "technique": "Bulle stylisée + texte simple",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Texte court (3-5 lettres max)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "BOOM, POW, ZAP : OK. Phrases : risqué."
+          }
+        },
+        {
+          "id": "country_flags_with_names",
+          "name_en": "Country Flags with Names",
+          "name_fr": "Drapeaux des pays avec noms",
+          "leaf_count": 15,
+          "production_strategy": {
+            "class": "Solo objet (drapeau)",
+            "technique": "Drapeau + nom du pays",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Drapeaux complexes (croissants, étoiles précises) : SVG préférable",
+              "Une feuille = un drapeau (jamais regrouper, cf. X3 anti-pattern)"
+            ],
+            "pipeline": "ERNIE direct (simples) / SVG (complexes)",
+            "confidence": "Moyenne",
+            "notes": "France, USA, Tunisie : OK ERNIE. Détails complexes : SVG."
+          }
+        }
+      ]
+    },
+    {
+      "id": "human_body_and_health",
+      "name_en": "Human Body and Health",
+      "name_fr": "Corps humain et santé",
+      "subcategories": [
+        {
+          "id": "external_anatomy",
+          "name_en": "External Anatomy",
+          "name_fr": "Anatomie externe",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet anatomique + labels",
+            "technique": "Schéma annoté (Z1 pattern)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Labels courts uniquement"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern Z1 validé."
+          }
+        },
+        {
+          "id": "internal_organs_educational",
+          "name_en": "Internal Organs Educational",
+          "name_fr": "Organes internes éducatifs",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet anatomique + labels",
+            "technique": "Schéma simplifié + labels",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Anatomie simplifiée pour kids 3-12"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Tester chaque organe. Cœur, poumons OK probable. Cerveau plus complexe."
+          }
+        },
+        {
+          "id": "five_senses",
+          "name_en": "Five Senses",
+          "name_fr": "Cinq sens",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo objet (organe sensoriel)",
+            "technique": "Organe + élément sensoriel associé",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern simple validé."
+          }
+        },
+        {
+          "id": "hygiene_and_self_care",
+          "name_en": "Hygiene and Self Care",
+          "name_fr": "Hygiène et soins personnels",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo humain en action",
+            "technique": "Solo + accessoire hygiène",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Brushing teeth validé Phase B1"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern enfant + activité quotidienne validé."
+          }
+        },
+        {
+          "id": "healthy_eating",
+          "name_en": "Healthy Eating",
+          "name_fr": "Alimentation saine",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Imagier différencié OU Solo",
+            "technique": "Grille 3×3 (X1) ou solo plat",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Validé cas 6 vegetable_garden_basket."
+          }
+        },
+        {
+          "id": "sport_and_health",
+          "name_en": "Sport and Health",
+          "name_fr": "Sport et santé",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo humain en action",
+            "technique": "Solo + activité physique",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "extra arm, extra leg"
+            ],
+            "pitfalls": [
+              "Posture explicite (Insight D) pour mouvements"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern enfant + sport reproductible."
+          }
+        },
+        {
+          "id": "emotions_and_expressions",
+          "name_en": "Emotions and Expressions",
+          "name_fr": "Émotions et expressions",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Imagier annoté 3×3 OU Solo visage",
+            "technique": "Grille 3×3 (X6) ou solo expression",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "X6 OK validé. Pattern reproductible."
+          }
+        },
+        {
+          "id": "body_diversity",
+          "name_en": "Body Diversity",
+          "name_fr": "Diversité des corps",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo humain",
+            "technique": "Solo + accessoire spécifique",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Représenter avec dignité, pas comme curiosité"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Catégorie inclusive importante."
+          }
+        },
+        {
+          "id": "pregnancy_and_birth",
+          "name_en": "Pregnancy and Birth",
+          "name_fr": "Grossesse et naissance",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo humain (mère)",
+            "technique": "Solo en pose + détail abdomen",
+            "resolution": "848x1264",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Sujet sensible. Tester représentations."
+          }
+        },
+        {
+          "id": "life_cycle_and_aging",
+          "name_en": "Life Cycle and Aging",
+          "name_fr": "Cycle de vie et vieillissement",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Frise narrative 1×N (pattern X2)",
+            "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Insight C : une transition à la fois entre cases"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern X2 validé. Insights B et C critiques."
+          }
+        }
+      ]
+    },
+    {
+      "id": "daily_life_and_environments",
+      "name_en": "Daily Life and Environments",
+      "name_fr": "Vie quotidienne et environnements",
+      "subcategories": [
+        {
+          "id": "house_room_by_room",
+          "name_en": "House Room by Room",
+          "name_fr": "Maison pièce par pièce",
+          "leaf_count": 11,
+          "production_strategy": {
+            "class": "Scène intérieure",
+            "technique": "Pièce vue d'ensemble + meubles minimaux",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Mobilier 'fully visible' (Insight A)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern cadrage dans cadrage (Z4) si fenêtre."
+          }
+        },
+        {
+          "id": "school_life",
+          "name_en": "School Life",
+          "name_fr": "Vie scolaire",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Multi-sujets (frise)",
+            "technique": "Classroom : frise 1×N (anti-pattern Z5b)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Ne JAMAIS faire panoramique 4+ élèves entassés"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Cas 13 anti-pattern documenté."
+          }
+        },
+        {
+          "id": "neighborhood_and_city",
+          "name_en": "Neighborhood and City",
+          "name_fr": "Quartier et ville",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Scène panoramique",
+            "technique": "Vue panoramique 1376x768 + plans (P3 ou P4)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Multi-plans : convention positionnelle (P4 perfect)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Pattern multi-plans réutilisable."
+          }
+        },
+        {
+          "id": "world_cuisine",
+          "name_en": "World Cuisine",
+          "name_fr": "Cuisine du monde",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo objet (plat)",
+            "technique": "Plat + détails culturels",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "X3 anti-pattern : ne JAMAIS regrouper plats par continent en grille",
+              "Bias asiatique du modèle"
+            ],
+            "pipeline": "ERNIE direct (un plat à la fois)",
+            "confidence": "Haute (un par un)",
+            "notes": "Une feuille = un plat. Pas de regroupement géographique."
+          }
+        },
+        {
+          "id": "food_categories",
+          "name_en": "Food Categories",
+          "name_fr": "Catégories d'aliments",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Imagier différencié 3×3",
+            "technique": "Grille 3×3 (X1 perfect)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern X1 validé. Reproductible."
+          }
+        },
+        {
+          "id": "transport_and_travel",
+          "name_en": "Transport and Travel",
+          "name_fr": "Transport et voyage",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Scène",
+            "technique": "Scène panoramique avec véhicule + personnages",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Si 4+ personnages : frise 1×N"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Pattern variable selon sujet."
+          }
+        }
+      ]
+    },
+    {
+      "id": "nature_and_environment",
+      "name_en": "Nature and Environment",
+      "name_fr": "Nature et environnement",
+      "subcategories": [
+        {
+          "id": "four_seasons",
+          "name_en": "Four Seasons",
+          "name_fr": "Quatre saisons",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Frise narrative 1×4",
+            "technique": "Frise 1×4 (X2 perfect, cas 9 testé presque ratage étape 4)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Insight B : enrichir la dernière case (winter)",
+              "Insight C : une transition à la fois (juste les feuilles, pas le sol+animaux+ciel)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute (avec règles)",
+            "notes": "Cas 9 validé presque parfait. Ajustements via Insights B et C."
+          }
+        },
+        {
+          "id": "weather_phenomena",
+          "name_en": "Weather Phenomena",
+          "name_fr": "Phénomènes météo",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet météo",
+            "technique": "Solo + élément représentatif",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Insight D : feuilles qui tombent en posture explicite"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern simple, posture critique pour objets en chute."
+          }
+        },
+        {
+          "id": "landscapes_world",
+          "name_en": "Landscapes Around the World",
+          "name_fr": "Paysages du monde",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Scène paysage",
+            "technique": "2 plans avec horizon (P3 pattern)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Cas 15 tropical_beach : oiseau debout (Insight D)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern 2 plans validé. Vigilance posture oiseaux."
+          }
+        },
+        {
+          "id": "plants_and_flowers",
+          "name_en": "Plants and Flowers",
+          "name_fr": "Plantes et fleurs",
+          "leaf_count": 12,
+          "production_strategy": {
+            "class": "Solo objet (plante)",
+            "technique": "Solo + sol minimal",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "outer_space",
+          "name_en": "Outer Space",
+          "name_fr": "Espace extra-atmosphérique",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Scène spatiale",
+            "technique": "Solo objet sur fond étoilé minimal",
+            "resolution": "848x1264",
+            "negative_extra": [],
+            "pitfalls": [
+              "Solar System (10 planètes) : composition PIL nécessaire"
+            ],
+            "pipeline": "ERNIE direct (objets) / Composition PIL (système)",
+            "confidence": "Moyenne",
+            "notes": "Anti-pattern ERNIE : 10+ éléments en scène libre."
+          }
+        },
+        {
+          "id": "ocean_and_seabed",
+          "name_en": "Ocean and Seabed",
+          "name_fr": "Océan et fond marin",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Scène multi-plans OU multi-sujets",
+            "technique": "P5 écosystème étagé OU procession",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "P5c testé : noms d'animaux marins simples (pas 'flying squirrel')"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Multi-plans ou frise selon le sujet."
+          }
+        },
+        {
+          "id": "ecology_and_planet_care",
+          "name_en": "Ecology and Planet Care",
+          "name_fr": "Écologie et protection de la planète",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Comparatif before/after OU Solo",
+            "technique": "X4 pattern pour deforestation, solo pour panneaux solaires",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Insight C : une transition à la fois pour comparatifs",
+              "Cas 12 deforestation validé presque parfait avec Insight C"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern comparatif validé."
+          }
+        }
+      ]
+    },
+    {
+      "id": "festivals_and_celebrations",
+      "name_en": "Festivals and Celebrations",
+      "name_fr": "Fêtes et célébrations",
+      "subcategories": [
+        {
+          "id": "christmas",
+          "name_en": "Christmas",
+          "name_fr": "Noël",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Variable selon sujet",
+            "technique": "Solo objet OU scène (4+ frise)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Reindeer pulling sleigh : multi-sujets, frise possible"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets très représentés."
+          }
+        },
+        {
+          "id": "halloween",
+          "name_en": "Halloween",
+          "name_fr": "Halloween",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo humain ou objet",
+            "technique": "Costume kid-friendly, pas effrayant",
+            "resolution": "1024x1024",
+            "negative_extra": [
+              "scary, blood, dark expression, sharp teeth"
+            ],
+            "pitfalls": [
+              "Adapter ton pour audience 3-12"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Negative anti-effrayant systématique."
+          }
+        },
+        {
+          "id": "easter",
+          "name_en": "Easter",
+          "name_fr": "Pâques",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo objet ou scène",
+            "technique": "Solo + scène jardin",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "ramadan_and_eid",
+          "name_en": "Ramadan and Eid",
+          "name_fr": "Ramadan et Aïd",
+          "leaf_count": 11,
+          "production_strategy": {
+            "class": "Variable",
+            "technique": "Solo objet (lanterne) OU scène famille",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Calligraphie arabe : pipeline hybride"
+            ],
+            "pipeline": "ERNIE direct (objets) / Hybride (textes)",
+            "confidence": "Haute",
+            "notes": "Catégorie clé Alwan Books. Bien représenté."
+          }
+        },
+        {
+          "id": "hanukkah",
+          "name_en": "Hanukkah",
+          "name_fr": "Hanoukka",
+          "leaf_count": 5,
+          "production_strategy": {
+            "class": "Solo objet",
+            "technique": "Solo objet centré",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Étoile de David : préciser '6 points exactly'"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "diwali",
+          "name_en": "Diwali",
+          "name_fr": "Diwali",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo objet ou pattern",
+            "technique": "Diya solo, Rangoli pattern",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Rangoli complexe : SVG préférable"
+            ],
+            "pipeline": "ERNIE direct (simples) / SVG (Rangoli complexe)",
+            "confidence": "Moyenne",
+            "notes": "Patterns décoratifs à tester."
+          }
+        },
+        {
+          "id": "new_year_celebrations",
+          "name_en": "New Year Celebrations",
+          "name_fr": "Célébrations du nouvel an",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Variable",
+            "technique": "Solo ou scène",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Chinese dragon : pose explicite"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets variés selon culture."
+          }
+        },
+        {
+          "id": "love_and_family_days",
+          "name_en": "Love and Family Days",
+          "name_fr": "Fêtes de l'amour et de la famille",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo objet ou humain+entité",
+            "technique": "Carte solo OU famille en interaction",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        },
+        {
+          "id": "birthdays",
+          "name_en": "Birthdays",
+          "name_fr": "Anniversaires",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Variable (solo objet ou frise pour party)",
+            "technique": "Solo cake/cadeau OU frise 1×4 pour party",
+            "resolution": "1024x1024 ou 1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Cas 8 validé pour party en frise"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern frise validé."
+          }
+        },
+        {
+          "id": "carnival_and_mardi_gras",
+          "name_en": "Carnival and Mardi Gras",
+          "name_fr": "Carnaval et Mardi Gras",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo humain OU objet",
+            "technique": "Costume détaillé",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets standards."
+          }
+        }
+      ]
+    },
+    {
+      "id": "art_creativity_and_decorative_patterns",
+      "name_en": "Art Creativity and Decorative Patterns",
+      "name_fr": "Art créativité et motifs décoratifs",
+      "subcategories": [
+        {
+          "id": "mandalas",
+          "name_en": "Mandalas",
+          "name_fr": "Mandalas",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Pattern décoratif (symétrie volontaire)",
+            "technique": "Symétrie volontaire (Z6 perfect)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Mandalas très complexes : multiple générations + sélection"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern Z6 réutilisable."
+          }
+        },
+        {
+          "id": "world_decorative_patterns",
+          "name_en": "World Decorative Patterns",
+          "name_fr": "Motifs décoratifs du monde",
+          "leaf_count": 11,
+          "production_strategy": {
+            "class": "Pattern décoratif",
+            "technique": "Pattern simple ou via SVG si complexe",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Zellige, kufique : SVG paramétrique obligatoire"
+            ],
+            "pipeline": "ERNIE direct (simples) / SVG (zellige, kufique)",
+            "confidence": "Moyenne",
+            "notes": "Hors capacité documenté pour tessellations strictes."
+          }
+        },
+        {
+          "id": "abstract_patterns_for_kids",
+          "name_en": "Abstract Patterns for Kids",
+          "name_fr": "Motifs abstraits pour enfants",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Pattern décoratif simple",
+            "technique": "Pattern libre",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Patterns libres OK."
+          }
+        },
+        {
+          "id": "street_art_and_graffiti",
+          "name_en": "Street Art and Graffiti",
+          "name_fr": "Street art et graffiti",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Pattern décoratif (texte stylisé)",
+            "technique": "Texte court stylisé + détails",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Texte court (5 lettres max)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Style spécifique."
+          }
+        },
+        {
+          "id": "famous_artworks_inspired",
+          "name_en": "Famous Artworks Inspired",
+          "name_fr": "Œuvres célèbres revisitées",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Scène inspirée œuvre",
+            "technique": "Réinterprétation simplifiée",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "IP : œuvres post-1928 protégées"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Œuvres domaine public uniquement."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fantasy_magic_and_tales",
+      "name_en": "Fantasy Magic and Tales",
+      "name_fr": "Fantasy magie et contes",
+      "subcategories": [
+        {
+          "id": "classic_european_tales",
+          "name_en": "Classic European Tales",
+          "name_fr": "Contes européens classiques",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Scène ou solo personnage",
+            "technique": "Personnage en pose iconique + scène",
+            "resolution": "1024x1024",
+            "negative_extra": [
+              "scary, dark"
+            ],
+            "pitfalls": [
+              "Domaine public, OK pour usage commercial"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Très représenté dans datasets."
+          }
+        },
+        {
+          "id": "arabian_nights_tales",
+          "name_en": "Arabian Nights Tales",
+          "name_fr": "Contes des Mille et une nuits",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Scène ou solo personnage",
+            "technique": "Personnage en pose + détails orientaux",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Catégorie importante Alwan Books."
+          }
+        },
+        {
+          "id": "medieval_fantasy",
+          "name_en": "Medieval Fantasy",
+          "name_fr": "Fantasy médiévale",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo personnage ou créature",
+            "technique": "Pose épique + détails époque",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "scary, blood, weapons threatening"
+            ],
+            "pitfalls": [
+              "Dragons : version kid-friendly"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Très représenté."
+          }
+        },
+        {
+          "id": "witchcraft_and_magic",
+          "name_en": "Witchcraft and Magic",
+          "name_fr": "Sorcellerie et magie",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Solo humain ou objet",
+            "technique": "Sorcière friendly, pas effrayante",
+            "resolution": "1024x1024",
+            "negative_extra": [
+              "scary, dark, sharp teeth, evil"
+            ],
+            "pitfalls": [
+              "Adapter pour kids"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Adapter ton."
+          }
+        },
+        {
+          "id": "world_mythologies",
+          "name_en": "World Mythologies",
+          "name_fr": "Mythologies du monde",
+          "leaf_count": 13,
+          "production_strategy": {
+            "class": "Solo personnage mythologique",
+            "technique": "Pose iconique + attribut signature",
+            "resolution": "848x1264",
+            "negative_extra": [
+              "scary, blood, sharp teeth"
+            ],
+            "pitfalls": [
+              "Méduse, Anubis : version kid-friendly"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Adaptation pour audience 3-12."
+          }
+        },
+        {
+          "id": "steampunk_and_uchronia",
+          "name_en": "Steampunk and Uchronia",
+          "name_fr": "Steampunk et uchronie",
+          "leaf_count": 6,
+          "production_strategy": {
+            "class": "Solo objet ou personnage",
+            "technique": "Détails mécaniques + style époque",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Style spécifique, niche SEO."
+          }
+        }
+      ]
+    },
+    {
+      "id": "sciences_and_technology",
+      "name_en": "Sciences and Technology",
+      "name_fr": "Sciences et technologie",
+      "subcategories": [
+        {
+          "id": "robots_and_artificial_intelligence",
+          "name_en": "Robots and Artificial Intelligence",
+          "name_fr": "Robots et intelligence artificielle",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet ou personnage robot",
+            "technique": "Solo + pose statique ou simple",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Robots représentés."
+          }
+        },
+        {
+          "id": "scientific_experiments",
+          "name_en": "Scientific Experiments",
+          "name_fr": "Expériences scientifiques",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Humain + entité (instrument)",
+            "technique": "Enfant + accessoire scientifique (formule asymétrie)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern enfant + outil validé."
+          }
+        },
+        {
+          "id": "historic_inventions",
+          "name_en": "Historic Inventions",
+          "name_fr": "Inventions historiques",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet historique",
+            "technique": "Solo + détails époque",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets bien représentés."
+          }
+        },
+        {
+          "id": "computing_illustrated",
+          "name_en": "Computing Illustrated",
+          "name_fr": "Informatique illustrée",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet ou Humain + entité",
+            "technique": "Setup PC ou enfant à l'ordinateur",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Code à l'écran : préciser 'simple symbolic code, no real text'"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Texte sur écran à éviter."
+          }
+        },
+        {
+          "id": "space_exploration",
+          "name_en": "Space Exploration",
+          "name_fr": "Exploration spatiale",
+          "leaf_count": 10,
+          "production_strategy": {
+            "class": "Solo objet ou humain en scaphandre",
+            "technique": "Solo en pose + fond espace minimal",
+            "resolution": "848x1264",
+            "negative_extra": [],
+            "pitfalls": [
+              "Astronaute en flottement : posture explicite (Insight D)"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Posture flottement critique."
+          }
+        }
+      ]
+    },
+    {
+      "id": "modern_themes_and_trends",
+      "name_en": "Modern Themes and Trends",
+      "name_fr": "Thèmes et tendances modernes",
+      "subcategories": [
+        {
+          "id": "kawaii_and_chibi",
+          "name_en": "Kawaii and Chibi",
+          "name_fr": "Kawaii et chibi",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo objet style kawaii",
+            "technique": "Style kawaii avec gros yeux + visage",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Style très représenté."
+          }
+        },
+        {
+          "id": "pixel_art_and_retro_gaming",
+          "name_en": "Pixel Art and Retro Gaming",
+          "name_fr": "Pixel art et jeux vidéo rétro",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Pattern pixelisé",
+            "technique": "Style pixel art simple",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Pixel art = grille pixels carrés. Préciser 'pixelated style'"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Style à valider."
+          }
+        },
+        {
+          "id": "social_media_illustrated",
+          "name_en": "Social Media Illustrated",
+          "name_fr": "Réseaux sociaux illustrés",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Variable",
+            "technique": "Solo objet (smartphone) ou scène simple",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [
+              "Logos : remplacer par génériques"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "IP risk pour logos."
+          }
+        },
+        {
+          "id": "sustainability_and_eco_living",
+          "name_en": "Sustainability and Eco Living",
+          "name_fr": "Développement durable et éco-vie",
+          "leaf_count": 8,
+          "production_strategy": {
+            "class": "Solo objet ou comparatif",
+            "technique": "Solo objet OU before/after (X4)",
+            "resolution": "1024x1024",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Sujets contemporains, bien représentés."
+          }
+        },
+        {
+          "id": "diversity_and_inclusion",
+          "name_en": "Diversity and Inclusion",
+          "name_fr": "Diversité et inclusion",
+          "leaf_count": 7,
+          "production_strategy": {
+            "class": "Multi-sujets",
+            "technique": "Frise 1×N (anti-pattern Z5b si > 3)",
+            "resolution": "1376x768",
+            "negative_extra": [],
+            "pitfalls": [
+              "Représentation respectueuse"
+            ],
+            "pipeline": "ERNIE direct",
+            "confidence": "Moyenne",
+            "notes": "Frise plus respectueuse que entassement."
+          }
+        },
+        {
+          "id": "kid_mental_wellbeing",
+          "name_en": "Kid Mental Wellbeing",
+          "name_fr": "Bien-être mental des enfants",
+          "leaf_count": 9,
+          "production_strategy": {
+            "class": "Solo humain en pose",
+            "technique": "Solo + pose calme/méditation",
+            "resolution": "848x1264",
+            "negative_extra": [],
+            "pitfalls": [],
+            "pipeline": "ERNIE direct",
+            "confidence": "Haute",
+            "notes": "Pattern yoga validé."
+          }
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "total_categories": 18,
+    "total_subcategories": 145,
+    "total_leaves": 1376,
+    "by_confidence": {
+      "Haute": 93,
+      "Moyenne": 44,
+      "Faible": 1,
+      "Mixte": 2,
+      "Haute (pour SVG)": 2,
+      "Haute (avec hybride)": 1,
+      "Haute (un par un)": 1,
+      "Haute (avec règles)": 1
+    },
+    "by_pipeline": {
+      "ERNIE direct": 122,
+      "ERNIE direct (test) / Production version générique": 7,
+      "ERNIE direct (test) / Production simplifiée": 1,
+      "ERNIE direct (test) / SVG paramétrique si imprécis": 1,
+      "SVG paramétrique / Pythreejs": 1,
+      "ERNIE direct (simples) / SVG paramétrique (complexes)": 1,
+      "ERNIE direct (symétrie) / SVG (tessellation)": 1,
+      "ERNIE direct (1-9 avec grille) / Composition PIL (10+)": 1,
+      "SVG paramétrique": 1,
+      "ERNIE direct (lettres simples) / Hybride pour accents": 1,
+      "Hybride : SVG (lettre) + ERNIE (illustration) + composition PIL": 1,
+      "ERNIE direct + grille": 1,
+      "ERNIE direct (simples) / SVG (complexes)": 1,
+      "ERNIE direct (un plat à la fois)": 1,
+      "ERNIE direct (objets) / Composition PIL (système)": 1,
+      "ERNIE direct (objets) / Hybride (textes)": 1,
+      "ERNIE direct (simples) / SVG (Rangoli complexe)": 1,
+      "ERNIE direct (simples) / SVG (zellige, kufique)": 1
+    }
+  }
+}
