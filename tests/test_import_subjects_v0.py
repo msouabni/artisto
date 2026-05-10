@@ -258,12 +258,14 @@ class TestImportSubjects:
         assert row.tags == []
         assert row.note is None
         assert row.status == "draft"
-        assert row.enrichment is None
-        assert row.prompt_positive is None
-        assert isinstance(row.metadata_, dict)
-        assert row.metadata_["imported_from"] == "coloring_taxonomy_full.json"
-        assert row.metadata_["import_run"] == "20260510T120000Z"
-        assert row.metadata_["root"] == "animals"
+        # V1.2 livré : `brief` au lieu de `prompt_positive`, `subject_metadata`
+        # au lieu de `metadata`. `enrichment` non livré (info dans
+        # `subject_metadata`).
+        assert row.brief is None
+        assert isinstance(row.subject_metadata, dict)
+        assert row.subject_metadata["imported_from"] == "coloring_taxonomy_full.json"
+        assert row.subject_metadata["import_run"] == "20260510T120000Z"
+        assert row.subject_metadata["root"] == "animals"
 
     def test_limit_caps_inserts(self, session):
         leaves = imp.flatten_leaves(MINI_TAXONOMY)

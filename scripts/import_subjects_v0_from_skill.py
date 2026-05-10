@@ -95,19 +95,20 @@ def _make_subject_id(leaf_id: str) -> str:
     return f"sub_{leaf_id}"
 
 
-def _term_exists(session, term_id: str) -> bool:
-    """Vérifie qu'un term existe (compte robuste).
+def _term_lookup_vocabulary(session, term_id: str) -> str | None:
+    """Renvoie le ``vocabulary_id`` du term s'il existe, sinon ``None``.
 
-    Note: ``term`` a une PK composite ``(id, vocabulary_id)`` dans le schéma
-    actuel mais ``id`` reste unique en pratique pour les leaves taxonomie.
+    Note: ``term`` a une PK composite ``(id, vocabulary_id)``. On prend le
+    premier match (les leaves taxonomie sont uniques par id dans la pratique
+    courante).
     """
     from sqlalchemy import text as sql_text
 
     row = session.execute(
-        sql_text("SELECT 1 FROM term WHERE id = :tid LIMIT 1"),
+        sql_text("SELECT vocabulary_id FROM term WHERE id = :tid LIMIT 1"),
         {"tid": term_id},
     ).first()
-    return row is not None
+    return row[0] if row is not None else None
 
 
 def _subject_already_imported(session, term_id: str, source: str) -> bool:
@@ -174,7 +175,8 @@ def import_subjects(
         name_en = leaf["name_en"]
         root = leaf["root"]
 
-        if not _term_exists(session, leaf_id):
+        vocabulary_id = _term_lookup_vocabulary(session, leaf_id)
+        if vocabulary_id is None:
             stats["orphans"].append(
                 {"leaf_id": leaf_id, "root": root, "reason": "no term row"}
             )
@@ -195,22 +197,25 @@ def import_subjects(
                 )
             continue
 
+        now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         subject = Subject(
             id=subject_id,
             term_id=leaf_id,
+            vocabulary_id=vocabulary_id,
             name=name_en,
             source=source,
             tags=[],
             note=None,
             status="draft",
-            enrichment=None,
-            prompt_positive=None,
-            metadata_={
+            brief=None,
+            subject_metadata={
                 "imported_from": "coloring_taxonomy_full.json",
                 "import_run": import_run_ts,
                 "root": root,
                 "path": leaf["path"],
             },
+            created_at=now_iso,
+            updated_at=now_iso,
         )
         session.add(subject)
         # Flush pour détecter les violations d'unicité tôt et avancer le compteur réel.
