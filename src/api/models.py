@@ -176,6 +176,10 @@ class ImageOutput(Base):
     model_name: Mapped[str | None] = mapped_column(Text)
     model_config: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[str | None] = mapped_column(Text)
+    # Tags QC déterministes posés par le worker `image_qc_auto` (brief
+    # 2026-05-10). JSON cross-dialect : liste de strings sur SQLite,
+    # JSONB côté Postgres via la migration 0008.
+    qc_tags: Mapped[list | None] = mapped_column(JSON, nullable=True)
 
 
 class ImageTaxonomyTag(Base):

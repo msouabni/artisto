@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import logging
 import random
+import uuid
 from pathlib import Path
 from typing import Any
 
@@ -269,9 +270,53 @@ class ImageWorker(BaseWorker):
                     """,
                     [now, result_payload, duration_ms, job_id],
                 )
+            # Trigger QC auto sur l'image_output fraîchement créé.
+            # Best-effort : un échec d'enqueue ne doit jamais faire échouer
+            # la génération (le QC peut être relancé à la main via API).
+            try:
+                self._enqueue_qc_job(conn, out_id, now)
+            except Exception as exc:
+                logger.warning(
+                    "Échec enqueue image_qc_auto pour image_output=%s : %s",
+                    out_id,
+                    exc,
+                )
             conn.session.commit()
         finally:
             conn.close()
+
+    def _enqueue_qc_job(self, conn, image_output_id: str, now: str) -> None:
+        """Crée un job ``image_qc_auto`` avec ``entity_id=<image_output_id>``.
+
+        N'enqueue rien si la table ``job_type_config`` n'a pas la ligne
+        ``image_qc_auto`` (déploiement progressif). Idempotence simple :
+        un seul job pending par image_output_id.
+        """
+        cfg_row = conn.execute(
+            "SELECT 1 FROM job_type_config WHERE type = ?",
+            ["image_qc_auto"],
+        ).fetchone()
+        if not cfg_row:
+            return
+        existing = conn.execute(
+            """
+            SELECT id FROM job
+            WHERE type = ? AND entity_id = ? AND status IN ('pending', 'running')
+            LIMIT 1
+            """,
+            ["image_qc_auto", image_output_id],
+        ).fetchone()
+        if existing:
+            return
+        qc_job_id = f"qc_{image_output_id}_{uuid.uuid4().hex[:8]}"
+        conn.execute(
+            """
+            INSERT INTO job (id, type, status, config, created_at, priority,
+                              retry_count, max_retries, entity_type, entity_id)
+            VALUES (?, ?, 'pending', '{}', ?, 5, 0, 3, 'image_output', ?)
+            """,
+            [qc_job_id, "image_qc_auto", now, image_output_id],
+        )
 
     def handle_failure(self, job: dict[str, Any], error: Exception) -> None:
         """Conserve la politique de retry du worker de base et remet l'image dans un état lisible."""
