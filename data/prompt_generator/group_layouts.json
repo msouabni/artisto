@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "source_skill": ".claude/skills/prompt-taxonomy-ecosystem.skill",
+    "rule": "T30 — Groupe de personnages narratifs (techniques.md ~l. 1208)",
+    "rule_quote": "Un groupe de personnages (conte, famille, équipe) ne peut pas utiliser le template solo. Chaque personnage doit être positionné explicitement avec son attribut distinctif. Position explicite — left / middle / right. Attribut distinctif par personnage — objet tenu, vêtement, accessoire. Supprimer mid-action / motion lines / focused expression — inadaptés aux contes.",
+    "transfer_date": "2026-05-10",
+    "brief": "docs/architect/briefs/2026-05-10_brief-transfert-T22-T27-T30-anatomie.md",
+    "coverage": "Couvre les leafs groupe narratif annotés sur template solo (résultat : 1 seul personnage généré ou comptage instable). Détection croisée : `_NUMBER_PREFIXES` (three_, four_, ..., twelve_) sur leaf_id PUIS lookup direct dans group_layouts (la présence dans group_layouts est l'autorité)."
+  },
+  "groups": {
+    "three_little_pigs": {
+      "count": 3,
+      "subject_type": "little pigs",
+      "layout": "standing together side by side on a simple ground line",
+      "characters": [
+        {"position": "on the left", "attribute": "holding a bundle of straw"},
+        {"position": "in the middle", "attribute": "holding wooden planks"},
+        {"position": "on the right", "attribute": "holding bricks"}
+      ],
+      "expression": "all three pigs smiling and facing forward, full body of all three visible"
+    },
+    "spring_chicks_with_mother": {
+      "count": 4,
+      "subject_type": "chicks with their mother hen",
+      "layout": "arranged on a simple ground line",
+      "characters": [
+        {"position": "in the middle", "attribute": "one mother hen larger, standing with wings folded"},
+        {"position": "on her left", "attribute": "two small chicks side by side, wings folded"},
+        {"position": "on her right", "attribute": "one small chick pecking at the ground"}
+      ],
+      "expression": "all four birds smiling and facing forward, full body of all visible"
+    },
+    "three_billy_goats_gruff": {
+      "count": 3,
+      "subject_type": "billy goats",
+      "layout": "standing in single file on a simple bridge line",
+      "characters": [
+        {"position": "on the left", "attribute": "the smallest goat with short horns"},
+        {"position": "in the middle", "attribute": "the medium-sized goat with curved horns"},
+        {"position": "on the right", "attribute": "the largest goat with long thick horns"}
+      ],
+      "expression": "all three goats facing right, full body of all three visible"
+    },
+    "three_bears": {
+      "count": 3,
+      "subject_type": "bears",
+      "layout": "standing together on a simple ground line",
+      "characters": [
+        {"position": "on the left", "attribute": "the largest papa bear"},
+        {"position": "in the middle", "attribute": "the medium-sized mama bear"},
+        {"position": "on the right", "attribute": "the smallest baby bear"}
+      ],
+      "expression": "all three bears smiling and facing forward, full body of all three visible"
+    },
+    "seven_dwarfs": {
+      "count": 7,
+      "subject_type": "dwarfs",
+      "layout": "standing together in a single row on a simple ground line",
+      "characters": [
+        {"position": "first from the left", "attribute": "wearing a tall pointed hat and a long beard"},
+        {"position": "second", "attribute": "wearing round glasses and a short beard"},
+        {"position": "third", "attribute": "yawning with one hand near the mouth"},
+        {"position": "fourth in the middle", "attribute": "smiling broadly with rosy cheeks drawn as simple curves"},
+        {"position": "fifth", "attribute": "with eyes squeezed shut about to sneeze, hands cupped near the nose"},
+        {"position": "sixth", "attribute": "with arms crossed and a frown"},
+        {"position": "last on the right", "attribute": "shy with hands clasped in front, looking down"}
+      ],
+      "expression": "all seven dwarfs facing forward, full body of all seven visible"
+    }
+  }
+}

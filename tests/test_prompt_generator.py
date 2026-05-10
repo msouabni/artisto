@@ -24,20 +24,29 @@ from services.prompt_generator import (  # noqa: E402  (sys.path tweak)
     NEGATIVE_V3,
     PromptGenerator,
     _BEFORE_AFTER_STATES,
+    _CANONICAL_OUTFITS,
+    _CANONICAL_POSES,
     _DIRECTIONAL_OVERRIDES,
     _EXPRESSIVE_FACES,
     _GRID_CELL_CONTENTS,
+    _GROUP_LAYOUTS,
     _ISOLATION,
     _ISOLATION_HUMAN,
     _ISOLATION_OBJECT,
+    _NUMBER_PREFIXES,
     _RISKY_BACKWARD_ELEMENTS,
     _detect_emotion,
+    _has_number_prefix,
     _is_t23_singular_face,
     set_before_after_states,
+    set_canonical_outfits,
+    set_canonical_poses,
     set_grid_cell_contents,
+    set_group_layouts,
     template_before_after,
     template_grid_3x3_annotated,
     template_grid_3x3_imagier,
+    template_group_positioned,
     template_human_plus_entity,
     template_personality_action,
     template_pose_static,
@@ -764,3 +773,403 @@ def test_build_prompt_solo_human_propagates_isolation_human():
     assert _ISOLATION_HUMAN in result["positive"], (
         f"Suffixe _ISOLATION_HUMAN absent du build complet pour {candidate}"
     )
+
+
+# ===========================================================================
+# T22 — Tenues spécialisées : description granulaire
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T22
+# ===========================================================================
+T22_COVERED_LEAFS = [
+    "polo_player",
+    "dressage_horse",
+    "bungee_jumper",
+    "tango_couple",
+    "fencer",
+    "jockey",
+    "archer",
+    "surgeon",
+]
+
+
+def test_t22_canonical_outfits_cover_min_eight_leafs():
+    """Brief T22 : couverture minimale de 8 leafs annotés `image_anatomie_pb`."""
+    assert len(_CANONICAL_OUTFITS) >= 8, (
+        f"Couverture T22 insuffisante ({len(_CANONICAL_OUTFITS)} < 8). "
+        f"Voir data/prompt_generator/canonical_outfits.json."
+    )
+
+
+def test_t22_outfits_have_required_fields():
+    """Toutes les entrées doivent fournir un `outfit_clause` non vide."""
+    for leaf_id, payload in _CANONICAL_OUTFITS.items():
+        assert isinstance(payload.get("outfit_clause"), str)
+        assert payload["outfit_clause"].strip(), f"{leaf_id}: outfit_clause vide"
+
+
+def test_t22_covers_documented_outfit_leafs():
+    """Les leafs documentés dans le brief T22 doivent être couverts."""
+    missing = [lid for lid in T22_COVERED_LEAFS if lid not in _CANONICAL_OUTFITS]
+    assert not missing, f"Leafs T22 non couverts : {missing}"
+
+
+def test_t22_outfits_avoid_color_nouns():
+    """Les outfit_clauses ne doivent pas contenir de noms de couleur explicites
+    (FILT _COLOR_NOUNS strippe red/white/blue/etc. — l'outfit serait amputé)."""
+    forbidden = {
+        "red", "blue", "green", "yellow", "white", "black", "pink", "orange",
+        "purple", "brown",
+    }
+    for leaf_id, payload in _CANONICAL_OUTFITS.items():
+        words = set(payload["outfit_clause"].lower().split())
+        # nettoyage simple ponctuation
+        cleaned = {w.strip(",.;:") for w in words}
+        intersect = cleaned & forbidden
+        assert not intersect, (
+            f"{leaf_id}: outfit_clause contient des noms de couleur strippés par FILT : {intersect}"
+        )
+
+
+def test_template_solo_human_t22_injects_outfit_when_present():
+    """`bungee_jumper` doit recevoir la tenue granulaire (T22)."""
+    leaf = {"id": "bungee_jumper", "name_en": "Bungee Jumper"}
+    positive = template_solo_human(leaf, strategy={})
+    payload = _CANONICAL_OUTFITS["bungee_jumper"]
+    assert payload["outfit_clause"] in positive
+    # Le bare nom ne doit pas s'afficher seul (`one single bungee jumper` est
+    # remplacé par le subject_clause + outfit_clause)
+    assert "harness around the chest and waist" in positive
+    # _ISOLATION_HUMAN doit toujours être là
+    assert _ISOLATION_HUMAN in positive
+
+
+def test_template_solo_human_t22_fallback_no_outfit():
+    """Un leaf non listé dans `_CANONICAL_OUTFITS` doit garder son template standard."""
+    leaf = {"id": "child_reading", "name_en": "Child Reading"}
+    positive = template_solo_human(leaf, strategy={})
+    # Comportement antérieur conservé
+    assert "one single child reading" in positive
+    assert "three-quarter view from the side" in positive
+    assert _ISOLATION_HUMAN in positive
+
+
+def test_template_human_plus_entity_t22_injects_outfit_for_polo_player():
+    """`polo_player` doit recevoir la tenue T22 + scène humain+grand animal."""
+    leaf = {"id": "polo_player", "name_en": "Polo Player"}
+    positive = template_human_plus_entity(leaf, strategy={"class": "Humain + entité (cheval)"})
+    payload = _CANONICAL_OUTFITS["polo_player"]
+    assert payload["outfit_clause"] in positive
+    # Règles humain+grand animal (T22)
+    assert "the horse much larger than the player" in positive or "the horse much larger" in positive
+    assert "in profile" in positive  # le cheval est en profil
+    assert "all four legs clearly separated" in positive
+    # _ISOLATION_HUMAN conservé
+    assert _ISOLATION_HUMAN in positive
+
+
+def test_template_human_plus_entity_t22_fallback_no_outfit():
+    """Un leaf hors mapping doit garder le template asymetric scene générique."""
+    leaf = {"id": "child_with_test_tubes", "name_en": "Child with Test Tubes"}
+    positive = template_human_plus_entity(leaf, strategy={"class": "Humain + entité"})
+    assert "asymmetric scene of" in positive
+    assert _ISOLATION_HUMAN in positive
+
+
+# ===========================================================================
+# T27 — Pose canonique vs pose forcée
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T27
+# ===========================================================================
+T27_COVERED_LEAFS = [
+    "captain_marvel",
+    "rapunzel_with_long_hair",
+    "lamine_yamal_cartoon",
+    "rafael_nadal_cartoon",
+]
+
+
+def test_t27_canonical_poses_cover_min_four_leafs():
+    """Brief T27 : couverture minimale de 4 personnalités annotées."""
+    assert len(_CANONICAL_POSES) >= 4, (
+        f"Couverture T27 insuffisante ({len(_CANONICAL_POSES)} < 4). "
+        f"Voir data/prompt_generator/canonical_poses.json."
+    )
+
+
+def test_t27_poses_have_required_fields():
+    """Toutes les entrées doivent fournir une `pose_clause` non vide."""
+    for leaf_id, payload in _CANONICAL_POSES.items():
+        assert isinstance(payload.get("pose_clause"), str)
+        assert payload["pose_clause"].strip(), f"{leaf_id}: pose_clause vide"
+
+
+def test_t27_covers_documented_personality_leafs():
+    """Les 4 personnalités documentées dans le brief sont couvertes."""
+    missing = [lid for lid in T27_COVERED_LEAFS if lid not in _CANONICAL_POSES]
+    assert not missing, f"Leafs T27 non couverts : {missing}"
+
+
+def test_template_personality_action_t27_replaces_mid_action_when_present():
+    """`captain_marvel` doit recevoir sa pose canonique et perdre l'antipattern T27."""
+    leaf = {"id": "captain_marvel", "name_en": "Captain Marvel"}
+    positive = template_personality_action(
+        leaf, strategy={"class": "Solo humain (personnalité)"}
+    )
+    payload = _CANONICAL_POSES["captain_marvel"]
+    assert payload["pose_clause"] in positive
+    # L'antipattern T27 doit disparaître
+    assert "mid-action" not in positive
+    assert "dynamic pose with motion lines" not in positive
+    assert "focused expression" not in positive
+    # _ISOLATION_HUMAN conservé
+    assert _ISOLATION_HUMAN in positive
+
+
+def test_template_personality_action_t27_replaces_for_cartoon_personalities():
+    """`lamine_yamal_cartoon` et `rafael_nadal_cartoon` doivent aussi basculer T27."""
+    for leaf_id in ("lamine_yamal_cartoon", "rafael_nadal_cartoon"):
+        leaf = {"id": leaf_id, "name_en": leaf_id.replace("_", " ").title()}
+        positive = template_personality_action(
+            leaf, strategy={"class": "Solo humain (personnalité) + action figée"}
+        )
+        assert "mid-action" not in positive, f"{leaf_id}: antipattern T27 résiduel"
+        assert _CANONICAL_POSES[leaf_id]["pose_clause"] in positive
+
+
+def test_template_personality_action_t27_fallback_logs_warning_for_named_personality(caplog):
+    """Si leaf personnalité (`*_cartoon` ou classe personnalité) hors mapping →
+    fallback antipattern + warning."""
+    original = dict(_CANONICAL_POSES)
+    set_canonical_poses({})
+    try:
+        leaf = {"id": "fictional_singer_cartoon", "name_en": "Fictional Singer"}
+        with caplog.at_level(logging.WARNING, logger="services.prompt_generator"):
+            positive = template_personality_action(
+                leaf, strategy={"class": "Solo humain (personnalité)"}
+            )
+        # Antipattern v9 conservé en fallback
+        assert "mid-action" in positive
+        assert "motion lines" in positive
+        # Warning explicite
+        warning_lines = [r for r in caplog.records if r.levelno == logging.WARNING]
+        assert any("fictional_singer_cartoon" in r.getMessage() for r in warning_lines), (
+            f"Warning T27 manquant. Records: {[r.getMessage() for r in warning_lines]}"
+        )
+    finally:
+        set_canonical_poses(original)
+
+
+def test_template_personality_action_t27_no_warning_for_generic_class():
+    """Sur une classe générique (`Scène ou solo personnage`) sans `_cartoon` dans le
+    leaf_id, on n'émet pas de warning T27 (cas `animal_superhero`)."""
+    original = dict(_CANONICAL_POSES)
+    set_canonical_poses({})
+    try:
+        leaf = {"id": "animal_superhero", "name_en": "Animal Superhero"}
+        # Pas de mock de caplog — on vérifie juste que ça ne lève pas
+        positive = template_personality_action(
+            leaf, strategy={"class": "Scène ou solo personnage"}
+        )
+        assert "mid-action" in positive  # antipattern conservé en fallback
+        assert _ISOLATION_HUMAN in positive
+    finally:
+        set_canonical_poses(original)
+
+
+# ===========================================================================
+# T30 — Groupe de personnages narratifs (positionnement explicite)
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T30
+# ===========================================================================
+T30_COVERED_LEAFS = [
+    "three_little_pigs",
+    "spring_chicks_with_mother",
+]
+
+
+def test_t30_group_layouts_cover_min_two_leafs():
+    """Brief T30 : couverture minimale de 2 leafs groupe annotés."""
+    assert len(_GROUP_LAYOUTS) >= 2, (
+        f"Couverture T30 insuffisante ({len(_GROUP_LAYOUTS)} < 2). "
+        f"Voir data/prompt_generator/group_layouts.json."
+    )
+
+
+def test_t30_group_layouts_have_required_fields():
+    """Toutes les entrées doivent fournir count + characters non vide,
+    chaque character avec position + attribute."""
+    for leaf_id, payload in _GROUP_LAYOUTS.items():
+        assert isinstance(payload.get("count"), int) and payload["count"] >= 2
+        chars = payload.get("characters")
+        assert isinstance(chars, list) and chars, f"{leaf_id}: characters vide"
+        for ch in chars:
+            assert isinstance(ch.get("position"), str) and ch["position"].strip()
+            assert isinstance(ch.get("attribute"), str) and ch["attribute"].strip()
+
+
+def test_t30_covers_documented_group_leafs():
+    """Les 2 leafs documentés dans le brief sont couverts."""
+    missing = [lid for lid in T30_COVERED_LEAFS if lid not in _GROUP_LAYOUTS]
+    assert not missing, f"Leafs T30 non couverts : {missing}"
+
+
+def test_t30_number_prefixes_constants_defined():
+    """`_NUMBER_PREFIXES` doit contenir les préfixes documentés dans le brief."""
+    expected = {"three_", "four_", "five_", "six_", "seven_", "eight_",
+                "nine_", "ten_", "twelve_"}
+    assert expected.issubset(set(_NUMBER_PREFIXES)), (
+        f"Préfixes manquants dans _NUMBER_PREFIXES : {expected - set(_NUMBER_PREFIXES)}"
+    )
+
+
+def test_t30_has_number_prefix_detection():
+    """`_has_number_prefix` matche correctement (préfixe seul, pas substring)."""
+    assert _has_number_prefix("three_little_pigs") is True
+    assert _has_number_prefix("seven_dwarfs") is True
+    assert _has_number_prefix("twelve_apostles") is True
+    # Pas un préfixe → False
+    assert _has_number_prefix("spring_chicks_with_mother") is False
+    assert _has_number_prefix("house_cat") is False
+    assert _has_number_prefix("") is False
+    assert _has_number_prefix(None) is False
+
+
+def test_template_group_positioned_three_little_pigs():
+    """`three_little_pigs` doit produire un positive avec « three pigs » + layout
+    (et NON « one pig »)."""
+    leaf = {"id": "three_little_pigs", "name_en": "The Three Little Pigs"}
+    positive = template_group_positioned(leaf, strategy={})
+    # Compte explicite
+    assert "3 little pigs" in positive
+    # Positionnement explicite
+    assert "on the left" in positive
+    assert "in the middle" in positive
+    assert "on the right" in positive
+    # Attributs distinctifs (T30)
+    assert "bundle of straw" in positive
+    assert "wooden planks" in positive
+    assert "bricks" in positive
+    # Antipattern T30 absent
+    assert "mid-action" not in positive
+    assert "motion lines" not in positive
+    assert "one single pig" not in positive
+    # Expression collective T30
+    assert "smiling and facing forward" in positive
+
+
+def test_template_group_positioned_spring_chicks_with_mother():
+    """`spring_chicks_with_mother` doit produire un groupe (pas un solo)."""
+    leaf = {"id": "spring_chicks_with_mother", "name_en": "Spring Chicks with Mother"}
+    positive = template_group_positioned(leaf, strategy={})
+    payload = _GROUP_LAYOUTS["spring_chicks_with_mother"]
+    # Compte = nb characters
+    assert f"{payload['count']} chicks with their mother hen" in positive
+    # Au moins une position et un attribut clés
+    assert "mother hen" in positive
+    assert "small chicks" in positive
+
+
+def test_template_group_positioned_fallback_solo_when_missing():
+    """Si appelé sans entrée _GROUP_LAYOUTS (garde-fou) → fallback solo human."""
+    original = dict(_GROUP_LAYOUTS)
+    set_group_layouts({})
+    try:
+        leaf = {"id": "fictional_group", "name_en": "Fictional Group"}
+        positive = template_group_positioned(leaf, strategy={})
+        # Fallback solo
+        assert "one single fictional group" in positive
+    finally:
+        set_group_layouts(original)
+
+
+def test_build_prompt_t30_routes_three_little_pigs_to_group_template():
+    """Smoke build_prompt complet : `three_little_pigs` doit basculer T30 même si
+    sa workflow_class est `Scène ou solo personnage` (template personnage)."""
+    try:
+        gen = PromptGenerator()
+    except FileNotFoundError:
+        pytest.skip("Données prompt_generator non disponibles dans cet environnement.")
+
+    if "three_little_pigs" not in gen.leaf_index:
+        pytest.skip("Leaf three_little_pigs absent de la taxonomie.")
+
+    result = gen.build_prompt("three_little_pigs")
+    pos = result["positive"]
+    # Contenu T30
+    assert "3 little pigs" in pos
+    assert "on the left" in pos
+    # Antipattern T27 (mid-action) doit être absent — c'est T30, pas template_personality_action
+    assert "mid-action" not in pos
+    assert "dynamic pose" not in pos
+
+
+def test_build_prompt_t30_warns_on_number_prefix_missing(caplog):
+    """Smoke : un leaf avec préfixe numéraire NON couvert par group_layouts doit
+    émettre un warning (pour PR ultérieure)."""
+    try:
+        gen = PromptGenerator()
+    except FileNotFoundError:
+        pytest.skip("Données prompt_generator non disponibles dans cet environnement.")
+
+    # On vide group_layouts pour forcer le warning même sur three_little_pigs
+    original = dict(_GROUP_LAYOUTS)
+    set_group_layouts({})
+    try:
+        if "three_little_pigs" not in gen.leaf_index:
+            pytest.skip("Leaf three_little_pigs absent de la taxonomie.")
+        with caplog.at_level(logging.WARNING, logger="services.prompt_generator"):
+            gen.build_prompt("three_little_pigs")
+        warning_lines = [r for r in caplog.records if r.levelno == logging.WARNING]
+        assert any(
+            "three_little_pigs" in r.getMessage()
+            and "group_layouts missing" in r.getMessage()
+            for r in warning_lines
+        ), (
+            f"Warning T30 number-prefix manquant. "
+            f"Records: {[r.getMessage() for r in warning_lines]}"
+        )
+    finally:
+        set_group_layouts(original)
+
+
+# ===========================================================================
+# Non-régression : T22/T27/T30 ne doivent pas affecter les voisins
+# (Solo animal/fish/object/grilles/before-after restent fonctionnels)
+# ===========================================================================
+def test_t22_t27_t30_do_not_alter_solo_animal_template():
+    """Sanity : Solo animal banal continue de produire son template attendu."""
+    leaf = {"id": "house_cat", "name_en": "House Cat"}
+    positive = template_solo_animal(leaf, strategy={})
+    # Aucun marqueur des nouveaux templates
+    assert "outfit" not in positive.lower()
+    assert "pose_clause" not in positive
+    assert "on the left" not in positive
+    assert "in the middle" not in positive
+    # Standard T9
+    assert "standing in profile" in positive
+
+
+def test_t22_t27_t30_do_not_alter_grid_template():
+    """Sanity : grille imagier reste fonctionnelle."""
+    leaf = {"id": "fruit_imagier_with_names", "name_en": "Fruit Imagier with Names"}
+    positive = template_grid_3x3_imagier(leaf, strategy={"class": "Grille imagier annoté"})
+    assert "tic-tac-toe grid" in positive
+    # Pas de glissement T30
+    assert "smiling and facing forward" not in positive
+
+
+def test_t22_t27_t30_do_not_alter_before_after_template():
+    """Sanity : T25 before/after reste intact."""
+    leaf = {"id": "rainwater_collection_barrel", "name_en": "Rainwater Collection Barrel"}
+    positive = template_before_after(
+        leaf, strategy={"class": "Comparatif before/after OU Solo"}
+    )
+    assert "BEFORE" in positive
+    assert "AFTER" in positive
+    # Pas de glissement T22/T27/T30
+    assert "outfit" not in positive.lower()
+
+
+def test_t22_t27_t30_do_not_alter_t9_directional_overrides():
+    """Sanity : les 6 leafs résiduels T9 conservent leur formule directionnelle."""
+    leaf = {"id": "running_giraffe", "name_en": "Running Giraffe"}
+    positive = template_solo_animal(leaf, strategy={})
+    assert "in profile facing right" in positive
+    assert "neck and tail extended right" in positive

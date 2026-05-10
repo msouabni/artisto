@@ -50,6 +50,9 @@ DEFAULT_CARTOGRAPHY = str(PROJECT_ROOT / "data/prompt_generator/taxonomy_product
 DEFAULT_SEO = str(PROJECT_ROOT / "data/prompt_generator/coloring_taxonomy_seo.json")
 DEFAULT_BEFORE_AFTER_STATES = str(PROJECT_ROOT / "data/prompt_generator/before_after_states.json")
 DEFAULT_GRID_CELL_CONTENTS = str(PROJECT_ROOT / "data/prompt_generator/grid_cell_contents.json")
+DEFAULT_CANONICAL_OUTFITS = str(PROJECT_ROOT / "data/prompt_generator/canonical_outfits.json")
+DEFAULT_CANONICAL_POSES = str(PROJECT_ROOT / "data/prompt_generator/canonical_poses.json")
+DEFAULT_GROUP_LAYOUTS = str(PROJECT_ROOT / "data/prompt_generator/group_layouts.json")
 
 # Negative prompt v3 (validé Phase H) + isolation clause (fix 2_objets 2026-05-09)
 # Élargi 2026-05-10 (transfert skill — brief 2026-05-10_brief-transfert-isolation-elargi.md)
@@ -487,6 +490,231 @@ def template_solo_expressive_face(leaf, strategy):
 
 
 # ===================================================================
+# T22 — Tenues spécialisées : description granulaire
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T22
+# Transfert : 2026-05-10 (cf. docs/architect/briefs/2026-05-10_brief-transfert-T22-T27-T30-anatomie.md)
+#
+# Règle T22 (citation textuelle skill) :
+# > Le nom du métier ou du sport n'active pas automatiquement la tenue correcte
+# > dans le dataset. Plus la tenue est spécialisée et rare, plus la description
+# > doit être granulaire pièce par pièce.
+# > Tenues courantes → nom suffit (doctor white coat, chef hat and apron).
+# > Tenues rares → décrire pièce par pièce (polo player, fencer, jockey, archer).
+#
+# Règles humain + grand animal (T22) :
+# > 1. Animal `in profile facing left/right` + `all four legs clearly separated`
+# > 2. `the animal much larger than the human` — fixe le rapport de taille
+# > 3. Tenue du joueur décrite explicitement pièce par pièce
+# > 4. `holding [objet] with both hands` — ancre l'accessoire au personnage
+#
+# NB FILT : les descriptions de tenue n'utilisent PAS de noms de couleur
+# (red/white/blue/etc.) — _COLOR_NOUNS strippe ces termes. On décrit la forme
+# et la matière (jodhpurs trousers, polo shirt with collar, knee-high riding
+# boots, helmet on head) sans nommer les couleurs.
+# ===================================================================
+def _load_canonical_outfits(path: str = DEFAULT_CANONICAL_OUTFITS) -> Dict[str, dict]:
+    """Charge le mapping {leaf_id → {outfit_clause, subject_clause, scene_clause?}} depuis JSON.
+
+    Retourne un dict vide si le fichier n'existe pas ou est invalide — les templates
+    bascule alors sur le fallback (comportement antérieur + warning loggé).
+    """
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (FileNotFoundError, IOError, json.JSONDecodeError) as exc:
+        logger.warning(
+            "canonical_outfits JSON load failed (path=%s): %s — fallback générique",
+            path, exc,
+        )
+        return {}
+    outfits = data.get("outfits", {}) if isinstance(data, dict) else {}
+    if not isinstance(outfits, dict):
+        return {}
+    cleaned: Dict[str, dict] = {}
+    for leaf_id, payload in outfits.items():
+        if not isinstance(payload, dict):
+            continue
+        outfit = payload.get("outfit_clause")
+        if not (isinstance(outfit, str) and outfit.strip()):
+            continue
+        subject = payload.get("subject_clause")
+        scene = payload.get("scene_clause")
+        cleaned[leaf_id] = {
+            "outfit_clause": outfit.strip(),
+            "subject_clause": subject.strip() if isinstance(subject, str) and subject.strip() else None,
+            "scene_clause": scene.strip() if isinstance(scene, str) and scene.strip() else None,
+        }
+    return cleaned
+
+
+_CANONICAL_OUTFITS: Dict[str, dict] = _load_canonical_outfits()
+
+
+def set_canonical_outfits(outfits: Dict[str, dict]) -> None:
+    """Injecte un dict de remplacement (utilitaire test). Même contrainte de
+    structure que `_load_canonical_outfits`.
+    """
+    global _CANONICAL_OUTFITS
+    _CANONICAL_OUTFITS = dict(outfits or {})
+
+
+# ===================================================================
+# T27 — Pose naturelle vs pose forcée (personnalités cartoonisées)
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T27
+# Transfert : 2026-05-10 (même brief T22+T27+T30).
+#
+# Règle T27 (citation textuelle skill) :
+# > `mid-action`, `dynamic pose`, `motion lines` génèrent de la crispation
+# > quand la pose demandée contredit la représentation dominante du personnage
+# > dans le dataset.
+# > Fix : Identifier la pose canonique du personnage ou du métier et la décrire
+# > naturellement avec des gestes précis plutôt que des instructions de dynamisme.
+# > Travailler avec cette pose plutôt que contre elle.
+#
+# Implémentation : on charge un dict {leaf_id → {subject_name, pose_clause}}.
+# Si un leaf est trouvé, `template_personality_action` remplace la formule
+# `in mid-action … dynamic pose with motion lines suggesting movement` par
+# la pose canonique. Sinon : conserve le comportement antérieur + warning loggé.
+# ===================================================================
+def _load_canonical_poses(path: str = DEFAULT_CANONICAL_POSES) -> Dict[str, dict]:
+    """Charge le mapping {leaf_id → {subject_name, pose_clause}} depuis JSON.
+
+    Retourne un dict vide si le fichier n'existe pas ou est invalide.
+    """
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (FileNotFoundError, IOError, json.JSONDecodeError) as exc:
+        logger.warning(
+            "canonical_poses JSON load failed (path=%s): %s — fallback générique",
+            path, exc,
+        )
+        return {}
+    poses = data.get("poses", {}) if isinstance(data, dict) else {}
+    if not isinstance(poses, dict):
+        return {}
+    cleaned: Dict[str, dict] = {}
+    for leaf_id, payload in poses.items():
+        if not isinstance(payload, dict):
+            continue
+        pose = payload.get("pose_clause")
+        if not (isinstance(pose, str) and pose.strip()):
+            continue
+        subject = payload.get("subject_name")
+        cleaned[leaf_id] = {
+            "subject_name": subject.strip() if isinstance(subject, str) and subject.strip() else None,
+            "pose_clause": pose.strip(),
+        }
+    return cleaned
+
+
+_CANONICAL_POSES: Dict[str, dict] = _load_canonical_poses()
+
+
+def set_canonical_poses(poses: Dict[str, dict]) -> None:
+    """Injecte un dict de remplacement (utilitaire test)."""
+    global _CANONICAL_POSES
+    _CANONICAL_POSES = dict(poses or {})
+
+
+# ===================================================================
+# T30 — Groupe de personnages narratifs (positionnement explicite)
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T30
+# Transfert : 2026-05-10 (même brief T22+T27+T30).
+#
+# Règle T30 (citation textuelle skill) :
+# > Un groupe de personnages (conte, famille, équipe) ne peut pas utiliser
+# > le template solo. Chaque personnage doit être positionné explicitement
+# > avec son attribut distinctif.
+# > 1. Position explicite pour chaque personnage — left / middle / right
+# > 2. Attribut distinctif par personnage — objet tenu, vêtement, accessoire
+# > 3. Supprimé `mid-action`, `motion lines`, `focused expression` — inadaptés aux contes
+# > 4. `smiling and facing forward` — expression enfantine naturelle pour les contes
+#
+# Bug v9 (citation textuelle skill) :
+# > Les feuilles représentant un groupe connu (`three_little_pigs`, `three_bears`,
+# > `seven_dwarfs`) reçoivent le template solo_human → un seul personnage dessiné
+# > ou comptage instable.
+# > Fix v2 : détecter les feuilles avec nombre dans le nom (`three_*`, `seven_*`,
+# > `twelve_*`) → template group avec positionnement explicite par personnage.
+#
+# Implémentation : la **présence dans `_GROUP_LAYOUTS`** est l'autorité (liste
+# blanche curée). `_NUMBER_PREFIXES` sert d'alerte heuristique pour signaler
+# les leafs « numériques » non couverts → fallback solo + warning explicite
+# pour qu'ils soient ajoutés au JSON via PR ultérieure.
+# ===================================================================
+_NUMBER_PREFIXES = (
+    "three_", "four_", "five_", "six_", "seven_", "eight_", "nine_",
+    "ten_", "eleven_", "twelve_",
+)
+
+
+def _load_group_layouts(path: str = DEFAULT_GROUP_LAYOUTS) -> Dict[str, dict]:
+    """Charge le mapping {leaf_id → {count, subject_type, layout, characters, expression?}}.
+
+    Retourne un dict vide si le fichier n'existe pas ou est invalide.
+    """
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (FileNotFoundError, IOError, json.JSONDecodeError) as exc:
+        logger.warning(
+            "group_layouts JSON load failed (path=%s): %s — fallback générique",
+            path, exc,
+        )
+        return {}
+    groups = data.get("groups", {}) if isinstance(data, dict) else {}
+    if not isinstance(groups, dict):
+        return {}
+    cleaned: Dict[str, dict] = {}
+    for leaf_id, payload in groups.items():
+        if not isinstance(payload, dict):
+            continue
+        characters = payload.get("characters")
+        if not (isinstance(characters, list) and characters):
+            continue
+        valid_chars = []
+        for ch in characters:
+            if not isinstance(ch, dict):
+                continue
+            pos = ch.get("position")
+            attr = ch.get("attribute")
+            if isinstance(pos, str) and pos.strip() and isinstance(attr, str) and attr.strip():
+                valid_chars.append({"position": pos.strip(), "attribute": attr.strip()})
+        if not valid_chars:
+            continue
+        subject_type = payload.get("subject_type")
+        layout = payload.get("layout")
+        expression = payload.get("expression")
+        count = payload.get("count")
+        cleaned[leaf_id] = {
+            "count": int(count) if isinstance(count, (int, float)) else len(valid_chars),
+            "subject_type": subject_type.strip() if isinstance(subject_type, str) and subject_type.strip() else None,
+            "layout": layout.strip() if isinstance(layout, str) and layout.strip() else None,
+            "characters": valid_chars,
+            "expression": expression.strip() if isinstance(expression, str) and expression.strip() else None,
+        }
+    return cleaned
+
+
+_GROUP_LAYOUTS: Dict[str, dict] = _load_group_layouts()
+
+
+def set_group_layouts(groups: Dict[str, dict]) -> None:
+    """Injecte un dict de remplacement (utilitaire test)."""
+    global _GROUP_LAYOUTS
+    _GROUP_LAYOUTS = dict(groups or {})
+
+
+def _has_number_prefix(leaf_id: str) -> bool:
+    """Vrai si `leaf_id` commence par un préfixe numéraire (T30 heuristique)."""
+    if not leaf_id:
+        return False
+    lid = leaf_id.lower()
+    return any(lid.startswith(p) for p in _NUMBER_PREFIXES)
+
+
+# ===================================================================
 # WORKFLOW COMFYUI — squelette de base (ERNIE-Turbo Q8)
 # ===================================================================
 WORKFLOW_TEMPLATE = {
@@ -759,8 +987,39 @@ def template_solo_human(leaf, strategy):
     _ISOLATION_HUMAN (transfert skill 2026-05-10) : suffixe d'isolation injecté
     pour adresser image_duplication sur templates humain (générique, accessoires).
     Source : règle générale skill « Moins de mise en scène = plus de fiabilité ».
+
+    T22 (transfert skill 2026-05-10) : si le leaf est dans `_CANONICAL_OUTFITS`,
+    on injecte la description granulaire de la tenue (pièce par pièce) + scène
+    canonique. Cible : tenues spécialisées rares (bungee_jumper, tango_couple,
+    fencer, jockey, archer, surgeon, scheherazade, sinbad…) où le `name_en`
+    brut ne suffit pas à activer la tenue correcte.
+    Source : .claude/skills/prompt-taxonomy-ecosystem.skill §T22.
     """
-    name = leaf['name_en'].lower()
+    leaf_id = leaf.get("id") or leaf.get("leaf_id") or ""
+    name = leaf["name_en"].lower()
+
+    # T22 — bascule vers description granulaire si tenue canonique connue
+    outfit = _CANONICAL_OUTFITS.get(leaf_id)
+    if outfit:
+        subject = outfit["subject_clause"] or f"one single {name}"
+        outfit_clause = outfit["outfit_clause"]
+        scene_clause = outfit["scene_clause"]
+        if scene_clause:
+            return (
+                f"{STYLE_BLOCK}, "
+                f"{subject}, {outfit_clause}, "
+                f"{scene_clause}, "
+                f"off-center composition, friendly expression, "
+                + _ISOLATION_HUMAN
+            )
+        return (
+            f"{STYLE_BLOCK}, "
+            f"{subject}, {outfit_clause}, "
+            f"three-quarter view from the side, full body, simple ground line, "
+            f"off-center composition, friendly expression, "
+            + _ISOLATION_HUMAN
+        )
+
     # Détection action implicite dans le nom de la feuille
     return (
         f"{STYLE_BLOCK}, "
@@ -796,8 +1055,30 @@ def template_human_plus_entity(leaf, strategy):
     le modèle d'introduire un troisième sujet dans le décor (cas observé sur
     `child_with_test_tubes`, `house_painter_with_roller`).
     Source : règle générale skill « Moins de mise en scène = plus de fiabilité ».
+
+    T22 (transfert skill 2026-05-10) : si le leaf est dans `_CANONICAL_OUTFITS`,
+    on injecte la tenue granulaire + scène humain+grand animal (cheval `in
+    profile facing left/right`, `the animal much larger than the human`,
+    `holding [objet] with both hands`). Cible : `polo_player`, `dressage_horse`
+    (Humain+entité cheval) où le name_en brut ne suffit pas.
+    Source : .claude/skills/prompt-taxonomy-ecosystem.skill §T22.
     """
-    name = leaf['name_en'].lower()
+    leaf_id = leaf.get("id") or leaf.get("leaf_id") or ""
+    name = leaf["name_en"].lower()
+
+    # T22 — bascule vers description granulaire (tenue + scène humain+grand animal)
+    outfit = _CANONICAL_OUTFITS.get(leaf_id)
+    if outfit:
+        subject = outfit["subject_clause"] or f"one {name}"
+        outfit_clause = outfit["outfit_clause"]
+        scene_clause = outfit["scene_clause"] or "asymmetric composition, full body of both visible, simple ground line"
+        return (
+            f"{STYLE_BLOCK}, "
+            f"{subject}, {outfit_clause}, "
+            f"{scene_clause}, "
+            + _ISOLATION_HUMAN
+        )
+
     return (
         f"{STYLE_BLOCK}, "
         f"asymmetric scene of {name}, "
@@ -817,10 +1098,56 @@ def template_personality_action(leaf, strategy):
     sur ce template. Cas observés : `animal_superhero`, leafs cartoon
     génériques où le modèle ajoute un compagnon.
     Source : règle générale skill « Moins de mise en scène = plus de fiabilité ».
+
+    T27 (transfert skill 2026-05-10) : si le leaf est dans `_CANONICAL_POSES`,
+    on remplace la formule `in mid-action … dynamic pose with motion lines
+    suggesting movement … focused expression` par la pose canonique
+    (gestes précis, tenue décrite). Sinon : conserve l'antipattern v9 + warning
+    loggé pour traçabilité.
+    Source : .claude/skills/prompt-taxonomy-ecosystem.skill §T27 :
+    > `mid-action`, `dynamic pose`, `motion lines` génèrent de la crispation
+    > quand la pose demandée contredit la représentation dominante du personnage
+    > dans le dataset. Travailler avec la pose canonique plutôt que contre elle.
     """
-    name = leaf['name_en']
+    leaf_id = leaf.get("id") or leaf.get("leaf_id") or ""
+    name = leaf["name_en"]
     # Retire le suffix "Cartoon" si présent
     name = name.replace(" Cartoon", "").replace(" cartoon", "")
+
+    # T27 — bascule vers pose canonique si connue
+    pose = _CANONICAL_POSES.get(leaf_id)
+    if pose:
+        subject_name = pose["subject_name"] or name
+        return (
+            f"{STYLE_BLOCK}, "
+            f"one single {subject_name}, {pose['pose_clause']}, "
+            f"two arms total, full body view, "
+            f"off-center composition, "
+            + _ISOLATION_HUMAN
+        )
+
+    # T22 — fallback : si tenue canonique connue mais pas de pose, on bascule sur
+    # `template_solo_human` (qui consulte aussi `_CANONICAL_OUTFITS`) — court-circuit
+    # de l'antipattern T27 « mid-action » sans crisper l'anatomie.
+    if leaf_id in _CANONICAL_OUTFITS:
+        return template_solo_human(leaf, strategy)
+
+    # Fallback antipattern v9 : mid-action / dynamic pose / motion lines
+    # Warning loggé uniquement si le leaf semble être une personnalité connue
+    # (présence de `_cartoon` dans le nom OU classe `personnalité`) — heuristique
+    # pour ne pas spammer sur les usages génériques (animal_superhero…).
+    is_named_personality = (
+        "_cartoon" in leaf_id.lower()
+        or "personnalité" in (strategy or {}).get("class", "").lower()
+    )
+    if is_named_personality:
+        logger.warning(
+            "canonical_poses missing for personality leaf_id=%s (workflow_class=%s) — "
+            "fallback antipattern T27 (mid-action / motion lines). Ajouter une entrée "
+            "dans data/prompt_generator/canonical_poses.json.",
+            leaf_id, (strategy or {}).get("class"),
+        )
+
     return (
         f"{STYLE_BLOCK}, "
         f"one single {name} in mid-action, viewed from the side, "
@@ -828,6 +1155,55 @@ def template_personality_action(leaf, strategy):
         f"two arms total, full body view, simple ground line, "
         f"off-center composition, focused expression, "
         + _ISOLATION_HUMAN
+    )
+
+
+def template_group_positioned(leaf, strategy):
+    """T30 — Groupe de personnages narratifs (positionnement explicite).
+
+    Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T30
+    > Un groupe de personnages (conte, famille, équipe) ne peut pas utiliser
+    > le template solo. Chaque personnage doit être positionné explicitement
+    > avec son attribut distinctif.
+
+    Pattern T30 :
+        [N] [character_type] [layout],
+        [character 1 position] [character 1 attribute],
+        [character 2 position] [character 2 attribute],
+        …
+        [expression collective], simple ground line, centered composition
+
+    Si `_GROUP_LAYOUTS[leaf_id]` est défini → injecte les N personnages positionnés.
+    Sinon : fallback minimal (le dispatcher ne devrait pas appeler ce template
+    sans entrée — garde-fou).
+    """
+    leaf_id = leaf.get("id") or leaf.get("leaf_id") or ""
+    name = leaf["name_en"].lower()
+    payload = _GROUP_LAYOUTS.get(leaf_id)
+
+    if not payload:
+        # Garde-fou : ne devrait pas arriver (le dispatcher filtre via la présence
+        # dans `_GROUP_LAYOUTS`). On loggue + fallback solo.
+        logger.warning(
+            "template_group_positioned called without group_layouts entry "
+            "(leaf_id=%s) — fallback solo human.",
+            leaf_id,
+        )
+        return template_solo_human(leaf, strategy)
+
+    count = payload["count"]
+    subject_type = payload["subject_type"] or name
+    layout = payload["layout"] or "standing together on a simple ground line"
+    chars_clause = ", ".join(
+        f"{ch['position']} {ch['attribute']}" for ch in payload["characters"]
+    )
+    expression = payload["expression"] or f"all {count} smiling and facing forward, full body of all visible"
+
+    return (
+        f"{STYLE_BLOCK}, "
+        f"{count} {subject_type} {layout}, "
+        f"{chars_clause}, "
+        f"{expression}, simple ground line, centered composition"
     )
 
 
@@ -1236,6 +1612,22 @@ class PromptGenerator:
         # Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T23
         if _is_t23_singular_face(leaf_id, strategy.get("class")):
             template_fn = template_solo_expressive_face
+
+        # T30 — détection groupe narratif : leaf présent dans `_GROUP_LAYOUTS`
+        # (autorité curée) → bypass solo → template_group_positioned.
+        # Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T30
+        # Heuristique complémentaire : leafs avec préfixe numéraire (`three_*`,
+        # `seven_*`, `twelve_*`…) NON couverts par le JSON sont signalés en
+        # warning pour PR ultérieure (fallback solo conservé en attendant).
+        if leaf_id in _GROUP_LAYOUTS:
+            template_fn = template_group_positioned
+        elif _has_number_prefix(leaf_id):
+            logger.warning(
+                "group_layouts missing for number-prefixed leaf_id=%s "
+                "(workflow_class=%s) — fallback %s. Ajouter une entrée dans "
+                "data/prompt_generator/group_layouts.json si c'est un groupe narratif.",
+                leaf_id, strategy.get("class"), template_fn.__name__,
+            )
 
         # LEAF_OVERRIDES : prompt manuel prioritaire sur le template
         if leaf_id in LEAF_OVERRIDES:
