@@ -1,0 +1,262 @@
+{
+  "_doc": {
+    "purpose": "T2/T3 — Grille imagier : contenu explicite par cellule (jamais déléguer au modèle).",
+    "source_skill": ".claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T2 + §T3",
+    "transfer_brief": "docs/architect/briefs/2026-05-10_brief-transfert-T2T3T23-grille-imagier.md",
+    "schema": {
+      "<leaf_id>": {
+        "title": "<TITRE_EN_CAPITALES_OPTIONNEL — affiché au-dessus de la grille>",
+        "cells": [
+          {
+            "item": "round red apple with leaf",
+            "shape": "round",
+            "composed": false
+          },
+          {
+            "container": "wooden basket",
+            "items": ["round apple", "long banana", "small grape cluster"],
+            "composed": true
+          }
+        ]
+      }
+    },
+    "rules": [
+      "9 cellules par grille 3×3 (les templates lisent les 9 premières)",
+      "Cellule simple : item + shape facultatif",
+      "Cellule composée (T3) : composed=true, container + items[3-4]",
+      "Pas de noms de couleur dans les items (filtre T5+T6 retirera de toute façon)",
+      "Forme géométrique de base (round, oval, long, square, triangular...) si simple"
+    ]
+  },
+  "states": {
+    "fruit_imagier_with_names": {
+      "title": "FRUITS",
+      "cells": [
+        {"item": "round apple with leaf", "shape": "round"},
+        {"item": "long curved banana", "shape": "long"},
+        {"item": "round citrus fruit with dimpled skin", "shape": "round"},
+        {"item": "oval mango with stem", "shape": "oval"},
+        {"item": "round grape cluster", "shape": "round"},
+        {"item": "triangular watermelon slice with seeds", "shape": "triangular"},
+        {"item": "round kiwi slice with small seeds", "shape": "round"},
+        {"item": "oval strawberry with leaf top", "shape": "oval"},
+        {"item": "round lemon with leaf", "shape": "round"}
+      ],
+      "_note": "Cellule 3 : 'orange' évité (filtré par FILT comme couleur) → 'citrus fruit'."
+    },
+    "vegetable_imagier_with_names": {
+      "title": "VEGETABLES",
+      "cells": [
+        {"item": "round tomato with stem", "shape": "round"},
+        {"item": "long pointed carrot with top leaves", "shape": "long"},
+        {"item": "round broccoli with thick stem", "shape": "round"},
+        {"item": "oval potato with small dents", "shape": "oval"},
+        {"item": "long cucumber with thin skin", "shape": "long"},
+        {"item": "round onion with paper skin", "shape": "round"},
+        {"item": "oval eggplant with stem cap", "shape": "oval"},
+        {"item": "long bell pepper with stem", "shape": "long"},
+        {"item": "round head of cabbage with curled leaves", "shape": "round"}
+      ]
+    },
+    "weather_imagier_with_names": {
+      "title": "WEATHER",
+      "cells": [
+        {"item": "round sun with rays around it", "shape": "round"},
+        {"item": "fluffy cloud outline", "shape": null},
+        {"item": "cloud with diagonal rain drops below", "shape": null},
+        {"item": "cloud with snowflake shapes below", "shape": null},
+        {"item": "cloud with lightning bolt zigzag below", "shape": null},
+        {"item": "crescent moon with one small star", "shape": null},
+        {"item": "spiral wind swirl", "shape": null},
+        {"item": "umbrella with curved handle", "shape": null},
+        {"item": "rainbow arc with stripes", "shape": null}
+      ]
+    },
+    "transport_imagier_with_names": {
+      "title": "TRANSPORT",
+      "cells": [
+        {"item": "small car with two visible wheels", "shape": null},
+        {"item": "bicycle with two round wheels and frame", "shape": null},
+        {"item": "bus with rectangular windows in a row", "shape": null},
+        {"item": "train locomotive with smokestack", "shape": null},
+        {"item": "airplane with wings and tail fin", "shape": null},
+        {"item": "boat with simple sail", "shape": null},
+        {"item": "scooter with handlebars and one footboard", "shape": null},
+        {"item": "helicopter with main rotor blades", "shape": null},
+        {"item": "rocket with pointed nose and three fins", "shape": null}
+      ]
+    },
+    "clothing_imagier_with_names": {
+      "title": "CLOTHING",
+      "cells": [
+        {"item": "t-shirt with short sleeves", "shape": null},
+        {"item": "long pants with two legs", "shape": null},
+        {"item": "dress with flared bottom", "shape": null},
+        {"item": "jacket with closed front zipper", "shape": null},
+        {"item": "pair of socks side by side", "shape": null},
+        {"item": "pair of shoes with laces", "shape": null},
+        {"item": "winter hat with pom-pom on top", "shape": null},
+        {"item": "scarf curled in a loop", "shape": null},
+        {"item": "pair of gloves with fingers", "shape": null}
+      ]
+    },
+    "house_object_imagier": {
+      "title": "HOUSE OBJECTS",
+      "cells": [
+        {"item": "chair with backrest and four legs", "shape": null},
+        {"item": "table with flat top and four legs", "shape": null},
+        {"item": "bed with pillow and blanket", "shape": null},
+        {"item": "lamp with round shade on a stand", "shape": null},
+        {"item": "clock with round face and two hands", "shape": "round"},
+        {"item": "plate with round rim", "shape": "round"},
+        {"item": "tall drinking glass", "shape": null},
+        {"item": "fork with four prongs", "shape": null},
+        {"item": "spoon with oval bowl", "shape": "oval"}
+      ]
+    },
+    "color_imagier_with_names": {
+      "title": "SHAPES AND PATTERNS",
+      "cells": [
+        {"item": "round circle outline", "shape": "round"},
+        {"item": "square outline", "shape": "square"},
+        {"item": "triangular outline pointing up", "shape": "triangular"},
+        {"item": "rectangular outline lying horizontally", "shape": "rectangular"},
+        {"item": "oval outline", "shape": "oval"},
+        {"item": "diamond outline", "shape": null},
+        {"item": "star outline with five points", "shape": null},
+        {"item": "heart outline", "shape": null},
+        {"item": "crescent moon outline", "shape": null}
+      ],
+      "_note": "color_imagier renommé en formes neutres pour neutraliser le prior couleur (T5 + extension T6 conceptuelle skill)."
+    },
+    "feeling_imagier_with_names": {
+      "title": "FEELINGS",
+      "cells": [
+        {"item": "smiling face with curved mouth", "shape": null},
+        {"item": "sad face with mouth turned down and one tear", "shape": null},
+        {"item": "angry face with furrowed eyebrows", "shape": null},
+        {"item": "surprised face with round mouth and wide eyes", "shape": null},
+        {"item": "scared face with worried mouth and raised eyebrows", "shape": null},
+        {"item": "calm face with eyes gently closed and soft smile", "shape": null},
+        {"item": "shy face looking sideways with small smile", "shape": null},
+        {"item": "proud face with chin held high and small smile", "shape": null},
+        {"item": "sleepy face with half-closed eyes and small yawn", "shape": null}
+      ]
+    },
+    "fruits_basket": {
+      "title": "FRUITS BASKET",
+      "cells": [
+        {"item": "round apple with leaf", "shape": "round"},
+        {"item": "long curved banana", "shape": "long"},
+        {"item": "oval pear with stem", "shape": "oval"},
+        {"item": "round orange with dimpled skin", "shape": "round"},
+        {"item": "oval strawberry with leaf top", "shape": "oval"},
+        {"item": "round grape cluster on a stem", "shape": "round"},
+        {"item": "triangular watermelon slice with seeds", "shape": "triangular"},
+        {"item": "round peach with single leaf", "shape": "round"},
+        {"item": "oval kiwi cut in half showing seeds", "shape": "oval"}
+      ]
+    },
+    "vegetables_basket": {
+      "title": "VEGETABLES BASKET",
+      "cells": [
+        {"item": "long pointed carrot with top leaves", "shape": "long"},
+        {"item": "round tomato with stem", "shape": "round"},
+        {"item": "round broccoli with thick stem", "shape": "round"},
+        {"item": "oval potato with small dents", "shape": "oval"},
+        {"item": "long cucumber with thin skin", "shape": "long"},
+        {"item": "round onion with paper skin and small roots", "shape": "round"},
+        {"item": "long bell pepper with stem cap", "shape": "long"},
+        {"item": "oval eggplant with stem cap", "shape": "oval"},
+        {"item": "round head of cabbage with curled leaves", "shape": "round"}
+      ]
+    },
+    "bread_and_pastries": {
+      "title": "BREAD AND PASTRIES",
+      "cells": [
+        {"item": "long baguette with diagonal slashes on top", "shape": "long"},
+        {"item": "round loaf of bread with crust", "shape": "round"},
+        {"item": "square slice of toast", "shape": "square"},
+        {"item": "round croissant with curved tips", "shape": null},
+        {"item": "round bagel with central hole", "shape": "round"},
+        {"item": "round muffin with paper liner", "shape": "round"},
+        {"item": "round donut with central hole and small sprinkles outline", "shape": "round"},
+        {"item": "round bun with sesame outline on top", "shape": "round"},
+        {"item": "long pretzel twisted into a knot", "shape": null}
+      ]
+    },
+    "cakes_and_desserts": {
+      "title": "CAKES AND DESSERTS",
+      "cells": [
+        {"item": "round layered cake with candle on top", "shape": "round"},
+        {"item": "triangular slice of cake with frosting swirl", "shape": "triangular"},
+        {"item": "round cupcake with swirled frosting top", "shape": "round"},
+        {"item": "round cookie with chip dots", "shape": "round"},
+        {"item": "tall ice cream sundae in a glass", "shape": null},
+        {"item": "square brownie with crackled top", "shape": "square"},
+        {"item": "round tart with fruit slices on top", "shape": "round"},
+        {"item": "long eclair with cream filling", "shape": "long"},
+        {"item": "triangular slice of pie with lattice crust", "shape": "triangular"}
+      ]
+    },
+    "ice_cream_and_sorbets": {
+      "title": "ICE CREAM AND SORBETS",
+      "cells": [
+        {"item": "round single scoop of ice cream on a cone", "shape": "round"},
+        {"item": "double scoop ice cream cone stacked", "shape": null},
+        {"item": "ice cream sundae in a tall glass with cherry on top", "shape": null},
+        {"item": "popsicle on a stick", "shape": null},
+        {"item": "ice cream sandwich between two square cookies", "shape": "square"},
+        {"item": "soft swirl ice cream cone with curl top", "shape": null},
+        {"item": "bowl of three scoops ice cream", "shape": null},
+        {"item": "ice cream bar dipped with bite missing", "shape": null},
+        {"item": "round dish of sorbet with small spoon", "shape": "round"}
+      ]
+    },
+    "dairy_products_milk": {
+      "title": "DAIRY PRODUCTS",
+      "cells": [
+        {"item": "tall milk bottle with cap", "shape": null},
+        {"item": "rectangular milk carton with spout", "shape": "rectangular"},
+        {"item": "round wedge of cheese with holes", "shape": null},
+        {"item": "round cup of yogurt with peeled lid", "shape": "round"},
+        {"item": "rectangular block of butter with knife", "shape": "rectangular"},
+        {"item": "tall cup of milk with handle", "shape": null},
+        {"item": "round small cream pot", "shape": "round"},
+        {"item": "ice cream scoop on a round dish", "shape": "round"},
+        {"item": "round wheel of cheese cut in slices", "shape": "round"}
+      ],
+      "_note": "Cellule 6 'drinking glass' évité (FILT supprime 'glass') → 'cup with handle'."
+    },
+    "balanced_lunch_plate": {
+      "title": "BALANCED LUNCH",
+      "cells": [
+        {"item": "round apple with leaf", "shape": "round"},
+        {"item": "long pointed carrot with top leaves", "shape": "long"},
+        {"item": "square slice of bread", "shape": "square"},
+        {"item": "oval fish with tail fin", "shape": "oval"},
+        {"item": "oval egg outline", "shape": "oval"},
+        {"item": "round broccoli with stem", "shape": "round"},
+        {"item": "tall cup of milk with handle", "shape": null},
+        {"item": "round citrus fruit with leaf", "shape": "round"},
+        {"item": "chicken leg with bone", "shape": null}
+      ],
+      "_note": "Cellule 7 'milk glass' évité (FILT supprime 'glass'). Cellule 8 'orange' évité."
+    },
+    "healthy_breakfast_plate": {
+      "title": "HEALTHY BREAKFAST",
+      "cells": [
+        {"item": "round bowl of cereal with small flakes", "shape": "round"},
+        {"item": "tall cup of milk with handle", "shape": null},
+        {"item": "round bagel cut in half with spread", "shape": "round"},
+        {"item": "oval egg fried with sunny side up", "shape": "oval"},
+        {"item": "long curved banana", "shape": "long"},
+        {"item": "round citrus fruit with leaf", "shape": "round"},
+        {"item": "small jar of honey with dipper", "shape": null},
+        {"item": "rectangular toast slice with butter pat", "shape": "rectangular"},
+        {"item": "round cup of yogurt with peeled lid", "shape": "round"}
+      ],
+      "_note": "Cellules 2/6 : 'glass'/'orange' évités pour FILT."
+    }
+  }
+}

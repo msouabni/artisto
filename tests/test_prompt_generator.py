@@ -24,10 +24,18 @@ from services.prompt_generator import (  # noqa: E402  (sys.path tweak)
     PromptGenerator,
     _BEFORE_AFTER_STATES,
     _DIRECTIONAL_OVERRIDES,
+    _EXPRESSIVE_FACES,
+    _GRID_CELL_CONTENTS,
     _RISKY_BACKWARD_ELEMENTS,
+    _detect_emotion,
+    _is_t23_singular_face,
     set_before_after_states,
+    set_grid_cell_contents,
     template_before_after,
+    template_grid_3x3_annotated,
+    template_grid_3x3_imagier,
     template_solo_animal,
+    template_solo_expressive_face,
     template_solo_fish,
 )
 
@@ -293,3 +301,256 @@ def test_t25_does_not_alter_solo_animal_template():
     positive = template_solo_animal(leaf, strategy={})
     assert "BEFORE" not in positive
     assert "AFTER" not in positive
+
+
+# ===========================================================================
+# T2 + T3 — Grilles : contenu explicite par cellule (+ cellules composées)
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T2 + §T3
+# ===========================================================================
+T2_COVERED_LEAFS = [
+    # Grille imagier annoté (haute fréquence baseline 100% incohérent)
+    "fruit_imagier_with_names",
+    "vegetable_imagier_with_names",
+    "weather_imagier_with_names",
+    # Imagier différencié OU Solo
+    "balanced_lunch_plate",
+    "healthy_breakfast_plate",
+    # Imagier différencié 3×3
+    "fruits_basket",
+    "vegetables_basket",
+    "bread_and_pastries",
+]
+
+
+def test_t2_grid_cell_contents_cover_min_six_leafs():
+    """Brief T2 : couverture minimale de 6 leafs grille à haute fréquence."""
+    assert len(_GRID_CELL_CONTENTS) >= 6, (
+        f"Couverture T2 insuffisante ({len(_GRID_CELL_CONTENTS)} < 6). "
+        f"Voir data/prompt_generator/grid_cell_contents.json."
+    )
+
+
+def test_t2_grid_cells_have_required_fields():
+    """Toutes les entrées doivent fournir au moins 1 cellule valide.
+    Cellule simple → `item` ; cellule composée → `container` + `items`."""
+    for leaf_id, payload in _GRID_CELL_CONTENTS.items():
+        assert isinstance(payload.get("cells"), list), f"{leaf_id}: cells absent"
+        assert payload["cells"], f"{leaf_id}: cells vide"
+        for cell in payload["cells"]:
+            if cell.get("composed"):
+                assert isinstance(cell.get("container"), str) and cell["container"].strip()
+                assert isinstance(cell.get("items"), list) and cell["items"]
+            else:
+                assert isinstance(cell.get("item"), str) and cell["item"].strip(), (
+                    f"{leaf_id}: cellule simple sans item"
+                )
+
+
+def test_t2_covers_documented_grid_leafs():
+    """Les leafs Grille à haute fréquence des 4 classes ciblées sont couverts."""
+    missing = [lid for lid in T2_COVERED_LEAFS if lid not in _GRID_CELL_CONTENTS]
+    assert not missing, f"Leafs Grille non couverts par T2 : {missing}"
+
+
+def test_template_grid_imagier_injects_cells_when_present():
+    """Si grid_cell_contents défini → les cellules nommées apparaissent dans positive,
+    et l'antipattern T2 (`each cell contains one different item related to`) disparaît."""
+    leaf = {"id": "fruit_imagier_with_names", "name_en": "Fruit Imagier with Names"}
+    positive = template_grid_3x3_imagier(leaf, strategy={"class": "Grille imagier annoté"})
+    payload = _GRID_CELL_CONTENTS["fruit_imagier_with_names"]
+    # Au moins 3 items distinctifs doivent apparaître
+    assert "round apple with leaf" in positive
+    assert "long curved banana" in positive
+    assert "triangular watermelon slice with seeds" in positive
+    # L'antipattern T2 doit disparaître quand on est en mode explicite
+    assert "each cell contains one different item related to" not in positive
+    assert "one drawing of a" not in positive
+    # Title injecté
+    assert payload["title"] in positive
+
+
+def test_template_grid_annotated_injects_cells_when_present():
+    """T3 — Grille annotée doit aussi injecter les cellules + clause label texte."""
+    leaf = {"id": "vegetable_imagier_with_names", "name_en": "Vegetable Imagier with Names"}
+    positive = template_grid_3x3_annotated(
+        leaf, strategy={"class": "Grille imagier annoté"}
+    )
+    assert "long pointed carrot with top leaves" in positive
+    assert "round broccoli" in positive
+    # Clause label texte sous chaque cellule (variante annotée)
+    assert "english name written below" in positive
+    assert "VEGETABLES" in positive
+
+
+def test_template_grid_imagier_fallback_logs_warning_when_missing(caplog):
+    """Si leaf hors mapping → fallback générique + warning loggé via `logger`."""
+    original = dict(_GRID_CELL_CONTENTS)
+    set_grid_cell_contents({})
+    try:
+        leaf = {"id": "fictional_unknown_grid_leaf", "name_en": "Fictional Unknown"}
+        with caplog.at_level(logging.WARNING, logger="services.prompt_generator"):
+            positive = template_grid_3x3_imagier(
+                leaf, strategy={"class": "Imagier différencié 3×3"}
+            )
+        # Comportement antérieur conservé en fallback (antipattern T2 connu)
+        assert "tic-tac-toe game grid" in positive
+        # Warning émis avec le leaf_id
+        warning_lines = [r for r in caplog.records if r.levelno == logging.WARNING]
+        assert any(
+            "fictional_unknown_grid_leaf" in r.getMessage() for r in warning_lines
+        ), (
+            f"Aucun warning loggé avec le leaf_id manquant. "
+            f"Records: {[r.getMessage() for r in warning_lines]}"
+        )
+    finally:
+        set_grid_cell_contents(original)
+
+
+def test_template_grid_supports_composed_cells_t3():
+    """T3 — cellule composée : `container with item1, item2, item3` doit apparaître."""
+    original = dict(_GRID_CELL_CONTENTS)
+    set_grid_cell_contents({
+        "test_composed_grid": {
+            "title": "TEST",
+            "cells": [
+                {"item": "round apple with leaf", "shape": "round"},
+                {"composed": True, "container": "wooden basket",
+                 "items": ["round apple", "long banana", "small grape cluster"]},
+            ] + [{"item": f"item {i}"} for i in range(7)],
+        }
+    })
+    try:
+        leaf = {"id": "test_composed_grid", "name_en": "Test Composed Grid"}
+        positive = template_grid_3x3_imagier(leaf, strategy={})
+        # Cellule simple
+        assert "cell 1: round apple with leaf" in positive
+        # Cellule composée (T3 — conteneur sémantique)
+        assert "cell 2 contains a wooden basket with" in positive
+        assert "round apple" in positive
+        assert "long banana" in positive
+    finally:
+        set_grid_cell_contents(original)
+
+
+# ===========================================================================
+# T23 — Solo visage expressif (heuristique dispatch v2)
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T23
+# ===========================================================================
+def test_t23_expressive_faces_table_complete():
+    """Brief T23 : la table doit couvrir au moins les 10 émotions documentées."""
+    required = {"proud", "sad", "happy", "angry", "surprised", "sleepy",
+                "scared", "calm", "excited", "shy"}
+    missing = required - set(_EXPRESSIVE_FACES.keys())
+    assert not missing, f"Émotions manquantes dans _EXPRESSIVE_FACES : {missing}"
+
+
+def test_t23_detect_emotion_prefix_only():
+    """`_detect_emotion` doit matcher uniquement les préfixes (pas les substrings)."""
+    assert _detect_emotion("proud_child_face") == "proud"
+    assert _detect_emotion("sad_child_crying") == "sad"
+    # Pas un préfixe → None
+    assert _detect_emotion("happy_meal") == "happy"  # OK, c'est un préfixe
+    assert _detect_emotion("emotion_chart_poster") is None
+    assert _detect_emotion("kid_running_outdoors") is None
+    assert _detect_emotion("") is None
+    assert _detect_emotion(None) is None
+
+
+def test_t23_dispatch_emotional_singular_leaf():
+    """`_is_t23_singular_face` doit retourner l'émotion sur un leaf émotionnel
+    + workflow_class éligible."""
+    assert _is_t23_singular_face("proud_child_face",
+                                 "Imagier annoté 3×3 OU Solo visage") == "proud"
+    assert _is_t23_singular_face("sad_child_crying",
+                                 "Imagier annoté 3×3 OU Solo visage") == "sad"
+
+
+def test_t23_dispatch_collective_leaf_stays_grid():
+    """Un leaf collectif (`emotion_chart_poster`, `feeling_imagier_with_names`)
+    doit RESTER sur le template grille même sur la classe éligible."""
+    assert _is_t23_singular_face("emotion_chart_poster",
+                                 "Imagier annoté 3×3 OU Solo visage") is None
+    assert _is_t23_singular_face("feeling_imagier_with_names",
+                                 "Imagier annoté 3×3 OU Solo visage") is None
+
+
+def test_t23_dispatch_non_eligible_class_stays_grid():
+    """Une classe non éligible (Solo animal, Frise…) ne doit pas activer T23
+    même si le leaf_id contient une émotion."""
+    assert _is_t23_singular_face("happy_dog", "Solo animal") is None
+    assert _is_t23_singular_face("proud_lion", "Solo animal") is None
+
+
+def test_template_solo_expressive_face_injects_emotion_markers():
+    """Le template doit injecter les marqueurs visuels propres à l'émotion."""
+    leaf = {"id": "proud_child_face", "name_en": "Proud Child Face"}
+    positive = template_solo_expressive_face(leaf, strategy={})
+    assert "one single child face viewed from the front" in positive
+    assert "proud expression" in positive
+    # Au moins un marqueur visuel propre à 'proud'
+    assert "head held high" in positive
+    # Title en capitales
+    assert "\"PROUD\"" in positive
+
+
+def test_build_prompt_t23_bypasses_grid_for_emotional_leaf():
+    """Smoke build_prompt complet : `proud_child_face` doit produire le solo expressive
+    face (et NON la grille imagier)."""
+    try:
+        gen = PromptGenerator()
+    except FileNotFoundError:
+        pytest.skip("Données prompt_generator non disponibles dans cet environnement.")
+
+    if "proud_child_face" not in gen.leaf_index:
+        pytest.skip("Leaf proud_child_face absent de la taxonomie.")
+
+    result = gen.build_prompt("proud_child_face")
+    pos = result["positive"]
+    # Bypass grille → solo expressive face
+    assert "one single child face" in pos
+    assert "head held high" in pos
+    # Grille NE doit pas s'être appliquée
+    assert "tic-tac-toe" not in pos
+
+
+def test_build_prompt_t23_keeps_grid_for_collective_leaf():
+    """Smoke build_prompt complet : `emotion_chart_poster` doit RESTER sur la grille
+    (mot collectif `chart` détecté)."""
+    try:
+        gen = PromptGenerator()
+    except FileNotFoundError:
+        pytest.skip("Données prompt_generator non disponibles dans cet environnement.")
+
+    if "emotion_chart_poster" not in gen.leaf_index:
+        pytest.skip("Leaf emotion_chart_poster absent de la taxonomie.")
+
+    result = gen.build_prompt("emotion_chart_poster")
+    pos = result["positive"]
+    # Doit rester en mode grille (chart est un marqueur collectif)
+    assert "tic-tac-toe" in pos
+    # NE doit PAS basculer sur expressive face
+    assert "one single child face" not in pos
+
+
+# ===========================================================================
+# Non-régression : T2/T3/T23 ne doivent pas affecter les voisins
+# (Solo animal/fish, before/after, frieze, etc.)
+# ===========================================================================
+def test_t2_does_not_alter_solo_animal_template():
+    """Sanity : Solo animal banal continue de produire son template attendu."""
+    leaf = {"id": "house_cat", "name_en": "House Cat"}
+    positive = template_solo_animal(leaf, strategy={})
+    assert "tic-tac-toe" not in positive
+    assert "cell 1:" not in positive
+
+
+def test_t23_does_not_break_before_after_template():
+    """Sanity : T25 before_after reste fonctionnel après ajout de T23."""
+    leaf = {"id": "rainwater_collection_barrel", "name_en": "Rainwater Collection Barrel"}
+    positive = template_before_after(
+        leaf, strategy={"class": "Comparatif before/after OU Solo"}
+    )
+    assert "BEFORE" in positive
+    assert "AFTER" in positive
+    # T23 ne doit pas s'être glissé dans le before/after
+    assert "one single child face" not in positive

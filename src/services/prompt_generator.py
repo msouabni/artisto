@@ -49,6 +49,7 @@ DEFAULT_TAXONOMY = str(PROJECT_ROOT / "data/prompt_generator/coloring_taxonomy_f
 DEFAULT_CARTOGRAPHY = str(PROJECT_ROOT / "data/prompt_generator/taxonomy_production_cartography.json")
 DEFAULT_SEO = str(PROJECT_ROOT / "data/prompt_generator/coloring_taxonomy_seo.json")
 DEFAULT_BEFORE_AFTER_STATES = str(PROJECT_ROOT / "data/prompt_generator/before_after_states.json")
+DEFAULT_GRID_CELL_CONTENTS = str(PROJECT_ROOT / "data/prompt_generator/grid_cell_contents.json")
 
 # Negative prompt v3 (validé Phase H)
 # Negative prompt v3 (validé Phase H) + isolation clause (fix 2_objets 2026-05-09)
@@ -233,6 +234,228 @@ def set_before_after_states(states: Dict[str, dict]) -> None:
     """
     global _BEFORE_AFTER_STATES
     _BEFORE_AFTER_STATES = dict(states or {})
+
+
+# ===================================================================
+# T2 + T3 — Grilles : contenu explicite par cellule + cellules composées
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T2 + §T3
+# Transfert : 2026-05-10 (cf. docs/architect/briefs/2026-05-10_brief-transfert-T2T3T23-grille-imagier.md)
+#
+# Règle T2 (citation textuelle skill) :
+# > Ne jamais déléguer le choix du contenu des cellules au modèle.
+# > Chaque cellule doit être spécifiée avec sa forme géométrique de base.
+# > # ❌ contenu délégué : "each cell contains one different item related to X"
+# > # ✅ contenu explicite : "1-round apple with leaf, 2-long pointed carrot, ..."
+#
+# Règle T3 (citation textuelle skill) :
+# > Une cellule peut contenir 3-4 items si introduite par un conteneur sémantique.
+# > Conteneur obligatoire — `cell N contains a [conteneur] with [item1], [item2], [item3]`
+# > Pas de forme géométrique dans les cellules composées — le conteneur suffit.
+#
+# Implémentation : on charge un dict {leaf_id → {title, cells: [{item, shape} | {container, items}]}}
+# depuis data/prompt_generator/grid_cell_contents.json. Si un leaf est trouvé, on injecte
+# les 9 cellules nommées dans le template grille. Sinon : fallback comportement antérieur
+# + warning loggé pour traçabilité.
+#
+# Garde-fou pivot ERNIE (cf. brief) : si la mesure post-transfert montre un taux
+# image_pas_coherente résiduel > 30 %, l'archi reportera le complément en T19+ canal
+# manuel (bascule pipeline grille en composition PIL/SVG).
+# ===================================================================
+def _load_grid_cell_contents(path: str = DEFAULT_GRID_CELL_CONTENTS) -> Dict[str, dict]:
+    """Charge le mapping {leaf_id → {title, cells: [...]}} depuis JSON.
+
+    Retourne un dict vide si le fichier n'existe pas ou est invalide — les templates
+    bascule alors sur le fallback (antipattern T2 connu + warning loggé).
+    """
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (FileNotFoundError, IOError, json.JSONDecodeError) as exc:
+        logger.warning(
+            "grid_cell_contents JSON load failed (path=%s): %s — fallback générique",
+            path, exc,
+        )
+        return {}
+    states = data.get("states", {}) if isinstance(data, dict) else {}
+    if not isinstance(states, dict):
+        return {}
+    cleaned: Dict[str, dict] = {}
+    for leaf_id, payload in states.items():
+        if not isinstance(payload, dict):
+            continue
+        cells = payload.get("cells")
+        if not isinstance(cells, list) or len(cells) < 1:
+            continue
+        # Filtre des cellules valides (item simple OU container+items composé)
+        valid_cells = []
+        for cell in cells:
+            if not isinstance(cell, dict):
+                continue
+            if cell.get("composed") is True or cell.get("container"):
+                container = cell.get("container")
+                items = cell.get("items")
+                if isinstance(container, str) and container.strip() \
+                        and isinstance(items, list) and items:
+                    valid_cells.append({
+                        "composed": True,
+                        "container": container.strip(),
+                        "items": [str(i).strip() for i in items if isinstance(i, str) and i.strip()],
+                    })
+            else:
+                item = cell.get("item")
+                if isinstance(item, str) and item.strip():
+                    valid_cells.append({
+                        "composed": False,
+                        "item": item.strip(),
+                        "shape": cell.get("shape") if isinstance(cell.get("shape"), str) else None,
+                    })
+        if not valid_cells:
+            continue
+        title = payload.get("title")
+        cleaned[leaf_id] = {
+            "title": title.strip() if isinstance(title, str) and title.strip() else None,
+            "cells": valid_cells,
+        }
+    return cleaned
+
+
+# Singleton chargé à l'import. Override via `set_grid_cell_contents(...)` côté tests.
+_GRID_CELL_CONTENTS: Dict[str, dict] = _load_grid_cell_contents()
+
+
+def set_grid_cell_contents(contents: Dict[str, dict]) -> None:
+    """Injecte un dict de remplacement (utilitaire test). Même contrainte de
+    structure que `_load_grid_cell_contents`.
+    """
+    global _GRID_CELL_CONTENTS
+    _GRID_CELL_CONTENTS = dict(contents or {})
+
+
+def _format_grid_cell(idx: int, cell: dict) -> str:
+    """Formate une cellule pour injection dans le positive prompt.
+
+    T2 (simple) : `cell N: <shape> <item>` (shape facultatif)
+    T3 (composée) : `cell N contains a <container> with <item1>, <item2>, <item3>`
+    """
+    if cell.get("composed"):
+        container = cell["container"]
+        items = cell.get("items", [])
+        items_clause = ", ".join(items) if items else ""
+        return f"cell {idx} contains a {container} with {items_clause}"
+    item = cell["item"]
+    shape = cell.get("shape")
+    # Si shape déjà présent dans l'item (ex: "round apple with leaf"), ne pas dupliquer.
+    if shape and shape.lower() not in item.lower():
+        return f"cell {idx}: {shape} {item}"
+    return f"cell {idx}: {item}"
+
+
+# ===================================================================
+# T23 — Solo visage expressif (emotions_and_expressions)
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T23
+# Transfert : 2026-05-10 (cf. docs/architect/briefs/2026-05-10_brief-transfert-T2T3T23-grille-imagier.md)
+#
+# Règle T23 (citation textuelle skill) :
+# > Les feuilles à sujet singulier (`proud_child_face`, `sad_child_face`) doivent
+# > utiliser le template solo visage expressif, pas le template grille imagier.
+# > Heuristique dispatch v2 :
+# > - Mots-clés dans leaf_id → `imagier, grid, chart, panel, overview, collection` → grille
+# > - Sinon → template solo
+#
+# Implémentation : avant de router sur `template_grid_3x3_*`, le dispatcher vérifie
+# si le leaf_id matche un pattern d'émotion ET une classe « Imagier annoté 3×3 OU
+# Solo visage » (ou variantes) → bascule sur `template_solo_expressive_face`.
+# Les leafs collectifs (`emotion_chart_poster`, `feeling_imagier_with_names`) restent
+# sur la grille car ils contiennent un mot-clé collectif (`chart`, `imagier`).
+# ===================================================================
+_EXPRESSIVE_FACES: Dict[str, str] = {
+    # NB : on évite les ancres FILT (bright/dark/black…) — voir prompt_filters._COLOR_NOUNS.
+    # Le skill T23 mentionne `eyes bright` mais FILT strippe « bright » (luminosité = ancre couleur).
+    # Adaptation : `wide open eyes` conserve l'idée sans déclencher FILT.
+    "proud":     "confident smile, head held high, chest out, wide open eyes, eyebrows slightly raised",
+    "sad":       "corners of mouth turned down, drooping eyelids, slight tear in one eye",
+    "happy":     "wide smile showing teeth, eyes squinted with joy, raised cheeks",
+    "angry":     "furrowed eyebrows pointing down, mouth pressed in a frown, clenched teeth",
+    "surprised": "wide round eyes, mouth open in O shape, raised eyebrows",
+    "sleepy":    "half-closed eyelids, mouth open in yawn, head slightly tilted",
+    "scared":    "wide eyes, mouth in worried oh shape, eyebrows raised in middle",
+    "calm":      "eyes gently closed or half-closed, soft smile, relaxed face",
+    "excited":   "huge open smile, sparkling eyes, raised eyebrows, slight mouth open",
+    "shy":       "slight smile, looking sideways, one hand to the cheek, blushing by simple curves",
+    "curious":   "raised eyebrows, slight smile, head tilted to one side, eyes wide open",
+}
+
+# Mots-clés "collectif" : si un leaf_id en contient un, on garde le template grille
+# même si le leaf contient aussi un mot d'émotion (ex: emotion_chart_poster).
+_T23_COLLECTIVE_MARKERS = (
+    "imagier", "grid", "chart", "panel", "overview", "collection", "poster",
+)
+
+# Workflow_classes pour lesquelles T23 doit s'activer (mixed grille/solo)
+_T23_ELIGIBLE_CLASSES = (
+    "Imagier annoté 3×3 OU Solo visage",
+    "Imagier différencié 3×3 OU Solo visage",  # variante hypothétique
+)
+
+
+def _detect_emotion(leaf_id: str) -> Optional[str]:
+    """Retourne le nom de l'émotion détectée dans `leaf_id` (préfixe `<emotion>_`)
+    ou None. La détection est restreinte au préfixe pour éviter les faux positifs
+    (`happy_meal` ne matche pas, mais `happy_child_smiling` matche).
+    """
+    if not leaf_id:
+        return None
+    lid = leaf_id.lower()
+    for emotion in _EXPRESSIVE_FACES:
+        if lid.startswith(f"{emotion}_"):
+            return emotion
+    return None
+
+
+def _is_t23_singular_face(leaf_id: str, workflow_class: Optional[str]) -> Optional[str]:
+    """T23 — heuristique dispatch v2.
+
+    Retourne le nom de l'émotion si :
+    - workflow_class éligible (mixed grille/solo visage), ET
+    - leaf_id préfixé par une émotion connue, ET
+    - leaf_id ne contient AUCUN marqueur collectif (chart, imagier, …).
+
+    Sinon retourne None (le caller continue sur le template d'origine = grille).
+    """
+    if workflow_class not in _T23_ELIGIBLE_CLASSES:
+        return None
+    emotion = _detect_emotion(leaf_id)
+    if not emotion:
+        return None
+    lid = leaf_id.lower()
+    if any(marker in lid for marker in _T23_COLLECTIVE_MARKERS):
+        return None
+    return emotion
+
+
+def template_solo_expressive_face(leaf, strategy):
+    """T23 — Solo visage expressif (emotions_and_expressions).
+
+    Bascule activée par le dispatcher quand un leaf_id a un préfixe d'émotion connu
+    sur une workflow_class mixed grille/solo visage. Le titre dans le visuel reste
+    en majuscules pour rester compréhensible côté enfant.
+    """
+    leaf_id = leaf.get("id") or leaf.get("leaf_id") or ""
+    emotion = _detect_emotion(leaf_id)
+    if not emotion:
+        # Garde-fou : ne devrait pas arriver (le dispatcher a déjà filtré),
+        # mais on évite tout KeyError.
+        emotion = "calm"
+    markers = _EXPRESSIVE_FACES.get(emotion, _EXPRESSIVE_FACES["calm"])
+    title = emotion.upper()
+    return (
+        f"{STYLE_BLOCK}, "
+        f"one single child face viewed from the front, "
+        f"the child showing a {emotion} expression with {markers}, "
+        f"simple shoulders visible at the bottom, "
+        f"the title \"{title}\" written in capital letters above the head, "
+        f"centered composition"
+    )
 
 
 # ===================================================================
@@ -550,32 +773,103 @@ def template_personality_action(leaf, strategy):
     )
 
 
+def _build_grid_cells_clause(cells: List[dict]) -> str:
+    """Concatène les 9 premières cellules formattées T2/T3 pour injection dans le positive."""
+    formatted = [_format_grid_cell(i + 1, c) for i, c in enumerate(cells[:9])]
+    return ", ".join(formatted)
+
+
 def template_grid_3x3_imagier(leaf, strategy):
-    """Pivot T25 (jeu des différences) — variation-first ERNIE (2026-05-10)."""
-    name_en = leaf.get("name_en") or leaf.get("id")
+    """T2/T3 — Grille 3×3 imagier différencié (contenu explicite par cellule).
+
+    Source skill — T2 (citation textuelle) :
+    > Ne jamais déléguer le choix du contenu des cellules au modèle.
+    > # ❌ contenu délégué : `each cell contains one different item related to X`
+    > # ✅ contenu explicite : `cell 1: round apple with leaf, cell 2: long pointed carrot…`
+
+    Si `_GRID_CELL_CONTENTS[leaf_id]` est défini → injecte les 9 cellules nommées (T2).
+    Sinon → fallback comportement antérieur (antipattern T2 connu) + warning loggé pour
+    traçabilité (le leaf_id manquant doit être ajouté à
+    `data/prompt_generator/grid_cell_contents.json` lors d'une PR ultérieure).
+    """
+    leaf_id = leaf.get("id") or leaf.get("leaf_id")
+    name = (leaf.get("name_en") or leaf_id or "").lower()
+    name_upper = (leaf.get("name_en") or leaf_id or "").upper()
+    payload = _GRID_CELL_CONTENTS.get(leaf_id) if leaf_id else None
+
+    if payload and payload.get("cells"):
+        title = payload.get("title") or name_upper
+        cells_clause = _build_grid_cells_clause(payload["cells"])
+        return (
+            f"{STYLE_BLOCK}, "
+            f"a tic-tac-toe grid of three rows by three columns making nine empty square cells, "
+            f"the grid centered on the page, thick black grid lines, "
+            f"the title \"{title}\" written in capital letters above the grid, "
+            f"{cells_clause}, "
+            f"each item drawn inside its own cell with uniform black line thickness, "
+            f"balanced composition"
+        )
+
+    # Fallback : leaf non couvert → log + comportement antérieur (antipattern T2 connu)
+    logger.warning(
+        "grid_cell_contents missing for leaf_id=%s (workflow_class=%s) — "
+        "fallback générique T2-violant. Ajouter une entrée dans "
+        "data/prompt_generator/grid_cell_contents.json.",
+        leaf_id, (strategy or {}).get("class"),
+    )
     return (
-        f"coloring book page for kids, black and white line art, thick clean outlines, "
-        f"no shading, no fill, white background, "
-        f"a horizontal grid of two large rectangular cells side by side "
-        f"separated by a thick black vertical line, "
-        f"the word \"SPOT THE DIFFERENCE\" written above both cells, "
-        f"the left cell shows {name_en} scene with all elements clearly visible, "
-        f"the right cell shows the same scene with several differences hidden inside, "
-        f"uniform black line thickness, full scene visible, centered composition"
+        f"{STYLE_BLOCK}, "
+        f"a tic-tac-toe game grid of three rows by three columns making nine empty square cells, "
+        f"the grid centered on the page, "
+        f"each cell contains one drawing of a {name} item, "
+        f"each cell shows a different item, "
+        f"the title \"{name_upper}\" written above the grid"
     )
 
 
 def template_grid_3x3_annotated(leaf, strategy):
-    """Grille 3×3 avec annotations (X6 OK)."""
-    name = leaf['name_en'].lower()
-    title = leaf['name_en'].upper()
+    """T2/T3 — Grille 3×3 imagier annoté (chaque case a son label texte).
+
+    Source skill — T2 + T3 (références dans `_GRID_CELL_CONTENTS` plus haut).
+    Variante avec label texte sous chaque cellule (« picture-word imagier »).
+
+    Si `_GRID_CELL_CONTENTS[leaf_id]` est défini → injecte les cellules nommées
+    + instruction d'écriture du label sous chaque cellule. Sinon → fallback +
+    warning loggé.
+    """
+    leaf_id = leaf.get("id") or leaf.get("leaf_id")
+    name = (leaf.get("name_en") or leaf_id or "").lower()
+    name_upper = (leaf.get("name_en") or leaf_id or "").upper()
+    payload = _GRID_CELL_CONTENTS.get(leaf_id) if leaf_id else None
+
+    if payload and payload.get("cells"):
+        title = payload.get("title") or name_upper
+        cells_clause = _build_grid_cells_clause(payload["cells"])
+        return (
+            f"{STYLE_BLOCK}, "
+            f"a tic-tac-toe grid of three rows by three columns making nine empty square cells, "
+            f"the grid centered on the page, thick black grid lines, "
+            f"the title \"{title}\" written in capital letters above the grid, "
+            f"{cells_clause}, "
+            f"each item drawn inside its own cell with its english name written below in "
+            f"capital letters inside the same cell, uniform black line thickness, "
+            f"balanced composition"
+        )
+
+    # Fallback : leaf non couvert → log + comportement antérieur (antipattern T2 connu)
+    logger.warning(
+        "grid_cell_contents missing for leaf_id=%s (workflow_class=%s) — "
+        "fallback générique T2-violant. Ajouter une entrée dans "
+        "data/prompt_generator/grid_cell_contents.json.",
+        leaf_id, (strategy or {}).get("class"),
+    )
     return (
         f"{STYLE_BLOCK}, "
         f"a tic-tac-toe game grid of three rows by three columns making nine empty square cells, "
         f"the grid centered on the page, "
         f"each cell contains one drawing of a {name} item with its name written below "
         f"in capital letters inside the same cell, each cell shows a different item, "
-        f"the title \"{title}\" written above the grid"
+        f"the title \"{name_upper}\" written above the grid"
     )
 
 
@@ -871,7 +1165,13 @@ class PromptGenerator:
         if not template_fn:
             # Fallback : solo objet
             template_fn = template_solo_object
-        
+
+        # T23 — heuristique dispatch v2 : leaf singulier (préfixe émotion) sur
+        # workflow mixed grille/solo visage → bypass grille → solo expressive face.
+        # Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T23
+        if _is_t23_singular_face(leaf_id, strategy.get("class")):
+            template_fn = template_solo_expressive_face
+
         # LEAF_OVERRIDES : prompt manuel prioritaire sur le template
         if leaf_id in LEAF_OVERRIDES:
             # Overrides validés humainement — pas de filtrage (cf. brief T5+T6+T7).
