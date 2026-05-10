@@ -1,6 +1,6 @@
 # Architect Memory — Artiste Coloriage
 
-Mis à jour : 2026-05-10 (Vague 1 MEP v0 lancée — 4 sous-agents background worktree)
+Mis à jour : 2026-05-10 (Vague 1 MEP v0 clôturée — 4/4 livrés et mergés, chaîne pipeline subject+image+QC opérationnelle)
 
 ## État courant du projet
 
@@ -65,6 +65,7 @@ Pipeline opérationnelle de bout en bout : taxonomie 1376 feuilles → `PromptGe
 | 2026-05-10 | **Spec MEP v0 rédigée — modèle données + flow pipeline** | rédigé | `docs/architect/2026-05-10_spec-mep-v0.md`. Modèle : taxonomy → term → **subject** (nouveau) avec tags + note + status + enrichment i18n + prompt → image_output + qc_tags → publication plateforme. Flow : import skill v0 → annotation masse → filtre tags/règles → enrichissement i18n (job) → prompt (job) → image (job ERNIE) → QC auto (job, no LLM, 5 tags simples) → queue validation user (greffon prod existant) → publication plateforme Alwan Books. Vague 1 : 4 briefs fondations parallèles (worker simplifié, modèle subject, import skill, qc_worker). Vague 2 : 4 briefs orchestration. Vague 3 : publication. Cycle MEP v0 estimé 5-8 jours ouvrés. |
 | 2026-05-10 | **Vague 1 MEP v0 — 4 briefs rédigés (parallélisables)** | rédigé | V1.1 `brief-simplification-worker-image-pattern-poc.md` (ERNIE-only injection node id + nettoyage 5 tests préflight, ~1h30). V1.2 `brief-modele-subject.md` (Alembic 0007 + SQLAlchemy + CRUD endpoints + 15 tests, ~1h30-2h). V1.3 `brief-import-subjects-v0-skill.md` (script idempotent depuis coloring_taxonomy_full.json, dépend V1.2, ~45-60 min). V1.4 `brief-qc-auto-worker.md` (5 règles déterministes Pillow/numpy + job_type + Alembic 0008 qc_tags + trigger auto post-image_generation, ~1h-1h30). Zones disjointes : V1.1, V1.2, V1.4 parallèles ; V1.3 attend V1.2 mergé pour run réel mais le script peut être préparé en parallèle. |
 | 2026-05-10 | Vague 1 MEP v0 lancée — 4 sous-agents background worktree | lancé | V1.1 worker simplifié ERNIE-only · V1.2 modèle `subject` + CRUD · V1.3 import skill → subjects · V1.4 qc_worker 5 tags. Pas de commit côté agents. Merge manuel par archi après notification completion. |
+| 2026-05-10 | **Vague 1 MEP v0 clôturée** — 4/4 mergés, migrations 0007+0008+0009 appliquées Postgres, 1376 subjects insérés, chaîne `image → image_output → qc_auto → qc_tags` opérationnelle | **fait 2026-05-10 (clôture protocole 13 étapes)** | Commits : `b756df8` pré-Vague 1 (whitelist + extension grid + bench gate + V1.3 import) · `7fa27a0` docs architect · `7f21128` V1.1 worker · `3540891` V1.2 subject + V1.3 align · `4774234` V1.4 qc · `3ecad21` migration 0009 + run import 1376 subjects · `f4bac4b` run_qc_worker.py. **Conflits résolus** : align V1.3 sur schéma V1.2 livré (brief/subject_metadata au lieu de prompt_positive/metadata) · ajout `source` à V1.2 via migration 0009 propre (le V1.2 initial l'avait omis du brief) · conflit `main.py` V1.2+V1.4 résolu (import subjects+qc, mount routers). 452/452 tests verts. Smoke E2E QC sur image réelle OK (`qc_color_residual` posé, métriques cohérentes). Worktrees + branches supprimés. |
 | **MEP v0 (date à définir)** | Cadrer périmètre fonctionnel + critères de sortie mesurables + date cible | **à faire — bloqueur n°1** | Centre de gravité depuis 2026-05-10. **Volumétrie corpus candidat connue** : 318 leaves publiables uniques (94 % confidence Haute, 100 % roots, 60.7 % sub-cats). Sans cadrage périmètre + date, Plan B (post-MEP v0) et Plan C (MEP+30j) restent flous. |
 
 ## Décisions architecturales actées
@@ -161,7 +162,7 @@ Pipeline opérationnelle de bout en bout : taxonomie 1376 feuilles → `PromptGe
 
 ## Notes pour le prochain cycle
 
-- **Action n°1 critique : attendre completion Vague 1 + merge worktrees**. 4 sous-agents en background : V1.1 worker simplifié, V1.2 modèle subject, V1.3 import skill, V1.4 qc_worker. Notification automatique à completion. Merge manuel par archi après revue rapports.
+- ~~**Action n°1 critique : attendre completion Vague 1 + merge worktrees**~~ → **Fait 2026-05-10** : 4/4 livrés, mergés, mig 0007+0008+0009 appliquées, 1376 subjects en BD, run_qc_worker.py créé, smoke E2E QC OK, worktrees supprimés.
 - **Action n°2 critique : cadrer MEP v0** — volumétrie connue (318 publiables), reste **périmètre fonctionnel + date cible**. Bloque Vague 2 (annotateur subject mode + jobs orchestration) et Vague 3 (publication plateforme Alwan Books).
 - **Action n°3 : rédiger Vague 2 MEP v0** dès Vague 1 mergée — 4 briefs : V2.1 annotateur HTML mode `target_type='subject'`, V2.2 filtre tags + règles par term, V2.3 adaptation `ai_pipeline_worker` pour `subject_enrichment_i18n`, V2.4 wrapper job `subject_prompt_generation`.
 - **Action n°4 : arbitrer les 7 doublons publiables** (`african_elephant`, `pet_turtle`, `sea_turtle_swimming`, `birthday_cake_with_candles`, `first_steam_engine_train`, `hot_air_balloon`, `sailing_boat`) — 1 sub-cat canonique par leaf. ~30 min humain + ~15 min code.
