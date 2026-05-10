@@ -27,12 +27,20 @@ USAGE API PYTHON :
 import json
 import argparse
 import copy
+import logging
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
 
+# Hook prophylactique T5+T6+T7 (transfert skill prompt-taxonomy-ecosystem 2026-05-10)
+from services.prompt_filters import apply_all_filters as _apply_prompt_filters
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+# Module-level logger — laisse `setup_logging` (api/workers) configurer les
+# handlers root. Ici on émet juste vers le logger nommé.
+logger = logging.getLogger(__name__)
 
 # ===================================================================
 # CONFIGURATION — chemins par défaut
@@ -40,6 +48,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_TAXONOMY = str(PROJECT_ROOT / "data/prompt_generator/coloring_taxonomy_full.json")
 DEFAULT_CARTOGRAPHY = str(PROJECT_ROOT / "data/prompt_generator/taxonomy_production_cartography.json")
 DEFAULT_SEO = str(PROJECT_ROOT / "data/prompt_generator/coloring_taxonomy_seo.json")
+DEFAULT_BEFORE_AFTER_STATES = str(PROJECT_ROOT / "data/prompt_generator/before_after_states.json")
 
 # Negative prompt v3 (validé Phase H)
 # Negative prompt v3 (validé Phase H) + isolation clause (fix 2_objets 2026-05-09)
@@ -87,6 +96,143 @@ _RISKY_MULTI_PATTERNS = (
     "_with_friend", "_with_chicks", "_and_", "_in_anemone",
     "_with_school", "_with_cub", "_with_pup",
 )
+
+# ===================================================================
+# T9 — Symétrie : éléments s'étendant derrière le sujet
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T9
+# Transfert : 2026-05-10 (cf. docs/architect/briefs/2026-05-10_brief-transfert-T9-orientation.md)
+#
+# Règle citée textuellement :
+# > Le modèle perd la cohérence du point de vue sur tout élément qui s'étend derrière
+# > le sujet → duplication symétrique. Contraintes de comptage inefficaces.
+# > Fix : Profil strict + orientation directionnelle explicite.
+# > Formule : one single [sujet] in profile facing [left/right],
+# >          [élément] pointing/curving [direction]
+#
+# Vocabulaire des "éléments arrières" (queue ample, long cou, crinière, fin dorsale,
+# membre arrière étendu) qui déclenchent la duplication par symétrie. Conservé en
+# référence — actuellement non utilisé pour matching automatique : on s'appuie sur
+# _DIRECTIONAL_OVERRIDES (curated par leaf_id) pour rester fidèle au brief T9.
+# ===================================================================
+_RISKY_BACKWARD_ELEMENTS = (
+    "tail_ample",
+    "long_neck",
+    "mane",
+    "dorsal_fin",
+    "extended_limb",
+)
+
+# Mapping leaf_id → (facing direction, backward element clause)
+# - facing : "left" ou "right" — orientation strict profil
+# - backward : clause libre type "tail curving right" / None si pas d'élément arrière
+#
+# Couvre les 6 leafs résiduels post v2 (image_duplication 6/13 → cible <2/13).
+# Étendre via PR ultérieure pour d'autres leafs morphologiquement similaires.
+_DIRECTIONAL_OVERRIDES: Dict[str, dict] = {
+    "bactrian_camel":   {"facing": "right", "backward": "tail curving right"},
+    "golden_retriever": {"facing": "left",  "backward": "tail curving left"},
+    "mountain_gorilla": {"facing": "right", "backward": None},
+    "playful_dolphin":  {"facing": "left",  "backward": "tail and dorsal fin pointing left"},
+    "running_cheetah":  {"facing": "right", "backward": "tail extended right"},
+    "running_giraffe":  {"facing": "right", "backward": "neck and tail extended right"},
+}
+
+
+def _apply_directional_override(name: str, leaf_id: str, env_clause: str) -> Optional[str]:
+    """T9 — construit le positive en profil strict + orientation directionnelle.
+
+    Retourne None si `leaf_id` n'est pas dans `_DIRECTIONAL_OVERRIDES` (caller continue
+    avec le template par défaut).
+
+    Args:
+        name: nom EN du sujet (déjà lowercased par le template appelant)
+        leaf_id: id de la feuille à matcher contre _DIRECTIONAL_OVERRIDES
+        env_clause: clause environnement déjà choisie par le template (ground line,
+                    water line, etc.) — permet de partager fish vs animal terrestre.
+
+    Returns:
+        positive str complet (avec STYLE_BLOCK + _ISOLATION) ou None.
+    """
+    override = _DIRECTIONAL_OVERRIDES.get(leaf_id)
+    if not override:
+        return None
+    facing = override["facing"]
+    backward = override.get("backward")
+    backward_clause = f", {backward}" if backward else ""
+    return (
+        f"{STYLE_BLOCK}, "
+        f"one single {name} in profile facing {facing}{backward_clause}, "
+        f"full body view, all visible limbs clearly drawn, "
+        f"{env_clause}, "
+        f"off-center composition, friendly expression, "
+        + _ISOLATION
+    )
+
+
+# ===================================================================
+# T25 — Jeu des différences / Comparatif before/after (états explicites)
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T25
+# Transfert : 2026-05-10 (cf. docs/architect/briefs/2026-05-10_brief-transfert-T25-before-after.md)
+#
+# Règle T25 — Insight C checklist (citation textuelle skill) :
+# > Une différence explicite doit être concrète, visuelle et localisée.
+# > `tap closed -> tap open + bucket` fonctionne.
+# > `one single change applied` est trop vague — modèle reproduit la même scène.
+#
+# Bug générateur v5 (citation textuelle skill) :
+# > Le template comparatif insère `one single change applied` sans décrire le changement.
+# > Fix v2 : champ `before_state` et `after_state` explicites dans la cartographie,
+# > ou description narrative des deux états dans le prompt.
+#
+# Implémentation : on charge un dict {leaf_id → {before_state, after_state}} depuis
+# data/prompt_generator/before_after_states.json. Si un leaf est trouvé, on injecte les
+# deux états dans `template_before_after`. Sinon, fallback comportement actuel + warning.
+#
+# Garde-fou pivot ERNIE (cf. brief) : si la mesure post-transfert montre un taux
+# image_pas_coherente résiduel > 30 %, l'archi reportera le complément en T19+ canal
+# manuel (bascule pipeline comparatif en composition PIL 2-tiles).
+# ===================================================================
+def _load_before_after_states(path: str = DEFAULT_BEFORE_AFTER_STATES) -> Dict[str, dict]:
+    """Charge le mapping {leaf_id → {before_state, after_state}} depuis JSON.
+
+    Retourne un dict vide si le fichier n'existe pas ou est invalide — le template
+    bascule alors sur le fallback (comportement antérieur + warning loggé).
+    """
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (FileNotFoundError, IOError, json.JSONDecodeError) as exc:
+        logger.warning(
+            "before_after_states JSON load failed (path=%s): %s — fallback générique",
+            path, exc,
+        )
+        return {}
+    states = data.get("states", {}) if isinstance(data, dict) else {}
+    if not isinstance(states, dict):
+        return {}
+    # Filtre les entrées valides (besoin des deux clés non vides)
+    cleaned: Dict[str, dict] = {}
+    for leaf_id, payload in states.items():
+        if not isinstance(payload, dict):
+            continue
+        before = payload.get("before_state")
+        after = payload.get("after_state")
+        if isinstance(before, str) and isinstance(after, str) and before.strip() and after.strip():
+            cleaned[leaf_id] = {"before_state": before.strip(), "after_state": after.strip()}
+    return cleaned
+
+
+# Singleton chargé à l'import — coût ~ms (20 entrées). Override via
+# `set_before_after_states(...)` côté tests si besoin.
+_BEFORE_AFTER_STATES: Dict[str, dict] = _load_before_after_states()
+
+
+def set_before_after_states(states: Dict[str, dict]) -> None:
+    """Injecte un dict de remplacement (utilitaire test). Garde la même contrainte
+    de structure que `_load_before_after_states` (champs `before_state` / `after_state`).
+    """
+    global _BEFORE_AFTER_STATES
+    _BEFORE_AFTER_STATES = dict(states or {})
 
 
 # ===================================================================
@@ -190,8 +336,18 @@ WORKFLOW_TEMPLATE = {
 # Chaque template est une fonction qui prend (leaf_data, strategy) et retourne le prompt positif.
 
 def template_solo_animal(leaf, strategy):
-    """Solo animal classique (mammifère 4 pattes) avec décor minimal (§6.1)."""
+    """Solo animal classique (mammifère 4 pattes) avec décor minimal (§6.1).
+
+    T9 (2026-05-10) : pour les leafs avec élément étendu derrière le sujet
+    (queue ample, long cou, crinière), on bascule sur profil strict +
+    orientation directionnelle via `_DIRECTIONAL_OVERRIDES`.
+    """
     name = leaf['name_en'].lower()
+    leaf_id = leaf.get('id', '')
+    env_clause = "all four legs visible on the ground, simple ground line"
+    overridden = _apply_directional_override(name, leaf_id, env_clause)
+    if overridden is not None:
+        return overridden
     return (
         f"{STYLE_BLOCK}, "
         f"one single {name} standing in profile, full body view, "
@@ -233,8 +389,14 @@ def template_solo_fish(leaf, strategy):
     """Solo animal marin (poisson, mammifère marin, céphalopode, crustacé) — pas de pattes (audit 2026-05-09).
 
     Posture nageant ou posée, pas de "ground line" — water line à la place.
+
+    T9 (2026-05-10) : pour les leafs avec fin dorsale / queue étendue
+    (ex: playful_dolphin), on bascule sur profil strict + orientation directionnelle
+    via `_DIRECTIONAL_OVERRIDES`. L'override est résolu en premier afin de
+    court-circuiter la branche whale/dolphin par défaut.
     """
     name = leaf['name_en'].lower()
+    leaf_id = leaf.get('id', '')
     n = name
     if "octopus" in n or "squid" in n or "kraken" in n:
         body_clause = "tentacles spread around the body, side view"
@@ -261,6 +423,9 @@ def template_solo_fish(leaf, strategy):
         # Poissons standard
         body_clause = "side view, swimming horizontally, fins and tail clearly visible"
         env_clause = "simple water line at bottom"
+    overridden = _apply_directional_override(name, leaf_id, env_clause)
+    if overridden is not None:
+        return overridden
     return (
         f"{STYLE_BLOCK}, "
         f"one single {name}, {body_clause}, "
@@ -386,19 +551,17 @@ def template_personality_action(leaf, strategy):
 
 
 def template_grid_3x3_imagier(leaf, strategy):
-    """Grille 3×3 imagier différencié (X1 perfect)."""
-    name = leaf['name_en'].lower()
-    # Heuristique : si le nom contient "imagier", on l'utilise
-    title = leaf['name_en'].upper().split(' ')[0]
+    """Pivot T25 (jeu des différences) — variation-first ERNIE (2026-05-10)."""
+    name_en = leaf.get("name_en") or leaf.get("id")
     return (
-        f"{STYLE_BLOCK}, "
-        f"a tic-tac-toe game grid of three rows by three columns making nine empty square cells, "
-        f"the grid centered on the page, "
-        f"each cell contains one different item related to {name}, "
-        f"each item clearly distinct from the others, "
-        f"every cell contains exactly one item, "
-        f"the title \"{title}\" written above the grid in bold letters, "
-        f"no other elements"
+        f"coloring book page for kids, black and white line art, thick clean outlines, "
+        f"no shading, no fill, white background, "
+        f"a horizontal grid of two large rectangular cells side by side "
+        f"separated by a thick black vertical line, "
+        f"the word \"SPOT THE DIFFERENCE\" written above both cells, "
+        f"the left cell shows {name_en} scene with all elements clearly visible, "
+        f"the right cell shows the same scene with several differences hidden inside, "
+        f"uniform black line thickness, full scene visible, centered composition"
     )
 
 
@@ -417,22 +580,64 @@ def template_grid_3x3_annotated(leaf, strategy):
 
 
 def template_frieze_1xN(leaf, strategy, n=4):
-    """Frise narrative 1×N (X2 perfect, Insight B pour dernière case)."""
-    name = leaf['name_en'].lower()
+    """Pivot T25 (jeu des différences BEFORE/AFTER) — variation-first ERNIE (2026-05-10).
+
+    Le param `n` est conservé pour compat de signature (plus utilisé par le corps T25).
+    """
+    name_en = leaf.get("name_en") or leaf.get("id")
     return (
-        f"{STYLE_BLOCK}, "
-        f"a horizontal row of {n} empty rectangular cells drawn with thick black lines, "
-        f"all cells the same size and clearly separated by vertical lines, "
-        f"the row of cells fills the entire panoramic page width, "
-        f"each cell shows one stage or moment of {name}, "
-        f"the rightmost cell shows the final stage with detailed elements, "
-        f"balanced composition, simple ground line beneath each cell"
+        f"coloring book page for kids, black and white line art, thick clean outlines, "
+        f"no shading, no fill, white background, "
+        f"a horizontal grid of two large rectangular cells side by side "
+        f"separated by a thick black vertical line, "
+        f"the word \"BEFORE\" written above the left cell, "
+        f"the word \"AFTER\" written above the right cell, "
+        f"the left cell shows {name_en} in its initial state, "
+        f"the right cell shows the same scene with several differences hidden inside, "
+        f"uniform black line thickness, full scene visible, centered composition"
     )
 
 
 def template_before_after(leaf, strategy):
-    """Comparatif before/after (X4 perfect, Insight C : une transition à la fois)."""
+    """Comparatif before/after — T25 (différences localisées explicites).
+
+    Source skill — Insight C checklist (citation textuelle) :
+    > Une différence explicite doit être concrète, visuelle et localisée.
+    > `tap closed -> tap open + bucket` fonctionne.
+    > `one single change applied` est trop vague — modèle reproduit la même scène.
+
+    Si `_BEFORE_AFTER_STATES[leaf_id]` est défini, on injecte les deux états
+    concrets dans les cellules. Sinon : fallback générique (comportement antérieur)
+    avec warning loggé pour traçabilité (le leaf_id manquant doit être ajouté
+    à `data/prompt_generator/before_after_states.json` lors d'une PR ultérieure).
+    """
     name = leaf['name_en'].lower()
+    leaf_id = leaf.get('id') or leaf.get('leaf_id')
+    states = _BEFORE_AFTER_STATES.get(leaf_id) if leaf_id else None
+
+    if states:
+        before = states["before_state"]
+        after = states["after_state"]
+        # T25 mode 1 — différence unique explicite, états concrets/visuels/localisés
+        return (
+            f"{STYLE_BLOCK}, "
+            f"a horizontal grid of two large rectangular cells side by side, "
+            f"the cells separated by a thick black vertical line, "
+            f"the word \"BEFORE\" written above the left cell, "
+            f"the word \"AFTER\" written above the right cell, "
+            f"the left cell shows {before}, "
+            f"the right cell shows {after}, "
+            f"both cells drawn from the same wide angle for clear comparison, "
+            f"all elements with uniform black line thickness"
+        )
+
+    # Fallback : leaf non couvert → log + comportement actuel (antipattern T25 connu)
+    logger.warning(
+        "before_after_states missing for leaf_id=%s (workflow_class=%s) — "
+        "fallback générique T25-violant. Ajouter une entrée dans "
+        "data/prompt_generator/before_after_states.json.",
+        leaf_id, (strategy or {}).get("class"),
+    )
     return (
         f"{STYLE_BLOCK}, "
         f"a horizontal grid of two large rectangular cells side by side, "
@@ -669,9 +874,21 @@ class PromptGenerator:
         
         # LEAF_OVERRIDES : prompt manuel prioritaire sur le template
         if leaf_id in LEAF_OVERRIDES:
+            # Overrides validés humainement — pas de filtrage (cf. brief T5+T6+T7).
             positive = LEAF_OVERRIDES[leaf_id]
         else:
             positive = template_fn(leaf, strategy)
+            # Hook prophylactique T5+T6+T7 : strip noms couleur / ancres / surfaces 3D
+            # On ne filtre QUE la portion sujet (après STYLE_BLOCK) : le bloc
+            # boilerplate « black and white line art, no shading, white background »
+            # est une instruction de style anti-couleur/anti-3D — la filtrer
+            # supprimerait les protections existantes.
+            if positive.startswith(STYLE_BLOCK):
+                tail = positive[len(STYLE_BLOCK):].lstrip(", ")
+                filtered_tail = _apply_prompt_filters(tail)
+                positive = f"{STYLE_BLOCK}, {filtered_tail}" if filtered_tail else STYLE_BLOCK
+            else:
+                positive = _apply_prompt_filters(positive)
 
         # Negative = v3 + extras
         negative = NEGATIVE_V3
