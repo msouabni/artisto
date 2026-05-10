@@ -21,11 +21,15 @@ sys.path.insert(0, "src")
 
 from services.prompt_generator import (  # noqa: E402  (sys.path tweak)
     LEAF_OVERRIDES,
+    NEGATIVE_V3,
     PromptGenerator,
     _BEFORE_AFTER_STATES,
     _DIRECTIONAL_OVERRIDES,
     _EXPRESSIVE_FACES,
     _GRID_CELL_CONTENTS,
+    _ISOLATION,
+    _ISOLATION_HUMAN,
+    _ISOLATION_OBJECT,
     _RISKY_BACKWARD_ELEMENTS,
     _detect_emotion,
     _is_t23_singular_face,
@@ -34,9 +38,17 @@ from services.prompt_generator import (  # noqa: E402  (sys.path tweak)
     template_before_after,
     template_grid_3x3_annotated,
     template_grid_3x3_imagier,
+    template_human_plus_entity,
+    template_personality_action,
+    template_pose_static,
     template_solo_animal,
+    template_solo_bird,
     template_solo_expressive_face,
     template_solo_fish,
+    template_solo_human,
+    template_solo_insect,
+    template_solo_object,
+    template_solo_reptile,
 )
 
 
@@ -554,3 +566,201 @@ def test_t23_does_not_break_before_after_template():
     assert "AFTER" in positive
     # T23 ne doit pas s'être glissé dans le before/after
     assert "one single child face" not in positive
+
+
+# ===========================================================================
+# Transfert _ISOLATION élargi (humain / objet / humain+entité)
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill
+#  - T9 : Profil + orientation (déjà couvert pour Solo animal/fish)
+#  - Règle générale skill : « Moins de mise en scène = plus de fiabilité »
+# Brief : docs/architect/briefs/2026-05-10_brief-transfert-isolation-elargi.md
+# ===========================================================================
+def test_isolation_suffixes_constants_defined():
+    """Les trois variantes _ISOLATION* doivent être disponibles, distinctes et non vides."""
+    assert isinstance(_ISOLATION, str) and _ISOLATION.strip()
+    assert isinstance(_ISOLATION_HUMAN, str) and _ISOLATION_HUMAN.strip()
+    assert isinstance(_ISOLATION_OBJECT, str) and _ISOLATION_OBJECT.strip()
+    # Les trois variantes ciblent des familles distinctes — elles doivent différer
+    assert _ISOLATION != _ISOLATION_HUMAN
+    assert _ISOLATION != _ISOLATION_OBJECT
+    assert _ISOLATION_HUMAN != _ISOLATION_OBJECT
+    # Le terme « isolated subject » est le marqueur stable partagé
+    assert "isolated subject" in _ISOLATION
+    assert "isolated subject" in _ISOLATION_HUMAN
+    assert "isolated subject" in _ISOLATION_OBJECT
+
+
+def test_negative_v3_extended_with_anti_multi_humans_and_objects():
+    """NEGATIVE_V3 doit contenir les nouveaux termes anti-multi-humains et anti-multi-objets
+    (transfert skill 2026-05-10)."""
+    expected_human_terms = [
+        "multiple people",
+        "group of people",
+        "second person",
+        "person in background",
+    ]
+    expected_object_terms = [
+        "multiple objects",
+        "group of objects",
+        "second object",
+    ]
+    for term in expected_human_terms + expected_object_terms:
+        assert term in NEGATIVE_V3, f"NEGATIVE_V3 ne contient pas `{term}`"
+
+
+def test_negative_v3_keeps_legacy_animal_terms():
+    """Non-régression : les termes anti-multi-animaux historiques restent présents."""
+    legacy_terms = [
+        "multiple animals",
+        "other animals",
+        "companion animal",
+        "group of animals",
+        "animal in background",
+        "second subject",
+        "multiple subjects",
+    ]
+    for term in legacy_terms:
+        assert term in NEGATIVE_V3, f"NEGATIVE_V3 a perdu `{term}` (régression)"
+
+
+# --- Templates humain : _ISOLATION_HUMAN injecté ----------------------------
+def test_template_solo_human_injects_isolation_human_suffix():
+    """`template_solo_human` doit terminer par le suffixe _ISOLATION_HUMAN."""
+    leaf = {"id": "child_reading", "name_en": "Child Reading"}
+    positive = template_solo_human(leaf, strategy={})
+    assert _ISOLATION_HUMAN in positive
+    # Et SURTOUT pas le suffixe animal (qui parlerait d'autres animaux)
+    assert _ISOLATION not in positive
+    assert _ISOLATION_OBJECT not in positive
+
+
+def test_template_personality_action_injects_isolation_human_suffix():
+    """`template_personality_action` (Scène ou solo personnage, personnalité…) → _ISOLATION_HUMAN."""
+    leaf = {"id": "animal_superhero", "name_en": "Animal Superhero"}
+    positive = template_personality_action(leaf, strategy={})
+    assert _ISOLATION_HUMAN in positive
+    assert _ISOLATION not in positive
+
+
+def test_template_pose_static_injects_isolation_human_suffix():
+    """`template_pose_static` (yoga, méditation) → _ISOLATION_HUMAN."""
+    leaf = {"id": "yoga_warrior_pose", "name_en": "Warrior Pose"}
+    positive = template_pose_static(leaf, strategy={})
+    assert _ISOLATION_HUMAN in positive
+
+
+def test_template_human_plus_entity_injects_isolation_human_suffix():
+    """`template_human_plus_entity` doit empêcher l'ajout d'un 3e sujet (cf. brief)."""
+    leaf = {"id": "child_with_test_tubes", "name_en": "Child with Test Tubes"}
+    positive = template_human_plus_entity(leaf, strategy={})
+    assert _ISOLATION_HUMAN in positive
+
+
+# --- Templates objet : _ISOLATION_OBJECT injecté ----------------------------
+def test_template_solo_object_injects_isolation_object_suffix():
+    """`template_solo_object` (et toutes les variantes routées dessus) → _ISOLATION_OBJECT."""
+    leaf = {"id": "wooden_hammer", "name_en": "Wooden Hammer"}
+    positive = template_solo_object(leaf, strategy={})
+    assert _ISOLATION_OBJECT in positive
+    # Et SURTOUT pas les autres variantes
+    assert _ISOLATION not in positive
+    assert _ISOLATION_HUMAN not in positive
+
+
+# --- Non-régression : Solo animal / insect / fish / bird / reptile ---------
+# Les 5 templates morphologiques animaux doivent rester sur _ISOLATION (animal),
+# pas sur _ISOLATION_HUMAN ou _ISOLATION_OBJECT.
+def test_template_solo_animal_keeps_isolation_animal():
+    """Non-régression T9 : Solo animal doit conserver _ISOLATION animal."""
+    leaf = {"id": "house_cat", "name_en": "House Cat"}
+    positive = template_solo_animal(leaf, strategy={})
+    assert _ISOLATION in positive
+    assert _ISOLATION_HUMAN not in positive
+    assert _ISOLATION_OBJECT not in positive
+
+
+def test_template_solo_insect_keeps_isolation_animal():
+    """Non-régression : Solo insect doit conserver _ISOLATION animal."""
+    leaf = {"id": "honey_bee", "name_en": "Honey Bee"}
+    positive = template_solo_insect(leaf, strategy={})
+    assert _ISOLATION in positive
+    assert _ISOLATION_HUMAN not in positive
+    assert _ISOLATION_OBJECT not in positive
+
+
+def test_template_solo_fish_keeps_isolation_animal():
+    """Non-régression : Solo fish doit conserver _ISOLATION animal."""
+    leaf = {"id": "rainbow_trout", "name_en": "Rainbow Trout"}
+    positive = template_solo_fish(leaf, strategy={})
+    assert _ISOLATION in positive
+    assert _ISOLATION_HUMAN not in positive
+    assert _ISOLATION_OBJECT not in positive
+
+
+def test_template_solo_bird_keeps_isolation_animal():
+    """Non-régression : Solo bird doit conserver _ISOLATION animal."""
+    leaf = {"id": "robin_on_branch", "name_en": "Robin on Branch"}
+    positive = template_solo_bird(leaf, strategy={})
+    assert _ISOLATION in positive
+    assert _ISOLATION_HUMAN not in positive
+    assert _ISOLATION_OBJECT not in positive
+
+
+def test_template_solo_reptile_keeps_isolation_animal():
+    """Non-régression : Solo reptile doit conserver _ISOLATION animal."""
+    leaf = {"id": "green_iguana", "name_en": "Green Iguana"}
+    positive = template_solo_reptile(leaf, strategy={})
+    assert _ISOLATION in positive
+    assert _ISOLATION_HUMAN not in positive
+    assert _ISOLATION_OBJECT not in positive
+
+
+# --- Non-régression : templates exclus du brief (T25 + grilles) ------------
+def test_template_before_after_does_not_inject_isolation_human():
+    """T25 (before/after) a sa logique propre — ne doit PAS recevoir _ISOLATION_HUMAN
+    ou _ISOLATION_OBJECT. (Le brief exclut explicitement template_before_after.)"""
+    leaf = {"id": "rainwater_collection_barrel", "name_en": "Rainwater Collection Barrel"}
+    positive = template_before_after(
+        leaf, strategy={"class": "Comparatif before/after OU Solo"}
+    )
+    assert _ISOLATION_HUMAN not in positive
+    assert _ISOLATION_OBJECT not in positive
+
+
+def test_template_grid_imagier_does_not_inject_isolation():
+    """T2 (grilles imagier) a sa logique propre — pas de suffixe d'isolation."""
+    leaf = {"id": "fruit_imagier_with_names", "name_en": "Fruit Imagier with Names"}
+    positive = template_grid_3x3_imagier(leaf, strategy={"class": "Grille imagier annoté"})
+    assert _ISOLATION_HUMAN not in positive
+    assert _ISOLATION_OBJECT not in positive
+
+
+# --- Smoke : build_prompt complet propage le suffixe via le pipeline -------
+def test_build_prompt_solo_human_propagates_isolation_human():
+    """Smoke : build_prompt complet sur un leaf humain doit conserver _ISOLATION_HUMAN
+    après FILT (les filtres ne doivent pas le stripper)."""
+    try:
+        gen = PromptGenerator()
+    except FileNotFoundError:
+        pytest.skip("Données prompt_generator non disponibles dans cet environnement.")
+
+    # Cherche un leaf routé sur template_solo_human ou variantes
+    candidate = None
+    for leaf_id, (_root, _sub, _leaf) in gen.leaf_index.items():
+        strategy = gen.strategy_index.get(_sub["id"])
+        if not strategy:
+            continue
+        if strategy.get("class") in {
+            "Solo humain",
+            "Solo humain (générique)",
+            "Solo humain + accessoires",
+        }:
+            candidate = leaf_id
+            break
+    if candidate is None:
+        pytest.skip("Aucun leaf Solo humain disponible dans la taxonomie locale.")
+
+    result = gen.build_prompt(candidate)
+    assert _ISOLATION_HUMAN in result["positive"], (
+        f"Suffixe _ISOLATION_HUMAN absent du build complet pour {candidate}"
+    )

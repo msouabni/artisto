@@ -51,15 +51,21 @@ DEFAULT_SEO = str(PROJECT_ROOT / "data/prompt_generator/coloring_taxonomy_seo.js
 DEFAULT_BEFORE_AFTER_STATES = str(PROJECT_ROOT / "data/prompt_generator/before_after_states.json")
 DEFAULT_GRID_CELL_CONTENTS = str(PROJECT_ROOT / "data/prompt_generator/grid_cell_contents.json")
 
-# Negative prompt v3 (validé Phase H)
 # Negative prompt v3 (validé Phase H) + isolation clause (fix 2_objets 2026-05-09)
+# Élargi 2026-05-10 (transfert skill — brief 2026-05-10_brief-transfert-isolation-elargi.md)
+# avec termes anti-multi-humains et anti-multi-objets pour adresser ~12 occurrences
+# `image_duplication` non-Solo-animal (humain seul, objet seul, humain+entité).
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — règle générale
+# « Moins de mise en scène = plus de fiabilité » + T9 (orientation directionnelle).
 NEGATIVE_V3 = (
     "no colors, extra legs, third leg, duplicate limbs, fused legs, "
     "malformed anatomy, wrong number of limbs, six fingers, deformed feet "
     "no motion, no fill colors, no intersection, no change in ink "
     "transparency for different plan only black stroke, "
     "multiple animals, other animals, companion animal, group of animals, "
-    "animal in background, second subject, multiple subjects"
+    "animal in background, second subject, multiple subjects, "
+    "multiple people, group of people, second person, person in background, "
+    "multiple objects, group of objects, second object"
 )
 
 # Bloc style coloriage (immutable §5.2 + 5.3)
@@ -68,8 +74,30 @@ STYLE_BLOCK = (
     "thick clean outlines, no shading, no fill, white background"
 )
 
+# ===================================================================
+# Suffixes _ISOLATION — fix 2_objets / image_duplication
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill
+# - T9 : Profil strict + orientation directionnelle (cf. references/techniques.md §T9)
+# - Règle générale (citation textuelle skill — references/techniques.md L582+) :
+#   > Moins de mise en scène = plus de fiabilité.
+#   > Les contraintes architecturales superflues créent des conflits spatiaux que
+#   > le modèle résout en sacrifiant le comptage ou l'orientation des éléments.
+#   > Fix : réduire la mise en scène au minimum nécessaire — le support suffit.
+#
+# Trois variantes adaptées au type de sujet :
+# - `_ISOLATION` : Solo animal/insect/fish/bird/reptile (déjà appliqué — zone T9).
+# - `_ISOLATION_HUMAN` : Solo humain / Humain+entité / personnalité / pose statique.
+# - `_ISOLATION_OBJECT` : Solo objet et variantes routées dessus.
+# ===================================================================
+
 # Isolation suffix appended to solo-subject positive prompts (fix 2_objets 2026-05-09)
 _ISOLATION = "isolated subject, no other animals or objects nearby"
+
+# Isolation suffix pour templates humains (fix image_duplication 2026-05-10)
+_ISOLATION_HUMAN = "isolated subject, no other people or objects nearby"
+
+# Isolation suffix pour templates objet (fix image_duplication 2026-05-10)
+_ISOLATION_OBJECT = "isolated subject, no other items nearby"
 
 # Leaf overrides — prompts manuels pour feuilles dont le nom implique plusieurs sujets
 # ou dont la génération automatique échoue systématiquement (leaf_id → positive_override)
@@ -726,41 +754,70 @@ def template_solo_reptile(leaf, strategy):
 
 
 def template_solo_human(leaf, strategy):
-    """Solo humain avec quantification 'one single' (§6.2)."""
+    """Solo humain avec quantification 'one single' (§6.2).
+
+    _ISOLATION_HUMAN (transfert skill 2026-05-10) : suffixe d'isolation injecté
+    pour adresser image_duplication sur templates humain (générique, accessoires).
+    Source : règle générale skill « Moins de mise en scène = plus de fiabilité ».
+    """
     name = leaf['name_en'].lower()
     # Détection action implicite dans le nom de la feuille
     return (
         f"{STYLE_BLOCK}, "
         f"one single {name}, three-quarter view from the side, full body, "
-        f"simple ground line, off-center composition, friendly expression"
+        f"simple ground line, off-center composition, friendly expression, "
+        + _ISOLATION_HUMAN
     )
 
 
 def template_solo_object(leaf, strategy):
-    """Solo objet centré (catégorie outils, véhicules, électroménager)."""
+    """Solo objet centré (catégorie outils, véhicules, électroménager).
+
+    _ISOLATION_OBJECT (transfert skill 2026-05-10) : suffixe d'isolation injecté
+    pour adresser image_duplication sur templates objet (et variantes routées
+    dessus : véhicule, drapeau, plante, scène intérieure, pattern…).
+    Source : règle générale skill « Moins de mise en scène = plus de fiabilité ».
+    """
     name = leaf['name_en'].lower()
     return (
         f"{STYLE_BLOCK}, "
         f"one {name} centered on the page, viewed from a clear three-quarter angle, "
         f"all main features fully visible, simple ground line beneath, "
-        f"clean uncluttered composition"
+        f"clean uncluttered composition, "
+        + _ISOLATION_OBJECT
     )
 
 
 def template_human_plus_entity(leaf, strategy):
-    """Humain + entité avec formule asymétrie validée (§6.3)."""
+    """Humain + entité avec formule asymétrie validée (§6.3).
+
+    _ISOLATION_HUMAN (transfert skill 2026-05-10) : on applique l'isolation
+    « pas d'autres personnes/objets » même sur la scène duo, pour empêcher
+    le modèle d'introduire un troisième sujet dans le décor (cas observé sur
+    `child_with_test_tubes`, `house_painter_with_roller`).
+    Source : règle générale skill « Moins de mise en scène = plus de fiabilité ».
+    """
     name = leaf['name_en'].lower()
     return (
         f"{STYLE_BLOCK}, "
         f"asymmetric scene of {name}, "
         f"the human positioned on the left side, the other element on the right side, "
         f"both fully visible, the human smiling, asymmetric composition, "
-        f"full body of both, simple ground line"
+        f"full body of both, simple ground line, "
+        + _ISOLATION_HUMAN
     )
 
 
 def template_personality_action(leaf, strategy):
-    """Personnalité nommée en mid-action (Z7 + §6.2)."""
+    """Personnalité nommée en mid-action (Z7 + §6.2).
+
+    _ISOLATION_HUMAN (transfert skill 2026-05-10) : couvre les classes
+    « Solo humain (personnalité) », « Solo humain ou animal cartoon »,
+    « Scène ou solo personnage », « Solo humain ou créature », routées
+    sur ce template. Cas observés : `animal_superhero`, leafs cartoon
+    génériques où le modèle ajoute un compagnon.
+    Source : règle générale skill « Moins de mise en scène = plus de fiabilité ».
+    """
     name = leaf['name_en']
     # Retire le suffix "Cartoon" si présent
     name = name.replace(" Cartoon", "").replace(" cartoon", "")
@@ -769,7 +826,8 @@ def template_personality_action(leaf, strategy):
         f"one single {name} in mid-action, viewed from the side, "
         f"dynamic pose with motion lines suggesting movement, "
         f"two arms total, full body view, simple ground line, "
-        f"off-center composition, focused expression"
+        f"off-center composition, focused expression, "
+        + _ISOLATION_HUMAN
     )
 
 
@@ -972,14 +1030,21 @@ def template_landscape_2plane(leaf, strategy):
 
 
 def template_pose_static(leaf, strategy):
-    """Solo humain en pose statique (yoga, méditation)."""
+    """Solo humain en pose statique (yoga, méditation).
+
+    _ISOLATION_HUMAN (transfert skill 2026-05-10) : couvre la classe
+    « Solo humain en pose » (yoga, méditation, postures calmes) où le modèle
+    a tendance à ajouter un partenaire de pratique.
+    Source : règle générale skill « Moins de mise en scène = plus de fiabilité ».
+    """
     name = leaf['name_en'].lower()
     return (
         f"{STYLE_BLOCK}, "
         f"one single person in {name}, calm and balanced pose, "
         f"full body view from the side or three-quarter angle, "
         f"two arms total, both legs fully visible, simple ground line, "
-        f"peaceful expression, off-center composition"
+        f"peaceful expression, off-center composition, "
+        + _ISOLATION_HUMAN
     )
 
 
