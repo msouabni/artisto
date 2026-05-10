@@ -140,3 +140,19 @@ Rapport détaillé : `docs/reports/2026-05-09_migration-annotateur-grille-v2.md`
 3. ✅ Commits : `164c02c` (feat consolidé) + `ca7118f` (fix score-row au-dessus de l'image).
 
 Suivi architecte : entrée `BENCHMARK_ANNOTATOR_V2` ajoutée à `docs/use-cases/use_cases.yaml` (status=done). Dette mineure inscrite dans MEMORY architecte (factorisation des vocabulaires back/front, à traiter via brief `F`).
+
+## Note 2026-05-10 — Fix copie prompt hors origine sécurisée
+
+Brief : `docs/architect/briefs/2026-05-10_brief-fix-copie-prompt-tailscale.md`.
+
+Symptôme : les boutons "Copier prompt" / "Copier négatif" plantaient (`Cannot read properties of undefined (reading 'writeText')`) dès que l'annotateur était ouvert via une IP Tailscale en HTTP plain — `navigator.clipboard` n'est exposé que sur origines sécurisées (HTTPS / loopback).
+
+Fix appliqué à `data/benchmark-annotator.html` :
+- Helper `copyToClipboard(text): Promise<boolean>` à 3 paths (API moderne → `execCommand` sur textarea hors-écran → modale Ctrl+C manuelle).
+- Modale `#manual-copy` cohérente visuellement avec la cheat-sheet `?` (panel + bouton Fermer + Échap).
+- Wrapper `handleCopyClick(btn)` : feedback `✓ Copié` affiché uniquement si la copie a réussi (path 1 ou 2). En path 3, la modale fait office de feedback.
+- Raccourcis clavier `c` / `Shift+C` re-câblés sur le wrapper.
+
+Pas de test automatique pour le presse-papier (fragile en CI). Sanity pytest `tests/test_benchmark_routes.py tests/test_review_routes.py` : 48/48 OK.
+
+Commit final : à compléter par l'architecte.

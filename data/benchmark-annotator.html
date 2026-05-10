@@ -348,6 +348,36 @@
       margin: 0 1px;
     }
     .cheat-sheet .close-hint { margin-top: 1rem; font-size: 0.75rem; opacity: 0.6; text-align: center; }
+
+    /* ── Manual-copy modale (fallback ultime presse-papier) ───────────── */
+    .manual-copy {
+      position: fixed; inset: 0; z-index: 260;
+      background: rgba(0,0,0,0.6);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .manual-copy[hidden] { display: none; }
+    .manual-copy .panel {
+      max-width: 720px; width: 100%; max-height: 90vh; overflow-y: auto;
+      border-radius: 10px; padding: 1.2rem 1.5rem;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+    }
+    body[data-theme="light"] .manual-copy .panel { background: #fff; color: #202124; }
+    body[data-theme="dark"]  .manual-copy .panel { background: #16213e; color: #f7fafc; }
+    .manual-copy h2 { margin: 0 0 0.7rem 0; font-size: 1.1rem; }
+    .manual-copy textarea {
+      width: 100%; min-height: 160px; resize: vertical;
+      font-family: "Consolas","Monaco",monospace; font-size: 0.85rem;
+      padding: 0.5rem; border-radius: 6px; border: 1px solid #888;
+      background: inherit; color: inherit;
+    }
+    .manual-copy .actions { margin-top: 0.8rem; display: flex; justify-content: flex-end; gap: 0.5rem; }
+    .manual-copy .close-hint { margin-top: 0.6rem; font-size: 0.75rem; opacity: 0.6; text-align: center; }
+    .manual-copy kbd {
+      padding: 1px 6px; border: 1px solid currentColor; border-radius: 3px;
+      font-family: "Consolas","Monaco",monospace; font-size: 0.78rem;
+      margin: 0 1px;
+    }
   </style>
 </head>
 <body data-theme="light">
@@ -560,6 +590,18 @@
       </table>
 
       <div class="close-hint">Échap ou clic hors panneau pour fermer</div>
+    </div>
+  </div>
+
+  <!-- ── Manual-copy modale (fallback ultime presse-papier) ───────────── -->
+  <div class="manual-copy" id="manual-copy" hidden>
+    <div class="panel">
+      <h2>Copier manuellement</h2>
+      <textarea id="manual-copy-text" readonly></textarea>
+      <div class="actions">
+        <button type="button" id="manual-copy-close">Fermer</button>
+      </div>
+      <div class="close-hint"><kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>⌘</kbd>+<kbd>C</kbd> pour copier · <kbd>Échap</kbd> pour fermer</div>
     </div>
   </div>
 
@@ -1406,24 +1448,73 @@
     document.getElementById("lightbox").addEventListener("click", closeLightbox);
 
     // ── Copy buttons ──────────────────────────────────────────────────────
-    async function copyToClipboard(btn) {
+    // Helper de copie centralisé (3 paths). Sur origines non-sécurisées
+    // (HTTP plain via Tailscale par ex.), navigator.clipboard est undefined :
+    // on retombe sur execCommand, puis sur une modale Ctrl+C manuelle.
+    async function copyToClipboard(text) {
+      // Path 1 : API moderne, origine sécurisée
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (e) { /* continue vers fallback */ }
+      }
+      // Path 2 : fallback execCommand sur textarea hors-écran
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.top = "-9999px";
+        ta.style.left = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, ta.value.length);
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        if (ok) return true;
+      } catch (e) { /* continue vers fallback */ }
+      // Path 3 : modale Ctrl+C manuelle
+      showManualCopyDialog(text);
+      return false;
+    }
+
+    // Modale de fallback ultime — n'apparaît que si les 2 paths précédents
+    // ont échoué (navigateurs très anciens ou exotiques).
+    function showManualCopyDialog(text) {
+      const modal = document.getElementById("manual-copy");
+      const ta = document.getElementById("manual-copy-text");
+      ta.value = text || "";
+      modal.hidden = false;
+      // Sélection après reflow pour garantir que le textarea est focusable.
+      setTimeout(() => { ta.focus(); ta.select(); }, 0);
+    }
+    function closeManualCopy() {
+      document.getElementById("manual-copy").hidden = true;
+    }
+    document.getElementById("manual-copy-close").addEventListener("click", closeManualCopy);
+    document.getElementById("manual-copy").addEventListener("click", (ev) => {
+      if (ev.target.id === "manual-copy") closeManualCopy();
+    });
+
+    // Wrapper bouton : appelle le helper et n'affiche le feedback "✓ Copié"
+    // que si la copie a réussi (path 1 ou 2). En path 3 (modale), pas de
+    // feedback — la modale fait office de feedback elle-même.
+    async function handleCopyClick(btn) {
       const text = btn.dataset.text || "";
       if (!text) return;
-      try {
-        await navigator.clipboard.writeText(text);
-        const orig = btn.textContent;
-        btn.classList.add("copied");
-        btn.textContent = "✓ Copié";
-        setTimeout(() => {
-          btn.classList.remove("copied");
-          btn.textContent = orig;
-        }, 1200);
-      } catch (e) {
-        alert(`Échec copie : ${e.message}`);
-      }
+      const ok = await copyToClipboard(text);
+      if (!ok) return;
+      const orig = btn.textContent;
+      btn.classList.add("copied");
+      btn.textContent = "✓ Copié";
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        btn.textContent = orig;
+      }, 1200);
     }
-    document.getElementById("copy-prompt-btn").addEventListener("click", (ev) => copyToClipboard(ev.currentTarget));
-    document.getElementById("copy-negative-btn").addEventListener("click", (ev) => copyToClipboard(ev.currentTarget));
+    document.getElementById("copy-prompt-btn").addEventListener("click", (ev) => handleCopyClick(ev.currentTarget));
+    document.getElementById("copy-negative-btn").addEventListener("click", (ev) => handleCopyClick(ev.currentTarget));
 
     // ── Cheat-sheet modale ────────────────────────────────────────────────
     function openCheatSheet() { document.getElementById("cheat-sheet").hidden = false; }
@@ -1466,6 +1557,11 @@
       const tgt = ev.target;
       const isInput = tgt && (tgt.tagName === "INPUT" || tgt.tagName === "TEXTAREA" || tgt.isContentEditable === true);
 
+      // Manual-copy ouverte → Échap ferme ; le reste (Ctrl+C natif) passe au browser
+      if (!document.getElementById("manual-copy").hidden) {
+        if (ev.key === "Escape") { closeManualCopy(); ev.preventDefault(); }
+        return;
+      }
       // Cheat-sheet ouvert → seul Échap ferme
       if (!document.getElementById("cheat-sheet").hidden) {
         if (ev.key === "Escape") { closeCheatSheet(); ev.preventDefault(); }
@@ -1519,12 +1615,12 @@
       if (ev.key === "z" || ev.key === "Z") { openLightbox(); ev.preventDefault(); return; }
       if (ev.key === "c") {
         const btn = document.getElementById("copy-prompt-btn");
-        if (!btn.disabled) copyToClipboard(btn);
+        if (!btn.disabled) handleCopyClick(btn);
         ev.preventDefault(); return;
       }
       if (ev.key === "C") {
         const btn = document.getElementById("copy-negative-btn");
-        if (!btn.disabled) copyToClipboard(btn);
+        if (!btn.disabled) handleCopyClick(btn);
         ev.preventDefault(); return;
       }
 
