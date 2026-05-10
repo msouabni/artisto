@@ -1,0 +1,243 @@
+{
+  "poc": "bench-gate-ernie",
+  "transfert": "pivot",
+  "label": "Pivot T25 (frieze + grid imagier)",
+  "workflow_template": "ernie-image-turbo-q8-api",
+  "fixed": {
+    "steps": 8,
+    "sampler_name": "euler",
+    "scheduler": "normal",
+    "cfg": 1.0,
+    "seed_base": 1000,
+    "seed_stride": 7
+  },
+  "results": {
+    "baby_first_year_1376x768_euler8s.png": {
+      "leaf_id": "baby_first_year",
+      "leaf_name_en": "Baby First Year",
+      "workflow_class": "Frise narrative 1×N (pattern X2)",
+      "technique": "Frise 1×4 ou 1×5 (Insight B : enrichir dernière case)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Insight C : une transition à la fois entre cases"
+      ],
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 1000,
+      "transfert": "pivot",
+      "filename": "baby_first_year_1376x768_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows baby first year in its initial state, the right cell shows the same scene with several differences hidden inside, both cells drawn from the same wide angle for clear comparison, all elements with uniform line thickness",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "status": "ok",
+      "comfy_latency_s": 18.14,
+      "comfy_prompt_id": "e107078f-fca1-4fe7-81c1-665f255cd679"
+    },
+    "spring_blooming_meadow_1376x768_euler8s.png": {
+      "leaf_id": "spring_blooming_meadow",
+      "leaf_name_en": "Spring Blooming Meadow",
+      "workflow_class": "Frise narrative 1×4",
+      "technique": "Frise 1×4 (X2 perfect, cas 9 testé presque ratage étape 4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute (avec règles)",
+      "pitfalls": [
+        "Insight B : enrichir la dernière case (winter)",
+        "Insight C : une transition à la fois (juste les feuilles, pas le sol+animaux+ciel)"
+      ],
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 1007,
+      "transfert": "pivot",
+      "filename": "spring_blooming_meadow_1376x768_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows spring blooming meadow in its initial state, the right cell shows the same scene with several differences hidden inside, both cells drawn from the same wide angle for clear comparison, all elements with uniform line thickness",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "status": "ok",
+      "comfy_latency_s": 18.06,
+      "comfy_prompt_id": "956ee70d-170e-4638-9e1e-1ef4dbc7bf78"
+    },
+    "summer_beach_day_1376x768_euler8s.png": {
+      "leaf_id": "summer_beach_day",
+      "leaf_name_en": "Summer Beach Day",
+      "workflow_class": "Frise narrative 1×4",
+      "technique": "Frise 1×4 (X2 perfect, cas 9 testé presque ratage étape 4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute (avec règles)",
+      "pitfalls": [
+        "Insight B : enrichir la dernière case (winter)",
+        "Insight C : une transition à la fois (juste les feuilles, pas le sol+animaux+ciel)"
+      ],
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 1014,
+      "transfert": "pivot",
+      "filename": "summer_beach_day_1376x768_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows summer beach day in its initial state, the right cell shows the same scene with several differences hidden inside, both cells drawn from the same wide angle for clear comparison, all elements with uniform line thickness",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "status": "ok",
+      "comfy_latency_s": 18.11,
+      "comfy_prompt_id": "54671bef-defe-417b-982d-ab504a287662"
+    },
+    "winter_snowman_in_garden_1376x768_euler8s.png": {
+      "leaf_id": "winter_snowman_in_garden",
+      "leaf_name_en": "Winter Snowman in Garden",
+      "workflow_class": "Frise narrative 1×4",
+      "technique": "Frise 1×4 (X2 perfect, cas 9 testé presque ratage étape 4)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute (avec règles)",
+      "pitfalls": [
+        "Insight B : enrichir la dernière case (winter)",
+        "Insight C : une transition à la fois (juste les feuilles, pas le sol+animaux+ciel)"
+      ],
+      "resolution": [
+        1376,
+        768
+      ],
+      "seed": 1021,
+      "transfert": "pivot",
+      "filename": "winter_snowman_in_garden_1376x768_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a horizontal grid of two large rectangular cells side by side, the cells separated by a thick vertical line, the word \"BEFORE\" written above the left cell, the word \"AFTER\" written above the right cell, the left cell shows winter snowman in garden in its initial state, the right cell shows the same scene with several differences hidden inside, both cells drawn from the same wide angle for clear comparison, all elements with uniform line thickness",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "status": "ok",
+      "comfy_latency_s": 18.12,
+      "comfy_prompt_id": "1363d4f2-bbc6-43e9-832d-7541c6dfd5db"
+    },
+    "cakes_and_desserts_1024x1024_euler8s.png": {
+      "leaf_id": "cakes_and_desserts",
+      "leaf_name_en": "Cakes and Desserts",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 1028,
+      "transfert": "pivot",
+      "filename": "cakes_and_desserts_1024x1024_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe grid of three rows by three columns making nine empty square cells, the grid centered on the page, thick grid lines, the title \"CAKES AND DESSERTS\" written in capital letters above the grid, cell 1: round layered cake with candle on top, cell 2: triangular slice of cake with frosting swirl, cell 3: round cupcake with swirled frosting top, cell 4: round cookie with chip dots, cell 5: tall ice sundae in a, cell 6: square brownie with crackled top, cell 7: round tart with fruit slices on top, cell 8: long eclair with filling, cell 9: triangular slice of pie with lattice crust, each item drawn inside its own cell with uniform line thickness, balanced composition",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object, two animals, pair of animals, multiple animals together",
+      "status": "ok",
+      "comfy_latency_s": 18.13,
+      "comfy_prompt_id": "b2a5e6ec-56af-48f2-b98b-4893cdc45008"
+    },
+    "candy_shop_display_1024x1024_euler8s.png": {
+      "leaf_id": "candy_shop_display",
+      "leaf_name_en": "Candy Shop Display",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 1035,
+      "transfert": "pivot",
+      "filename": "candy_shop_display_1024x1024_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a candy shop display item, each cell shows a different item, the title \"CANDY SHOP DISPLAY\" written above the grid",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "status": "ok",
+      "comfy_latency_s": 16.66,
+      "comfy_prompt_id": "6e7cf209-eac2-4e41-bbdc-11b883a9ffbb"
+    },
+    "food_pyramid_for_kids_1024x1024_euler8s.png": {
+      "leaf_id": "food_pyramid_for_kids",
+      "leaf_name_en": "Food Pyramid for Kids",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 1042,
+      "transfert": "pivot",
+      "filename": "food_pyramid_for_kids_1024x1024_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a food pyramid for kids item, each cell shows a different item, the title \"FOOD PYRAMID FOR KIDS\" written above the grid",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "status": "ok",
+      "comfy_latency_s": 16.69,
+      "comfy_prompt_id": "71e1adc9-81f4-4c1e-ae8c-f8e499bdc0ea"
+    },
+    "rainbow_fruit_plate_1024x1024_euler8s.png": {
+      "leaf_id": "rainbow_fruit_plate",
+      "leaf_name_en": "Rainbow Fruit Plate",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 1049,
+      "transfert": "pivot",
+      "filename": "rainbow_fruit_plate_1024x1024_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a colorful fruit plate item, each cell shows a different item, the title \"colorful FRUIT PLATE\" written above the grid",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "status": "ok",
+      "comfy_latency_s": 16.88,
+      "comfy_prompt_id": "a2bd3d70-97a0-4272-a326-ea7361e44651"
+    },
+    "number_zero_with_eggs_1024x1024_euler8s.png": {
+      "leaf_id": "number_zero_with_eggs",
+      "leaf_name_en": "Number Zero with Eggs",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 1056,
+      "transfert": "pivot",
+      "filename": "number_zero_with_eggs_1024x1024_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a number zero with eggs item, each cell shows a different item, the title \"NUMBER ZERO WITH EGGS\" written above the grid",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "status": "ok",
+      "comfy_latency_s": 16.48,
+      "comfy_prompt_id": "0d8d5194-58a4-4c6c-873c-60698ef43f5e"
+    },
+    "number_one_with_apple_1024x1024_euler8s.png": {
+      "leaf_id": "number_one_with_apple",
+      "leaf_name_en": "Number One with Apple",
+      "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+      "technique": "Chiffre + N objets : grille 3×3 si N≥6 (E.six validé)",
+      "pipeline": "ERNIE direct (1-9 avec grille) / Composition PIL (10+)",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Comptage 6+ : grille 3×3 OBLIGATOIRE",
+        "Comptage 10+ : composition PIL post-traitement"
+      ],
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 1063,
+      "transfert": "pivot",
+      "filename": "number_one_with_apple_1024x1024_euler8s.png",
+      "positive": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe game grid of three rows by three columns making nine empty square cells, the grid centered on the page, each cell contains one drawing of a number one with apple item, each cell shows a different item, the title \"NUMBER ONE WITH APPLE\" written above the grid",
+      "negative": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "status": "ok",
+      "comfy_latency_s": 16.68,
+      "comfy_prompt_id": "31fba1f5-6146-45a7-b4ca-435d28a6b314"
+    }
+  }
+}

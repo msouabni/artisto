@@ -481,6 +481,76 @@ def test_t2_covers_documented_grid_leafs():
     assert not missing, f"Leafs Grille non couverts par T2 : {missing}"
 
 
+# Workflow_classes qui routent vers `template_grid_3x3_imagier` ou
+# `template_grid_3x3_annotated` (cf. TEMPLATE_DISPATCHER dans prompt_generator.py).
+# Toute leaf cartographiée sous l'une de ces classes DOIT avoir une entrée dans
+# data/prompt_generator/grid_cell_contents.json — sinon le runtime fallback
+# logge un warning et produit un prompt T2-violant.
+_T2_GRID_WORKFLOW_CLASSES = (
+    "Grille imagier annoté",
+    "Imagier différencié OU Solo",
+    "Imagier annoté 3×3 OU Solo visage",
+    "Imagier différencié 3×3",
+)
+
+
+def _collect_grid_leafs_from_cartography():
+    """Charge cartographie + taxonomy_full, retourne la liste des leaf_ids présents
+    sous une sous-catégorie dont la `production_strategy.class` est dans
+    `_T2_GRID_WORKFLOW_CLASSES`."""
+    import json
+    import pathlib
+
+    base = pathlib.Path(__file__).resolve().parent.parent / "data" / "prompt_generator"
+    carto = json.loads((base / "taxonomy_production_cartography.json").read_text(encoding="utf-8"))
+    taxo = json.loads((base / "coloring_taxonomy_full.json").read_text(encoding="utf-8"))
+
+    # Index sub_id → workflow_class depuis la cartographie
+    sub_classes = {}
+    for cat in carto.get("categories", []):
+        for sub in cat.get("subcategories", []):
+            wf_class = (sub.get("production_strategy") or {}).get("class")
+            if wf_class in _T2_GRID_WORKFLOW_CLASSES:
+                sub_classes[sub["id"]] = wf_class
+
+    # Parcours taxonomy_full : structure list[root cat → children (sub) → children (leaf)].
+    leafs = []
+    for cat in taxo:
+        for sub in cat.get("children", []):
+            sub_id = sub.get("id")
+            if sub_id not in sub_classes:
+                continue
+            for child in sub.get("children", []):
+                child_id = child.get("id")
+                if child_id:
+                    leafs.append((child_id, sub_classes[sub_id]))
+    return leafs
+
+
+def test_t2_grid_cell_contents_covers_all_cartographed_grid_leafs():
+    """Couverture exhaustive : chaque leaf_id sous les 4 workflow_classes grille
+    doit avoir une entrée dans `grid_cell_contents.json`. Si un nouveau leaf est
+    cartographié et qu'aucune entrée JSON n'existe, ce test échoue avec la liste
+    des manquants (à ajouter dans `data/prompt_generator/grid_cell_contents.json`)."""
+    cartographed = _collect_grid_leafs_from_cartography()
+    assert cartographed, (
+        "Aucun leaf grille trouvé dans la cartographie — vérifier que "
+        "_T2_GRID_WORKFLOW_CLASSES correspond aux libellés de "
+        "taxonomy_production_cartography.json."
+    )
+    missing = [
+        f"{lid} (workflow_class={wc})"
+        for lid, wc in cartographed
+        if lid not in _GRID_CELL_CONTENTS
+    ]
+    assert not missing, (
+        f"Leafs grille cartographiés sans entrée dans grid_cell_contents.json "
+        f"({len(missing)}/{len(cartographed)}) : {missing}. "
+        f"Ajouter une entrée par leaf manquant dans "
+        f"data/prompt_generator/grid_cell_contents.json (schema : voir _doc.schema)."
+    )
+
+
 def test_template_grid_imagier_injects_cells_when_present():
     """Si grid_cell_contents défini → les cellules nommées apparaissent dans positive,
     et l'antipattern T2 (`each cell contains one different item related to`) disparaît."""

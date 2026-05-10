@@ -257,6 +257,251 @@
         {"item": "round cup of yogurt with peeled lid", "shape": "round"}
       ],
       "_note": "Cellules 2/6 : 'glass'/'orange' évités pour FILT."
+    },
+    "food_pyramid_for_kids": {
+      "title": "FOOD PYRAMID",
+      "cells": [
+        {"item": "long baguette of bread", "shape": "long"},
+        {"item": "round bowl of pasta noodles", "shape": "round"},
+        {"item": "round apple with leaf", "shape": "round"},
+        {"item": "long pointed carrot with top leaves", "shape": "long"},
+        {"item": "tall cup of milk with handle", "shape": null},
+        {"item": "round wedge of cheese with holes", "shape": null},
+        {"item": "oval fish with tail fin", "shape": "oval"},
+        {"item": "oval egg outline", "shape": "oval"},
+        {"item": "small jar of honey with dipper", "shape": null}
+      ],
+      "_note": "9 cases représentent les groupes alimentaires de la pyramide. 'glass' évité."
+    },
+    "rainbow_fruit_plate": {
+      "title": "FRUIT PLATE",
+      "cells": [
+        {"item": "round apple with leaf", "shape": "round"},
+        {"item": "long curved banana", "shape": "long"},
+        {"item": "round orange with dimpled skin", "shape": "round"},
+        {"item": "oval strawberry with leaf top", "shape": "oval"},
+        {"item": "round grape cluster on a stem", "shape": "round"},
+        {"item": "triangular watermelon slice with seeds", "shape": "triangular"},
+        {"item": "round kiwi slice with small seeds", "shape": "round"},
+        {"item": "oval pear with stem", "shape": "oval"},
+        {"item": "round peach with single leaf", "shape": "round"}
+      ],
+      "_note": "Title 'rainbow' évité (T6 ancre couleur → 'colorful')."
+    },
+    "vegetable_garden_basket": {
+      "title": "GARDEN BASKET",
+      "cells": [
+        {"item": "round tomato with stem on the vine", "shape": "round"},
+        {"item": "long pointed carrot with top leaves and small roots", "shape": "long"},
+        {"item": "round head of lettuce with curled leaves", "shape": "round"},
+        {"item": "oval zucchini with stem cap", "shape": "oval"},
+        {"item": "long ear of corn with husk leaves", "shape": "long"},
+        {"item": "round radish with thin root and small leaves", "shape": "round"},
+        {"item": "oval cucumber with thin skin", "shape": "oval"},
+        {"item": "round onion with paper skin and small roots", "shape": "round"},
+        {"item": "long bunch of leek with stem", "shape": "long"}
+      ]
+    },
+    "child_drinking_water": {
+      "title": "DRINKING WATER",
+      "cells": [
+        {"item": "tall water bottle with screw cap", "shape": null},
+        {"item": "tall drinking glass filled with water", "shape": null},
+        {"item": "small reusable water flask with strap", "shape": null},
+        {"item": "kitchen faucet with single stream of water", "shape": null},
+        {"item": "round cup of water with handle", "shape": "round"},
+        {"item": "small water pitcher with curved spout", "shape": null},
+        {"item": "round water droplet outline", "shape": "round"},
+        {"item": "garden hose curled in a loop", "shape": null},
+        {"item": "small paper cup of water", "shape": null}
+      ],
+      "_note": "Cellule 2 utilise whitelist FILT 'tall + drinking glass'."
+    },
+    "healthy_snack_basket": {
+      "title": "HEALTHY SNACKS",
+      "cells": [
+        {"item": "round apple with leaf", "shape": "round"},
+        {"item": "long pointed carrot stick", "shape": "long"},
+        {"item": "small handful of nuts in a bowl", "shape": null},
+        {"item": "round cup of yogurt with peeled lid", "shape": "round"},
+        {"item": "long stick of celery with leaves", "shape": "long"},
+        {"item": "round rice cake with seed dots", "shape": "round"},
+        {"item": "small bunch of grapes on a stem", "shape": null},
+        {"item": "oval boiled egg cut in half", "shape": "oval"},
+        {"item": "small wedge of cheese with holes", "shape": null}
+      ]
+    },
+    "happy_child_smiling": {
+      "title": "HAPPY EXPRESSIONS",
+      "cells": [
+        {"item": "smiling face with curved mouth and raised cheeks", "shape": null},
+        {"item": "smiling face with eyes squinted in joy", "shape": null},
+        {"item": "smiling face showing teeth", "shape": null},
+        {"item": "smiling face with one hand waving", "shape": null},
+        {"item": "smiling face with thumbs up", "shape": null},
+        {"item": "smiling face with eyes wide open", "shape": null},
+        {"item": "smiling face with closed eyes and open mouth laughing", "shape": null},
+        {"item": "smiling face with small heart drawn near cheek", "shape": null},
+        {"item": "smiling face with arms raised up", "shape": null}
+      ],
+      "_note": "Variantes du sourire (en cas de fallback grille pour ce leaf préfixé émotion — T23 le redirige normalement vers solo expressif)."
+    },
+    "sad_child_crying": {
+      "title": "SAD EXPRESSIONS",
+      "cells": [
+        {"item": "sad face with mouth turned down", "shape": null},
+        {"item": "sad face with single tear on cheek", "shape": null},
+        {"item": "sad face with both eyes crying small tears", "shape": null},
+        {"item": "sad face with drooping eyelids", "shape": null},
+        {"item": "sad face with hand on cheek", "shape": null},
+        {"item": "sad face looking down at the floor", "shape": null},
+        {"item": "sad face hugging own knees", "shape": null},
+        {"item": "sad face with closed eyes and big tears", "shape": null},
+        {"item": "sad face holding a tissue near the eye", "shape": null}
+      ]
+    },
+    "angry_child_face": {
+      "title": "ANGRY EXPRESSIONS",
+      "cells": [
+        {"item": "angry face with furrowed eyebrows pointing down", "shape": null},
+        {"item": "angry face with mouth pressed in a frown", "shape": null},
+        {"item": "angry face with clenched teeth showing", "shape": null},
+        {"item": "angry face with crossed arms over chest", "shape": null},
+        {"item": "angry face with one fist clenched up high", "shape": null},
+        {"item": "angry face with cheeks puffed out", "shape": null},
+        {"item": "angry face shouting with mouth wide open", "shape": null},
+        {"item": "angry face with steam puff outline near ears", "shape": null},
+        {"item": "angry face stomping foot on ground", "shape": null}
+      ]
+    },
+    "scared_child_face": {
+      "title": "SCARED EXPRESSIONS",
+      "cells": [
+        {"item": "scared face with wide open eyes", "shape": null},
+        {"item": "scared face with mouth in worried oh shape", "shape": null},
+        {"item": "scared face with eyebrows raised in middle", "shape": null},
+        {"item": "scared face with both hands covering cheeks", "shape": null},
+        {"item": "scared face hiding behind a blanket edge", "shape": null},
+        {"item": "scared face with hair standing up", "shape": null},
+        {"item": "scared face with one hand over the mouth", "shape": null},
+        {"item": "scared face looking back over the shoulder", "shape": null},
+        {"item": "scared face crouching low to the ground", "shape": null}
+      ]
+    },
+    "surprised_child_face": {
+      "title": "SURPRISED EXPRESSIONS",
+      "cells": [
+        {"item": "surprised face with round mouth and wide eyes", "shape": null},
+        {"item": "surprised face with raised eyebrows", "shape": null},
+        {"item": "surprised face with both hands on cheeks", "shape": null},
+        {"item": "surprised face with mouth wide open and small teeth visible", "shape": null},
+        {"item": "surprised face holding the head with both hands", "shape": null},
+        {"item": "surprised face with one hand pointing forward", "shape": null},
+        {"item": "surprised face with eyes wide and mouth in O shape", "shape": null},
+        {"item": "surprised face leaning back slightly", "shape": null},
+        {"item": "surprised face with small exclamation mark above the head", "shape": null}
+      ]
+    },
+    "calm_child_breathing": {
+      "title": "CALM EXPRESSIONS",
+      "cells": [
+        {"item": "calm face with eyes gently closed and soft smile", "shape": null},
+        {"item": "calm face seated cross-legged with hands on knees", "shape": null},
+        {"item": "calm face taking a long breath with chest raised", "shape": null},
+        {"item": "calm face with hand placed on the belly", "shape": null},
+        {"item": "calm face with both palms together in front of chest", "shape": null},
+        {"item": "calm face lying down with eyes closed", "shape": null},
+        {"item": "calm face exhaling with mouth slightly open", "shape": null},
+        {"item": "calm face seated under a small leafy tree outline", "shape": null},
+        {"item": "calm face with relaxed shoulders and open hands", "shape": null}
+      ]
+    },
+    "shy_child_face": {
+      "title": "SHY EXPRESSIONS",
+      "cells": [
+        {"item": "shy face looking sideways with small smile", "shape": null},
+        {"item": "shy face with one hand to the cheek", "shape": null},
+        {"item": "shy face partially hidden behind one hand", "shape": null},
+        {"item": "shy face looking down with small smile", "shape": null},
+        {"item": "shy face peeking from behind a curtain edge", "shape": null},
+        {"item": "shy face with both hands clasped in front", "shape": null},
+        {"item": "shy face holding own elbow with small smile", "shape": null},
+        {"item": "shy face turning slightly away from the viewer", "shape": null},
+        {"item": "shy face with one foot turned inward", "shape": null}
+      ]
+    },
+    "proud_child_face": {
+      "title": "PROUD EXPRESSIONS",
+      "cells": [
+        {"item": "proud face with chin held high and small smile", "shape": null},
+        {"item": "proud face with chest out and shoulders back", "shape": null},
+        {"item": "proud face holding a small trophy with both hands", "shape": null},
+        {"item": "proud face holding a paper certificate", "shape": null},
+        {"item": "proud face with hands on hips in confident pose", "shape": null},
+        {"item": "proud face standing on a small podium step", "shape": null},
+        {"item": "proud face wearing a star medal on a ribbon", "shape": null},
+        {"item": "proud face with one fist raised in triumph", "shape": null},
+        {"item": "proud face pointing to a star drawn on a paper", "shape": null}
+      ]
+    },
+    "curious_child_face": {
+      "title": "CURIOUS EXPRESSIONS",
+      "cells": [
+        {"item": "curious face with raised eyebrows and head tilted", "shape": null},
+        {"item": "curious face holding a round magnifier with handle near the eye", "shape": null},
+        {"item": "curious face peeking inside an open box", "shape": null},
+        {"item": "curious face leaning forward with hands behind the back", "shape": null},
+        {"item": "curious face looking through a long round telescope", "shape": null},
+        {"item": "curious face holding an open book and reading", "shape": null},
+        {"item": "curious face crouched over a leaf on the ground", "shape": null},
+        {"item": "curious face with one finger pointing to the chin", "shape": null},
+        {"item": "curious face with a small question mark above the head", "shape": null}
+      ],
+      "_note": "Cellule 2 : 'magnifying glass' évité (whitelist FILT ne protège pas ce contexte) → 'round magnifier with handle'."
+    },
+    "emotion_chart_poster": {
+      "title": "EMOTIONS CHART",
+      "cells": [
+        {"item": "smiling face with curved mouth", "shape": null},
+        {"item": "sad face with mouth turned down and one tear", "shape": null},
+        {"item": "angry face with furrowed eyebrows", "shape": null},
+        {"item": "surprised face with round mouth and wide eyes", "shape": null},
+        {"item": "scared face with worried mouth and raised eyebrows", "shape": null},
+        {"item": "calm face with eyes gently closed and soft smile", "shape": null},
+        {"item": "shy face looking sideways with small smile", "shape": null},
+        {"item": "proud face with chin held high and small smile", "shape": null},
+        {"item": "curious face with raised eyebrows and head tilted", "shape": null}
+      ],
+      "_note": "Chart pédagogique 9 émotions canoniques (parallèle structurel à feeling_imagier_with_names)."
+    },
+    "meat_and_fish_market": {
+      "title": "MEAT AND FISH",
+      "cells": [
+        {"item": "whole chicken with legs tucked", "shape": null},
+        {"item": "round steak cut on a butcher board", "shape": "round"},
+        {"item": "long sausage link with twisted ends", "shape": "long"},
+        {"item": "oval fish with tail fin and gill line", "shape": "oval"},
+        {"item": "long shrimp with curled tail", "shape": "long"},
+        {"item": "round salmon steak with center bone", "shape": "round"},
+        {"item": "chicken drumstick with bone exposed", "shape": null},
+        {"item": "long strip of bacon with wavy edges", "shape": "long"},
+        {"item": "small whole crab with two claws raised", "shape": null}
+      ]
+    },
+    "candy_shop_display": {
+      "title": "CANDY SHOP",
+      "cells": [
+        {"item": "round lollipop on a thin stick", "shape": "round"},
+        {"item": "long candy cane with curved hook top", "shape": "long"},
+        {"item": "rectangular wrapped candy bar with twisted ends", "shape": "rectangular"},
+        {"item": "small wrapped bonbon with twisted paper ends", "shape": null},
+        {"item": "round gumball outline", "shape": "round"},
+        {"item": "long licorice rope twisted in a spiral", "shape": "long"},
+        {"item": "square caramel cube wrapped in paper", "shape": "square"},
+        {"item": "small jar of striped candies with screw lid", "shape": null},
+        {"item": "round mint disc with concentric ring", "shape": "round"}
+      ],
+      "_note": "Cellule 3 et 4 : 'chocolate' évité (FILT _GLOSSY_TERMS). Description via wrapper / silhouette uniquement."
     }
   }
 }

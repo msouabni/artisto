@@ -1,0 +1,306 @@
+{
+  "fruit_imagier_with_names_1024x1024_euler8s.png": {
+    "filename": "fruit_imagier_with_names_1024x1024_euler8s.png",
+    "leaf_id": "fruit_imagier_with_names",
+    "workflow_class": "Grille imagier annoté",
+    "transfert": "T2T3T23",
+    "seed": 300,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "vegetable_imagier_with_names_1024x1024_euler8s.png": {
+    "filename": "vegetable_imagier_with_names_1024x1024_euler8s.png",
+    "leaf_id": "vegetable_imagier_with_names",
+    "workflow_class": "Grille imagier annoté",
+    "transfert": "T2T3T23",
+    "seed": 307,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "weather_imagier_with_names_1024x1024_euler8s.png": {
+    "filename": "weather_imagier_with_names_1024x1024_euler8s.png",
+    "leaf_id": "weather_imagier_with_names",
+    "workflow_class": "Grille imagier annoté",
+    "transfert": "T2T3T23",
+    "seed": 314,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "balanced_lunch_plate_1024x1024_euler8s.png": {
+    "filename": "balanced_lunch_plate_1024x1024_euler8s.png",
+    "leaf_id": "balanced_lunch_plate",
+    "workflow_class": "Imagier différencié OU Solo",
+    "transfert": "T2T3T23",
+    "seed": 321,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "healthy_breakfast_plate_1024x1024_euler8s.png": {
+    "filename": "healthy_breakfast_plate_1024x1024_euler8s.png",
+    "leaf_id": "healthy_breakfast_plate",
+    "workflow_class": "Imagier différencié OU Solo",
+    "transfert": "T2T3T23",
+    "seed": 328,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "proud_child_face_1024x1024_euler8s.png": {
+    "filename": "proud_child_face_1024x1024_euler8s.png",
+    "leaf_id": "proud_child_face",
+    "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+    "transfert": "T2T3T23",
+    "seed": 335,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "sad_child_crying_1024x1024_euler8s.png": {
+    "filename": "sad_child_crying_1024x1024_euler8s.png",
+    "leaf_id": "sad_child_crying",
+    "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+    "transfert": "T2T3T23",
+    "seed": 342,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "fruits_basket_1024x1024_euler8s.png": {
+    "filename": "fruits_basket_1024x1024_euler8s.png",
+    "leaf_id": "fruits_basket",
+    "workflow_class": "Imagier différencié 3×3",
+    "transfert": "T2T3T23",
+    "seed": 349,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "vegetables_basket_1024x1024_euler8s.png": {
+    "filename": "vegetables_basket_1024x1024_euler8s.png",
+    "leaf_id": "vegetables_basket",
+    "workflow_class": "Imagier différencié 3×3",
+    "transfert": "T2T3T23",
+    "seed": 356,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "bread_and_pastries_1024x1024_euler8s.png": {
+    "filename": "bread_and_pastries_1024x1024_euler8s.png",
+    "leaf_id": "bread_and_pastries",
+    "workflow_class": "Imagier différencié 3×3",
+    "transfert": "T2T3T23",
+    "seed": 363,
+    "subdir": "poc-bench-gate-ernie-T2T3T23"
+  },
+  "rainwater_collection_barrel_1376x768_euler8s.png": {
+    "filename": "rainwater_collection_barrel_1376x768_euler8s.png",
+    "leaf_id": "rainwater_collection_barrel",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 400,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "kid_recycling_bin_sorting_1376x768_euler8s.png": {
+    "filename": "kid_recycling_bin_sorting_1376x768_euler8s.png",
+    "leaf_id": "kid_recycling_bin_sorting",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 407,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "beach_cleanup_volunteers_1376x768_euler8s.png": {
+    "filename": "beach_cleanup_volunteers_1376x768_euler8s.png",
+    "leaf_id": "beach_cleanup_volunteers",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 414,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "compost_bin_in_garden_1376x768_euler8s.png": {
+    "filename": "compost_bin_in_garden_1376x768_euler8s.png",
+    "leaf_id": "compost_bin_in_garden",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 421,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "earth_with_protective_hands_1376x768_euler8s.png": {
+    "filename": "earth_with_protective_hands_1376x768_euler8s.png",
+    "leaf_id": "earth_with_protective_hands",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 428,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "solar_panels_on_roof_1376x768_euler8s.png": {
+    "filename": "solar_panels_on_roof_1376x768_euler8s.png",
+    "leaf_id": "solar_panels_on_roof",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 435,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "polar_bear_on_melting_ice_1376x768_euler8s.png": {
+    "filename": "polar_bear_on_melting_ice_1376x768_euler8s.png",
+    "leaf_id": "polar_bear_on_melting_ice",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 442,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "wind_turbines_on_hill_1376x768_euler8s.png": {
+    "filename": "wind_turbines_on_hill_1376x768_euler8s.png",
+    "leaf_id": "wind_turbines_on_hill",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 449,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "kid_planting_a_tree_1376x768_euler8s.png": {
+    "filename": "kid_planting_a_tree_1376x768_euler8s.png",
+    "leaf_id": "kid_planting_a_tree",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 456,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "deforestation_before_after_1376x768_euler8s.png": {
+    "filename": "deforestation_before_after_1376x768_euler8s.png",
+    "leaf_id": "deforestation_before_after",
+    "workflow_class": "Comparatif before/after OU Solo",
+    "transfert": "T25",
+    "seed": 463,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "vegetable_garden_at_home_1024x1024_euler8s.png": {
+    "filename": "vegetable_garden_at_home_1024x1024_euler8s.png",
+    "leaf_id": "vegetable_garden_at_home",
+    "workflow_class": "Solo objet ou comparatif",
+    "transfert": "T25",
+    "seed": 470,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "electric_car_charging_1024x1024_euler8s.png": {
+    "filename": "electric_car_charging_1024x1024_euler8s.png",
+    "leaf_id": "electric_car_charging",
+    "workflow_class": "Solo objet ou comparatif",
+    "transfert": "T25",
+    "seed": 477,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "reusable_shopping_tote_bag_1024x1024_euler8s.png": {
+    "filename": "reusable_shopping_tote_bag_1024x1024_euler8s.png",
+    "leaf_id": "reusable_shopping_tote_bag",
+    "workflow_class": "Solo objet ou comparatif",
+    "transfert": "T25",
+    "seed": 484,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "eco_friendly_house_with_panels_1024x1024_euler8s.png": {
+    "filename": "eco_friendly_house_with_panels_1024x1024_euler8s.png",
+    "leaf_id": "eco_friendly_house_with_panels",
+    "workflow_class": "Solo objet ou comparatif",
+    "transfert": "T25",
+    "seed": 491,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "zero_waste_kitchen_1024x1024_euler8s.png": {
+    "filename": "zero_waste_kitchen_1024x1024_euler8s.png",
+    "leaf_id": "zero_waste_kitchen",
+    "workflow_class": "Solo objet ou comparatif",
+    "transfert": "T25",
+    "seed": 498,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "bike_to_work_commute_1024x1024_euler8s.png": {
+    "filename": "bike_to_work_commute_1024x1024_euler8s.png",
+    "leaf_id": "bike_to_work_commute",
+    "workflow_class": "Solo objet ou comparatif",
+    "transfert": "T25",
+    "seed": 505,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "kids_picking_up_litter_1024x1024_euler8s.png": {
+    "filename": "kids_picking_up_litter_1024x1024_euler8s.png",
+    "leaf_id": "kids_picking_up_litter",
+    "workflow_class": "Solo objet ou comparatif",
+    "transfert": "T25",
+    "seed": 512,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "reusable_water_bottle_1024x1024_euler8s.png": {
+    "filename": "reusable_water_bottle_1024x1024_euler8s.png",
+    "leaf_id": "reusable_water_bottle",
+    "workflow_class": "Solo objet ou comparatif",
+    "transfert": "T25",
+    "seed": 519,
+    "subdir": "poc-bench-gate-ernie-T25"
+  },
+  "baby_first_year_1376x768_euler8s.png": {
+    "filename": "baby_first_year_1376x768_euler8s.png",
+    "leaf_id": "baby_first_year",
+    "workflow_class": "Frise narrative 1×N (pattern X2)",
+    "transfert": "pivot",
+    "seed": 1000,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  },
+  "spring_blooming_meadow_1376x768_euler8s.png": {
+    "filename": "spring_blooming_meadow_1376x768_euler8s.png",
+    "leaf_id": "spring_blooming_meadow",
+    "workflow_class": "Frise narrative 1×4",
+    "transfert": "pivot",
+    "seed": 1007,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  },
+  "summer_beach_day_1376x768_euler8s.png": {
+    "filename": "summer_beach_day_1376x768_euler8s.png",
+    "leaf_id": "summer_beach_day",
+    "workflow_class": "Frise narrative 1×4",
+    "transfert": "pivot",
+    "seed": 1014,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  },
+  "winter_snowman_in_garden_1376x768_euler8s.png": {
+    "filename": "winter_snowman_in_garden_1376x768_euler8s.png",
+    "leaf_id": "winter_snowman_in_garden",
+    "workflow_class": "Frise narrative 1×4",
+    "transfert": "pivot",
+    "seed": 1021,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  },
+  "cakes_and_desserts_1024x1024_euler8s.png": {
+    "filename": "cakes_and_desserts_1024x1024_euler8s.png",
+    "leaf_id": "cakes_and_desserts",
+    "workflow_class": "Imagier différencié 3×3",
+    "transfert": "pivot",
+    "seed": 1028,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  },
+  "candy_shop_display_1024x1024_euler8s.png": {
+    "filename": "candy_shop_display_1024x1024_euler8s.png",
+    "leaf_id": "candy_shop_display",
+    "workflow_class": "Imagier différencié 3×3",
+    "transfert": "pivot",
+    "seed": 1035,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  },
+  "food_pyramid_for_kids_1024x1024_euler8s.png": {
+    "filename": "food_pyramid_for_kids_1024x1024_euler8s.png",
+    "leaf_id": "food_pyramid_for_kids",
+    "workflow_class": "Imagier différencié OU Solo",
+    "transfert": "pivot",
+    "seed": 1042,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  },
+  "rainbow_fruit_plate_1024x1024_euler8s.png": {
+    "filename": "rainbow_fruit_plate_1024x1024_euler8s.png",
+    "leaf_id": "rainbow_fruit_plate",
+    "workflow_class": "Imagier différencié OU Solo",
+    "transfert": "pivot",
+    "seed": 1049,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  },
+  "number_zero_with_eggs_1024x1024_euler8s.png": {
+    "filename": "number_zero_with_eggs_1024x1024_euler8s.png",
+    "leaf_id": "number_zero_with_eggs",
+    "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+    "transfert": "pivot",
+    "seed": 1056,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  },
+  "number_one_with_apple_1024x1024_euler8s.png": {
+    "filename": "number_one_with_apple_1024x1024_euler8s.png",
+    "leaf_id": "number_one_with_apple",
+    "workflow_class": "Multi-sujets via grille (méta-pattern §2)",
+    "transfert": "pivot",
+    "seed": 1063,
+    "subdir": "poc-bench-gate-ernie-pivot"
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "dir": "poc-bench-gate-ernie-pivot",
+  "annotations": {
+    "baby_first_year_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T17:09:12.892358+00:00"
+    },
+    "cakes_and_desserts_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T17:09:23.118283+00:00"
+    },
+    "candy_shop_display_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T17:09:45.431286+00:00"
+    },
+    "food_pyramid_for_kids_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T17:09:54.753963+00:00"
+    },
+    "number_one_with_apple_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T17:09:59.617952+00:00"
+    },
+    "number_zero_with_eggs_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T17:10:04.910996+00:00"
+    },
+    "rainbow_fruit_plate_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T17:10:12.431171+00:00"
+    },
+    "spring_blooming_meadow_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T17:10:19.636825+00:00"
+    },
+    "summer_beach_day_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T17:10:25.419055+00:00"
+    },
+    "winter_snowman_in_garden_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T17:10:30.799525+00:00"
+    }
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "transfert": "T2T3T23",
+  "label": "T2T3T23 grille / imagier annoté",
+  "subjects": [
+    {
+      "filename": "fruit_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Fruit Imagier with Names",
+      "leaf_id": "fruit_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe grid of three rows by three columns making nine empty square cells, the grid centered on the page, thick grid lines, the title \"FRUITS\" written in capital letters above the grid, cell 1: round apple with leaf, cell 2: long curved banana, cell 3: round citrus fruit with dimpled skin, cell 4: oval mango with stem, cell 5: round grape cluster, cell 6: triangular watermelon slice with seeds, cell 7: round kiwi slice with small seeds, cell 8: oval strawberry with leaf top, cell 9: round lemon with leaf, each item drawn inside its own cell with its english name written below in capital letters inside the same cell, uniform line thickness, balanced composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 300,
+      "transfert": "T2T3T23"
+    },
+    {
+      "filename": "vegetable_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Vegetable Imagier with Names",
+      "leaf_id": "vegetable_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe grid of three rows by three columns making nine empty square cells, the grid centered on the page, thick grid lines, the title \"VEGETABLES\" written in capital letters above the grid, cell 1: round tomato with stem, cell 2: long pointed carrot with top leaves, cell 3: round broccoli with thick stem, cell 4: oval potato with small dents, cell 5: long cucumber with thin skin, cell 6: round onion with paper skin, cell 7: oval eggplant with stem cap, cell 8: long bell pepper with stem, cell 9: round head of cabbage with curled leaves, each item drawn inside its own cell with its english name written below in capital letters inside the same cell, uniform line thickness, balanced composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 307,
+      "transfert": "T2T3T23"
+    },
+    {
+      "filename": "weather_imagier_with_names_1024x1024_euler8s.png",
+      "name_en": "Weather Imagier with Names",
+      "leaf_id": "weather_imagier_with_names",
+      "tier": "Grille imagier annoté",
+      "workflow_class": "Grille imagier annoté",
+      "technique": "Grille 3×3 avec mot par case (X6 OK + cas 7 OK)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [
+        "Mots simples seulement, pas de phrases"
+      ],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe grid of three rows by three columns making nine empty square cells, the grid centered on the page, thick grid lines, the title \"WEATHER\" written in capital letters above the grid, cell 1: round sun with rays around it, cell 2: fluffy cloud outline, cell 3: cloud with diagonal rain drops below, cell 4: cloud with snowflake shapes below, cell 5: cloud with lightning bolt zigzag below, cell 6: crescent moon with one small star, cell 7: spiral wind swirl, cell 8: umbrella with curved handle, cell 9: colorful arc with stripes, each item drawn inside its own cell with its english name written below in capital letters inside the same cell, uniform line thickness, balanced composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 314,
+      "transfert": "T2T3T23"
+    },
+    {
+      "filename": "balanced_lunch_plate_1024x1024_euler8s.png",
+      "name_en": "Balanced Lunch Plate",
+      "leaf_id": "balanced_lunch_plate",
+      "tier": "Imagier différencié OU Solo",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe grid of three rows by three columns making nine empty square cells, the grid centered on the page, thick grid lines, the title \"BALANCED LUNCH\" written in capital letters above the grid, cell 1: round apple with leaf, cell 2: long pointed carrot with top leaves, cell 3: square slice of bread, cell 4: oval fish with tail fin, cell 5: oval egg outline, cell 6: round broccoli with stem, cell 7: tall cup of milk with handle, cell 8: round citrus fruit with leaf, cell 9: chicken leg with bone, each item drawn inside its own cell with uniform line thickness, balanced composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 321,
+      "transfert": "T2T3T23"
+    },
+    {
+      "filename": "healthy_breakfast_plate_1024x1024_euler8s.png",
+      "name_en": "Healthy Breakfast Plate",
+      "leaf_id": "healthy_breakfast_plate",
+      "tier": "Imagier différencié OU Solo",
+      "workflow_class": "Imagier différencié OU Solo",
+      "technique": "Grille 3×3 (X1) ou solo plat",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe grid of three rows by three columns making nine empty square cells, the grid centered on the page, thick grid lines, the title \"HEALTHY BREAKFAST\" written in capital letters above the grid, cell 1: round bowl of cereal with small flakes, cell 2: tall cup of milk with handle, cell 3: round bagel cut in half with spread, cell 4: oval egg fried with sunny side up, cell 5: long curved banana, cell 6: round citrus fruit with leaf, cell 7: small jar of honey with dipper, cell 8: rectangular toast slice with butter pat, cell 9: round cup of yogurt with peeled lid, each item drawn inside its own cell with uniform line thickness, balanced composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 328,
+      "transfert": "T2T3T23"
+    },
+    {
+      "filename": "proud_child_face_1024x1024_euler8s.png",
+      "name_en": "Proud Child Face",
+      "leaf_id": "proud_child_face",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single child face viewed from the front, the child showing a proud expression with confident smile, head held high, chest out, wide open eyes, eyebrows slightly raised, simple shoulders visible at the bottom, the title \"PROUD\" written in capital letters above the head, centered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 335,
+      "transfert": "T2T3T23"
+    },
+    {
+      "filename": "sad_child_crying_1024x1024_euler8s.png",
+      "name_en": "Sad Child Crying",
+      "leaf_id": "sad_child_crying",
+      "tier": "Imagier annoté 3×3 OU Solo visage",
+      "workflow_class": "Imagier annoté 3×3 OU Solo visage",
+      "technique": "Grille 3×3 (X6) ou solo expression",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, one single child face viewed from the front, the child showing a sad expression with corners of mouth turned down, drooping eyelids, slight tear in one eye, simple shoulders visible at the bottom, the title \"SAD\" written in capital letters above the head, centered composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 342,
+      "transfert": "T2T3T23"
+    },
+    {
+      "filename": "fruits_basket_1024x1024_euler8s.png",
+      "name_en": "Fruits Basket",
+      "leaf_id": "fruits_basket",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe grid of three rows by three columns making nine empty square cells, the grid centered on the page, thick grid lines, the title \"FRUITS BASKET\" written in capital letters above the grid, cell 1: round apple with leaf, cell 2: long curved banana, cell 3: oval pear with stem, cell 4: round orange with dimpled skin, cell 5: oval strawberry with leaf top, cell 6: round grape cluster on a stem, cell 7: triangular watermelon slice with seeds, cell 8: round peach with single leaf, cell 9: oval kiwi cut in half showing seeds, each item drawn inside its own cell with uniform line thickness, balanced composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 349,
+      "transfert": "T2T3T23"
+    },
+    {
+      "filename": "vegetables_basket_1024x1024_euler8s.png",
+      "name_en": "Vegetables Basket",
+      "leaf_id": "vegetables_basket",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe grid of three rows by three columns making nine empty square cells, the grid centered on the page, thick grid lines, the title \"VEGETABLES BASKET\" written in capital letters above the grid, cell 1: long pointed carrot with top leaves, cell 2: round tomato with stem, cell 3: round broccoli with thick stem, cell 4: oval potato with small dents, cell 5: long cucumber with thin skin, cell 6: round onion with paper skin and small roots, cell 7: long bell pepper with stem cap, cell 8: oval eggplant with stem cap, cell 9: round head of cabbage with curled leaves, each item drawn inside its own cell with uniform line thickness, balanced composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 356,
+      "transfert": "T2T3T23"
+    },
+    {
+      "filename": "bread_and_pastries_1024x1024_euler8s.png",
+      "name_en": "Bread and Pastries",
+      "leaf_id": "bread_and_pastries",
+      "tier": "Imagier différencié 3×3",
+      "workflow_class": "Imagier différencié 3×3",
+      "technique": "Grille 3×3 (X1 perfect)",
+      "pipeline": "ERNIE direct",
+      "confidence": "Haute",
+      "pitfalls": [],
+      "positive_prompt": "coloring book page for kids, black and white line art, thick clean outlines, no shading, no fill, white background, a tic-tac-toe grid of three rows by three columns making nine empty square cells, the grid centered on the page, thick grid lines, the title \"BREAD AND PASTRIES\" written in capital letters above the grid, cell 1: long baguette with diagonal slashes on top, cell 2: round loaf of bread with crust, cell 3: square slice of toast, cell 4: round croissant with curved tips, cell 5: round bagel with central hole, cell 6: round muffin with paper liner, cell 7: round donut with central hole and small sprinkles outline, cell 8: round bun with sesame outline on top, cell 9: long pretzel twisted into a knot, each item drawn inside its own cell with uniform line thickness, balanced composition",
+      "negative_prompt": "no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, multiple animals, other animals, companion animal, group of animals, animal in background, second subject, multiple subjects, multiple people, group of people, second person, person in background, multiple objects, group of objects, second object, two animals, pair of animals, multiple animals together",
+      "resolution": [
+        1024,
+        1024
+      ],
+      "seed": 363,
+      "transfert": "T2T3T23"
+    }
+  ]
+}

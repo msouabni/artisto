@@ -165,19 +165,174 @@ _COLOR_ANCHORS_RE = _word_boundary_pattern(
 
 
 # ===================================================================
+# Whitelist FILT contextuelle — fruits / contenants comestibles
+# Source : rapport `docs/reports/2026-05-10_transfert-skill-T2T3T23-grille-imagier.md`
+#          §Découverte FILT × T2 + brief
+#          `docs/architect/briefs/2026-05-10_brief-whitelist-filt-contextuelle.md`.
+# Skill : `references/techniques.md` §T5 / §T6 (extension contextuelle dérivée).
+#
+# Problème observé : T2 grille imagier (fruits, vaisselle, météo) injecte des items
+# nominaux où des tokens normalement filtrés (orange, glass, bright, dark…) sont
+# sémantiquement importants (fruit, contenant, qualificatif sémantique non-couleur).
+# Le strip global appauvrit le prompt (`round orange with leaf` → `round with leaf`).
+#
+# Stratégie : un strip est *court-circuité localement* si le token apparaît dans
+# un contexte nominal protégé (regex compilée). On ne désactive PAS le strip
+# global ; on le rend contextuel pour ~6-8 motifs ciblés. La whitelist est
+# conservatrice — toute extension nécessite un test positif + négatif explicite.
+# ===================================================================
+_PROTECTED_NOMINAL_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
+    # --- Fruits ---
+    # `round/fresh/peeled/whole/sliced/half orange with|on|in ...`
+    # → contexte fruit (dimpled skin, leaf, segment, juice…). « orange car » non protégé.
+    (
+        "orange",
+        re.compile(
+            r"\b(round|fresh|peeled|whole|sliced|half)\s+orange\s+(with|on|in|and|of)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    # « an orange/the orange » suivi d'un descripteur de fruit → fruit.
+    (
+        "orange",
+        re.compile(
+            r"\b(an|the)\s+orange\s+(slice|segment|peel|wedge|half)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    # --- Contenants comestibles / vaisselle ---
+    # `drinking|tall|small|empty|full|water|milk|juice + glass` → contenant, pas surface 3D.
+    (
+        "glass",
+        re.compile(
+            r"\b(drinking|tall|small|empty|full|water|milk|juice|wine)\s+glass\b",
+            re.IGNORECASE,
+        ),
+    ),
+    # `glass of <liquide>` → contenant. Ex. `glass of milk`.
+    (
+        "glass",
+        re.compile(
+            r"\bglass\s+of\s+(milk|water|juice|wine|lemonade)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    # --- Adjectifs sémantiques non-luminosité ---
+    # `bright + future|idea|side|child|smile|day` → sens figuré ou expression, pas "luminosité".
+    (
+        "bright",
+        re.compile(
+            r"\bbright\s+(future|idea|side|child|smile|day|eyes)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    # `dark + age|side|secret|matter|knight` → expression, pas teinte/luminosité.
+    (
+        "dark",
+        re.compile(
+            r"\bdark\s+(age|ages|side|secret|matter|knight|chocolate)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    # --- Couleurs nominales (rares mais utiles pour T2) ---
+    # `red carpet` (cérémonie / institution) — nom propre composé.
+    (
+        "red",
+        re.compile(
+            r"\bred\s+(carpet|cross|panda|alert)\b",
+            re.IGNORECASE,
+        ),
+    ),
+]
+
+
+def _protected_spans(text: str, token: str) -> list[tuple[int, int]]:
+    """Renvoie la liste des (start, end) du `text` où le `token` est protégé.
+
+    Les indices sont calculés sur la chaîne d'entrée. Plusieurs patterns peuvent
+    couvrir le même `token` ; on collecte tous les spans (l'union des intervalles
+    sera utilisée pour court-circuiter le strip).
+    """
+    if not text or not token:
+        return []
+    spans: list[tuple[int, int]] = []
+    token_lc = token.lower()
+    for protected_token, pattern in _PROTECTED_NOMINAL_PATTERNS:
+        if protected_token.lower() != token_lc:
+            continue
+        for m in pattern.finditer(text):
+            spans.append((m.start(), m.end()))
+    return spans
+
+
+def _strip_with_whitelist(
+    text: str,
+    pattern: re.Pattern[str],
+    whitelisted_tokens: Iterable[str],
+) -> str:
+    """Applique `pattern.sub("", text)` sauf pour les matches dont le token est
+    contenu dans un span protégé (cf. `_PROTECTED_NOMINAL_PATTERNS`).
+
+    Implémentation : on calcule l'union des spans protégés pour chaque token
+    whitelisté, puis on remplace itérativement les matches dont la position
+    n'est PAS contenue dans un span protégé.
+    """
+    if not text:
+        return text
+    # Pré-calcul : pour chaque token whitelisté, ses spans protégés.
+    protected_by_token: dict[str, list[tuple[int, int]]] = {}
+    for token in whitelisted_tokens:
+        spans = _protected_spans(text, token)
+        if spans:
+            protected_by_token[token.lower()] = spans
+
+    if not protected_by_token:
+        # Aucun token protégé présent → strip standard.
+        return pattern.sub("", text)
+
+    def _replace(match: re.Match[str]) -> str:
+        matched = match.group(0).lower()
+        spans = protected_by_token.get(matched)
+        if not spans:
+            return ""
+        m_start = match.start()
+        m_end = match.end()
+        # Match contenu dans un span protégé → on garde l'original.
+        for span_start, span_end in spans:
+            if span_start <= m_start and m_end <= span_end:
+                return match.group(0)
+        return ""
+
+    return pattern.sub(_replace, text)
+
+
+# Tokens whitelistés connus, déduits de `_PROTECTED_NOMINAL_PATTERNS`.
+_WHITELISTED_TOKENS: frozenset[str] = frozenset(
+    token.lower() for token, _ in _PROTECTED_NOMINAL_PATTERNS
+)
+
+
+# ===================================================================
 # API publique
 # ===================================================================
 def strip_color_nouns(text: str) -> str:
     """T5 — supprime les noms de couleur explicites du texte.
 
+    Court-circuit contextuel via `_PROTECTED_NOMINAL_PATTERNS` : un token
+    color-noun protégé par un pattern nominal (ex. `round orange with leaf`,
+    `red carpet`) reste préservé localement. Cf. rapport
+    `2026-05-10_transfert-skill-T2T3T23-grille-imagier.md` §Découverte FILT × T2.
+
     >>> strip_color_nouns("a red apple on a blue plate")
     'a apple on a plate'
     >>> strip_color_nouns("simple line drawing")
     'simple line drawing'
+    >>> strip_color_nouns("round orange with leaf")
+    'round orange with leaf'
     """
     if not text:
         return text
-    cleaned = _COLOR_NOUNS_RE.sub("", text)
+    cleaned = _strip_with_whitelist(text, _COLOR_NOUNS_RE, _WHITELISTED_TOKENS)
     return _collapse_whitespace(cleaned)
 
 
@@ -206,14 +361,20 @@ def replace_color_anchors(text: str) -> str:
 def strip_glossy_terms(text: str) -> str:
     """Extension T6 — supprime les termes de surface brillante / matière réfléchissante.
 
+    Court-circuit contextuel via `_PROTECTED_NOMINAL_PATTERNS` : `glass` reste
+    préservé dans des contextes contenants (`drinking glass`, `glass of milk`).
+    Cf. rapport `2026-05-10_transfert-skill-T2T3T23-grille-imagier.md` §Découverte FILT × T2.
+
     >>> strip_glossy_terms("a shiny metallic sphere")
     'a sphere'
     >>> strip_glossy_terms("a wooden box")
     'a wooden box'
+    >>> strip_glossy_terms("tall drinking glass")
+    'tall drinking glass'
     """
     if not text:
         return text
-    cleaned = _GLOSSY_TERMS_RE.sub("", text)
+    cleaned = _strip_with_whitelist(text, _GLOSSY_TERMS_RE, _WHITELISTED_TOKENS)
     return _collapse_whitespace(cleaned)
 
 

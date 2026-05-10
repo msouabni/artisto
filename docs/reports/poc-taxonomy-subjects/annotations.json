@@ -2,7 +2,7 @@
   "dir": "poc-taxonomy-subjects",
   "annotations": {
     "001_cute_pig_50000.png": {
-      "score": 5,
+      "score": 4,
       "score_legacy": 8,
       "image_tags": [
         "image_traces_couleur"
@@ -13,9 +13,9 @@
         "pattern": false,
         "pattern_note": "",
         "sample": false,
-        "publishable": true
+        "publishable": false
       },
-      "updated_at": "2026-05-07T09:22:12.288752+00:00"
+      "updated_at": "2026-05-09T17:49:28.372620+00:00"
     },
     "002_sleeping_cat_50001.png": {
       "score": 1,
@@ -1370,6 +1370,1783 @@
         "publishable": null
       },
       "updated_at": "2026-05-07T10:00:34.170168+00:00"
+    },
+    "090_pink_fairy_train_50089.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:49:39.085153+00:00"
+    },
+    "091_baker_50090.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleur"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:50:21.572552+00:00"
+    },
+    "092_firefighter_50091.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleur"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:50:11.518316+00:00"
+    },
+    "093_garden_gardener_50092.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:52:16.471193+00:00"
+    },
+    "094_police_officer_50093.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "ethnie par defaut"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:51:01.214188+00:00"
+    },
+    "095_doctor_50094.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "ethnie par defaut"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:52:10.900395+00:00"
+    },
+    "096_construction_worker_50095.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:52:07.501438+00:00"
+    },
+    "097_little_rocket_astronaut_50096.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_creative"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:52:04.609034+00:00"
+    },
+    "098_gigantic_friendly_dino_50097.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:51:46.800525+00:00"
+    },
+    "099_flying_bat_hero_50098.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:52:21.345946+00:00"
+    },
+    "100_super_spidey_web_50099.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleur"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:52:34.732562+00:00"
+    },
+    "101_cute_cat_captain_50100.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_creative"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:52:44.526313+00:00"
+    },
+    "102_mighty_dragon_guard_50101.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:52:56.032696+00:00"
+    },
+    "103_giant_polka_dot_elephant_50102.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleur"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:53:07.495262+00:00"
+    },
+    "104_magic_wand_star_50103.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:55:13.560228+00:00"
+    },
+    "105_flying_unicorn_50104.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:55:24.525438+00:00"
+    },
+    "106_cute_witch_cat_50105.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_symetrie_incomplete"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "pb negative : no colors, extra legs, third leg, duplicate limbs, fused legs, malformed anatomy, wrong number of limbs, six fingers, deformed feet no motion, no fill colors, no intersection, no change in ink transparency for different plan only black stroke, legs, four legs, paws, hooves, land animal limbs, walking pose, standing pose"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T21:07:01.667956+00:00"
+    },
+    "107_dragon_castle_door_50106.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:57:36.968129+00:00"
+    },
+    "108_enchanted_tree_heart_50107.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:57:42.943567+00:00"
+    },
+    "109_dancing_cats_50108.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_creative"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:59:04.740948+00:00"
+    },
+    "110_family_picnic_50109.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:59:00.959411+00:00"
+    },
+    "111_garden_tools_50110.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:58:55.793307+00:00"
+    },
+    "112_space_rocket_50111.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T17:59:25.449104+00:00"
+    },
+    "113_school_bus_50112.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T17:59:39.362985+00:00"
+    },
+    "114_happy_faces_50113.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:00:56.858616+00:00"
+    },
+    "115_bunny_in_a_flower_patch_50114.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:01:15.826261+00:00"
+    },
+    "116_rainbow_dandelion_50115.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:01:26.805734+00:00"
+    },
+    "117_bird_building_a_nest_50116.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:01:36.083491+00:00"
+    },
+    "118_sprouting_seedling_50117.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:07:52.693949+00:00"
+    },
+    "119_butterfly_on_a_leaf_50118.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_physique_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:08:09.179507+00:00"
+    },
+    "120_squirrel_with_acorn_50119.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:30:42.978910+00:00"
+    },
+    "121_sunflower_field_50120.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:33:30.366351+00:00"
+    },
+    "122_beach_ball_50121.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:33:40.867474+00:00"
+    },
+    "124_swimming_mermaid_50123.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:34:33.031733+00:00"
+    },
+    "125_sandcastle_50124.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:34:36.232394+00:00"
+    },
+    "126_ice_cream_cone_50125.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:38:06.305716+00:00"
+    },
+    "127_fallen_orange_leaves_50126.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:38:16.957186+00:00"
+    },
+    "128_pumpkin_patch_50127.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:38:34.699791+00:00"
+    },
+    "129_acorn_tree_50128.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:38:47.097340+00:00"
+    },
+    "130_woodpecker_50129.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [
+        "un peu de couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:39:26.141549+00:00"
+    },
+    "131_squirrel_50130.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:44:51.572416+00:00"
+    },
+    "132_leaf_pattern_50131.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:45:30.148073+00:00"
+    },
+    "133_snowy_sled_50132.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:45:35.768229+00:00"
+    },
+    "134_frosty_tree_50133.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:45:46.597827+00:00"
+    },
+    "135_polar_bear_family_50134.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:45:53.957323+00:00"
+    },
+    "136_ice_skating_circle_50135.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:45:59.789192+00:00"
+    },
+    "137_winter_snowflake_50136.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:46:04.989245+00:00"
+    },
+    "138_number_one_snowball_50137.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:46:13.816503+00:00"
+    },
+    "139_red_santa_hat_50138.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [
+        "prompt_vide",
+        "prompt_creux",
+        "prompt_ennuyeux"
+      ],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:46:45.834565+00:00"
+    },
+    "140_frosty_snowman_50139.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [
+        "image_creative"
+      ],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:47:13.287779+00:00"
+    },
+    "141_jingle_bell_50140.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:47:20.871499+00:00"
+    },
+    "142_christmas_tree_star_50141.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:47:35.556937+00:00"
+    },
+    "143_christmas_letter_50142.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T21:07:09.744110+00:00"
+    },
+    "144_santa_s_sleigh_50143.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [
+        "un peu de couleur"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T18:48:13.519204+00:00"
+    },
+    "145_jack_o_lantern_with_cat_face_50144.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:48:21.368918+00:00"
+    },
+    "146_spooky_spiderweb_with_pumpkins_50145.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [
+        "image_creative"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T18:48:42.895544+00:00"
+    },
+    "147_witch_flying_on_broomstick_50146.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:00:21.441857+00:00"
+    },
+    "148_trick_or_treating_children_50147.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:00:26.001257+00:00"
+    },
+    "149_halloween_spider_mandala_50148.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:00:33.356082+00:00"
+    },
+    "150_halloween_ghost_with_letters_50149.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:00:48.196994+00:00"
+    },
+    "151_easter_bunny_50150.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:00:58.119206+00:00"
+    },
+    "152_easter_egg_hunt_50151.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:01:09.773124+00:00"
+    },
+    "153_easter_basket_50152.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:04:09.887799+00:00"
+    },
+    "154_easter_egg_50153.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:04:17.226362+00:00"
+    },
+    "155_easter_tree_50154.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:04:23.316177+00:00"
+    },
+    "156_chocolate_egg_50155.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:04:31.026529+00:00"
+    },
+    "157_balloon_bouquet_50156.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:06:06.865223+00:00"
+    },
+    "158_cake_with_candles_50157.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:06:10.949532+00:00"
+    },
+    "159_birthday_hat_50158.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:06:16.601280+00:00"
+    },
+    "160_party_animals_50159.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:06:24.192551+00:00"
+    },
+    "161_gift_boxes_50160.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [
+        "prompt_ambigu"
+      ],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:06:36.697228+00:00"
+    },
+    "162_birthday_cake_slice_50161.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:06:47.635113+00:00"
+    },
+    "163_colorful_eid_lantern_50162.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:28:16.908156+00:00"
+    },
+    "164_happy_eid_elephant_50163.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:28:24.041200+00:00"
+    },
+    "165_prayer_on_a_rug_50164.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:28:33.818151+00:00"
+    },
+    "166_eid_cake_platter_50165.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:28:46.680201+00:00"
+    },
+    "167_family_gift_exchange_50166.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:28:54.357759+00:00"
+    },
+    "168_eid_tree_branch_50167.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:29:04.230397+00:00"
+    },
+    "169_letter_a_50168.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:29:21.094492+00:00"
+    },
+    "170_letter_b_50169.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:29:30.212022+00:00"
+    },
+    "171_letter_c_50170.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "complexe"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:29:53.862417+00:00"
+    },
+    "172_letter_d_50171.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:30:07.068257+00:00"
+    },
+    "173_letter_e_50172.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:30:15.832289+00:00"
+    },
+    "174_letter_f_50173.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:30:19.364020+00:00"
+    },
+    "175_number_one_elephant_50174.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T19:30:28.110163+00:00"
+    },
+    "176_number_two_butterflies_50175.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:35:41.901796+00:00"
+    },
+    "177_number_three_balloons_50176.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:35:57.726248+00:00"
+    },
+    "178_number_four_trees_50177.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T19:36:15.832898+00:00"
+    },
+    "179_number_five_fish_50178.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:15:32.109055+00:00"
+    },
+    "180_number_six_stars_50179.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:15:37.723641+00:00"
+    },
+    "181_square_pizza_slice_50180.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T20:15:51.880135+00:00"
+    },
+    "182_round_sun_50181.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:16:00.819086+00:00"
+    },
+    "183_blue_train_50182.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:16:11.459182+00:00"
+    },
+    "184_happy_cat_50183.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:16:19.951030+00:00"
+    },
+    "185_red_ball_50184.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:16:29.067763+00:00"
+    },
+    "186_number_five_50185.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:16:38.262704+00:00"
+    },
+    "187_simple_city_map_50186.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [
+        "image_creative"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T20:16:52.373399+00:00"
+    },
+    "188_school_bus_route_50187.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:17:01.688824+00:00"
+    },
+    "189_forest_trail_sign_50188.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:32:53.773627+00:00"
+    },
+    "190_ocean_map_with_islands_50189.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:33:03.974721+00:00"
+    },
+    "191_train_on_tracks_50190.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:33:14.874755+00:00"
+    },
+    "192_beach_map_with_lighthouse_50191.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:34:14.150602+00:00"
+    },
+    "193_solar_system_50192.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:34:26.955377+00:00"
+    },
+    "194_dinosaur_family_50193.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "pb symetrie double"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T20:34:54.511111+00:00"
+    },
+    "195_school_bus_50194.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T20:58:07.581083+00:00"
+    },
+    "196_rainbow_garden_50195.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:58:15.306968+00:00"
+    },
+    "197_space_rocket_50196.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_coherente",
+        "image_creative"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T20:58:28.611291+00:00"
+    },
+    "198_animal_alphabet_50197.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T20:59:11.983907+00:00"
+    },
+    "199_butterfly_50198.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:59:16.883760+00:00"
+    },
+    "200_rainbow_50199.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:59:24.582164+00:00"
+    },
+    "201_cat_50200.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T20:59:30.247517+00:00"
+    },
+    "202_car_50201.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T20:59:37.039225+00:00"
+    },
+    "203_star_50202.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T20:59:43.724230+00:00"
+    },
+    "204_apple_50203.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "couleurs"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T20:59:51.078259+00:00"
+    },
+    "123_lion_cub_50122.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T21:07:07.246964+00:00"
     }
   },
   "schema_version": "v2"

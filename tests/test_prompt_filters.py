@@ -18,6 +18,8 @@ from services.prompt_filters import (
     _COLOR_ANCHORS,
     _COLOR_NOUNS,
     _GLOSSY_TERMS,
+    _PROTECTED_NOMINAL_PATTERNS,
+    _WHITELISTED_TOKENS,
     apply_all_filters,
     describe_filters,
     replace_color_anchors,
@@ -256,3 +258,197 @@ def test_leaf_override_skipped_via_pipeline_hook():
             f"LEAF_OVERRIDES[{leaf_id!r}] a été modifié par les filtres T5/T6/T7 — "
             "le hook doit court-circuiter cette branche."
         )
+
+
+# -------------------------------------------------------------------
+# Whitelist FILT contextuelle — fruits / contenants comestibles
+# Cf. brief 2026-05-10_brief-whitelist-filt-contextuelle.md
+#     + rapport 2026-05-10_transfert-skill-T2T3T23-grille-imagier.md §FILT × T2
+# -------------------------------------------------------------------
+class TestProtectedNominalWhitelistVocabulary:
+    """Sanity check sur la définition de la whitelist."""
+
+    def test_at_least_six_patterns_defined(self):
+        """Brief : >= 6 patterns documentés."""
+        assert len(_PROTECTED_NOMINAL_PATTERNS) >= 6
+
+    def test_whitelisted_tokens_are_in_filtered_vocabularies(self):
+        """Cohérence : un token protégé doit appartenir à au moins un
+        des vocabulaires filtrés (sinon protection inutile)."""
+        all_filtered = _COLOR_NOUNS | _GLOSSY_TERMS
+        for token in _WHITELISTED_TOKENS:
+            assert token in all_filtered, (
+                f"Token {token!r} whitelisté mais absent des vocabulaires filtrés "
+                "(_COLOR_NOUNS ∪ _GLOSSY_TERMS)."
+            )
+
+    def test_orange_is_whitelisted(self):
+        assert "orange" in _WHITELISTED_TOKENS
+
+    def test_glass_is_whitelisted(self):
+        assert "glass" in _WHITELISTED_TOKENS
+
+    def test_bright_is_whitelisted(self):
+        assert "bright" in _WHITELISTED_TOKENS
+
+
+class TestStripColorNounsWithWhitelistPositive:
+    """Tests positifs : token preserved dans contexte nominal protégé."""
+
+    def test_orange_fruit_with_leaf_preserved(self):
+        # Cas direct du JSON grille : `round orange with leaf`.
+        out = strip_color_nouns("round orange with leaf")
+        assert "orange" in out.lower().split()
+
+    def test_orange_dimpled_skin_preserved(self):
+        out = strip_color_nouns("round orange with dimpled skin")
+        assert "orange" in out.lower().split()
+
+    def test_sliced_orange_on_plate_preserved(self):
+        out = strip_color_nouns("sliced orange on a plate")
+        assert "orange" in out.lower().split()
+
+    def test_an_orange_slice_preserved(self):
+        out = strip_color_nouns("an orange slice on the table")
+        assert "orange" in out.lower().split()
+
+    def test_bright_idea_preserved(self):
+        out = strip_color_nouns("a bright idea on a chalkboard")
+        assert "bright" in out.lower().split()
+
+    def test_bright_smile_preserved(self):
+        out = strip_color_nouns("a bright smile on a face")
+        assert "bright" in out.lower().split()
+
+    def test_dark_age_preserved(self):
+        out = strip_color_nouns("a dark age castle scene")
+        assert "dark" in out.lower().split()
+
+    def test_red_carpet_preserved(self):
+        out = strip_color_nouns("a long red carpet leading to the door")
+        assert "red" in out.lower().split()
+
+
+class TestStripColorNounsWithWhitelistNegative:
+    """Tests négatifs : strip toujours actif hors contexte protégé."""
+
+    def test_orange_car_stripped(self):
+        # `orange car` n'a pas de contexte fruit → strip standard.
+        out = strip_color_nouns("an orange car")
+        assert "orange" not in out.lower().split()
+
+    def test_orange_alone_stripped(self):
+        out = strip_color_nouns("orange and blue")
+        assert "orange" not in out.lower().split()
+
+    def test_red_apple_stripped(self):
+        # Pas un pattern protégé → strip standard.
+        out = strip_color_nouns("a red apple")
+        assert "red" not in out.lower().split()
+
+    def test_bright_color_stripped(self):
+        # `bright` sans contexte sémantique protégé → strip standard.
+        out = strip_color_nouns("a bright object")
+        assert "bright" not in out.lower().split()
+
+    def test_dark_room_stripped(self):
+        out = strip_color_nouns("a dark room")
+        assert "dark" not in out.lower().split()
+
+    def test_blue_unaffected_by_whitelist(self):
+        # Aucun token bleu n'est whitelisté → strip standard.
+        out = strip_color_nouns("a blue sphere")
+        assert "blue" not in out.lower().split()
+
+
+class TestStripGlossyTermsWithWhitelistPositive:
+    """Tests positifs : `glass` preserved comme contenant."""
+
+    def test_drinking_glass_preserved(self):
+        out = strip_glossy_terms("tall drinking glass on the table")
+        assert "glass" in out.lower().split()
+
+    def test_tall_glass_preserved(self):
+        out = strip_glossy_terms("a tall glass with a striped pattern")
+        assert "glass" in out.lower().split()
+
+    def test_glass_of_milk_preserved(self):
+        out = strip_glossy_terms("a glass of milk on the counter")
+        assert "glass" in out.lower().split()
+
+    def test_glass_of_juice_preserved(self):
+        out = strip_glossy_terms("a glass of juice next to the plate")
+        assert "glass" in out.lower().split()
+
+    def test_empty_glass_preserved(self):
+        out = strip_glossy_terms("an empty glass on a wooden table")
+        assert "glass" in out.lower().split()
+
+
+class TestStripGlossyTermsWithWhitelistNegative:
+    """Tests négatifs : `glass` strippé hors contexte contenant."""
+
+    def test_glass_surface_stripped(self):
+        out = strip_glossy_terms("a glass surface")
+        assert "glass" not in out.lower().split()
+
+    def test_glass_tower_stripped(self):
+        # Cas existant `chrome and glass tower` → glass strippé.
+        out = strip_glossy_terms("chrome and glass tower")
+        assert "glass" not in out.lower().split()
+
+    def test_shiny_metallic_still_stripped(self):
+        # Aucun token shiny/metallic whitelisté → strip standard.
+        out = strip_glossy_terms("a shiny metallic sphere")
+        assert "shiny" not in out.lower().split()
+        assert "metallic" not in out.lower().split()
+
+
+class TestApplyAllFiltersWithWhitelistIntegration:
+    """Intégration : composition des filtres respecte la whitelist."""
+
+    def test_grid_cell_round_orange_with_leaf_preserved(self):
+        # Cas exact d'un item de `grid_cell_contents.json` (fruits_basket).
+        out = apply_all_filters("round orange with leaf")
+        assert "orange" in out.lower().split()
+        assert "leaf" in out.lower().split()
+
+    def test_grid_cell_drinking_glass_preserved(self):
+        # Cas d'un item maison (`tall drinking glass`).
+        out = apply_all_filters("tall drinking glass")
+        assert "glass" in out.lower().split()
+        assert "drinking" in out.lower().split()
+
+    def test_grid_cell_glass_of_milk_preserved(self):
+        out = apply_all_filters("a glass of milk on a tray")
+        assert "glass" in out.lower().split()
+        assert "milk" in out.lower().split()
+
+    def test_grid_cell_round_orange_with_dimpled_skin_preserved(self):
+        out = apply_all_filters("round orange with dimpled skin")
+        assert "orange" in out.lower().split()
+
+    def test_full_pipeline_keeps_orange_fruit_strips_extras(self):
+        # Mix : on doit garder `orange` (fruit) mais stripper `red`/`shiny`.
+        out = apply_all_filters("a shiny red round orange with leaf").lower()
+        assert "orange" in out.split()
+        assert "red" not in out.split()
+        assert "shiny" not in out.split()
+
+    def test_full_pipeline_strips_color_when_no_protective_context(self):
+        # `orange car` : pas de contexte protégé → strip standard.
+        out = apply_all_filters("an orange car")
+        assert "orange" not in out.lower().split()
+
+    def test_full_pipeline_keeps_bright_idea_strips_other_anchor(self):
+        # `bright idea` protégé. `rainbow` reste remplacé en `colorful`.
+        out = apply_all_filters("a rainbow with a bright idea")
+        assert "bright" in out.lower().split()
+        assert "idea" in out.lower().split()
+        assert "rainbow" not in out.lower()
+        assert "colorful" in out.lower()
+
+    def test_full_pipeline_neutral_text_unchanged(self):
+        # Non-régression — texte sans token ciblé reste inchangé.
+        text = "a simple line drawing of a cat"
+        assert apply_all_filters(text) == text
