@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Ollama Playground — Artiste Coloriage</title>
+<style>
+  :root {
+    --bg: #1a1a1a;
+    --fg: #e8e8e8;
+    --muted: #888;
+    --accent: #4a9eff;
+    --border: #333;
+    --ok: #5dd25d;
+    --err: #ff6b6b;
+    --panel: #252525;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 16px;
+    font-family: ui-monospace, "Consolas", "Menlo", monospace;
+    background: var(--bg); color: var(--fg);
+    font-size: 14px;
+  }
+  h1 { margin: 0 0 12px; font-size: 18px; font-weight: 600; }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    height: calc(100vh - 60px);
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .panel h2 {
+    margin: 0 0 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  label { font-size: 12px; color: var(--muted); }
+  input, select, textarea {
+    background: #1a1a1a;
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-family: inherit;
+    font-size: 13px;
+  }
+  input[type="text"], select { min-width: 160px; }
+  input[type="number"] { width: 80px; }
+  textarea {
+    width: 100%;
+    flex: 1;
+    resize: none;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  button:hover { background: #3a8eef; }
+  button:disabled { background: #444; cursor: not-allowed; }
+  .small { padding: 4px 10px; font-size: 12px; font-weight: 500; }
+  .secondary { background: #444; }
+  .secondary:hover { background: #555; }
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #2a2a2a;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  input[type="checkbox"] { margin: 0; cursor: pointer; }
+  .response-area {
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px;
+    flex: 1;
+    overflow: auto;
+    white-space: pre-wrap;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .meta {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .meta.ok { color: var(--ok); }
+  .meta.err { color: var(--err); }
+  .think-tag {
+    font-size: 11px;
+    color: var(--muted);
+    background: #2a2a2a;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+  .think-block {
+    background: #2a2a2a;
+    border-left: 3px solid #888;
+    padding: 8px 10px;
+    margin: 4px 0;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: pre-wrap;
+  }
+  .think-block summary { cursor: pointer; color: var(--muted); }
+  .system-toggle { font-size: 11px; color: var(--muted); cursor: pointer; user-select: none; }
+  .hidden { display: none; }
+  pre { margin: 0; }
+</style>
+</head>
+<body>
+
+<h1>Ollama Playground <span style="color: var(--muted); font-weight: normal; font-size: 13px;">— test prompts avec contrôle think</span></h1>
+
+<div class="grid">
+  <div class="panel">
+    <h2>Prompt</h2>
+    <div class="row">
+      <label>Modèle</label>
+      <select id="model"></select>
+      <button class="small secondary" onclick="loadModels()" title="Recharger la liste">↻</button>
+      <label>Temp</label>
+      <input type="number" id="temperature" value="0" step="0.1" min="0" max="2">
+      <label>Timeout (s)</label>
+      <input type="number" id="timeout" value="120" min="10" max="600">
+      <div class="checkbox-row" title="Désactive think — qwen3.5+ via param natif, qwen3:* via /no_think">
+        <input type="checkbox" id="disable-think" checked>
+        <label for="disable-think">disable think</label>
+      </div>
+    </div>
+    <div class="row">
+      <span class="system-toggle" onclick="toggleSystem()">▶ système (optionnel)</span>
+    </div>
+    <textarea id="system" class="hidden" placeholder="Prompt système (optionnel)" rows="3" style="flex: 0 0 auto; margin-bottom: 8px;"></textarea>
+    <textarea id="prompt" placeholder="Ton prompt utilisateur ici…" autofocus></textarea>
+    <div class="row" style="margin-top: 8px; margin-bottom: 0;">
+      <button onclick="run()" id="run-btn">▶ Run (Ctrl+Enter)</button>
+      <button class="small secondary" onclick="clearAll()">Clear</button>
+      <span class="meta" id="prompt-meta"></span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Réponse</h2>
+    <pre class="response-area" id="response">(en attente…)</pre>
+    <div class="meta" id="meta"></div>
+  </div>
+</div>
+
+<script>
+const API_BASE = window.location.origin + "/api/ai";
+
+async function loadModels() {
+  const sel = document.getElementById("model");
+  sel.innerHTML = '<option value="">…chargement</option>';
+  try {
+    const res = await fetch(`${API_BASE}/status`);
+    const data = await res.json();
+    if (data.available && Array.isArray(data.models)) {
+      sel.innerHTML = "";
+      // Met en tête le modèle configuré par défaut
+      const def = data.configured_model || "qwen3.5:4b";
+      const models = data.models.slice().sort();
+      // priorité au défaut si présent
+      const ordered = [
+        ...models.filter((m) => m === def),
+        ...models.filter((m) => m !== def),
+      ];
+      for (const m of ordered) {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = m;
+        sel.appendChild(opt);
+      }
+      sel.value = def;
+    } else {
+      sel.innerHTML = `<option value="">Ollama indispo : ${data.error || "?"}</option>`;
+    }
+  } catch (e) {
+    sel.innerHTML = `<option value="">erreur : ${e.message}</option>`;
+  }
+}
+
+function toggleSystem() {
+  const el = document.getElementById("system");
+  const tog = document.querySelector(".system-toggle");
+  if (el.classList.contains("hidden")) {
+    el.classList.remove("hidden");
+    tog.textContent = "▼ système (optionnel)";
+  } else {
+    el.classList.add("hidden");
+    tog.textContent = "▶ système (optionnel)";
+  }
+}
+
+function renderResponse(text) {
+  const el = document.getElementById("response");
+  // Sépare les blocs <think>…</think> (les masquer en collapsible)
+  const parts = [];
+  let rest = text;
+  const re = /<think>([\s\S]*?)<\/think>/gi;
+  let m;
+  let lastIdx = 0;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > lastIdx) parts.push({ type: "text", content: text.slice(lastIdx, m.index) });
+    parts.push({ type: "think", content: m[1] });
+    lastIdx = re.lastIndex;
+  }
+  if (lastIdx < text.length) parts.push({ type: "text", content: text.slice(lastIdx) });
+
+  el.innerHTML = "";
+  for (const p of parts) {
+    if (p.type === "think") {
+      const det = document.createElement("details");
+      det.className = "think-block";
+      const sum = document.createElement("summary");
+      sum.textContent = `<think> (${p.content.length} chars — cliquer pour déplier)`;
+      const pre = document.createElement("pre");
+      pre.textContent = p.content.trim();
+      det.appendChild(sum);
+      det.appendChild(pre);
+      el.appendChild(det);
+    } else {
+      const pre = document.createElement("pre");
+      pre.textContent = p.content;
+      el.appendChild(pre);
+    }
+  }
+}
+
+async function run() {
+  const btn = document.getElementById("run-btn");
+  const responseEl = document.getElementById("response");
+  const metaEl = document.getElementById("meta");
+
+  const payload = {
+    prompt: document.getElementById("prompt").value,
+    model: document.getElementById("model").value || null,
+    system: document.getElementById("system").value || "",
+    temperature: parseFloat(document.getElementById("temperature").value || "0"),
+    timeout: parseInt(document.getElementById("timeout").value || "120", 10),
+    // Convention API : think=True force think actif. Sinon (null = auto désactivé).
+    think: document.getElementById("disable-think").checked ? null : true,
+  };
+
+  if (!payload.prompt.trim()) {
+    responseEl.textContent = "(prompt vide)";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "…en cours";
+  responseEl.textContent = "(génération en cours…)";
+  metaEl.textContent = "";
+  metaEl.className = "meta";
+
+  const t0 = performance.now();
+  try {
+    const res = await fetch(`${API_BASE}/playground`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    const elapsed = Math.round(performance.now() - t0);
+
+    if (data.ok) {
+      renderResponse(data.response || "(réponse vide)");
+      const th = data.think_handling || {};
+      const thLabel =
+        th.strategy === "qwen3-strict-/no_think" ? "/no_think (qwen3 strict)"
+        : th.strategy === "qwen3.5-native" ? 'think:false (qwen3.5+ natif)'
+        : th.strategy === "no-disable-needed" ? "n/a (modèle sans think)"
+        : "think actif";
+      metaEl.className = "meta ok";
+      metaEl.innerHTML = `✓ ${data.model} · ${data.latency_ms}ms · <span class="think-tag">${thLabel}</span>`
+        + (data.eval_count ? ` · ${data.eval_count} tokens` : "")
+        + (data.prompt_eval_count ? ` · prompt ${data.prompt_eval_count}t` : "");
+    } else {
+      responseEl.textContent = "";
+      metaEl.className = "meta err";
+      metaEl.textContent = "✗ " + (data.error || "erreur inconnue");
+    }
+  } catch (e) {
+    metaEl.className = "meta err";
+    metaEl.textContent = "✗ " + e.message;
+    responseEl.textContent = "";
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "▶ Run (Ctrl+Enter)";
+  }
+}
+
+function clearAll() {
+  document.getElementById("prompt").value = "";
+  document.getElementById("system").value = "";
+  document.getElementById("response").innerHTML = "(en attente…)";
+  document.getElementById("meta").textContent = "";
+  document.getElementById("meta").className = "meta";
+  document.getElementById("prompt").focus();
+}
+
+// Raccourci Ctrl+Enter
+document.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+    e.preventDefault();
+    run();
+  }
+});
+
+// Auto-update prompt meta (char count)
+document.getElementById("prompt").addEventListener("input", (e) => {
+  document.getElementById("prompt-meta").textContent = `${e.target.value.length} chars`;
+});
+
+// Init
+loadModels();
+</script>
+
+</body>
+</html>
