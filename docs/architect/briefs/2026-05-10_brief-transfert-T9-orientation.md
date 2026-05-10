@@ -1,5 +1,7 @@
 # Transfert T9 — profil + orientation directionnelle (Solo animal résiduels)
 
+> ✅ **Livré 2026-05-10** — rapport : `docs/reports/2026-05-10_transfert-skill-T9-orientation-directionnelle.md`
+
 ## Contexte
 
 Le rerun-2objets a déjà transféré v1 → v2 (NEGATIVE_V3 + `_ISOLATION` + `LEAF_OVERRIDES` partiels). Mesure factuelle sur les 13 paires v1/v2 (cf. `docs/reports/2026-05-10_analyse-annotations-transferts-skill.md` §5.A) :

@@ -63,6 +63,79 @@ Un T19+ vocabulaire v2/v1 (4 tags émergents non mappés) est aussi en attente. 
 | T26+T31 météo / scènes | ✅ 2026-05-10 | — | — | Optionnel : rerun sur 7 leafs météo / intérieurs |
 | T5+T6+T7 couleur/surfaces | ✅ 2026-05-10 | — | — | Optionnel (volume corpus faible — prophylactique) |
 
+## Phase suivante — Bench gate ERNIE + arbitrages post-livraison
+
+8 transferts livrés (rapports lus 2026-05-10). 6 nouveaux briefs préparés pour la suite, organisés en 3 vagues :
+
+### Vague A — Immédiate, parallélisable (3 briefs)
+
+| # | Brief | Fichier | Sous-agents | Estimation |
+|---|---|---|---:|---:|
+| A1 | **Bench gate ERNIE** (T2T3T23 + T25 + Pivot, mesures bonus) | `2026-05-10_brief-bench-gate-ernie.md` | 3 sous-agents general-purpose en parallèle (génération par transfert) + 4 sous-agents bonus optionnels | 1h-1h30 Claude Code + annotation humaine |
+| A2 | **Whitelist FILT contextuelle** (fruits / contenants) | `2026-05-10_brief-whitelist-filt-contextuelle.md` | 1 sous-agent unique | 45-60 min |
+| A3 | **Réconciliation doublon T25** (`template_frieze_1xN` ⇆ `template_before_after`) | `2026-05-10_brief-reconciliation-doublon-t25.md` | 1 sous-agent unique | 45-60 min (Option A) |
+
+A1, A2, A3 modifient des zones disjointes — peuvent être lancés en parallèle dans 3 sessions Claude Code distinctes.
+
+### Vague B — Conditionnelle Go gate ERNIE (3 briefs en gabarit prêts)
+
+| # | Brief | Fichier | Condition | Estimation |
+|---|---|---|---|---:|
+| B1 | Extension `grid_cell_contents.json` (couverture exhaustive) | `2026-05-10_brief-extension-grid-cell-contents.md` | Go gate T2T3T23 | 60-90 min |
+| B2 | Extension `before_after_states.json` (couverture exhaustive Comparatif) | `2026-05-10_brief-extension-before-after-states.md` | Go gate T25 | 45-75 min |
+| B3 | Extension `anatomical_overrides.json` + Z1 grid cells | `2026-05-10_brief-extension-anatomical-overrides.md` | Inconditionnel possible (faible risque) ou post cadrage MEP v0 | 75-90 min |
+
+B1, B2, B3 modifient uniquement les fichiers JSON (data) — parallélisables si lancés ensemble.
+
+### Vague C — Si gate No-Go (briefs à rédiger après bench)
+
+À déclencher uniquement si bench gate ERNIE renvoie No-Go sur T2T3T23 ou T25 :
+
+- **C1** : Bascule pipeline grilles vers composer Pillow (T19+ #1 canal manuel, gros chantier archi).
+- **C2** : Bascule pipeline Comparatif vers composer Pillow 2-tiles (T19+ #2 canal manuel).
+
+Pas rédigés à l'avance — dépendent du résultat du bench.
+
+## Verdicts gate ERNIE 2026-05-10 + décision archi
+
+| Transfert | Verdict | Action actée |
+|---|---|---|
+| T2T3T23 grille | ✅ Go (10% défauts vs 95% baseline) | Conservé. Brief B1 `extension-grid-cell-contents` à lancer pour couverture exhaustive. |
+| T25 before/after explicite (states injectés) | ✅ Go (0% défauts vs 89% baseline) | Conservé. Couverture 18 leafs Comparatif jugée suffisante MEP v0 — **B2 différé**. |
+| Pivot T25 (frieze + grid → spot diff générique) | ❌ No-Go (90% défauts) | **Revert** ciblé sur `template_frieze_1xN` + déconnexion réconciliation Option A. Brief `2026-05-10_brief-revert-pivot-t25-frieze.md` rédigé. |
+
+**Décision archi 2026-05-10** : les 53 leafs ex-frieze (Frise narrative, Multi-sujets méta-narratif) sont **classés hors-MEP v0**. Pas d'extension `before_after_states.json` pour les couvrir. Pas de bascule PIL/SVG. Sujet pivot T25 clôturé après revert.
+
+## Plan d'exécution actualisé (post-verdicts)
+
+```
+1. Lancer EN PARALLÈLE :
+   - Brief revert pivot T25 frieze (~30-45 min)
+   - Brief B1 extension grid_cell_contents (~60-90 min)
+   ↓
+2. Vague B2 (extension before_after_states) : DIFFÉRÉE — couverture 18 leafs jugée suffisante.
+3. Vague B3 (extension anatomical_overrides) : DIFFÉRÉE — bloqué cadrage MEP v0.
+4. Vague C : ABANDONNÉE (décision archi, ex-frieze hors-MEP v0).
+   ↓
+5. Promotion prod T2T3T23 + T25 explicite + cadrage MEP v0.
+```
+
+## Plan d'exécution recommandé
+
+```
+1. Lancer Vague A en parallèle (3 sessions Claude Code) — A1, A2, A3
+   ↓
+2. Annotation humaine du dossier poc-bench-gate-ernie-2026-05-10/
+   (1-2h, hors Claude Code, archi/utilisateur)
+   ↓
+3. Synthèse verdicts (script du brief A1)
+   ↓
+4a. Si Go T2T3T23 + T25 → lancer Vague B (B1 + B2 + B3 en parallèle)
+4b. Si No-Go → rédiger Vague C (briefs C1 et/ou C2) puis lancer
+   ↓
+5. Promotion prod + cadrage MEP v0
+```
+
 Au fil de l'eau, MAJ de ce tableau et de MEMORY (Échéances + Décisions actées) — sans solliciter l'utilisateur sauf blocage.
 
 ## Reporting attendu côté Claude Code d'exécution
