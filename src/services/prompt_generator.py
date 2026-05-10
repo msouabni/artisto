@@ -1469,12 +1469,7 @@ def template_grid_3x3_annotated(leaf, strategy):
 
 
 def template_before_after(leaf, strategy):
-    """Comparatif before/after — T25 (jeu des différences / différences localisées).
-
-    Implémentation unique BEFORE/AFTER (réconciliation doublon T25 — 2026-05-10).
-    Cf. `docs/architect/briefs/2026-05-10_brief-reconciliation-doublon-t25.md`,
-    `docs/reports/2026-05-10_pivot-templates-narratifs-jeu-differences.md`,
-    `docs/reports/2026-05-10_transfert-skill-T25-before-after.md`.
+    """Comparatif before/after — T25 (différences localisées explicites).
 
     Source skill — T25 Insight C checklist (citation textuelle) :
     > Une différence explicite doit être concrète, visuelle et localisée.
@@ -1482,15 +1477,22 @@ def template_before_after(leaf, strategy):
     > `one single change applied` est trop vague — modèle reproduit la même scène.
 
     Deux modes :
-    1. **Mode explicite** — si `_BEFORE_AFTER_STATES[leaf_id]` est défini, on injecte
-       les deux états concrets (T25 Insight C — différence localisée explicite).
-    2. **Mode fallback** — sinon, wording « several differences hidden inside »
-       (variant ERNIE variation-first issu du pivot 2026-05-10) + warning loggé pour
-       traçabilité. Le leaf_id manquant peut être ajouté à
-       `data/prompt_generator/before_after_states.json` lors d'une PR de suivi.
+    1. **Mode explicite (T25 Go)** — si `_BEFORE_AFTER_STATES[leaf_id]` est défini, on
+       injecte les deux états concrets (différence localisée explicite). Wording
+       « several differences hidden inside » conservé sur les états injectés —
+       validé Go 0% défauts (gate ERNIE 2026-05-10).
+    2. **Mode fallback** — sinon, wording historique « one single change applied »
+       (antipattern T25 connu, accepté avec warning loggé). Restauré 2026-05-10
+       suite au revert du pivot frieze (cf. ci-dessous).
 
-    Le wrapper `template_frieze_1xN` (Option A — wrapper unique) délègue ici en
-    ignorant son param `n`, ce qui garantit un wording homogène sur les deux chemins.
+    Décision archi 2026-05-10 — revert pivot T25 sur ex-frieze :
+    - Le pivot Option A (wrapper unique `template_frieze_1xN` → `template_before_after`)
+      a été retiré : `template_frieze_1xN` redevient autonome (frise N cellules).
+    - Le wording fallback générique « several differences hidden inside » uniformisé
+      par la réconciliation Option A est invalidé empiriquement (verdict 90% défauts
+      sur ex-frieze — cf. `docs/reports/2026-05-10_bench-gate-ernie-verdicts.md`).
+    - Le mode explicite (states injectés) reste Go inchangé pour les 18 leafs
+      Comparatif (`data/prompt_generator/before_after_states.json`).
     """
     name = leaf['name_en'].lower()
     leaf_id = leaf.get('id') or leaf.get('leaf_id')
@@ -1499,7 +1501,8 @@ def template_before_after(leaf, strategy):
     if states:
         before = states["before_state"]
         after = states["after_state"]
-        # T25 mode 1 — différence concrète/visuelle/localisée (états explicites).
+        # T25 mode explicite — différence concrète/visuelle/localisée (états injectés).
+        # Wording « several differences hidden inside » validé Go 0% (gate ERNIE 2026-05-10).
         return (
             f"{STYLE_BLOCK}, "
             f"a horizontal grid of two large rectangular cells side by side, "
@@ -1512,13 +1515,13 @@ def template_before_after(leaf, strategy):
             f"all elements with uniform black line thickness"
         )
 
-    # Fallback : leaf non couvert → log + wording « several differences hidden inside »
-    # (uniformisé avec l'ex-pivot frieze — variation-first ERNIE).
+    # Fallback : leaf non couvert → log + wording historique « one single change applied »
+    # (antipattern T25 documenté ; restauré 2026-05-10 suite au revert pivot frieze).
     logger.warning(
         "before_after_states missing for leaf_id=%s (workflow_class=%s) — "
-        "fallback générique « several differences hidden inside ». Ajouter une "
-        "entrée dans data/prompt_generator/before_after_states.json pour basculer "
-        "le leaf en mode T25 explicite.",
+        "fallback générique T25-violant (« one single change applied »). Ajouter "
+        "une entrée dans data/prompt_generator/before_after_states.json pour "
+        "basculer le leaf en mode T25 explicite (Go).",
         leaf_id, (strategy or {}).get("class"),
     )
     return (
@@ -1528,32 +1531,37 @@ def template_before_after(leaf, strategy):
         f"the word \"BEFORE\" written above the left cell, "
         f"the word \"AFTER\" written above the right cell, "
         f"the left cell shows {name} in its initial state, "
-        f"the right cell shows the same scene with several differences hidden inside, "
+        f"the right cell shows the same scene with one single change applied, "
         f"both cells drawn from the same wide angle for clear comparison, "
         f"all elements with uniform black line thickness"
     )
 
 
 def template_frieze_1xN(leaf, strategy, n=4):
-    """Wrapper T25 — délègue à `template_before_after` (Option A — réconciliation
-    doublon `template_frieze_1xN` ⇆ `template_before_after`, 2026-05-10).
+    """Frise narrative 1×N (X2 perfect, Insight B pour dernière case).
 
-    Cf. `docs/architect/briefs/2026-05-10_brief-reconciliation-doublon-t25.md`,
-    `docs/reports/2026-05-10_pivot-templates-narratifs-jeu-differences.md`,
-    `docs/reports/2026-05-10_transfert-skill-T25-before-after.md`.
+    Décision archi 2026-05-10 — revert pivot T25 sur ex-frieze :
+    Le pivot T25 (BEFORE/AFTER générique) sur `template_frieze_1xN` ainsi que la
+    réconciliation doublon Option A (wrapper unique) sont retirés. Verdict gate
+    ERNIE 2026-05-10 : pivot frieze ❌ No-Go (90% défauts) tandis que T25 explicite
+    reste ✅ Go (0%). Les 53 leafs ex-frieze sont classés hors-MEP v0.
+    Cf. `docs/reports/2026-05-10_bench-gate-ernie-verdicts.md`,
+    `docs/architect/briefs/2026-05-10_brief-revert-pivot-t25-frieze.md`.
 
-    Le param `n` est conservé pour compat de signature mais désormais ignoré : le
-    pivot T25 (jeu des différences BEFORE/AFTER) impose 2 cellules, plus N. Toutes
-    les workflow_classes ex-frieze (`Frise narrative 1×4`, `Multi-sujets…`, etc.)
-    bénéficient désormais du même flux que `Comparatif before/after OU Solo` :
-    si `before_after_states.json` couvre le leaf → mode explicite ; sinon →
-    fallback uniforme « several differences hidden inside ».
-
-    Note (hors scope ici) : `before_after_states.json` ne couvre actuellement que
-    les 18 leafs des 2 classes Comparatif annotées. Étendre aux classes ex-frieze
-    via PR de suivi si la mesure post-transfert le justifie.
+    Comportement restauré (corps historique pré-pivot) : génère une frise
+    horizontale de N cellules, chaque cellule représentant un stade ou moment
+    différent du sujet. Fonction autonome — n'appelle plus `template_before_after`.
     """
-    return template_before_after(leaf, strategy)
+    name = leaf['name_en'].lower()
+    return (
+        f"{STYLE_BLOCK}, "
+        f"a horizontal row of {n} empty rectangular cells drawn with thick black lines, "
+        f"all cells the same size and clearly separated by vertical lines, "
+        f"the row of cells fills the entire panoramic page width, "
+        f"each cell shows one stage or moment of {name}, "
+        f"the rightmost cell shows the final stage with detailed elements, "
+        f"balanced composition, simple ground line beneath each cell"
+    )
 
 
 def template_multiplane_stacked(leaf, strategy):

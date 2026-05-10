@@ -267,9 +267,10 @@ def test_template_before_after_injects_states_when_present():
 def test_template_before_after_fallback_logs_warning_when_missing(caplog):
     """Si leaf hors mapping → fallback générique + warning loggé via `logger`.
 
-    Réconciliation doublon T25 (2026-05-10) : le wording fallback unifie sur
-    « several differences hidden inside » (ex-pivot frieze) au lieu de l'ancien
-    antipattern « one single change applied ».
+    Revert pivot T25 ex-frieze (2026-05-10) : le wording fallback restaure
+    « one single change applied » (antipattern T25 documenté, accepté avec
+    warning) suite au revert du pivot Option A.
+    Cf. docs/reports/2026-05-10_bench-gate-ernie-verdicts.md.
     """
     # Snapshot puis purge pour forcer le fallback même si le JSON couvre le leaf
     original = dict(_BEFORE_AFTER_STATES)
@@ -278,11 +279,9 @@ def test_template_before_after_fallback_logs_warning_when_missing(caplog):
         leaf = {"id": "fictional_unknown_comparatif_leaf", "name_en": "Fictional Unknown"}
         with caplog.at_level(logging.WARNING, logger="services.prompt_generator"):
             positive = template_before_after(leaf, strategy={"class": "Comparatif before/after OU Solo"})
-        # Comportement fallback uniformisé (réconciliation doublon T25)
+        # Comportement fallback historique restauré (revert pivot 2026-05-10)
         assert "fictional unknown in its initial state" in positive
-        assert "several differences hidden inside" in positive
-        # L'antipattern T25 historique ne doit plus apparaître nulle part
-        assert "one single change applied" not in positive
+        assert "one single change applied" in positive
         # Warning émis avec le leaf_id
         warning_lines = [r for r in caplog.records if r.levelno == logging.WARNING]
         assert any("fictional_unknown_comparatif_leaf" in r.getMessage() for r in warning_lines), (
@@ -325,90 +324,77 @@ def test_template_before_after_strategy_none_safe():
 
 
 # ===========================================================================
-# Réconciliation doublon T25 (2026-05-10) — `template_frieze_1xN` est un wrapper
-# qui délègue à `template_before_after` (Option A, dispatcher inchangé).
-# Cf. docs/architect/briefs/2026-05-10_brief-reconciliation-doublon-t25.md
-# Cf. docs/reports/2026-05-10_pivot-templates-narratifs-jeu-differences.md
-# Cf. docs/reports/2026-05-10_transfert-skill-T25-before-after.md
+# template_frieze_1xN — frise narrative N cellules (autonome).
+#
+# Décision archi 2026-05-10 — revert pivot T25 sur ex-frieze :
+# Le pivot T25 (BEFORE/AFTER générique) ainsi que la réconciliation doublon
+# Option A (wrapper unique vers `template_before_after`) ont été retirés. Verdict
+# gate ERNIE 2026-05-10 : pivot frieze ❌ No-Go (90% défauts), T25 explicite ✅ Go (0%).
+# Les 53 leafs ex-frieze sont classés hors-MEP v0.
+# Cf. docs/reports/2026-05-10_bench-gate-ernie-verdicts.md
+# Cf. docs/architect/briefs/2026-05-10_brief-revert-pivot-t25-frieze.md
 # ===========================================================================
-def test_frieze_wraps_before_after_for_covered_leaf():
-    """Pour un leaf couvert par `before_after_states.json`, la frieze doit produire
-    EXACTEMENT le même prompt que `template_before_after`."""
-    leaf = {"id": "rainwater_collection_barrel", "name_en": "Rainwater Collection Barrel"}
-    strategy = {"class": "Comparatif before/after OU Solo"}
-    via_wrapper = template_frieze_1xN(leaf, strategy)
-    via_canonical = template_before_after(leaf, strategy)
-    assert via_wrapper == via_canonical
+def test_frieze_generates_n_cell_horizontal_row():
+    """Frise N cellules (corps historique restauré) : `n` cellules, séparées,
+    chacune montre un stade/moment du sujet."""
+    leaf = {"id": "spring_blooming_meadow", "name_en": "Spring Blooming Meadow"}
+    out = template_frieze_1xN(leaf, strategy={"class": "Frise narrative 1×4"}, n=4)
+    # Structure historique : N cellules horizontales
+    assert "horizontal row of 4" in out
+    assert "rectangular cells" in out
+    # Chaque cellule = un stade/moment du sujet
+    assert "spring blooming meadow" in out
+    assert "stage or moment" in out
+    # Dernière cellule = stade final (Insight B)
+    assert "rightmost cell shows the final stage" in out
+    # Plus de wording before/after (revert pivot)
+    assert "BEFORE" not in out
+    assert "AFTER" not in out
+    assert "several differences hidden inside" not in out
 
 
-def test_frieze_wraps_before_after_for_uncovered_leaf():
-    """Pour un leaf hors mapping (cas typique des classes ex-frieze), la frieze
-    doit produire EXACTEMENT le même fallback que `template_before_after`."""
+def test_frieze_default_n_is_four():
+    """Signature `(leaf, strategy, n=4)` : appel sans `n` doit produire 4 cellules."""
+    leaf = {"id": "fictional_leaf", "name_en": "Fictional Leaf"}
+    out = template_frieze_1xN(leaf, strategy={"class": "Multi-sujets"})
+    assert "horizontal row of 4" in out
+
+
+def test_frieze_respects_custom_n():
+    """`n` paramétrable : 6 cellules génèrent un row de 6."""
+    leaf = {"id": "fictional_leaf", "name_en": "Fictional Leaf"}
+    out6 = template_frieze_1xN(leaf, strategy={"class": "Multi-sujets"}, n=6)
+    assert "horizontal row of 6" in out6
+    out3 = template_frieze_1xN(leaf, strategy={"class": "Multi-sujets"}, n=3)
+    assert "horizontal row of 3" in out3
+    # n différents → prompts différents (autonomie restaurée — plus de wrapper)
+    assert out6 != out3
+
+
+def test_frieze_is_autonomous_not_a_wrapper():
+    """Garantie de revert : `template_frieze_1xN` ne délègue plus à
+    `template_before_after` (déconnexion wrapper Option A). Les deux templates
+    produisent des sorties structurellement différentes."""
+    leaf = {"id": "fictional_leaf", "name_en": "Fictional Leaf"}
     original = dict(_BEFORE_AFTER_STATES)
-    set_before_after_states({})  # purge → force fallback
+    set_before_after_states({})  # purge → forcer fallback de l'éventuel wrapper résiduel
     try:
-        leaf = {"id": "spring_blooming_meadow", "name_en": "Spring Blooming Meadow"}
-        strategy = {"class": "Frise narrative 1×4"}
-        via_wrapper = template_frieze_1xN(leaf, strategy)
-        via_canonical = template_before_after(leaf, strategy)
-        assert via_wrapper == via_canonical
+        frieze_out = template_frieze_1xN(leaf, strategy={"class": "Multi-sujets"})
+        ba_out = template_before_after(leaf, strategy={"class": "Comparatif before/after OU Solo"})
+        # Sorties distinctes : frise = N cellules, before_after = 2 cellules BEFORE/AFTER
+        assert frieze_out != ba_out
+        # Marqueurs structurels distincts
+        assert "horizontal row of" in frieze_out
+        assert "horizontal row of" not in ba_out
+        assert "BEFORE" in ba_out
+        assert "BEFORE" not in frieze_out
     finally:
         set_before_after_states(original)
 
 
-def test_frieze_ignores_n_param_compat():
-    """Le param `n` de signature (post-pivot T25) est ignoré : différentes valeurs
-    produisent le même prompt (compat ascendante des appels existants)."""
-    leaf = {"id": "rainwater_collection_barrel", "name_en": "Rainwater Collection Barrel"}
-    strategy = {"class": "Comparatif before/after OU Solo"}
-    assert template_frieze_1xN(leaf, strategy) == template_frieze_1xN(leaf, strategy, n=4)
-    assert template_frieze_1xN(leaf, strategy) == template_frieze_1xN(leaf, strategy, n=9)
-
-
-def test_frieze_default_n_signature_preserved():
-    """Smoke : la signature `(leaf, strategy, n=4)` reste appelable (callers
-    historiques qui passent `n` ne doivent pas casser)."""
-    leaf = {"id": "fictional_uncovered", "name_en": "Fictional Uncovered"}
-    original = dict(_BEFORE_AFTER_STATES)
-    set_before_after_states({})
-    try:
-        out = template_frieze_1xN(leaf, strategy={"class": "Multi-sujets"}, n=6)
-        assert "BEFORE" in out and "AFTER" in out
-    finally:
-        set_before_after_states(original)
-
-
-def test_reconciliation_uniform_wording_several_differences():
-    """Critère d'acceptation brief : wording uniforme « several differences hidden
-    inside » sur les deux chemins (frieze ex-pivot ET before_after fallback).
-
-    Le wording explicite « several differences hidden inside » couvre exclusivement
-    le mode fallback (un leaf couvert injecte des états concrets, pas du wording
-    générique). On vérifie l'identité textuelle frieze ⇆ before_after sur fallback.
-    """
-    original = dict(_BEFORE_AFTER_STATES)
-    set_before_after_states({})
-    try:
-        # Leaf ex-frieze (Multi-sujets ou Scène d'action) — non couvert par le mapping
-        frieze_leaf = {"id": "football_match_scene", "name_en": "Football Match Scene"}
-        frieze_pos = template_frieze_1xN(frieze_leaf, strategy={"class": "Multi-sujets ou Scène d'action"})
-        # Leaf ex-comparatif (Solo objet ou comparatif) — non couvert (purge)
-        ba_leaf = {"id": "vegetable_garden_at_home", "name_en": "Vegetable Garden At Home"}
-        ba_pos = template_before_after(ba_leaf, strategy={"class": "Solo objet ou comparatif"})
-
-        assert "several differences hidden inside" in frieze_pos
-        assert "several differences hidden inside" in ba_pos
-        # Antipattern historique éradiqué côté fallback
-        assert "one single change applied" not in frieze_pos
-        assert "one single change applied" not in ba_pos
-    finally:
-        set_before_after_states(original)
-
-
-def test_reconciliation_dispatcher_routes_frieze_classes():
-    """Smoke routing : les workflow_classes ex-frieze (Frise narrative, Multi-sujets)
-    routent toujours vers `template_frieze_1xN` (dispatcher inchangé — Option A).
-    """
+def test_dispatcher_routes_frieze_classes_to_template_frieze_1xN():
+    """Smoke routing : les workflow_classes ex-frieze routent vers
+    `template_frieze_1xN` (frise autonome restaurée)."""
     from services.prompt_generator import TEMPLATE_DISPATCHER
     frieze_classes = [
         "Frise narrative 1×4",
@@ -424,9 +410,9 @@ def test_reconciliation_dispatcher_routes_frieze_classes():
         )
 
 
-def test_reconciliation_dispatcher_routes_comparatif_classes():
+def test_dispatcher_routes_comparatif_classes_to_template_before_after():
     """Smoke routing : les classes Comparatif routent vers `template_before_after`
-    (chemin canonique inchangé)."""
+    (chemin canonique inchangé — T25 explicite Go)."""
     from services.prompt_generator import TEMPLATE_DISPATCHER
     for cls in ["Comparatif before/after OU Solo", "Solo objet ou comparatif"]:
         assert TEMPLATE_DISPATCHER.get(cls) is template_before_after, (
