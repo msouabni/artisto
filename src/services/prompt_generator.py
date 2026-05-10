@@ -53,6 +53,7 @@ DEFAULT_GRID_CELL_CONTENTS = str(PROJECT_ROOT / "data/prompt_generator/grid_cell
 DEFAULT_CANONICAL_OUTFITS = str(PROJECT_ROOT / "data/prompt_generator/canonical_outfits.json")
 DEFAULT_CANONICAL_POSES = str(PROJECT_ROOT / "data/prompt_generator/canonical_poses.json")
 DEFAULT_GROUP_LAYOUTS = str(PROJECT_ROOT / "data/prompt_generator/group_layouts.json")
+DEFAULT_ANATOMICAL_OVERRIDES = str(PROJECT_ROOT / "data/prompt_generator/anatomical_overrides.json")
 
 # Negative prompt v3 (validé Phase H) + isolation clause (fix 2_objets 2026-05-09)
 # Élargi 2026-05-10 (transfert skill — brief 2026-05-10_brief-transfert-isolation-elargi.md)
@@ -712,6 +713,161 @@ def _has_number_prefix(leaf_id: str) -> bool:
         return False
     lid = leaf_id.lower()
     return any(lid.startswith(p) for p in _NUMBER_PREFIXES)
+
+
+# ===================================================================
+# T28 + Z1 — Mapping leaf_id → prompt anatomique précis + bascule grille labels
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T28, §Z1
+# Transfert : 2026-05-10 (cf. docs/architect/briefs/2026-05-10_brief-transfert-T28-Z1-anatomique-labels.md)
+#
+# Règle T28 (citation textuelle skill) :
+# > Les feuilles `sense_of_*` ont un `name_en` brut non projetable dans le template
+# > solo_object (`one sense of sight eye` → bizarre). Utiliser le sujet anatomique
+# > précis avec énumération des composants + titre du sens en majuscules.
+# > Bug générateur v4 — name_en brut non projetable :
+# > Pour les feuilles à nom composé abstrait (`sense of sight eye`,
+# > `sense of smell nose`), le générateur insère le name_en tel quel → sujet
+# > syntaxiquement bizarre. Fix v2 : mapping leaf_id → prompt_subject pour la
+# > sous-catégorie five_senses.
+#
+# Règle Z1 (citation textuelle skill) :
+# > Le pattern Z1 (coupe transversale + flèches + labels) tient jusqu'à
+# > **3 labels maximum** par image. Au-delà → surcharge cognitive modèle → KO.
+# > 1-3 labels : pattern Z1 fiable
+# > 4-5 labels : surcharge — modèle s'embrouille
+# > Fix pour 4+ labels nécessaires :
+# > - Basculer sur grille 3×3 — un label par case
+#
+# Implémentation :
+#   1. T28 : `_ANATOMICAL_OVERRIDES[leaf_id]` → si présent, prompt validé clé-en-main
+#      injecté en priorité, AVANT le dispatch sur `template_solo_object`.
+#   2. Z1 : pour la classe `Solo objet anatomique + labels` (par défaut N≥4 labels
+#      attendus — heuristique `_count_anatomical_labels`), bascule vers
+#      `template_grid_3x3_imagier` (un label par case). Si le leaf est aussi dans
+#      `_ANATOMICAL_OVERRIDES` (T28 prime) → l'override est utilisé.
+#
+# Garde-fou pivot ERNIE — flag défensif `_T2T3T23_GRID_AVAILABLE` :
+#   La bascule Z1 vers grille dépend de la viabilité du pattern grille T2/T3 sur
+#   ERNIE (verdict en attente, mesure post-T2T3T23 humaine non encore réalisée).
+#   Si le verdict revient No-Go pivot ERNIE : passer ce flag à False (PR archi
+#   triviale) → la bascule Z1 retombe gracefully sur `template_solo_object` +
+#   warning loggé pour traçabilité. Z1 reste fonctionnel sans grille améliorée.
+# ===================================================================
+_T2T3T23_GRID_AVAILABLE = True
+"""Flag défensif : disponibilité du pattern grille 3×3 (T2+T3+T23) sur ERNIE.
+
+Switcher à `False` si la mesure humaine post-transfert T2T3T23 révèle un taux
+`image_pas_coherente` résiduel > 30 % → bascule Z1 retombe sur solo_object +
+warning. Permet une PR de switch trivial sans toucher à la logique de routing.
+"""
+
+
+def _load_anatomical_overrides(path: str = DEFAULT_ANATOMICAL_OVERRIDES) -> Dict[str, str]:
+    """Charge le mapping {leaf_id → positive_subject_clause} depuis JSON.
+
+    Schéma source (`anatomical_overrides.json`) :
+        {"overrides": {"<leaf_id>": {"positive_subject_clause": "<clause>"}}}
+
+    Retourne un dict aplati `{leaf_id: clause}`. Vide si fichier manquant ou
+    invalide → bascule fallback (warning loggé côté dispatcher).
+    """
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (FileNotFoundError, IOError, json.JSONDecodeError) as exc:
+        logger.warning(
+            "anatomical_overrides JSON load failed (path=%s): %s — fallback générique T28",
+            path, exc,
+        )
+        return {}
+    overrides = data.get("overrides", {}) if isinstance(data, dict) else {}
+    if not isinstance(overrides, dict):
+        return {}
+    cleaned: Dict[str, str] = {}
+    for leaf_id, payload in overrides.items():
+        if not isinstance(payload, dict):
+            continue
+        clause = payload.get("positive_subject_clause")
+        if isinstance(clause, str) and clause.strip():
+            cleaned[leaf_id] = clause.strip()
+    return cleaned
+
+
+_ANATOMICAL_OVERRIDES: Dict[str, str] = _load_anatomical_overrides()
+
+
+def set_anatomical_overrides(overrides: Dict[str, str]) -> None:
+    """Injecte un dict {leaf_id → clause} de remplacement (utilitaire test)."""
+    global _ANATOMICAL_OVERRIDES
+    _ANATOMICAL_OVERRIDES = dict(overrides or {})
+
+
+# Workflow classes pour lesquelles Z1 considère par défaut N≥4 labels (bascule
+# grille). Le contrat de la classe « Solo objet anatomique + labels » implique
+# nominalement plusieurs étiquettes (doigts, parties du corps, organes…), au-delà
+# du seuil Z1 = 3.
+_Z1_GRID_CLASSES = frozenset({
+    "Solo objet anatomique + labels",
+})
+
+
+def _count_anatomical_labels(leaf_id: str, workflow_class: Optional[str] = None) -> int:
+    """Heuristique Z1 : estimation grossière du nombre de labels attendus.
+
+    Règle (skill §Z1) : 1-3 labels OK pattern Z1 (solo + flèches), 4+ → bascule
+    grille 3×3 (un label par case).
+
+    Heuristique :
+    - Workflow class dans `_Z1_GRID_CLASSES` → renvoie 4 (au-delà du seuil par
+      défaut, car la classe implique nominalement plusieurs labels).
+    - Patterns leaf_id `_named`, `_labelled`, `_labels`, `_with_*_named` →
+      indicateur de labels multiples → 4 par défaut.
+    - Sinon → 1 (mono-label, traité en solo).
+
+    Cette estimation est volontairement conservative : on bascule large vers
+    grille pour la classe « anatomique + labels ». Une heuristique plus fine
+    (extraction du contenu via `grid_cell_contents.json`) sera ajoutée au
+    chargement, dans une PR ultérieure.
+    """
+    if workflow_class and workflow_class in _Z1_GRID_CLASSES:
+        return 4
+    if not leaf_id:
+        return 1
+    lid = leaf_id.lower()
+    label_patterns = ("_named", "_labelled", "_labeled", "_labels",
+                      "_with_parts", "_diagram")
+    if any(p in lid for p in label_patterns):
+        return 4
+    return 1
+
+
+def _route_z1_anatomical_labels(
+    leaf_id: str,
+    workflow_class: Optional[str],
+    current_template_fn,
+):
+    """Applique la règle Z1 : si N labels attendus ≥ 4, bascule vers grille 3×3
+    (sous réserve du flag `_T2T3T23_GRID_AVAILABLE`). Sinon → no-op.
+
+    Retourne le `template_fn` à utiliser (potentiellement modifié).
+
+    Garde-fou pivot ERNIE : si `_T2T3T23_GRID_AVAILABLE = False`, on garde le
+    template solo_object + warning loggé pour traçabilité (l'archi pourra
+    réactiver le flag dans une PR ultérieure si la mesure post repasse Go).
+    """
+    label_count = _count_anatomical_labels(leaf_id, workflow_class)
+    if label_count < 4:
+        return current_template_fn
+    if not _T2T3T23_GRID_AVAILABLE:
+        logger.warning(
+            "Z1 grid bypass disabled (_T2T3T23_GRID_AVAILABLE=False) for "
+            "leaf_id=%s (workflow_class=%s, labels~=%d) — fallback %s. "
+            "Réactiver le flag dans prompt_generator.py si la mesure ERNIE "
+            "post-T2T3T23 repasse Go.",
+            leaf_id, workflow_class, label_count, current_template_fn.__name__,
+        )
+        return current_template_fn
+    return template_grid_3x3_imagier
 
 
 # ===================================================================
@@ -1737,11 +1893,42 @@ class PromptGenerator:
                 leaf_id, strategy.get("class"), template_fn.__name__,
             )
 
+        # Z1 — bascule grille pour Solo objet anatomique + labels (≥4 labels).
+        # Source : .claude/skills/prompt-taxonomy-ecosystem.skill §Z1
+        # Appliquée AVANT T28 (qui a la priorité absolue ci-dessous via
+        # _ANATOMICAL_OVERRIDES) — l'ordre n'importe pas car T28 court-circuite
+        # le template_fn en injectant directement le `positive`.
+        # Garde-fou ERNIE : `_route_z1_anatomical_labels` retombe sur solo_object
+        # + warning si le flag `_T2T3T23_GRID_AVAILABLE` est désactivé.
+        template_fn = _route_z1_anatomical_labels(
+            leaf_id, strategy.get("class"), template_fn,
+        )
+
         # LEAF_OVERRIDES : prompt manuel prioritaire sur le template
         if leaf_id in LEAF_OVERRIDES:
             # Overrides validés humainement — pas de filtrage (cf. brief T5+T6+T7).
             positive = LEAF_OVERRIDES[leaf_id]
+        elif leaf_id in _ANATOMICAL_OVERRIDES:
+            # T28 — prompt anatomique précis validé skill (5 prompts five_senses).
+            # Source : .claude/skills/prompt-taxonomy-ecosystem.skill §T28.
+            # On wrappe la clause sujet (sans STYLE_BLOCK ni isolation) avec le
+            # bloc style standard — pas d'isolation suffix ici car le prompt
+            # canonique T28 s'autosuffit (sujet anatomique unique avec titre).
+            positive = f"{STYLE_BLOCK}, {_ANATOMICAL_OVERRIDES[leaf_id]}"
+            # On NE filtre PAS les overrides T28 (validés humainement clé-en-main,
+            # même politique que LEAF_OVERRIDES).
         else:
+            # Z1 — fallback warning : leaf "organe sensoriel" (T28) non couvert
+            # par `_ANATOMICAL_OVERRIDES` → solo_object brut produira un sujet
+            # syntaxiquement bizarre. On loggue pour traçabilité (le leaf devra
+            # être ajouté à `data/prompt_generator/anatomical_overrides.json`).
+            if strategy.get("class") == "Solo objet (organe sensoriel)":
+                logger.warning(
+                    "anatomical_overrides missing for leaf_id=%s (workflow_class=%s) "
+                    "— fallback solo_object antipattern T28 (name_en brut). Ajouter "
+                    "une entrée dans data/prompt_generator/anatomical_overrides.json.",
+                    leaf_id, strategy.get("class"),
+                )
             positive = template_fn(leaf, strategy)
             # Hook prophylactique T5+T6+T7 : strip noms couleur / ancres / surfaces 3D
             # On ne filtre QUE la portion sujet (après STYLE_BLOCK) : le bloc

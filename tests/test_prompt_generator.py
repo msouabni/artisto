@@ -1344,3 +1344,215 @@ def test_t26_t31_do_not_alter_grid_imagier():
     # Pas de fuite T26/T31
     assert "three-quarter perspective" not in positive
     assert "midground" not in positive
+
+
+# ===========================================================================
+# T28 + Z1 — Mapping anatomique précis (five_senses) + bascule grille labels
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill §T28, §Z1
+# Brief : docs/architect/briefs/2026-05-10_brief-transfert-T28-Z1-anatomique-labels.md
+# ===========================================================================
+from services.prompt_generator import (  # noqa: E402
+    _ANATOMICAL_OVERRIDES,
+    _T2T3T23_GRID_AVAILABLE,
+    _Z1_GRID_CLASSES,
+    _count_anatomical_labels,
+    _route_z1_anatomical_labels,
+    set_anatomical_overrides,
+)
+import services.prompt_generator as _pg_mod  # noqa: E402
+
+
+# T28 — les 5 leafs five_senses ont un override anatomique précis (skill §T28)
+T28_LEAFS = [
+    "sense_of_sight_eye",
+    "sense_of_hearing_ear",
+    "sense_of_smell_nose",
+    "sense_of_taste_tongue",
+    "sense_of_touch_hand",
+]
+
+
+# T28 — signatures attendues (extrait du prompt validé skill, sans STYLE_BLOCK)
+T28_SIGNATURES = {
+    "sense_of_sight_eye": ("one human eye centered on the page", "SIGHT"),
+    "sense_of_hearing_ear": ("one human ear centered on the page", "HEARING"),
+    "sense_of_smell_nose": ("one human nose drawn in profile view", "SMELL"),
+    "sense_of_taste_tongue": ("one human tongue centered on the page", "TASTE"),
+    "sense_of_touch_hand": ("one human hand centered on the page", "TOUCH"),
+}
+
+
+def test_t28_anatomical_overrides_loaded_for_five_senses():
+    """T28 : les 5 leafs validés skill sont chargés au démarrage."""
+    for leaf_id in T28_LEAFS:
+        assert leaf_id in _ANATOMICAL_OVERRIDES, (
+            f"{leaf_id} absent de _ANATOMICAL_OVERRIDES — vérifier "
+            "data/prompt_generator/anatomical_overrides.json"
+        )
+
+
+@pytest.mark.parametrize("leaf_id", T28_LEAFS)
+def test_t28_build_prompt_uses_validated_anatomical_clause(leaf_id):
+    """T28 : `build_prompt` injecte la clause skill validée pour les 5 leafs."""
+    gen = PromptGenerator()
+    result = gen.build_prompt(leaf_id)
+    positive = result["positive"]
+    sig_subject, sig_title = T28_SIGNATURES[leaf_id]
+    assert sig_subject in positive, (
+        f"{leaf_id} : signature sujet T28 manquante ({sig_subject!r}) — "
+        f"positive={positive[:200]!r}"
+    )
+    assert f'"{sig_title}"' in positive, (
+        f"{leaf_id} : titre T28 majuscules absent ({sig_title!r})"
+    )
+    # On ne doit JAMAIS retomber sur l'antipattern v4 « one sense of … » brut
+    assert "one sense of" not in positive.lower()
+    # STYLE_BLOCK toujours présent en tête
+    assert positive.startswith("coloring book page for kids")
+
+
+def test_t28_fallback_warning_when_override_missing(caplog):
+    """T28 fallback : un leaf 'organe sensoriel' sans override → warning loggé."""
+    gen = PromptGenerator()
+    # `five_senses_summary_poster` est en classe "Solo objet (organe sensoriel)"
+    # mais n'a pas d'override → on doit voir le warning T28.
+    with caplog.at_level(logging.WARNING, logger="services.prompt_generator"):
+        result = gen.build_prompt("five_senses_summary_poster")
+    assert any(
+        "anatomical_overrides missing" in rec.message
+        and "five_senses_summary_poster" in rec.message
+        for rec in caplog.records
+    ), f"Pas de warning T28 trouvé. Records: {[r.message for r in caplog.records]}"
+    # Pas de crash : positive est généré (fallback solo_object)
+    assert result["positive"]
+    assert result["positive"].startswith("coloring book page for kids")
+
+
+def test_t28_does_not_affect_unrelated_leaf():
+    """Non-régression : un leaf hors `_ANATOMICAL_OVERRIDES` garde son template."""
+    gen = PromptGenerator()
+    # `claw_hammer` (Solo objet, classe différente) → solo_object intact
+    result = gen.build_prompt("claw_hammer")
+    assert "centered on the page, viewed from a clear three-quarter angle" in result["positive"]
+    assert "isolated subject" in result["positive"]
+
+
+# ---------------------------------------------------------------------------
+# Z1 — bascule grille pour Solo objet anatomique + labels (≥4 labels)
+# ---------------------------------------------------------------------------
+
+# Z1 — leafs anatomique + labels routés vers grille 3×3
+Z1_GRID_LEAFS = [
+    "hand_with_fingers_named",
+    "foot_with_toes",
+    "full_body_with_parts_labelled",
+    "child_face_features",
+]
+
+
+def test_z1_grid_classes_contains_anatomique_labels():
+    """Z1 : la classe `Solo objet anatomique + labels` est ciblée par défaut."""
+    assert "Solo objet anatomique + labels" in _Z1_GRID_CLASSES
+
+
+def test_z1_count_anatomical_labels_workflow_class_priority():
+    """Z1 heuristique : la classe `_Z1_GRID_CLASSES` force ≥4 labels par défaut."""
+    assert _count_anatomical_labels(
+        "anything", workflow_class="Solo objet anatomique + labels"
+    ) >= 4
+    # Hors classe ciblée → 1 (mono) sauf pattern leaf_id
+    assert _count_anatomical_labels("hammer", workflow_class="Solo objet") == 1
+
+
+def test_z1_count_anatomical_labels_pattern_named():
+    """Z1 heuristique : pattern `_named` / `_labelled` / `_diagram` → ≥4."""
+    assert _count_anatomical_labels("hand_with_fingers_named") >= 4
+    assert _count_anatomical_labels("full_body_with_parts_labelled") >= 4
+    assert _count_anatomical_labels("brain_simple_diagram") >= 4
+    assert _count_anatomical_labels("kidneys_with_labels") >= 4
+    # Sans pattern → 1
+    assert _count_anatomical_labels("lion_in_savanna") == 1
+
+
+@pytest.mark.parametrize("leaf_id", Z1_GRID_LEAFS)
+def test_z1_anatomique_labels_routes_to_grid_3x3(leaf_id):
+    """Z1 : les leafs `anatomique + labels` (≥4 labels) → grille 3×3 imagier."""
+    gen = PromptGenerator()
+    result = gen.build_prompt(leaf_id)
+    assert result["workflow_class"] == "Solo objet anatomique + labels"
+    positive = result["positive"]
+    # Signature template_grid_3x3_imagier (fallback ou nominal)
+    assert "three rows by three columns" in positive or "tic-tac-toe grid" in positive, (
+        f"{leaf_id} : pas routé vers grille 3×3. positive={positive[:200]!r}"
+    )
+
+
+def test_z1_route_helper_returns_grid_when_threshold_met():
+    """Z1 helper unitaire : ≥4 labels + flag activé → bascule grille."""
+    fake_template = lambda leaf, strategy: "fake"  # noqa: E731
+    routed = _route_z1_anatomical_labels(
+        "hand_with_fingers_named",
+        "Solo objet anatomique + labels",
+        fake_template,
+    )
+    # Bascule effective (sous flag ON par défaut)
+    assert routed.__name__ == "template_grid_3x3_imagier"
+
+
+def test_z1_route_helper_keeps_template_below_threshold():
+    """Z1 helper unitaire : <4 labels → no-op (template inchangé)."""
+    fake_template = lambda leaf, strategy: "fake"  # noqa: E731
+    routed = _route_z1_anatomical_labels(
+        "hammer", "Solo objet", fake_template,
+    )
+    assert routed is fake_template
+
+
+def test_z1_defensive_fallback_when_grid_unavailable(caplog):
+    """Z1 garde-fou ERNIE : si `_T2T3T23_GRID_AVAILABLE = False`, fallback +
+    warning. Permet une PR archi triviale si la mesure post repasse No-Go.
+    """
+    fake_template = lambda leaf, strategy: "fake"  # noqa: E731
+    original = _pg_mod._T2T3T23_GRID_AVAILABLE
+    _pg_mod._T2T3T23_GRID_AVAILABLE = False
+    try:
+        with caplog.at_level(logging.WARNING, logger="services.prompt_generator"):
+            routed = _route_z1_anatomical_labels(
+                "hand_with_fingers_named",
+                "Solo objet anatomique + labels",
+                fake_template,
+            )
+        # Fallback : on garde le template d'origine
+        assert routed is fake_template
+        # Warning loggé pour traçabilité
+        assert any(
+            "Z1 grid bypass disabled" in rec.message
+            and "hand_with_fingers_named" in rec.message
+            for rec in caplog.records
+        ), f"Pas de warning Z1 fallback trouvé. Records: {[r.message for r in caplog.records]}"
+    finally:
+        _pg_mod._T2T3T23_GRID_AVAILABLE = original
+
+
+def test_z1_default_flag_is_true():
+    """Garde-fou : `_T2T3T23_GRID_AVAILABLE` doit être True par défaut.
+
+    L'archi switchera ce flag à False en PR ultérieure si la mesure post-T2T3T23
+    révèle un No-Go pivot ERNIE — mais à l'import, on suppose le pattern grille
+    viable (verdict en attente, optimiste par défaut).
+    """
+    assert _T2T3T23_GRID_AVAILABLE is True
+
+
+def test_t28_z1_set_anatomical_overrides_helper():
+    """Utilitaire test : `set_anatomical_overrides` injecte un mapping custom."""
+    original = dict(_ANATOMICAL_OVERRIDES)
+    try:
+        set_anatomical_overrides({"sense_of_sight_eye": "test clause subject"})
+        gen = PromptGenerator()
+        result = gen.build_prompt("sense_of_sight_eye")
+        assert "test clause subject" in result["positive"]
+        # Le clause T28 standard doit avoir été remplacée
+        assert "the iris circular in the center" not in result["positive"]
+    finally:
+        set_anatomical_overrides(original)
