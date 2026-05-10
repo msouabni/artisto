@@ -58,6 +58,10 @@ from services.prompt_generator import (  # noqa: E402  (sys.path tweak)
     template_solo_insect,
     template_solo_object,
     template_solo_reptile,
+    template_indoor_scene_threequarter,
+    template_landscape_2plane,
+    template_landscape_threequarter,
+    _LANDSCAPE_THREEQUARTER_TEMPLATES,
 )
 
 
@@ -1173,3 +1177,170 @@ def test_t22_t27_t30_do_not_alter_t9_directional_overrides():
     positive = template_solo_animal(leaf, strategy={})
     assert "in profile facing right" in positive
     assert "neck and tail extended right" in positive
+
+
+# ---------------------------------------------------------------------------
+# T26 + T31 — météo scénique + scènes intérieures (transfert skill 2026-05-10)
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T26, §T31
+# Brief : docs/architect/briefs/2026-05-10_brief-transfert-T26-T31-meteo-scenes.md
+# ---------------------------------------------------------------------------
+def test_template_landscape_2plane_no_horizon_line():
+    """T26 : `template_landscape_2plane` ne doit plus écrire `divided by a horizon line`.
+
+    Citation skill §T26 : « Remplacer `divided by a horizon line` par
+    `viewed from a slight three-quarter angle` ».
+    """
+    leaf = {"id": "tropical_beach_with_palm_trees", "name_en": "Tropical Beach with Palm Trees"}
+    positive = template_landscape_2plane(leaf, strategy={"class": "Scène paysage"})
+    assert "divided by a horizon line" not in positive
+    assert "the horizon line clearly drawn" not in positive
+    assert "three-quarter angle" in positive
+    assert "no horizontal dividing line" in positive
+
+
+def test_template_landscape_threequarter_format():
+    """T26+T31 : nouveau template paysage trois-quarts (météo scénique)."""
+    leaf = {"id": "sunny_day_with_sun", "name_en": "Sunny Day with Sun"}
+    positive = template_landscape_threequarter(leaf, strategy={"class": "Solo objet météo"})
+    assert "three-quarter angle" in positive
+    assert "background" in positive
+    assert "middle ground" in positive
+    assert "foreground" in positive
+    assert "no horizontal dividing line" in positive
+    # Pas de marqueurs solo_object
+    assert "one single" not in positive
+    assert "isolated subject, no other items nearby" not in positive
+    # Pas de "ground line beneath" du solo_object (incohérent météo)
+    assert "ground line beneath" not in positive
+
+
+def test_template_indoor_scene_threequarter_format():
+    """T26 : nouveau template scène intérieure trois-quarts."""
+    leaf = {"id": "living_room_with_sofa", "name_en": "Living Room with Sofa"}
+    positive = template_indoor_scene_threequarter(leaf, strategy={"class": "Scène intérieure"})
+    assert "three-quarter perspective" in positive
+    assert "foreground" in positive
+    assert "midground" in positive
+    assert "background" in positive
+    assert "no horizon line" in positive
+    # Pas de marqueurs solo_object
+    assert "one single" not in positive
+    assert "isolated subject, no other items nearby" not in positive
+
+
+def test_landscape_threequarter_templates_constant():
+    """La liste de templates qui forcent 1376×768 contient bien les 2 nouveaux."""
+    assert "template_landscape_threequarter" in _LANDSCAPE_THREEQUARTER_TEMPLATES
+    assert "template_indoor_scene_threequarter" in _LANDSCAPE_THREEQUARTER_TEMPLATES
+    # Sanity : pas de fuite vers d'autres templates
+    assert "template_solo_object" not in _LANDSCAPE_THREEQUARTER_TEMPLATES
+    assert "template_landscape_2plane" not in _LANDSCAPE_THREEQUARTER_TEMPLATES
+
+
+def test_build_prompt_solo_objet_meteo_routes_to_landscape_threequarter():
+    """T31 : `Solo objet météo` ne route plus sur solo_object.
+
+    Le positive ne doit pas contenir la signature solo_object
+    (« centered on the page, viewed from a clear three-quarter angle, all main
+    features fully visible, simple ground line beneath ») mais doit contenir
+    `three-quarter angle` (perspective paysage).
+    """
+    gen = PromptGenerator()
+    result = gen.build_prompt("sunny_day_with_sun")
+    assert result["workflow_class"] == "Solo objet météo"
+    positive = result["positive"]
+    # Pas de signature solo_object
+    assert "one single" not in positive
+    assert "isolated subject, no other items nearby" not in positive
+    assert "ground line beneath" not in positive
+    # Signature paysage trois-quarts
+    assert "three-quarter angle" in positive
+    assert "foreground" in positive
+
+
+def test_build_prompt_solo_objet_meteo_resolution_1376x768():
+    """T31 : météo scénique → 1376×768 (override cartographie 1024×1024)."""
+    gen = PromptGenerator()
+    for leaf_id in ("sunny_day_with_sun", "thunderstorm_with_lightning",
+                    "foggy_morning_landscape", "tornado_in_distance"):
+        result = gen.build_prompt(leaf_id)
+        assert result["resolution"] == (1376, 768), (
+            f"{leaf_id} : résolution {result['resolution']} (attendu (1376, 768))"
+        )
+
+
+def test_build_prompt_scene_interieure_routes_to_indoor_threequarter():
+    """T26 : `Scène intérieure` ne route plus sur solo_object."""
+    gen = PromptGenerator()
+    result = gen.build_prompt("living_room_with_sofa")
+    assert result["workflow_class"] == "Scène intérieure"
+    positive = result["positive"]
+    # Pas de signature solo_object
+    assert "one single" not in positive
+    assert "isolated subject, no other items nearby" not in positive
+    # Signature scène intérieure trois-quarts
+    assert "three-quarter perspective" in positive
+    assert "midground" in positive
+
+
+def test_build_prompt_scene_interieure_resolution_1376x768():
+    """T26 : scène intérieure → 1376×768 (override cartographie 1024×1024)."""
+    gen = PromptGenerator()
+    for leaf_id in ("living_room_with_sofa", "hallway_with_coat_rack",
+                    "bedroom_with_bed", "kitchen_full_view"):
+        result = gen.build_prompt(leaf_id)
+        assert result["resolution"] == (1376, 768), (
+            f"{leaf_id} : résolution {result['resolution']} (attendu (1376, 768))"
+        )
+
+
+def test_build_prompt_scene_paysage_keeps_landscape_2plane_no_horizon():
+    """T26 : `Scène paysage` continue à utiliser landscape_2plane mais sans horizon line."""
+    gen = PromptGenerator()
+    result = gen.build_prompt("tropical_beach_with_palm_trees")
+    assert result["workflow_class"] == "Scène paysage"
+    assert result["resolution"] == (1376, 768)
+    positive = result["positive"]
+    assert "divided by a horizon line" not in positive
+    assert "no horizontal dividing line" in positive
+    assert "three-quarter angle" in positive
+
+
+def test_t26_t31_do_not_alter_solo_object_template():
+    """Non-régression : `template_solo_object` (autres classes) reste intact."""
+    leaf = {"id": "hammer", "name_en": "Hammer"}
+    positive = template_solo_object(leaf, strategy={})
+    # Signature solo_object préservée
+    assert "one hammer centered on the page" in positive
+    assert "viewed from a clear three-quarter angle" in positive
+    assert "simple ground line beneath" in positive
+    assert "isolated subject, no other items nearby" in positive
+
+
+def test_t26_t31_do_not_alter_solo_animal_template():
+    """Non-régression : `template_solo_animal` reste intact (T9)."""
+    leaf = {"id": "house_cat", "name_en": "House Cat"}
+    positive = template_solo_animal(leaf, strategy={})
+    assert "standing in profile" in positive
+    # Pas de fuite des nouveaux templates
+    assert "three-quarter perspective" not in positive
+    assert "midground" not in positive
+
+
+def test_t26_t31_do_not_alter_solo_objet_resolution_for_other_classes():
+    """Non-régression : un solo objet standard (claw_hammer) garde 1024×1024."""
+    gen = PromptGenerator()
+    # `claw_hammer` est dans la sous-cat tools (Solo objet) → 1024×1024
+    result = gen.build_prompt("claw_hammer")
+    assert result["workflow_class"] == "Solo objet"
+    assert result["resolution"] == (1024, 1024)
+
+
+def test_t26_t31_do_not_alter_grid_imagier():
+    """Non-régression : grille imagier reste fonctionnelle (T2/T3/T23)."""
+    leaf = {"id": "fruit_imagier_with_names", "name_en": "Fruit Imagier with Names"}
+    positive = template_grid_3x3_imagier(leaf, strategy={"class": "Grille imagier annoté"})
+    assert "tic-tac-toe grid" in positive
+    # Pas de fuite T26/T31
+    assert "three-quarter perspective" not in positive
+    assert "midground" not in positive

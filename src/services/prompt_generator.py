@@ -1393,16 +1393,115 @@ def template_multiplane_stacked(leaf, strategy):
 
 
 def template_landscape_2plane(leaf, strategy):
-    """Paysage 2 plans avec horizon (P3)."""
+    """Paysage 2 plans : vue trois-quarts (T26 — anti horizon line).
+
+    T26 (transfert skill 2026-05-10) — citation textuelle skill
+    (`.claude/skills/prompt-taxonomy-ecosystem.skill` — references/techniques.md §T26) :
+    > Le trait horizontal (`horizon line`, `divided by a line`) crée une coupure
+    > artificielle qui aplatit la scène. La vue trois-quarts crée la profondeur
+    > naturellement sans division visible — arrière-plan et premier plan
+    > s'organisent organiquement.
+    > Fix : Remplacer `divided by a horizon line` par `viewed from a slight
+    > three-quarter angle`. Ajouter `no horizontal dividing line` pour éviter
+    > la régression.
+
+    Avant transfert (P3) : `divided by a horizon line across the middle of the page`
+    + `the horizon line clearly drawn as a continuous line` → bug T26 (aplatit).
+    Après transfert : trois-quarts + foreground/background, pas de ligne horizon.
+    """
     name = leaf['name_en'].lower()
     return (
         f"{STYLE_BLOCK}, "
-        f"a {name} scene divided by a horizon line across the middle of the page, "
-        f"in the upper half elements of the sky fully visible, "
-        f"in the lower half elements of the ground or water fully visible, "
-        f"the horizon line clearly drawn as a continuous line, "
+        f"a {name} scene viewed from a three-quarter angle "
+        f"with foreground and background suggested by depth, "
+        f"sky elements visible in the background, "
+        f"ground or water elements visible in the foreground, "
+        f"no horizontal dividing line, full scene visible, centered composition, "
         f"all elements drawn with the same uniform black line thickness"
     )
+
+
+def template_landscape_threequarter(leaf, strategy):
+    """Paysage / scène atmosphérique vue trois-quarts (T26 + T31).
+
+    T26 (citation textuelle skill — references/techniques.md §T26) :
+    > La vue trois-quarts crée la profondeur naturellement sans division visible
+    > — arrière-plan et premier plan s'organisent organiquement.
+
+    Extension T26 — Scènes atmosphériques (citation skill §"Extension T26") :
+    > Les feuilles de type condition météo (`sunny day`, `rainy day`, `snowy day`,
+    > `stormy night`) sont des scènes, pas des objets. Appliquer le template
+    > paysage T26 (vue trois-quarts, trois plans) plutôt que solo_object.
+
+    T31 — Phénomènes météo scéniques (citation skill §T31) :
+    > Les phénomènes atmosphériques scéniques (`thunderstorm`, `blizzard`,
+    > `hurricane`, `tornado`) ne sont pas des objets ponctuels — ce sont des
+    > paysages. Template paysage T26 + résolution 1376×768 par défaut.
+
+    Bug v8 (citation skill §"Extension T26 — Bug générateur v8") :
+    > `sunny day`, `rainy day` etc. reçoivent le template solo_object avec
+    > `three-quarter angle` et `ground line` → résultat incohérent
+    > (un soleil isolé avec une ligne de sol).
+    > Fix v2 : détecter les feuilles contenant `day`, `night`, `weather`,
+    > `season` → template paysage.
+
+    La résolution 1376×768 est forcée pour ce template via
+    `_LANDSCAPE_THREEQUARTER_TEMPLATES` dans `PromptGenerator.build_prompt`,
+    indépendamment de la `resolution` de la cartographie (qui peut rester
+    1024×1024 pour la sous-catégorie).
+    """
+    name = leaf['name_en'].lower()
+    return (
+        f"{STYLE_BLOCK}, "
+        f"a {name} scene viewed from a slight three-quarter angle, "
+        f"main atmospheric elements in the background, "
+        f"intermediate elements in the middle ground, "
+        f"foreground details visible at the bottom, "
+        f"no horizontal dividing line, full scene visible, centered composition, "
+        f"all elements drawn with the same uniform black line thickness"
+    )
+
+
+def template_indoor_scene_threequarter(leaf, strategy):
+    """Scène intérieure vue trois-quarts (T26 — pièce, mobilier minimal).
+
+    T26 (citation textuelle skill — references/techniques.md §T26) :
+    > Le trait horizontal crée une coupure artificielle qui aplatit la scène.
+    > La vue trois-quarts crée la profondeur naturellement sans division visible
+    > — arrière-plan et premier plan s'organisent organiquement.
+
+    Bug v8 (citation skill §"Extension T26") : les scènes intérieures
+    (`living_room_with_sofa`, `gaming_setup_with_keyboard`, `hallway_with_coat_rack`,
+    `kid_using_microscope`) routées sur `template_solo_object` produisent
+    `image_simpliste` + `image_physique_pb` — un seul meuble isolé sur ligne
+    de sol au lieu d'une pièce avec profondeur.
+
+    La résolution 1376×768 est forcée pour ce template via
+    `_LANDSCAPE_THREEQUARTER_TEMPLATES` dans `PromptGenerator.build_prompt`.
+    """
+    name = leaf['name_en'].lower()
+    return (
+        f"{STYLE_BLOCK}, "
+        f"an indoor {name} viewed from a three-quarter perspective, "
+        f"foreground items detailed and fully visible, "
+        f"midground furniture or objects clearly drawn, "
+        f"background wall and decorative elements simplified, "
+        f"no horizon line, decorative elements visible, "
+        f"all elements drawn with the same uniform black line thickness"
+    )
+
+
+# Templates qui forcent la résolution 1376×768 (paysage horizontal) — T26+T31.
+# Source : .claude/skills/prompt-taxonomy-ecosystem.skill §T31 :
+# > Phénomènes atmosphériques scéniques + scènes intérieures avec profondeur
+# > → format paysage 1376×768.
+# Cette liste est consultée par `PromptGenerator.build_prompt` après le dispatch
+# de template, et override la résolution venant de la cartographie quand le
+# template dispatché est l'un des landscape three-quarter.
+_LANDSCAPE_THREEQUARTER_TEMPLATES = frozenset({
+    "template_landscape_threequarter",
+    "template_indoor_scene_threequarter",
+})
 
 
 def template_pose_static(leaf, strategy):
@@ -1469,7 +1568,11 @@ TEMPLATE_DISPATCHER = {
     "Solo objet en espace": template_solo_object,
     "Solo objet en mouvement": template_solo_object,
     "Solo objet historique": template_solo_object,
-    "Solo objet météo": template_solo_object,
+    # T26+T31 (transfert skill 2026-05-10) : météo scénique = paysage 1376×768,
+    # pas solo_object. Bug v8 : `sunny_day_with_sun`, `thunderstorm_with_lightning`,
+    # `foggy_morning_landscape` traités comme solo_object → image_simpliste.
+    # Cf. references/techniques.md §T31, §"Extension T26 — Scènes atmosphériques".
+    "Solo objet météo": template_landscape_threequarter,
     "Solo objet style kawaii": template_solo_object,
     "Solo objet ou humain en scaphandre": template_solo_object,
     "Humain + entité": template_human_plus_entity,
@@ -1495,7 +1598,12 @@ TEMPLATE_DISPATCHER = {
     "Scène panoramique": template_landscape_2plane,
     "Scène paysage": template_landscape_2plane,
     "Scène": template_landscape_2plane,
-    "Scène intérieure": template_solo_object,
+    # T26 (transfert skill 2026-05-10) : scène intérieure avec profondeur =
+    # vue trois-quarts 1376×768, pas solo_object. Bug v8 : `living_room_with_sofa`,
+    # `hallway_with_coat_rack`, etc. traités comme solo_object → image_simpliste
+    # (un seul meuble isolé au lieu d'une pièce avec profondeur).
+    # Cf. references/techniques.md §T26.
+    "Scène intérieure": template_indoor_scene_threequarter,
     "Scène spatiale": template_solo_object,
     "Scène inspirée œuvre": template_solo_object,
     "Scène ou solo personnage": template_personality_action,
@@ -1665,6 +1773,15 @@ class PromptGenerator:
                 resolution = (1024, 1024)
         else:
             resolution = (1024, 1024)
+
+        # T26+T31 (transfert skill 2026-05-10) : override résolution pour les
+        # templates landscape three-quarter (météo scénique + scène intérieure).
+        # Ces classes sont déclarées 1024×1024 dans la cartographie historique
+        # mais doivent être produites en 1376×768 pour exprimer la profondeur
+        # (cf. references/techniques.md §T31 : « paysage T26 + résolution
+        # 1376×768 par défaut »).
+        if template_fn.__name__ in _LANDSCAPE_THREEQUARTER_TEMPLATES:
+            resolution = (1376, 768)
         
         # Métadonnées
         seo_data = self.seo_index.get(leaf_id, {})
