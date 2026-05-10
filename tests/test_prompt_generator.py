@@ -44,6 +44,7 @@ from services.prompt_generator import (  # noqa: E402  (sys.path tweak)
     set_grid_cell_contents,
     set_group_layouts,
     template_before_after,
+    template_frieze_1xN,
     template_grid_3x3_annotated,
     template_grid_3x3_imagier,
     template_group_positioned,
@@ -264,7 +265,12 @@ def test_template_before_after_injects_states_when_present():
 
 
 def test_template_before_after_fallback_logs_warning_when_missing(caplog):
-    """Si leaf hors mapping → fallback générique + warning loggé via `logger`."""
+    """Si leaf hors mapping → fallback générique + warning loggé via `logger`.
+
+    Réconciliation doublon T25 (2026-05-10) : le wording fallback unifie sur
+    « several differences hidden inside » (ex-pivot frieze) au lieu de l'ancien
+    antipattern « one single change applied ».
+    """
     # Snapshot puis purge pour forcer le fallback même si le JSON couvre le leaf
     original = dict(_BEFORE_AFTER_STATES)
     set_before_after_states({})
@@ -272,9 +278,11 @@ def test_template_before_after_fallback_logs_warning_when_missing(caplog):
         leaf = {"id": "fictional_unknown_comparatif_leaf", "name_en": "Fictional Unknown"}
         with caplog.at_level(logging.WARNING, logger="services.prompt_generator"):
             positive = template_before_after(leaf, strategy={"class": "Comparatif before/after OU Solo"})
-        # Comportement actuel conservé en fallback
+        # Comportement fallback uniformisé (réconciliation doublon T25)
         assert "fictional unknown in its initial state" in positive
-        assert "one single change applied" in positive
+        assert "several differences hidden inside" in positive
+        # L'antipattern T25 historique ne doit plus apparaître nulle part
+        assert "one single change applied" not in positive
         # Warning émis avec le leaf_id
         warning_lines = [r for r in caplog.records if r.levelno == logging.WARNING]
         assert any("fictional_unknown_comparatif_leaf" in r.getMessage() for r in warning_lines), (
@@ -314,6 +322,116 @@ def test_template_before_after_strategy_none_safe():
         assert "BEFORE" in positive
     finally:
         set_before_after_states(original)
+
+
+# ===========================================================================
+# Réconciliation doublon T25 (2026-05-10) — `template_frieze_1xN` est un wrapper
+# qui délègue à `template_before_after` (Option A, dispatcher inchangé).
+# Cf. docs/architect/briefs/2026-05-10_brief-reconciliation-doublon-t25.md
+# Cf. docs/reports/2026-05-10_pivot-templates-narratifs-jeu-differences.md
+# Cf. docs/reports/2026-05-10_transfert-skill-T25-before-after.md
+# ===========================================================================
+def test_frieze_wraps_before_after_for_covered_leaf():
+    """Pour un leaf couvert par `before_after_states.json`, la frieze doit produire
+    EXACTEMENT le même prompt que `template_before_after`."""
+    leaf = {"id": "rainwater_collection_barrel", "name_en": "Rainwater Collection Barrel"}
+    strategy = {"class": "Comparatif before/after OU Solo"}
+    via_wrapper = template_frieze_1xN(leaf, strategy)
+    via_canonical = template_before_after(leaf, strategy)
+    assert via_wrapper == via_canonical
+
+
+def test_frieze_wraps_before_after_for_uncovered_leaf():
+    """Pour un leaf hors mapping (cas typique des classes ex-frieze), la frieze
+    doit produire EXACTEMENT le même fallback que `template_before_after`."""
+    original = dict(_BEFORE_AFTER_STATES)
+    set_before_after_states({})  # purge → force fallback
+    try:
+        leaf = {"id": "spring_blooming_meadow", "name_en": "Spring Blooming Meadow"}
+        strategy = {"class": "Frise narrative 1×4"}
+        via_wrapper = template_frieze_1xN(leaf, strategy)
+        via_canonical = template_before_after(leaf, strategy)
+        assert via_wrapper == via_canonical
+    finally:
+        set_before_after_states(original)
+
+
+def test_frieze_ignores_n_param_compat():
+    """Le param `n` de signature (post-pivot T25) est ignoré : différentes valeurs
+    produisent le même prompt (compat ascendante des appels existants)."""
+    leaf = {"id": "rainwater_collection_barrel", "name_en": "Rainwater Collection Barrel"}
+    strategy = {"class": "Comparatif before/after OU Solo"}
+    assert template_frieze_1xN(leaf, strategy) == template_frieze_1xN(leaf, strategy, n=4)
+    assert template_frieze_1xN(leaf, strategy) == template_frieze_1xN(leaf, strategy, n=9)
+
+
+def test_frieze_default_n_signature_preserved():
+    """Smoke : la signature `(leaf, strategy, n=4)` reste appelable (callers
+    historiques qui passent `n` ne doivent pas casser)."""
+    leaf = {"id": "fictional_uncovered", "name_en": "Fictional Uncovered"}
+    original = dict(_BEFORE_AFTER_STATES)
+    set_before_after_states({})
+    try:
+        out = template_frieze_1xN(leaf, strategy={"class": "Multi-sujets"}, n=6)
+        assert "BEFORE" in out and "AFTER" in out
+    finally:
+        set_before_after_states(original)
+
+
+def test_reconciliation_uniform_wording_several_differences():
+    """Critère d'acceptation brief : wording uniforme « several differences hidden
+    inside » sur les deux chemins (frieze ex-pivot ET before_after fallback).
+
+    Le wording explicite « several differences hidden inside » couvre exclusivement
+    le mode fallback (un leaf couvert injecte des états concrets, pas du wording
+    générique). On vérifie l'identité textuelle frieze ⇆ before_after sur fallback.
+    """
+    original = dict(_BEFORE_AFTER_STATES)
+    set_before_after_states({})
+    try:
+        # Leaf ex-frieze (Multi-sujets ou Scène d'action) — non couvert par le mapping
+        frieze_leaf = {"id": "football_match_scene", "name_en": "Football Match Scene"}
+        frieze_pos = template_frieze_1xN(frieze_leaf, strategy={"class": "Multi-sujets ou Scène d'action"})
+        # Leaf ex-comparatif (Solo objet ou comparatif) — non couvert (purge)
+        ba_leaf = {"id": "vegetable_garden_at_home", "name_en": "Vegetable Garden At Home"}
+        ba_pos = template_before_after(ba_leaf, strategy={"class": "Solo objet ou comparatif"})
+
+        assert "several differences hidden inside" in frieze_pos
+        assert "several differences hidden inside" in ba_pos
+        # Antipattern historique éradiqué côté fallback
+        assert "one single change applied" not in frieze_pos
+        assert "one single change applied" not in ba_pos
+    finally:
+        set_before_after_states(original)
+
+
+def test_reconciliation_dispatcher_routes_frieze_classes():
+    """Smoke routing : les workflow_classes ex-frieze (Frise narrative, Multi-sujets)
+    routent toujours vers `template_frieze_1xN` (dispatcher inchangé — Option A).
+    """
+    from services.prompt_generator import TEMPLATE_DISPATCHER
+    frieze_classes = [
+        "Frise narrative 1×4",
+        "Frise narrative 1×N (pattern X2)",
+        "Multi-sujets",
+        "Multi-sujets (frise)",
+        "Multi-sujets ou Scène",
+        "Multi-sujets ou Scène d'action",
+    ]
+    for cls in frieze_classes:
+        assert TEMPLATE_DISPATCHER.get(cls) is template_frieze_1xN, (
+            f"Dispatcher pour '{cls}' n'est plus aiguillé vers template_frieze_1xN"
+        )
+
+
+def test_reconciliation_dispatcher_routes_comparatif_classes():
+    """Smoke routing : les classes Comparatif routent vers `template_before_after`
+    (chemin canonique inchangé)."""
+    from services.prompt_generator import TEMPLATE_DISPATCHER
+    for cls in ["Comparatif before/after OU Solo", "Solo objet ou comparatif"]:
+        assert TEMPLATE_DISPATCHER.get(cls) is template_before_after, (
+            f"Dispatcher pour '{cls}' n'est plus aiguillé vers template_before_after"
+        )
 
 
 # ===========================================================================
@@ -1475,28 +1593,45 @@ def test_z1_count_anatomical_labels_pattern_named():
 
 
 @pytest.mark.parametrize("leaf_id", Z1_GRID_LEAFS)
-def test_z1_anatomique_labels_routes_to_grid_3x3(leaf_id):
-    """Z1 : les leafs `anatomique + labels` (≥4 labels) → grille 3×3 imagier."""
+def test_z1_anatomique_labels_fallback_to_solo_when_flag_false(leaf_id):
+    """Z1 : depuis le verdict RETRAIT bench T25 2026-05-10, les leafs `anatomique +
+    labels` retombent sur leur template d'origine (flag `_T2T3T23_GRID_AVAILABLE`
+    = False par défaut). Plus de bascule grille 3×3 tant que le pivot canal manuel
+    n'est pas validé.
+    """
     gen = PromptGenerator()
     result = gen.build_prompt(leaf_id)
     assert result["workflow_class"] == "Solo objet anatomique + labels"
     positive = result["positive"]
-    # Signature template_grid_3x3_imagier (fallback ou nominal)
-    assert "three rows by three columns" in positive or "tic-tac-toe grid" in positive, (
-        f"{leaf_id} : pas routé vers grille 3×3. positive={positive[:200]!r}"
+    # Pas de signature grille 3×3 — fallback actif via le flag
+    assert "three rows by three columns" not in positive, (
+        f"{leaf_id} : routé vers grille 3×3 alors que le flag est False. "
+        f"positive={positive[:200]!r}"
+    )
+    assert "tic-tac-toe grid" not in positive, (
+        f"{leaf_id} : routé vers grille 3×3 alors que le flag est False. "
+        f"positive={positive[:200]!r}"
     )
 
 
-def test_z1_route_helper_returns_grid_when_threshold_met():
-    """Z1 helper unitaire : ≥4 labels + flag activé → bascule grille."""
+def test_z1_route_helper_returns_grid_when_threshold_met_and_flag_true():
+    """Z1 helper unitaire : ≥4 labels + flag forcé True → bascule grille.
+
+    Branche conservée pour la future PR archi qui re-activerait le flag si
+    le pivot canal manuel (PIL/SVG) valide un nouveau chemin grille.
+    """
     fake_template = lambda leaf, strategy: "fake"  # noqa: E731
-    routed = _route_z1_anatomical_labels(
-        "hand_with_fingers_named",
-        "Solo objet anatomique + labels",
-        fake_template,
-    )
-    # Bascule effective (sous flag ON par défaut)
-    assert routed.__name__ == "template_grid_3x3_imagier"
+    original = _pg_mod._T2T3T23_GRID_AVAILABLE
+    _pg_mod._T2T3T23_GRID_AVAILABLE = True
+    try:
+        routed = _route_z1_anatomical_labels(
+            "hand_with_fingers_named",
+            "Solo objet anatomique + labels",
+            fake_template,
+        )
+        assert routed.__name__ == "template_grid_3x3_imagier"
+    finally:
+        _pg_mod._T2T3T23_GRID_AVAILABLE = original
 
 
 def test_z1_route_helper_keeps_template_below_threshold():
@@ -1534,14 +1669,15 @@ def test_z1_defensive_fallback_when_grid_unavailable(caplog):
         _pg_mod._T2T3T23_GRID_AVAILABLE = original
 
 
-def test_z1_default_flag_is_true():
-    """Garde-fou : `_T2T3T23_GRID_AVAILABLE` doit être True par défaut.
+def test_z1_default_flag_is_false():
+    """Garde-fou : `_T2T3T23_GRID_AVAILABLE` est False par défaut depuis le verdict
+    RETRAIT du bench garde-fou T25 (2026-05-10) — taux_post 75 % vs seuil 37.7 %.
 
-    L'archi switchera ce flag à False en PR ultérieure si la mesure post-T2T3T23
-    révèle un No-Go pivot ERNIE — mais à l'import, on suppose le pattern grille
-    viable (verdict en attente, optimiste par défaut).
+    Le pivot pipeline grille/comparatif vers PIL/SVG est escaladé en T19+ canal
+    manuel. Re-passer ce flag à True nécessitera un nouveau verdict humain (PR
+    archi triviale) après validation d'un nouveau chemin grille.
     """
-    assert _T2T3T23_GRID_AVAILABLE is True
+    assert _T2T3T23_GRID_AVAILABLE is False
 
 
 def test_t28_z1_set_anatomical_overrides_helper():

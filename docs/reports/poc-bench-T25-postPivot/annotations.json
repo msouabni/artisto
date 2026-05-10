@@ -1,4 +1,339 @@
 {
   "dir": "poc-bench-T25-postPivot",
-  "annotations": {}
+  "annotations": {
+    "baby_first_year_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:49:50.923571+00:00"
+    },
+    "bread_and_pastries_1024x1024_T25_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:50:04.463631+00:00"
+    },
+    "child_at_school_age_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:50:10.840740+00:00"
+    },
+    "classroom_with_teacher_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:50:24.444508+00:00"
+    },
+    "dairy_products_milk_1024x1024_T25_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "un peu de couleur"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:50:48.537494+00:00"
+    },
+    "decorative_number_ten_fingers_1024x1024_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "utilisation symbol rate"
+      ],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "utilisation main non significative",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:51:30.889404+00:00"
+    },
+    "fruits_basket_1024x1024_T25_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:51:41.674758+00:00"
+    },
+    "grandparent_with_grandchild_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "composiiton non justifie"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:52:06.587416+00:00"
+    },
+    "ice_cream_and_sorbets_1024x1024_T25_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:52:16.291341+00:00"
+    },
+    "life_cycle_full_poster_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:52:28.746791+00:00"
+    },
+    "number_nine_with_cars_1024x1024_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:52:40.848114+00:00"
+    },
+    "number_one_with_apple_1024x1024_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:52:46.559003+00:00"
+    },
+    "number_three_with_birds_1024x1024_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:52:52.778924+00:00"
+    },
+    "number_zero_with_eggs_1024x1024_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:53:48.483372+00:00"
+    },
+    "parent_with_child_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:53:05.424386+00:00"
+    },
+    "school_bus_with_kids_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:53:11.591138+00:00"
+    },
+    "teenager_with_backpack_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:53:21.546194+00:00"
+    },
+    "toddler_learning_to_walk_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:53:27.866049+00:00"
+    },
+    "vegetables_basket_1024x1024_T25_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:53:35.403361+00:00"
+    },
+    "young_adult_at_work_1376x768_T25_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:53:44.585500+00:00"
+    }
+  }
 }
