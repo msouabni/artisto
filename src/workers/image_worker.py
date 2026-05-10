@@ -1,4 +1,11 @@
-"""Worker pour les jobs image_generation (ComfyUI uniquement — pas de fallback)."""
+"""Worker pour les jobs image_generation (ComfyUI uniquement — pas de fallback).
+
+MEP v0 ERNIE-only — pattern POC direct (cf. docs/architect/2026-05-10_spec-mep-v0.md §V1.1).
+Le worker injecte les valeurs directement par node id sur le workflow ERNIE
+(`data/workflows/ernie-image-turbo-q8-api.json`) sans passer par la couche
+sidecar/capability/sanitize. Le negative est figé dans le workflow (CLIPTextEncode
+node 15) et n'est plus injecté côté Python.
+"""
 from __future__ import annotations
 
 import json
@@ -15,7 +22,12 @@ from api.job_review_artifact import (
 from services.image_qc_technical import build_technical_image_qc_v1
 
 from workers.base_worker import BaseWorker, _compute_duration_ms
-from workers.comfy_client import DEFAULT_WORKFLOW_TEMPLATE, workflows_json_dir
+from workers.comfy_client import (
+    ComfyClient,
+    ComfyError,
+    DEFAULT_WORKFLOW_TEMPLATE,
+    workflows_json_dir,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -25,18 +37,12 @@ WORKFLOWS_DIR = workflows_json_dir()
 
 DEFAULT_WORKFLOW = DEFAULT_WORKFLOW_TEMPLATE
 
-# Défauts d’injection alignés sur les graphes `data/workflows/*.json` (KSampler public).
-_Z_IMAGE_SAMPLER_DEFAULTS: dict[str, Any] = {
-    "steps": 4,
-    "cfg": 1.0,
-    "width": 1024,
-    "height": 1024,
-    "batch_size": 1,
-    "sampler_name": "res_multistep",
-    "scheduler": "simple",
-    "denoise": 1.0,
-    "shift": 3,
-}
+# Workflow ERNIE-only en MEP v0 — tout autre template lève une exception explicite.
+_ERNIE_TEMPLATE = "ernie-image-turbo-q8-api"
+
+# Défauts d'injection alignés sur le graphe ERNIE (`data/workflows/ernie-image-turbo-q8-api.json`,
+# KSampler node 16). Source de vérité pour les paramètres de génération en absence d'override
+# explicite dans `job.config`. Conformes aux benchmarks humains 2026-05-06.
 _ERNIE_SAMPLER_DEFAULTS: dict[str, Any] = {
     "steps": 8,
     "cfg": 1.0,
@@ -91,57 +97,56 @@ class ImageWorker(BaseWorker):
         job_id = job["job_id"]
         config = job.get("config", {})
         prompt = str(config.get("positive_prompt") or config.get("prompt") or "")
-        raw_neg = config.get("negative_prompt", "")
-        stripped_job_neg = str(raw_neg or "").strip()
         workflow_template = config.get("workflow_template", DEFAULT_WORKFLOW)
+
+        # MEP v0 : ERNIE-only. Tout autre template est rejeté explicitement.
+        # Cf. docs/architect/2026-05-10_spec-mep-v0.md §V1.1.
+        if workflow_template != _ERNIE_TEMPLATE:
+            raise ValueError(
+                f"workflow_template '{workflow_template}' non supporté en MEP v0 ERNIE-only "
+                f"(seul '{_ERNIE_TEMPLATE}' est accepté)."
+            )
 
         out_filename = f"{entity_id}_{job_id}.png"
         out_path = OUTPUTS_DIR / out_filename
         rel_path = f"outputs/{out_filename}"
         OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 
-        external_ref_id: str | None = None
-
-        from workers.comfy_client import (
-            ComfyClient,
-            ComfyError,
-            apply_overrides,
-            load_workflow_template,
-            sanitize_public_workflow_inputs,
-        )
         client = ComfyClient()
         if not client.is_available():
             raise ComfyUnavailableError("ComfyUI non disponible")
 
-        wf_base, public_inputs_map, contract = load_workflow_template(WORKFLOWS_DIR, workflow_template)
-        negative_prompt_meta = stripped_job_neg
-        base_sampler = (
-            _Z_IMAGE_SAMPLER_DEFAULTS
-            if workflow_template == "z_image_turbo_v1"
-            else _ERNIE_SAMPLER_DEFAULTS
-        )
-        candidate_values: dict[str, Any] = {
-            "positive_prompt": prompt,
-            "negative_prompt": stripped_job_neg,
-            "seed": config.get("seed", random.randint(0, 2**32 - 1)),
-        }
-        for key, default in base_sampler.items():
-            candidate_values[key] = config[key] if key in config else default
+        # Pattern POC direct (cf. scripts/poc_bench_gate_ernie.py::submit_to_comfy lignes 230-248)
+        wf_path = WORKFLOWS_DIR / f"{workflow_template}.json"
+        wf = json.loads(wf_path.read_text(encoding="utf-8-sig"))
+        contract_version = wf.get("__meta__", {}).get("contract_version")
+        wf.pop("__meta__", None)
 
-        override_values = sanitize_public_workflow_inputs(candidate_values, contract)
-        seed = int(override_values.get("seed", candidate_values["seed"]))
-        steps = int(override_values.get("steps", candidate_values["steps"]))
-        cfg = override_values.get("cfg", candidate_values["cfg"])
-        width = int(override_values.get("width", candidate_values["width"]))
-        height = int(override_values.get("height", candidate_values["height"]))
-        sampler_name = override_values.get("sampler_name", candidate_values["sampler_name"])
-        scheduler = override_values.get("scheduler", candidate_values["scheduler"])
-        denoise = override_values.get("denoise", candidate_values["denoise"])
-        shift = override_values.get("shift", candidate_values.get("shift"))
-        workflow = apply_overrides(wf_base, public_inputs_map, override_values)
-        if "negative_prompt" not in override_values:
-            negative_prompt_meta = ""
-        external_ref_id = client.submit_prompt(workflow)
+        # Lecture des valeurs avec fallback sur defaults ERNIE
+        seed = int(config.get("seed", random.randint(0, 2**32 - 1)))
+        steps = int(config.get("steps", _ERNIE_SAMPLER_DEFAULTS["steps"]))
+        cfg = float(config.get("cfg", _ERNIE_SAMPLER_DEFAULTS["cfg"]))
+        width = int(config.get("width", _ERNIE_SAMPLER_DEFAULTS["width"]))
+        height = int(config.get("height", _ERNIE_SAMPLER_DEFAULTS["height"]))
+        batch_size = int(config.get("batch_size", _ERNIE_SAMPLER_DEFAULTS["batch_size"]))
+        sampler_name = config.get("sampler_name", _ERNIE_SAMPLER_DEFAULTS["sampler_name"])
+        scheduler = config.get("scheduler", _ERNIE_SAMPLER_DEFAULTS["scheduler"])
+        denoise = float(config.get("denoise", _ERNIE_SAMPLER_DEFAULTS["denoise"]))
+
+        # Injection directe par node id (mapping ERNIE connu — cf. workflow JSON)
+        wf["13"]["inputs"]["width"] = width
+        wf["13"]["inputs"]["height"] = height
+        wf["13"]["inputs"]["batch_size"] = batch_size
+        wf["14"]["inputs"]["text"] = prompt           # positive
+        # NE PAS injecter wf["15"] (negative) — figé dans le workflow depuis 2026-05-05
+        wf["16"]["inputs"]["seed"] = seed
+        wf["16"]["inputs"]["steps"] = steps
+        wf["16"]["inputs"]["sampler_name"] = sampler_name
+        wf["16"]["inputs"]["scheduler"] = scheduler
+        wf["16"]["inputs"]["cfg"] = cfg
+
+        external_ref_id = client.submit_prompt(wf)
+        negative_prompt_meta = ""  # negative figé dans workflow, pas du payload côté ERNIE
 
         def _progress(pct: int, msg: str) -> None:
             self._update_progress(job_id, pct, msg)
@@ -163,18 +168,17 @@ class ImageWorker(BaseWorker):
             "prompt": prompt,
             "negative_prompt": negative_prompt_meta,
             "workflow_template": workflow_template,
-            "contract_version": contract.get("contract_version"),
+            "contract_version": contract_version,
             "seed": seed,
             "steps": steps,
             "cfg": cfg,
             "width": width,
             "height": height,
+            "batch_size": batch_size,
             "sampler_name": sampler_name,
             "scheduler": scheduler,
             "denoise": denoise,
         }
-        if shift is not None:
-            generation_params["shift"] = shift
         return {
             "entity_id": entity_id,
             "rel_path": rel_path,
