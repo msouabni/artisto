@@ -13,7 +13,6 @@ Schéma :
 - ``id`` : UUID/text, PK
 - ``term_id`` + ``vocabulary_id`` : FK composite vers ``term`` (PK composée)
 - ``name`` : libellé court éditorial (unique par term_id)
-- ``source`` : origine du subject ('skill_v0', 'manual', 'llm_brainstorm'…)
 - ``status`` : whitelist {draft, annotated, validated, enriched, prompted,
   generated, qc_done, published, rejected}
 - ``note`` : entier 0-6 (CHECK 0..6)
@@ -46,12 +45,6 @@ def upgrade() -> None:
         sa.Column("term_id", sa.Text(), nullable=False),
         sa.Column("vocabulary_id", sa.Text(), nullable=False),
         sa.Column("name", sa.Text(), nullable=False),
-        sa.Column(
-            "source",
-            sa.Text(),
-            nullable=False,
-            server_default=sa.text("'manual'"),
-        ),
         sa.Column(
             "status",
             sa.Text(),
@@ -98,15 +91,9 @@ def upgrade() -> None:
         "subject",
         ["updated_at"],
     )
-    op.create_index(
-        "idx_subject_source",
-        "subject",
-        ["source"],
-    )
 
 
 def downgrade() -> None:
-    op.drop_index("idx_subject_source", table_name="subject")
     op.drop_index("idx_subject_updated", table_name="subject")
     op.drop_index("idx_subject_status", table_name="subject")
     op.drop_index("idx_subject_term", table_name="subject")

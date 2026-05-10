@@ -1,0 +1,82 @@
+{
+  "total_leaves": 1376,
+  "considered": 1376,
+  "inserted": 1376,
+  "already_present": 0,
+  "orphans": [],
+  "per_root": {
+    "art_creativity_and_decorative_patterns": 39,
+    "household_appliances": 57,
+    "professions": 108,
+    "geometry_and_math": 64,
+    "tools_and_tooling": 70,
+    "fictional_characters": 114,
+    "animals": 136,
+    "sciences_and_technology": 43,
+    "sports_and_physical_activities": 86,
+    "daily_life_and_environments": 59,
+    "fantasy_magic_and_tales": 55,
+    "sports_personalities": 64,
+    "vehicles_and_machines": 88,
+    "human_body_and_health": 74,
+    "alphabet_and_visual_language": 129,
+    "nature_and_environment": 66,
+    "modern_themes_and_trends": 51,
+    "festivals_and_celebrations": 73
+  },
+  "samples": [
+    {
+      "id": "sub_abstract_cubism_portrait",
+      "term_id": "abstract_cubism_portrait",
+      "name": "Abstract Cubism Portrait"
+    },
+    {
+      "id": "sub_abstract_dripping_paint",
+      "term_id": "abstract_dripping_paint",
+      "name": "Abstract Dripping Paint"
+    },
+    {
+      "id": "sub_abstract_zentangle",
+      "term_id": "abstract_zentangle",
+      "name": "Abstract Zentangle"
+    },
+    {
+      "id": "sub_action_camera",
+      "term_id": "action_camera",
+      "name": "Action Camera"
+    },
+    {
+      "id": "sub_actor_on_stage",
+      "term_id": "actor_on_stage",
+      "name": "Actor on Stage"
+    },
+    {
+      "id": "sub_acute_angle",
+      "term_id": "acute_angle",
+      "name": "Acute Angle"
+    },
+    {
+      "id": "sub_adjustable_wrench",
+      "term_id": "adjustable_wrench",
+      "name": "Adjustable Wrench"
+    },
+    {
+      "id": "sub_advanced_mandala_for_teens",
+      "term_id": "advanced_mandala_for_teens",
+      "name": "Advanced Mandala for Teens"
+    },
+    {
+      "id": "sub_adventure_time_finn",
+      "term_id": "adventure_time_finn",
+      "name": "Adventure Time Finn"
+    },
+    {
+      "id": "sub_african_elephant",
+      "term_id": "african_elephant",
+      "name": "African Elephant"
+    }
+  ],
+  "source": "skill_v0",
+  "dry_run": false,
+  "import_run": "20260510T191909Z"
+}
