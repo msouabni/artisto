@@ -70,6 +70,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 import re
 import shutil
 import sys
@@ -385,25 +386,58 @@ def _build_post_frontmatter(
     }
 
 
+#: Roots additionnels où chercher les PNG masters. Permet à un worktree
+#: (qui ne matérialise pas les PNG gitignored) de retrouver les masters
+#: stockés dans le repo principal. Override via env ``ARTISTE_MASTER_ROOTS``
+#: (séparé par ``;`` sous Windows / ``:`` sous Unix).
+_DEFAULT_MASTER_ROOTS = [
+    Path("D:/projets/artiste-coloriage"),
+]
+
+
+def _master_roots() -> list[Path]:
+    """Liste ordonnée de roots de recherche pour les PNG masters.
+
+    Inclut toujours ``PROJECT_ROOT`` (le repo / worktree courant) en premier,
+    puis les roots additionnels (repo principal côté worktree).
+    """
+    roots: list[Path] = [PROJECT_ROOT]
+    extra_env = os.environ.get("ARTISTE_MASTER_ROOTS", "")
+    if extra_env:
+        sep = ";" if ";" in extra_env else ":"
+        for raw in extra_env.split(sep):
+            raw = raw.strip()
+            if raw:
+                roots.append(Path(raw))
+    else:
+        for default in _DEFAULT_MASTER_ROOTS:
+            if default != PROJECT_ROOT and default.is_dir():
+                roots.append(default)
+    return roots
+
+
 def _resolve_master_png(target_id: str) -> Path | None:
     """Tente de localiser le PNG master sur disque.
 
-    Trois emplacements testés (premier qui existe gagne) :
-    - ``docs/reports/<dir>/<filename>`` (POC reports keep often)
-    - ``data/outputs/<filename>``
-    - ``data/<target_id>``
+    Cherche dans chaque ``_master_roots()`` les emplacements suivants
+    (premier qui existe gagne) :
+
+    - ``<root>/docs/reports/<dir>/<filename>`` (POC reports)
+    - ``<root>/data/outputs/<filename>``
+    - ``<root>/data/<target_id>``
 
     Retourne le path absolu ou ``None`` si aucun n'existe.
     """
     dir_, fn = target_id.split("/", 1)
-    candidates = [
-        REPORTS_DIR / dir_ / fn,
-        PROJECT_ROOT / "data" / "outputs" / fn,
-        PROJECT_ROOT / "data" / target_id,
-    ]
-    for c in candidates:
-        if c.is_file():
-            return c
+    for root in _master_roots():
+        candidates = [
+            root / "docs" / "reports" / dir_ / fn,
+            root / "data" / "outputs" / fn,
+            root / "data" / target_id,
+        ]
+        for c in candidates:
+            if c.is_file():
+                return c
     return None
 
 
