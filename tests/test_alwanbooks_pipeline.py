@@ -181,13 +181,19 @@ def test_post_json_to_md_quotes_escaped_apostrophes():
 
 
 def test_ensure_post_complete_injects_defaults():
-    """Les champs requis manquants reçoivent des défauts sains."""
+    """Les champs requis manquants reçoivent des défauts sains.
+
+    ``categoryId`` est calculé depuis ``_pipeline.leaf_id`` via le mapping
+    rimalab-v2 ; sans info, fallback ``animals_cats`` (seule Category sûre
+    en l'absence de ``general_humans`` / ``objects_things`` créées côté
+    plateforme — arbitrage 2026-05-12).
+    """
     minimal = {
         "locale": "fr", "slug": "x", "title": "T", "title_card": "Tc",
         "description": "D", "keywords": [],
     }
     out = pipe._ensure_post_complete(minimal)
-    assert out["categoryId"] == "uncategorized"
+    assert out["categoryId"] == "animals_cats"
     assert out["themeIds"] == []
     assert out["ageMin"] == 4
     assert out["ageMax"] == 10
@@ -196,6 +202,50 @@ def test_ensure_post_complete_injects_defaults():
     assert out["featured"] is False
     # datePublication injectée si absente
     assert out["datePublication"]
+
+
+def test_ensure_post_complete_maps_category_from_leaf_id():
+    """Le bloc ``_pipeline.leaf_id`` détermine ``categoryId`` via mapping."""
+    cases = [
+        ("letter_d_with_dog", "letters_arabic"),
+        ("persian_cat", "animals_cats"),
+        ("astronaut_walking_on_moon", "general_humans"),
+        ("abstract_zentangle", "objects_things"),
+        ("african_elephant", "animals_cats"),  # fallback générique
+    ]
+    for leaf_id, expected_cat in cases:
+        post = {
+            "locale": "fr", "slug": "x", "title": "T", "title_card": "Tc",
+            "description": "D", "keywords": [],
+            "_pipeline": {"leaf_id": leaf_id},
+        }
+        out = pipe._ensure_post_complete(post)
+        assert out["categoryId"] == expected_cat, (
+            f"{leaf_id} should map to {expected_cat}, got {out['categoryId']}"
+        )
+
+
+def test_ensure_post_complete_filters_short_keywords():
+    """Les keywords <2 chars (HARD cap Zod) sont filtrés."""
+    post = {
+        "locale": "fr", "slug": "x", "title": "T", "title_card": "Tc",
+        "description": "D",
+        "keywords": ["lion", "D", "savane", "x", "animaux", ""],
+    }
+    out = pipe._ensure_post_complete(post)
+    assert "D" not in out["keywords"]
+    assert "x" not in out["keywords"]
+    assert "" not in out["keywords"]
+    assert "lion" in out["keywords"]
+    assert "savane" in out["keywords"]
+    assert "animaux" in out["keywords"]
+
+
+def test_map_leaf_to_category_handles_none():
+    """``map_leaf_to_category(None)`` retourne le fallback sans crash."""
+    assert pipe.map_leaf_to_category(None) == "animals_cats"
+    assert pipe.map_leaf_to_category("") == "animals_cats"
+    assert pipe.map_leaf_to_category("unknown_random_leaf") == "animals_cats"
 
 
 def test_ensure_post_complete_preserves_existing():

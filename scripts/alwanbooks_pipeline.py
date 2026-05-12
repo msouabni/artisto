@@ -361,7 +361,10 @@ def _emit_yaml_value(value: Any, indent: int = 0) -> str:
 
 
 # Champs à écrire dans le frontmatter (ordre stable, cohérent avec
-# l'exemple PIPELINE-CONTRACT.md).
+# l'exemple PIPELINE-CONTRACT.md). Whitelist stricte : ``r2_slug``,
+# ``image_id``, ``_pipeline``, ``schema_version`` ne sont **pas** émis dans
+# le MD (passthrough toléré côté rimalab-v2 mais on garde le frontmatter
+# propre — arbitrage 2026-05-12).
 _FRONTMATTER_ORDER = [
     "locale", "slug", "title", "title_card", "description", "keywords",
     "categoryId", "themeIds", "ageMin", "ageMax", "niveauDifficulte",
@@ -420,12 +423,141 @@ def post_json_to_md(post: dict, *, body_text: str | None = None) -> str:
     return "\n".join(lines)
 
 
-def _ensure_post_complete(post: dict, *, default_category: str = "uncategorized") -> dict:
+#: Mapping ``leaf_id`` → ``categoryId`` côté rimalab-v2.
+#:
+#: Arbitrages reçus de rimalab-v2 (2026-05-12) :
+#: - Categories existantes : ``animals_cats``, ``letters_arabic``.
+#: - Categories à créer côté plateforme : ``general_humans`` (humains /
+#:   personnages / professions / sports), ``objects_things`` (objets /
+#:   véhicules / outils / décoration).
+#: - Fallback unique tant que ``general_humans`` et ``objects_things`` ne
+#:   sont pas créées : utiliser ``animals_cats`` (incorrect sémantiquement
+#:   mais débloque le build Zod ; à patcher quand les 2 nouvelles
+#:   Categories sont en place).
+#:
+#: Routing par mots-clés dans le ``leaf_id`` (longueur DESC pour matcher
+#: les patterns spécifiques avant les génériques).
+_CATEGORY_KEYWORDS: list[tuple[str, str]] = [
+    # Lettres alphabet AR
+    ("letter_", "letters_arabic"),
+    # Chats spécifiques
+    ("_cat", "animals_cats"),
+    ("cat_", "animals_cats"),
+    # Humains / personnages → general_humans (à créer côté rimalab)
+    ("astronaut", "general_humans"),
+    ("baker", "general_humans"),
+    ("breakdancer", "general_humans"),
+    ("captain_america", "general_humans"),
+    ("chef", "general_humans"),
+    ("child_", "general_humans"),
+    ("doctor", "general_humans"),
+    ("elf_", "general_humans"),
+    ("fairy", "general_humans"),
+    ("family_", "general_humans"),
+    ("firefighter", "general_humans"),
+    ("fisherman", "general_humans"),
+    ("guide", "general_humans"),
+    ("iron_man", "general_humans"),
+    ("kid_", "general_humans"),
+    ("knight", "general_humans"),
+    ("locksmith", "general_humans"),
+    ("mirabel", "general_humans"),
+    ("moana", "general_humans"),
+    ("musician", "general_humans"),
+    ("painter", "general_humans"),
+    ("police_officer", "general_humans"),
+    ("princess", "general_humans"),
+    ("robot_superhero", "general_humans"),
+    ("roofer", "general_humans"),
+    ("scooby_doo", "general_humans"),
+    ("snowboarder", "general_humans"),
+    ("speed_skater", "general_humans"),
+    ("spongebob", "general_humans"),
+    ("stitch_from", "general_humans"),
+    ("superhero", "general_humans"),
+    ("tintin", "general_humans"),
+    ("water_skiing", "general_humans"),
+    ("wizard", "general_humans"),
+    ("yeti", "general_humans"),
+    ("cartoon", "general_humans"),  # canelo_alvarez_cartoon, neymar_jr_cartoon, etc.
+    ("yoga_pose", "general_humans"),
+    ("football_coach", "general_humans"),
+    # Objets / outils / véhicules → objects_things
+    ("aladdin_with_magic_lamp", "objects_things"),  # objet magique
+    ("balloon", "objects_things"),
+    ("bus", "objects_things"),
+    ("cake", "objects_things"),
+    ("car", "objects_things"),
+    ("chisel", "objects_things"),
+    ("cleaner", "objects_things"),
+    ("e_book", "objects_things"),
+    ("fryer", "objects_things"),
+    ("fireplace", "objects_things"),
+    ("hammer", "objects_things"),
+    ("mop", "objects_things"),
+    ("oven", "objects_things"),
+    ("plane", "objects_things"),
+    ("printer", "objects_things"),
+    ("press", "objects_things"),
+    ("radio", "objects_things"),
+    ("scale", "objects_things"),
+    ("setup", "objects_things"),
+    ("smartwatch", "objects_things"),
+    ("solar_panel", "objects_things"),
+    ("subway", "objects_things"),
+    ("suv", "objects_things"),
+    ("train", "objects_things"),
+    ("tv", "objects_things"),
+    ("vr_headset", "objects_things"),
+    ("water_wheel", "objects_things"),
+    ("watering_can", "objects_things"),
+    ("wheel", "objects_things"),
+    ("zentangle", "objects_things"),  # motif décoratif
+    ("mandala", "objects_things"),    # motif décoratif
+    ("ladle", "objects_things"),
+    ("attic", "objects_things"),
+    ("ai_brain", "objects_things"),
+    ("crescent_moon", "objects_things"),
+    ("eid_al_adha_sheep", "general_humans"),  # contexte culturel humain
+    ("latkes", "objects_things"),
+    ("manure_spreader", "objects_things"),
+    ("hot_air", "objects_things"),
+    # Animaux génériques (tous les autres animaux → animals_cats par défaut
+    # tant qu'une Category ``animals_generic`` n'existe pas).
+]
+
+#: Fallback ultime si aucun mot-clé ne matche : ``animals_cats`` (la seule
+#: Category sûre actuellement présente côté rimalab-v2).
+_CATEGORY_DEFAULT = "animals_cats"
+
+
+def map_leaf_to_category(leaf_id: str | None) -> str:
+    """Mappe un ``leaf_id`` taxonomique à un ``categoryId`` rimalab-v2.
+
+    Retourne le premier match sur ``_CATEGORY_KEYWORDS`` (ordre = priorité)
+    ou ``_CATEGORY_DEFAULT`` si rien ne matche.
+    """
+    if not leaf_id:
+        return _CATEGORY_DEFAULT
+    lid = leaf_id.lower()
+    for kw, cat in _CATEGORY_KEYWORDS:
+        if kw in lid:
+            return cat
+    return _CATEGORY_DEFAULT
+
+
+def _ensure_post_complete(post: dict) -> dict:
     """Comble les champs requis manquants avec des défauts sains.
 
     Le contrat exige ``categoryId``, ``ageMin``, ``ageMax``, ``niveauDifficulte``.
     En v0, ces champs sont vides côté pipeline ; on injecte des fallbacks
     pour que le build Astro Zod passe quand même.
+
+    ``categoryId`` est calculé via ``map_leaf_to_category`` depuis le bloc
+    ``_pipeline.leaf_id`` si présent (ajouté par l'export script C3).
+
+    Filtre côté ``keywords`` : strip items <2 chars (HARD cap Zod
+    ``items 2-30``). Garde l'ordre original.
     """
     p = dict(post)
     p.setdefault("locale", "fr")
@@ -433,9 +565,25 @@ def _ensure_post_complete(post: dict, *, default_category: str = "uncategorized"
     p.setdefault("title", "")
     p.setdefault("title_card", post.get("title", "")[:40] if post.get("title") else "")
     p.setdefault("description", "")
-    p.setdefault("keywords", [])
+
+    # Filtrer keywords <2 ou >30 chars (HARD cap Zod plateforme).
+    raw_kw = p.get("keywords") or []
+    if isinstance(raw_kw, list):
+        p["keywords"] = [
+            k for k in raw_kw
+            if isinstance(k, str) and 2 <= len(k) <= 30
+        ]
+    else:
+        p["keywords"] = []
+
+    # categoryId : si vide, mapper depuis leaf_id (bloc _pipeline).
     if not p.get("categoryId"):
-        p["categoryId"] = default_category
+        leaf_id = None
+        pipeline_block = post.get("_pipeline") or {}
+        if isinstance(pipeline_block, dict):
+            leaf_id = pipeline_block.get("leaf_id")
+        p["categoryId"] = map_leaf_to_category(leaf_id)
+
     if not p.get("themeIds"):
         p["themeIds"] = []
     if "ageMin" not in p:
@@ -465,25 +613,51 @@ def write_post_md(
     return out_path
 
 
-def git_commit_push(rimalab_root: Path, message: str) -> tuple[int, str]:
-    """Commit + push dans le repo rimalab-v2. Retourne ``(exit_code, stdout)``."""
+#: Nom de branche par défaut pour les exports MEP v0. Rimalab-v2 review
+#: en PR avant merge — pas de push direct sur ``main`` (arbitrage 2026-05-12).
+DEFAULT_EXPORT_BRANCH = "content/export-mep-v0"
+
+
+def git_commit_push(
+    rimalab_root: Path, message: str, *,
+    branch: str = DEFAULT_EXPORT_BRANCH, push: bool = True,
+) -> tuple[int, str]:
+    """Crée une branche dédiée, commit, et push optionnellement.
+
+    Workflow :
+    1. ``git checkout -B <branch>`` (depuis l'état courant — sera créé ou
+       remis à zéro si la branche existait déjà).
+    2. ``git add src/content/posts/`` et commit (idempotent : si rien à
+       commiter, on continue sans erreur).
+    3. Si ``push=True`` : ``git push -u origin <branch>`` (le PR doit être
+       ouvert ensuite manuellement côté rimalab-v2 ou via ``gh pr create``
+       dans un brief séparé).
+
+    Retourne ``(exit_code, log_concaténé)``. ``exit_code=0`` si OK.
+    """
     if not (rimalab_root / ".git").exists():
         return 1, f"Not a git repo: {rimalab_root}"
-    cmds = [
+
+    cmds: list[list[str]] = [
+        ["git", "checkout", "-B", branch],
         ["git", "add", "src/content/posts/"],
         ["git", "commit", "-m", message],
-        ["git", "push"],
     ]
+    if push:
+        cmds.append(["git", "push", "-u", "origin", branch])
+
     out_chunks: list[str] = []
     for cmd in cmds:
         r = subprocess.run(  # noqa: S603 — controlled commands
             cmd, cwd=str(rimalab_root), capture_output=True, text=True,
             encoding="utf-8",
         )
-        out_chunks.append(
-            f"$ {' '.join(cmd)}\n{r.stdout}\n{r.stderr}"
-        )
-        if r.returncode != 0 and "nothing to commit" not in r.stdout:
+        out_chunks.append(f"$ {' '.join(cmd)}\n{r.stdout}\n{r.stderr}")
+        # Tolérer "nothing to commit" sur le commit (rerun idempotent).
+        if r.returncode != 0:
+            stdout_lower = (r.stdout or "").lower()
+            if "nothing to commit" in stdout_lower:
+                continue
             return r.returncode, "\n".join(out_chunks)
     return 0, "\n".join(out_chunks)
 
