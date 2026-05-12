@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "abeille-a-miel",
+  "r2_slug": "honey-bee",
+  "title": "Coloriage Abeille Miel Joyeux",
+  "title_card": "Abeille Miel",
+  "description": "Découvrez cette jolie abeille à miel colorée. Apprenez les couleurs et amusez-vous avec ce dessin d'insecte mignon pour enfants.",
+  "keywords": [
+    "abeille",
+    "coloriage",
+    "enfant",
+    "nature",
+    "mignon"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/honey_bee_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/honey-bee.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/honey-bee.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/honey-bee.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/honey-bee.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "honey_bee",
+    "name_en": "Honey Bee",
+    "name_fr": "Abeille à miel",
+    "name_ar": "نحلة العسل",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

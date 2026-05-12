@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "alrjl-alhdydy",
+  "r2_slug": "iron-man",
+  "title": "الرجل الحديدي: صفحة تلوين مميزة",
+  "title_card": "الرجل الحديدي",
+  "description": "استمتع بتلوين شخصية الرجل الحديدي في هذه الصفحة المصممة خصيصا للأطفال لتعليمهم الألوان والإبداع.",
+  "keywords": [
+    "الرجل الحديدي",
+    "صفحة تلوين",
+    "أطفال",
+    "إبداع",
+    "ألوان"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/iron_man_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/iron-man.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/iron-man.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/iron-man.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/iron-man.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "iron_man",
+    "name_en": "Iron Man",
+    "name_fr": "Iron Man",
+    "name_ar": "الرجل الحديدي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

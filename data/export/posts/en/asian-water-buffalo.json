@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "asian-water-buffalo",
+  "r2_slug": "asian-water-buffalo",
+  "title": "Colorful Asian Water Buffalo",
+  "title_card": "Asian Water Buffalo",
+  "description": "This page features a large Asian water buffalo ready for coloring. Children can use bright crayons to fill the horns and body with fun patterns.",
+  "keywords": [
+    "water buffalo",
+    "Asian animal",
+    "coloring page",
+    "large horns",
+    "farm life"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/asian_water_buffalo_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/asian-water-buffalo.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/asian-water-buffalo.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/asian-water-buffalo.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/asian-water-buffalo.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "asian_water_buffalo",
+    "name_en": "Asian Water Buffalo",
+    "name_fr": "Buffle d'eau d'Asie",
+    "name_ar": "الجاموس الآسيوي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

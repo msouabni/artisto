@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "ane-de-ferme",
+  "r2_slug": "farm-donkey",
+  "title": "Coloriage d'âne de ferme amusant",
+  "title_card": "Âne de ferme",
+  "description": "Découvrez ce joli coloriage d'âne de ferme pour enfants. Un animal mignon à colorier avec des couleurs vives et des formes simples.",
+  "keywords": [
+    "animal",
+    "ferme",
+    "enfant",
+    "coloriage",
+    "mignon"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/farm_donkey_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/farm-donkey.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/farm-donkey.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/farm-donkey.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/farm-donkey.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "farm_donkey",
+    "name_en": "Farm Donkey",
+    "name_fr": "Âne de ferme",
+    "name_ar": "حمار المزرعة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

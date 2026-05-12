@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "alhlal-walnjma",
+  "r2_slug": "crescent-moon-and-star",
+  "title": "هلال و نجمة - صفحة تلوين للأطفال",
+  "title_card": "هلال و نجمة",
+  "description": "استمتع بتلوين رسم الهلال والنجمة الجميل في هذه الصفحة التعليمية الممتعة والمصممة خصيصا للأطفال.",
+  "keywords": [
+    "هلال",
+    "نجمة",
+    "تلوين",
+    "أطفال",
+    "رسم"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/crescent_moon_and_star_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/crescent-moon-and-star.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/crescent-moon-and-star.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/crescent-moon-and-star.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/crescent-moon-and-star.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "crescent_moon_and_star",
+    "name_en": "Crescent Moon and Star",
+    "name_fr": "Croissant de lune et étoile",
+    "name_ar": "الهلال والنجمة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

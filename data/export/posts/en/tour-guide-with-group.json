@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "tour-guide-with-group",
+  "r2_slug": "tour-guide-with-group",
+  "title": "Colorful Tour Guide with Happy Group",
+  "title_card": "Tour Guide Coloring Page",
+  "description": "A cheerful tour guide leads a diverse group of children on an exciting adventure through a vibrant park filled with flowers and trees.",
+  "keywords": [
+    "tour guide",
+    "happy group",
+    "coloring page",
+    "outdoor adventure",
+    "children fun"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/tour_guide_with_group_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/tour-guide-with-group.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/tour-guide-with-group.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/tour-guide-with-group.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/tour-guide-with-group.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "tour_guide_with_group",
+    "name_en": "Tour Guide with Group",
+    "name_fr": "Guide touristique avec groupe",
+    "name_ar": "المرشد السياحي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

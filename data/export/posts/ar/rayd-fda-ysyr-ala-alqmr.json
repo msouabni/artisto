@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "rayd-fda-ysyr-ala-alqmr",
+  "r2_slug": "astronaut-walking-on-moon",
+  "title": "رائد فضاء يسير على القمر",
+  "title_card": "رائد فضاء على القمر",
+  "description": "تصميم ملون لرائد فضاء يسير على سطح القمر، مناسب للأطفال لتعليمهم الألوان والفضاء الخارجي.",
+  "keywords": [
+    "رائد فضاء",
+    "يسير على القمر",
+    "تصميم ملون",
+    "تلوين للأطفال",
+    "الفضاء الخارجي"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/astronaut_walking_on_moon_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/astronaut-walking-on-moon.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/astronaut-walking-on-moon.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/astronaut-walking-on-moon.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/astronaut-walking-on-moon.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "astronaut_walking_on_moon",
+    "name_en": "Astronaut Walking on Moon",
+    "name_fr": "Astronaute marchant sur la lune",
+    "name_ar": "رائد فضاء يسير على القمر",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

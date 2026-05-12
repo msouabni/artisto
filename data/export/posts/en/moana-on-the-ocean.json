@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "moana-on-the-ocean",
+  "r2_slug": "moana-on-the-ocean",
+  "title": "Moana Sailing the Great Ocean",
+  "title_card": "Moana Ocean Adventure",
+  "description": "Color this page featuring Moana paddling her boat across the vast blue sea with her dog Pua nearby. This fun activity helps kids learn about the Pacific islands while enjoying creative art.",
+  "keywords": [
+    "Moana",
+    "Ocean",
+    "Boat",
+    "Coloring",
+    "Adventure"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/moana_on_ocean_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/moana-on-the-ocean.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/moana-on-the-ocean.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/moana-on-the-ocean.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/moana-on-the-ocean.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "moana_on_ocean",
+    "name_en": "Moana on the Ocean",
+    "name_fr": "Vaiana sur l'océan",
+    "name_ar": "موانا على المحيط",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

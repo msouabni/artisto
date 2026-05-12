@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "manchot-empereur",
+  "r2_slug": "emperor-penguin",
+  "title": "Coloriage Manchot Empereur",
+  "title_card": "Manchot empereur",
+  "description": "Découvrez ce grand oiseau blanc et noir vivant dans les glaces polaires. Coloriez ce magnifique manchot empereur pour les enfants.",
+  "keywords": [
+    "oiseau blanc",
+    "glace polaire",
+    "animaux marins",
+    "nature sauvage",
+    "enfants colorier"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/emperor_penguin_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/emperor-penguin.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/emperor-penguin.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/emperor-penguin.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/emperor-penguin.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "emperor_penguin",
+    "name_en": "Emperor Penguin",
+    "name_fr": "Manchot empereur",
+    "name_ar": "البطريق الإمبراطور",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

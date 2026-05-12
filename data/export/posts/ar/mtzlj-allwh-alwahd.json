@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "mtzlj-allwh-alwahd",
+  "r2_slug": "snowboarder-jumping",
+  "title": "لوحة تلوين متزلج لوح واحد يقفز في الثلج",
+  "title_card": "متزلج لوح واحد يقفز",
+  "description": "استمتع بلوحة تلوين مجانية لمتزلج لوح واحد يقفز في الثلج، مثالية للأطفال لتعليم الألوان والخيال.",
+  "keywords": [
+    "متزلج",
+    "لوح",
+    "واحد",
+    "يقفز",
+    "تلوين"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/snowboarder_jump_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/snowboarder-jumping.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/snowboarder-jumping.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/snowboarder-jumping.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/snowboarder-jumping.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "snowboarder_jump",
+    "name_en": "Snowboarder Jumping",
+    "name_fr": "Snowboarder en saut",
+    "name_ar": "متزلج اللوح الواحد",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "leopard-des-neiges",
+  "r2_slug": "snow-leopard",
+  "title": "Coloriage Léopard des neiges",
+  "title_card": "Léopard des neiges",
+  "description": "Découvrez ce magnifique animal blanc et tacheté. Coloriez le léopard des neiges dans son habitat glacial et apprenez ses particularités uniques.",
+  "keywords": [
+    "animal",
+    "blanc",
+    "neige",
+    "glace",
+    "tacheté"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/snow_leopard_1024x1024_euler8s_v2.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/snow-leopard.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/snow-leopard.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/snow-leopard.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/snow-leopard.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "snow_leopard",
+    "name_en": "Snow Leopard",
+    "name_fr": "Léopard des neiges",
+    "name_ar": "نمر الثلوج",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

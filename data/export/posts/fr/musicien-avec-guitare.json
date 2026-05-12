@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "musicien-avec-guitare",
+  "r2_slug": "musician-with-guitar",
+  "title": "Musicien jouant sa guitare",
+  "title_card": "Musicien et guitare",
+  "description": "Colorie ce musicien avec sa belle guitare. Un artiste passionné qui joue de la musique pour les enfants.",
+  "keywords": [
+    "musicien",
+    "guitare",
+    "artiste",
+    "musique",
+    "enfant"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/musician_with_guitar_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/musician-with-guitar.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/musician-with-guitar.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/musician-with-guitar.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/musician-with-guitar.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "musician_with_guitar",
+    "name_en": "Musician with Guitar",
+    "name_fr": "Musicien avec guitare",
+    "name_ar": "الموسيقي بالغيتار",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

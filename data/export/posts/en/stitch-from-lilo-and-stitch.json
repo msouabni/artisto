@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "stitch-from-lilo-and-stitch",
+  "r2_slug": "stitch-from-lilo-and-stitch",
+  "title": "Color Stitch from Lilo and Stitch Now",
+  "title_card": "Stitch Coloring Page",
+  "description": "Bring the cute green alien to life with vibrant colors on this fun childrens coloring page featuring Stitch from the beloved movie.",
+  "keywords": [
+    "cute alien",
+    "coloring page",
+    "Lilo movie",
+    "green skin",
+    "fun activity"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/stitch_from_lilo_and_stitch_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/stitch-from-lilo-and-stitch.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/stitch-from-lilo-and-stitch.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/stitch-from-lilo-and-stitch.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/stitch-from-lilo-and-stitch.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "stitch_from_lilo_and_stitch",
+    "name_en": "Stitch from Lilo and Stitch",
+    "name_fr": "Stitch de Lilo et Stitch",
+    "name_ar": "ستيتش",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

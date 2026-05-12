@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "alfyl-alasywy",
+  "r2_slug": "asian-elephant",
+  "title": "فيل آسيوي: دليل التلوين والتعرف",
+  "title_card": "فيل آسيوي",
+  "description": "استمتع بلوحة تلوين للفيل الآسيوي، اكتشف خصائصه الفريدة في هذا الرسم المصمم خصيصا للأطفال.",
+  "keywords": [
+    "فيل آسيوي",
+    "لوحة تلوين",
+    "رسم أطفال",
+    "حيوانات",
+    "تعليم"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/asian_elephant_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/asian-elephant.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/asian-elephant.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/asian-elephant.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/asian-elephant.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "asian_elephant",
+    "name_en": "Asian Elephant",
+    "name_fr": "Éléphant d'Asie",
+    "name_ar": "الفيل الآسيوي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

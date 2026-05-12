@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "wood-chisel",
+  "r2_slug": "wood-chisel",
+  "title": "Colorful Wood Chisel Art Page",
+  "title_card": "Wood Chisel Coloring",
+  "description": "This page features a detailed wood chisel ready for your creative coloring. Children will enjoy filling the sharp edges and handle with bright colors.",
+  "keywords": [
+    "wood chisel",
+    "sharp edge",
+    "coloring page",
+    "wood tool",
+    "art activity"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/wood_chisel_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/wood-chisel.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/wood-chisel.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/wood-chisel.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/wood-chisel.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "wood_chisel",
+    "name_en": "Wood Chisel",
+    "name_fr": "Ciseau à bois",
+    "name_ar": "إزميل الخشب",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

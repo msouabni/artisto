@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "hamster",
+  "r2_slug": "hamster",
+  "title": "Coloriage de hamster mignon pour enfants",
+  "title_card": "Hamster mignon",
+  "description": "Découvrez ce coloriage de hamster adorable parfait pour les petits artistes. Amusez-vous à colorier ce petit rongeur tout en développant votre créativité et votre patience.",
+  "keywords": [
+    "hamster",
+    "coloriage",
+    "enfants",
+    "animaux",
+    "créatif"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/hamster_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/hamster.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/hamster.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/hamster.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/hamster.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "hamster",
+    "name_en": "Hamster",
+    "name_fr": "Hamster",
+    "name_ar": "الهامستر",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

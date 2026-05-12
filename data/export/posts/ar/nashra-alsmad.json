@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "nashra-alsmad",
+  "r2_slug": "manure-spreader",
+  "title": "ناشرة السماد للتلوين",
+  "title_card": "ناشرة السماد",
+  "description": "تصفح صور ناشرة السماد الملونة لتلوينها واستمتع بالهدوء والإبداع في رسم هذا الجهاز الزراعي.",
+  "keywords": [
+    "ناشرة السماد",
+    "الزراعة",
+    "التلوين",
+    "الصور",
+    "الهدوء"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/manure_spreader_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/manure-spreader.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/manure-spreader.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/manure-spreader.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/manure-spreader.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "manure_spreader",
+    "name_en": "Manure Spreader",
+    "name_fr": "Épandeur d'engrais",
+    "name_ar": "ناشرة السماد",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

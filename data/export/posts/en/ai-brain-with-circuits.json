@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "ai-brain-with-circuits",
+  "r2_slug": "ai-brain-with-circuits",
+  "title": "Color the AI Brain with Circuits Now",
+  "title_card": "AI Brain Coloring Page",
+  "description": "This fun coloring page features a glowing artificial intelligence brain filled with intricate electronic circuits waiting for your bright colors to bring them to life.",
+  "keywords": [
+    "artificial intelligence",
+    "coloring page",
+    "brain circuits",
+    "technology art",
+    "kids activity"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/ai_brain_with_circuits_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/ai-brain-with-circuits.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/ai-brain-with-circuits.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/ai-brain-with-circuits.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/ai-brain-with-circuits.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "ai_brain_with_circuits",
+    "name_en": "AI Brain with Circuits",
+    "name_fr": "Cerveau IA avec circuits",
+    "name_ar": "دماغ ذكاء اصطناعي مع دوائر",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

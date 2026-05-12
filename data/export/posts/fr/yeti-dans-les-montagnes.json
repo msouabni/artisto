@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "yeti-dans-les-montagnes",
+  "r2_slug": "yeti-in-mountains",
+  "title": "Coloriage Yéti dans les hautes montagnes",
+  "title_card": "Yéti en montagne",
+  "description": "Découvrez ce coloriage amusant d'un Yéti géant qui explore les sommets enneigés. Un sujet fantastique parfait pour les enfants.",
+  "keywords": [
+    "Yéti",
+    "montagne",
+    "neige",
+    "fantastique",
+    "coloriage"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/yeti_in_mountains_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/yeti-in-mountains.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/yeti-in-mountains.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/yeti-in-mountains.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/yeti-in-mountains.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "yeti_in_mountains",
+    "name_en": "Yeti in Mountains",
+    "name_fr": "Yéti dans les montagnes",
+    "name_ar": "اليتي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

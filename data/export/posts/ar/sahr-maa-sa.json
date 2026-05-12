@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "sahr-maa-sa",
+  "r2_slug": "wizard-with-staff",
+  "title": "ساحر مع عصاه في لوحة تلوين",
+  "title_card": "ساحر مع عصاه",
+  "description": "استمتع بلوحة تلوين ساحرة تصور ساحرا يحمل عصاه، مثالية للأطفال لتعليم الألوان والإبداع.",
+  "keywords": [
+    "ساحر",
+    "عصا",
+    "لوحة تلوين",
+    "تعليم",
+    "أطفال"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/wizard_with_staff_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/wizard-with-staff.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/wizard-with-staff.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/wizard-with-staff.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/wizard-with-staff.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "wizard_with_staff",
+    "name_en": "Wizard with Staff",
+    "name_fr": "Magicien avec son bâton",
+    "name_ar": "ساحر مع عصا",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "smartwatch",
+  "r2_slug": "smartwatch",
+  "title": "Colorful Smartwatch Adventure for Kids",
+  "title_card": "Smartwatch Coloring Page",
+  "description": "This fun smartwatch coloring page invites children to bring a futuristic wrist device to life with bright colors and creative imagination.",
+  "keywords": [
+    "coloring page",
+    "smartwatch",
+    "kids activity",
+    "future tech",
+    "creative fun"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/smartwatch_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/smartwatch.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/smartwatch.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/smartwatch.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/smartwatch.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "smartwatch",
+    "name_en": "Smartwatch",
+    "name_fr": "Montre connectée",
+    "name_ar": "الساعة الذكية",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "coast-guard-boat",
+  "r2_slug": "coast-guard-boat",
+  "title": "Color the Brave Coast Guard Boat",
+  "title_card": "Coast Guard Boat",
+  "description": "This coloring page features a heroic Coast Guard boat ready for action. Children can use bright colors to paint the ship and its brave crew members.",
+  "keywords": [
+    "Coast Guard",
+    "Boat",
+    "Sea Rescue",
+    "Blue Water",
+    "Coloring Page"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/coast_guard_boat_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/coast-guard-boat.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/coast-guard-boat.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/coast-guard-boat.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/coast-guard-boat.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "coast_guard_boat",
+    "name_en": "Coast Guard Boat",
+    "name_fr": "Vedette des garde-côtes",
+    "name_ar": "زورق خفر السواحل",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

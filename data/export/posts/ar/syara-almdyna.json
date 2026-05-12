@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "syara-almdyna",
+  "r2_slug": "city-car",
+  "title": "صورة لسيارة المدينة للتلوين",
+  "title_card": "تلوين سيارة المدينة",
+  "description": "تصفح هذا الرسم الجميل لسيارة المدينة واستمتع باللعب والتركيز مع أطفالك في جلسة ملهمة.",
+  "keywords": [
+    "سيارة المدينة",
+    "رسم للتلوين",
+    "نشاط للأطفال",
+    "تعليم",
+    "فنون"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/city_car_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/city-car.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/city-car.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/city-car.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/city-car.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "city_car",
+    "name_en": "City Car",
+    "name_fr": "Voiture citadine",
+    "name_ar": "سيارة المدينة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

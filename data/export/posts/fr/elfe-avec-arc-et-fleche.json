@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "elfe-avec-arc-et-fleche",
+  "r2_slug": "elf-with-bow-and-arrow",
+  "title": "Elfe avec arc et flèche pour enfants",
+  "title_card": "Elfe avec arc et flèche",
+  "description": "Colorie cette jolie elfe armée d'un arc et d'une flèche. Un dessin magique parfait pour les petits artistes qui aiment la nature et les créatures fantastiques.",
+  "keywords": [
+    "elfe",
+    "arc",
+    "flèche",
+    "fantastique",
+    "coloriage"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/elf_with_bow_and_arrow_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/elf-with-bow-and-arrow.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/elf-with-bow-and-arrow.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/elf-with-bow-and-arrow.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/elf-with-bow-and-arrow.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "elf_with_bow_and_arrow",
+    "name_en": "Elf with Bow and Arrow",
+    "name_fr": "Elfe avec arc et flèche",
+    "name_ar": "إلف مع قوس وسهم",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

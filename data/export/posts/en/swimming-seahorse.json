@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "swimming-seahorse",
+  "r2_slug": "swimming-seahorse",
+  "title": "Colorful Seahorse Swimming",
+  "title_card": "Swimming Seahorse",
+  "description": "Bring this playful seahorse to life with bright colors. Perfect for young artists to enjoy a fun underwater coloring adventure.",
+  "keywords": [
+    "seahorse",
+    "swimming",
+    "coloring",
+    "underwater",
+    "fun"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/swimming_seahorse_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/swimming-seahorse.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/swimming-seahorse.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/swimming-seahorse.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/swimming-seahorse.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "swimming_seahorse",
+    "name_en": "Swimming Seahorse",
+    "name_fr": "Hippocampe",
+    "name_ar": "حصان البحر",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

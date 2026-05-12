@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "aldb-alqtby",
+  "r2_slug": "polar-bear-on-ice",
+  "title": "لوحة تلوين الدب القطبي على الجليد",
+  "title_card": "الدب القطبي على الجليد",
+  "description": "استمتع بلوحة تلوين الدب القطبي على الجليد، وهي صورة تعليمية رائعة للأطفال لتعلم الحروف والألوان.",
+  "keywords": [
+    "الدب القطبي",
+    "لوحة تلوين",
+    "الجليد",
+    "تعليم أطفال",
+    "نشاط ترفيهي"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/polar_bear_on_ice_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/polar-bear-on-ice.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/polar-bear-on-ice.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/polar-bear-on-ice.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/polar-bear-on-ice.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "polar_bear_on_ice",
+    "name_en": "Polar Bear on Ice",
+    "name_fr": "Ours polaire sur la glace",
+    "name_ar": "الدب القطبي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

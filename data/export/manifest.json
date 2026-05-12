@@ -1,0 +1,1628 @@
+{
+  "schema_version": "v0",
+  "generated_at": "2026-05-12T10:22:41Z",
+  "total_leaves_exported": 135,
+  "total_publications": 405,
+  "leaves": [
+    {
+      "image_id": "benchmark:poc-scale-benchmark/abstract_zentangle_1024x1024_euler8s.png",
+      "leaf_id": "abstract_zentangle",
+      "r2_slug": "abstract-zentangle",
+      "post_slugs": {
+        "fr": "zentangle-abstrait",
+        "en": "abstract-zentangle",
+        "ar": "zntanghl-mjrd"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/advanced_mandala_for_teens_1024x1024_euler8s.png",
+      "leaf_id": "advanced_mandala_for_teens",
+      "r2_slug": "advanced-mandala-for-teens",
+      "post_slugs": {
+        "fr": "mandala-avance-pour-ados",
+        "en": "advanced-mandala-for-teens",
+        "ar": "mandala-mtqdma-llmrahqyn"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/african_elephant_1024x1024_euler8s.png",
+      "leaf_id": "african_elephant",
+      "r2_slug": "african-elephant",
+      "post_slugs": {
+        "fr": "elephant-d-afrique",
+        "en": "african-elephant",
+        "ar": "alfyl-alifryqy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/ai_brain_with_circuits_1024x1024_euler8s.png",
+      "leaf_id": "ai_brain_with_circuits",
+      "r2_slug": "ai-brain-with-circuits",
+      "post_slugs": {
+        "fr": "cerveau-ia-avec-circuits",
+        "en": "ai-brain-with-circuits",
+        "ar": "dmagh-dhka-astnay-maa-dwayr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/air_fryer_1024x1024_euler8s.png",
+      "leaf_id": "air_fryer",
+      "r2_slug": "air-fryer",
+      "post_slugs": {
+        "fr": "friteuse-a-air-chaud",
+        "en": "air-fryer",
+        "ar": "alqlaya-alhwayya"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/aladdin_with_magic_lamp_1024x1024_euler8s.png",
+      "leaf_id": "aladdin_with_magic_lamp",
+      "r2_slug": "aladdin-with-magic-lamp",
+      "post_slugs": {
+        "fr": "aladin-avec-la-lampe-magique",
+        "en": "aladdin-with-magic-lamp",
+        "ar": "la-aldyn-maa-almsbah-alshry"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/alpaca_1024x1024_euler8s.png",
+      "leaf_id": "alpaca",
+      "r2_slug": "alpaca",
+      "post_slugs": {
+        "fr": "alpaga",
+        "en": "alpaca",
+        "ar": "alalbka"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/ancient_water_wheel_1024x1024_euler8s.png",
+      "leaf_id": "ancient_water_wheel",
+      "r2_slug": "ancient-water-wheel",
+      "post_slugs": {
+        "fr": "roue-a-eau-ancienne",
+        "en": "ancient-water-wheel",
+        "ar": "saqya-mayya-qdyma"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/animal_mandala_lion_head_1024x1024_euler8s.png",
+      "leaf_id": "animal_mandala_lion_head",
+      "r2_slug": "animal-mandala-lion-head",
+      "post_slugs": {
+        "fr": "mandala-animal-tete-de-lion",
+        "en": "animal-mandala-lion-head",
+        "ar": "mandala-hywan-ras-asad"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/antique_radio_set_1024x1024_euler8s.png",
+      "leaf_id": "antique_radio_set",
+      "r2_slug": "antique-radio-set",
+      "post_slugs": {
+        "fr": "poste-de-radio-ancien",
+        "en": "antique-radio-set",
+        "ar": "radyw-tyq"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/arctic_fox_1024x1024_euler8s.png",
+      "leaf_id": "arctic_fox",
+      "r2_slug": "arctic-fox",
+      "post_slugs": {
+        "fr": "renard-arctique",
+        "en": "arctic-fox",
+        "ar": "althlb-alqtby"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/armadillo_1024x1024_euler8s.png",
+      "leaf_id": "armadillo",
+      "r2_slug": "armadillo",
+      "post_slugs": {
+        "fr": "tatou",
+        "en": "armadillo",
+        "ar": "almdr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/asian_elephant_1024x1024_euler8s.png",
+      "leaf_id": "asian_elephant",
+      "r2_slug": "asian-elephant",
+      "post_slugs": {
+        "fr": "elephant-d-asie",
+        "en": "asian-elephant",
+        "ar": "alfyl-alasywy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/asian_water_buffalo_1024x1024_euler8s.png",
+      "leaf_id": "asian_water_buffalo",
+      "r2_slug": "asian-water-buffalo",
+      "post_slugs": {
+        "fr": "buffle-d-eau-d-asie",
+        "en": "asian-water-buffalo",
+        "ar": "aljamws-alasywy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/astronaut_floating_in_space_848x1264_euler8s.png",
+      "leaf_id": "astronaut_floating_in_space",
+      "r2_slug": "astronaut-floating-in-space",
+      "post_slugs": {
+        "fr": "astronaute-flottant-dans-l-espace",
+        "en": "astronaut-floating-in-space",
+        "ar": "rayd-fda-ytfw-fi-alfda"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/astronaut_walking_on_moon_848x1264_euler8s.png",
+      "leaf_id": "astronaut_walking_on_moon",
+      "r2_slug": "astronaut-walking-on-moon",
+      "post_slugs": {
+        "fr": "astronaute-marchant-sur-la-lune",
+        "en": "astronaut-walking-on-moon",
+        "ar": "rayd-fda-ysyr-ala-alqmr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/attic_with_old_objects_1024x1024_euler8s.png",
+      "leaf_id": "attic_with_old_objects",
+      "r2_slug": "attic-with-old-objects",
+      "post_slugs": {
+        "fr": "grenier-avec-vieux-objets",
+        "en": "attic-with-old-objects",
+        "ar": "lya-maa-ashya-qdyma"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/atv_quad_bike_1376x768_euler8s.png",
+      "leaf_id": "atv_quad_bike",
+      "r2_slug": "atv-quad-bike",
+      "post_slugs": {
+        "fr": "quad",
+        "en": "atv-quad-bike",
+        "ar": "aldraja-alrbaya"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/baker_with_bread_1024x1024_euler8s.png",
+      "leaf_id": "baker_with_bread",
+      "r2_slug": "baker-with-bread",
+      "post_slugs": {
+        "fr": "boulanger-avec-pain",
+        "en": "baker-with-bread",
+        "ar": "alkhbaz"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/bengal_tiger_1024x1024_euler8s.png",
+      "leaf_id": "bengal_tiger",
+      "r2_slug": "bengal-tiger",
+      "post_slugs": {
+        "fr": "tigre-du-bengale",
+        "en": "bengal-tiger",
+        "ar": "alnmr-albnghaly"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/birthday_cake_with_candles_1024x1024_euler8s.png",
+      "leaf_id": "birthday_cake_with_candles",
+      "r2_slug": "birthday-cake-with-candles",
+      "post_slugs": {
+        "fr": "gateau-d-anniversaire-avec-bougies",
+        "en": "birthday-cake-with-candles",
+        "ar": "kka-yd-mylad-maa-shmw"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/breakdancer_848x1264_b2_euler8s.png",
+      "leaf_id": "breakdancer",
+      "r2_slug": "breakdancer",
+      "post_slugs": {
+        "fr": "breakdanseur",
+        "en": "breakdancer",
+        "ar": "raqs-albryk"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/british_shorthair_cat_1024x1024_euler8s.png",
+      "leaf_id": "british_shorthair_cat",
+      "r2_slug": "british-shorthair-cat",
+      "post_slugs": {
+        "fr": "british-shorthair",
+        "en": "british-shorthair-cat",
+        "ar": "alqt-albrytany-qsyr-alshr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/canelo_alvarez_cartoon_848x1264_euler8s.png",
+      "leaf_id": "canelo_alvarez_cartoon",
+      "r2_slug": "canelo-alvarez-cartoon",
+      "post_slugs": {
+        "fr": "canelo-alvarez-en-cartoon",
+        "en": "canelo-alvarez-cartoon",
+        "ar": "kanylw-alfaryz"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/captain_america_with_shield_848x1264_euler8s.png",
+      "leaf_id": "captain_america_with_shield",
+      "r2_slug": "captain-america-with-shield",
+      "post_slugs": {
+        "fr": "captain-america-au-bouclier",
+        "en": "captain-america-with-shield",
+        "ar": "kabtn-amryka"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/carpet_cleaner_1024x1024_euler8s.png",
+      "leaf_id": "carpet_cleaner",
+      "r2_slug": "carpet-cleaner",
+      "post_slugs": {
+        "fr": "nettoyeur-de-tapis",
+        "en": "carpet-cleaner",
+        "ar": "ala-tnzyf-alsjad"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/chef_cooking_1024x1024_euler8s.png",
+      "leaf_id": "chef_cooking",
+      "r2_slug": "chef-cooking",
+      "post_slugs": {
+        "fr": "chef-cuisinier-au-travail",
+        "en": "chef-cooking",
+        "ar": "altahy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/child_combing_hair_1024x1024_euler8s.png",
+      "leaf_id": "child_combing_hair",
+      "r2_slug": "child-combing-hair",
+      "post_slugs": {
+        "fr": "enfant-qui-se-peigne",
+        "en": "child-combing-hair",
+        "ar": "tfl-ymsht-shrh"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/child_running_outdoors_848x1264_b3_euler8s.png",
+      "leaf_id": "child_running_outdoors",
+      "r2_slug": "child-running-outdoors",
+      "post_slugs": {
+        "fr": "enfant-qui-court-dehors",
+        "en": "child-running-outdoors",
+        "ar": "tfl-yjry-fi-alkharj"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/chimpanzee_1024x1024_euler8s_v2.png",
+      "leaf_id": "chimpanzee",
+      "r2_slug": "chimpanzee",
+      "post_slugs": {
+        "fr": "chimpanze",
+        "en": "chimpanzee",
+        "ar": "alshmbanzy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/city_car_1024x1024_euler8s.png",
+      "leaf_id": "city_car",
+      "r2_slug": "city-car",
+      "post_slugs": {
+        "fr": "voiture-citadine",
+        "en": "city-car",
+        "ar": "syara-almdyna"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/claw_hammer_1024x1024_euler8s.png",
+      "leaf_id": "claw_hammer",
+      "r2_slug": "claw-hammer",
+      "post_slugs": {
+        "fr": "marteau-arrache-clou",
+        "en": "claw-hammer",
+        "ar": "almtrqa"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/coast_guard_boat_1024x1024_euler8s.png",
+      "leaf_id": "coast_guard_boat",
+      "r2_slug": "coast-guard-boat",
+      "post_slugs": {
+        "fr": "vedette-des-garde-cotes",
+        "en": "coast-guard-boat",
+        "ar": "zwrq-khfr-alswahl"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/crab_on_beach_1024x1024_euler8s.png",
+      "leaf_id": "crab_on_beach",
+      "r2_slug": "crab-on-the-beach",
+      "post_slugs": {
+        "fr": "crabe-sur-la-plage",
+        "en": "crab-on-the-beach",
+        "ar": "alsltwn-ala-alshaty"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/crescent_moon_and_star_1024x1024_euler8s.png",
+      "leaf_id": "crescent_moon_and_star",
+      "r2_slug": "crescent-moon-and-star",
+      "post_slugs": {
+        "fr": "croissant-de-lune-et-etoile",
+        "en": "crescent-moon-and-star",
+        "ar": "alhlal-walnjma"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/dairy_cow_1024x1024_euler8s.png",
+      "leaf_id": "dairy_cow",
+      "r2_slug": "dairy-cow",
+      "post_slugs": {
+        "fr": "vache-laitiere",
+        "en": "dairy-cow",
+        "ar": "albqra-alhlwb"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/doctor_with_stethoscope_1024x1024_euler8s.png",
+      "leaf_id": "doctor_with_stethoscope",
+      "r2_slug": "doctor-with-stethoscope",
+      "post_slugs": {
+        "fr": "medecin-avec-stethoscope",
+        "en": "doctor-with-stethoscope",
+        "ar": "tbyb-bsmaa"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/double_decker_bus_1024x1024_euler8s.png",
+      "leaf_id": "double_decker_bus",
+      "r2_slug": "double-decker-bus",
+      "post_slugs": {
+        "fr": "bus-a-imperiale",
+        "en": "double-decker-bus",
+        "ar": "alhafla-dhat-altabqyn"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/e_book_reader_1024x1024_euler8s.png",
+      "leaf_id": "e_book_reader",
+      "r2_slug": "e-book-reader",
+      "post_slugs": {
+        "fr": "liseuse-electronique",
+        "en": "e-book-reader",
+        "ar": "qary-alktb-alilktrwny"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/eid_al_adha_sheep_1024x1024_euler8s_v2.png",
+      "leaf_id": "eid_al_adha_sheep",
+      "r2_slug": "eid-al-adha-sheep",
+      "post_slugs": {
+        "fr": "mouton-de-l-aid-al-adha",
+        "en": "eid-al-adha-sheep",
+        "ar": "kharuf-yd-aladha"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/elf_with_bow_and_arrow_848x1264_euler8s.png",
+      "leaf_id": "elf_with_bow_and_arrow",
+      "r2_slug": "elf-with-bow-and-arrow",
+      "post_slugs": {
+        "fr": "elfe-avec-arc-et-fleche",
+        "en": "elf-with-bow-and-arrow",
+        "ar": "ilf-maa-qws-wshm"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/emperor_penguin_1024x1024_euler8s.png",
+      "leaf_id": "emperor_penguin",
+      "r2_slug": "emperor-penguin",
+      "post_slugs": {
+        "fr": "manchot-empereur",
+        "en": "emperor-penguin",
+        "ar": "albtryq-alimbratwr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/fairy_with_wings_1024x1024_euler8s.png",
+      "leaf_id": "fairy_with_wings",
+      "r2_slug": "fairy-with-wings",
+      "post_slugs": {
+        "fr": "fee-ailee",
+        "en": "fairy-with-wings",
+        "ar": "aljnya-almjnha"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/family_at_iftar_table_1024x1024_euler8s.png",
+      "leaf_id": "family_at_iftar_table",
+      "r2_slug": "family-at-iftar-table",
+      "post_slugs": {
+        "fr": "famille-a-la-table-d-iftar",
+        "en": "family-at-iftar-table",
+        "ar": "ayla-ala-mayda-aliftar"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/farm_donkey_1024x1024_euler8s.png",
+      "leaf_id": "farm_donkey",
+      "r2_slug": "farm-donkey",
+      "post_slugs": {
+        "fr": "ane-de-ferme",
+        "en": "farm-donkey",
+        "ar": "hmar-almzra"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/firefighter_superhero_848x1264_euler8s.png",
+      "leaf_id": "firefighter_superhero",
+      "r2_slug": "firefighter-superhero",
+      "post_slugs": {
+        "fr": "pompier-super-heros",
+        "en": "firefighter-superhero",
+        "ar": "itfayy-btl-kharq"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/firefighter_with_hose_848x1264_b2_euler8s.png",
+      "leaf_id": "firefighter_with_hose",
+      "r2_slug": "firefighter-with-hose",
+      "post_slugs": {
+        "fr": "pompier-avec-lance-a-eau",
+        "en": "firefighter-with-hose",
+        "ar": "itfayy-bkhrtwm"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/fireplace_1024x1024_euler8s.png",
+      "leaf_id": "fireplace",
+      "r2_slug": "fireplace",
+      "post_slugs": {
+        "fr": "cheminee",
+        "en": "fireplace",
+        "ar": "almwqd"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/first_steam_engine_train_1024x1024_euler8s.png",
+      "leaf_id": "first_steam_engine_train",
+      "r2_slug": "first-steam-engine-train",
+      "post_slugs": {
+        "fr": "premiere-locomotive-a-vapeur",
+        "en": "first-steam-engine-train",
+        "ar": "awl-qtar-bkhary"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/fisherman_with_net_1024x1024_euler8s.png",
+      "leaf_id": "fisherman_with_net",
+      "r2_slug": "fisherman-with-net",
+      "post_slugs": {
+        "fr": "pecheur-avec-filet",
+        "en": "fisherman-with-net",
+        "ar": "alsyad-balshbka"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/flat_screen_tv_1024x1024_euler8s.png",
+      "leaf_id": "flat_screen_tv",
+      "r2_slug": "flat-screen-tv",
+      "post_slugs": {
+        "fr": "television-ecran-plat",
+        "en": "flat-screen-tv",
+        "ar": "shasha-altlfaz-almstha"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/football_coach_1024x1024_euler8s.png",
+      "leaf_id": "football_coach",
+      "r2_slug": "football-coach",
+      "post_slugs": {
+        "fr": "entraineur-de-football",
+        "en": "football-coach",
+        "ar": "mdrb-kra-alqdm"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/french_bulldog_1024x1024_euler8s.png",
+      "leaf_id": "french_bulldog",
+      "r2_slug": "french-bulldog",
+      "post_slugs": {
+        "fr": "bouledogue-francais",
+        "en": "french-bulldog",
+        "ar": "albwldwgh-alfrnsy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/garden_snail_1024x1024_euler8s.png",
+      "leaf_id": "garden_snail",
+      "r2_slug": "garden-snail",
+      "post_slugs": {
+        "fr": "escargot-de-jardin",
+        "en": "garden-snail",
+        "ar": "alhlzwn"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/gray_wolf_1024x1024_euler8s.png",
+      "leaf_id": "gray_wolf",
+      "r2_slug": "gray-wolf",
+      "post_slugs": {
+        "fr": "loup-gris",
+        "en": "gray-wolf",
+        "ar": "aldhyb-alrmady"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/great_white_shark_1024x1024_euler8s.png",
+      "leaf_id": "great_white_shark",
+      "r2_slug": "great-white-shark",
+      "post_slugs": {
+        "fr": "grand-requin-blanc",
+        "en": "great-white-shark",
+        "ar": "alqrsh-alabyd-alkbyr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/griffin_1024x1024_euler8s.png",
+      "leaf_id": "griffin",
+      "r2_slug": "griffin",
+      "post_slugs": {
+        "fr": "griffon",
+        "en": "griffin",
+        "ar": "alnqa-almjnha"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/grizzly_bear_1024x1024_euler8s.png",
+      "leaf_id": "grizzly_bear",
+      "r2_slug": "grizzly-bear",
+      "post_slugs": {
+        "fr": "ours-grizzli",
+        "en": "grizzly-bear",
+        "ar": "aldb-alashyb"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/guinea_pig_1024x1024_euler8s.png",
+      "leaf_id": "guinea_pig",
+      "r2_slug": "guinea-pig",
+      "post_slugs": {
+        "fr": "cochon-d-inde",
+        "en": "guinea-pig",
+        "ar": "khnzyr-ghynya"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/hamster_1024x1024_euler8s.png",
+      "leaf_id": "hamster",
+      "r2_slug": "hamster",
+      "post_slugs": {
+        "fr": "hamster",
+        "en": "hamster",
+        "ar": "alhamstr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/harp_seal_1024x1024_euler8s.png",
+      "leaf_id": "harp_seal",
+      "r2_slug": "harp-seal",
+      "post_slugs": {
+        "fr": "phoque-du-groenland",
+        "en": "harp-seal",
+        "ar": "fqma-harb"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/honey_bee_1024x1024_euler8s.png",
+      "leaf_id": "honey_bee",
+      "r2_slug": "honey-bee",
+      "post_slugs": {
+        "fr": "abeille-a-miel",
+        "en": "honey-bee",
+        "ar": "nhla-alsl"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/hot_air_balloon_1376x768_euler8s.png",
+      "leaf_id": "hot_air_balloon",
+      "r2_slug": "hot-air-balloon",
+      "post_slugs": {
+        "fr": "montgolfiere",
+        "en": "hot-air-balloon",
+        "ar": "albalwn-alhar"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/house_painter_with_roller_1024x1024_euler8s_v2.png",
+      "leaf_id": "house_painter_with_roller",
+      "r2_slug": "house-painter-with-roller",
+      "post_slugs": {
+        "fr": "peintre-en-batiment-avec-rouleau",
+        "en": "house-painter-with-roller",
+        "ar": "dhan-albywt"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/industrial_3d_printer_1024x1024_euler8s.png",
+      "leaf_id": "industrial_3d_printer",
+      "r2_slug": "industrial-3d-printer",
+      "post_slugs": {
+        "fr": "imprimante-3d-industrielle",
+        "en": "industrial-3d-printer",
+        "ar": "altaba-thlathya-alabad"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/industrial_press_1024x1024_euler8s.png",
+      "leaf_id": "industrial_press",
+      "r2_slug": "industrial-press",
+      "post_slugs": {
+        "fr": "presse-industrielle",
+        "en": "industrial-press",
+        "ar": "almkbs-alsnay"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/iron_man_848x1264_euler8s.png",
+      "leaf_id": "iron_man",
+      "r2_slug": "iron-man",
+      "post_slugs": {
+        "fr": "iron-man",
+        "en": "iron-man",
+        "ar": "alrjl-alhdydy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/jaguar_in_jungle_1024x1024_euler8s.png",
+      "leaf_id": "jaguar_in_jungle",
+      "r2_slug": "jaguar-in-the-jungle",
+      "post_slugs": {
+        "fr": "jaguar-dans-la-jungle",
+        "en": "jaguar-in-the-jungle",
+        "ar": "alyghwr-fi-al-ghaba"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/khabib_nurmagomedov_cartoon_848x1264_euler8s.png",
+      "leaf_id": "khabib_nurmagomedov_cartoon",
+      "r2_slug": "khabib-nurmagomedov-cartoon",
+      "post_slugs": {
+        "fr": "khabib-nurmagomedov-en-cartoon",
+        "en": "khabib-nurmagomedov-cartoon",
+        "ar": "khbyb-nwrmhmdwf"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/kid_yoga_pose_848x1264_b2_euler8s.png",
+      "leaf_id": "kid_yoga_pose",
+      "r2_slug": "kid-yoga-pose",
+      "post_slugs": {
+        "fr": "posture-de-yoga-enfant",
+        "en": "kid-yoga-pose",
+        "ar": "wdya-ywgha-llatfal"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/kitchen_oven_1024x1024_euler8s.png",
+      "leaf_id": "kitchen_oven",
+      "r2_slug": "kitchen-oven",
+      "post_slugs": {
+        "fr": "four-de-cuisine",
+        "en": "kitchen-oven",
+        "ar": "frn-almtbkh"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/kylian_mbappe_cartoon_848x1264_euler8s.png",
+      "leaf_id": "kylian_mbappe_cartoon",
+      "r2_slug": "kylian-mbappe-cartoon",
+      "post_slugs": {
+        "fr": "kylian-mbappe-en-cartoon",
+        "en": "kylian-mbappe-cartoon",
+        "ar": "kylyan-mbaby"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/labrador_retriever_1024x1024_euler8s_v2.png",
+      "leaf_id": "labrador_retriever",
+      "r2_slug": "labrador-retriever",
+      "post_slugs": {
+        "fr": "labrador-retriever",
+        "en": "labrador-retriever",
+        "ar": "kalb-allabradwr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/ladle_spoon_1024x1024_euler8s.png",
+      "leaf_id": "ladle_spoon",
+      "r2_slug": "ladle-spoon",
+      "post_slugs": {
+        "fr": "louche",
+        "en": "ladle-spoon",
+        "ar": "mghrfa-alhsa"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/latkes_potato_pancakes_1024x1024_euler8s.png",
+      "leaf_id": "latkes_potato_pancakes",
+      "r2_slug": "latkes-potato-pancakes",
+      "post_slugs": {
+        "fr": "latkes-galettes-de-pomme-de-terre",
+        "en": "latkes-potato-pancakes",
+        "ar": "ftayr-albtats-latks"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/letter_d_with_dog_1024x1024_euler8s.png",
+      "leaf_id": "letter_d_with_dog",
+      "r2_slug": "letter-d-with-dog",
+      "post_slugs": {
+        "fr": "lettre-d-avec-un-chien",
+        "en": "letter-d-with-dog",
+        "ar": "hrf-d-maa-kalb"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/letter_u_with_ufo_1024x1024_euler8s.png",
+      "leaf_id": "letter_u_with_ufo",
+      "r2_slug": "letter-u-with-ufo",
+      "post_slugs": {
+        "fr": "lettre-u-avec-un-ovni",
+        "en": "letter-u-with-ufo",
+        "ar": "hrf-u-maa-tbq-tayr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/lion_in_savanna_1024x1024_euler8s.png",
+      "leaf_id": "lion_in_savanna",
+      "r2_slug": "lion-in-the-savanna",
+      "post_slugs": {
+        "fr": "lion-dans-la-savane",
+        "en": "lion-in-the-savanna",
+        "ar": "alasd-fi-alsafana"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/live_stream_setup_1024x1024_euler8s.png",
+      "leaf_id": "live_stream_setup",
+      "r2_slug": "live-stream-setup",
+      "post_slugs": {
+        "fr": "setup-de-live-streaming",
+        "en": "live-stream-setup",
+        "ar": "mhta-bth-mbashr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/locksmith_with_keys_1024x1024_euler8s.png",
+      "leaf_id": "locksmith_with_keys",
+      "r2_slug": "locksmith-with-keys",
+      "post_slugs": {
+        "fr": "serrurier-avec-cles",
+        "en": "locksmith-with-keys",
+        "ar": "san-alaqfal"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/maine_coon_cat_1024x1024_euler8s.png",
+      "leaf_id": "maine_coon_cat",
+      "r2_slug": "maine-coon-cat",
+      "post_slugs": {
+        "fr": "chat-maine-coon",
+        "en": "maine-coon-cat",
+        "ar": "qitt-myn-kwn"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/manure_spreader_1024x1024_euler8s.png",
+      "leaf_id": "manure_spreader",
+      "r2_slug": "manure-spreader",
+      "post_slugs": {
+        "fr": "epandeur-d-engrais",
+        "en": "manure-spreader",
+        "ar": "nashra-alsmad"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/mike_tyson_cartoon_848x1264_euler8s.png",
+      "leaf_id": "mike_tyson_cartoon",
+      "r2_slug": "mike-tyson-cartoon",
+      "post_slugs": {
+        "fr": "mike-tyson-en-cartoon",
+        "en": "mike-tyson-cartoon",
+        "ar": "mayk-tayswn"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/mirabel_from_encanto_1024x1024_euler8s.png",
+      "leaf_id": "mirabel_from_encanto",
+      "r2_slug": "mirabel-from-encanto",
+      "post_slugs": {
+        "fr": "mirabel-d-encanto",
+        "en": "mirabel-from-encanto",
+        "ar": "myrabl-mn-inkantw"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/moana_on_ocean_1024x1024_euler8s.png",
+      "leaf_id": "moana_on_ocean",
+      "r2_slug": "moana-on-the-ocean",
+      "post_slugs": {
+        "fr": "vaiana-sur-l-ocean",
+        "en": "moana-on-the-ocean",
+        "ar": "mwana-ala-al-muhit"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/monarch_butterfly_1024x1024_euler8s.png",
+      "leaf_id": "monarch_butterfly",
+      "r2_slug": "monarch-butterfly",
+      "post_slugs": {
+        "fr": "papillon-monarque",
+        "en": "monarch-butterfly",
+        "ar": "farasha-almlk"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/musician_with_guitar_1024x1024_euler8s.png",
+      "leaf_id": "musician_with_guitar",
+      "r2_slug": "musician-with-guitar",
+      "post_slugs": {
+        "fr": "musicien-avec-guitare",
+        "en": "musician-with-guitar",
+        "ar": "almwsyqy-balghytar"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/musk_ox_1024x1024_euler8s.png",
+      "leaf_id": "musk_ox",
+      "r2_slug": "musk-ox",
+      "post_slugs": {
+        "fr": "b-uf-musque",
+        "en": "musk-ox",
+        "ar": "thwr-almsk"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/neymar_jr_cartoon_848x1264_euler8s.png",
+      "leaf_id": "neymar_jr_cartoon",
+      "r2_slug": "neymar-jr-cartoon",
+      "post_slugs": {
+        "fr": "neymar-jr-en-cartoon",
+        "en": "neymar-jr-cartoon",
+        "ar": "nymar"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/noah_lyles_cartoon_848x1264_euler8s.png",
+      "leaf_id": "noah_lyles_cartoon",
+      "r2_slug": "noah-lyles-cartoon",
+      "post_slugs": {
+        "fr": "noah-lyles-en-cartoon",
+        "en": "noah-lyles-cartoon",
+        "ar": "nwah-laylz"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/north_american_beaver_1024x1024_euler8s.png",
+      "leaf_id": "north_american_beaver",
+      "r2_slug": "north-american-beaver",
+      "post_slugs": {
+        "fr": "castor-d-amerique",
+        "en": "north-american-beaver",
+        "ar": "alqnds-alamryky"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/old_steam_train_1024x1024_euler8s.png",
+      "leaf_id": "old_steam_train",
+      "r2_slug": "old-steam-train",
+      "post_slugs": {
+        "fr": "vieux-train-a-vapeur",
+        "en": "old-steam-train",
+        "ar": "alqtar-alqdym"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/orangutan_in_tree_1024x1024_euler8s.png",
+      "leaf_id": "orangutan_in_tree",
+      "r2_slug": "orangutan-in-tree",
+      "post_slugs": {
+        "fr": "orang-outan-dans-l-arbre",
+        "en": "orangutan-in-tree",
+        "ar": "insan-alghab"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/peacock_with_open_tail_1024x1024_euler8s.png",
+      "leaf_id": "peacock_with_open_tail",
+      "r2_slug": "peacock-with-open-tail",
+      "post_slugs": {
+        "fr": "paon-faisant-la-roue",
+        "en": "peacock-with-open-tail",
+        "ar": "altawws"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/persian_cat_1024x1024_euler8s.png",
+      "leaf_id": "persian_cat",
+      "r2_slug": "persian-cat",
+      "post_slugs": {
+        "fr": "chat-persan",
+        "en": "persian-cat",
+        "ar": "alqt-alfarsy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/pet_rabbit_1024x1024_euler8s.png",
+      "leaf_id": "pet_rabbit",
+      "r2_slug": "pet-rabbit",
+      "post_slugs": {
+        "fr": "lapin-domestique",
+        "en": "pet-rabbit",
+        "ar": "alarnb-alalyf"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/pet_turtle_1024x1024_euler8s.png",
+      "leaf_id": "pet_turtle",
+      "r2_slug": "pet-turtle",
+      "post_slugs": {
+        "fr": "tortue-domestique",
+        "en": "pet-turtle",
+        "ar": "alslhfaa-alalyfa"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/phoenix_rising_from_ashes_848x1264_euler8s.png",
+      "leaf_id": "phoenix_rising_from_ashes",
+      "r2_slug": "phoenix-rising-from-ashes",
+      "post_slugs": {
+        "fr": "phenix-renaissant-de-ses-cendres",
+        "en": "phoenix-rising-from-ashes",
+        "ar": "alnqa-tnbth-mn-alrmad"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/polar_bear_on_ice_1024x1024_euler8s.png",
+      "leaf_id": "polar_bear_on_ice",
+      "r2_slug": "polar-bear-on-ice",
+      "post_slugs": {
+        "fr": "ours-polaire-sur-la-glace",
+        "en": "polar-bear-on-ice",
+        "ar": "aldb-alqtby"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/police_car_1024x1024_euler8s.png",
+      "leaf_id": "police_car",
+      "r2_slug": "police-car",
+      "post_slugs": {
+        "fr": "voiture-de-police",
+        "en": "police-car",
+        "ar": "syara-alshrta"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/princess_in_tower_848x1264_euler8s.png",
+      "leaf_id": "princess_in_tower",
+      "r2_slug": "princess-in-tower",
+      "post_slugs": {
+        "fr": "princesse-dans-la-tour",
+        "en": "princess-in-tower",
+        "ar": "amyra-fi-albrj"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/rising_phoenix_1024x1024_euler8s.png",
+      "leaf_id": "rising_phoenix",
+      "r2_slug": "rising-phoenix",
+      "post_slugs": {
+        "fr": "phenix-renaissant",
+        "en": "rising-phoenix",
+        "ar": "tayr-alnqa"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/robot_superhero_848x1264_euler8s.png",
+      "leaf_id": "robot_superhero",
+      "r2_slug": "robot-superhero",
+      "post_slugs": {
+        "fr": "robot-super-heros",
+        "en": "robot-superhero",
+        "ar": "rwbwt-btl-kharq"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/roofer_on_roof_1024x1024_euler8s.png",
+      "leaf_id": "roofer_on_roof",
+      "r2_slug": "roofer-on-roof",
+      "post_slugs": {
+        "fr": "couvreur-sur-le-toit",
+        "en": "roofer-on-roof",
+        "ar": "mrkb-alasth"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/sailing_boat_1376x768_euler8s.png",
+      "leaf_id": "sailing_boat",
+      "r2_slug": "sailing-boat-race",
+      "post_slugs": {
+        "fr": "course-de-voilier",
+        "en": "sailing-boat-race",
+        "ar": "alsbaq-alshray"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/scooby_doo_1024x1024_euler8s.png",
+      "leaf_id": "scooby_doo",
+      "r2_slug": "scooby-doo",
+      "post_slugs": {
+        "fr": "scooby-doo",
+        "en": "scooby-doo",
+        "ar": "skwby-dw"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/sea_turtle_swimming_1024x1024_euler8s.png",
+      "leaf_id": "sea_turtle_swimming",
+      "r2_slug": "sea-turtle-swimming",
+      "post_slugs": {
+        "fr": "tortue-marine-qui-nage",
+        "en": "sea-turtle-swimming",
+        "ar": "alslhfaa-albhrya"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/sheep_with_lamb_1024x1024_euler8s_v2.png",
+      "leaf_id": "sheep_with_lamb",
+      "r2_slug": "sheep-with-lamb",
+      "post_slugs": {
+        "fr": "brebis-et-agneau",
+        "en": "sheep-with-lamb",
+        "ar": "alnja-walhml"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/sloth_in_tree_1024x1024_euler8s.png",
+      "leaf_id": "sloth_in_tree",
+      "r2_slug": "sloth-in-tree",
+      "post_slugs": {
+        "fr": "paresseux-dans-l-arbre",
+        "en": "sloth-in-tree",
+        "ar": "hywan-alkslan"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/smartwatch_1024x1024_euler8s.png",
+      "leaf_id": "smartwatch",
+      "r2_slug": "smartwatch",
+      "post_slugs": {
+        "fr": "montre-connectee",
+        "en": "smartwatch",
+        "ar": "alsaa-aldhkya"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/snow_leopard_1024x1024_euler8s_v2.png",
+      "leaf_id": "snow_leopard",
+      "r2_slug": "snow-leopard",
+      "post_slugs": {
+        "fr": "leopard-des-neiges",
+        "en": "snow-leopard",
+        "ar": "namir-althlwj"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/snowboarder_jump_848x1264_euler8s.png",
+      "leaf_id": "snowboarder_jump",
+      "r2_slug": "snowboarder-jumping",
+      "post_slugs": {
+        "fr": "snowboarder-en-saut",
+        "en": "snowboarder-jumping",
+        "ar": "mtzlj-allwh-alwahd"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/snowy_owl_1024x1024_euler8s.png",
+      "leaf_id": "snowy_owl",
+      "r2_slug": "snowy-owl",
+      "post_slugs": {
+        "fr": "harfang-des-neiges",
+        "en": "snowy-owl",
+        "ar": "albwma-althljya"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/solar_panel_on_roof_1024x1024_euler8s.png",
+      "leaf_id": "solar_panel_on_roof",
+      "r2_slug": "solar-panel-on-roof",
+      "post_slugs": {
+        "fr": "panneau-solaire-sur-toit",
+        "en": "solar-panel-on-roof",
+        "ar": "allwh-alshmsy-ala-alsth"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/speed_skater_848x1264_euler8s.png",
+      "leaf_id": "speed_skater",
+      "r2_slug": "speed-skater",
+      "post_slugs": {
+        "fr": "patineur-de-vitesse",
+        "en": "speed-skater",
+        "ar": "mtzlj-alsra"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/spongebob_squarepants_1024x1024_euler8s.png",
+      "leaf_id": "spongebob_squarepants",
+      "r2_slug": "spongebob-squarepants",
+      "post_slugs": {
+        "fr": "bob-l-eponge",
+        "en": "spongebob-squarepants",
+        "ar": "sbwnj-bwb"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/spotted_hyena_1024x1024_euler8s_v2.png",
+      "leaf_id": "spotted_hyena",
+      "r2_slug": "spotted-hyena",
+      "post_slugs": {
+        "fr": "hyene-tachetee",
+        "en": "spotted-hyena",
+        "ar": "aldb-almrqt"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/spotted_leopard_1024x1024_euler8s.png",
+      "leaf_id": "spotted_leopard",
+      "r2_slug": "spotted-leopard",
+      "post_slugs": {
+        "fr": "leopard-tachete",
+        "en": "spotted-leopard",
+        "ar": "alnmr-alifryqy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/starfish_on_seabed_1024x1024_euler8s.png",
+      "leaf_id": "starfish_on_seabed",
+      "r2_slug": "starfish-on-seabed",
+      "post_slugs": {
+        "fr": "etoile-de-mer",
+        "en": "starfish-on-seabed",
+        "ar": "njm-al-bahr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/steam_mop_1024x1024_euler8s.png",
+      "leaf_id": "steam_mop",
+      "r2_slug": "steam-mop",
+      "post_slugs": {
+        "fr": "balai-vapeur",
+        "en": "steam-mop",
+        "ar": "mmsha-albkhar"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/stitch_from_lilo_and_stitch_1024x1024_euler8s.png",
+      "leaf_id": "stitch_from_lilo_and_stitch",
+      "r2_slug": "stitch-from-lilo-and-stitch",
+      "post_slugs": {
+        "fr": "stitch-de-lilo-et-stitch",
+        "en": "stitch-from-lilo-and-stitch",
+        "ar": "stytsh"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/subway_train_1024x1024_euler8s.png",
+      "leaf_id": "subway_train",
+      "r2_slug": "subway-train",
+      "post_slugs": {
+        "fr": "metro",
+        "en": "subway-train",
+        "ar": "qtar-alanfaq"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/suv_off_road_1024x1024_euler8s.png",
+      "leaf_id": "suv_off_road",
+      "r2_slug": "suv-off-road",
+      "post_slugs": {
+        "fr": "suv-tout-terrain",
+        "en": "suv-off-road",
+        "ar": "syara-aldf-alrbay"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/swimming_seahorse_1024x1024_euler8s.png",
+      "leaf_id": "swimming_seahorse",
+      "r2_slug": "swimming-seahorse",
+      "post_slugs": {
+        "fr": "hippocampe",
+        "en": "swimming-seahorse",
+        "ar": "hisan-al-bahr"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/tintin_reporter_1024x1024_euler8s.png",
+      "leaf_id": "tintin_reporter",
+      "r2_slug": "tintin-reporter",
+      "post_slugs": {
+        "fr": "tintin-reporter",
+        "en": "tintin-reporter",
+        "ar": "tan-tan"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/tour_guide_with_group_1024x1024_euler8s.png",
+      "leaf_id": "tour_guide_with_group",
+      "r2_slug": "tour-guide-with-group",
+      "post_slugs": {
+        "fr": "guide-touristique-avec-groupe",
+        "en": "tour-guide-with-group",
+        "ar": "almrshd-alsyahy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/turkey_bird_1024x1024_euler8s.png",
+      "leaf_id": "turkey_bird",
+      "r2_slug": "turkey-bird",
+      "post_slugs": {
+        "fr": "dinde",
+        "en": "turkey-bird",
+        "ar": "aldyk-alrwmy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/vr_headset_1024x1024_euler8s.png",
+      "leaf_id": "vr_headset",
+      "r2_slug": "vr-headset",
+      "post_slugs": {
+        "fr": "casque-de-realite-virtuelle",
+        "en": "vr-headset",
+        "ar": "nzara-alwaq-alaftrady"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/water_skiing_1376x768_b1_euler8s.png",
+      "leaf_id": "water_skiing",
+      "r2_slug": "water-skiing",
+      "post_slugs": {
+        "fr": "ski-nautique",
+        "en": "water-skiing",
+        "ar": "altzlj-ala-alma"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/watering_can_1024x1024_euler8s.png",
+      "leaf_id": "watering_can",
+      "r2_slug": "watering-can",
+      "post_slugs": {
+        "fr": "arrosoir",
+        "en": "watering-can",
+        "ar": "almrsha"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-generator-benchmark/wizard_with_staff_848x1264_euler8s.png",
+      "leaf_id": "wizard_with_staff",
+      "r2_slug": "wizard-with-staff",
+      "post_slugs": {
+        "fr": "magicien-avec-son-baton",
+        "en": "wizard-with-staff",
+        "ar": "sahr-maa-sa"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/wood_chisel_1024x1024_euler8s.png",
+      "leaf_id": "wood_chisel",
+      "r2_slug": "wood-chisel",
+      "post_slugs": {
+        "fr": "ciseau-a-bois",
+        "en": "wood-chisel",
+        "ar": "izmyl-alkhshb"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/wright_brothers_first_plane_1024x1024_euler8s.png",
+      "leaf_id": "wright_brothers_first_plane",
+      "r2_slug": "wright-brothers-first-plane",
+      "post_slugs": {
+        "fr": "premier-avion-des-freres-wright",
+        "en": "wright-brothers-first-plane",
+        "ar": "awl-tayra-llakhwyn-rayt"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/yeti_in_mountains_1024x1024_euler8s.png",
+      "leaf_id": "yeti_in_mountains",
+      "r2_slug": "yeti-in-mountains",
+      "post_slugs": {
+        "fr": "yeti-dans-les-montagnes",
+        "en": "yeti-in-mountains",
+        "ar": "alyty"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    },
+    {
+      "image_id": "benchmark:poc-scale-benchmark/zebra_in_savanna_1024x1024_euler8s.png",
+      "leaf_id": "zebra_in_savanna",
+      "r2_slug": "zebra-in-the-savanna",
+      "post_slugs": {
+        "fr": "zebre-dans-la-savane",
+        "en": "zebra-in-the-savanna",
+        "ar": "alhmar-alwhshy"
+      },
+      "status": "ready_for_export",
+      "master_present": false
+    }
+  ]
+}

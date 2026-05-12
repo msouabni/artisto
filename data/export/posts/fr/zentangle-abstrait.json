@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "zentangle-abstrait",
+  "r2_slug": "abstract-zentangle",
+  "title": "Coloriage Zentangle Abstrait pour Enfants",
+  "title_card": "Zentangle abstrait",
+  "description": "Découvrez ce coloriage Zentangle abstrait unique. Des motifs complexes et artistiques pour stimuler la créativité et l'imagination des enfants dans une activité de dessin relaxante.",
+  "keywords": [
+    "Zentangle",
+    "coloriage",
+    "enfants",
+    "créativité",
+    "motifs"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/abstract_zentangle_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/abstract-zentangle.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/abstract-zentangle.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/abstract-zentangle.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/abstract-zentangle.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "abstract_zentangle",
+    "name_en": "Abstract Zentangle",
+    "name_fr": "Zentangle abstrait",
+    "name_ar": "زنتانغل مجرد",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

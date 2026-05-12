@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "eid-al-adha-sheep",
+  "r2_slug": "eid-al-adha-sheep",
+  "title": "Colorful Eid al Adha Sheep Scene",
+  "title_card": "Eid al Adha Sheep",
+  "description": "This delightful coloring page features a happy sheep ready for the Eid al Adha celebration. Children can use bright colors to bring the festive animal to life and enjoy the joy of the holiday.",
+  "keywords": [
+    "Eid al Adha",
+    "coloring page",
+    "happy sheep",
+    "festive animal",
+    "bright colors"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/eid_al_adha_sheep_1024x1024_euler8s_v2.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/eid-al-adha-sheep.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/eid-al-adha-sheep.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/eid-al-adha-sheep.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/eid-al-adha-sheep.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "eid_al_adha_sheep",
+    "name_en": "Eid al Adha Sheep",
+    "name_fr": "Mouton de l'Aïd al-Adha",
+    "name_ar": "خروف عيد الأضحى",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

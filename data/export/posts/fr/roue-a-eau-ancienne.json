@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "roue-a-eau-ancienne",
+  "r2_slug": "ancient-water-wheel",
+  "title": "Coloriage de la roue à eau ancienne",
+  "title_card": "Roue à eau ancienne",
+  "description": "Découvrez cette belle roue à eau ancienne pour colorier. Un sujet historique fascinant et ludique pour les enfants.",
+  "keywords": [
+    "roue",
+    "eau",
+    "ancienne",
+    "coloriage",
+    "histoire"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/ancient_water_wheel_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/ancient-water-wheel.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/ancient-water-wheel.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/ancient-water-wheel.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/ancient-water-wheel.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "ancient_water_wheel",
+    "name_en": "Ancient Water Wheel",
+    "name_fr": "Roue à eau ancienne",
+    "name_ar": "ساقية مائية قديمة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

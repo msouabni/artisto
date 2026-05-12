@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "lion-dans-la-savane",
+  "r2_slug": "lion-in-the-savanna",
+  "title": "Coloriage lion dans la savane",
+  "title_card": "Lion savane",
+  "description": "Apprenez les couleurs avec ce magnifique lion dans la savane. Un dessin parfait pour les enfants qui aiment l'animal et la nature.",
+  "keywords": [
+    "lion",
+    "savane",
+    "animaux",
+    "couleurs",
+    "enfants"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/lion_in_savanna_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/lion-in-the-savanna.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/lion-in-the-savanna.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/lion-in-the-savanna.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/lion-in-the-savanna.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "lion_in_savanna",
+    "name_en": "Lion in the Savanna",
+    "name_fr": "Lion dans la savane",
+    "name_ar": "الأسد في السافانا",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "hmar-almzra",
+  "r2_slug": "farm-donkey",
+  "title": "لوحة تلوين حمار المزرعة",
+  "title_card": "حمار المزرعة",
+  "description": "استمتع بلوحة تلوين حمار المزرعة الجميلة، وهي مناسبة للأطفال لتعليم الألوان والابتهاج.",
+  "keywords": [
+    "حمار",
+    "المزرعة",
+    "لوحة",
+    "تلوين",
+    "أطفال"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/farm_donkey_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/farm-donkey.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/farm-donkey.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/farm-donkey.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/farm-donkey.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "farm_donkey",
+    "name_en": "Farm Donkey",
+    "name_fr": "Âne de ferme",
+    "name_ar": "حمار المزرعة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

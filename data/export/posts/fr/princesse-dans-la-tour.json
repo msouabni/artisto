@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "princesse-dans-la-tour",
+  "r2_slug": "princess-in-tower",
+  "title": "Coloriage Princesse dans la Tour",
+  "title_card": "Princesse Tour",
+  "description": "Découvrez ce magnifique coloriage de princesse assise dans une tour majestueuse. Idéal pour les enfants qui aiment les histoires de château et les couleurs vives.",
+  "keywords": [
+    "princesse",
+    "tour",
+    "château",
+    "enfant",
+    "coloriage"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/princess_in_tower_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/princess-in-tower.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/princess-in-tower.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/princess-in-tower.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/princess-in-tower.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "princess_in_tower",
+    "name_en": "Princess in Tower",
+    "name_fr": "Princesse dans la tour",
+    "name_ar": "أميرة في البرج",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

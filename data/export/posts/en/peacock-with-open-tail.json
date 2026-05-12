@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "peacock-with-open-tail",
+  "r2_slug": "peacock-with-open-tail",
+  "title": "Colorful Peacock with Open Tail",
+  "title_card": "Peacock Coloring Page",
+  "description": "This vibrant page features a majestic peacock displaying its stunning open tail feathers. Children will enjoy coloring the bright blues and greens of this beautiful bird.",
+  "keywords": [
+    "peacock",
+    "coloring",
+    "birds",
+    "nature",
+    "art"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/peacock_with_open_tail_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/peacock-with-open-tail.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/peacock-with-open-tail.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/peacock-with-open-tail.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/peacock-with-open-tail.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "peacock_with_open_tail",
+    "name_en": "Peacock with Open Tail",
+    "name_fr": "Paon faisant la roue",
+    "name_ar": "الطاووس",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "mtzlj-alsra",
+  "r2_slug": "speed-skater",
+  "title": "لوحة تلوين متزلج السرعة",
+  "title_card": "متزلج السرعة",
+  "description": "استمتع بلوحة تلوين متزلج السرعة، ركز على التفاصيل الدقيقة لمتزلج السرعة في مسار الجليد.",
+  "keywords": [
+    "لوحة تلوين",
+    "متزلج السرعة",
+    "الرياضة",
+    "الجلد",
+    "الأنشطة الترفيهية"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/speed_skater_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/speed-skater.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/speed-skater.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/speed-skater.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/speed-skater.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "speed_skater",
+    "name_en": "Speed Skater",
+    "name_fr": "Patineur de vitesse",
+    "name_ar": "متزلج السرعة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

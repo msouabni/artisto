@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "qtar-alanfaq",
+  "r2_slug": "subway-train",
+  "title": "لوحة تلوين قطار الأنفاق",
+  "title_card": "لوحة تلوين قطار الأنفاق",
+  "description": "استمتع بلوحة تلوين ممتعة لقطار الأنفاق، وهي مناسبة للأطفال لتعليم الألوان والتركيز.",
+  "keywords": [
+    "لوحة تلوين",
+    "قطار الأنفاق",
+    "تعليم الأطفال",
+    "نشاط ترفيهي",
+    "فن الرسم"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/subway_train_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/subway-train.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/subway-train.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/subway-train.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/subway-train.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "subway_train",
+    "name_en": "Subway Train",
+    "name_fr": "Métro",
+    "name_ar": "قطار الأنفاق",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

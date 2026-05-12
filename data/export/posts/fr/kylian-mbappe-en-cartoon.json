@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "kylian-mbappe-en-cartoon",
+  "r2_slug": "kylian-mbappe-cartoon",
+  "title": "Coloriage de Kylian Mbappe footballeur",
+  "title_card": "Kylian Mbappe coloriage",
+  "description": "Amusez vos enfants avec ce coloriage de Kylian Mbappe. Un super footballeur pour dessiner et colorier ensemble.",
+  "keywords": [
+    "enfant",
+    "footballeur",
+    "Mbappe",
+    "dessin",
+    "coloriage"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/kylian_mbappe_cartoon_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/kylian-mbappe-cartoon.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/kylian-mbappe-cartoon.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/kylian-mbappe-cartoon.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/kylian-mbappe-cartoon.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "kylian_mbappe_cartoon",
+    "name_en": "Kylian Mbappe Cartoon",
+    "name_fr": "Kylian Mbappé en cartoon",
+    "name_ar": "كيليان مبابي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "phoque-du-groenland",
+  "r2_slug": "harp-seal",
+  "title": "Coloriage du Phoque du Groenland",
+  "title_card": "Phoque du Groenland",
+  "description": "Découvrez ce magnifique animal marin blanc et gris. Coloriez ce phoque du Groenland pour les enfants et apprenez sur sa vie dans l'Arctique.",
+  "keywords": [
+    "phoque",
+    "Arctique",
+    "animaux",
+    "coloriage",
+    "mer"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/harp_seal_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/harp-seal.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/harp-seal.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/harp-seal.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/harp-seal.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "harp_seal",
+    "name_en": "Harp Seal",
+    "name_fr": "Phoque du Groenland",
+    "name_ar": "فقمة هارب",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

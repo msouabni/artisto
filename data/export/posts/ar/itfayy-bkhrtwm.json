@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "itfayy-bkhrtwm",
+  "r2_slug": "firefighter-with-hose",
+  "title": "لوحة تلوين إطفائي بخرطوم",
+  "title_card": "إطفائي بخرطوم",
+  "description": "استمتع بلوحة تلوين مجانية لطفل يصفو إطفائي بخرطوم في نشاط تعليمي ممتع",
+  "keywords": [
+    "لوحة تلوين",
+    "إطفائي",
+    "خرطوم",
+    "نشاط ترفيهي",
+    "تعليم أطفال"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/firefighter_with_hose_848x1264_b2_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/firefighter-with-hose.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/firefighter-with-hose.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/firefighter-with-hose.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/firefighter-with-hose.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "firefighter_with_hose",
+    "name_en": "Firefighter with Hose",
+    "name_fr": "Pompier avec lance à eau",
+    "name_ar": "إطفائي بخرطوم",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

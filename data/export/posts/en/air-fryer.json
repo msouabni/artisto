@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "air-fryer",
+  "r2_slug": "air-fryer",
+  "title": "Colorful Air Fryer Coloring Page",
+  "title_card": "Air Fryer Fun",
+  "description": "This vibrant page features a modern air fryer ready for creative coloring. Children can add bright colors to the basket and knobs while learning about kitchen appliances.",
+  "keywords": [
+    "air fryer",
+    "coloring page",
+    "kitchen tools",
+    "cooking fun",
+    "bright colors"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/air_fryer_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/air-fryer.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/air-fryer.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/air-fryer.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/air-fryer.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "air_fryer",
+    "name_en": "Air Fryer",
+    "name_fr": "Friteuse à air chaud",
+    "name_ar": "القلاية الهوائية",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

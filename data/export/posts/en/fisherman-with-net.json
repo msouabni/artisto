@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "fisherman-with-net",
+  "r2_slug": "fisherman-with-net",
+  "title": "Fisherman Catching Big Fish",
+  "title_card": "Fisherman with Net",
+  "description": "Color this happy fisherman holding his net while waiting for big fish to jump out of the water in the ocean.",
+  "keywords": [
+    "fisherman",
+    "coloring",
+    "net",
+    "ocean",
+    "fish"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/fisherman_with_net_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/fisherman-with-net.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/fisherman-with-net.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/fisherman-with-net.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/fisherman-with-net.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "fisherman_with_net",
+    "name_en": "Fisherman with Net",
+    "name_fr": "Pêcheur avec filet",
+    "name_ar": "الصياد بالشبكة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

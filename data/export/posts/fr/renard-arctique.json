@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "renard-arctique",
+  "r2_slug": "arctic-fox",
+  "title": "Coloriage du Renard Arctique",
+  "title_card": "Renard Arctique",
+  "description": "Découvrez ce petit animal blanc qui vit dans la neige. Coloriez son pelage et ses oreilles pointues pour l'admirer.",
+  "keywords": [
+    "Renard",
+    "Arctique",
+    "Neige",
+    "Animal",
+    "Blanc"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/arctic_fox_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/arctic-fox.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/arctic-fox.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/arctic-fox.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/arctic-fox.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "arctic_fox",
+    "name_en": "Arctic Fox",
+    "name_fr": "Renard arctique",
+    "name_ar": "الثعلب القطبي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

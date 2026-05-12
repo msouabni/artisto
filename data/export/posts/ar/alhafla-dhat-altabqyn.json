@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "alhafla-dhat-altabqyn",
+  "r2_slug": "double-decker-bus",
+  "title": "لوحة تلوين الحافلة ذات الطابقين للأطفال",
+  "title_card": "لوحة تلوين الحافلة ذات الطابقين",
+  "description": "استمتع بلوحة تلوين الحافلة ذات الطابقين المصممة خصيصا للأطفال لتعليمهم الألوان والابتهاج.",
+  "keywords": [
+    "لوحة تلوين",
+    "الحافلة ذات الطابقين",
+    "تعليم الألوان",
+    "أنشطة الأطفال",
+    "الابتهاج"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/double_decker_bus_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/double-decker-bus.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/double-decker-bus.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/double-decker-bus.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/double-decker-bus.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "double_decker_bus",
+    "name_en": "Double Decker Bus",
+    "name_fr": "Bus à impériale",
+    "name_ar": "الحافلة ذات الطابقين",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

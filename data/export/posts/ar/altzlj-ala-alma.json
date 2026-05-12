@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "altzlj-ala-alma",
+  "r2_slug": "water-skiing",
+  "title": "لوحة تلوين التزلج على الماء",
+  "title_card": "تلوين التزلج على الماء",
+  "description": "استمتع بلوحة تلوين ممتعة تركز على رياضة التزلج على الماء لتعليم الأطفال الألوان والتركيز في نفس الوقت",
+  "keywords": [
+    "لوحة تلوين",
+    "تزلج على الماء",
+    "رياضة مائية",
+    "تعليم أطفال",
+    "فن الرسم"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/water_skiing_1376x768_b1_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/water-skiing.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/water-skiing.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/water-skiing.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/water-skiing.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "water_skiing",
+    "name_en": "Water Skiing",
+    "name_fr": "Ski nautique",
+    "name_ar": "التزلج على الماء",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

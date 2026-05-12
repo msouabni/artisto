@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "rayd-fda-ytfw-fi-alfda",
+  "r2_slug": "astronaut-floating-in-space",
+  "title": "رائد فضاء يطفو في الفضاء",
+  "title_card": "رائد فضاء يطفو",
+  "description": "تصميم ملون لرائد فضاء يطفو في الفضاء الخارجي، مناسب للأطفال لتعلم الألوان والفضاء.",
+  "keywords": [
+    "رائد فضاء",
+    "طفو في الفضاء",
+    "تصميم ملون",
+    "تلوين للأطفال",
+    "الفضاء الخارجي"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/astronaut_floating_in_space_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/astronaut-floating-in-space.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/astronaut-floating-in-space.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/astronaut-floating-in-space.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/astronaut-floating-in-space.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "astronaut_floating_in_space",
+    "name_en": "Astronaut Floating in Space",
+    "name_fr": "Astronaute flottant dans l'espace",
+    "name_ar": "رائد فضاء يطفو في الفضاء",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

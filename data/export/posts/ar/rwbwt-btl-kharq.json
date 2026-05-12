@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "rwbwt-btl-kharq",
+  "r2_slug": "robot-superhero",
+  "title": "روبوت بطل خارق للتلوين",
+  "title_card": "روبوت بطل خارق",
+  "description": "تصميم جذاب لروبوت بطل خارق يناسب الأطفال، مع تفاصيل دقيقة ومناطق ملونة متعددة لتنمية الإبداع.",
+  "keywords": [
+    "روبوت",
+    "بطل خارق",
+    "تلوين",
+    "تعليم",
+    "أطفال"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/robot_superhero_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/robot-superhero.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/robot-superhero.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/robot-superhero.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/robot-superhero.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "robot_superhero",
+    "name_en": "Robot Superhero",
+    "name_fr": "Robot super-héros",
+    "name_ar": "روبوت بطل خارق",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

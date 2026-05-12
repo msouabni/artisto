@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "qary-alktb-alilktrwny",
+  "r2_slug": "e-book-reader",
+  "title": "قارئ الكتب الإلكتروني: دليلك للتعلم والابتكار",
+  "title_card": "قارئ الكتب الإلكتروني",
+  "description": "استكشف عالم الكتب الرقمية مع قارئ الكتب الإلكتروني، حيث تفتح أبواب المعرفة وتسهل الوصول إلى المعرفة في كل مكان.",
+  "keywords": [
+    "قارئ",
+    "الكتب",
+    "إلكتروني",
+    "معرفة",
+    "تعليم"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/e_book_reader_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/e-book-reader.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/e-book-reader.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/e-book-reader.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/e-book-reader.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "e_book_reader",
+    "name_en": "E-Book Reader",
+    "name_fr": "Liseuse électronique",
+    "name_ar": "قارئ الكتب الإلكتروني",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}
