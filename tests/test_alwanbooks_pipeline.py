@@ -184,16 +184,15 @@ def test_ensure_post_complete_injects_defaults():
     """Les champs requis manquants reçoivent des défauts sains.
 
     ``categoryId`` est calculé depuis ``_pipeline.leaf_id`` via le mapping
-    rimalab-v2 ; sans info, fallback ``animals_cats`` (seule Category sûre
-    en l'absence de ``general_humans`` / ``objects_things`` créées côté
-    plateforme — arbitrage 2026-05-12).
+    rimalab-v2 ; sans info de leaf, fallback final ``objects_things``
+    (règle 8 — brief 2026-05-12).
     """
     minimal = {
         "locale": "fr", "slug": "x", "title": "T", "title_card": "Tc",
         "description": "D", "keywords": [],
     }
     out = pipe._ensure_post_complete(minimal)
-    assert out["categoryId"] == "animals_cats"
+    assert out["categoryId"] == "objects_things"
     assert out["themeIds"] == []
     assert out["ageMin"] == 4
     assert out["ageMax"] == 10
@@ -202,16 +201,109 @@ def test_ensure_post_complete_injects_defaults():
     assert out["featured"] is False
     # datePublication injectée si absente
     assert out["datePublication"]
+    # dateModification injectée (= datePublication au premier export, Zod V2)
+    assert out["dateModification"]
+    assert out["dateModification"] == out["datePublication"]
 
 
 def test_ensure_post_complete_maps_category_from_leaf_id():
-    """Le bloc ``_pipeline.leaf_id`` détermine ``categoryId`` via mapping."""
+    """Le bloc ``_pipeline.leaf_id`` détermine ``categoryId`` via mapping.
+
+    Vérifie le routing pour les 8 nouvelles catégories rimalab-v2
+    (brief 2026-05-12 — commit rimalab ``5975195``).
+    """
     cases = [
-        ("letter_d_with_dog", "letters_arabic"),
-        ("persian_cat", "animals_cats"),
+        # Règle 1 — lions (startswith)
+        ("lion_in_savanna", "animals_lions"),
+        ("lion_in_the_savanna", "animals_lions"),
+        # Règle 2 — oiseaux
+        ("peacock_with_open_tail", "animals_birds"),
+        ("snowy_owl", "animals_birds"),
+        ("turkey_bird", "animals_birds"),
+        ("emperor_penguin", "animals_birds"),
+        # Règle 3 — faune marine
+        ("sea_turtle_swimming", "animals_marine"),
+        ("great_white_shark", "animals_marine"),
+        ("starfish_on_seabed", "animals_marine"),
+        ("swimming_seahorse", "animals_marine"),
+        ("harp_seal", "animals_marine"),
+        ("crab_on_beach", "animals_marine"),
+        # Règle 4 — animaux domestiques
+        ("persian_cat", "animals_pets"),
+        ("british_shorthair_cat", "animals_pets"),
+        ("pet_rabbit", "animals_pets"),
+        ("hamster", "animals_pets"),
+        ("guinea_pig", "animals_pets"),
+        ("french_bulldog", "animals_pets"),
+        ("labrador_retriever", "animals_pets"),
+        ("pet_turtle", "animals_pets"),
+        ("dairy_cow", "animals_pets"),
+        ("farm_donkey", "animals_pets"),
+        ("sheep_with_lamb", "animals_pets"),
+        # Règle 5 — faune sauvage
+        ("african_elephant", "animals_wild"),
+        ("asian_elephant", "animals_wild"),
+        ("polar_bear_on_ice", "animals_wild"),
+        ("grizzly_bear", "animals_wild"),
+        ("gray_wolf", "animals_wild"),
+        ("arctic_fox", "animals_wild"),
+        ("bengal_tiger", "animals_wild"),
+        ("snow_leopard", "animals_wild"),
+        ("spotted_leopard", "animals_wild"),
+        ("jaguar_in_jungle", "animals_wild"),
+        ("zebra_in_savanna", "animals_wild"),
+        ("chimpanzee", "animals_wild"),
+        ("orangutan_in_tree", "animals_wild"),
+        ("sloth_in_tree", "animals_wild"),
+        ("spotted_hyena", "animals_wild"),
+        ("monarch_butterfly", "animals_wild"),
+        ("honey_bee", "animals_wild"),
+        ("garden_snail", "animals_wild"),
+        ("griffin", "animals_wild"),
+        ("phoenix_rising_from_ashes", "animals_wild"),
+        # Règle 6 — humains
+        ("firefighter_superhero", "general_humans"),
+        ("firefighter_with_hose", "general_humans"),
         ("astronaut_walking_on_moon", "general_humans"),
+        ("doctor_with_stethoscope", "general_humans"),
+        ("baker_with_bread", "general_humans"),
+        ("chef_cooking", "general_humans"),
+        ("fisherman_with_net", "general_humans"),
+        ("breakdancer", "general_humans"),
+        ("child_running_outdoors", "general_humans"),
+        ("kid_yoga_pose", "general_humans"),
+        ("family_at_iftar_table", "general_humans"),
+        ("captain_america_with_shield", "general_humans"),
+        ("iron_man", "general_humans"),
+        ("princess_in_tower", "general_humans"),
+        ("kylian_mbappe_cartoon", "general_humans"),
+        ("neymar_jr_cartoon", "general_humans"),
+        ("snowboarder_jump", "general_humans"),
+        ("water_skiing", "general_humans"),
+        ("robot_superhero", "general_humans"),
+        ("football_coach", "general_humans"),
+        # Règle 7 — lettres alphabet
+        ("letter_d_with_dog", "letters_arabic"),
+        ("letter_u_with_ufo", "letters_arabic"),
+        # Règle 8 — fallback objets / motifs / véhicules / outils
         ("abstract_zentangle", "objects_things"),
-        ("african_elephant", "animals_cats"),  # fallback générique
+        ("advanced_mandala_for_teens", "objects_things"),
+        ("birthday_cake_with_candles", "objects_things"),
+        ("city_car", "objects_things"),
+        ("double_decker_bus", "objects_things"),
+        ("subway_train", "objects_things"),
+        ("first_steam_engine_train", "objects_things"),
+        ("hot_air_balloon", "objects_things"),
+        ("smartwatch", "objects_things"),
+        ("vr_headset", "objects_things"),
+        ("flat_screen_tv", "objects_things"),
+        ("kitchen_oven", "objects_things"),
+        ("claw_hammer", "objects_things"),
+        ("wood_chisel", "objects_things"),
+        ("fireplace", "objects_things"),
+        ("solar_panel_on_roof", "objects_things"),
+        ("ai_brain_with_circuits", "objects_things"),
+        ("crescent_moon_and_star", "objects_things"),
     ]
     for leaf_id, expected_cat in cases:
         post = {
@@ -223,6 +315,40 @@ def test_ensure_post_complete_maps_category_from_leaf_id():
         assert out["categoryId"] == expected_cat, (
             f"{leaf_id} should map to {expected_cat}, got {out['categoryId']}"
         )
+
+
+def test_map_leaf_to_category_lion_priority_over_cat():
+    """``lion_in_the_savanna`` doit aller dans ``animals_lions`` (priorité 1)
+    et pas tomber dans ``animals_cats`` ou ``animals_pets`` parce que le
+    mapper voit ``cat`` quelque part dans le nom."""
+    assert pipe.map_leaf_to_category("lion_in_the_savanna") == "animals_lions"
+    assert pipe.map_leaf_to_category("lion_in_savanna") == "animals_lions"
+    assert pipe.map_leaf_to_category("lion_cub") == "animals_lions"
+
+
+def test_map_leaf_to_category_polar_bear_is_wild():
+    """``polar_bear_on_ice`` doit aller dans ``animals_wild`` (règle 5)."""
+    assert pipe.map_leaf_to_category("polar_bear_on_ice") == "animals_wild"
+
+
+def test_map_leaf_to_category_sea_turtle_is_marine():
+    """``sea_turtle_swimming`` doit aller dans ``animals_marine``
+    (règle 3 — ``sea_turtle`` matche avant ``pet_turtle``)."""
+    assert pipe.map_leaf_to_category("sea_turtle_swimming") == "animals_marine"
+
+
+def test_map_leaf_to_category_firefighter_is_human():
+    """``firefighter_superhero`` doit aller dans ``general_humans``
+    (règle 6 — préfixe profession)."""
+    assert pipe.map_leaf_to_category("firefighter_superhero") == "general_humans"
+
+
+def test_map_leaf_to_category_big_cats_not_pets():
+    """``bengal_tiger`` ne doit PAS être routé vers ``animals_pets``
+    (filtre big_cats — règle 4 → tombe en règle 5 ``animals_wild``)."""
+    assert pipe.map_leaf_to_category("bengal_tiger") == "animals_wild"
+    assert pipe.map_leaf_to_category("snow_leopard") == "animals_wild"
+    assert pipe.map_leaf_to_category("jaguar_in_jungle") == "animals_wild"
 
 
 def test_ensure_post_complete_filters_short_keywords():
@@ -242,10 +368,14 @@ def test_ensure_post_complete_filters_short_keywords():
 
 
 def test_map_leaf_to_category_handles_none():
-    """``map_leaf_to_category(None)`` retourne le fallback sans crash."""
-    assert pipe.map_leaf_to_category(None) == "animals_cats"
-    assert pipe.map_leaf_to_category("") == "animals_cats"
-    assert pipe.map_leaf_to_category("unknown_random_leaf") == "animals_cats"
+    """``map_leaf_to_category(None)`` retourne le fallback sans crash.
+
+    Le fallback final (règle 8) est ``objects_things`` depuis le patch
+    2026-05-12 (6 nouvelles Categories rimalab).
+    """
+    assert pipe.map_leaf_to_category(None) == "objects_things"
+    assert pipe.map_leaf_to_category("") == "objects_things"
+    assert pipe.map_leaf_to_category("unknown_random_leaf") == "objects_things"
 
 
 def test_ensure_post_complete_preserves_existing():

@@ -425,124 +425,144 @@ def post_json_to_md(post: dict, *, body_text: str | None = None) -> str:
 
 #: Mapping ``leaf_id`` → ``categoryId`` côté rimalab-v2.
 #:
-#: Arbitrages reçus de rimalab-v2 (2026-05-12) :
-#: - Categories existantes : ``animals_cats``, ``letters_arabic``.
-#: - Categories à créer côté plateforme : ``general_humans`` (humains /
-#:   personnages / professions / sports), ``objects_things`` (objets /
-#:   véhicules / outils / décoration).
-#: - Fallback unique tant que ``general_humans`` et ``objects_things`` ne
-#:   sont pas créées : utiliser ``animals_cats`` (incorrect sémantiquement
-#:   mais débloque le build Zod ; à patcher quand les 2 nouvelles
-#:   Categories sont en place).
+#: Arbitrages reçus de rimalab-v2 (2026-05-12, commit rimalab ``5975195``) :
+#: 6 nouvelles Categories créées côté plateforme :
 #:
-#: Routing par mots-clés dans le ``leaf_id`` (longueur DESC pour matcher
-#: les patterns spécifiques avant les génériques).
-_CATEGORY_KEYWORDS: list[tuple[str, str]] = [
-    # Lettres alphabet AR
-    ("letter_", "letters_arabic"),
-    # Chats spécifiques
-    ("_cat", "animals_cats"),
-    ("cat_", "animals_cats"),
-    # Humains / personnages → general_humans (à créer côté rimalab)
-    ("astronaut", "general_humans"),
-    ("baker", "general_humans"),
-    ("breakdancer", "general_humans"),
-    ("captain_america", "general_humans"),
-    ("chef", "general_humans"),
-    ("child_", "general_humans"),
-    ("doctor", "general_humans"),
-    ("elf_", "general_humans"),
-    ("fairy", "general_humans"),
-    ("family_", "general_humans"),
-    ("firefighter", "general_humans"),
-    ("fisherman", "general_humans"),
-    ("guide", "general_humans"),
-    ("iron_man", "general_humans"),
-    ("kid_", "general_humans"),
-    ("knight", "general_humans"),
-    ("locksmith", "general_humans"),
-    ("mirabel", "general_humans"),
-    ("moana", "general_humans"),
-    ("musician", "general_humans"),
-    ("painter", "general_humans"),
-    ("police_officer", "general_humans"),
-    ("princess", "general_humans"),
-    ("robot_superhero", "general_humans"),
-    ("roofer", "general_humans"),
-    ("scooby_doo", "general_humans"),
-    ("snowboarder", "general_humans"),
-    ("speed_skater", "general_humans"),
-    ("spongebob", "general_humans"),
-    ("stitch_from", "general_humans"),
-    ("superhero", "general_humans"),
-    ("tintin", "general_humans"),
-    ("water_skiing", "general_humans"),
-    ("wizard", "general_humans"),
-    ("yeti", "general_humans"),
-    ("cartoon", "general_humans"),  # canelo_alvarez_cartoon, neymar_jr_cartoon, etc.
-    ("yoga_pose", "general_humans"),
-    ("football_coach", "general_humans"),
-    # Objets / outils / véhicules → objects_things
-    ("aladdin_with_magic_lamp", "objects_things"),  # objet magique
-    ("balloon", "objects_things"),
-    ("bus", "objects_things"),
-    ("cake", "objects_things"),
-    ("car", "objects_things"),
-    ("chisel", "objects_things"),
-    ("cleaner", "objects_things"),
-    ("e_book", "objects_things"),
-    ("fryer", "objects_things"),
-    ("fireplace", "objects_things"),
-    ("hammer", "objects_things"),
-    ("mop", "objects_things"),
-    ("oven", "objects_things"),
-    ("plane", "objects_things"),
-    ("printer", "objects_things"),
-    ("press", "objects_things"),
-    ("radio", "objects_things"),
-    ("scale", "objects_things"),
-    ("setup", "objects_things"),
-    ("smartwatch", "objects_things"),
-    ("solar_panel", "objects_things"),
-    ("subway", "objects_things"),
-    ("suv", "objects_things"),
-    ("train", "objects_things"),
-    ("tv", "objects_things"),
-    ("vr_headset", "objects_things"),
-    ("water_wheel", "objects_things"),
-    ("watering_can", "objects_things"),
-    ("wheel", "objects_things"),
-    ("zentangle", "objects_things"),  # motif décoratif
-    ("mandala", "objects_things"),    # motif décoratif
-    ("ladle", "objects_things"),
-    ("attic", "objects_things"),
-    ("ai_brain", "objects_things"),
-    ("crescent_moon", "objects_things"),
-    ("eid_al_adha_sheep", "general_humans"),  # contexte culturel humain
-    ("latkes", "objects_things"),
-    ("manure_spreader", "objects_things"),
-    ("hot_air", "objects_things"),
-    # Animaux génériques (tous les autres animaux → animals_cats par défaut
-    # tant qu'une Category ``animals_generic`` n'existe pas).
-]
+#: - ``animals_lions``  (existant — big cats / lion)
+#: - ``animals_birds``  (oiseaux : peacock, owl, turkey_bird, penguin…)
+#: - ``animals_marine`` (faune marine : crab, shark, whale, octopus…)
+#: - ``animals_pets``   (animaux domestiques : rabbit, hamster, cat,
+#:   bulldog, labrador, donkey, sheep_with_lamb…)
+#: - ``animals_wild``   (faune sauvage : elephant, fox, wolf, tiger,
+#:   leopard, bear, kangaroo, butterfly, bee, dragon…)
+#: - ``general_humans`` (humains / personnages / professions / sports)
+#: - ``objects_things`` (objets / véhicules / outils / motifs — fallback)
+#: - ``animals_cats``   (chats — existant, conservé pour compat)
+#: - ``letters_arabic`` (alphabet — existant)
+#:
+#: Le mapper applique les règles **dans l'ordre du brief
+#: 2026-05-12** (par priorité) — premier match gagne.
 
-#: Fallback ultime si aucun mot-clé ne matche : ``animals_cats`` (la seule
-#: Category sûre actuellement présente côté rimalab-v2).
-_CATEGORY_DEFAULT = "animals_cats"
+#: Big cats à exclure de ``animals_pets`` même si "cat" matche dans le
+#: nom (utilisé en règle 4).
+_BIG_CATS_PATTERNS = (
+    "tiger", "leopard", "jaguar", "cheetah", "puma", "panther", "lynx",
+    "cougar",
+)
+
+#: Règle 2 — oiseaux.
+_BIRDS_RE = re.compile(
+    r"peacock|owl|turkey_bird|penguin|parrot|eagle|hawk|swan|falcon|"
+    r"flamingo|hummingbird|crow|sparrow|pigeon|dove|woodpecker",
+)
+
+#: Règle 3 — faune marine.
+_MARINE_RE = re.compile(
+    r"crab|shark|sea_turtle|seahorse|starfish|whale|harp_seal|dolphin|"
+    r"octopus|jellyfish|stingray|squid|lobster|clownfish",
+)
+
+#: Règle 4 — animaux domestiques (le filtre big_cats est appliqué
+#: séparément avant le match ``cat``).
+_PETS_RE = re.compile(
+    r"rabbit|hamster|guinea_pig|french_bulldog|labrador|pet_turtle|"
+    r"dairy_cow|donkey|sheep_with_lamb|eid_al_adha_sheep|persian_cat|"
+    r"british_shorthair_cat|maine_coon_cat",
+)
+
+#: Règle 5 — faune sauvage (non chat, non oiseau, non marin, non pet).
+_WILD_RE = re.compile(
+    r"elephant|fox|wolf|tiger|leopard|jaguar|bear|alpaca|armadillo|"
+    r"chimpanzee|orangutan|sloth|hyena|zebra|buffalo|musk_ox|beaver|"
+    r"butterfly|bee|snail|spider|griffin|phoenix|dragon|kangaroo|"
+    r"antelope|giraffe|rhino|hippo|gorilla|panda|deer|moose",
+)
+
+#: Règle 6a — humains via préfixe profession / personnage.
+_HUMANS_PREFIXES = (
+    "firefighter", "police", "doctor", "teacher", "baker", "astronaut",
+    "pilot", "farmer", "fisherman", "dancer", "chef", "musician",
+    "painter", "locksmith", "roofer", "tour_guide", "house_painter",
+    "snowboarder", "speed_skater", "breakdancer", "wizard", "knight",
+    "princess", "fairy", "elf_", "iron_man", "captain_america",
+    "robot_superhero", "scooby_doo", "spongebob", "stitch_from",
+    "mirabel", "moana", "tintin", "yeti", "football_coach",
+)
+
+#: Règle 6b — humains via mots-clés contenus dans le ``leaf_id``.
+_HUMANS_RE = re.compile(
+    r"human|kid|child|woman|man\b|baby|teenager|cartoon|yoga_pose|"
+    r"family_|water_skiing|superhero",
+)
+
+#: Règle 7 — lettres / alphabet.
+_LETTERS_RE = re.compile(r"lettre|letter_|alphabet|arabic")
+
+#: Fallback ultime (règle 8) : objets / véhicules / outils / motifs.
+_CATEGORY_DEFAULT = "objects_things"
 
 
 def map_leaf_to_category(leaf_id: str | None) -> str:
     """Mappe un ``leaf_id`` taxonomique à un ``categoryId`` rimalab-v2.
 
-    Retourne le premier match sur ``_CATEGORY_KEYWORDS`` (ordre = priorité)
-    ou ``_CATEGORY_DEFAULT`` si rien ne matche.
+    Routing par règles ordonnées (brief 2026-05-12) :
+
+    1. ``leaf_id`` startswith ``lion``                 → ``animals_lions``
+    2. match oiseaux                                    → ``animals_birds``
+    3. match faune marine                               → ``animals_marine``
+    4. match animaux domestiques (ou ``cat`` non big cat) → ``animals_pets``
+    5. match faune sauvage                              → ``animals_wild``
+    6. match humains (préfixe profession / mots-clés)   → ``general_humans``
+    7. match lettres / alphabet                          → ``letters_arabic``
+    8. fallback                                          → ``objects_things``
+
+    Retourne le fallback si ``leaf_id`` est ``None`` / vide.
     """
     if not leaf_id:
         return _CATEGORY_DEFAULT
     lid = leaf_id.lower()
-    for kw, cat in _CATEGORY_KEYWORDS:
-        if kw in lid:
-            return cat
+
+    # 1. Lions (gardé sur startswith pour matcher "lion_in_savanna",
+    # "lion_cub", etc. sans capturer ``animal_mandala_lion_head``).
+    if lid.startswith("lion"):
+        return "animals_lions"
+    # Cas particulier : feuille décorative ``animal_mandala_lion_head`` —
+    # malgré ``lion`` à l'intérieur, c'est un motif → ``objects_things``
+    # (matche via fallback final). Pas de règle dédiée.
+
+    # 2. Oiseaux
+    if _BIRDS_RE.search(lid):
+        return "animals_birds"
+
+    # 3. Faune marine
+    if _MARINE_RE.search(lid):
+        return "animals_marine"
+
+    # 4. Animaux domestiques. Le mot-clé ``cat`` doit matcher seulement
+    # si ce n'est pas un big cat (tigre / léopard / jaguar / etc.).
+    if _PETS_RE.search(lid):
+        return "animals_pets"
+    if ("_cat" in lid or "cat_" in lid) and not any(
+        bc in lid for bc in _BIG_CATS_PATTERNS
+    ):
+        return "animals_pets"
+
+    # 5. Faune sauvage
+    if _WILD_RE.search(lid):
+        return "animals_wild"
+
+    # 6. Humains — préfixe profession ou mots-clés
+    for prefix in _HUMANS_PREFIXES:
+        if lid.startswith(prefix) or f"_{prefix}" in lid:
+            return "general_humans"
+    if _HUMANS_RE.search(lid):
+        return "general_humans"
+
+    # 7. Lettres alphabet
+    if _LETTERS_RE.search(lid):
+        return "letters_arabic"
+
+    # 8. Fallback
     return _CATEGORY_DEFAULT
 
 
@@ -595,6 +615,12 @@ def _ensure_post_complete(post: dict) -> dict:
     p.setdefault("status", "approved")
     if "datePublication" not in p or not p["datePublication"]:
         p["datePublication"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # ``dateModification`` est requis par Zod V2 plateforme (bloqueur B3
+    # acté avec dev rimalab 2026-05-12). Au premier export il vaut
+    # ``datePublication`` ; à chaque ré-export il sera mis à jour (logique
+    # à brancher dans un brief séparé — pour l'instant : valeur initiale).
+    if "dateModification" not in p or not p["dateModification"]:
+        p["dateModification"] = p["datePublication"]
     p.setdefault("featured", False)
     return p
 
