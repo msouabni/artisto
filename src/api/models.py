@@ -254,6 +254,53 @@ class AiPromptTemplate(Base):
     updated_at: Mapped[str | None] = mapped_column(Text)
 
 
+class ImagePublication(Base):
+    """Couche publication par locale (brief MEP-v0/A, 2026-05-10).
+
+    Une `image` produit 3 lignes (1 par locale ``fr`` / ``en`` / ``ar``). Chaque
+    ligne porte les champs i18n (``title`` / ``description``), les slugs (R2 et
+    Post) et le statut publication.
+
+    Statuts admis : ``pending`` → ``ready_for_export`` → ``published_alwan``.
+
+    Conventions :
+    - PK composite ``(image_id, locale)``.
+    - FK ``image_id`` → ``image.id`` avec ``ON DELETE CASCADE`` (l'intégrité
+      référentielle est portée par la migration ; pour SQLite, le test active
+      ``PRAGMA foreign_keys=ON`` au besoin).
+    - Unicité ``(locale, post_slug)`` : un slug Post est unique par locale,
+      mais peut coexister entre locales différentes (les slugs Post sont
+      localisés). Les ``NULL`` sont autorisés tant qu'aucun slug n'a été
+      attribué.
+    - ``r2_slug`` est partagé entre les 3 locales d'une même image : sa
+      cohérence est assurée applicativement (pas de contrainte SQL).
+    - Pas d'opérateur JSON ici — colonnes scalaires uniquement.
+    """
+
+    __tablename__ = "image_publication"
+    __table_args__ = (
+        Index("idx_image_publication_status", "status"),
+        Index("idx_image_publication_r2_slug", "r2_slug"),
+        UniqueConstraint(
+            "locale", "post_slug", name="uq_image_publication_post_slug",
+        ),
+    )
+
+    image_id: Mapped[str] = mapped_column(
+        ForeignKey("image.id", ondelete="CASCADE"), primary_key=True,
+    )
+    locale: Mapped[str] = mapped_column(String, primary_key=True)
+    title: Mapped[str | None] = mapped_column(Text)
+    description: Mapped[str | None] = mapped_column(Text)
+    post_slug: Mapped[str | None] = mapped_column(String)
+    r2_slug: Mapped[str | None] = mapped_column(String)
+    status: Mapped[str | None] = mapped_column(String, default="pending")
+    external_url: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[str] = mapped_column(Text, nullable=False)
+    updated_at: Mapped[str] = mapped_column(Text, nullable=False)
+    published_at: Mapped[str | None] = mapped_column(Text)
+
+
 class Annotation(Base):
     """Table polymorphe d'annotation humaine (greffon prod, brief 2026-05-09).
 
