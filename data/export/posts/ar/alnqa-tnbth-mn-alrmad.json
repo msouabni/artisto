@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "alnqa-tnbth-mn-alrmad",
+  "r2_slug": "phoenix-rising-from-ashes",
+  "title": "العنقاء تنبعث من الرماد",
+  "title_card": "العنقاء تنبعث من الرماد",
+  "description": "تصفح هذا القالب المميز للونين مع العنقاء التي تنبعث من الرماد، حيث تمثل رمزا للأمل والجدد في عالم الألوان.",
+  "keywords": [
+    "العنقاء",
+    "الرماد",
+    "اللون",
+    "تصميم",
+    "تعليمي"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/phoenix_rising_from_ashes_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/phoenix-rising-from-ashes.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/phoenix-rising-from-ashes.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/phoenix-rising-from-ashes.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/phoenix-rising-from-ashes.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "phoenix_rising_from_ashes",
+    "name_en": "Phoenix Rising from Ashes",
+    "name_fr": "Phénix renaissant de ses cendres",
+    "name_ar": "العنقاء تنبعث من الرماد",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "course-de-voilier",
+  "r2_slug": "sailing-boat-race",
+  "title": "Course de voiliers coloriage",
+  "title_card": "Course de voiliers",
+  "description": "Colorie les bateaux en compétition sur l'eau. Amusez-vous avec ce dessin de course de voiliers pour enfants.",
+  "keywords": [
+    "bateaux",
+    "compétition",
+    "eau",
+    "enfants",
+    "coloriage"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/sailing_boat_1376x768_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/sailing-boat-race.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/sailing-boat-race.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/sailing-boat-race.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/sailing-boat-race.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "sailing_boat",
+    "name_en": "Sailing Boat Race",
+    "name_fr": "Course de voilier",
+    "name_ar": "السباق الشراعي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "thwr-almsk",
+  "r2_slug": "musk-ox",
+  "title": "لوحة تلوين ثور المسك الطبيعي",
+  "title_card": "لوحة تلوين ثور المسك",
+  "description": "استمتع بلوحة تلوين ثور المسك الطبيعي الجميل، وهي صورة تعليمية تفاعلية للأطفال لتعلم الحيوانات البرية.",
+  "keywords": [
+    "ثور المسك",
+    "لوحة تلوين",
+    "حيوانات برية",
+    "تعليم أطفال",
+    "نشاط ترفيهي"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/musk_ox_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/musk-ox.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/musk-ox.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/musk-ox.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/musk-ox.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "musk_ox",
+    "name_en": "Musk Ox",
+    "name_fr": "Bœuf musqué",
+    "name_ar": "ثور المسك",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "arctic-fox",
+  "r2_slug": "arctic-fox",
+  "title": "Colorful Arctic Fox Adventure",
+  "title_card": "Arctic Fox Coloring",
+  "description": "Bring this cute white fox to life with bright colors. The fluffy animal stands on snow with a red nose ready for fun.",
+  "keywords": [
+    "Arctic Fox",
+    "White Fur",
+    "Snowy Land",
+    "Red Nose",
+    "Coloring Fun"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/arctic_fox_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/arctic-fox.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/arctic-fox.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/arctic-fox.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/arctic-fox.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "arctic_fox",
+    "name_en": "Arctic Fox",
+    "name_fr": "Renard arctique",
+    "name_ar": "الثعلب القطبي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "alsaa-aldhkya",
+  "r2_slug": "smartwatch",
+  "title": "لوحة تلوين ساعة ذكية بتصاميم عصرية",
+  "title_card": "لوحة تلوين ساعة ذكية",
+  "description": "استمتع بلوحة تلوين ممتعة بتصميم ساعة ذكية، مناسبة للأطفال والبالغين لتعليم الألوان والإبداع.",
+  "keywords": [
+    "ساعة ذكية",
+    "لوحة تلوين",
+    "تصاميم عصرية",
+    "تعليم الألوان",
+    "إبداع"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/smartwatch_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/smartwatch.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/smartwatch.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/smartwatch.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/smartwatch.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "smartwatch",
+    "name_en": "Smartwatch",
+    "name_fr": "Montre connectée",
+    "name_ar": "الساعة الذكية",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

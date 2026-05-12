@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "awl-qtar-bkhary",
+  "r2_slug": "first-steam-engine-train",
+  "title": "أول قطار بخاري في تاريخ النقل",
+  "title_card": "أول قطار بخاري",
+  "description": "استكشف تفاصيل أول قطار بخاري وكيف غير هذا الاختراع طريقة حياة البشر والنقل في العالم.",
+  "keywords": [
+    "أول قطار بخاري",
+    "تاريخ النقل",
+    "القطارات البخارية",
+    "اختراعات تاريخية",
+    "نشاط تلوين"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/first_steam_engine_train_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/first-steam-engine-train.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/first-steam-engine-train.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/first-steam-engine-train.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/first-steam-engine-train.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "first_steam_engine_train",
+    "name_en": "First Steam Engine Train",
+    "name_fr": "Première locomotive à vapeur",
+    "name_ar": "أول قطار بخاري",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "child-running-outdoors",
+  "r2_slug": "child-running-outdoors",
+  "title": "Happy Child Running Outdoors",
+  "title_card": "Child Running Outdoors",
+  "description": "A joyful child runs freely in the fresh air. This colorful page invites young artists to bring the energetic scene to life with their own vibrant crayons and pencils.",
+  "keywords": [
+    "happy child",
+    "running fast",
+    "outdoors fun",
+    "coloring page",
+    "active play"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/child_running_outdoors_848x1264_b3_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/child-running-outdoors.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/child-running-outdoors.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/child-running-outdoors.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/child-running-outdoors.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "child_running_outdoors",
+    "name_en": "Child Running Outdoors",
+    "name_fr": "Enfant qui court dehors",
+    "name_ar": "طفل يجري في الخارج",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

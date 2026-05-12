@@ -1,0 +1,148 @@
+{
+  "dir": "poc-bench-gate-ernie-T2T3T23",
+  "annotations": {
+    "balanced_lunch_plate_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:56:44.253706+00:00"
+    },
+    "bread_and_pastries_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:56:49.501425+00:00"
+    },
+    "fruit_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:56:55.524510+00:00"
+    },
+    "fruits_basket_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:57:02.418464+00:00"
+    },
+    "healthy_breakfast_plate_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:57:07.717083+00:00"
+    },
+    "proud_child_face_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:57:13.999459+00:00"
+    },
+    "sad_child_crying_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:57:19.401710+00:00"
+    },
+    "vegetable_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:57:25.679693+00:00"
+    },
+    "vegetables_basket_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:57:31.056598+00:00"
+    },
+    "weather_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:57:44.637968+00:00"
+    }
+  }
+}

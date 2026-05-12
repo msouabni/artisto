@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "castor-d-amerique",
+  "r2_slug": "north-american-beaver",
+  "title": "Coloriage du Castor d'Amérique",
+  "title_card": "Coloriage Castor",
+  "description": "Découvrez ce castor d'Amérique majestueux. Coloriez ses plumes et son environnement naturel pour une activité créative et éducative pour les enfants.",
+  "keywords": [
+    "animal",
+    "nature",
+    "coloriage",
+    "enfant",
+    "castor"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/north_american_beaver_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/north-american-beaver.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/north-american-beaver.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/north-american-beaver.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/north-american-beaver.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "north_american_beaver",
+    "name_en": "North American Beaver",
+    "name_fr": "Castor d'Amérique",
+    "name_ar": "القندس الأمريكي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

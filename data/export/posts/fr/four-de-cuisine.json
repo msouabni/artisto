@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "four-de-cuisine",
+  "r2_slug": "kitchen-oven",
+  "title": "Coloriage du four de cuisine pour enfants",
+  "title_card": "Four de cuisine",
+  "description": "Découvrez ce coloriage du four de cuisine. Un objet de cuisine parfait pour les petits artistes qui aiment dessiner et colorier des objets du quotidien.",
+  "keywords": [
+    "four",
+    "cuisine",
+    "enfant",
+    "coloriage",
+    "dessin"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/kitchen_oven_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/kitchen-oven.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/kitchen-oven.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/kitchen-oven.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/kitchen-oven.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "kitchen_oven",
+    "name_en": "Kitchen Oven",
+    "name_fr": "Four de cuisine",
+    "name_ar": "فرن المطبخ",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

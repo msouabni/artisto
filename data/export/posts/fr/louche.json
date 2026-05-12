@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "louche",
+  "r2_slug": "ladle-spoon",
+  "title": "Coloriage de la louche pour enfants",
+  "title_card": "Louche à colorier",
+  "description": "Amusez-vous à colorier cette belle louche en métal. Un exercice créatif parfait pour les petits artistes qui aiment dessiner et peindre des objets de cuisine.",
+  "keywords": [
+    "Louche",
+    "Cuisine",
+    "Enfants",
+    "Coloriage",
+    "Créatif"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/ladle_spoon_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/ladle-spoon.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/ladle-spoon.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/ladle-spoon.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/ladle-spoon.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "ladle_spoon",
+    "name_en": "Ladle Spoon",
+    "name_fr": "Louche",
+    "name_ar": "مغرفة الحساء",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

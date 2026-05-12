@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "firefighter-with-hose",
+  "r2_slug": "firefighter-with-hose",
+  "title": "Brave Firefighter Coloring Page",
+  "title_card": "Firefighter Hero",
+  "description": "Color this brave firefighter holding a hose ready to save the day and protect everyone from danger in this fun activity.",
+  "keywords": [
+    "firefighter",
+    "hose",
+    "brave",
+    "hero",
+    "coloring"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/firefighter_with_hose_848x1264_b2_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/firefighter-with-hose.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/firefighter-with-hose.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/firefighter-with-hose.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/firefighter-with-hose.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "firefighter_with_hose",
+    "name_en": "Firefighter with Hose",
+    "name_fr": "Pompier avec lance à eau",
+    "name_ar": "إطفائي بخرطوم",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

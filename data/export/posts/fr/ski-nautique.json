@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "ski-nautique",
+  "r2_slug": "water-skiing",
+  "title": "Coloriage Ski Nautique Fun",
+  "title_card": "Ski nautique amusant",
+  "description": "Amusez-vous à colorier ce skieur nautique en pleine action sur l'eau. Un dessin dynamique parfait pour les enfants.",
+  "keywords": [
+    "Ski",
+    "nautique",
+    "eau",
+    "enfant",
+    "coloriage"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/water_skiing_1376x768_b1_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/water-skiing.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/water-skiing.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/water-skiing.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/water-skiing.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "water_skiing",
+    "name_en": "Water Skiing",
+    "name_fr": "Ski nautique",
+    "name_ar": "التزلج على الماء",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

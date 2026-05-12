@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "almtrqa",
+  "r2_slug": "claw-hammer",
+  "title": "لوحة تلوين المطرقة ذات الدبوس للتمارين الإبداعية",
+  "title_card": "لوحة تلوين المطرقة",
+  "description": "استمتع بلوحة تلوين المطرقة ذات الدبوس المصممة خصيصا للتمارين الإبداعية والتركيز لدى الأطفال.",
+  "keywords": [
+    "لوحة تلوين",
+    "المطرقة",
+    "التمارين الإبداعية",
+    "التركيز",
+    "الأطفال"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/claw_hammer_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/claw-hammer.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/claw-hammer.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/claw-hammer.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/claw-hammer.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "claw_hammer",
+    "name_en": "Claw Hammer",
+    "name_fr": "Marteau arrache-clou",
+    "name_ar": "المطرقة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

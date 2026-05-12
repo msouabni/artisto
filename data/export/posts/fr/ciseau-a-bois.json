@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "ciseau-a-bois",
+  "r2_slug": "wood-chisel",
+  "title": "Coloriage du ciseau à bois pour enfants",
+  "title_card": "Ciseau à bois",
+  "description": "Découvrez ce coloriage du ciseau à bois parfait pour les enfants. Apprenez les outils de menuiserie tout en créant une image colorée et amusante.",
+  "keywords": [
+    "outil",
+    "menuiserie",
+    "enfant",
+    "créatif",
+    "coloriage"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/wood_chisel_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/wood-chisel.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/wood-chisel.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/wood-chisel.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/wood-chisel.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "wood_chisel",
+    "name_en": "Wood Chisel",
+    "name_fr": "Ciseau à bois",
+    "name_ar": "إزميل الخشب",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

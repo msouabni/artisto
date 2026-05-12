@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "source_skill": ".claude/skills/prompt-taxonomy-ecosystem.skill",
+    "rule": "T25 — Spot the Difference (techniques.md ~l. 794) + Bug v5 (~l. 1004)",
+    "rule_quote": "Une différence explicite doit être concrète, visuelle et localisée. `tap closed -> tap open + bucket` fonctionne. `one single change applied` est trop vague — modèle reproduit la même scène.",
+    "transfer_date": "2026-05-10",
+    "brief": "docs/architect/briefs/2026-05-10_brief-transfert-T25-before-after.md",
+    "coverage": "Couvre les 18 leafs annotés des 2 workflow_classes Comparatif (10 + 8) dans poc-scale-benchmark."
+  },
+  "states": {
+    "rainwater_collection_barrel": {
+      "before_state": "an empty rain barrel standing under a roof gutter, no water inside, dry ground around the barrel",
+      "after_state": "the same barrel now full of water with a small stream of rainwater pouring from the gutter into the barrel, a watering can being filled from the tap at the bottom"
+    },
+    "kid_recycling_bin_sorting": {
+      "before_state": "a child standing next to a single overflowing trash bin with mixed items piled around (paper, plastic bottle, banana peel)",
+      "after_state": "the same child smiling next to three separate labeled bins (paper, plastic, organic), each item placed in the correct bin, no mess on the ground"
+    },
+    "beach_cleanup_volunteers": {
+      "before_state": "a beach scene with scattered plastic bottles, bags and bits of trash on the sand, no people",
+      "after_state": "the same beach now clean with two volunteers carrying full trash bags, a garbage bag set on the sand, the sand free of debris"
+    },
+    "compost_bin_in_garden": {
+      "before_state": "an empty open compost bin in a garden, vegetable peels and dry leaves piled outside the bin on the ground",
+      "after_state": "the same bin now closed with the lid on, the peels and leaves placed inside through the open top, a single seedling sprouting from the soil next to the bin"
+    },
+    "earth_with_protective_hands": {
+      "before_state": "a planet earth alone floating, a few wilting trees and a smoke cloud drawn on its surface",
+      "after_state": "the same earth held gently between two cupped human hands from below, the trees on its surface now upright with leaves, no smoke cloud"
+    },
+    "solar_panels_on_roof": {
+      "before_state": "a simple house with a plain empty sloped roof, a tall power line pole next to the house",
+      "after_state": "the same house with a row of solar panels mounted on the sloped roof, a small sun shape drawn above sending lines toward the panels, the power line pole removed"
+    },
+    "polar_bear_on_melting_ice": {
+      "before_state": "a polar bear standing on a wide thick ice floe, snow piled around, calm sea below",
+      "after_state": "the same polar bear now perched on a small thin cracked ice floe, water around with a few floating ice fragments, a sad expression on the bear",
+      "comment": "Cas 12 deforestation validé presque parfait avec Insight C — pattern suivi pour climate-change leafs."
+    },
+    "wind_turbines_on_hill": {
+      "before_state": "a green hill with a tall smoking factory chimney at the top, dark smoke rising into the sky",
+      "after_state": "the same hill now topped by three wind turbines with spinning blades, no chimney, clear sky"
+    },
+    "kid_planting_a_tree": {
+      "before_state": "a child holding a small tree sapling and a shovel, an empty round hole dug in the ground in front of them",
+      "after_state": "the same child standing next to a young tree planted in the hole, the shovel resting on the ground, a watering can pouring water at the base of the tree"
+    },
+    "deforestation_before_after": {
+      "before_state": "a dense forest with many tall trees standing close together, small animals visible between the trunks",
+      "after_state": "the same area now bare with only a few stumps and a single fallen log, no animals, a tractor or chainsaw in the corner"
+    },
+    "vegetable_garden_at_home": {
+      "before_state": "an empty rectangular garden plot with bare soil, a shovel and a watering can resting against a fence",
+      "after_state": "the same plot now planted with rows of leafy vegetables (lettuce, carrot tops, tomato plants on stakes), the watering can tipped pouring a few drops"
+    },
+    "electric_car_charging": {
+      "before_state": "a parked car with its fuel cap open and a fuel pump nozzle inserted, a gasoline pump station behind",
+      "after_state": "the same car now plugged into an electric charging station via a cable connected to a charging port, a small lightning bolt symbol on the station"
+    },
+    "reusable_shopping_tote_bag": {
+      "before_state": "a shopper holding several thin plastic bags filled with items, one bag has a torn corner letting an apple fall out",
+      "after_state": "the same shopper now holding one sturdy reusable cloth tote bag full of the same items, no torn bag, no items falling"
+    },
+    "eco_friendly_house_with_panels": {
+      "before_state": "a plain house with a smoking chimney on the roof, a tall power line pole next to it, a closed window",
+      "after_state": "the same house with solar panels on the roof, a small wind turbine in the yard, the chimney no longer smoking, an open window with a plant on the sill"
+    },
+    "zero_waste_kitchen": {
+      "before_state": "a kitchen counter cluttered with disposable items (plastic water bottles, paper plates, plastic cutlery, a full trash can overflowing nearby)",
+      "after_state": "the same counter now tidy with glass jars of bulk goods, a reusable cloth bag, a metal water bottle, the trash can replaced by a small compost bin"
+    },
+    "bike_to_work_commute": {
+      "before_state": "a person standing next to a car in a long traffic jam on a road, smoke coming from several exhaust pipes",
+      "after_state": "the same person now riding a bicycle on a clear bike lane next to the road, a backpack on their back, the traffic jam still visible but smaller in the background"
+    },
+    "kids_picking_up_litter": {
+      "before_state": "a park scene with scattered litter on the grass (cans, papers, a plastic bag), no children present",
+      "after_state": "the same park now clean with two children holding a full trash bag and a litter grabber tool, the grass clear, a single bird on a branch"
+    },
+    "reusable_water_bottle": {
+      "before_state": "a single-use plastic water bottle lying empty crumpled on its side, a discarded bottle cap nearby",
+      "after_state": "a sturdy reusable metal water bottle standing upright, closed with its cap on top, a small water droplet symbol next to it"
+    }
+  }
+}

@@ -17,8 +17,6 @@ from api.helpers import get_i18n, json_response, transaction
 from workers.comfy_client import (
     DEFAULT_WORKFLOW_TEMPLATE,
     list_workflow_template_names,
-    load_workflow_template,
-    sanitize_public_workflow_inputs,
     workflow_template_exists,
     workflows_json_dir,
 )
@@ -169,77 +167,23 @@ def build_image_generation_job_config(
     options: CreateJobPayload | BulkCreateGenerationJobsPayload,
     workflow_template: str | None,
 ) -> dict[str, Any]:
-    """Construit ``job.config`` pour ``image_generation`` (même logique single et bulk)."""
+    """Construit ``job.config`` pour ``image_generation`` (même logique single et bulk).
+
+    MEP v0 ERNIE-only — pas de préflight sidecar (cf. docs/architect/2026-05-10_spec-mep-v0.md §V1.1).
+    Le worker injecte directement les valeurs par node id sur le workflow ERNIE.
+    Le ``negative_prompt`` est conservé dans ``job.config`` pour traçabilité mais n'est
+    plus injecté côté ERNIE (le négatif est figé dans le workflow JSON node 15).
+    """
+    positive_prompt = str(prompt or "").strip()
     config_data: dict[str, Any] = {
-        "prompt": prompt,
-        "positive_prompt": prompt,
-        "negative_prompt": negative_prompt,
+        "prompt": positive_prompt,
+        "positive_prompt": positive_prompt,
+        "negative_prompt": str(negative_prompt or "").strip(),
         "tags": tags,
+        "workflow_template": workflow_template or DEFAULT_WORKFLOW_TEMPLATE,
     }
     _append_image_generation_optional_fields(config_data, options)
-    if workflow_template is not None:
-        config_data["workflow_template"] = workflow_template
     return config_data
-
-
-def _sanitize_image_generation_job_config(
-    config_data: dict[str, Any],
-    workflow_template: str | None,
-) -> dict[str, Any]:
-    """Préflight léger : ne garder dans `job.config` que les champs publics supportés par le workflow."""
-    wf_name = workflow_template or DEFAULT_WORKFLOW_TEMPLATE
-    wf_dir = workflows_json_dir()
-    _, _, contract = load_workflow_template(wf_dir, wf_name)
-    public_inputs = contract.get("public_inputs") or {}
-    capabilities = contract.get("capabilities") or {}
-    if "positive_prompt" not in public_inputs or capabilities.get("positive_prompt") == "unsupported":
-        raise HTTPException(
-            status_code=422,
-            detail=f"Le workflow '{wf_name}' n'expose pas de `positive_prompt` public compatible.",
-        )
-
-    positive_prompt = str(config_data.get("positive_prompt") or config_data.get("prompt") or "").strip()
-    candidate_values: dict[str, Any] = {
-        "positive_prompt": positive_prompt,
-        "negative_prompt": str(config_data.get("negative_prompt") or "").strip(),
-        "seed": config_data.get("seed"),
-        "steps": config_data.get("steps"),
-        "cfg": config_data.get("cfg"),
-        "width": config_data.get("width"),
-        "height": config_data.get("height"),
-        "batch_size": config_data.get("batch_size"),
-        "sampler_name": config_data.get("sampler_name"),
-        "scheduler": config_data.get("scheduler"),
-        "denoise": config_data.get("denoise"),
-        "shift": config_data.get("shift"),
-    }
-    allowed_public = sanitize_public_workflow_inputs(candidate_values, contract)
-
-    sanitized = dict(config_data)
-    sanitized["prompt"] = positive_prompt
-    sanitized["positive_prompt"] = positive_prompt
-    sanitized["workflow_template"] = wf_name
-    sanitized["workflow_contract_version"] = contract.get("contract_version")
-
-    managed_fields = (
-        "negative_prompt",
-        "seed",
-        "steps",
-        "cfg",
-        "width",
-        "height",
-        "batch_size",
-        "sampler_name",
-        "scheduler",
-        "denoise",
-        "shift",
-    )
-    for field in managed_fields:
-        if field in allowed_public:
-            sanitized[field] = allowed_public[field]
-        else:
-            sanitized.pop(field, None)
-    return sanitized
 
 
 class JobsBatchPayload(BaseModel):
@@ -779,7 +723,6 @@ def bulk_create_generation_jobs(
             options=payload,
             workflow_template=workflow_tpl,
         )
-        config_data = _sanitize_image_generation_job_config(config_data, workflow_tpl)
         config = json.dumps(config_data, ensure_ascii=False)
 
         try:
@@ -948,7 +891,6 @@ def create_job(
         options=payload,
         workflow_template=workflow_tpl,
     )
-    config_data = _sanitize_image_generation_job_config(config_data, workflow_tpl)
     config = json.dumps(config_data)
 
     with transaction(conn):

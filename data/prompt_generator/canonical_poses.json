@@ -1,0 +1,44 @@
+{
+  "_meta": {
+    "source_skill": ".claude/skills/prompt-taxonomy-ecosystem.skill",
+    "rule": "T27 — Pose naturelle vs pose forcée (techniques.md ~l. 876)",
+    "rule_quote": "`mid-action`, `dynamic pose`, `motion lines` génèrent de la crispation quand la pose demandée contredit la représentation dominante du personnage dans le dataset. Fix : Identifier la pose canonique du personnage et la décrire naturellement avec des gestes précis.",
+    "transfer_date": "2026-05-10",
+    "brief": "docs/architect/briefs/2026-05-10_brief-transfert-T22-T27-T30-anatomie.md",
+    "coverage": "Couvre les 4 personnalités annotées `image_anatomie_pb` du fait de `mid-action / dynamic pose / motion lines` sur template_personality_action. Pose canonique = ce que le dataset associe naturellement au personnage."
+  },
+  "poses": {
+    "captain_marvel": {
+      "subject_name": "Captain Marvel",
+      "pose_clause": "standing tall with feet together, hands on hips in a confident hero stance, looking forward, fitted full-body superhero costume with long sleeves and a star emblem on the chest, simple ground line beneath the feet"
+    },
+    "rapunzel_with_long_hair": {
+      "subject_name": "Rapunzel",
+      "pose_clause": "standing with feet together, holding a long single braid of hair that flows down past the feet and curls along the ground, wearing a long flowing dress with puffy short sleeves, gentle smile, simple ground line"
+    },
+    "lamine_yamal_cartoon": {
+      "subject_name": "Lamine Yamal",
+      "pose_clause": "standing relaxed in a soccer kit with short sleeves and shorts, soccer socks pulled up to the knees, cleats on the feet, one foot resting on top of a soccer ball, hands on hips, smiling, simple ground line"
+    },
+    "rafael_nadal_cartoon": {
+      "subject_name": "Rafael Nadal",
+      "pose_clause": "standing relaxed in a sleeveless tennis shirt and tennis shorts, sneakers on the feet, headband around the head and wristband on the dominant arm, holding a tennis racket vertically in one hand, the other hand holding a tennis ball, simple ground line"
+    },
+    "scheherazade": {
+      "subject_name": "Scheherazade",
+      "pose_clause": "sitting cross-legged on a simple cushion, one hand raised gracefully telling a story, the other hand resting on her knee, long flowing dress with a sheer veil, expressive face with open mouth speaking"
+    },
+    "chef_with_apron": {
+      "subject_name": "chef",
+      "pose_clause": "standing behind a simple kitchen counter viewed from the front, tall chef hat on head, double-breasted chef jacket with long sleeves, full apron tied at the waist, holding a wooden spoon in one hand, smiling"
+    },
+    "fisherman": {
+      "subject_name": "fisherman",
+      "pose_clause": "sitting on the edge of a simple wooden dock, fishing rod held in both hands extended toward the water, line going down into the water below, viewed from the side, calm expression"
+    },
+    "ballet_dancer": {
+      "subject_name": "ballet dancer",
+      "pose_clause": "standing on the toes of one foot, the other leg extended fully behind in arabesque, both arms extended in opposite directions in a long graceful line, simple ground line"
+    }
+  }
+}

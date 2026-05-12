@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "stytsh",
+  "r2_slug": "stitch-from-lilo-and-stitch",
+  "title": "لوحة تلوين ستيتش من ليلو وستيتش",
+  "title_card": "لوحة تلوين ستيتش",
+  "description": "استمتع بلوحة تلوين مميزة لشخصية ستيتش الشهيرة من فيلم ليلو وستيتش، وهي شخصية خيالية مشهورة في الثقافة الشعبية.",
+  "keywords": [
+    "ستيتش",
+    "ليلو",
+    "ستيتش",
+    "لوحة",
+    "تلوين"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/stitch_from_lilo_and_stitch_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/stitch-from-lilo-and-stitch.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/stitch-from-lilo-and-stitch.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/stitch-from-lilo-and-stitch.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/stitch-from-lilo-and-stitch.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "stitch_from_lilo_and_stitch",
+    "name_en": "Stitch from Lilo and Stitch",
+    "name_fr": "Stitch de Lilo et Stitch",
+    "name_ar": "ستيتش",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

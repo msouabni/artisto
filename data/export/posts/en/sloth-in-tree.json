@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "sloth-in-tree",
+  "r2_slug": "sloth-in-tree",
+  "title": "Cute Sloth Coloring Page for Kids",
+  "title_card": "Sloth in Tree",
+  "description": "Color this adorable sloth hanging from a green tree branch. Perfect for young children to enjoy creative fun and relaxation.",
+  "keywords": [
+    "sloth",
+    "tree",
+    "animals",
+    "coloring",
+    "kids"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/sloth_in_tree_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/sloth-in-tree.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/sloth-in-tree.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/sloth-in-tree.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/sloth-in-tree.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "sloth_in_tree",
+    "name_en": "Sloth in Tree",
+    "name_fr": "Paresseux dans l'arbre",
+    "name_ar": "حيوان الكسلان",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

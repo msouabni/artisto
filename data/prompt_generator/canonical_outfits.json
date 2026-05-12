@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "source_skill": ".claude/skills/prompt-taxonomy-ecosystem.skill",
+    "rule": "T22 — Tenues spécialisées : description granulaire (techniques.md ~l. 651)",
+    "rule_quote": "Plus la tenue est spécialisée et rare, plus la description doit être granulaire pièce par pièce. Tenues courantes → nom suffit. Tenues rares → décrire pièce par pièce.",
+    "transfer_date": "2026-05-10",
+    "brief": "docs/architect/briefs/2026-05-10_brief-transfert-T22-T27-T30-anatomie.md",
+    "coverage": "Couvre les leafs annotés `image_anatomie_pb` sur tenues spécialisées (équestre, danse, sport extrême, métiers spécialisés). NB : descriptions sans noms de couleur (FILT _COLOR_NOUNS strippe red/white/blue/etc.) — on décrit la forme et la matière sans nommer les couleurs.",
+    "notes": "Pour `polo_player` et `dressage_horse` la tenue intègre la règle T22 humain+grand animal : `the animal much larger than the human` + cheval `in profile facing left/right` + `holding [objet] with both hands`. Pour `tango_couple` on décrit deux tenues distinctes (homme/femme) car c'est intrinsèquement un duo de danse — l'isolation _ISOLATION_HUMAN reste appropriée car on ferme la scène sur les 2 personnages."
+  },
+  "outfits": {
+    "polo_player": {
+      "outfit_clause": "riding boots knee high, jodhpurs trousers fitted, polo shirt with short sleeves and collar, riding helmet on head, holding a polo mallet with both hands",
+      "subject_clause": "one polo player",
+      "scene_clause": "the player standing next to a horse in profile, the horse much larger than the player, the horse with all four legs clearly separated"
+    },
+    "dressage_horse": {
+      "outfit_clause": "riding boots knee high, jodhpurs trousers fitted, formal riding jacket with tails, top hat on head, holding the reins with both hands",
+      "subject_clause": "one rider mounted on a dressage horse",
+      "scene_clause": "the horse in profile facing right, all four legs clearly separated, the horse much larger than the rider"
+    },
+    "bungee_jumper": {
+      "outfit_clause": "fitted athletic jumpsuit with long sleeves, harness around the chest and waist with thick straps, helmet on head with chin strap, the bungee cord attached to ankles by thick wrappings, arms spread wide",
+      "subject_clause": "one single bungee jumper",
+      "scene_clause": "viewed from the side, falling head down with the long elastic cord stretched upward, simple cliff edge or platform line at the very top of the page"
+    },
+    "tango_couple": {
+      "outfit_clause": "the male dancer in fitted formal trousers and a buttoned shirt with sleeves, the female dancer in a flowing knee-length dance dress with a slit, both wearing dance shoes with heels",
+      "subject_clause": "one tango couple",
+      "scene_clause": "the two dancers facing each other in a close embrace, one of his arms around her back, her arm draped over his shoulder, one of her legs lifted slightly across his, simple ground line beneath"
+    },
+    "fencer": {
+      "outfit_clause": "fitted full-body fencing suit with long sleeves and trousers, padded plastron over the chest, mesh face mask with grid pattern, gloves on both hands, holding a thin straight foil sword in the dominant hand",
+      "subject_clause": "one single fencer",
+      "scene_clause": "viewed from the side in en-garde stance, front leg bent forward, back leg extended straight, simple ground line"
+    },
+    "jockey": {
+      "outfit_clause": "tall riding boots, fitted jodhpurs, long-sleeved silk racing shirt with collar, riding helmet with chin strap, goggles raised on the helmet, holding the reins with both hands",
+      "subject_clause": "one single jockey",
+      "scene_clause": "crouched forward in racing position on top of a horse, the horse in profile facing right, all four legs clearly separated, the horse much larger than the jockey"
+    },
+    "archer": {
+      "outfit_clause": "fitted tunic over plain trousers, arm guard on the bow arm, finger tab on the drawing hand, holding a tall recurve bow vertically with one arm extended, the other arm drawing the bowstring back to the cheek",
+      "subject_clause": "one single archer",
+      "scene_clause": "viewed from the side in shooting stance, feet placed at right angles to the target line, simple ground line"
+    },
+    "surgeon": {
+      "outfit_clause": "long surgical gown over scrubs, surgical cap covering the hair, surgical mask covering the nose and mouth, latex gloves on both hands, holding a small surgical instrument in one hand",
+      "subject_clause": "one single surgeon",
+      "scene_clause": "viewed from the front, both arms slightly bent forward, simple ground line"
+    },
+    "chef_with_apron": {
+      "outfit_clause": "tall chef hat on head, double-breasted chef jacket with long sleeves, plain trousers, full-length apron tied at the waist, holding a wooden spoon in one hand",
+      "subject_clause": "one single chef",
+      "scene_clause": "viewed from the front behind a simple kitchen counter, smiling, simple ground line"
+    },
+    "scheherazade": {
+      "outfit_clause": "long flowing dress with a cinched waist, a sheer veil draped over the head and shoulders, simple jewelry on the wrists, hair flowing down the back",
+      "subject_clause": "one single Scheherazade",
+      "scene_clause": "sitting cross-legged on a simple cushion, one hand raised gracefully telling a story, the other hand resting on her knee, expressive face with open mouth speaking"
+    },
+    "sinbad_the_sailor": {
+      "outfit_clause": "loose long-sleeved shirt open at the collar, wide sash tied around the waist, baggy trousers tucked into ankle boots, a curved sword sheathed at the side, a simple turban wrapped on the head",
+      "subject_clause": "one single Sinbad the sailor",
+      "scene_clause": "viewed from the side standing on a simple ship deck line, one hand resting on the sword hilt, the other hand pointing forward"
+    }
+  }
+}

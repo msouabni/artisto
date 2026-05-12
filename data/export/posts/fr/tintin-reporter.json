@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "tintin-reporter",
+  "r2_slug": "tintin-reporter",
+  "title": "Tintin Reporter Coloriage Enfant",
+  "title_card": "Tintin Reporter",
+  "description": "Amusez-vous à colorier Tintin Reporter dans cette page d'activité pour enfants. Un dessin amusant et facile à réaliser.",
+  "keywords": [
+    "Tintin",
+    "Reporter",
+    "Enfant",
+    "Coloriage",
+    "Activite"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/tintin_reporter_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/tintin-reporter.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/tintin-reporter.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/tintin-reporter.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/tintin-reporter.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "tintin_reporter",
+    "name_en": "Tintin Reporter",
+    "name_fr": "Tintin reporter",
+    "name_ar": "تان تان",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "wright-brothers-first-plane",
+  "r2_slug": "wright-brothers-first-plane",
+  "title": "Wright Brothers First Flying Machine",
+  "title_card": "Fly High with the Wrights",
+  "description": "Color the historic Wright Brothers first airplane. Learn about the brave brothers who invented flight and changed the world forever.",
+  "keywords": [
+    "airplane",
+    "flying",
+    "history",
+    "brothers",
+    "coloring"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/wright_brothers_first_plane_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/wright-brothers-first-plane.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/wright-brothers-first-plane.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/wright-brothers-first-plane.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/wright-brothers-first-plane.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "wright_brothers_first_plane",
+    "name_en": "Wright Brothers First Plane",
+    "name_fr": "Premier avion des frères Wright",
+    "name_ar": "أول طائرة للأخوين رايت",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

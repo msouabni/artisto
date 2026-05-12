@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "vaiana-sur-l-ocean",
+  "r2_slug": "moana-on-the-ocean",
+  "title": "Vaiana navigue sur l'océan bleu",
+  "title_card": "Vaiana sur l'océan",
+  "description": "Colorie Vaiana en pleine navigation sur les vagues bleues de l'océan avec son bateau traditionnel.",
+  "keywords": [
+    "Vaiana",
+    "bateau",
+    "océan",
+    "navigation",
+    "couleurs"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/moana_on_ocean_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/moana-on-the-ocean.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/moana-on-the-ocean.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/moana-on-the-ocean.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/moana-on-the-ocean.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "moana_on_ocean",
+    "name_en": "Moana on the Ocean",
+    "name_fr": "Vaiana sur l'océan",
+    "name_ar": "موانا على المحيط",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

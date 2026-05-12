@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "griffon",
+  "r2_slug": "griffin",
+  "title": "Coloriage du Griffon pour enfants",
+  "title_card": "Griffon à colorier",
+  "description": "Découvrez ce magnifique Griffon prêt à être colorié. Un animal fantastique aux ailes étendues et au regard curieux. Idéal pour les petits artistes.",
+  "keywords": [
+    "animal",
+    "fantastique",
+    "coloriage",
+    "enfant",
+    "griffon"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/griffin_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/griffin.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/griffin.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/griffin.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/griffin.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "griffin",
+    "name_en": "Griffin",
+    "name_fr": "Griffon",
+    "name_ar": "العنقاء المجنحة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

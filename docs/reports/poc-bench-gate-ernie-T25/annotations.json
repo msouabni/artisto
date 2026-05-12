@@ -1,0 +1,261 @@
+{
+  "dir": "poc-bench-gate-ernie-T25",
+  "annotations": {
+    "beach_cleanup_volunteers_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:54:07.367316+00:00"
+    },
+    "bike_to_work_commute_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:54:22.927740+00:00"
+    },
+    "compost_bin_in_garden_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:54:31.386086+00:00"
+    },
+    "deforestation_before_after_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:54:35.758212+00:00"
+    },
+    "earth_with_protective_hands_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:54:40.762734+00:00"
+    },
+    "eco_friendly_house_with_panels_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:54:46.665614+00:00"
+    },
+    "electric_car_charging_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "defaut mineur"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:55:05.053381+00:00"
+    },
+    "kid_planting_a_tree_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "manip objets"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T16:55:19.266958+00:00"
+    },
+    "kid_recycling_bin_sorting_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:55:26.267881+00:00"
+    },
+    "kids_picking_up_litter_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:55:31.548608+00:00"
+    },
+    "polar_bear_on_melting_ice_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:55:37.871053+00:00"
+    },
+    "rainwater_collection_barrel_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:55:44.135869+00:00"
+    },
+    "reusable_shopping_tote_bag_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:55:50.859828+00:00"
+    },
+    "reusable_water_bottle_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:55:56.536443+00:00"
+    },
+    "solar_panels_on_roof_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:56:02.791254+00:00"
+    },
+    "vegetable_garden_at_home_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:56:08.416658+00:00"
+    },
+    "wind_turbines_on_hill_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:56:13.933379+00:00"
+    },
+    "zero_waste_kitchen_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T16:56:25.089447+00:00"
+    }
+  }
+}

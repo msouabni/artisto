@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "hyene-tachetee",
+  "r2_slug": "spotted-hyena",
+  "title": "Coloriage de l'hyène tachetée",
+  "title_card": "Hyène tachetée",
+  "description": "Découvrez l'hyène tachetée dans ce coloriage amusant pour enfants. Apprenez ses traits uniques et ses habitudes tout en créant une œuvre d'art colorée.",
+  "keywords": [
+    "animal",
+    "sauvage",
+    "Afrique",
+    "coloriage",
+    "enfant"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/spotted_hyena_1024x1024_euler8s_v2.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/spotted-hyena.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/spotted-hyena.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/spotted-hyena.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/spotted-hyena.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "spotted_hyena",
+    "name_en": "Spotted Hyena",
+    "name_fr": "Hyène tachetée",
+    "name_ar": "الضبع المرقط",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

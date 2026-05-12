@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "house-painter-with-roller",
+  "r2_slug": "house-painter-with-roller",
+  "title": "Little House Painter Coloring Page",
+  "title_card": "Painting House Fun",
+  "description": "Color the happy child painting a bright house with a roller brush and happy smile ready for creative fun",
+  "keywords": [
+    "child painter",
+    "house colors",
+    "roller brush",
+    "creative fun",
+    "happy smile"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/house_painter_with_roller_1024x1024_euler8s_v2.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/house-painter-with-roller.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/house-painter-with-roller.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/house-painter-with-roller.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/house-painter-with-roller.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "house_painter_with_roller",
+    "name_en": "House Painter with Roller",
+    "name_fr": "Peintre en bâtiment avec rouleau",
+    "name_ar": "دهان البيوت",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

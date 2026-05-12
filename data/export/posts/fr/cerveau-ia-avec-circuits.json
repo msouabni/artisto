@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "cerveau-ia-avec-circuits",
+  "r2_slug": "ai-brain-with-circuits",
+  "title": "Coloriage cerveau artificiel circuits",
+  "title_card": "Cerveau IA circuits",
+  "description": "Découvrez ce coloriage unique représentant un cerveau artificiel connecté à des circuits électroniques pour enfants.",
+  "keywords": [
+    "coloriage",
+    "intelligence",
+    "artificiel",
+    "circuits",
+    "futur"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/ai_brain_with_circuits_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/ai-brain-with-circuits.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/ai-brain-with-circuits.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/ai-brain-with-circuits.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/ai-brain-with-circuits.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "ai_brain_with_circuits",
+    "name_en": "AI Brain with Circuits",
+    "name_fr": "Cerveau IA avec circuits",
+    "name_ar": "دماغ ذكاء اصطناعي مع دوائر",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

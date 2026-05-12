@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "frn-almtbkh",
+  "r2_slug": "kitchen-oven",
+  "title": "لوحة تلوين فرن المطبخ للأطفال",
+  "title_card": "لوحة تلوين فرن المطبخ",
+  "description": "استمتع بلوحة تلوين فرن المطبخ الجميلة للأطفال، وهي جزء من مجموعة ألوان المطبخ التي تعزز الخيال والإبداع لدى الصغار.",
+  "keywords": [
+    "لوحة تلوين",
+    "فرن المطبخ",
+    "مطبخ",
+    "للأطفال",
+    "تلوين"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/kitchen_oven_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/kitchen-oven.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/kitchen-oven.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/kitchen-oven.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/kitchen-oven.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "kitchen_oven",
+    "name_en": "Kitchen Oven",
+    "name_fr": "Four de cuisine",
+    "name_ar": "فرن المطبخ",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

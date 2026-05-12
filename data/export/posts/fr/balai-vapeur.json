@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "balai-vapeur",
+  "r2_slug": "steam-mop",
+  "title": "Coloriage d'un balai vapeur",
+  "title_card": "Balai vapeur",
+  "description": "Découvrez ce coloriage amusant d'un balai vapeur pour enfants. Imprimez et colorez ce dessin éducatif et ludique.",
+  "keywords": [
+    "balai",
+    "vapeur",
+    "enfant",
+    "coloriage",
+    "imprimer"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/steam_mop_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/steam-mop.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/steam-mop.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/steam-mop.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/steam-mop.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "steam_mop",
+    "name_en": "Steam Mop",
+    "name_fr": "Balai vapeur",
+    "name_ar": "ممسحة البخار",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

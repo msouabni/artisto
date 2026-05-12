@@ -144,6 +144,14 @@ DEFAULT_JOB_TYPES = (
         "description": "Pipeline planner->writer pour plusieurs concepts ; validation optionnelle",
         "category": "text",
     },
+    {
+        "type": "image_qc_auto",
+        "label": "QC auto image (deterministe)",
+        "enabled": False,
+        "max_concurrent": 1,
+        "description": "5 regles deterministes (couleur/contraste/complexite/saturation) -> qc_tags sur image_output",
+        "category": "image",
+    },
 )
 
 

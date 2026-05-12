@@ -78,21 +78,6 @@ def test_z_image_template_loads_from_repo() -> None:
     assert contract["capabilities"]["negative_prompt"] == "unsupported"
 
 
-def test_ernie_uses_sidecar_from_repo() -> None:
-    root = Path(__file__).resolve().parents[1]
-    wf_dir = root / "data" / "workflows"
-    data, omap, contract = load_workflow_template(wf_dir, "ernie-image-turbo-q8-api")
-    assert data.get("10", {}).get("class_type") == "UnetLoaderGGUF"
-    assert omap["positive_prompt"] == ["14", "text"]
-    assert omap["seed"] == ["16", "seed"]
-    assert "shift" not in omap
-    assert "__meta__" not in data
-    assert contract["contract_version"] == WORKFLOW_CONTRACT_VERSION
-    assert contract["capabilities"]["positive_prompt"] == "required"
-    assert contract["capabilities"]["negative_prompt"] == "unsupported"
-    assert data.get("19", {}).get("class_type") == "ConditioningZeroOut"
-
-
 def test_resolve_negative_prompt_ignore_z_image_style() -> None:
     omap = {"positive_prompt": ["6", "text"]}
     txt, inj = resolve_negative_prompt_for_workflow("  hello  ", omap, {"mode": "ignore"})

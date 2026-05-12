@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "captain-america-au-bouclier",
+  "r2_slug": "captain-america-with-shield",
+  "title": "Coloriage Captain America et son bouclier",
+  "title_card": "Captain America bouclier",
+  "description": "Amusez-vous à colorier le super-héros avec son bouclier iconique. Une activité créative pour les enfants qui adorent les héros.",
+  "keywords": [
+    "super-héros",
+    "coloriage",
+    "enfant",
+    "héros",
+    "amusement"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/captain_america_with_shield_848x1264_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/captain-america-with-shield.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/captain-america-with-shield.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/captain-america-with-shield.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/captain-america-with-shield.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "captain_america_with_shield",
+    "name_en": "Captain America with Shield",
+    "name_fr": "Captain America au bouclier",
+    "name_ar": "كابتن أمريكا",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

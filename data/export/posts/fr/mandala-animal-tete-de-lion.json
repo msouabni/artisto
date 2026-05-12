@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "mandala-animal-tete-de-lion",
+  "r2_slug": "animal-mandala-lion-head",
+  "title": "Coloriage Mandala Tête de Lion",
+  "title_card": "Mandala Lion",
+  "description": "Découvrez ce magnifique mandala animal avec une tête de lion détaillée. Idéal pour les enfants qui aiment dessiner et colorier des motifs complexes et symétriques.",
+  "keywords": [
+    "mandala",
+    "lion",
+    "coloriage",
+    "enfant",
+    "motif"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/animal_mandala_lion_head_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/animal-mandala-lion-head.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/animal-mandala-lion-head.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/animal-mandala-lion-head.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/animal-mandala-lion-head.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "animal_mandala_lion_head",
+    "name_en": "Animal Mandala Lion Head",
+    "name_fr": "Mandala animal tête de lion",
+    "name_ar": "ماندالا حيوان رأس أسد",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

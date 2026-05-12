@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "sheep-with-lamb",
+  "r2_slug": "sheep-with-lamb",
+  "title": "Cute Sheep and Baby Lamb Coloring Page",
+  "title_card": "Sheep with Lamb",
+  "description": "Color this adorable picture of a mother sheep protecting her tiny lamb in a peaceful green field. Perfect for young children to enjoy.",
+  "keywords": [
+    "coloring page",
+    "cute animals",
+    "sheep family",
+    "baby lamb",
+    "nature art"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/sheep_with_lamb_1024x1024_euler8s_v2.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/sheep-with-lamb.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/sheep-with-lamb.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/sheep-with-lamb.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/sheep-with-lamb.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "sheep_with_lamb",
+    "name_en": "Sheep with Lamb",
+    "name_fr": "Brebis et agneau",
+    "name_ar": "النعجة والحمل",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

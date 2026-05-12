@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "montgolfiere",
+  "r2_slug": "hot-air-balloon",
+  "title": "Coloriage Montgolfière en Ciel Bleu",
+  "title_card": "Montgolfière colorie",
+  "description": "Découvrez ce magnifique ballon de montgolfière prêt à s'envoler dans les airs. Coloriez les couleurs vives et imaginez un voyage fantastique.",
+  "keywords": [
+    "balloon",
+    "ciel",
+    "voyage",
+    "enfant",
+    "créatif"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/hot_air_balloon_1376x768_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/hot-air-balloon.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/hot-air-balloon.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/hot-air-balloon.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/hot-air-balloon.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "hot_air_balloon",
+    "name_en": "Hot Air Balloon",
+    "name_fr": "Montgolfière",
+    "name_ar": "البالون الحار",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

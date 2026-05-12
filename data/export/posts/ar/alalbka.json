@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "alalbka",
+  "r2_slug": "alpaca",
+  "title": "لوحة تلوين الألبكة الجميلة للأطفال",
+  "title_card": "لوحة تلوين الألبكة",
+  "description": "استمتع بلوحة تلوين الألبكة الجميلة التي تناسب الأطفال وتساعد في تنمية مهاراتهم الإبداعية والتركيز من خلال الرسم.",
+  "keywords": [
+    "الألبكة",
+    "لوحة تلوين",
+    "رسم للأطفال",
+    "أنشطة ترفيهية",
+    "تعليمي"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/alpaca_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/alpaca.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/alpaca.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/alpaca.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/alpaca.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "alpaca",
+    "name_en": "Alpaca",
+    "name_fr": "Alpaga",
+    "name_ar": "الألبكة",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

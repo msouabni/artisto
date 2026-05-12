@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "tfl-ymsht-shrh",
+  "r2_slug": "child-combing-hair",
+  "title": "لوحة تلوين طفل يمشط شعره",
+  "title_card": "طفل يمشط شعره",
+  "description": "لوحة تلوين مجانية لطفل يمشط شعره، مناسبة للأطفال لتعليمهم الألوان والتركيز أثناء اللعب الإبداعي.",
+  "keywords": [
+    "لوحة تلوين",
+    "طفل يمشط شعره",
+    "نشاط ترفيهي",
+    "تعليم الألوان",
+    "تصميم تلوين"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/child_combing_hair_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/child-combing-hair.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/child-combing-hair.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/child-combing-hair.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/child-combing-hair.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "child_combing_hair",
+    "name_en": "Child Combing Hair",
+    "name_fr": "Enfant qui se peigne",
+    "name_ar": "طفل يمشط شعره",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

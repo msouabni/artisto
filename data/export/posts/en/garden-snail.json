@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "garden-snail",
+  "r2_slug": "garden-snail",
+  "title": "Colorful Garden Snail Coloring Page",
+  "title_card": "Garden Snail Fun",
+  "description": "This delightful coloring page features a friendly garden snail ready for your creative touch. Add vibrant colors to the shell and leaves for a beautiful nature scene.",
+  "keywords": [
+    "garden snail",
+    "coloring page",
+    "nature art",
+    "shell design",
+    "kids activity"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/garden_snail_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/garden-snail.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/garden-snail.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/garden-snail.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/garden-snail.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "garden_snail",
+    "name_en": "Garden Snail",
+    "name_fr": "Escargot de jardin",
+    "name_ar": "الحلزون",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "tatou",
+  "r2_slug": "armadillo",
+  "title": "Coloriage d'un tatou mignon pour enfants",
+  "title_card": "Tatou mignon",
+  "description": "Découvrez ce charmant tatou prêt à être colorié. Une activité ludique et créative pour les petits artistes qui aiment les animaux.",
+  "keywords": [
+    "animal",
+    "coloriage",
+    "enfant",
+    "créatif",
+    "mignon"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/armadillo_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/armadillo.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/armadillo.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/armadillo.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/armadillo.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "armadillo",
+    "name_en": "Armadillo",
+    "name_fr": "Tatou",
+    "name_ar": "المدرع",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

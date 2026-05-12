@@ -42,3 +42,8 @@ backups/
 # PNG générés par les POC benchmark (volumineux, ~635 MB sur 1055 fichiers).
 # Les rapports .md/.json à côté sont conservés.
 docs/reports/**/*.png
+
+# PNG masters copiés par scripts/export_mep_v0.py (volumineux, uploadés
+# par alwanbooks-pipeline depuis le bucket source).
+# Le manifest.json et les Posts JSON sous data/export/posts/ sont conservés.
+data/export/images/*.png

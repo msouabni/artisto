@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "chef-cuisinier-au-travail",
+  "r2_slug": "chef-cooking",
+  "title": "Chef cuisinier au travail",
+  "title_card": "Chef cuisinier",
+  "description": "Colorie ce chef cuisinier passionné qui prépare un délicieux repas dans sa cuisine moderne.",
+  "keywords": [
+    "chef",
+    "cuisinier",
+    "cuisine",
+    "repas",
+    "coloriage"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/chef_cooking_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/chef-cooking.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/chef-cooking.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/chef-cooking.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/chef-cooking.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "chef_cooking",
+    "name_en": "Chef Cooking",
+    "name_fr": "Chef cuisinier au travail",
+    "name_ar": "الطاهي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

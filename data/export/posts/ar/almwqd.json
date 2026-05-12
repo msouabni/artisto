@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "almwqd",
+  "r2_slug": "fireplace",
+  "title": "لوحة تلوين الموقد العربي",
+  "title_card": "لوحة تلوين الموقد",
+  "description": "استمتع بلوحة تلوين الموقد الجميلة التي تعكس ديكور المنزل العربي التقليدي.",
+  "keywords": [
+    "الموقد",
+    "لوحة تلوين",
+    "ديكور منزلي",
+    "تعليم أطفال",
+    "فنون عربية"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/fireplace_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/fireplace.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/fireplace.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/fireplace.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/fireplace.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "fireplace",
+    "name_en": "Fireplace",
+    "name_fr": "Cheminée",
+    "name_ar": "الموقد",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

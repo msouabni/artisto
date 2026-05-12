@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "labrador-retriever",
+  "r2_slug": "labrador-retriever",
+  "title": "Colorful Labrador Retriever Puppy",
+  "title_card": "Happy Puppy",
+  "description": "A friendly Labrador Retriever puppy sits ready for fun games and adventures in the sunny park.",
+  "keywords": [
+    "coloring page",
+    "dog puppy",
+    "labrador retriever",
+    "happy animal",
+    "fun games"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/labrador_retriever_1024x1024_euler8s_v2.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/labrador-retriever.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/labrador-retriever.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/labrador-retriever.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/labrador-retriever.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "labrador_retriever",
+    "name_en": "Labrador Retriever",
+    "name_fr": "Labrador retriever",
+    "name_ar": "كلب اللابرادور",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

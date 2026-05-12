@@ -1503,3 +1503,110 @@ async def ollama_status() -> dict[str, Any]:
             "configured_model": OLLAMA.default_model,
             "error": str(exc),
         }
+
+
+class PlaygroundRequest(BaseModel):
+    """Payload pour `POST /api/ai/playground` (UI de test prompts Ollama).
+
+    - ``think`` : par défaut auto (None) — applique la logique projet
+      (qwen3:* strict → ``/no_think`` system tag ; qwen3.5+ → ``"think": false``
+      natif). Si ``think`` est explicitement ``True``, on laisse think actif
+      (utile pour comparer). Si ``False`` explicite, on force désactivation.
+    """
+
+    prompt: str
+    model: str | None = None
+    system: str = ""
+    temperature: float = 0.0
+    think: bool | None = None  # None = auto (désactivé par convention projet)
+    timeout: int | None = None
+
+
+@router.post("/playground")
+async def ollama_playground(payload: PlaygroundRequest) -> dict[str, Any]:
+    """Endpoint simple pour tester un prompt sur Ollama (UI playground).
+
+    Pas de persistance, pas de JSON parsing — texte brut renvoyé.
+    Gère automatiquement `/no_think` (qwen3:* strict) et `think: false`
+    (qwen3.5+) selon le modèle. Désactivable explicitement via `think=True`.
+    """
+    import time
+
+    model = (payload.model or OLLAMA.default_model).strip()
+    system = payload.system or ""
+    timeout = int(payload.timeout) if payload.timeout else OLLAMA.default_timeout
+
+    # Logique think : None (auto) = désactivé selon convention projet.
+    # True explicite = laisser actif. False explicite = désactivé.
+    disable_think = payload.think is not True  # auto-désactivé sauf si think=True
+
+    think_handling = {"strategy": "default-active"}
+    if disable_think:
+        system = _apply_no_think_system(model, system)
+        think_handling = {
+            "strategy": "qwen3-strict-/no_think"
+            if system.startswith("/no_think")
+            else "qwen3.5-native"
+            if _native_think_disable(model)
+            else "no-disable-needed",
+            "system_prefixed": system.startswith("/no_think"),
+            "native_think_false": _native_think_disable(model),
+        }
+
+    body: dict = {
+        "model": model,
+        "prompt": payload.prompt,
+        "system": system,
+        "stream": False,
+        "options": {"temperature": float(payload.temperature)},
+    }
+    if disable_think and _native_think_disable(model):
+        body["think"] = False
+
+    url = f"{OLLAMA.base_url}/api/generate"
+    t0 = time.perf_counter()
+    try:
+        client = _get_ollama_http_client()
+        res = await client.post(url, json=body, timeout=float(timeout))
+        res.raise_for_status()
+        data = res.json()
+        latency_ms = int((time.perf_counter() - t0) * 1000)
+        if "error" in data and "response" not in data:
+            return {
+                "ok": False,
+                "error": data["error"],
+                "latency_ms": latency_ms,
+                "model": model,
+                "think_handling": think_handling,
+            }
+        return {
+            "ok": True,
+            "response": data.get("response", ""),
+            "model": model,
+            "latency_ms": latency_ms,
+            "think_handling": think_handling,
+            "total_duration_ns": data.get("total_duration"),
+            "eval_count": data.get("eval_count"),
+            "prompt_eval_count": data.get("prompt_eval_count"),
+        }
+    except httpx.ConnectError:
+        return {
+            "ok": False,
+            "error": f"Ollama non disponible sur {OLLAMA.base_url} — démarre `ollama serve`",
+            "model": model,
+            "think_handling": think_handling,
+        }
+    except httpx.TimeoutException:
+        return {
+            "ok": False,
+            "error": f"Timeout après {timeout}s",
+            "model": model,
+            "think_handling": think_handling,
+        }
+    except Exception as exc:
+        return {
+            "ok": False,
+            "error": f"{type(exc).__name__}: {exc}",
+            "model": model,
+            "think_handling": think_handling,
+        }

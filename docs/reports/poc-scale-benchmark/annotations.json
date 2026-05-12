@@ -1137,9 +1137,11 @@
       "updated_at": "2026-05-09T00:14:30.059302+00:00"
     },
     "latkes_potato_pancakes_1024x1024_euler8s.png": {
-      "score": 6,
+      "score": 2,
       "score_legacy": 10,
-      "image_tags": [],
+      "image_tags": [
+        "image_simpliste"
+      ],
       "prompt_tags": [],
       "custom_tags": [],
       "flags": {
@@ -1148,7 +1150,7 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-09T00:14:40.548746+00:00"
+      "updated_at": "2026-05-09T22:31:40.216132+00:00"
     },
     "letter_a_with_apple_1024x1024_euler8s.png": {
       "score": 6,
@@ -1733,7 +1735,7 @@
       "updated_at": "2026-05-09T00:25:00.801525+00:00"
     },
     "breakdancer_848x1264_b1_euler8s.png": {
-      "score": 2,
+      "score": 5,
       "score_legacy": 3,
       "image_tags": [],
       "prompt_tags": [],
@@ -1744,10 +1746,10 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-09T00:25:20.151952+00:00"
+      "updated_at": "2026-05-09T21:58:52.206696+00:00"
     },
     "breakdancer_848x1264_b2_euler8s.png": {
-      "score": 1,
+      "score": 5,
       "score_legacy": 2,
       "image_tags": [],
       "prompt_tags": [],
@@ -1758,7 +1760,7 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-09T00:25:29.742295+00:00"
+      "updated_at": "2026-05-09T21:59:00.210360+00:00"
     },
     "breakdancer_848x1264_b3_euler8s.png": {
       "score": 2,
@@ -3052,7 +3054,7 @@
       "updated_at": "2026-05-09T04:20:59.725877+00:00"
     },
     "abstract_zentangle_1024x1024_euler8s.png": {
-      "score": 5,
+      "score": 3,
       "score_legacy": 9,
       "image_tags": [],
       "prompt_tags": [],
@@ -3065,7 +3067,7 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-09T16:33:05.053315+00:00"
+      "updated_at": "2026-05-10T15:06:12.626492+00:00"
     },
     "advanced_mandala_for_teens_1024x1024_euler8s.png": {
       "score": 5,
@@ -3140,7 +3142,7 @@
       "updated_at": "2026-05-09T16:35:54.835020+00:00"
     },
     "animal_mandala_lion_head_1024x1024_euler8s.png": {
-      "score": null,
+      "score": 6,
       "score_legacy": null,
       "image_tags": [
         "image_compo_bonne",
@@ -3156,7 +3158,7 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-09T16:36:10.201247+00:00"
+      "updated_at": "2026-05-09T21:18:53.389542+00:00"
     },
     "antique_radio_set_1024x1024_euler8s.png": {
       "score": 5,
@@ -3205,7 +3207,7 @@
       "updated_at": "2026-05-09T16:45:42.069494+00:00"
     },
     "attic_with_old_objects_1024x1024_euler8s.png": {
-      "score": null,
+      "score": 6,
       "score_legacy": null,
       "image_tags": [
         "image_compo_bonne",
@@ -3223,7 +3225,7 @@
         "sample": false,
         "publishable": true
       },
-      "updated_at": "2026-05-09T16:46:15.519003+00:00"
+      "updated_at": "2026-05-09T21:19:02.716305+00:00"
     },
     "atv_quad_bike_1376x768_euler8s.png": {
       "score": 6,
@@ -3278,6 +3280,4422 @@
         "publishable": false
       },
       "updated_at": "2026-05-09T17:02:05.178921+00:00"
+    },
+    "balcony_with_plants_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T21:19:05.700344+00:00"
+    },
+    "banker_at_desk_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:19:10.699277+00:00"
+    },
+    "bathroom_full_view_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:19:17.107697+00:00"
+    },
+    "battery_circuit_lighting_bulb_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:19:23.598368+00:00"
+    },
+    "beach_cleanup_volunteers_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "finalisation ko"
+      ],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "transition incoherente",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T21:22:06.715094+00:00"
+    },
+    "bedroom_with_bed_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:57:03.616869+00:00"
+    },
+    "bike_to_work_commute_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T21:57:09.841380+00:00"
+    },
+    "binary_code_pattern_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T21:57:13.855858+00:00"
+    },
+    "birthday_balloons_bouquet_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:57:25.031596+00:00"
+    },
+    "birthday_cake_with_candles_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:57:32.561568+00:00"
+    },
+    "birthday_party_hat_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:57:37.492668+00:00"
+    },
+    "birthday_party_with_friends_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:57:44.118639+00:00"
+    },
+    "birthday_pinata_with_candy_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:57:51.000179+00:00"
+    },
+    "black_cat_on_pumpkin_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:57:56.190143+00:00"
+    },
+    "blimp_airship_1376x768_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:58:01.013063+00:00"
+    },
+    "bookseller_at_shop_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:58:12.243146+00:00"
+    },
+    "bread_and_pastries_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:58:43.643477+00:00"
+    },
+    "bubbling_volcano_experiment_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T21:59:26.836018+00:00"
+    },
+    "cactus_in_pot_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:59:37.030308+00:00"
+    },
+    "cakes_and_desserts_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:59:42.786946+00:00"
+    },
+    "calm_child_breathing_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:59:51.590498+00:00"
+    },
+    "candy_shop_display_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T21:59:58.099019+00:00"
+    },
+    "cargo_ship_1376x768_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:00:03.192839+00:00"
+    },
+    "carnival_parade_float_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:00:15.094260+00:00"
+    },
+    "carved_pumpkin_jack_o_lantern_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:00:20.209792+00:00"
+    },
+    "celtic_knot_mandala_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:00:25.915539+00:00"
+    },
+    "cherry_blossom_branch_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:00:31.239193+00:00"
+    },
+    "chibi_anime_boy_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:00:37.109937+00:00"
+    },
+    "chibi_warrior_girl_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:00:41.434117+00:00"
+    },
+    "child_at_school_age_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:00:46.667481+00:00"
+    },
+    "child_drinking_water_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:00:55.624081+00:00"
+    },
+    "child_face_features_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:01:00.871487+00:00"
+    },
+    "child_in_wheelchair_playing_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:01:07.601761+00:00"
+    },
+    "child_with_cane_blind_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:01:13.048472+00:00"
+    },
+    "child_with_glasses_reading_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:01:18.416347+00:00"
+    },
+    "child_with_hearing_aid_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:01:23.164182+00:00"
+    },
+    "child_with_prosthetic_leg_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:01:27.857820+00:00"
+    },
+    "child_with_test_tubes_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_duplication",
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:01:37.845652+00:00"
+    },
+    "christmas_elves_workshop_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "deformatiion"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:01:56.970807+00:00"
+    },
+    "christmas_stocking_fireplace_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:02:05.787366+00:00"
+    },
+    "christmas_wreath_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:02:11.423834+00:00"
+    },
+    "cinderella_at_ball_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:02:16.258677+00:00"
+    },
+    "circles_and_dots_pattern_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:02:20.829413+00:00"
+    },
+    "civilian_helicopter_1376x768_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:02:25.669614+00:00"
+    },
+    "clothing_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:02:32.037724+00:00"
+    },
+    "cloud_computing_diagram_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:02:37.092297+00:00"
+    },
+    "color_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:02:43.810712+00:00"
+    },
+    "compost_bin_in_garden_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:02:48.903081+00:00"
+    },
+    "computer_motherboard_inside_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:02:54.965906+00:00"
+    },
+    "counting_to_twenty_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:02:59.934276+00:00"
+    },
+    "cross_country_riding_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:03:04.411460+00:00"
+    },
+    "cruise_liner_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:03:09.215180+00:00"
+    },
+    "crystal_ball_with_visions_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:03:16.208088+00:00"
+    },
+    "curious_child_face_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:03:23.633965+00:00"
+    },
+    "dairy_products_milk_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:03:28.631644+00:00"
+    },
+    "daisy_in_meadow_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:03:33.540143+00:00"
+    },
+    "decorated_christmas_tree_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:03:38.065284+00:00"
+    },
+    "decorated_easter_eggs_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:03:43.215641+00:00"
+    },
+    "decorative_number_ten_fingers_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:03:50.158158+00:00"
+    },
+    "deforestation_before_after_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:03:57.109755+00:00"
+    },
+    "dentist_at_work_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:04:17.402735+00:00"
+    },
+    "different_heights_friends_group_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:04:22.789589+00:00"
+    },
+    "different_skin_tones_friends_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:04:28.359066+00:00"
+    },
+    "dining_room_with_table_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:04:33.316859+00:00"
+    },
+    "doctor_with_stethoscope_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:04:40.344601+00:00"
+    },
+    "doodle_shapes_pattern_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:04:46.752314+00:00"
+    },
+    "downward_dog_pose_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:04:50.910604+00:00"
+    },
+    "drag_racer_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:04:54.860576+00:00"
+    },
+    "dressage_horse_848x1264_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:05:00.322410+00:00"
+    },
+    "drone_with_camera_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:05:04.941824+00:00"
+    },
+    "early_printing_press_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:05:09.633098+00:00"
+    },
+    "earth_with_protective_hands_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:05:16.066030+00:00"
+    },
+    "easter_basket_with_chocolates_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:05:21.079146+00:00"
+    },
+    "easter_bunny_with_basket_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:05:26.402795+00:00"
+    },
+    "easter_egg_hunt_in_garden_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:05:31.674756+00:00"
+    },
+    "easter_egg_painting_kids_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:05:36.906581+00:00"
+    },
+    "eco_friendly_house_with_panels_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:05:44.034291+00:00"
+    },
+    "edison_light_bulb_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:06:37.893995+00:00"
+    },
+    "electric_car_charging_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:06:43.691990+00:00"
+    },
+    "emotion_chart_poster_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:06:48.341504+00:00"
+    },
+    "endurance_riding_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:06:53.373794+00:00"
+    },
+    "esthetician_at_work_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:06:59.792979+00:00"
+    },
+    "fathers_day_tie_card_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:07:03.082187+00:00"
+    },
+    "feeling_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:07:16.590205+00:00"
+    },
+    "ferry_boat_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:07:21.175597+00:00"
+    },
+    "first_automobile_ford_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:07:25.914221+00:00"
+    },
+    "first_telephone_bell_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:07:42.107789+00:00"
+    },
+    "fishing_boat_1376x768_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:07:52.078496+00:00"
+    },
+    "five_senses_summary_poster_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "dysmorphie"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:08:11.098435+00:00"
+    },
+    "floral_mandala_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:08:16.753769+00:00"
+    },
+    "florist_arranging_flowers_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:08:23.365963+00:00"
+    },
+    "flying_carpet_over_city_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:08:29.335702+00:00"
+    },
+    "foggy_morning_landscape_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_flou"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:08:33.909805+00:00"
+    },
+    "food_pyramid_for_kids_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:08:39.852426+00:00"
+    },
+    "foot_with_toes_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:08:49.802487+00:00"
+    },
+    "formula_one_car_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:08:56.602597+00:00"
+    },
+    "fruit_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:09:03.434496+00:00"
+    },
+    "fruits_basket_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:09:08.893419+00:00"
+    },
+    "full_body_with_parts_labelled_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:09:14.068643+00:00"
+    },
+    "gaming_setup_with_keyboard_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible",
+        "image_duplication",
+        "image_physique_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:09:30.134570+00:00"
+    },
+    "garage_with_car_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:09:40.019869+00:00"
+    },
+    "geometric_mandala_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:09:45.304020+00:00"
+    },
+    "gingerbread_house_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:09:50.674355+00:00"
+    },
+    "glider_plane_1376x768_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:09:55.423370+00:00"
+    },
+    "grandparent_with_grandchild_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:10:00.871287+00:00"
+    },
+    "grandparents_day_portrait_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:10:09.056655+00:00"
+    },
+    "growth_mindset_brain_with_plant_848x1264_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:10:15.141667+00:00"
+    },
+    "hairdresser_at_salon_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:10:21.508556+00:00"
+    },
+    "hallway_with_coat_rack_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible",
+        "image_physique_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:10:28.947885+00:00"
+    },
+    "hand_with_fingers_named_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:10:35.535846+00:00"
+    },
+    "happy_child_smiling_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:10:41.723316+00:00"
+    },
+    "haunted_house_at_night_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [
+        "image_creative"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:10:54.123076+00:00"
+    },
+    "head_and_hair_styles_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:11:00.311873+00:00"
+    },
+    "healthy_breakfast_plate_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:11:08.702128+00:00"
+    },
+    "healthy_snack_basket_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:11:12.918618+00:00"
+    },
+    "horse_racing_848x1264_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_duplication",
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:11:18.917116+00:00"
+    },
+    "horse_show_jumping_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:11:26.674742+00:00"
+    },
+    "hot_air_balloon_1376x768_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:11:33.547518+00:00"
+    },
+    "house_object_imagier_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:11:39.809724+00:00"
+    },
+    "humanoid_robot_friendly_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:11:44.285803+00:00"
+    },
+    "ice_cream_and_sorbets_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:11:51.902716+00:00"
+    },
+    "industrial_robot_arm_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:11:57.787847+00:00"
+    },
+    "iss_with_astronauts_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:12:01.891110+00:00"
+    },
+    "james_webb_space_telescope_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:12:06.092337+00:00"
+    },
+    "jet_ski_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:12:10.406671+00:00"
+    },
+    "jeweler_at_workshop_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:12:15.150300+00:00"
+    },
+    "kart_racing_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:12:19.871555+00:00"
+    },
+    "kawaii_avocado_with_face_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:12:26.200456+00:00"
+    },
+    "kawaii_cat_with_big_eyes_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:28:57.053514+00:00"
+    },
+    "kawaii_cloud_with_face_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:29:02.609000+00:00"
+    },
+    "kawaii_donut_with_face_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:29:08.420440+00:00"
+    },
+    "kawaii_food_bento_box_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:29:15.386511+00:00"
+    },
+    "kawaii_panda_with_bamboo_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:29:21.332918+00:00"
+    },
+    "kawaii_unicorn_pastel_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:29:26.172213+00:00"
+    },
+    "kid_bedroom_with_toys_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_coherente",
+        "image_creative"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:29:34.675083+00:00"
+    },
+    "kid_coding_on_computer_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:29:38.642168+00:00"
+    },
+    "kid_hugging_father_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:29:42.885910+00:00"
+    },
+    "kid_hugging_mother_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:29:47.049616+00:00"
+    },
+    "kid_hugging_pillow_safe_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:29:51.699106+00:00"
+    },
+    "kid_in_ghost_costume_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:29:59.307320+00:00"
+    },
+    "kid_in_witch_costume_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:30:05.364982+00:00"
+    },
+    "kid_meditating_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:30:10.032578+00:00"
+    },
+    "kid_planting_a_tree_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:30:15.465220+00:00"
+    },
+    "kid_recycling_bin_sorting_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:30:20.403737+00:00"
+    },
+    "kid_talking_to_friend_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:30:26.561486+00:00"
+    },
+    "kid_using_microscope_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible",
+        "image_physique_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "manque plan",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:30:46.551191+00:00"
+    },
+    "kid_using_telescope_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:30:56.173262+00:00"
+    },
+    "kid_with_educational_robot_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:31:01.874745+00:00"
+    },
+    "kids_picking_up_litter_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T06:32:18.575646+00:00"
+    },
+    "kids_with_carnival_confetti_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:31:11.829792+00:00"
+    },
+    "kitchen_full_view_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:31:17.487351+00:00"
+    },
+    "lab_beakers_and_flasks_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:31:22.955458+00:00"
+    },
+    "laptop_open_with_code_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:31:32.541481+00:00"
+    },
+    "lavender_fields_provence_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:31:45.389385+00:00"
+    },
+    "life_cycle_full_poster_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:31:50.476999+00:00"
+    },
+    "living_room_with_sofa_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:31:57.110333+00:00"
+    },
+    "lotus_mandala_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:32:02.956433+00:00"
+    },
+    "lotus_pose_meditation_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:32:07.273562+00:00"
+    },
+    "magic_potion_cauldron_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:32:19.584244+00:00"
+    },
+    "magic_wand_with_stars_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:32:27.482900+00:00"
+    },
+    "magnet_attracting_iron_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:32:35.479091+00:00"
+    },
+    "mardi_gras_beads_necklace_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:32:44.679049+00:00"
+    },
+    "mardi_gras_jester_costume_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:32:51.679893+00:00"
+    },
+    "mars_rover_on_red_planet_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:32:55.893897+00:00"
+    },
+    "meat_and_fish_market_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:33:01.985891+00:00"
+    },
+    "midwife_holding_baby_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:33:09.571978+00:00"
+    },
+    "moon_landing_apollo_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:33:13.499858+00:00"
+    },
+    "mothers_day_flower_bouquet_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:33:17.159341+00:00"
+    },
+    "mushrooms_in_forest_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:33:21.188757+00:00"
+    },
+    "nativity_scene_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:33:30.115688+00:00"
+    },
+    "number_five_with_stars_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "comptage"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:33:40.116935+00:00"
+    },
+    "number_four_with_flowers_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "comptage"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:33:49.459644+00:00"
+    },
+    "number_nine_with_balloons_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:33:57.727128+00:00"
+    },
+    "number_nine_with_cars_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "comptage"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:34:03.470641+00:00"
+    },
+    "number_one_with_apple_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "comptage"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:34:10.921085+00:00"
+    },
+    "number_seven_with_butterflies_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "comptage"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:34:18.808730+00:00"
+    },
+    "number_three_with_birds_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "comptage"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:34:26.453550+00:00"
+    },
+    "number_zero_with_eggs_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "comptage"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:34:34.599239+00:00"
+    },
+    "nurse_with_patient_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:34:40.981090+00:00"
+    },
+    "oak_tree_full_grown_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:34:46.071810+00:00"
+    },
+    "oil_tanker_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:34:51.000204+00:00"
+    },
+    "olive_tree_branch_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:34:54.817499+00:00"
+    },
+    "optometrist_eye_test_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible",
+        "image_duplication"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:35:08.660406+00:00"
+    },
+    "palm_tree_with_dates_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:35:14.413577+00:00"
+    },
+    "parent_with_child_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:35:24.066663+00:00"
+    },
+    "passenger_airplane_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:35:29.336457+00:00"
+    },
+    "personal_computer_setup_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:35:34.472161+00:00"
+    },
+    "pharmacist_at_counter_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:35:39.124289+00:00"
+    },
+    "physiotherapist_with_patient_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:35:43.905462+00:00"
+    },
+    "pilates_exercise_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:35:48.559044+00:00"
+    },
+    "plant_growing_from_seed_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:35:54.032906+00:00"
+    },
+    "polar_bear_on_melting_ice_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:36:00.370241+00:00"
+    },
+    "polar_ice_landscape_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:36:05.384461+00:00"
+    },
+    "polo_player_848x1264_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:36:25.580657+00:00"
+    },
+    "pop_art_pattern_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:44:19.222293+00:00"
+    },
+    "potted_house_plants_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:44:29.073503+00:00"
+    },
+    "proud_child_face_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:44:34.048725+00:00"
+    },
+    "psychologist_listening_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:49:12.262206+00:00"
+    },
+    "puss_in_boots_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:49:45.688516+00:00"
+    },
+    "quadcopter_drone_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:49:57.337211+00:00"
+    },
+    "racing_motorbike_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:50:02.657067+00:00"
+    },
+    "racing_speedboat_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:50:06.472476+00:00"
+    },
+    "rainbow_after_rain_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:50:13.772756+00:00"
+    },
+    "rainbow_fruit_plate_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T22:50:20.561091+00:00"
+    },
+    "rainbow_prism_experiment_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T22:52:07.900319+00:00"
+    },
+    "rainbow_stripes_pattern_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:00:19.456261+00:00"
+    },
+    "rainwater_collection_barrel_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:00:28.625108+00:00"
+    },
+    "rainy_day_with_umbrella_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:03:14.734497+00:00"
+    },
+    "rally_car_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:03:19.779680+00:00"
+    },
+    "rapunzel_in_tower_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:03:24.965131+00:00"
+    },
+    "real_estate_agent_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:03:30.005848+00:00"
+    },
+    "reindeer_pulling_sleigh_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:03:46.638686+00:00"
+    },
+    "reusable_shopping_tote_bag_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:33:13.633877+00:00"
+    },
+    "reusable_water_bottle_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:33:43.301983+00:00"
+    },
+    "rice_paddy_terraces_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:33:49.479376+00:00"
+    },
+    "rio_carnival_dancer_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:33:54.759172+00:00"
+    },
+    "river_with_waterfall_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "payasage",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:37:24.038457+00:00"
+    },
+    "robot_dog_pet_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:37:33.531480+00:00"
+    },
+    "roc_giant_bird_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:39:25.904803+00:00"
+    },
+    "rocket_launching_into_sky_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_coherente",
+        "image_creative"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:39:33.558961+00:00"
+    },
+    "rowboat_on_lake_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:39:37.047465+00:00"
+    },
+    "sad_child_crying_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:39:44.836844+00:00"
+    },
+    "sahara_desert_dunes_1376x768_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "payasage"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:40:05.749376+00:00"
+    },
+    "sailing_yacht_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:40:10.387474+00:00"
+    },
+    "santa_claus_with_sack_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "angle"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:40:24.854774+00:00"
+    },
+    "satellite_in_orbit_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:40:31.443032+00:00"
+    },
+    "savanna_with_acacia_trees_1376x768_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:40:59.514076+00:00"
+    },
+    "scared_child_face_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:41:05.527895+00:00"
+    },
+    "scheherazade_telling_stories_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:45:04.371653+00:00"
+    },
+    "seaplane_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:45:09.137506+00:00"
+    },
+    "self_driving_car_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:45:14.113576+00:00"
+    },
+    "sense_of_hearing_ear_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:45:20.759864+00:00"
+    },
+    "sense_of_sight_eye_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:45:38.922192+00:00"
+    },
+    "sense_of_smell_nose_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:47:33.808976+00:00"
+    },
+    "sense_of_taste_tongue_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:54:49.673417+00:00"
+    },
+    "sense_of_touch_hand_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:56:50.818911+00:00"
+    },
+    "server_room_with_racks_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:56:57.011712+00:00"
+    },
+    "shop_clerk_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:57:02.661167+00:00"
+    },
+    "shy_child_face_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:57:07.554580+00:00"
+    },
+    "simple_mandala_for_kids_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-09T23:57:13.299141+00:00"
+    },
+    "sinbad_the_sailor_ship_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-09T23:57:22.558345+00:00"
+    },
+    "skeleton_for_children_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "effryant"
+      ],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T00:03:03.007911+00:00"
+    },
+    "skin_and_skin_tones_diversity_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:03:08.451937+00:00"
+    },
+    "smart_speaker_assistant_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T00:03:12.951519+00:00"
+    },
+    "snowman_with_christmas_hat_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:03:18.976867+00:00"
+    },
+    "snowmobile_1376x768_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:03:27.596254+00:00"
+    },
+    "snowy_day_with_snowflakes_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:03:49.017988+00:00"
+    },
+    "snowy_mountain_peaks_1376x768_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:03:56.455255+00:00"
+    },
+    "solar_panels_on_roof_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:04:03.613631+00:00"
+    },
+    "space_colony_on_mars_848x1264_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:04:09.596835+00:00"
+    },
+    "space_rocket_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:04:16.878498+00:00"
+    },
+    "spaceship_orbiting_earth_848x1264_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T06:32:25.217210+00:00"
+    },
+    "speedboat_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T00:04:27.772376+00:00"
+    },
+    "spell_book_open_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T00:04:35.876833+00:00"
+    },
+    "spirals_and_swirls_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T00:10:19.808909+00:00"
+    },
+    "spring_chicks_with_mother_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T00:10:30.007011+00:00"
+    },
+    "submarine_underwater_1376x768_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:10:41.229178+00:00"
+    },
+    "sultan_palace_with_domes_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:10:49.017591+00:00"
+    },
+    "sun_mandala_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "incomplet"
+      ],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T00:11:01.330830+00:00"
+    },
+    "sunflower_with_seeds_1024x1024_euler8s.png": {
+      "score": 4,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T00:13:58.038319+00:00"
+    },
+    "sunny_day_with_sun_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T04:37:29.912811+00:00"
+    },
+    "surgeon_in_operating_room_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T04:37:41.041270+00:00"
+    },
+    "surprised_child_face_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T04:39:49.674714+00:00"
+    },
+    "tai_chi_practice_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T04:40:02.913311+00:00"
+    },
+    "tailor_at_sewing_machine_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T04:42:42.213856+00:00"
+    },
+    "teenager_with_backpack_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T04:45:29.914159+00:00"
+    },
+    "three_little_pigs_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_duplication",
+        "image_anatomie_pb"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T04:47:32.572285+00:00"
+    },
+    "thunderstorm_with_lightning_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T04:47:41.054274+00:00"
+    },
+    "toddler_learning_to_walk_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_compo_bonne",
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T04:52:12.432406+00:00"
+    },
+    "transport_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T04:55:07.707040+00:00"
+    },
+    "tree_pose_yoga_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T04:55:13.837323+00:00"
+    },
+    "trick_or_treat_basket_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:11:09.523656+00:00"
+    },
+    "tropical_beach_with_palm_trees_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T05:11:17.649116+00:00"
+    },
+    "tropical_rainforest_canopy_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T05:11:24.237627+00:00"
+    },
+    "tulip_field_garden_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T05:11:32.098667+00:00"
+    },
+    "valentines_day_cupid_arrow_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:11:41.686268+00:00"
+    },
+    "valentines_day_heart_card_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:19:35.613222+00:00"
+    },
+    "vegetable_garden_at_home_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:19:42.484501+00:00"
+    },
+    "vegetable_garden_basket_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:19:47.259274+00:00"
+    },
+    "vegetable_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:19:52.649151+00:00"
+    },
+    "vegetables_basket_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:19:58.507730+00:00"
+    },
+    "venetian_carnival_mask_1024x1024_euler8s.png": {
+      "score": 2,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [
+        "bizarre"
+      ],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:20:14.510554+00:00"
+    },
+    "veterinarian_with_dog_1024x1024_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T05:20:22.213035+00:00"
+    },
+    "volcanic_landscape_lava_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T05:20:27.620149+00:00"
+    },
+    "warrior_pose_yoga_848x1264_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T05:20:34.765430+00:00"
+    },
+    "wavy_lines_abstract_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [
+        "incomplet"
+      ],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:21:04.820986+00:00"
+    },
+    "weather_imagier_with_names_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:23:12.055387+00:00"
+    },
+    "wind_turbines_on_hill_1376x768_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T05:23:18.543215+00:00"
+    },
+    "windy_day_kite_flying_1024x1024_euler8s.png": {
+      "score": 5,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T05:23:23.661342+00:00"
+    },
+    "tornado_in_distance_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T06:46:29.814292+00:00"
+    },
+    "wrapped_birthday_presents_1024x1024_euler8s.png": {
+      "score": 3,
+      "score_legacy": null,
+      "image_tags": [
+        "image_simpliste"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T06:46:36.164726+00:00"
+    },
+    "young_adult_at_work_1376x768_euler8s.png": {
+      "score": 6,
+      "score_legacy": null,
+      "image_tags": [],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": true,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": true
+      },
+      "updated_at": "2026-05-10T06:46:47.977369+00:00"
+    },
+    "zero_waste_kitchen_1024x1024_euler8s.png": {
+      "score": 1,
+      "score_legacy": null,
+      "image_tags": [
+        "image_pas_coherente",
+        "image_incomprehensible"
+      ],
+      "prompt_tags": [],
+      "custom_tags": [],
+      "flags": {
+        "pattern": false,
+        "pattern_note": "",
+        "sample": false,
+        "publishable": false
+      },
+      "updated_at": "2026-05-10T06:46:55.037760+00:00"
     }
   },
   "schema_version": "v2"

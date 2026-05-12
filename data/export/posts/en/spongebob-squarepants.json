@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "spongebob-squarepants",
+  "r2_slug": "spongebob-squarepants",
+  "title": "SpongeBob Coloring Page Fun",
+  "title_card": "Color SpongeBob Now",
+  "description": "This delightful coloring page features the cheerful yellow sponge from Bikini Bottom ready for creative fun with markers and crayons.",
+  "keywords": [
+    "SpongeBob",
+    "Bikini Bottom",
+    "Coloring Fun",
+    "Cartoon Hero",
+    "Yellow Sponge"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/spongebob_squarepants_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/spongebob-squarepants.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/spongebob-squarepants.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/spongebob-squarepants.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/spongebob-squarepants.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "spongebob_squarepants",
+    "name_en": "SpongeBob SquarePants",
+    "name_fr": "Bob l'éponge",
+    "name_ar": "سبونج بوب",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

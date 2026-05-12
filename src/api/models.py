@@ -1,7 +1,19 @@
 from __future__ import annotations
 
-from sqlalchemy import JSON, Boolean, Float, ForeignKey, Index, Integer, String, Text, UniqueConstraint
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import (
+    JSON,
+    Boolean,
+    CheckConstraint,
+    Float,
+    ForeignKey,
+    ForeignKeyConstraint,
+    Index,
+    Integer,
+    String,
+    Text,
+    UniqueConstraint,
+)
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
 class Base(DeclarativeBase):
@@ -51,6 +63,17 @@ class Term(Base):
     node_metadata: Mapped[dict | None] = mapped_column("metadata", JSON, nullable=True)
     created_at: Mapped[str | None] = mapped_column(Text)
     updated_at: Mapped[str | None] = mapped_column(Text)
+
+    # Relation vers ``subject`` (sous-objets éditoriaux d'un term). FK
+    # composite (term_id, vocabulary_id) → (term.id, term.vocabulary_id).
+    # ``passive_deletes=True`` pour laisser Postgres faire le ON DELETE CASCADE
+    # côté SQL ; côté SQLite tests, l'enforcement FK est désactivé par défaut.
+    subjects: Mapped[list["Subject"]] = relationship(
+        "Subject",
+        back_populates="term",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
 
 
 class Site(Base):
@@ -153,6 +176,10 @@ class ImageOutput(Base):
     model_name: Mapped[str | None] = mapped_column(Text)
     model_config: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[str | None] = mapped_column(Text)
+    # Tags QC déterministes posés par le worker `image_qc_auto` (brief
+    # 2026-05-10). JSON cross-dialect : liste de strings sur SQLite,
+    # JSONB côté Postgres via la migration 0008.
+    qc_tags: Mapped[list | None] = mapped_column(JSON, nullable=True)
 
 
 class ImageTaxonomyTag(Base):
@@ -227,6 +254,53 @@ class AiPromptTemplate(Base):
     updated_at: Mapped[str | None] = mapped_column(Text)
 
 
+class ImagePublication(Base):
+    """Couche publication par locale (brief MEP-v0/A, 2026-05-10).
+
+    Une `image` produit 3 lignes (1 par locale ``fr`` / ``en`` / ``ar``). Chaque
+    ligne porte les champs i18n (``title`` / ``description``), les slugs (R2 et
+    Post) et le statut publication.
+
+    Statuts admis : ``pending`` → ``ready_for_export`` → ``published_alwan``.
+
+    Conventions :
+    - PK composite ``(image_id, locale)``.
+    - FK ``image_id`` → ``image.id`` avec ``ON DELETE CASCADE`` (l'intégrité
+      référentielle est portée par la migration ; pour SQLite, le test active
+      ``PRAGMA foreign_keys=ON`` au besoin).
+    - Unicité ``(locale, post_slug)`` : un slug Post est unique par locale,
+      mais peut coexister entre locales différentes (les slugs Post sont
+      localisés). Les ``NULL`` sont autorisés tant qu'aucun slug n'a été
+      attribué.
+    - ``r2_slug`` est partagé entre les 3 locales d'une même image : sa
+      cohérence est assurée applicativement (pas de contrainte SQL).
+    - Pas d'opérateur JSON ici — colonnes scalaires uniquement.
+    """
+
+    __tablename__ = "image_publication"
+    __table_args__ = (
+        Index("idx_image_publication_status", "status"),
+        Index("idx_image_publication_r2_slug", "r2_slug"),
+        UniqueConstraint(
+            "locale", "post_slug", name="uq_image_publication_post_slug",
+        ),
+    )
+
+    image_id: Mapped[str] = mapped_column(
+        ForeignKey("image.id", ondelete="CASCADE"), primary_key=True,
+    )
+    locale: Mapped[str] = mapped_column(String, primary_key=True)
+    title: Mapped[str | None] = mapped_column(Text)
+    description: Mapped[str | None] = mapped_column(Text)
+    post_slug: Mapped[str | None] = mapped_column(String)
+    r2_slug: Mapped[str | None] = mapped_column(String)
+    status: Mapped[str | None] = mapped_column(String, default="pending")
+    external_url: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[str] = mapped_column(Text, nullable=False)
+    updated_at: Mapped[str] = mapped_column(Text, nullable=False)
+    published_at: Mapped[str | None] = mapped_column(Text)
+
+
 class Annotation(Base):
     """Table polymorphe d'annotation humaine (greffon prod, brief 2026-05-09).
 
@@ -262,3 +336,65 @@ class Annotation(Base):
     publishable: Mapped[bool | None] = mapped_column(Boolean, default=False)
     created_at: Mapped[str] = mapped_column(Text, nullable=False)
     updated_at: Mapped[str] = mapped_column(Text, nullable=False)
+
+
+class Subject(Base):
+    """Sous-objet éditorial d'un ``term`` (brief 2026-05-10).
+
+    Un ``subject`` matérialise un sujet concret rattaché à un term taxonomique
+    (ex. term=``lion`` → subjects=``lion mâle adulte sur rocher``,
+    ``lionceau jouant``). Il porte le statut éditorial, une note humaine 0-6,
+    une liste de tags whitelisted, un brief textuel et un bloc metadata libre.
+
+    FK composite vers ``term`` (PK = ``id`` + ``vocabulary_id``). La colonne
+    physique pour le bloc metadata est ``subject_metadata`` côté SQL pour
+    éviter le conflit avec ``Base.metadata`` (réservé SQLAlchemy) — l'attribut
+    Python ``subject_metadata`` reflète directement ce nom (pas d'alias).
+
+    Côté Postgres (migration 0007) : ``tags`` et ``subject_metadata`` en JSONB,
+    contraintes CHECK natives sur ``status`` et ``note``. Côté SQLite (tests),
+    l'``status`` est enforced uniquement via Pydantic ; les CheckConstraint sont
+    bien créés mais SQLite enforce les CHECK depuis 3.3+ — on garde la double
+    barrière (Pydantic + DB).
+    """
+
+    __tablename__ = "subject"
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ["term_id", "vocabulary_id"],
+            ["term.id", "term.vocabulary_id"],
+            name="fk_subject_term",
+            ondelete="CASCADE",
+        ),
+        UniqueConstraint("term_id", "name", name="uq_subject_term_name"),
+        CheckConstraint(
+            "note IS NULL OR (note >= 0 AND note <= 6)",
+            name="ck_subject_note_range",
+        ),
+        CheckConstraint(
+            "status IN ('draft','annotated','validated','enriched',"
+            "'prompted','generated','qc_done','published','rejected')",
+            name="ck_subject_status_whitelist",
+        ),
+        Index("idx_subject_term", "term_id", "vocabulary_id"),
+        Index("idx_subject_status", "status"),
+        Index("idx_subject_updated", "updated_at"),
+        Index("idx_subject_source", "source"),
+    )
+
+    id: Mapped[str] = mapped_column(Text, primary_key=True)
+    term_id: Mapped[str] = mapped_column(Text, nullable=False)
+    vocabulary_id: Mapped[str] = mapped_column(Text, nullable=False)
+    name: Mapped[str] = mapped_column(Text, nullable=False)
+    source: Mapped[str] = mapped_column(Text, nullable=False, default="manual")
+    status: Mapped[str] = mapped_column(Text, nullable=False, default="draft")
+    note: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    tags: Mapped[list | None] = mapped_column(JSON, nullable=True)
+    brief: Mapped[str | None] = mapped_column(Text, nullable=True)
+    subject_metadata: Mapped[dict | None] = mapped_column(
+        "subject_metadata", JSON, nullable=True
+    )
+    created_at: Mapped[str] = mapped_column(Text, nullable=False)
+    updated_at: Mapped[str] = mapped_column(Text, nullable=False)
+
+    term: Mapped["Term"] = relationship("Term", back_populates="subjects")

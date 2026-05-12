@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "fr",
+  "slug": "zebre-dans-la-savane",
+  "r2_slug": "zebra-in-the-savanna",
+  "title": "Coloriage Zèbre dans la savane",
+  "title_card": "Zèbre savane",
+  "description": "Découvrez ce magnifique zèbre qui marche dans la savane. Coloriez ses rayures et l'herbe verte pour créer une scène enchantée.",
+  "keywords": [
+    "zèbre",
+    "savane",
+    "coloriage",
+    "animaux",
+    "nature"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/zebra_in_savanna_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/zebra-in-the-savanna.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/zebra-in-the-savanna.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/zebra-in-the-savanna.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/zebra-in-the-savanna.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "zebra_in_savanna",
+    "name_en": "Zebra in the Savanna",
+    "name_fr": "Zèbre dans la savane",
+    "name_ar": "الحمار الوحشي",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

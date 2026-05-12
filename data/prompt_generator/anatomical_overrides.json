@@ -1,0 +1,29 @@
+{
+  "_metadata": {
+    "source": ".claude/skills/prompt-taxonomy-ecosystem.skill — references/techniques.md §T28",
+    "transfer_date": "2026-05-10",
+    "brief": "docs/architect/briefs/2026-05-10_brief-transfert-T28-Z1-anatomique-labels.md",
+    "rule_T28": "Pattern five_senses + projection anatomique précise. Le name_en brut (ex. 'Sense of Sight Eye') n'est pas projetable dans template_solo_object — le modèle insère le composé tel quel et produit un sujet syntaxiquement bizarre. Le skill fournit 5 prompts validés clé-en-main, qui projettent l'organe avec énumération des composants + titre du sens en capitales.",
+    "schema": {
+      "leaf_id": "string — identifiant de feuille",
+      "positive_subject_clause": "string — clause sujet (insérée APRÈS STYLE_BLOCK et virgule). N'inclut PAS le STYLE_BLOCK ni l'isolation suffix : ceux-ci sont gérés par le template wrapper côté code."
+    }
+  },
+  "overrides": {
+    "sense_of_sight_eye": {
+      "positive_subject_clause": "one human eye centered on the page, viewed from the front, the eyelid above and below clearly visible, eyelashes drawn as simple lines along the upper eyelid, the iris circular in the center with a smaller pupil inside, the eyebrow above the eye, the title \"SIGHT\" written in capital letters above the eye, clean uncluttered composition"
+    },
+    "sense_of_hearing_ear": {
+      "positive_subject_clause": "one human ear centered on the page, viewed from the side in clear anatomical detail, the outer rim curving around, the inner curves visible inside the ear, the earlobe at the bottom, the title \"HEARING\" written in capital letters above the ear, clean uncluttered composition"
+    },
+    "sense_of_smell_nose": {
+      "positive_subject_clause": "one human nose drawn in profile view from the side, the bridge curving from the top down to the rounded tip, one nostril visible from the side angle, the upper lip visible just below, simple curved line indicating where the nose connects to the cheek, the title \"SMELL\" written in capital letters above the nose, clean uncluttered composition"
+    },
+    "sense_of_taste_tongue": {
+      "positive_subject_clause": "one human tongue centered on the page, viewed from above showing the full tongue shape, simple texture lines on the surface suggesting taste buds, the tip rounded at the front, the title \"TASTE\" written in capital letters above the tongue, clean uncluttered composition"
+    },
+    "sense_of_touch_hand": {
+      "positive_subject_clause": "one human hand centered on the page, viewed from the palm side, all five fingers spread out and fully visible, the thumb on one side and the four other fingers extended, the wrist visible at the bottom, the title \"TOUCH\" written in capital letters above the hand, clean uncluttered composition"
+    }
+  }
+}

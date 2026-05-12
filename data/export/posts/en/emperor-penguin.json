@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "emperor-penguin",
+  "r2_slug": "emperor-penguin",
+  "title": "Color the Mighty Emperor Penguin",
+  "title_card": "Emperor Penguin",
+  "description": "Bring the icy world to life by coloring the majestic Emperor Penguin standing tall on the frozen Antarctic ice.",
+  "keywords": [
+    "icy",
+    "Antarctic",
+    "black",
+    "white",
+    "penguin"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/emperor_penguin_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/emperor-penguin.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/emperor-penguin.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/emperor-penguin.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/emperor-penguin.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "emperor_penguin",
+    "name_en": "Emperor Penguin",
+    "name_fr": "Manchot empereur",
+    "name_ar": "البطريق الإمبراطور",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

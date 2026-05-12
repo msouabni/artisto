@@ -1,0 +1,518 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-10T20:54:25Z",
+  "soft_caps": {
+    "title_fr_en": [
+      40,
+      60
+    ],
+    "title_ar": [
+      25,
+      55
+    ],
+    "description_fr_en": [
+      80,
+      130
+    ],
+    "description_ar": [
+      40,
+      115
+    ]
+  },
+  "leaves": [
+    {
+      "leaf_id": "abstract_zentangle",
+      "name_en": "Abstract Zentangle",
+      "name_fr": "Zentangle abstrait",
+      "name_ar": "زنتانغل مجرد",
+      "title_en": "Abstract Zentangle Coloring Fun",
+      "title_fr": "Dessin abstrait pour enfants",
+      "title_ar": "زنتانغل مجرد للرسم والرسم",
+      "title_card_en": "Colorful Zentangle Art",
+      "title_card_fr": "Dessin abstrait",
+      "title_card_ar": "زنتانغل مجرد للرسم",
+      "description_en": "This intricate pattern invites kids to explore creativity with bold colors and endless possibilities. Perfect for developing focus and artistic skills.",
+      "description_fr": "Un motif abstrait à colorier pour les enfants, idéal pour stimuler la créativité et le plaisir de dessiner",
+      "description_ar": "استكشف عالم الزنتانغل المجرد واستمتع بتجربة رسم مهدئة وجميلة. ارسم وابتكر مع ألوانك المفضلة!",
+      "keywords_en": [
+        "coloring page",
+        "abstract art",
+        "creative play",
+        "focus skills",
+        "art exploration"
+      ],
+      "keywords_fr": [
+        "Dessin abstrait",
+        "colorier enfants",
+        "motif créatif",
+        "activité ludique",
+        "dessin coloriage"
+      ],
+      "keywords_ar": [
+        "زنتانغل مجرد",
+        "رسم مهدئ",
+        "رسم جمالي",
+        "الرسم الذهني",
+        "الرسم الإبداعي"
+      ],
+      "status": "soft_caps_violated",
+      "generation_attempts": {
+        "content_generator": 1,
+        "regen_for_caps": 1
+      },
+      "soft_cap_violations": [
+        {
+          "field": "title_en",
+          "len": 31,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "title_fr",
+          "len": 28,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "description_en",
+          "len": 151,
+          "expected_min": 80,
+          "expected_max": 130,
+          "kind": "too_long"
+        }
+      ],
+      "review_flags": [
+        "en_bounds:title_len=31 not in [40,60],description_len=151 not in [80,130]",
+        "fr_bounds:title_len=28 not in [40,60]"
+      ],
+      "error": null,
+      "latency_ms": 138963
+    },
+    {
+      "leaf_id": "advanced_mandala_for_teens",
+      "name_en": "Advanced Mandala for Teens",
+      "name_fr": "Mandala avancé pour ados",
+      "name_ar": "ماندالا متقدمة للمراهقين",
+      "title_en": "Advanced Mandala for Teens: Creative Coloring",
+      "title_fr": "Mandala Avancé pour Ados",
+      "title_ar": "ماندالا متقدمة للمراهقين للاسترخاء",
+      "title_card_en": "Advanced Mandala for Teens",
+      "title_card_fr": "Mandala pour Ados",
+      "title_card_ar": "ماندالا للمراهقين",
+      "description_en": "This intricate mandala design offers teens a creative outlet for relaxation and self-expression through detailed coloring.",
+      "description_fr": "Un mandala complexe pour stimuler l'imagination et apaiser l'esprit. Parfait pour les ados en quête de créativité et de calme.",
+      "description_ar": "استمتع برسوم ماندالا متقدمة للمراهقين لتعزيز الإبداع وتحقيق الهدوء والتركيز. مناسبة لجميع المراهقين الذين يبحثون عن طريقة ممتعة للاسترخاء وتحسين التركيز",
+      "keywords_en": [
+        "mandala",
+        "teens",
+        "coloring",
+        "creative",
+        "relaxation"
+      ],
+      "keywords_fr": [
+        "Mandala",
+        "Coloriage",
+        "Ados",
+        "Créativité",
+        "Relaxation"
+      ],
+      "keywords_ar": [
+        "ماندالا متقدمة",
+        "رسم ماندالا",
+        "الإبداع للمراهقين",
+        "الاسترخاء",
+        "التركيز"
+      ],
+      "status": "soft_caps_violated",
+      "generation_attempts": {
+        "content_generator": 1,
+        "regen_for_caps": 1
+      },
+      "soft_cap_violations": [
+        {
+          "field": "title_fr",
+          "len": 24,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "description_ar",
+          "len": 152,
+          "expected_min": 40,
+          "expected_max": 115,
+          "kind": "too_long"
+        }
+      ],
+      "review_flags": [
+        "ar_hard_issues:description_len=152 not in [40,115]",
+        "ar_retried_3x",
+        "fr_bounds:title_len=24 not in [40,60]"
+      ],
+      "error": null,
+      "latency_ms": 316171
+    },
+    {
+      "leaf_id": "african_elephant",
+      "name_en": "African Elephant",
+      "name_fr": "Éléphant d'Afrique",
+      "name_ar": "الفيل الإفريقي",
+      "title_en": "Colorful African Elephant Adventure",
+      "title_fr": "Coloriage Éléphant d'Afrique",
+      "title_ar": "الفيل الإفريقي رسم ملون",
+      "title_card_en": "Big Elephant Coloring Fun",
+      "title_card_fr": "Éléphant à colorier",
+      "title_card_ar": "الفيل الإفريقي",
+      "description_en": "Join the African elephant in a colorful adventure! Color its trunk ears and skin to bring this gentle giant to life. Fun for young artists!",
+      "description_fr": "Dessin d'un éléphant d'Afrique avec son trompe et ses grandes oreilles. Amusez-vous à colorier et créer votre propre animal!",
+      "description_ar": "استمتع برسم الفيل الإفريقي وتعلم المزيد عن هذا الكائن الرائع في الطبيعة",
+      "keywords_en": [
+        "African Elephant",
+        "Coloring Page",
+        "Gentle Giant",
+        "Trunk Details",
+        "Animal Art"
+      ],
+      "keywords_fr": [
+        "éléphant à colorier",
+        "dessin animal",
+        "créer avec des couleurs",
+        "animal d'Afrique",
+        "coloriage enfant"
+      ],
+      "keywords_ar": [
+        "الفيل الإفريقي",
+        "رسم ملون",
+        "حيوان",
+        "طبيعة",
+        "أفريقية"
+      ],
+      "status": "soft_caps_violated",
+      "generation_attempts": {
+        "content_generator": 1,
+        "regen_for_caps": 1
+      },
+      "soft_cap_violations": [
+        {
+          "field": "title_en",
+          "len": 35,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "title_fr",
+          "len": 28,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "title_ar",
+          "len": 23,
+          "expected_min": 25,
+          "expected_max": 55,
+          "kind": "too_short"
+        },
+        {
+          "field": "description_en",
+          "len": 139,
+          "expected_min": 80,
+          "expected_max": 130,
+          "kind": "too_long"
+        }
+      ],
+      "review_flags": [
+        "ar_hard_issues:title_len=23 not in [25,55]",
+        "ar_retried_3x",
+        "en_bounds:title_len=35 not in [40,60],description_len=139 not in [80,130]",
+        "fr_bounds:title_len=28 not in [40,60]"
+      ],
+      "error": null,
+      "latency_ms": 312018
+    },
+    {
+      "leaf_id": "ai_brain_with_circuits",
+      "name_en": "AI Brain with Circuits",
+      "name_fr": "Cerveau IA avec circuits",
+      "name_ar": "دماغ ذكاء اصطناعي مع دوائر",
+      "title_en": "Colorful AI Brain with Circuit Patterns",
+      "title_fr": "Cerveau IA à colorier",
+      "title_ar": "دماغ الذكاء الاصطناعي مع دوائر",
+      "title_card_en": "AI Brain Coloring Fun",
+      "title_card_fr": "Cerveau IA à colorier",
+      "title_card_ar": "دماغ الذكاء مع دوائر",
+      "description_en": "This fun coloring page features an AI brain with circuits. Kids can color and explore the world of AI while having fun.",
+      "description_fr": "Dessinez et coloriez ce cerveau intelligent avec des circuits. Activité créative pour les enfants.",
+      "description_ar": "استكشف عالم الذكاء الاصطناعي عبر رسم دوائر ملونة على هذا الدماغ الذكي. اجعل التخيل يقودك في رحلة إبداعية ممتعة.",
+      "keywords_en": [
+        "AI Brain",
+        "Coloring Page",
+        "Circuits",
+        "Kids Activity",
+        "Creative Fun"
+      ],
+      "keywords_fr": [
+        "Cerveau IA",
+        "Circuits",
+        "Coloriage",
+        "Enfants",
+        "Créativité"
+      ],
+      "keywords_ar": [
+        "دماغ الذكاء الاصطناعي",
+        "دوائر الكهرباء",
+        "رسم ملون",
+        "الإبداع",
+        "الذكاء الاصطناعي"
+      ],
+      "status": "soft_caps_violated",
+      "generation_attempts": {
+        "content_generator": 1,
+        "regen_for_caps": 0
+      },
+      "soft_cap_violations": [
+        {
+          "field": "title_en",
+          "len": 39,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "title_fr",
+          "len": 21,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        }
+      ],
+      "review_flags": [
+        "en_bounds:title_len=39 not in [40,60]",
+        "fr_bounds:title_len=21 not in [40,60]"
+      ],
+      "error": null,
+      "latency_ms": 147615
+    },
+    {
+      "leaf_id": "air_fryer",
+      "name_en": "Air Fryer",
+      "name_fr": "Friteuse à air chaud",
+      "name_ar": "القلاية الهوائية",
+      "title_en": "Color Your Air Fryer Adventure",
+      "title_fr": "Coloriage : Friteuse à Air Chaud",
+      "title_ar": "القلاية الهوائية: عالم الألوان والرسم",
+      "title_card_en": "Air Fryer Coloring Page",
+      "title_card_fr": "Friteuse à Air",
+      "title_card_ar": "القلاية الهوائية للرسم",
+      "description_en": "Explore the fun of cooking with an air fryer! Color the details and imagine delicious meals. Perfect for creative play and learning about kitchen tools.",
+      "description_fr": "Dessine la friteuse à air chaud, un appareil qui fait frire les aliments sans huile. Amuse-toi à colorier et crée ton propre dessin!",
+      "description_ar": "استمتع بنشاط ممتع يدمج بين القلاية الهوائية والرسم الإبداعي لتنمية الخيال والمهارات الحركية الدقيقة",
+      "keywords_en": [
+        "air fryer",
+        "coloring page",
+        "fun",
+        "kitchen tools",
+        "creative play"
+      ],
+      "keywords_fr": [
+        "Friteuse à Air",
+        "Appareil Cuisine",
+        "Dessin Enfants",
+        "Coloriage Créatif",
+        "Activité Détente"
+      ],
+      "keywords_ar": [
+        "القلاية الهوائية",
+        "الرسم",
+        "الألوان",
+        "الإبداع",
+        "الأنشطة التعليمية"
+      ],
+      "status": "soft_caps_violated",
+      "generation_attempts": {
+        "content_generator": 1,
+        "regen_for_caps": 1
+      },
+      "soft_cap_violations": [
+        {
+          "field": "title_en",
+          "len": 30,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "title_fr",
+          "len": 32,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "description_en",
+          "len": 152,
+          "expected_min": 80,
+          "expected_max": 130,
+          "kind": "too_long"
+        },
+        {
+          "field": "description_fr",
+          "len": 132,
+          "expected_min": 80,
+          "expected_max": 130,
+          "kind": "too_long"
+        }
+      ],
+      "review_flags": [
+        "ar_retried_1x",
+        "en_bounds:title_len=30 not in [40,60],description_len=152 not in [80,130]",
+        "fr_bounds:title_len=32 not in [40,60],description_len=132 not in [80,130]"
+      ],
+      "error": null,
+      "latency_ms": 166079
+    },
+    {
+      "leaf_id": "aladdin_with_magic_lamp",
+      "name_en": "Aladdin with Magic Lamp",
+      "name_fr": "Aladin avec la lampe magique",
+      "name_ar": "علاء الدين مع المصباح السحري",
+      "title_en": "Aladdin's Magic Lamp Coloring Fun",
+      "title_fr": "Coloriage Aladdin et sa Lampe Magique",
+      "title_ar": "علاء الدين مع المصباح السحري",
+      "title_card_en": "Aladdin Magic Lamp Coloring",
+      "title_card_fr": "Aladdin et sa Lampe",
+      "title_card_ar": "علاء الدين مع المصباح",
+      "description_en": "Color Aladdin's magic lamp and imagine his adventures in the palace. Fun for young artists!",
+      "description_fr": "Découvre Aladdin et sa lampe magique dans ce coloriage créatif pour enfants. Amuse-toi à dessiner et colorier cette aventure palpitante!",
+      "description_ar": "استمتع بلوحة التلوين هذه وابدأ رحلة علاء الدين مع المصباح السحري في عالم المغامرة والخيال!",
+      "keywords_en": [
+        "magic lamp",
+        "coloring page",
+        "aladdin adventure",
+        "fun activity",
+        "imagine stories"
+      ],
+      "keywords_fr": [
+        "Aladdin",
+        "lampe magique",
+        "coloriage",
+        "dessin",
+        "enfant"
+      ],
+      "keywords_ar": [
+        "علاء الدين مع المصباح السحري",
+        "لوحة تلوين",
+        "الخيال",
+        "المغامرة",
+        "الصباح السحري"
+      ],
+      "status": "soft_caps_violated",
+      "generation_attempts": {
+        "content_generator": 1,
+        "regen_for_caps": 1
+      },
+      "soft_cap_violations": [
+        {
+          "field": "title_en",
+          "len": 33,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "title_fr",
+          "len": 37,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "description_fr",
+          "len": 136,
+          "expected_min": 80,
+          "expected_max": 130,
+          "kind": "too_long"
+        }
+      ],
+      "review_flags": [
+        "en_bounds:title_len=33 not in [40,60]",
+        "fr_bounds:title_len=37 not in [40,60],description_len=136 not in [80,130]"
+      ],
+      "error": null,
+      "latency_ms": 162183
+    },
+    {
+      "leaf_id": "alpaca",
+      "name_en": "Alpaca",
+      "name_fr": "Alpaga",
+      "name_ar": "الألبكة",
+      "title_en": "Color Your Alpaca Friend Today",
+      "title_fr": "Coloriage Alpaga pour Enfants",
+      "title_ar": "الألبكة الرائعة للرسم واللون",
+      "title_card_en": "Alpaca Coloring Fun",
+      "title_card_fr": "Alpaga à Colorier",
+      "title_card_ar": "الألبكة للرسم",
+      "description_en": "Join the alpaca on a colorful adventure! Color the soft fur playful eyes and happy expressions. Perfect for young artists!",
+      "description_fr": "Découvrez un coloriage de l'alpaca, idéal pour stimuler la créativité et apaiser les enfants. Un activité ludique et éducative.",
+      "description_ar": "استمتع برسم الألبكة ولونها بألوان مبهجة. مناسب للأطفال والكبار",
+      "keywords_en": [
+        "alpaca",
+        "coloring",
+        "fun",
+        "kids",
+        "art"
+      ],
+      "keywords_fr": [
+        "coloriage alpaca",
+        "activité ludique",
+        "créativité enfant",
+        "dessin alpaca",
+        "colorier animal"
+      ],
+      "keywords_ar": [
+        "الألبكة",
+        "رسم",
+        "لون",
+        "الأطفال",
+        "الكبار"
+      ],
+      "status": "soft_caps_violated",
+      "generation_attempts": {
+        "content_generator": 1,
+        "regen_for_caps": 0
+      },
+      "soft_cap_violations": [
+        {
+          "field": "title_en",
+          "len": 30,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        },
+        {
+          "field": "title_fr",
+          "len": 29,
+          "expected_min": 40,
+          "expected_max": 60,
+          "kind": "too_short"
+        }
+      ],
+      "review_flags": [
+        "en_bounds:title_len=30 not in [40,60]",
+        "fr_bounds:title_len=29 not in [40,60]"
+      ],
+      "error": null,
+      "latency_ms": 142603
+    }
+  ],
+  "stats": {
+    "total_leaves": 7,
+    "ok": 0,
+    "failed": 0,
+    "soft_caps_violated": 7,
+    "avg_attempts_ar_desc": 1.71
+  }
+}

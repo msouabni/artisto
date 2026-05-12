@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "advanced-mandala-for-teens",
+  "r2_slug": "advanced-mandala-for-teens",
+  "title": "Advanced Mandala for Teens Coloring",
+  "title_card": "Teen Mandala Art",
+  "description": "This advanced mandala design challenges teens with intricate patterns and vibrant colors to create a stunning piece of art.",
+  "keywords": [
+    "Mandala Art",
+    "Teen Design",
+    "Coloring Page",
+    "Intricate Patterns",
+    "Creative Fun"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/advanced_mandala_for_teens_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/advanced-mandala-for-teens.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/advanced-mandala-for-teens.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/advanced-mandala-for-teens.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/advanced-mandala-for-teens.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "advanced_mandala_for_teens",
+    "name_en": "Advanced Mandala for Teens",
+    "name_fr": "Mandala avancé pour ados",
+    "name_ar": "ماندالا متقدمة للمراهقين",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "en",
+  "slug": "rising-phoenix",
+  "r2_slug": "rising-phoenix",
+  "title": "Rising Phoenix Coloring Page",
+  "title_card": "Rising Phoenix",
+  "description": "Color the majestic bird rising from ashes with vibrant hues and intricate feather details for a creative and relaxing activity.",
+  "keywords": [
+    "bird",
+    "fire",
+    "coloring",
+    "art",
+    "kids"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/rising_phoenix_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/rising-phoenix.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/rising-phoenix.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/rising-phoenix.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/rising-phoenix.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "rising_phoenix",
+    "name_en": "Rising Phoenix",
+    "name_fr": "Phénix renaissant",
+    "name_ar": "طائر العنقاء",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

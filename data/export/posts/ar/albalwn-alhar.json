@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "albalwn-alhar",
+  "r2_slug": "hot-air-balloon",
+  "title": "لوحة تلوين البالون الحار للأطفال",
+  "title_card": "لوحة تلوين البالون الحار",
+  "description": "استمتع بلوحة تلوين البالون الحار الجميلة المصممة خصيصا للأطفال لتعليمهم الألوان والابتهاج.",
+  "keywords": [
+    "بالون",
+    "حار",
+    "تلوين",
+    "أطفال",
+    "لوحة"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-generator-benchmark/hot_air_balloon_1376x768_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/hot-air-balloon.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/hot-air-balloon.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/hot-air-balloon.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/hot-air-balloon.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "hot_air_balloon",
+    "name_en": "Hot Air Balloon",
+    "name_fr": "Montgolfière",
+    "name_ar": "البالون الحار",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:41Z"
+  }
+}

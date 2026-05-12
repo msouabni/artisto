@@ -1,0 +1,34 @@
+{
+  "schema_version": "v2.4",
+  "locale": "ar",
+  "slug": "albqra-alhlwb",
+  "r2_slug": "dairy-cow",
+  "title": "تلوين البقرة الحلوب للآباء والأطفال",
+  "title_card": "البقرة الحلوب",
+  "description": "صفحة تلوين مميزة للآباء والأطفال تحتوي على صورة البقرة الحلوب لتعليمهم مفاهيم الزراعة والحيوانات.",
+  "keywords": [
+    "البقرة الحلوب",
+    "تلوين",
+    "الحيوانات",
+    "الزراعة",
+    "الآباء والأطفال"
+  ],
+  "categoryId": "",
+  "themeIds": [],
+  "status": "approved",
+  "image_id": "benchmark:poc-scale-benchmark/dairy_cow_1024x1024_euler8s.png",
+  "imageSource": "https://assets.alwanbooks.com/coloriages/png/dairy-cow.png",
+  "imageWeb": "https://assets.alwanbooks.com/coloriages/webp/dairy-cow.webp",
+  "imageThumb": "https://assets.alwanbooks.com/coloriages/thumbs/dairy-cow.webp",
+  "imagePdf": "https://assets.alwanbooks.com/coloriages/pdf/dairy-cow.pdf",
+  "datePublication": "2026-05-12",
+  "featured": false,
+  "_pipeline": {
+    "leaf_id": "dairy_cow",
+    "name_en": "Dairy Cow",
+    "name_fr": "Vache laitière",
+    "name_ar": "البقرة الحلوب",
+    "i18n_status": "soft_caps_violated",
+    "generated_at": "2026-05-12T10:22:40Z"
+  }
+}
