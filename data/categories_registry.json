@@ -1,0 +1,395 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "animals",
+      "parent_id": null,
+      "weight": 1,
+      "slug_i18n": {
+        "ar": "hayawanat",
+        "fr": "animaux",
+        "en": "animals"
+      },
+      "name_i18n": {
+        "ar": "حيوانات",
+        "fr": "Animaux",
+        "en": "Animals"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الحيوانات للأطفال — قطط وأسود وحيوانات أليفة وبرية، رسومات بسيطة لتلوين سهل وممتع.",
+        "fr": "Coloriages d'animaux pour enfants — chats, lions, animaux de compagnie et sauvages, illustrations simples pour un coloriage facile et amusant.",
+        "en": "Animal coloring pages for kids — cats, lions, pets and wild animals, simple line art for easy and fun coloring."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين حيوانات",
+          "صفحات تلوين",
+          "رسومات للأطفال"
+        ],
+        "fr": [
+          "coloriage animaux",
+          "animaux à imprimer",
+          "coloriage enfant"
+        ],
+        "en": [
+          "animals coloring",
+          "animal coloring pages",
+          "kids coloring"
+        ]
+      },
+      "body": "Catégorie racine pour tous les coloriages d'animaux.",
+      "scope_note": "Racine de tous les sous-types animaux. Inclut par transitivité : felins, lions, oiseaux, marins, pets, wild (avec animaux de ferme et créatures fantastiques selon scope animals_pets / animals_wild)."
+    },
+    {
+      "id": "animals_cats",
+      "parent_id": "animals",
+      "weight": 10,
+      "slug_i18n": {
+        "ar": "qitat",
+        "fr": "chats",
+        "en": "cats"
+      },
+      "name_i18n": {
+        "ar": "قطط",
+        "fr": "Chats",
+        "en": "Cats"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين القطط للأطفال — قطط منزلية بأوضاع مختلفة، رسومات لطيفة وسهلة التلوين، مناسبة للأعمار من 4 إلى 10 سنوات.",
+        "fr": "Coloriages de chats pour enfants — chats domestiques dans diverses postures, illustrations mignonnes et faciles à colorier, adaptées aux 4-10 ans.",
+        "en": "Cat coloring pages for kids — domestic cats in various poses, cute and easy line art, suitable for ages 4 to 10."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين قط",
+          "صفحات قطط",
+          "قطط للطباعة"
+        ],
+        "fr": [
+          "coloriage chat",
+          "chat à imprimer",
+          "coloriage chaton"
+        ],
+        "en": [
+          "cat coloring",
+          "cat coloring page",
+          "kitten coloring"
+        ]
+      },
+      "body": "Sous-catégorie : chats.",
+      "scope_note": "Chats domestiques (non big cats). Les big cats (tigre, léopard, jaguar, etc.) sont mappés vers animals_wild."
+    },
+    {
+      "id": "animals_lions",
+      "parent_id": "animals",
+      "weight": 20,
+      "slug_i18n": {
+        "ar": "usud",
+        "fr": "lions",
+        "en": "lions"
+      },
+      "name_i18n": {
+        "ar": "أسود",
+        "fr": "Lions",
+        "en": "Lions"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الأسود للأطفال — ملك الغابة في مشاهد متنوعة، رسومات قوية وممتعة، مناسبة للأعمار من 5 إلى 12 سنة.",
+        "fr": "Coloriages de lions pour enfants — le roi de la savane dans diverses scènes, illustrations puissantes et amusantes, adaptées aux 5-12 ans.",
+        "en": "Lion coloring pages for kids — the king of the savanna in various scenes, powerful and fun line art, suitable for ages 5 to 12."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين أسد",
+          "ملك الغابة",
+          "حيوانات برية"
+        ],
+        "fr": [
+          "coloriage lion",
+          "lion à imprimer",
+          "coloriage savane"
+        ],
+        "en": [
+          "lion coloring",
+          "lion coloring page",
+          "savanna animals coloring"
+        ]
+      },
+      "body": "Sous-catégorie : lions.",
+      "scope_note": "Lions uniquement (lion_in_savanna, lion_cub, etc.). Exclut le motif décoratif animal_mandala_lion_head (→ objects_things)."
+    },
+    {
+      "id": "animals_birds",
+      "parent_id": "animals",
+      "weight": 30,
+      "slug_i18n": {
+        "ar": "tuyur",
+        "fr": "oiseaux",
+        "en": "birds"
+      },
+      "name_i18n": {
+        "ar": "طيور",
+        "fr": "Oiseaux",
+        "en": "Birds"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الطيور للأطفال — عصافير وطيور غريبة وطيور جارحة، رسومات ملهمة وسهلة التلوين.",
+        "fr": "Coloriages d'oiseaux pour enfants — moineaux, oiseaux exotiques, rapaces, illustrations inspirantes et faciles à colorier.",
+        "en": "Bird coloring pages for kids — sparrows, exotic birds, raptors, inspiring and easy line art to color."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين طيور",
+          "صفحات عصافير",
+          "طيور للأطفال"
+        ],
+        "fr": [
+          "coloriage oiseau",
+          "oiseau à imprimer",
+          "coloriage oiseaux enfant"
+        ],
+        "en": [
+          "bird coloring",
+          "bird coloring page",
+          "birds for kids"
+        ]
+      },
+      "body": "Sous-catégorie : oiseaux.",
+      "scope_note": "Tous les oiseaux (peacock, owl, eagle, hummingbird, etc.) sauf turkey_bird qui peut tomber ici par convention mapper."
+    },
+    {
+      "id": "animals_marine",
+      "parent_id": "animals",
+      "weight": 40,
+      "slug_i18n": {
+        "ar": "bahriyya",
+        "fr": "marins",
+        "en": "marine"
+      },
+      "name_i18n": {
+        "ar": "حيوانات بحرية",
+        "fr": "Animaux marins",
+        "en": "Marine Animals"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الحيوانات البحرية للأطفال — أسماك ودلافين وحيتان وسلاحف بحرية، رسومات بحرية ممتعة.",
+        "fr": "Coloriages d'animaux marins pour enfants — poissons, dauphins, baleines, tortues marines, illustrations océaniques amusantes.",
+        "en": "Marine animal coloring pages for kids — fish, dolphins, whales, sea turtles, fun ocean line art."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين حيوانات بحرية",
+          "صفحات أسماك",
+          "بحر للأطفال"
+        ],
+        "fr": [
+          "coloriage animaux marins",
+          "coloriage poisson",
+          "coloriage océan"
+        ],
+        "en": [
+          "marine animals coloring",
+          "fish coloring page",
+          "ocean coloring"
+        ]
+      },
+      "body": "Sous-catégorie : animaux marins.",
+      "scope_note": "Faune marine (poissons, mammifères marins, crustacés, céphalopodes, méduses). Inclut sea_turtle, dolphin, whale, octopus, jellyfish, crab, etc."
+    },
+    {
+      "id": "animals_pets",
+      "parent_id": "animals",
+      "weight": 50,
+      "slug_i18n": {
+        "ar": "aliifa",
+        "fr": "compagnie",
+        "en": "pets"
+      },
+      "name_i18n": {
+        "ar": "حيوانات أليفة",
+        "fr": "Animaux de compagnie",
+        "en": "Pets"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الحيوانات الأليفة للأطفال — كلاب وأرانب وقوارض وطيور أليفة، رفاق منزليين لطفاء للتلوين.",
+        "fr": "Coloriages d'animaux de compagnie pour enfants — chiens, lapins, rongeurs, oiseaux domestiques, compagnons mignons à colorier.",
+        "en": "Pet coloring pages for kids — dogs, rabbits, rodents, domestic birds, cute household companions to color."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين حيوانات أليفة",
+          "صفحات كلاب",
+          "حيوانات منزلية"
+        ],
+        "fr": [
+          "coloriage animaux compagnie",
+          "coloriage chien",
+          "coloriage lapin"
+        ],
+        "en": [
+          "pet coloring",
+          "dog coloring page",
+          "pets coloring"
+        ]
+      },
+      "body": "Sous-catégorie : animaux de compagnie.",
+      "scope_note": "Animaux de compagnie + animaux de ferme. Inclut : chiens, lapins, rongeurs, oiseaux domestiques, chats domestiques (non big cats), moutons, vaches, chèvres, ânes, oies, canards (selon mapper). Décision archi 2026-05-15 : pas de animals_farm séparé pour réduire la fragmentation taxonomique."
+    },
+    {
+      "id": "animals_wild",
+      "parent_id": "animals",
+      "weight": 60,
+      "slug_i18n": {
+        "ar": "bariyya",
+        "fr": "sauvages",
+        "en": "wild"
+      },
+      "name_i18n": {
+        "ar": "حيوانات برية",
+        "fr": "Animaux sauvages",
+        "en": "Wild Animals"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الحيوانات البرية للأطفال — فيلة وحمر وحشية وزرافات وحيوانات الغابة، رسومات قوية لمحبي الطبيعة.",
+        "fr": "Coloriages d'animaux sauvages pour enfants — éléphants, zèbres, girafes, animaux de la forêt, illustrations puissantes pour amoureux de la nature.",
+        "en": "Wild animal coloring pages for kids — elephants, zebras, giraffes, forest animals, powerful line art for nature lovers."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين حيوانات برية",
+          "صفحات فيل",
+          "حيوانات الغابة"
+        ],
+        "fr": [
+          "coloriage animaux sauvages",
+          "coloriage éléphant",
+          "coloriage savane"
+        ],
+        "en": [
+          "wild animals coloring",
+          "elephant coloring page",
+          "safari coloring"
+        ]
+      },
+      "body": "Sous-catégorie : animaux sauvages.",
+      "scope_note": "Faune sauvage terrestre + créatures fantastiques animales. Inclut : éléphant, fox, loup, ours, tigre, leopard, jaguar, kangourou, butterfly, bee, snail, spider, ainsi que dragon, griffin, phoenix. Exclut : fairy / yeti (humanoïdes → general_humans). Décision archi 2026-05-15 : pas de animals_fantastic séparé."
+    },
+    {
+      "id": "general_humans",
+      "parent_id": null,
+      "weight": 100,
+      "slug_i18n": {
+        "ar": "shakhsiyat",
+        "fr": "personnages",
+        "en": "characters"
+      },
+      "name_i18n": {
+        "ar": "شخصيات",
+        "fr": "Personnages",
+        "en": "Characters"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الشخصيات للأطفال — مهن وأبطال خارقين وحرف يومية، رسومات إنسانية ملهمة وممتعة.",
+        "fr": "Coloriages de personnages pour enfants — métiers, super-héros, professions du quotidien, illustrations humaines inspirantes et amusantes.",
+        "en": "Character coloring pages for kids — jobs, superheroes, everyday professions, inspiring and fun human line art."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين شخصيات",
+          "صفحات مهن",
+          "أبطال للأطفال"
+        ],
+        "fr": [
+          "coloriage personnages",
+          "coloriage métier",
+          "coloriage super-héros"
+        ],
+        "en": [
+          "character coloring",
+          "jobs coloring page",
+          "superhero coloring"
+        ]
+      },
+      "body": "Catégorie racine pour personnages humains, métiers et super-héros.",
+      "scope_note": "Humains et humanoïdes. Inclut : professions (firefighter, doctor, baker…), sportifs, personnages cartoon (iron_man, scooby_doo, tintin, mirabel), créatures humanoïdes fantastiques (fairy, yeti, princess, wizard, elf)."
+    },
+    {
+      "id": "objects_things",
+      "parent_id": null,
+      "weight": 200,
+      "slug_i18n": {
+        "ar": "ashya",
+        "fr": "objets",
+        "en": "objects"
+      },
+      "name_i18n": {
+        "ar": "أشياء",
+        "fr": "Objets",
+        "en": "Objects"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الأشياء للأطفال — أدوات يومية وآلات وألعاب ومركبات، رسومات بسيطة لتعليم الأطفال محيطهم.",
+        "fr": "Coloriages d'objets pour enfants — outils du quotidien, machines, jouets, véhicules, illustrations simples pour apprendre le monde qui les entoure.",
+        "en": "Object coloring pages for kids — everyday tools, machines, toys, vehicles, simple line art to learn about their surroundings."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين أشياء",
+          "صفحات أدوات",
+          "مركبات للأطفال"
+        ],
+        "fr": [
+          "coloriage objets",
+          "coloriage véhicule",
+          "coloriage outils"
+        ],
+        "en": [
+          "object coloring",
+          "vehicle coloring page",
+          "tools coloring"
+        ]
+      },
+      "body": "Catégorie racine pour objets, outils, véhicules et choses du quotidien.",
+      "scope_note": "Fallback ultime. Inclut tout ce qui n'est pas vivant : véhicules, outils, motifs décoratifs (mandala_lion_head), jouets, bâtiments, objets du quotidien."
+    },
+    {
+      "id": "letters_arabic",
+      "parent_id": null,
+      "weight": 300,
+      "slug_i18n": {
+        "ar": "al-huruf-al-arabiyya",
+        "fr": "alphabet-arabe",
+        "en": "arabic-alphabet"
+      },
+      "name_i18n": {
+        "ar": "الحروف العربية",
+        "fr": "Alphabet arabe",
+        "en": "Arabic Alphabet"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الحروف العربية للأطفال — حرف بحرف مع كلمة مثال، رسومات تعليمية لتعلم القراءة بالعربية.",
+        "fr": "Coloriages de l'alphabet arabe pour enfants — lettre par lettre avec mot illustré, illustrations pédagogiques pour apprendre à lire en arabe.",
+        "en": "Arabic alphabet coloring pages for kids — letter by letter with example word, educational line art to learn reading in Arabic."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين الحروف العربية",
+          "تعلم العربية",
+          "أبجدية عربية"
+        ],
+        "fr": [
+          "alphabet arabe coloriage",
+          "apprendre arabe enfant",
+          "lettres arabes"
+        ],
+        "en": [
+          "arabic alphabet coloring",
+          "learn arabic kids",
+          "arabic letters"
+        ]
+      },
+      "body": "Catégorie racine pour l'alphabet arabe et l'apprentissage de la langue.",
+      "scope_note": "Lettres arabes individuelles et compositions alphabet. Identifiable par leaf_id contenant 'lettre', 'letter_', 'alphabet' ou 'arabic'."
+    }
+  ]
+}

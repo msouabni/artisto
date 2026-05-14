@@ -442,6 +442,30 @@ def post_json_to_md(post: dict, *, body_text: str | None = None) -> str:
 #:
 #: Le mapper applique les règles **dans l'ordre du brief
 #: 2026-05-12** (par priorité) — premier match gagne.
+#:
+#: Depuis 2026-05-15 : registry partagé ``data/categories_registry.json``
+#: est la source unique de vérité pour les categoryId acceptés. Le mapper
+#: refuse fail-fast d'émettre un id qui n'y est pas présent.
+
+#: Path du registry partagé (source unique de vérité des categoryId).
+CATEGORIES_REGISTRY_PATH = PROJECT_ROOT / "data" / "categories_registry.json"
+
+
+def _load_categories_registry() -> dict:
+    """Charge le registry JSON depuis ``data/categories_registry.json``.
+
+    Cache module-level : le fichier n'est lu qu'une fois au boot.
+    """
+    return json.loads(CATEGORIES_REGISTRY_PATH.read_text(encoding="utf-8"))
+
+
+#: Cache module-level du registry (chargé une fois au boot).
+CATEGORIES_REGISTRY = _load_categories_registry()
+
+#: frozenset des IDs valides — utilisé par l'assert fail-fast du mapper.
+KNOWN_CATEGORY_IDS = frozenset(
+    c["id"] for c in CATEGORIES_REGISTRY["categories"]
+)
 
 #: Big cats à exclure de ``animals_pets`` même si "cat" matche dans le
 #: nom (utilisé en règle 4).
@@ -517,53 +541,71 @@ def map_leaf_to_category(leaf_id: str | None) -> str:
     8. fallback                                          → ``objects_things``
 
     Retourne le fallback si ``leaf_id`` est ``None`` / vide.
+
+    Garantie : la valeur retournée est **toujours** présente dans
+    ``KNOWN_CATEGORY_IDS`` (cf. registry ``data/categories_registry.json``).
+    Si une nouvelle règle est ajoutée qui émet un id inconnu, l'assert
+    final lève ``AssertionError`` pour fail-fast (bug détecté en local
+    avant push).
     """
     if not leaf_id:
-        return _CATEGORY_DEFAULT
-    lid = leaf_id.lower()
+        result = _CATEGORY_DEFAULT
+    else:
+        lid = leaf_id.lower()
+        result = None
 
-    # 1. Lions (gardé sur startswith pour matcher "lion_in_savanna",
-    # "lion_cub", etc. sans capturer ``animal_mandala_lion_head``).
-    if lid.startswith("lion"):
-        return "animals_lions"
-    # Cas particulier : feuille décorative ``animal_mandala_lion_head`` —
-    # malgré ``lion`` à l'intérieur, c'est un motif → ``objects_things``
-    # (matche via fallback final). Pas de règle dédiée.
+        # 1. Lions (gardé sur startswith pour matcher "lion_in_savanna",
+        # "lion_cub", etc. sans capturer ``animal_mandala_lion_head``).
+        if lid.startswith("lion"):
+            result = "animals_lions"
+        # Cas particulier : feuille décorative ``animal_mandala_lion_head`` —
+        # malgré ``lion`` à l'intérieur, c'est un motif → ``objects_things``
+        # (matche via fallback final). Pas de règle dédiée.
 
-    # 2. Oiseaux
-    if _BIRDS_RE.search(lid):
-        return "animals_birds"
+        # 2. Oiseaux
+        elif _BIRDS_RE.search(lid):
+            result = "animals_birds"
 
-    # 3. Faune marine
-    if _MARINE_RE.search(lid):
-        return "animals_marine"
+        # 3. Faune marine
+        elif _MARINE_RE.search(lid):
+            result = "animals_marine"
 
-    # 4. Animaux domestiques. Le mot-clé ``cat`` doit matcher seulement
-    # si ce n'est pas un big cat (tigre / léopard / jaguar / etc.).
-    if _PETS_RE.search(lid):
-        return "animals_pets"
-    if ("_cat" in lid or "cat_" in lid) and not any(
-        bc in lid for bc in _BIG_CATS_PATTERNS
-    ):
-        return "animals_pets"
+        # 4. Animaux domestiques. Le mot-clé ``cat`` doit matcher seulement
+        # si ce n'est pas un big cat (tigre / léopard / jaguar / etc.).
+        elif _PETS_RE.search(lid):
+            result = "animals_pets"
+        elif ("_cat" in lid or "cat_" in lid) and not any(
+            bc in lid for bc in _BIG_CATS_PATTERNS
+        ):
+            result = "animals_pets"
 
-    # 5. Faune sauvage
-    if _WILD_RE.search(lid):
-        return "animals_wild"
+        # 5. Faune sauvage
+        elif _WILD_RE.search(lid):
+            result = "animals_wild"
 
-    # 6. Humains — préfixe profession ou mots-clés
-    for prefix in _HUMANS_PREFIXES:
-        if lid.startswith(prefix) or f"_{prefix}" in lid:
-            return "general_humans"
-    if _HUMANS_RE.search(lid):
-        return "general_humans"
+        # 6. Humains — préfixe profession ou mots-clés
+        if result is None:
+            for prefix in _HUMANS_PREFIXES:
+                if lid.startswith(prefix) or f"_{prefix}" in lid:
+                    result = "general_humans"
+                    break
+        if result is None and _HUMANS_RE.search(lid):
+            result = "general_humans"
 
-    # 7. Lettres alphabet
-    if _LETTERS_RE.search(lid):
-        return "letters_arabic"
+        # 7. Lettres alphabet
+        if result is None and _LETTERS_RE.search(lid):
+            result = "letters_arabic"
 
-    # 8. Fallback
-    return _CATEGORY_DEFAULT
+        # 8. Fallback
+        if result is None:
+            result = _CATEGORY_DEFAULT
+
+    # Fail-fast : refuse d'émettre un id qui n'est pas dans le registry.
+    assert result in KNOWN_CATEGORY_IDS, (
+        f"mapper emitted unknown categoryId: {result!r} "
+        f"(leaf_id={leaf_id!r}). Known ids: {sorted(KNOWN_CATEGORY_IDS)}"
+    )
+    return result
 
 
 def _ensure_post_complete(post: dict) -> dict:
@@ -637,6 +679,136 @@ def write_post_md(
     out_path = out_dir / f"{slug}.md"
     out_path.write_text(md_content, encoding="utf-8")
     return out_path
+
+
+# ── Sync categories (registry → rimalab MDs) ────────────────────────────────
+
+
+#: Ordre déterministe des champs YAML frontmatter pour les MDs catégories.
+#: (cohérent avec le brief tactique 2026-05-14 et calque des .md existants).
+_CATEGORY_FRONTMATTER_ORDER = (
+    "id", "slug_i18n", "name_i18n", "description_i18n", "keywords_i18n",
+    "parent_id", "weight",
+)
+
+#: Ordre déterministe des locales dans les blocs i18n.
+_CATEGORY_I18N_LOCALES_ORDER = ("ar", "fr", "en")
+
+
+def category_to_md(category: dict) -> str:
+    """Convertit une entrée registry en MD Astro frontmatter complet.
+
+    Calque le format des `.md` existants côté ``rimalab-v2/src/content/categories/``:
+
+    - Quote simple sur les strings (apostrophe doublée pour escape).
+    - Ordre déterministe des champs : id → slug_i18n → name_i18n →
+      description_i18n → keywords_i18n → parent_id → weight.
+    - Locales toujours dans l'ordre ar/fr/en.
+    - Indentation 2 espaces.
+    - Newlines en LF universel.
+    - Newline final unique après le body.
+    - ``scope_note`` **n'est PAS émis** (champ interne du registry).
+    """
+    lines: list[str] = ["---"]
+
+    for key in _CATEGORY_FRONTMATTER_ORDER:
+        if key == "id":
+            lines.append(f"id: {_yaml_quote(category['id'])}")
+        elif key == "parent_id":
+            pid = category.get("parent_id")
+            if pid is None:
+                lines.append("parent_id: null")
+            else:
+                lines.append(f"parent_id: {_yaml_quote(pid)}")
+        elif key == "weight":
+            lines.append(f"weight: {int(category['weight'])}")
+        elif key in ("slug_i18n", "name_i18n", "description_i18n"):
+            lines.append(f"{key}:")
+            block = category[key]
+            for loc in _CATEGORY_I18N_LOCALES_ORDER:
+                lines.append(f"  {loc}: {_yaml_quote(block[loc])}")
+        elif key == "keywords_i18n":
+            lines.append("keywords_i18n:")
+            block = category[key]
+            for loc in _CATEGORY_I18N_LOCALES_ORDER:
+                lines.append(f"  {loc}:")
+                for kw in block[loc]:
+                    lines.append(f"    - {_yaml_quote(kw)}")
+
+    lines.append("---")
+    lines.append("")
+    lines.append(category["body"].rstrip())
+    lines.append("")  # newline final
+    return "\n".join(lines)
+
+
+def _write_if_changed(path: Path, content: str) -> bool:
+    """Écrit ``content`` dans ``path`` uniquement si les bytes diffèrent.
+
+    Compare les bytes existants vs nouveaux (SHA-256 inutile vu la taille
+    < 2 KB). LF universel — pas de transformation OS-spécifique. Encodage
+    UTF-8 sans BOM (cohérent avec les .md existants).
+
+    Retourne ``True`` si écrit, ``False`` si skipped (idempotent).
+    """
+    new_bytes = content.encode("utf-8")
+    # Vérif anti-BOM : on n'émet jamais de BOM.
+    assert not new_bytes.startswith(b"\xef\xbb\xbf"), (
+        "_write_if_changed must never emit a UTF-8 BOM"
+    )
+    if path.exists():
+        existing = path.read_bytes()
+        if existing == new_bytes:
+            return False
+    path.parent.mkdir(parents=True, exist_ok=True)
+    # newline='' pour éviter la traduction CRLF par Python sur Windows.
+    with path.open("wb") as f:
+        f.write(new_bytes)
+    return True
+
+
+@dataclass
+class SyncCategoriesSummary:
+    total: int = 0
+    wrote: int = 0
+    skipped: int = 0
+    files_wrote: list[Path] = field(default_factory=list)
+    files_skipped: list[Path] = field(default_factory=list)
+
+
+def sync_categories(rimalab_root: Path, registry: dict | None = None) -> SyncCategoriesSummary:
+    """Régénère les MDs ``src/content/categories/*.md`` depuis le registry.
+
+    Idempotent byte-identique : un fichier dont le contenu ne change pas
+    n'est pas réécrit (compare bytes). Retourne un summary
+    ``(wrote, skipped, total)``.
+
+    Le champ interne ``scope_note`` n'est jamais propagé dans les MDs.
+    """
+    if registry is None:
+        registry = CATEGORIES_REGISTRY
+    out_dir = rimalab_root / "src" / "content" / "categories"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    summary = SyncCategoriesSummary()
+    for cat in registry["categories"]:
+        md = category_to_md(cat)
+        # Filet de sécurité : scope_note JAMAIS dans le contenu écrit.
+        assert "scope_note" not in md, (
+            f"category {cat['id']}: scope_note leaked into MD content"
+        )
+        out_path = out_dir / f"{cat['id']}.md"
+        if _write_if_changed(out_path, md):
+            summary.wrote += 1
+            summary.files_wrote.append(out_path)
+        else:
+            summary.skipped += 1
+            summary.files_skipped.append(out_path)
+        summary.total += 1
+    logger.info(
+        "[sync-categories] wrote=%d skipped=%d total=%d",
+        summary.wrote, summary.skipped, summary.total,
+    )
+    return summary
 
 
 #: Nom de branche par défaut pour les exports MEP v0. Rimalab-v2 review
@@ -924,7 +1096,38 @@ def main(argv: list[str] | None = None) -> int:
         "--rimalab-path", default=str(DEFAULT_RIMALAB_PATH),
         help="Path du clone local rimalab-v2 (override env RIMALAB_REPO_PATH).",
     )
+    parser.add_argument(
+        "--sync-categories", action="store_true",
+        help=(
+            "Régénère uniquement les MDs `src/content/categories/*.md` côté "
+            "rimalab-v2 depuis le registry `data/categories_registry.json`. "
+            "Idempotent byte-identique (skip si contenu inchangé). Ignore "
+            "manifest/posts/R2. Combiner avec --no-git-push pour test local."
+        ),
+    )
     args = parser.parse_args(argv)
+
+    # Mode dédié sync-categories : ne touche pas R2, ne lit pas le manifest.
+    if args.sync_categories:
+        rimalab_root = Path(args.rimalab_path)
+        summary = sync_categories(rimalab_root)
+        print(
+            f"[sync-categories] wrote={summary.wrote} "
+            f"skipped={summary.skipped} total={summary.total}"
+        )
+        for p in summary.files_wrote:
+            try:
+                rel = p.relative_to(rimalab_root)
+            except ValueError:
+                rel = p
+            print(f"  wrote   {rel}")
+        for p in summary.files_skipped:
+            try:
+                rel = p.relative_to(rimalab_root)
+            except ValueError:
+                rel = p
+            print(f"  skipped {rel}")
+        return 0
 
     summary = run_pipeline(
         mock=args.mock,
