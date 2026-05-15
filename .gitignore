@@ -47,3 +47,7 @@ docs/reports/**/*.png
 # par alwanbooks-pipeline depuis le bucket source).
 # Le manifest.json et les Posts JSON sous data/export/posts/ sont conservés.
 data/export/images/*.png
+
+# Simulated R2 outputs from scripts/alwanbooks_pipeline.py --mock
+# (PNG/WebP/PDF binaires, volumineux, non commit).
+data/export/r2_simulated/
