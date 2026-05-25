@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "schema_note": "Registre source unique des Themes (regroupements transverses optionnels, 0..N par post). Parallèle exact de categories_registry.json + champs supplémentaires editorial_body_i18n (texte long multi-paragraphes) et leaves (mapping leaf_id → theme). Les themes sont écrits côté site destinataire dans src/content/themes/<id>.md via le verbe pipeline `--sync-themes` (ADD-ONLY, Modèle A — voir docs/architect/2026-05-24_workflow-pipeline-multi-sites.md).",
+  "themes": [
+    {
+      "id": "noel",
+      "parent_id": null,
+      "weight": 20,
+      "slug_i18n": {
+        "ar": "alaeyad-almilad",
+        "fr": "noel",
+        "en": "christmas"
+      },
+      "name_i18n": {
+        "ar": "أعياد الميلاد",
+        "fr": "Noël",
+        "en": "Christmas"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين عيد الميلاد للأطفال — بابا نويل، الشجرة المزينة، الرنة، رجل الثلج والأكاليل، رسومات بسيطة للموسم العائلي.",
+        "fr": "Coloriages de Noël pour enfants — Père Noël, sapin décoré, rennes, bonhomme de neige et couronnes, illustrations simples pour la saison familiale.",
+        "en": "Christmas coloring pages for kids — Santa Claus, decorated tree, reindeer, snowman and wreaths, simple line art for the family season."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين عيد الميلاد",
+          "بابا نويل",
+          "شجرة الميلاد",
+          "تلوين موسمي"
+        ],
+        "fr": [
+          "coloriage noel",
+          "pere noel a colorier",
+          "sapin de noel coloriage",
+          "noel enfant"
+        ],
+        "en": [
+          "christmas coloring",
+          "santa coloring",
+          "christmas tree coloring",
+          "kids christmas"
+        ]
+      },
+      "editorial_body_i18n": {
+        "ar": "عيد الميلاد لحظة عائلية يحبها الأطفال — بابا نويل، الشجرة المزينة، الرنة في الثلج، ورجل الثلج بقبعة حمراء. هذه الرموز البصرية الغنية تلهم تلويناً مفعماً بالألوان الدافئة والمشاهد المليئة بالحياة.\n\nنقترح هنا مجموعة من صفحات التلوين تغطي شخصيات الموسم الرئيسية ومناظره: بابا نويل بكيس الهدايا، الشجرة بالكرات والأضواء، إكليل الباب، الجوارب فوق المدفأة، وورشة العفاريت. كل صفحة مرسومة بخطوط بسيطة مناسبة للأطفال من 4 إلى 10 سنوات.\n\nيمكن استخدام هذه الصفحات في الأنشطة المدرسية للموسم، أو كنشاط هادئ في أمسيات ديسمبر، أو كهدية صغيرة للأطفال خلال فترة العطلة. ننصح بطباعتها على ورق سميك واستخدام أقلام التلوين أو الألوان المائية حسب عمر الطفل.\n\nالصفحات مجانية للاستخدام الشخصي والمدرسي. لا تتطلب أي اشتراك أو تسجيل.",
+        "fr": "Noël est un moment familial que les enfants adorent — Père Noël, sapin décoré, rennes dans la neige et bonhomme de neige à bonnet rouge. Cette imagerie riche inspire un coloriage chaleureux, plein de couleurs vives et de scènes vivantes.\n\nNous proposons ici une sélection de coloriages couvrant les figures principales de la saison : Père Noël avec sa hotte, sapin avec boules et guirlandes, couronne de porte, chaussettes au-dessus de la cheminée, et atelier des elfes. Chaque page est dessinée en traits simples adaptés aux 4-10 ans.\n\nCes pages peuvent être utilisées pour les activités scolaires de fin d'année, comme activité calme pendant les soirées de décembre, ou comme petit cadeau pour les enfants durant la période des vacances. Nous conseillons une impression sur papier épais et l'usage de feutres ou de gouache selon l'âge.\n\nLes coloriages sont gratuits pour usage personnel et scolaire. Aucun abonnement ni inscription requis.",
+        "en": "Christmas is a family moment children love — Santa Claus, decorated tree, reindeer in snow, and snowman with red hat. This rich imagery inspires warm coloring full of bright colors and lively scenes.\n\nWe offer here a selection of coloring pages covering the season's main figures: Santa with his sack, tree with baubles and lights, door wreath, stockings over the fireplace, and elves' workshop. Each page is drawn in simple lines suitable for ages 4-10.\n\nThese pages can be used for year-end school activities, as a quiet activity during December evenings, or as a small gift for children during the holiday period. We recommend printing on thick paper and using markers or gouache depending on age.\n\nThe coloring pages are free for personal and school use. No subscription or registration required."
+      },
+      "body": "Hub thématique : Noël.",
+      "leaves": [
+        "santa_claus_with_sack",
+        "decorated_christmas_tree",
+        "reindeer_pulling_sleigh",
+        "christmas_stocking_fireplace",
+        "snowman_with_christmas_hat",
+        "christmas_wreath",
+        "christmas_elves_workshop",
+        "olaf_the_snowman",
+        "reindeer_in_snow"
+      ],
+      "scope_note": "Seed défini 2026-05-24 par archi. Cross-overs intentionnels avec saison-hiver (olaf_the_snowman, snowman_with_christmas_hat, reindeer_in_snow). À enrichir avec les leaves du sub-cat christmas (cf. coloring_taxonomy_full.json sub-cat id christmas)."
+    },
+    {
+      "id": "ramadan",
+      "parent_id": null,
+      "weight": 30,
+      "slug_i18n": {
+        "ar": "ramadan",
+        "fr": "ramadan",
+        "en": "ramadan"
+      },
+      "name_i18n": {
+        "ar": "رمضان",
+        "fr": "Ramadan",
+        "en": "Ramadan"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين رمضان والعيد للأطفال — فانوس رمضان، الهلال والنجمة، المسجد ليلاً، وأطفال بملابس العيد، رسومات لتعليم الموسم الديني.",
+        "fr": "Coloriages de Ramadan et de l'Aïd pour enfants — lanterne fanous, croissant et étoile, mosquée la nuit, enfants en habits de l'Aïd, illustrations pour découvrir la saison religieuse.",
+        "en": "Ramadan and Eid coloring pages for kids — fanous lantern, crescent and star, mosque at night, children in Eid clothes, illustrations to discover the religious season."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين رمضان",
+          "فانوس رمضان",
+          "عيد الفطر",
+          "تلوين العيد"
+        ],
+        "fr": [
+          "coloriage ramadan",
+          "fanous coloriage",
+          "aid coloriage",
+          "ramadan enfant"
+        ],
+        "en": [
+          "ramadan coloring",
+          "fanous coloring",
+          "eid coloring",
+          "kids ramadan"
+        ]
+      },
+      "editorial_body_i18n": {
+        "ar": "رمضان والعيد لحظات روحية وعائلية لها رموزها البصرية الخاصة — فانوس رمضان الملون، هلال السماء، المسجد المضاء ليلاً، وأطفال بأبهى ثيابهم يوم العيد. هذه الرموز تشكل عالماً غنياً للتلوين والاكتشاف.\n\nنقترح هنا مجموعة صفحات تغطي رموز الموسم: الفانوس بأشكاله المختلفة، الهلال والنجمة، المسجد، حلويات الكعك، هدايا العيدية، وأغنام عيد الأضحى. كل صفحة برسوم بسيطة مناسبة للأطفال من 4 إلى 10 سنوات.\n\nهذه الصفحات تساعد الأطفال على ربط الموسم بصور بصرية ملموسة، خاصة لمن يعيشون في بلدان غير إسلامية ويحتاجون لروابط بصرية مع تراثهم. كما يمكن استخدامها كنشاط هادئ خلال أيام رمضان أو كهدية صغيرة بعد الإفطار.\n\nالصفحات مجانية للاستخدام الشخصي والتعليمي.",
+        "fr": "Ramadan et l'Aïd sont des moments spirituels et familiaux qui ont leur propre imagerie visuelle — lanterne fanous colorée, croissant de lune, mosquée illuminée la nuit, et enfants dans leurs plus beaux habits le jour de l'Aïd. Ces symboles forment un univers riche à colorier et à découvrir.\n\nNous proposons ici une sélection de pages couvrant les symboles du mois : le fanous sous différentes formes, le croissant et l'étoile, la mosquée, les pâtisseries kaak, les cadeaux eidiya, et les moutons de l'Aïd al-Adha. Chaque page est dessinée en traits simples adaptés aux 4-10 ans.\n\nCes coloriages aident les enfants à associer la saison à des images visuelles concrètes, particulièrement pour ceux qui vivent dans des pays non musulmans et ont besoin de liens visuels avec leur héritage. Ils peuvent aussi être utilisés comme activité calme pendant les jours de Ramadan ou comme petit cadeau après l'iftar.\n\nLes coloriages sont gratuits pour usage personnel et éducatif.",
+        "en": "Ramadan and Eid are spiritual and family moments with their own visual imagery — colorful fanous lantern, crescent moon, mosque lit at night, and children in their finest clothes on Eid day. These symbols form a rich world to color and discover.\n\nWe offer here a selection of pages covering the month's symbols: the fanous in various forms, crescent and star, mosque, kaak pastries, eidiya gifts, and Eid al-Adha sheep. Each page is drawn in simple lines suitable for ages 4-10.\n\nThese coloring pages help children associate the season with concrete visual images, especially for those living in non-Muslim countries who need visual links to their heritage. They can also be used as a quiet activity during Ramadan days or as a small gift after iftar.\n\nThe coloring pages are free for personal and educational use."
+      },
+      "body": "Hub thématique : Ramadan et Aïd.",
+      "leaves": [
+        "ramadan_lantern_fanous",
+        "crescent_moon_and_star",
+        "ramadan_kareem_lettering",
+        "eid_al_fitr_celebration",
+        "eid_gifts_eidiya",
+        "kids_in_eid_clothes",
+        "eid_kaak_pastries",
+        "mosque_at_night_ramadan",
+        "eid_al_adha_sheep"
+      ],
+      "scope_note": "Seed défini 2026-05-24 par archi. Couvre à la fois Ramadan, Aïd al-Fitr et Aïd al-Adha. À enrichir avec les leaves du sub-cat ramadan_and_eid (cf. coloring_taxonomy_full.json)."
+    },
+    {
+      "id": "saison-hiver",
+      "parent_id": null,
+      "weight": 40,
+      "slug_i18n": {
+        "ar": "fasl-alshita",
+        "fr": "saison-hiver",
+        "en": "winter-season"
+      },
+      "name_i18n": {
+        "ar": "فصل الشتاء",
+        "fr": "Hiver",
+        "en": "Winter"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الشتاء للأطفال — مشاهد الثلج، رجل الثلج، الدببة القطبية، الحيوانات في البرد ومشاهد الجليد، رسومات للأشهر الباردة.",
+        "fr": "Coloriages d'hiver pour enfants — scènes de neige, bonhomme de neige, ours polaires, animaux dans le froid et paysages glacés, illustrations pour les mois froids.",
+        "en": "Winter coloring pages for kids — snow scenes, snowman, polar bears, animals in the cold and frozen landscapes, illustrations for the cold months."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين الشتاء",
+          "رجل الثلج",
+          "دب قطبي",
+          "تلوين موسمي"
+        ],
+        "fr": [
+          "coloriage hiver",
+          "bonhomme de neige coloriage",
+          "ours polaire coloriage",
+          "hiver enfant"
+        ],
+        "en": [
+          "winter coloring",
+          "snowman coloring",
+          "polar bear coloring",
+          "kids winter"
+        ]
+      },
+      "editorial_body_i18n": {
+        "ar": "الشتاء فصل مفعم بالمشاهد البصرية الغنية — الثلج المتساقط، رجل الثلج في الحديقة، الدب القطبي على الجليد، والحيوانات في معاطفها الفروية. هذه المشاهد تقدم تنوعاً بصرياً يحفز الإبداع في التلوين.\n\nنقترح هنا مجموعة صفحات تغطي الموسم بكامل تنوعه: مشاهد الثلج العامة، رجل الثلج بأنواعه، الدب القطبي على الجليد، الرنة في الثلج، والمناظر الطبيعية الجليدية. كل صفحة مناسبة للأطفال من 4 إلى 10 سنوات.\n\nهذه الصفحات تشكل نشاطاً ممتازاً للأيام الباردة عندما يبقى الأطفال في المنزل، أو لمرافقة دروس الفصول الأربعة في المدرسة. يمكن استخدام ألوان باردة (الأزرق، الفضي، الأبيض) لتعزيز الانطباع الموسمي.\n\nالصفحات مجانية للاستخدام الشخصي والمدرسي.",
+        "fr": "L'hiver est une saison riche en imagerie visuelle — neige qui tombe, bonhomme de neige dans le jardin, ours polaire sur la glace, et animaux dans leurs manteaux fourrés. Ces scènes offrent une variété visuelle qui stimule la créativité au coloriage.\n\nNous proposons ici une sélection de pages couvrant la saison dans toute sa diversité : scènes de neige générales, bonhommes de neige de plusieurs types, ours polaire sur la glace, renne dans la neige, et paysages glacés. Chaque page est adaptée aux 4-10 ans.\n\nCes coloriages constituent une excellente activité pour les jours froids quand les enfants restent à la maison, ou pour accompagner les leçons sur les quatre saisons à l'école. On peut utiliser une palette froide (bleu, argent, blanc) pour renforcer l'ambiance saisonnière.\n\nLes coloriages sont gratuits pour usage personnel et scolaire.",
+        "en": "Winter is a season rich in visual imagery — falling snow, snowman in the garden, polar bear on ice, and animals in their furry coats. These scenes offer visual variety that stimulates creativity in coloring.\n\nWe offer here a selection of pages covering the season in all its diversity: general snow scenes, snowmen of several types, polar bear on ice, reindeer in snow, and frozen landscapes. Each page is suited for ages 4-10.\n\nThese coloring pages are an excellent activity for cold days when children stay home, or to accompany lessons on the four seasons at school. A cold palette (blue, silver, white) can be used to reinforce the seasonal mood.\n\nThe coloring pages are free for personal and school use."
+      },
+      "body": "Hub thématique : hiver.",
+      "leaves": [
+        "winter_snowman_in_garden",
+        "snowy_day_with_snowflakes",
+        "polar_bear_on_ice",
+        "polar_bear_on_melting_ice",
+        "reindeer_in_snow",
+        "olaf_the_snowman",
+        "snowman_with_christmas_hat"
+      ],
+      "scope_note": "Seed défini 2026-05-24 par archi. Cross-overs intentionnels avec noel (olaf, reindeer_in_snow, snowman_with_christmas_hat) — un coloriage peut être à la fois 'Noël' et 'Hiver', c'est exactement le point des themes."
+    },
+    {
+      "id": "saison-ete",
+      "parent_id": null,
+      "weight": 50,
+      "slug_i18n": {
+        "ar": "fasl-alsayf",
+        "fr": "saison-ete",
+        "en": "summer-season"
+      },
+      "name_i18n": {
+        "ar": "فصل الصيف",
+        "fr": "Été",
+        "en": "Summer"
+      },
+      "description_i18n": {
+        "ar": "صفحات تلوين الصيف للأطفال — مشاهد الشاطئ، النخيل الاستوائي، الأصداف على الرمل، السرطان والمثلجات، رسومات للأشهر الدافئة.",
+        "fr": "Coloriages d'été pour enfants — scènes de plage, palmiers tropicaux, coquillages sur le sable, crabe et glaces, illustrations pour les mois chauds.",
+        "en": "Summer coloring pages for kids — beach scenes, tropical palm trees, shells on sand, crab and ice cream, illustrations for the warm months."
+      },
+      "keywords_i18n": {
+        "ar": [
+          "تلوين الصيف",
+          "شاطئ تلوين",
+          "مثلجات تلوين",
+          "تلوين موسمي"
+        ],
+        "fr": [
+          "coloriage ete",
+          "plage coloriage",
+          "glace coloriage",
+          "ete enfant"
+        ],
+        "en": [
+          "summer coloring",
+          "beach coloring",
+          "ice cream coloring",
+          "kids summer"
+        ]
+      },
+      "editorial_body_i18n": {
+        "ar": "الصيف فصل الإجازات والشواطئ والألوان الزاهية — مشاهد الرمل الذهبي، النخيل الاستوائي، السرطان على الشاطئ، والمثلجات بألوانها المختلفة. هذه المشاهد تقدم لوحة بصرية مليئة بالحرارة والطاقة.\n\nنقترح هنا مجموعة صفحات تغطي تجربة الصيف بشكل شامل: يوم على الشاطئ، شاطئ استوائي بالنخيل، الرمل بالأصداف، السرطان على الشاطئ، حارس السباحة، بائع المثلجات، وأطباق المثلجات والشربات. كل صفحة مناسبة للأطفال من 4 إلى 10 سنوات.\n\nهذه الصفحات نشاط مثالي لأيام الصيف الحارة عندما يبحث الأطفال عن نشاط هادئ في الداخل، أو كذكرى ملونة للعطلة الصيفية. يمكن استخدام ألوان دافئة (الأصفر، البرتقالي، الأزرق الفاتح) لتعزيز الانطباع الموسمي.\n\nالصفحات مجانية للاستخدام الشخصي والمدرسي.",
+        "fr": "L'été est la saison des vacances, des plages et des couleurs vives — scènes de sable doré, palmiers tropicaux, crabe sur la plage, et glaces aux multiples couleurs. Ces scènes offrent une palette visuelle pleine de chaleur et d'énergie.\n\nNous proposons ici une sélection de pages couvrant l'expérience de l'été : une journée à la plage, plage tropicale avec palmiers, sable avec coquillages, crabe sur la plage, maître-nageur, vendeur de glaces, et coupes de glaces et de sorbets. Chaque page est adaptée aux 4-10 ans.\n\nCes coloriages constituent une activité idéale pour les journées d'été chaudes quand les enfants cherchent une activité calme à l'intérieur, ou comme souvenir coloré des vacances d'été. On peut utiliser une palette chaude (jaune, orange, bleu clair) pour renforcer l'ambiance saisonnière.\n\nLes coloriages sont gratuits pour usage personnel et scolaire.",
+        "en": "Summer is the season of holidays, beaches, and bright colors — scenes of golden sand, tropical palms, crab on the beach, and ice cream in many colors. These scenes offer a visual palette full of warmth and energy.\n\nWe offer here a selection of pages covering the summer experience: a day at the beach, tropical beach with palm trees, sand with shells, crab on beach, lifeguard, ice cream seller, and ice cream and sorbet bowls. Each page is suited for ages 4-10.\n\nThese coloring pages are an ideal activity for hot summer days when children look for a calm indoor activity, or as a colorful souvenir of the summer holiday. A warm palette (yellow, orange, light blue) can be used to reinforce the seasonal mood.\n\nThe coloring pages are free for personal and school use."
+      },
+      "body": "Hub thématique : été.",
+      "leaves": [
+        "summer_beach_day",
+        "tropical_beach_with_palm_trees",
+        "sandy_beach_with_shells",
+        "crab_on_beach",
+        "lifeguard_at_beach",
+        "ice_cream_seller",
+        "ice_cream_and_sorbets"
+      ],
+      "scope_note": "Seed défini 2026-05-24 par archi. Pas de cross-over notable dans le seed — les leaves estivaux sont disjoints des autres saisons et fêtes."
+    }
+  ]
+}

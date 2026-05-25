@@ -51,3 +51,6 @@ data/export/images/*.png
 # Simulated R2 outputs from scripts/alwanbooks_pipeline.py --mock
 # (PNG/WebP/PDF binaires, volumineux, non commit).
 data/export/r2_simulated/
+
+# Clones des sites destinataires (Niveau 1 multi-sites)
+data/sites/*/

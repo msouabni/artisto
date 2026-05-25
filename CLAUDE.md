@@ -118,6 +118,25 @@ Reference fix: `src/api/routes/taxonomy.py` (`_term_row_to_dict`, `_build_terms_
 
 Some scripts (`scripts/import_taxonomy_json_to_db.py`, parts of `taxonomy.py`) still target DuckDB, which validates FKs eagerly inside a transaction. If you touch them: do `DELETE`s **outside** any `BEGIN` (auto-commit each), then open a new transaction for `INSERT`s; and always delete children before parents. A full taxonomy replace cascades into `term`, `collection_image`, `export`, `image_taxonomy_tag`, `coverage_stats`, `site_taxonomy`, `vocabulary`, `taxonomy` (in that order). Document this in the API/script doc when relevant.
 
+## Workflow pipeline → sites destinataires
+
+Le pipeline `scripts/alwanbooks_pipeline.py` publie le contenu sur N sites destinataires via `data/destination_sites.json` (1 site actuel : `alwanbooks`). Les clones des sites sont sous `data/sites/<id>/` (gitignored).
+
+**4 verbes humains principaux** (détails : `docs/architect/2026-05-24_workflow-pipeline-multi-sites.md`) :
+
+| Verbe | Commande | Régime |
+|---|---|---|
+| Push posts | `python scripts/alwanbooks_pipeline.py --site alwanbooks --no-git-push` | ADD-ONLY (ne crée que les posts absents, skip les existants) |
+| Sync themes | `python scripts/alwanbooks_pipeline.py --sync-themes --site alwanbooks` | ADD-ONLY |
+| Sync categories | `python scripts/alwanbooks_pipeline.py --sync-categories --site alwanbooks` | Sync strict (overwrite byte-identique depuis registry) |
+| Cutover | `python scripts/alwanbooks_pipeline.py --cutover --site alwanbooks` | approved → published |
+
+**Important** : `--sync-categories` est destructif (overwrite systématique depuis le registry) alors que `push` et `--sync-themes` sont ADD-ONLY (ne touchent jamais un fichier existant côté site). Override explicite avec `--regen <slug>`, `--regen-theme <id>`, ou `--regen-all`.
+
+**Push automatique** : sans `--no-git-push`, le pipeline pousse sur une branche `bot/lot-{YYYY-MM-DD}` avec identité bot dédiée. Jamais de push direct sur `main`.
+
+**Blocklists** : `data/pipeline_blocklist.json` (posts) et `data/pipeline_themes_blocklist.json` (themes) empêchent la (re-)création de contenus spécifiques. Ajout via `--blocklist-add-post <slug>` / `--blocklist-add-theme <id>`.
+
 ## Key environment variables
 
 `OLLAMA_BASE_URL`, `OLLAMA_MODEL` (default `qwen3.5:4b` — voir routing LLM ci-dessous), `OLLAMA_TIMEOUT` · `COMFY_URL` (`http://127.0.0.1:8188`), `COMFY_POLL_INTERVAL`, `COMFY_TIMEOUT` · `DATABASE_URL` · `ARTISTE_LOG_LEVEL`, `ARTISTE_LOG_DIR`, `ARTISTE_LOG_TO_FILE` · `ARTISTE_API_HOST` (default `0.0.0.0` — bind interface uvicorn ; mettre `127.0.0.1` pour limiter au loopback), `ARTISTE_API_PORT`, `ARTISTE_API_BASE` (used by the CLI HTTP client) · `COMFYUI_HOME` / `COMFYUI_ROOT`, `COMFYUI_PYTHON`, `COMFYUI_HOST` (default `0.0.0.0` — bind interface ComfyUI passé à `--listen` ; idem pour limiter au loopback) (used by `start.py` to launch a ComfyUI clone). The README has the full table with defaults.

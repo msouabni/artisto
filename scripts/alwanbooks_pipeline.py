@@ -124,6 +124,103 @@ DEFAULT_RIMALAB_PATH = Path(os.environ.get(
     "RIMALAB_REPO_PATH", "D:/projets/rimalab-v2",
 ))
 
+# ── Multi-sites (Niveau 1) ────────────────────────────────────────────────────
+
+DESTINATION_SITES_PATH = PROJECT_ROOT / "data" / "destination_sites.json"
+THEMES_REGISTRY_PATH = PROJECT_ROOT / "data" / "themes_registry.json"
+BLOCKLIST_PATH = PROJECT_ROOT / "data" / "pipeline_blocklist.json"
+THEMES_BLOCKLIST_PATH = PROJECT_ROOT / "data" / "pipeline_themes_blocklist.json"
+
+
+def _load_destination_sites() -> dict:
+    return json.loads(DESTINATION_SITES_PATH.read_text(encoding="utf-8"))
+
+
+def get_site(site_id: str) -> dict:
+    """Retourne la config d'un site depuis ``destination_sites.json``.
+
+    Lève ``ValueError`` si l'id n'existe pas ou est ``enabled=false``.
+    """
+    registry = _load_destination_sites()
+    for site in registry.get("sites", []):
+        if site["id"] == site_id:
+            if not site.get("enabled", True):
+                raise ValueError(f"Site {site_id!r} is disabled")
+            return site
+    raise ValueError(
+        f"Site {site_id!r} not found in destination_sites.json "
+        f"(available: {[s['id'] for s in registry.get('sites', [])]})"
+    )
+
+
+def _site_clone_root(site: dict) -> Path:
+    """Résout le path absolu du clone local d'un site."""
+    clone_path = site["clone_path"]
+    p = Path(clone_path)
+    if not p.is_absolute():
+        p = PROJECT_ROOT / p
+    return p
+
+
+def _load_blocklist(path: Path) -> dict:
+    if not path.is_file():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return data
+
+
+def _is_post_blocklisted(site_id: str, slug: str) -> bool:
+    bl = _load_blocklist(BLOCKLIST_PATH)
+    return slug in bl.get("blocked_posts", {}).get(site_id, [])
+
+
+def _is_theme_blocklisted(site_id: str, theme_id: str) -> bool:
+    bl = _load_blocklist(THEMES_BLOCKLIST_PATH)
+    return theme_id in bl.get("blocked_themes", {}).get(site_id, [])
+
+
+def blocklist_add_post(site_id: str, slug: str) -> None:
+    """Ajoute un slug à la blocklist posts pour un site."""
+    bl = _load_blocklist(BLOCKLIST_PATH)
+    if "version" not in bl:
+        bl = {"version": 1, "blocked_posts": {}}
+    posts = bl.setdefault("blocked_posts", {})
+    site_list = posts.setdefault(site_id, [])
+    if slug not in site_list:
+        site_list.append(slug)
+    BLOCKLIST_PATH.write_text(
+        json.dumps(bl, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+
+
+def blocklist_add_theme(site_id: str, theme_id: str) -> None:
+    """Ajoute un theme_id à la blocklist themes pour un site."""
+    bl = _load_blocklist(THEMES_BLOCKLIST_PATH)
+    if "version" not in bl:
+        bl = {"version": 1, "blocked_themes": {}}
+    themes = bl.setdefault("blocked_themes", {})
+    site_list = themes.setdefault(site_id, [])
+    if theme_id not in site_list:
+        site_list.append(theme_id)
+    THEMES_BLOCKLIST_PATH.write_text(
+        json.dumps(bl, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+
+
+def _load_themes_registry() -> dict:
+    return json.loads(THEMES_REGISTRY_PATH.read_text(encoding="utf-8"))
+
+
+def compute_theme_ids(leaf_id: str, themes_registry: dict | None = None) -> list[str]:
+    """Retourne la liste des theme IDs contenant ce leaf_id."""
+    if themes_registry is None:
+        themes_registry = _load_themes_registry()
+    result = []
+    for theme in themes_registry.get("themes", []):
+        if leaf_id in theme.get("leaves", []):
+            result.append(theme["id"])
+    return sorted(result)
+
 
 # ── Données ──────────────────────────────────────────────────────────────────
 
@@ -153,6 +250,13 @@ class PipelineRunSummary:
     variants_uploaded: int = 0
     variants_skipped: int = 0
     posts_written: int = 0
+    posts_created: int = 0
+    posts_skipped_addonly: int = 0
+    posts_blocklisted: int = 0
+    posts_regen: int = 0
+    themes_created: int = 0
+    themes_skipped: int = 0
+    theme_ids_tagged: int = 0
     errors: list[tuple[str, str]] = field(default_factory=list)
     leaves: list[LeafResult] = field(default_factory=list)
 
@@ -242,11 +346,16 @@ class R2Client:
                 return None
             raise
 
-    def put(self, key: str, body: bytes, content_type: str) -> str:
+    def put(self, key: str, body: bytes, content_type: str,
+            metadata: dict[str, str] | None = None) -> str:
         """Upload un objet, retourne l'ETag."""
-        resp = self._s3.put_object(
-            Bucket=self.bucket, Key=key, Body=body, ContentType=content_type,
-        )
+        kwargs: dict[str, Any] = {
+            "Bucket": self.bucket, "Key": key, "Body": body,
+            "ContentType": content_type,
+        }
+        if metadata:
+            kwargs["Metadata"] = metadata
+        resp = self._s3.put_object(**kwargs)
         return resp.get("ETag", "").strip('"')
 
     def delete(self, key: str) -> None:
@@ -285,29 +394,38 @@ _CONTENT_TYPES = {
 
 def _upload_variants_real(
     r2: R2Client, slug: str, variants: dict[str, bytes],
+    master_md5: str = "",
 ) -> tuple[dict[str, str], dict[str, str]]:
     """Upload réel. Retourne ``(uploaded, skipped)`` keyed par variant.
 
-    Idempotence : ``HEAD`` puis comparaison ETag. Si ETag matche le MD5 local,
-    on saute l'upload.
+    Idempotence via custom metadata ``master-md5`` :
+    - Si présent et == master_md5 local → skip (master inchangé)
+    - Si présent et != → upload (master a changé)
+    - Si absent (legacy) → fallback comparaison ETag == md5(body)
     """
     uploaded: dict[str, str] = {}
     skipped: dict[str, str] = {}
     rollback_keys: list[str] = []
+    meta = {"master-md5": master_md5} if master_md5 else None
     try:
         for variant, body in variants.items():
             key = R2_PATHS[variant].format(slug=slug)
             existing = r2.head(key)
             if existing is not None:
-                existing_etag = existing.get("ETag", "").strip('"')
-                if existing_etag == _md5(body):
-                    skipped[variant] = key
-                    continue
-            r2.put(key, body, _CONTENT_TYPES[variant])
+                existing_master_md5 = (existing.get("Metadata") or {}).get("master-md5", "")
+                if existing_master_md5 and master_md5:
+                    if existing_master_md5 == master_md5:
+                        skipped[variant] = key
+                        continue
+                elif not existing_master_md5:
+                    existing_etag = existing.get("ETag", "").strip('"')
+                    if existing_etag == _md5(body):
+                        skipped[variant] = key
+                        continue
+            r2.put(key, body, _CONTENT_TYPES[variant], metadata=meta)
             uploaded[variant] = key
             rollback_keys.append(key)
     except Exception:
-        # Rollback : supprimer les variants déjà uploadés DANS CE CALL
         for k in rollback_keys:
             r2.delete(k)
         raise
@@ -647,7 +765,17 @@ def _ensure_post_complete(post: dict) -> dict:
         p["categoryId"] = map_leaf_to_category(leaf_id)
 
     if not p.get("themeIds"):
-        p["themeIds"] = []
+        leaf_id_for_themes = None
+        pipeline_block = post.get("_pipeline") or {}
+        if isinstance(pipeline_block, dict):
+            leaf_id_for_themes = pipeline_block.get("leaf_id")
+        if leaf_id_for_themes:
+            try:
+                p["themeIds"] = compute_theme_ids(leaf_id_for_themes)
+            except Exception:
+                p["themeIds"] = []
+        else:
+            p["themeIds"] = []
     if "ageMin" not in p:
         p["ageMin"] = 4
     if "ageMax" not in p:
@@ -811,6 +939,146 @@ def sync_categories(rimalab_root: Path, registry: dict | None = None) -> SyncCat
     return summary
 
 
+# ── Sync themes (registry → site MDs) ─────────────────────────────────────────
+
+
+_THEME_FRONTMATTER_ORDER = (
+    "id", "slug_i18n", "name_i18n", "description_i18n", "keywords_i18n",
+    "editorial_body_i18n", "parent_id", "weight",
+)
+
+_THEME_I18N_LOCALES_ORDER = ("ar", "fr", "en")
+
+
+def _emit_literal_block(text: str, indent: int = 4) -> list[str]:
+    """Émet un texte en YAML literal block scalar (``|``), indenté."""
+    pad = " " * indent
+    lines: list[str] = []
+    for para in text.split("\n\n"):
+        if lines:
+            lines.append("")
+        for line in para.split("\n"):
+            lines.append(pad + line if line else "")
+    return lines
+
+
+def theme_to_md(theme: dict) -> str:
+    """Convertit une entrée themes_registry en MD Astro.
+
+    Format calqué sur ``arabic-alphabet.md`` côté rimalab-v2.
+    ``scope_note`` n'est PAS émis.
+    """
+    lines: list[str] = ["---"]
+
+    for key in _THEME_FRONTMATTER_ORDER:
+        if key == "id":
+            lines.append(f"id: {_yaml_quote(theme['id'])}")
+        elif key == "parent_id":
+            pid = theme.get("parent_id")
+            if pid is None:
+                lines.append("parent_id: null")
+            else:
+                lines.append(f"parent_id: {_yaml_quote(pid)}")
+        elif key == "weight":
+            lines.append(f"weight: {int(theme['weight'])}")
+        elif key in ("slug_i18n", "name_i18n", "description_i18n"):
+            lines.append(f"{key}:")
+            block = theme[key]
+            for loc in _THEME_I18N_LOCALES_ORDER:
+                lines.append(f"  {loc}: {_yaml_quote(block[loc])}")
+        elif key == "keywords_i18n":
+            lines.append("keywords_i18n:")
+            block = theme[key]
+            for loc in _THEME_I18N_LOCALES_ORDER:
+                lines.append(f"  {loc}:")
+                for kw in block[loc]:
+                    lines.append(f"    - {_yaml_quote(kw)}")
+        elif key == "editorial_body_i18n":
+            lines.append("editorial_body_i18n:")
+            block = theme[key]
+            for loc in _THEME_I18N_LOCALES_ORDER:
+                lines.append(f"  {loc}: |")
+                lines.extend(_emit_literal_block(block[loc], indent=4))
+
+    lines.append("---")
+    lines.append("")
+    lines.append(theme["body"].rstrip())
+    lines.append("")
+    return "\n".join(lines)
+
+
+@dataclass
+class SyncThemesSummary:
+    total: int = 0
+    created: int = 0
+    skipped_existing: int = 0
+    skipped_blocklist: int = 0
+    overwritten: int = 0
+    files_created: list[Path] = field(default_factory=list)
+    files_skipped: list[Path] = field(default_factory=list)
+    files_overwritten: list[Path] = field(default_factory=list)
+
+
+def sync_themes(
+    site_root: Path,
+    site_id: str,
+    *,
+    registry: dict | None = None,
+    regen_themes: list[str] | None = None,
+) -> SyncThemesSummary:
+    """Sync les themes du registry vers le site (ADD-ONLY par défaut).
+
+    ``regen_themes`` : liste d'IDs à overwrite explicitement.
+    """
+    if registry is None:
+        registry = _load_themes_registry()
+    site_config = get_site(site_id)
+    themes_dir_rel = site_config["structure"]["themes_dir"]
+    out_dir = site_root / themes_dir_rel
+    out_dir.mkdir(parents=True, exist_ok=True)
+    regen_set = set(regen_themes or [])
+    summary = SyncThemesSummary()
+
+    for theme in registry.get("themes", []):
+        theme_id = theme["id"]
+        summary.total += 1
+        out_path = out_dir / f"{theme_id}.md"
+
+        if _is_theme_blocklisted(site_id, theme_id):
+            summary.skipped_blocklist += 1
+            summary.files_skipped.append(out_path)
+            continue
+
+        md = theme_to_md(theme)
+        assert "scope_note" not in md, (
+            f"theme {theme_id}: scope_note leaked into MD content"
+        )
+
+        if out_path.exists() and theme_id not in regen_set:
+            summary.skipped_existing += 1
+            summary.files_skipped.append(out_path)
+            continue
+
+        is_overwrite = out_path.exists() and theme_id in regen_set
+        if _write_if_changed(out_path, md):
+            if is_overwrite:
+                summary.overwritten += 1
+                summary.files_overwritten.append(out_path)
+            else:
+                summary.created += 1
+                summary.files_created.append(out_path)
+        else:
+            summary.skipped_existing += 1
+            summary.files_skipped.append(out_path)
+
+    logger.info(
+        "[sync-themes] created=%d skipped=%d overwritten=%d blocklisted=%d total=%d",
+        summary.created, summary.skipped_existing, summary.overwritten,
+        summary.skipped_blocklist, summary.total,
+    )
+    return summary
+
+
 #: Nom de branche par défaut pour les exports MEP v0. Rimalab-v2 review
 #: en PR avant merge — pas de push direct sur ``main`` (arbitrage 2026-05-12).
 DEFAULT_EXPORT_BRANCH = "content/export-mep-v0"
@@ -860,12 +1128,226 @@ def git_commit_push(
     return 0, "\n".join(out_chunks)
 
 
+# ── Bot push (Niveau 1 multi-sites) ────────────────────────────────────────────
+
+
+def _find_available_branch(site_root: Path, date_str: str) -> str:
+    """Trouve un nom de branche ``bot/lot-{date}[-N]`` libre côté origin."""
+    base = f"bot/lot-{date_str}"
+    r = subprocess.run(
+        ["git", "ls-remote", "--heads", "origin"],
+        cwd=str(site_root), capture_output=True, text=True, encoding="utf-8",
+    )
+    existing = set()
+    for line in (r.stdout or "").splitlines():
+        ref = line.split("\t")[-1].replace("refs/heads/", "")
+        existing.add(ref)
+
+    if base not in existing:
+        return base
+    n = 2
+    while f"{base}-{n}" in existing:
+        n += 1
+    return f"{base}-{n}"
+
+
+def _git_run(site_root: Path, args: list[str], **kwargs) -> subprocess.CompletedProcess:
+    return subprocess.run(
+        ["git"] + args,
+        cwd=str(site_root), capture_output=True, text=True, encoding="utf-8",
+        **kwargs,
+    )
+
+
+def git_bot_push(
+    site_root: Path,
+    site_config: dict,
+    *,
+    commit_messages: list[tuple[str, list[str]]],
+) -> tuple[str, int]:
+    """Push sur branche bot avec identité bot.
+
+    ``commit_messages`` : liste de ``(message, [paths_to_add])``.
+    Retourne ``(branch_name, exit_code)``.
+    """
+    bot = site_config["bot"]
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    branch = _find_available_branch(site_root, date_str)
+
+    _git_run(site_root, ["checkout", "-b", branch])
+
+    for msg, paths in commit_messages:
+        if not paths:
+            continue
+        for p in paths:
+            _git_run(site_root, ["add", p])
+        r = _git_run(site_root, [
+            "-c", f"user.name={bot['name']}",
+            "-c", f"user.email={bot['email']}",
+            "commit", "-m", msg,
+        ])
+        if r.returncode != 0:
+            stdout_lower = (r.stdout or "").lower()
+            if "nothing to commit" not in stdout_lower:
+                logger.error("git commit failed: %s", r.stderr)
+                return branch, r.returncode
+
+    r = _git_run(site_root, ["push", "-u", "origin", branch])
+    if r.returncode != 0:
+        logger.error("git push failed: %s", r.stderr)
+    return branch, r.returncode
+
+
+# ── Cutover (approved → published) ────────────────────────────────────────────
+
+
+_STATUS_RE = re.compile(r"^(status:\s*)'approved'(.*)$", re.MULTILINE)
+
+
+@dataclass
+class CutoverSummary:
+    modified: int = 0
+    already_published: int = 0
+    other_status: int = 0
+    total_scanned: int = 0
+    files_modified: list[Path] = field(default_factory=list)
+
+
+def run_cutover(
+    site_root: Path,
+    site_config: dict,
+    *,
+    no_git_push: bool = False,
+) -> CutoverSummary:
+    """Réécrit ``status: 'approved'`` → ``status: 'published'`` dans tous les posts."""
+    r = _git_run(site_root, ["status", "--porcelain"])
+    if (r.stdout or "").strip():
+        raise RuntimeError(
+            f"Working tree not clean in {site_root}. "
+            "Cutover requires a clean working tree."
+        )
+    r = _git_run(site_root, ["branch", "--show-current"])
+    current = (r.stdout or "").strip()
+    default_branch = site_config.get("default_branch", "main")
+    if current != default_branch:
+        raise RuntimeError(
+            f"Must be on {default_branch}, currently on {current!r}"
+        )
+
+    posts_dir = site_root / site_config["structure"]["posts_dir"]
+    locales = site_config["structure"]["locales"]
+    summary = CutoverSummary()
+
+    for locale in locales:
+        locale_dir = posts_dir / locale
+        if not locale_dir.is_dir():
+            continue
+        for md_path in sorted(locale_dir.glob("*.md")):
+            summary.total_scanned += 1
+            content = md_path.read_text(encoding="utf-8")
+            if "status: 'published'" in content:
+                summary.already_published += 1
+                continue
+            if "status: 'approved'" not in content:
+                summary.other_status += 1
+                continue
+            new_content = content.replace(
+                "status: 'approved'", "status: 'published'"
+            )
+            if new_content != content:
+                md_path.write_bytes(new_content.encode("utf-8"))
+                summary.modified += 1
+                summary.files_modified.append(md_path)
+
+    if summary.modified > 0 and not no_git_push:
+        bot = site_config["bot"]
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        branch = f"bot/cutover-{date_str}"
+        msg = (
+            f"chore(content): cutover preview→public "
+            f"({summary.modified} posts approved→published)"
+        )
+        _git_run(site_root, ["checkout", "-b", branch])
+        _git_run(site_root, ["add", site_config["structure"]["posts_dir"]])
+        _git_run(site_root, [
+            "-c", f"user.name={bot['name']}",
+            "-c", f"user.email={bot['email']}",
+            "commit", "-m", msg,
+        ])
+        _git_run(site_root, ["push", "-u", "origin", branch])
+
+    return summary
+
+
+# ── Deployment recap ──────────────────────────────────────────────────────────
+
+
+def print_deployment_recap(
+    *,
+    site_id: str,
+    site_config: dict,
+    posts_created: int = 0,
+    posts_skipped: int = 0,
+    posts_blocklisted: int = 0,
+    posts_regen: int = 0,
+    regen_mode: str = "<aucun>",
+    categories_wrote: int = 0,
+    themes_created: int = 0,
+    themes_skipped: int = 0,
+    themes_names: list[str] | None = None,
+    theme_ids_tagged: int = 0,
+    r2_uploaded: int = 0,
+    r2_skipped: int = 0,
+    r2_failed: int = 0,
+    branch_name: str | None = None,
+    commit_count: int = 0,
+    no_git_push: bool = False,
+    repo_url: str = "",
+) -> None:
+    """Imprime le récap deployment structuré sur stdout."""
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    themes_detail = ""
+    if themes_names:
+        themes_detail = f" ({', '.join(themes_names)})"
+
+    print(f"\n=== artiste-pipeline — push lot {date_str} vers site={site_id} ===")
+    print(f"Mode posts        : ADD-ONLY (--regen={regen_mode})")
+    print(f"Posts créés       : {posts_created}")
+    print(f"Posts ignorés     : {posts_skipped} (déjà présents)")
+    if posts_regen:
+        print(f"Posts regénérés   : {posts_regen}")
+    print(f"Posts blocklist   : {posts_blocklisted}")
+    print(f"Categories sync   : {categories_wrote} modifs (registry)")
+    print(f"Themes sync       : {themes_created} créé{themes_detail} / {themes_skipped} existants ignorés")
+    print(f"themeIds auto-tag : {theme_ids_tagged} posts impactés (lecture themes_registry)")
+    print(f"R2 variants       : {r2_uploaded} uploadés / {r2_skipped} skipped (etag match) / {r2_failed} failed")
+
+    if no_git_push:
+        print(f"\n  Mode --no-git-push : écriture locale uniquement, pas de push")
+    elif branch_name:
+        gh_url = repo_url.replace("git@github.com:", "https://github.com/").replace(".git", "")
+        print(f"\nBranche push      : {branch_name}")
+        print(f"Commits           : {commit_count}")
+        print(f"URL branche       : {gh_url}/tree/{branch_name}")
+        print(f"\nÀ faire côté site destinataire (humain / claude site) :")
+        print(f"  1. git fetch origin")
+        print(f"  2. git checkout {branch_name}")
+        print(f"  3. npm run build  (vérifier 0 erreur Zod)")
+        print(f"  4. Ouvrir PR + review + merge sur {site_config.get('default_branch', 'main')}")
+    print()
+
+
 # ── Orchestrateur ────────────────────────────────────────────────────────────
 
 
 def run_pipeline(
     *, mock: bool, no_git_push: bool, leaf_id: str | None,
     limit: int | None, rimalab_root: Path,
+    site_id: str = "alwanbooks",
+    regen_slugs: set[str] | None = None,
+    regen_all: bool = False,
+    sync_themes_flag: bool = False,
+    regen_themes: list[str] | None = None,
 ) -> PipelineRunSummary:
     """Exécute la pipeline complète. Retourne le summary."""
     if not MANIFEST_PATH.is_file():
@@ -879,6 +1361,7 @@ def run_pipeline(
 
     mode = "MOCK" if mock else ("NO-GIT-PUSH" if no_git_push else "PRODUCTION")
     summary = PipelineRunSummary(mode=mode, total_leaves=len(leaves))
+    regen_set = regen_slugs or set()
 
     r2: R2Client | None = None
     if not mock:
@@ -891,6 +1374,8 @@ def run_pipeline(
             )
 
     logger.info("Pipeline %s — %d leaves à traiter", mode, len(leaves))
+
+    themes_registry = _load_themes_registry()
 
     for leaf in leaves:
         leaf_id_v = leaf["leaf_id"]
@@ -927,12 +1412,13 @@ def run_pipeline(
             continue
 
         # 3. Upload R2 (réel ou mock)
+        master_md5 = _md5(variants["master"])
         try:
             if mock:
                 uploaded, skipped = _upload_variants_mock(r2_slug_v, variants)
             else:
                 assert r2 is not None
-                uploaded, skipped = _upload_variants_real(r2, r2_slug_v, variants)
+                uploaded, skipped = _upload_variants_real(r2, r2_slug_v, variants, master_md5)
             result.variants_uploaded = uploaded
             result.variants_skipped = skipped
             summary.variants_uploaded += len(uploaded)
@@ -945,15 +1431,34 @@ def run_pipeline(
             logger.exception("Upload failed for %s", leaf_id_v)
             continue
 
-        # 4. Convertir + écrire les Posts MD × 3 locales
+        # 4. Convertir + écrire les Posts MD × 3 locales (ADD-ONLY)
         for locale, post_slug in post_slugs.items():
             json_path = POSTS_DIR / locale / f"{post_slug}.json"
             if not json_path.is_file():
                 result.errors.append(f"post JSON manquant: {json_path}")
                 continue
+
+            if _is_post_blocklisted(site_id, post_slug):
+                summary.posts_blocklisted += 1
+                continue
+
+            out_path = rimalab_root / "src" / "content" / "posts" / locale / f"{post_slug}.md"
+            is_regen = regen_all or post_slug in regen_set
+            if out_path.exists() and not is_regen:
+                summary.posts_skipped_addonly += 1
+                continue
+
             post = json.loads(json_path.read_text(encoding="utf-8"))
             post = _ensure_post_complete(post)
+            theme_ids = compute_theme_ids(leaf_id_v, themes_registry)
+            if theme_ids:
+                post["themeIds"] = theme_ids
+                summary.theme_ids_tagged += 1
             md = post_json_to_md(post)
+            if out_path.exists():
+                summary.posts_regen += 1
+            else:
+                summary.posts_created += 1
             written = write_post_md(rimalab_root, locale, post_slug, md)
             result.posts_written.append(written)
             summary.posts_written += 1
@@ -961,7 +1466,18 @@ def run_pipeline(
         summary.leaves_ok += 1
         summary.leaves.append(result)
 
-    # 5. (optionnel) git commit + push sur rimalab-v2
+    # 5. Sync themes si demandé
+    themes_summary = None
+    if sync_themes_flag:
+        themes_summary = sync_themes(
+            rimalab_root, site_id,
+            registry=themes_registry,
+            regen_themes=regen_themes,
+        )
+        summary.themes_created = themes_summary.created
+        summary.themes_skipped = themes_summary.skipped_existing
+
+    # 6. (legacy compat) git commit + push sur rimalab-v2
     if not mock and not no_git_push and summary.posts_written > 0:
         msg = (
             f"feat(content): export {summary.leaves_ok} coloriages depuis "
@@ -1068,12 +1584,30 @@ def _print_summary(summary: PipelineRunSummary) -> None:
             print(f"  err {leaf_id}: {msg}")
 
 
+def _read_regen_file(path: str) -> set[str]:
+    """Lit un fichier de slugs (1 par ligne, # = commentaire)."""
+    slugs: set[str] = set()
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            slugs.add(line)
+    return slugs
+
+
+def _resolve_site_root(args) -> Path:
+    """Résout le path du clone site depuis --site ou fallback rimalab-path."""
+    if hasattr(args, "site") and args.site:
+        site = get_site(args.site)
+        return _site_clone_root(site)
+    return Path(args.rimalab_path)
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
     parser = argparse.ArgumentParser(
-        description="Pipeline alwanbooks — exports data/export/ vers R2 + rimalab-v2.",
+        description="Pipeline alwanbooks — exports data/export/ vers R2 + sites destinataires.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
@@ -1082,7 +1616,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--no-git-push", action="store_true",
-        help="Upload R2 + écrit MD dans rimalab-v2 mais pas de git push.",
+        help="Upload R2 + écrit MDs mais pas de git push.",
     )
     parser.add_argument(
         "--leaf-id", default=None,
@@ -1094,51 +1628,182 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--rimalab-path", default=str(DEFAULT_RIMALAB_PATH),
-        help="Path du clone local rimalab-v2 (override env RIMALAB_REPO_PATH).",
+        help="Path du clone local (fallback si --site non spécifié).",
+    )
+    parser.add_argument(
+        "--site", default=None,
+        help="Site destinataire (id dans destination_sites.json).",
     )
     parser.add_argument(
         "--sync-categories", action="store_true",
-        help=(
-            "Régénère uniquement les MDs `src/content/categories/*.md` côté "
-            "rimalab-v2 depuis le registry `data/categories_registry.json`. "
-            "Idempotent byte-identique (skip si contenu inchangé). Ignore "
-            "manifest/posts/R2. Combiner avec --no-git-push pour test local."
-        ),
+        help="Sync categories registry → site MDs.",
+    )
+    parser.add_argument(
+        "--sync-themes", action="store_true",
+        help="Sync themes registry → site MDs (ADD-ONLY).",
+    )
+    parser.add_argument(
+        "--regen", nargs="*", default=None,
+        help="Slugs de posts à regénérer (overwrite explicite).",
+    )
+    parser.add_argument(
+        "--regen-file", default=None,
+        help="Fichier contenant les slugs à regénérer (1/ligne).",
+    )
+    parser.add_argument(
+        "--regen-all", action="store_true",
+        help="Overwrite TOUS les posts (mode legacy).",
+    )
+    parser.add_argument(
+        "--regen-theme", nargs="*", default=None,
+        help="Theme IDs à regénérer (overwrite explicite).",
+    )
+    parser.add_argument(
+        "--cutover", action="store_true",
+        help="Bump approved → published sur tous les posts du site.",
+    )
+    parser.add_argument(
+        "--blocklist-add-post", default=None, metavar="SLUG",
+        help="Ajoute un slug à la blocklist posts.",
+    )
+    parser.add_argument(
+        "--blocklist-add-theme", default=None, metavar="THEME_ID",
+        help="Ajoute un theme_id à la blocklist themes.",
     )
     args = parser.parse_args(argv)
 
-    # Mode dédié sync-categories : ne touche pas R2, ne lit pas le manifest.
+    site_id = args.site or "alwanbooks"
+
+    # ── Blocklist commands ──
+    if args.blocklist_add_post:
+        blocklist_add_post(site_id, args.blocklist_add_post)
+        print(f"[blocklist] post {args.blocklist_add_post!r} added for site={site_id}")
+        return 0
+
+    if args.blocklist_add_theme:
+        blocklist_add_theme(site_id, args.blocklist_add_theme)
+        print(f"[blocklist] theme {args.blocklist_add_theme!r} added for site={site_id}")
+        return 0
+
+    # ── Cutover ──
+    if args.cutover:
+        site_config = get_site(site_id)
+        site_root = _site_clone_root(site_config)
+        summary = run_cutover(
+            site_root, site_config, no_git_push=args.no_git_push,
+        )
+        print(
+            f"[cutover] modified={summary.modified} "
+            f"already_published={summary.already_published} "
+            f"other_status={summary.other_status} "
+            f"total_scanned={summary.total_scanned}"
+        )
+        return 0
+
+    # ── Sync-themes only ──
+    if args.sync_themes and not args.sync_categories and not args.mock:
+        site_config = get_site(site_id)
+        site_root = _resolve_site_root(args)
+        ts = sync_themes(
+            site_root, site_id,
+            regen_themes=args.regen_theme,
+        )
+        themes_names = [p.stem for p in ts.files_created]
+        print(
+            f"[sync-themes] created={ts.created} skipped={ts.skipped_existing} "
+            f"overwritten={ts.overwritten} blocklisted={ts.skipped_blocklist} total={ts.total}"
+        )
+        for p in ts.files_created:
+            print(f"  created {p.name}")
+        print_deployment_recap(
+            site_id=site_id, site_config=site_config,
+            themes_created=ts.created,
+            themes_skipped=ts.skipped_existing,
+            themes_names=themes_names,
+            no_git_push=args.no_git_push,
+        )
+        return 0
+
+    # ── Sync-categories ──
     if args.sync_categories:
-        rimalab_root = Path(args.rimalab_path)
-        summary = sync_categories(rimalab_root)
+        site_root = _resolve_site_root(args)
+        summary = sync_categories(site_root)
         print(
             f"[sync-categories] wrote={summary.wrote} "
             f"skipped={summary.skipped} total={summary.total}"
         )
         for p in summary.files_wrote:
             try:
-                rel = p.relative_to(rimalab_root)
+                rel = p.relative_to(site_root)
             except ValueError:
                 rel = p
             print(f"  wrote   {rel}")
         for p in summary.files_skipped:
             try:
-                rel = p.relative_to(rimalab_root)
+                rel = p.relative_to(site_root)
             except ValueError:
                 rel = p
             print(f"  skipped {rel}")
         return 0
+
+    # ── Main pipeline (push) ──
+    regen_slugs: set[str] = set()
+    if args.regen:
+        regen_slugs.update(args.regen)
+    if args.regen_file:
+        regen_slugs.update(_read_regen_file(args.regen_file))
+
+    if args.regen_all:
+        print("  Mode --regen-all : tous les posts seront écrasés")
+
+    regen_mode = "<aucun>"
+    if args.regen_all:
+        regen_mode = "--regen-all"
+    elif regen_slugs:
+        regen_mode = f"--regen {len(regen_slugs)} slug(s)"
+
+    site_root = _resolve_site_root(args)
+    site_config = get_site(site_id)
 
     summary = run_pipeline(
         mock=args.mock,
         no_git_push=args.no_git_push,
         leaf_id=args.leaf_id,
         limit=args.limit,
-        rimalab_root=Path(args.rimalab_path),
+        rimalab_root=site_root,
+        site_id=site_id,
+        regen_slugs=regen_slugs if regen_slugs else None,
+        regen_all=args.regen_all,
+        sync_themes_flag=True,
+        regen_themes=args.regen_theme,
     )
     _print_summary(summary)
-    write_report(summary)
-    print(f"[info] rapport : {REPORT_PATH.relative_to(PROJECT_ROOT)}")
+
+    themes_names = []
+    if summary.themes_created > 0:
+        try:
+            tr = _load_themes_registry()
+            themes_names = [t["id"] for t in tr.get("themes", [])]
+        except Exception:
+            pass
+
+    print_deployment_recap(
+        site_id=site_id,
+        site_config=site_config,
+        posts_created=summary.posts_created,
+        posts_skipped=summary.posts_skipped_addonly,
+        posts_blocklisted=summary.posts_blocklisted,
+        posts_regen=summary.posts_regen,
+        regen_mode=regen_mode,
+        themes_created=summary.themes_created,
+        themes_skipped=summary.themes_skipped,
+        themes_names=themes_names,
+        theme_ids_tagged=summary.theme_ids_tagged,
+        r2_uploaded=summary.variants_uploaded,
+        r2_skipped=summary.variants_skipped,
+        no_git_push=args.no_git_push or args.mock,
+        repo_url=site_config.get("repo_url", ""),
+    )
     return 0 if summary.leaves_failed == 0 else 2
 
 
