@@ -257,6 +257,8 @@ class PipelineRunSummary:
     themes_created: int = 0
     themes_skipped: int = 0
     theme_ids_tagged: int = 0
+    bot_branch_name: str | None = None
+    bot_commit_count: int = 0
     errors: list[tuple[str, str]] = field(default_factory=list)
     leaves: list[LeafResult] = field(default_factory=list)
 
@@ -816,7 +818,7 @@ def write_post_md(
 #: (cohérent avec le brief tactique 2026-05-14 et calque des .md existants).
 _CATEGORY_FRONTMATTER_ORDER = (
     "id", "slug_i18n", "name_i18n", "description_i18n", "keywords_i18n",
-    "parent_id", "weight",
+    "editorial_body_i18n", "parent_id", "weight",
 )
 
 #: Ordre déterministe des locales dans les blocs i18n.
@@ -830,7 +832,13 @@ def category_to_md(category: dict) -> str:
 
     - Quote simple sur les strings (apostrophe doublée pour escape).
     - Ordre déterministe des champs : id → slug_i18n → name_i18n →
-      description_i18n → keywords_i18n → parent_id → weight.
+      description_i18n → keywords_i18n → editorial_body_i18n? → parent_id →
+      weight.
+    - ``editorial_body_i18n`` est **optionnel** : si absent du registry pour
+      cette catégorie, la clé YAML n'est PAS émise du tout (pas ``: null``,
+      pas ``: {}``). Format identique à ``theme_to_md`` : YAML literal block
+      scalar (``|``) avec préservation des paragraphes (``\\n\\n`` → blocs
+      vides). Cf. brief 2026-05-26.
     - Locales toujours dans l'ordre ar/fr/en.
     - Indentation 2 espaces.
     - Newlines en LF universel.
@@ -862,6 +870,15 @@ def category_to_md(category: dict) -> str:
                 lines.append(f"  {loc}:")
                 for kw in block[loc]:
                     lines.append(f"    - {_yaml_quote(kw)}")
+        elif key == "editorial_body_i18n":
+            # Optionnel : si absent du registry, on n'émet pas la clé.
+            block = category.get("editorial_body_i18n")
+            if not block:
+                continue
+            lines.append("editorial_body_i18n:")
+            for loc in _CATEGORY_I18N_LOCALES_ORDER:
+                lines.append(f"  {loc}: |")
+                lines.extend(_emit_literal_block(block[loc], indent=4))
 
     lines.append("---")
     lines.append("")
@@ -1168,7 +1185,12 @@ def git_bot_push(
     """Push sur branche bot avec identité bot.
 
     ``commit_messages`` : liste de ``(message, [paths_to_add])``.
-    Retourne ``(branch_name, exit_code)``.
+    Retourne ``(branch_name, commit_count)``.
+
+    ``commit_count`` = nombre de commits effectivement créés (les "nothing
+    to commit" ne comptent pas). Si le push échoue, ``commit_count`` reste
+    le nombre de commits locaux faits avant l'échec — le caller peut décider
+    quoi faire (logger, ajouter une erreur au summary, etc.).
     """
     bot = site_config["bot"]
     date_str = datetime.now().strftime("%Y-%m-%d")
@@ -1176,6 +1198,7 @@ def git_bot_push(
 
     _git_run(site_root, ["checkout", "-b", branch])
 
+    commit_count = 0
     for msg, paths in commit_messages:
         if not paths:
             continue
@@ -1190,12 +1213,18 @@ def git_bot_push(
             stdout_lower = (r.stdout or "").lower()
             if "nothing to commit" not in stdout_lower:
                 logger.error("git commit failed: %s", r.stderr)
-                return branch, r.returncode
+                return branch, commit_count
+            # "nothing to commit" → on continue sans incrémenter commit_count
+            continue
+        commit_count += 1
 
     r = _git_run(site_root, ["push", "-u", "origin", branch])
     if r.returncode != 0:
         logger.error("git push failed: %s", r.stderr)
-    return branch, r.returncode
+        raise RuntimeError(
+            f"git push failed for branch {branch}: {r.stderr or r.stdout}"
+        )
+    return branch, commit_count
 
 
 # ── Cutover (approved → published) ────────────────────────────────────────────
@@ -1477,17 +1506,45 @@ def run_pipeline(
         summary.themes_created = themes_summary.created
         summary.themes_skipped = themes_summary.skipped_existing
 
-    # 6. (legacy compat) git commit + push sur rimalab-v2
+    # 6. Push auto sur branche bot/lot-{date}[-N] (Niveau 1 multi-sites)
+    # Remplace l'ancien git_commit_push (legacy, branche fixe
+    # content/export-mep-v0). git_commit_push reste défini dans le module pour
+    # compat éventuelle mais n'est plus appelé depuis run_pipeline (cf. brief
+    # 2026-05-27_brief-fix-pipeline-push-auto-bot-branch).
     if not mock and not no_git_push and summary.posts_written > 0:
-        msg = (
-            f"feat(content): export {summary.leaves_ok} coloriages depuis "
-            "artiste-coloriage MEP v0"
+        site_config = get_site(site_id)
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        commit_messages: list[tuple[str, list[str]]] = []
+
+        # Commit posts (au moins 1 post écrit puisque posts_written > 0).
+        posts_msg = (
+            f"feat(content): lot {date_str} "
+            f"(+{summary.posts_created}p, +{summary.posts_regen}r)"
         )
-        rc, out = git_commit_push(rimalab_root, msg)
-        if rc != 0:
-            summary.errors.append(("__git__", f"git push failed (rc={rc}): {out[-500:]}"))
-        else:
-            logger.info("git commit+push OK sur %s", rimalab_root)
+        commit_messages.append((posts_msg, ["src/content/posts/"]))
+
+        # Commit themes séparé si themes créés.
+        if summary.themes_created > 0:
+            themes_msg = (
+                f"feat(themes): lot {date_str} "
+                f"(+{summary.themes_created} themes)"
+            )
+            commit_messages.append((themes_msg, ["src/content/themes/"]))
+
+        try:
+            branch_name, commit_count = git_bot_push(
+                rimalab_root, site_config,
+                commit_messages=commit_messages,
+            )
+            summary.bot_branch_name = branch_name
+            summary.bot_commit_count = commit_count
+            logger.info(
+                "Bot push OK sur branche %s (%d commits)",
+                branch_name, commit_count,
+            )
+        except Exception as exc:
+            summary.errors.append(("__git__", f"bot push failed: {exc}"))
+            logger.exception("Bot push failed")
 
     return summary
 
@@ -1602,10 +1659,12 @@ def _resolve_site_root(args) -> Path:
     return Path(args.rimalab_path)
 
 
-def main(argv: list[str] | None = None) -> int:
-    logging.basicConfig(
-        level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s",
-    )
+def _build_parser() -> argparse.ArgumentParser:
+    """Construit le parser CLI du pipeline.
+
+    Exposé séparément pour permettre des tests unitaires sur le parsing
+    (notamment la sémantique répétable de ``--regen`` / ``--regen-theme``).
+    """
     parser = argparse.ArgumentParser(
         description="Pipeline alwanbooks — exports data/export/ vers R2 + sites destinataires.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -1642,9 +1701,12 @@ def main(argv: list[str] | None = None) -> int:
         "--sync-themes", action="store_true",
         help="Sync themes registry → site MDs (ADD-ONLY).",
     )
+    # ``action="append"`` : chaque répétition de ``--regen <slug>`` ajoute à
+    # la liste. ``nargs="*"`` écrasait silencieusement l'occurrence précédente
+    # (bug #17 — 2026-05-26).
     parser.add_argument(
-        "--regen", nargs="*", default=None,
-        help="Slugs de posts à regénérer (overwrite explicite).",
+        "--regen", action="append", default=None, metavar="SLUG",
+        help="Slug de post à regénérer (overwrite explicite). Répétable.",
     )
     parser.add_argument(
         "--regen-file", default=None,
@@ -1654,9 +1716,11 @@ def main(argv: list[str] | None = None) -> int:
         "--regen-all", action="store_true",
         help="Overwrite TOUS les posts (mode legacy).",
     )
+    # Idem ``--regen-theme`` — ``action="append"`` pour pouvoir cumuler plusieurs
+    # IDs (cf. fix #17 2026-05-26).
     parser.add_argument(
-        "--regen-theme", nargs="*", default=None,
-        help="Theme IDs à regénérer (overwrite explicite).",
+        "--regen-theme", action="append", default=None, metavar="THEME_ID",
+        help="Theme ID à regénérer (overwrite explicite). Répétable.",
     )
     parser.add_argument(
         "--cutover", action="store_true",
@@ -1670,6 +1734,14 @@ def main(argv: list[str] | None = None) -> int:
         "--blocklist-add-theme", default=None, metavar="THEME_ID",
         help="Ajoute un theme_id à la blocklist themes.",
     )
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    )
+    parser = _build_parser()
     args = parser.parse_args(argv)
 
     site_id = args.site or "alwanbooks"
@@ -1801,6 +1873,8 @@ def main(argv: list[str] | None = None) -> int:
         theme_ids_tagged=summary.theme_ids_tagged,
         r2_uploaded=summary.variants_uploaded,
         r2_skipped=summary.variants_skipped,
+        branch_name=summary.bot_branch_name,
+        commit_count=summary.bot_commit_count,
         no_git_push=args.no_git_push or args.mock,
         repo_url=site_config.get("repo_url", ""),
     )

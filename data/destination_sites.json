@@ -4,7 +4,7 @@
     {
       "id": "alwanbooks",
       "name": "Alwan Books V2",
-      "repo_url": "git@github.com:msouabni/rimalab-v2.git",
+      "repo_url": "https://github.com/msouabni/rimalab-v2.git",
       "default_branch": "main",
       "import_branch_pattern": "bot/lot-{date}",
       "clone_path": "data/sites/alwanbooks",

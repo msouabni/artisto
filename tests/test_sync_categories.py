@@ -244,3 +244,155 @@ def test_sync_categories_lf_line_endings(tmp_path, minimal_registry):
     assert b"\r\n" not in raw, (
         "MD file unexpectedly contains CRLF line endings"
     )
+
+
+# ── editorial_body_i18n (brief 2026-05-26) ───────────────────────────────────
+
+
+@pytest.fixture
+def registry_with_editorial() -> dict:
+    """Registry mixte : 1 catégorie AVEC editorial_body_i18n, 1 sans."""
+    return {
+        "version": 1,
+        "categories": [
+            {
+                "id": "cat_with_editorial",
+                "parent_id": None,
+                "weight": 5,
+                "slug_i18n": {"ar": "ed-ar", "fr": "ed-fr", "en": "ed-en"},
+                "name_i18n": {"ar": "تحريري", "fr": "Editorial", "en": "Editorial"},
+                "description_i18n": {
+                    "ar": "وصف", "fr": "Desc", "en": "Desc",
+                },
+                "keywords_i18n": {
+                    "ar": ["كلمة"], "fr": ["mot"], "en": ["word"],
+                },
+                "editorial_body_i18n": {
+                    "ar": "فقرة أولى عربية.\n\nفقرة ثانية عربية.",
+                    "fr": "Premier paragraphe français.\n\nDeuxième paragraphe.",
+                    "en": "First English paragraph.\n\nSecond paragraph.",
+                },
+                "body": "Body court.",
+            },
+            {
+                "id": "cat_without_editorial",
+                "parent_id": None,
+                "weight": 6,
+                "slug_i18n": {"ar": "ne-ar", "fr": "ne-fr", "en": "ne-en"},
+                "name_i18n": {"ar": "بدون", "fr": "Sans", "en": "Without"},
+                "description_i18n": {"ar": "وصف", "fr": "Desc", "en": "Desc"},
+                "keywords_i18n": {"ar": ["كلمة"], "fr": ["mot"], "en": ["word"]},
+                "body": "Body court.",
+            },
+        ],
+    }
+
+
+def test_sync_categories_writes_editorial_body_when_present(
+    tmp_path, registry_with_editorial,
+):
+    """Une catégorie avec ``editorial_body_i18n`` → bloc literal ``|`` avec 3 locales."""
+    from alwanbooks_pipeline import sync_categories
+
+    sync_categories(tmp_path, registry=registry_with_editorial)
+    md = (
+        tmp_path / "src" / "content" / "categories" / "cat_with_editorial.md"
+    ).read_text(encoding="utf-8")
+
+    # La clé est présente avec le marqueur literal block ``|``
+    assert "editorial_body_i18n:" in md
+    assert "  ar: |" in md
+    assert "  fr: |" in md
+    assert "  en: |" in md
+    # Les 3 contenus sont indentés à 4 espaces
+    assert "    فقرة أولى عربية." in md
+    assert "    Premier paragraphe français." in md
+    assert "    First English paragraph." in md
+
+
+def test_sync_categories_omits_editorial_body_when_absent(
+    tmp_path, registry_with_editorial,
+):
+    """Une catégorie sans ``editorial_body_i18n`` → la clé n'apparaît pas."""
+    from alwanbooks_pipeline import sync_categories
+
+    sync_categories(tmp_path, registry=registry_with_editorial)
+    md = (
+        tmp_path / "src" / "content" / "categories" / "cat_without_editorial.md"
+    ).read_text(encoding="utf-8")
+
+    assert "editorial_body_i18n" not in md, (
+        "editorial_body_i18n key leaked into a category that does not define it"
+    )
+
+
+def test_sync_categories_editorial_body_preserves_paragraphs(
+    tmp_path, registry_with_editorial,
+):
+    """``\\n\\n`` du registry → blocs vides reproduits exactement dans le YAML."""
+    from alwanbooks_pipeline import sync_categories
+
+    sync_categories(tmp_path, registry=registry_with_editorial)
+    md = (
+        tmp_path / "src" / "content" / "categories" / "cat_with_editorial.md"
+    ).read_text(encoding="utf-8")
+
+    # On vérifie que les paragraphes FR sont séparés par une ligne vide à 4 espaces
+    # (le helper ``_emit_literal_block`` insère une ligne vide entre paragraphes).
+    fr_block = (
+        "  fr: |\n"
+        "    Premier paragraphe français.\n"
+        "\n"
+        "    Deuxième paragraphe."
+    )
+    assert fr_block in md, (
+        f"FR literal block not preserved as expected; got:\n{md}"
+    )
+    en_block = (
+        "  en: |\n"
+        "    First English paragraph.\n"
+        "\n"
+        "    Second paragraph."
+    )
+    assert en_block in md
+
+
+def test_sync_categories_idempotent_byte_identical_with_editorial(
+    tmp_path, registry_with_editorial,
+):
+    """2e run sur registry avec editorial → 0 écriture (byte-identique)."""
+    from alwanbooks_pipeline import sync_categories
+
+    s1 = sync_categories(tmp_path, registry=registry_with_editorial)
+    assert s1.wrote == 2
+
+    md_path = (
+        tmp_path / "src" / "content" / "categories" / "cat_with_editorial.md"
+    )
+    bytes_before = md_path.read_bytes()
+
+    s2 = sync_categories(tmp_path, registry=registry_with_editorial)
+    assert s2.wrote == 0, (
+        f"expected 0 writes on idempotent re-run with editorial, got {s2.wrote}"
+    )
+    assert s2.skipped == 2
+    assert md_path.read_bytes() == bytes_before
+
+
+def test_sync_categories_editorial_field_order(
+    tmp_path, registry_with_editorial,
+):
+    """``editorial_body_i18n`` se place entre ``keywords_i18n`` et ``parent_id``."""
+    from alwanbooks_pipeline import sync_categories
+
+    sync_categories(tmp_path, registry=registry_with_editorial)
+    md = (
+        tmp_path / "src" / "content" / "categories" / "cat_with_editorial.md"
+    ).read_text(encoding="utf-8")
+
+    pos_kw = md.index("keywords_i18n:")
+    pos_ed = md.index("editorial_body_i18n:")
+    pos_parent = md.index("parent_id:")
+    assert pos_kw < pos_ed < pos_parent, (
+        "editorial_body_i18n must be placed between keywords_i18n and parent_id"
+    )

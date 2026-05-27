@@ -75,3 +75,18 @@ def test_sites_registry_schema_valid(registry):
         bot = site["bot"]
         assert "name" in bot
         assert "email" in bot
+
+
+def test_alwanbooks_repo_url_is_https(registry):
+    """``alwanbooks.repo_url`` doit être HTTPS (setup credential helper Windows).
+
+    Cf. décision 2026-05-26 bascule C2 : pas de clé SSH configurée localement,
+    on s'aligne sur HTTPS pour cohérence avec le credential helper.
+    """
+    alwan = next(
+        (s for s in registry["sites"] if s["id"] == "alwanbooks"), None,
+    )
+    assert alwan is not None, "alwanbooks site missing from registry"
+    assert alwan["repo_url"].startswith("https://"), (
+        f"alwanbooks.repo_url must use HTTPS, got: {alwan['repo_url']!r}"
+    )
