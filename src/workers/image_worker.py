@@ -61,6 +61,68 @@ def _now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _enrich_model_config_with_variant(
+    base_model_config: str | dict | None,
+    job_config: Any,
+) -> str:
+    """Enrichit ``image_output.model_config`` avec les champs variante issus
+    du ``job.config`` JSON.
+
+    Champs ajoutés (toujours présents dans le résultat, même à ``None`` /
+    ``False`` pour les jobs legacy) :
+
+    - ``variant_name`` (``str | None``) — nom de variante du registre
+      ``pipeline_variants.json`` (ex. ``"pastel_chromakey"``, ``"lineart"``).
+    - ``extract_preset`` (``str | None``) — preset extract_palette à appliquer
+      en post-traitement (réservé C2).
+    - ``force_chromakey`` (``bool``) — drapeau chromakey injecté à l'enqueue.
+
+    Args:
+        base_model_config: model_config existant (str JSON, dict ou None).
+        job_config: job.config tel que reçu (str JSON, dict ou autre).
+
+    Returns:
+        Un str JSON prêt à être inséré dans ``image_output.model_config``.
+
+    Tolérance :
+        - ``job_config`` non-JSON → traité comme {} (legacy, pas d'erreur).
+        - ``base_model_config`` non-JSON → traité comme {} (override total).
+        - Les champs variante existants dans ``base_model_config`` sont écrasés
+          par ceux du ``job_config`` (le job est la source de vérité).
+    """
+    # Normalise base_model_config en dict.
+    mc_data: dict[str, Any]
+    if isinstance(base_model_config, dict):
+        mc_data = dict(base_model_config)
+    elif isinstance(base_model_config, str) and base_model_config.strip():
+        try:
+            parsed = json.loads(base_model_config)
+            mc_data = dict(parsed) if isinstance(parsed, dict) else {}
+        except (json.JSONDecodeError, ValueError):
+            mc_data = {}
+    else:
+        mc_data = {}
+
+    # Normalise job_config en dict (best-effort).
+    jc_data: dict[str, Any]
+    if isinstance(job_config, dict):
+        jc_data = job_config
+    elif isinstance(job_config, str) and job_config.strip():
+        try:
+            parsed_jc = json.loads(job_config)
+            jc_data = parsed_jc if isinstance(parsed_jc, dict) else {}
+        except (json.JSONDecodeError, ValueError):
+            jc_data = {}
+    else:
+        jc_data = {}
+
+    mc_data["variant_name"] = jc_data.get("variant_name")
+    mc_data["extract_preset"] = jc_data.get("extract_preset")
+    mc_data["force_chromakey"] = bool(jc_data.get("force_chromakey", False))
+
+    return json.dumps(mc_data, ensure_ascii=False)
+
+
 class ComfyUnavailableError(Exception):
     """Levée quand ComfyUI est indisponible avant même l'exécution d'un workflow."""
 
@@ -208,7 +270,13 @@ class ImageWorker(BaseWorker):
             model_name = "pillow_placeholder"
         out_w = int(gen.get("width", 1024) or 1024)
         out_h = int(gen.get("height", 1024) or 1024)
-        model_config = json.dumps(gen if gen else {"prompt": prompt})
+        # Enrichit model_config avec les champs variante du job.config (C1.3).
+        # Jobs legacy (sans variant_name) → variant_name/extract_preset=None,
+        # force_chromakey=False. Jobs C1.2+ → champs propagés depuis l'enqueue.
+        model_config = _enrich_model_config_with_variant(
+            gen if gen else {"prompt": prompt},
+            job.get("config"),
+        )
 
         abs_image = OUTPUTS_DIR / Path(rel_path).name
         try:
