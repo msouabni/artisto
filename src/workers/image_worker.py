@@ -349,9 +349,81 @@ class ImageWorker(BaseWorker):
                     out_id,
                     exc,
                 )
+            # Trigger post-processing (vectorisation + coloriage SVG) si
+            # variant_name est presente dans le model_config (job C1.2+).
+            # Best-effort identique : un echec n'empeche jamais l'INSERT
+            # image_output.
+            try:
+                self._enqueue_post_processing_job(conn, out_id, model_config, now)
+            except Exception as exc:
+                logger.warning(
+                    "Échec enqueue image_post_processing pour image_output=%s : %s",
+                    out_id,
+                    exc,
+                )
             conn.session.commit()
         finally:
             conn.close()
+
+    def _enqueue_post_processing_job(
+        self,
+        conn,
+        image_output_id: str,
+        model_config_str: str,
+        now: str,
+    ) -> None:
+        """Crée un job ``image_post_processing`` si ``variant_name`` est
+        present dans ``model_config_str``.
+
+        Best-effort : un echec d'enqueue n'empeche jamais l'INSERT
+        ``image_output``. Si ``model_config_str`` n'est pas du JSON valide
+        ou si ``variant_name`` est absent (legacy), aucun job n'est cree.
+
+        Idempotence simple : un seul job pending par image_output_id.
+        """
+        try:
+            mc = json.loads(model_config_str or "{}")
+            if not isinstance(mc, dict):
+                return
+        except (json.JSONDecodeError, ValueError):
+            return
+        variant_name = mc.get("variant_name")
+        if not variant_name:
+            return  # legacy : pas de post-processing
+        # Verifie que le type est seede en base avant d'enqueue.
+        cfg_row = conn.execute(
+            "SELECT 1 FROM job_type_config WHERE type = ?",
+            ["image_post_processing"],
+        ).fetchone()
+        if not cfg_row:
+            return
+        existing = conn.execute(
+            """
+            SELECT id FROM job
+            WHERE type = ? AND entity_id = ? AND status IN ('pending', 'running')
+            LIMIT 1
+            """,
+            ["image_post_processing", image_output_id],
+        ).fetchone()
+        if existing:
+            return
+        extract_preset = mc.get("extract_preset")
+        config = json.dumps(
+            {
+                "variant_name": variant_name,
+                "extract_preset": extract_preset,
+            },
+            ensure_ascii=False,
+        )
+        pp_job_id = f"pp_{image_output_id}_{uuid.uuid4().hex[:8]}"
+        conn.execute(
+            """
+            INSERT INTO job (id, type, status, config, created_at, priority,
+                              retry_count, max_retries, entity_type, entity_id)
+            VALUES (?, ?, 'pending', ?, ?, 5, 0, 3, 'image_output', ?)
+            """,
+            [pp_job_id, "image_post_processing", config, now, image_output_id],
+        )
 
     def _enqueue_qc_job(self, conn, image_output_id: str, now: str) -> None:
         """Crée un job ``image_qc_auto`` avec ``entity_id=<image_output_id>``.
