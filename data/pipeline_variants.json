@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "default_active": ["pastel_chromakey"],
+  "default_active": ["lineart", "pastel_chromakey"],
   "variants": {
     "pastel_chromakey": {
       "prompt_style": "pastel",

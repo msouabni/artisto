@@ -78,8 +78,15 @@ def test_load_default_registry():
 
 def test_get_active_variants_no_override():
     active = get_active_variants()
-    assert len(active) == 1
-    assert active[0].name == "pastel_chromakey"
+    names = [v.name for v in active]
+    # default_active du registre prod = ["lineart", "pastel_chromakey"]
+    # (mise a jour 2026-06-06 — C2.3). Asserts non-strict ordre / contenu :
+    # au moins ces 2 variants doivent etre actifs.
+    assert "lineart" in names
+    assert "pastel_chromakey" in names
+    assert len(active) >= 1
+    for v in active:
+        assert isinstance(v, Variant)
 
 
 def test_get_active_variants_with_category_override(tmp_path):
