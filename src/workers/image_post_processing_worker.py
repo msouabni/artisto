@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import json
 import logging
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -176,6 +177,16 @@ class ImagePostProcessingWorker(BaseWorker):
         # Calcule les chemins cibles via la convention C2.1.
         paths = get_storage_paths(leaf_id, variant_name, base_dir=GENERATED_DIR)
         paths.vector_svg.parent.mkdir(parents=True, exist_ok=True)
+
+        # Copie le PNG raw vers paths.raw_png pour respecter la convention
+        # storage : list_existing_variants() glob `{leaf}__*.png` et
+        # alwanbooks_pipeline._build_variants_dict en depend pour le frontmatter.
+        if paths.raw_png.resolve() != png_path.resolve():
+            shutil.copyfile(png_path, paths.raw_png)
+            logger.info(
+                "post-processing copy PNG OK leaf=%s variant=%s -> %s",
+                leaf_id, variant_name, paths.raw_png,
+            )
 
         # === SVG coloriage interactif (si variante chromakey/extract) =====
         coloring_svg_path: Path | None = None
