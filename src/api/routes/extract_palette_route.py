@@ -205,6 +205,12 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
         "vibrant": [f"rgb({r},{g},{b})" for r, g, b in _generate_auto_palette(n_regions, "vibrant")],
     }
     auto_palettes_json = json.dumps(auto_palettes)
+    # Cle localStorage isolee par (name, preset_name) : chaque variante de
+    # coloriage (meme image, preset different) a son propre etat sauvegarde.
+    # On json.dumps les valeurs pour eviter tout probleme d'echappement
+    # (quotes, backslashes) lors de l'injection dans le JS.
+    key_state_name_json = json.dumps(name)
+    key_state_preset_json = json.dumps(preset_name)
 
     style = """
     *{box-sizing:border-box;} body{font-family:system-ui,sans-serif;background:#fafafa;color:#222;margin:0;padding:1rem;}
@@ -231,6 +237,8 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     .actions{display:flex;flex-wrap:wrap;gap:.4rem;align-content:flex-start;}
     .btn{background:#f0f0f0;border:1px solid #c8c8c8;border-radius:.4rem;padding:.4rem .7rem;font-size:.82rem;cursor:pointer;font-family:ui-monospace,Menlo,Consolas,monospace;}
     .btn:hover{background:#e5e5e5;} .btn.active{background:#222;color:#fff;border-color:#222;}
+    .btn:disabled{opacity:.45;cursor:not-allowed;background:#f5f5f5;}
+    .btn:disabled:hover{background:#f5f5f5;}
     main{background:#fff;border:1px solid #ddd;border-radius:.5rem;padding:1rem;max-width:920px;margin:0 auto;}
     .canvas{background:#fff;border:1px solid #eee;border-radius:.3rem;overflow:hidden;}
     .canvas-svg{width:100%;height:auto;display:block;}
@@ -318,22 +326,150 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
             setActiveSwatch(hex);
         }});
     }}
-    // === Regions click + reset + solution + zones (inchange C2) ===
+    // === Regions click + reset + solution + zones ===
     const regions=document.querySelectorAll('.region');
-    function setRegionColor(r,c){{r.setAttribute('fill',c);r.setAttribute('stroke',c);r.dataset.user=c;}}
+    // === Undo/redo + auto-save localStorage (C3.2) ===
+    // Cle KEY_STATE isolee par (name, preset_name) : chaque variante a son etat.
+    const KEY_STATE='coloring.state.'+encodeURIComponent({key_state_name_json})+'__'+encodeURIComponent({key_state_preset_json});
+    const undoStack=[];
+    const redoStack=[];
+    const MAX_STACK=50;
+    // Helper : capture l'etat regions colorees (idx -> hex), exclut fond + blanc.
+    function captureState(){{
+        const out={{}};
+        regions.forEach(r=>{{
+            if(r.dataset.bg==='1') return;
+            if(r.dataset.user && r.dataset.user!=='#ffffff') out[r.dataset.idx]=r.dataset.user;
+        }});
+        return out;
+    }}
+    // setRegionColor : push 'paint' sur undoStack sauf si fromHistory=true.
+    // Appels programmatiques (restore, applyAction, auto-palette) passent true.
+    function setRegionColor(r,c,fromHistory){{
+        const prev=r.dataset.user||'#ffffff';
+        if(String(prev).toUpperCase()===String(c).toUpperCase()) return;
+        r.setAttribute('fill',c);
+        r.setAttribute('stroke',c);
+        if(c==='#ffffff') delete r.dataset.user; else r.dataset.user=c;
+        if(!fromHistory){{
+            undoStack.push({{type:'paint', idx:r.dataset.idx, prev:prev, next:c}});
+            if(undoStack.length>MAX_STACK) undoStack.shift();
+            redoStack.length=0;
+            saveState();
+            updateUndoRedoButtons();
+        }}
+    }}
+    // Applique un snapshot (idx->color) : tout ce qui n'est pas dans snapshot revient a blanc.
+    function applySnapshot(snapshot){{
+        regions.forEach(r=>{{
+            if(r.dataset.bg==='1') return;
+            const target=snapshot[r.dataset.idx]||'#ffffff';
+            r.setAttribute('fill',target);
+            r.setAttribute('stroke',target);
+            if(target==='#ffffff') delete r.dataset.user; else r.dataset.user=target;
+        }});
+    }}
+    // applyAction : reverse=true pour undo (restore 'before' / 'prev'),
+    // reverse=false pour redo (applique 'after' / 'next').
+    function applyAction(action, reverse){{
+        try {{
+            if(action.type==='paint'){{
+                const target=reverse?action.prev:action.next;
+                const r=document.querySelector('.region[data-idx="'+action.idx+'"]');
+                if(r && r.dataset.bg!=='1'){{
+                    r.setAttribute('fill',target);
+                    r.setAttribute('stroke',target);
+                    if(target==='#ffffff') delete r.dataset.user; else r.dataset.user=target;
+                }}
+            }} else if(action.type==='bulk_swap'){{
+                applySnapshot(reverse?action.before:action.after);
+            }}
+        }} catch(e) {{ /* idx inexistant suite a changement SVG : ignore silencieusement */ }}
+    }}
+    function doUndo(){{
+        const a=undoStack.pop(); if(!a) return;
+        applyAction(a,true);
+        redoStack.push(a);
+        saveState();
+        updateUndoRedoButtons();
+    }}
+    function doRedo(){{
+        const a=redoStack.pop(); if(!a) return;
+        applyAction(a,false);
+        undoStack.push(a);
+        saveState();
+        updateUndoRedoButtons();
+    }}
+    function updateUndoRedoButtons(){{
+        const u=document.getElementById('btn-undo');
+        const r=document.getElementById('btn-redo');
+        if(u) u.disabled=undoStack.length===0;
+        if(r) r.disabled=redoStack.length===0;
+    }}
+    function saveState(){{
+        try {{
+            const state={{
+                regions:captureState(),
+                undoStack:undoStack.slice(-MAX_STACK),
+                redoStack:redoStack.slice(-MAX_STACK),
+                v:1,
+            }};
+            localStorage.setItem(KEY_STATE, JSON.stringify(state));
+        }} catch(e) {{ /* quota / mode prive : ignore */ }}
+    }}
+    function restoreState(){{
+        try {{
+            const raw=localStorage.getItem(KEY_STATE);
+            if(!raw) return;
+            const data=JSON.parse(raw);
+            if(!data || data.v!==1) return;
+            Object.entries(data.regions||{{}}).forEach(([idx,color])=>{{
+                const r=document.querySelector('.region[data-idx="'+idx+'"]');
+                if(r && r.dataset.bg!=='1'){{
+                    r.setAttribute('fill',color);
+                    r.setAttribute('stroke',color);
+                    r.dataset.user=color;
+                }}
+            }});
+            if(Array.isArray(data.undoStack)) undoStack.push(...data.undoStack);
+            if(Array.isArray(data.redoStack)) redoStack.push(...data.redoStack);
+            updateUndoRedoButtons();
+        }} catch(e) {{ /* corrompu : on ignore */ }}
+    }}
+    document.getElementById('btn-undo')?.addEventListener('click',doUndo);
+    document.getElementById('btn-redo')?.addEventListener('click',doRedo);
+    // Raccourcis clavier : Ctrl+Z = undo, Ctrl+Shift+Z / Ctrl+Y = redo (Cmd sur Mac).
+    document.addEventListener('keydown',e=>{{
+        const isMac=/Mac|iPad|iPhone|iPod/.test(navigator.platform);
+        const meta=isMac?e.metaKey:e.ctrlKey;
+        if(!meta) return;
+        const key=(e.key||'').toLowerCase();
+        if(key==='z' && !e.shiftKey){{ e.preventDefault(); doUndo(); }}
+        else if((key==='z' && e.shiftKey) || key==='y'){{ e.preventDefault(); doRedo(); }}
+    }});
+    // === Regions click (utilise setRegionColor qui gere undo automatiquement) ===
     regions.forEach(r=>r.addEventListener('click',e=>{{
         if(r.dataset.bg==='1') return;
         e.stopPropagation();
         setRegionColor(r,currentColor);
     }}));
+    // === Btn reset : push bulk_swap reversible (before=snapshot, after={{}}) ===
     document.getElementById('btn-reset').addEventListener('click',()=>{{
-        regions.forEach(r=>{{
-            if(r.dataset.bg==='1') return;
-            setRegionColor(r,'#ffffff');
-            delete r.dataset.user;
-        }});
+        const before=captureState();
+        if(Object.keys(before).length===0){{
+            // Rien a effacer : on nettoie quand meme l'overlay solution.
+            document.body.classList.remove('solution');
+            document.getElementById('btn-solution').classList.remove('active');
+            return;
+        }}
+        applySnapshot({{}});  // efface tout (sauf fond)
+        undoStack.push({{type:'bulk_swap', before:before, after:{{}}}});
+        if(undoStack.length>MAX_STACK) undoStack.shift();
+        redoStack.length=0;
         document.body.classList.remove('solution');
         document.getElementById('btn-solution').classList.remove('active');
+        saveState();
+        updateUndoRedoButtons();
     }});
     const btnSolution=document.getElementById('btn-solution');
     btnSolution.addEventListener('click',()=>{{
@@ -351,19 +487,32 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
         btnZones.classList.toggle('active',s);
     }});
     const AUTO_PALETTES={auto_palettes_json};
+    // Auto-palette : capture before -> applique sans pousser sur stack (fromHistory)
+    // -> capture after -> push 1 seul bulk_swap reversible.
     function applyAutoPalette(name){{
         const pal=AUTO_PALETTES[name]; if(!pal) return;
+        const before=captureState();
         const groups={{}};
         regions.forEach(r=>{{
             if(r.dataset.bg==='1') return;
             const cid=r.dataset.regionId.split('-')[0]; if(!groups[cid])groups[cid]=[]; groups[cid].push(r);
         }});
         const keys=Object.keys(groups).sort((a,b)=>parseInt(a)-parseInt(b));
-        keys.forEach((cid,idx)=>{{const c=pal[idx%pal.length]; groups[cid].forEach(r=>setRegionColor(r,c));}});
+        keys.forEach((cid,idx)=>{{const c=pal[idx%pal.length]; groups[cid].forEach(r=>setRegionColor(r,c,true));}});
+        const after=captureState();
+        // No-op si rien change (rare : meme palette deja appliquee).
+        if(JSON.stringify(before)===JSON.stringify(after)) return;
+        undoStack.push({{type:'bulk_swap', before:before, after:after}});
+        if(undoStack.length>MAX_STACK) undoStack.shift();
+        redoStack.length=0;
+        saveState();
+        updateUndoRedoButtons();
     }}
     document.getElementById('btn-rainbow').addEventListener('click',()=>applyAutoPalette('rainbow'));
     document.getElementById('btn-pastel').addEventListener('click',()=>applyAutoPalette('pastel'));
     document.getElementById('btn-vibrant').addEventListener('click',()=>applyAutoPalette('vibrant'));
+    // Restore au load : applique regions sauvegardees + restaure les stacks.
+    restoreState();
     """
     return f"""<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"/><title>Coloriage — {html_escape.escape(name)}</title><style>{style}</style></head>
@@ -373,6 +522,8 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
 <div class="controls">
   {palette_html}
   <div class="actions">
+    <button id="btn-undo" class="btn" title="Annuler (Ctrl+Z)" disabled>↶ Annuler</button>
+    <button id="btn-redo" class="btn" title="Rétablir (Ctrl+Shift+Z)" disabled>↷ Rétablir</button>
     <button id="btn-reset" class="btn">tout effacer</button>
     <button id="btn-solution" class="btn">voir la solution</button>
     <button id="btn-zones" class="btn">afficher zones</button>
