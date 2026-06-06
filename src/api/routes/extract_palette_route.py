@@ -217,6 +217,13 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     h1{margin:0 0 .25rem 0;font-size:1.05rem;font-family:ui-monospace,Menlo,Consolas,monospace;}
     header{background:#fff;border:1px solid #ddd;border-radius:.5rem;padding:.75rem 1rem;margin-bottom:1rem;position:sticky;top:.5rem;z-index:10;box-shadow:0 1px 4px rgba(0,0,0,.04);}
     .controls{display:flex;flex-wrap:wrap;align-items:flex-start;gap:.5rem;margin-top:.5rem;}
+    .dropdown-export{position:relative;display:inline-block;}
+    .dropdown-menu{position:absolute;top:calc(100% + .25rem);right:0;background:#fff;border:1px solid #ccc;border-radius:.4rem;box-shadow:0 4px 12px rgba(0,0,0,.1);min-width:180px;z-index:20;padding:.25rem 0;}
+    .dropdown-menu[hidden]{display:none;}
+    .dropdown-item{display:block;width:100%;text-align:left;background:none;border:none;padding:.5rem .75rem;font-size:.85rem;cursor:pointer;font-family:inherit;}
+    .dropdown-item:hover{background:#f0f0f0;}
+    .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:.6rem 1.2rem;border-radius:.4rem;font-size:.85rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:100;}
+    .toast.show{opacity:1;}
     .palette-accordion{display:flex;flex-direction:column;gap:.4rem;flex:1 1 260px;min-width:240px;max-width:420px;}
     .category-block{background:#fff;border:1px solid #ddd;border-radius:.4rem;overflow:hidden;}
     .category-block summary{cursor:pointer;padding:.5rem .75rem;font-weight:600;font-size:.85rem;background:#f8f8f8;list-style:none;user-select:none;}
@@ -252,7 +259,12 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     body.show-zones .region.region-bg{stroke-dasharray:3 3;stroke:#bbb !important;}
     .meta{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;color:#666;margin-top:.5rem;}
     """
+    # PAGE_NAME : utilise par les helpers d'export (PNG/SVG) pour construire
+    # le nom de fichier telecharge. Injecte via json.dumps pour neutraliser
+    # quotes / backslashes / caracteres speciaux dans le name.
+    page_name_json = json.dumps(name)
     script = f"""
+    const PAGE_NAME={page_name_json};
     let currentColor='#E63946';
     const allSwatches=document.querySelectorAll('.swatch');
     function setActiveSwatch(color){{
@@ -513,6 +525,102 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     document.getElementById('btn-vibrant').addEventListener('click',()=>applyAutoPalette('vibrant'));
     // Restore au load : applique regions sauvegardees + restaure les stacks.
     restoreState();
+    // === C3.3 : Menu Export (PNG / SVG / Partage clipboard) ===
+    function escapeFilename(s){{
+        return String(s).replace(/[^a-zA-Z0-9_\\-]/g, '_').substring(0, 80) || 'coloriage';
+    }}
+    function downloadBlob(blob, filename){{
+        const a=document.createElement('a');
+        a.href=URL.createObjectURL(blob);
+        a.download=filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(()=>{{ URL.revokeObjectURL(a.href); a.remove(); }}, 0);
+    }}
+    const toastEl=document.createElement('div');
+    toastEl.className='toast';
+    document.body.appendChild(toastEl);
+    let toastTimer=null;
+    function showToast(msg){{
+        toastEl.textContent=msg;
+        toastEl.classList.add('show');
+        if(toastTimer) clearTimeout(toastTimer);
+        toastTimer=setTimeout(()=>toastEl.classList.remove('show'), 2200);
+    }}
+    function exportPng(){{
+        const svg=document.querySelector('.canvas-svg');
+        if(!svg) return;
+        const svgClone=svg.cloneNode(true);
+        const vb=(svgClone.getAttribute('viewBox')||'0 0 1024 1024').split(/\\s+/).map(Number);
+        const w=vb[2]||1024, h=vb[3]||1024;
+        svgClone.setAttribute('width', w);
+        svgClone.setAttribute('height', h);
+        const serializer=new XMLSerializer();
+        const svgString=serializer.serializeToString(svgClone);
+        const svgBlob=new Blob([svgString], {{ type:'image/svg+xml;charset=utf-8' }});
+        const url=URL.createObjectURL(svgBlob);
+        const img=new Image();
+        img.onload=()=>{{
+            const canvas=document.createElement('canvas');
+            canvas.width=w; canvas.height=h;
+            const ctx=canvas.getContext('2d');
+            ctx.fillStyle='#ffffff';
+            ctx.fillRect(0, 0, w, h);
+            ctx.drawImage(img, 0, 0, w, h);
+            URL.revokeObjectURL(url);
+            canvas.toBlob(blob=>{{
+                downloadBlob(blob, escapeFilename(PAGE_NAME)+'_coloriage.png');
+                showToast('Image PNG téléchargée');
+            }}, 'image/png');
+        }};
+        img.onerror=()=>{{
+            URL.revokeObjectURL(url);
+            showToast('Erreur lors de l export PNG');
+        }};
+        img.src=url;
+    }}
+    function exportSvg(){{
+        const svg=document.querySelector('.canvas-svg');
+        if(!svg) return;
+        const svgClone=svg.cloneNode(true);
+        const serializer=new XMLSerializer();
+        const svgString='<?xml version="1.0" encoding="UTF-8"?>\\n'+serializer.serializeToString(svgClone);
+        const blob=new Blob([svgString], {{ type:'image/svg+xml;charset=utf-8' }});
+        downloadBlob(blob, escapeFilename(PAGE_NAME)+'_coloriage.svg');
+        showToast('SVG téléchargé');
+    }}
+    async function shareLink(){{
+        try {{
+            await navigator.clipboard.writeText(window.location.href);
+            showToast('Lien copié dans le presse-papiers');
+        }} catch(e) {{
+            // Fallback : prompt natif si clipboard API indisponible (HTTP, vieux browser).
+            prompt('Copie le lien :', window.location.href);
+        }}
+    }}
+    const btnExport=document.getElementById('btn-export');
+    const exportMenu=document.getElementById('export-menu');
+    if(btnExport && exportMenu){{
+        btnExport.addEventListener('click', e=>{{
+            e.stopPropagation();
+            const open=!exportMenu.hidden;
+            exportMenu.hidden=open;
+            btnExport.setAttribute('aria-expanded', String(!open));
+        }});
+        document.addEventListener('click', e=>{{
+            if(!btnExport.contains(e.target) && !exportMenu.contains(e.target)){{
+                exportMenu.hidden=true;
+                btnExport.setAttribute('aria-expanded', 'false');
+            }}
+        }});
+        function closeMenu(){{
+            exportMenu.hidden=true;
+            btnExport.setAttribute('aria-expanded', 'false');
+        }}
+        document.getElementById('btn-export-png')?.addEventListener('click', ()=>{{ exportPng(); closeMenu(); }});
+        document.getElementById('btn-export-svg')?.addEventListener('click', ()=>{{ exportSvg(); closeMenu(); }});
+        document.getElementById('btn-share-link')?.addEventListener('click', ()=>{{ shareLink(); closeMenu(); }});
+    }}
     """
     return f"""<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"/><title>Coloriage — {html_escape.escape(name)}</title><style>{style}</style></head>
@@ -530,6 +638,14 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     <button id="btn-rainbow" class="btn">auto rainbow</button>
     <button id="btn-pastel" class="btn">auto pastel</button>
     <button id="btn-vibrant" class="btn">auto vibrant</button>
+    <div class="dropdown-export">
+      <button id="btn-export" class="btn" aria-haspopup="true" aria-expanded="false">💾 Exporter ▾</button>
+      <div class="dropdown-menu" id="export-menu" role="menu" hidden>
+        <button class="dropdown-item" id="btn-export-png" role="menuitem" type="button">🖼 Image PNG</button>
+        <button class="dropdown-item" id="btn-export-svg" role="menuitem" type="button">📐 SVG vectoriel</button>
+        <button class="dropdown-item" id="btn-share-link" role="menuitem" type="button">🔗 Copier le lien</button>
+      </div>
+    </div>
   </div>
 </div></header>
 <main><div class="canvas">{svg_inline}</div></main>
