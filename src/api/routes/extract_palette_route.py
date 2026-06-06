@@ -249,7 +249,6 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     main{background:#fff;border:1px solid #ddd;border-radius:.5rem;padding:1rem;max-width:920px;margin:0 auto;}
     .canvas{background:#fff;border:1px solid #eee;border-radius:.3rem;overflow:hidden;}
     .canvas-svg{width:100%;height:auto;display:block;}
-    .region{cursor:pointer;transition:filter .12s,opacity .12s;}
     .region:hover{filter:brightness(.85);}
     body.solution .region{pointer-events:none;}
     body.show-zones .region{stroke:#999 !important;stroke-width:0.7 !important;}
@@ -258,6 +257,26 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     .region.region-bg:hover{filter:none !important;}
     body.show-zones .region.region-bg{stroke-dasharray:3 3;stroke:#bbb !important;}
     .meta{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.75rem;color:#666;margin-top:.5rem;}
+    /* C3.4 - polish UX : transitions douces fill/stroke + pulse au paint */
+    .region{cursor:pointer;transition:fill .15s ease, stroke .15s ease, opacity .12s, filter .12s;touch-action:manipulation;}
+    @keyframes paint-pulse{0%{transform:scale(1);}40%{transform:scale(1.02);}100%{transform:scale(1);}}
+    .region.just-painted{animation:paint-pulse .25s ease;transform-box:fill-box;transform-origin:center;}
+    /* C3.4 - onboarding overlay */
+    .onboarding-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:1000;padding:1rem;animation:fadeIn .25s;}
+    .onboarding-overlay[hidden]{display:none;}
+    .onboarding-card{background:#fff;border-radius:.75rem;padding:1.5rem 2rem;max-width:480px;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+    .onboarding-card h2{margin:0 0 .75rem 0;font-size:1.2rem;}
+    .onboarding-card ol{margin:.5rem 0 1.2rem 1.25rem;padding:0;font-size:.9rem;line-height:1.6;}
+    .onboarding-card kbd{background:#f0f0f0;border:1px solid #ccc;border-radius:.2rem;padding:.1rem .35rem;font-size:.8rem;font-family:ui-monospace,Menlo,Consolas,monospace;}
+    .btn-onboarding-close{background:#222;color:#fff;border:none;border-radius:.4rem;padding:.6rem 1.2rem;font-size:.9rem;cursor:pointer;font-weight:600;}
+    .btn-onboarding-close:hover{background:#000;}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    /* C3.4 - responsive mobile : palette compacte, header non sticky */
+    @media (max-width: 600px){
+      .palette-accordion{max-height:50vh;overflow-y:auto;}
+      header{position:static;}
+      .onboarding-card{padding:1.2rem 1.4rem;}
+    }
     """
     # PAGE_NAME : utilise par les helpers d'export (PNG/SVG) pour construire
     # le nom de fichier telecharge. Injecte via json.dumps pour neutraliser
@@ -363,7 +382,12 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
         r.setAttribute('fill',c);
         r.setAttribute('stroke',c);
         if(c==='#ffffff') delete r.dataset.user; else r.dataset.user=c;
+        // C3.4 - micro-animation pulse uniquement sur paint utilisateur direct
         if(!fromHistory){{
+            try {{
+                r.classList.add('just-painted');
+                setTimeout(()=>{{ try {{ r.classList.remove('just-painted'); }} catch(e){{}} }}, 260);
+            }} catch(e){{}}
             undoStack.push({{type:'paint', idx:r.dataset.idx, prev:prev, next:c}});
             if(undoStack.length>MAX_STACK) undoStack.shift();
             redoStack.length=0;
@@ -465,6 +489,28 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
         e.stopPropagation();
         setRegionColor(r,currentColor);
     }}));
+    // === C3.4 : Hover preview couleur (pointer events = souris + touch) ===
+    // pointerenter/pointerleave couvrent souris et stylet; sur tap mobile la
+    // sequence enter -> click -> leave reste coherente. Skip pendant 'solution'.
+    regions.forEach(r=>{{
+        if(r.dataset.bg==='1') return;
+        let hoverPrev=null;
+        r.addEventListener('pointerenter',()=>{{
+            if(document.body.classList.contains('solution')) return;
+            hoverPrev={{fill:r.getAttribute('fill'), stroke:r.getAttribute('stroke')}};
+            r.setAttribute('fill',currentColor);
+            r.setAttribute('stroke',currentColor);
+            r.style.opacity='0.7';
+        }});
+        r.addEventListener('pointerleave',()=>{{
+            if(hoverPrev){{
+                r.setAttribute('fill',hoverPrev.fill);
+                r.setAttribute('stroke',hoverPrev.stroke);
+                hoverPrev=null;
+            }}
+            r.style.opacity='';
+        }});
+    }});
     // === Btn reset : push bulk_swap reversible (before=snapshot, after={{}}) ===
     document.getElementById('btn-reset').addEventListener('click',()=>{{
         const before=captureState();
@@ -621,34 +667,84 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
         document.getElementById('btn-export-svg')?.addEventListener('click', ()=>{{ exportSvg(); closeMenu(); }});
         document.getElementById('btn-share-link')?.addEventListener('click', ()=>{{ shareLink(); closeMenu(); }});
     }}
+    // === C3.4 : Onboarding overlay (premier load via localStorage flag) ===
+    const KEY_ONBOARDING_SEEN='coloring.onboarding-seen';
+    const onboardingEl=document.getElementById('onboarding-tip');
+    const onboardingCloseBtn=document.querySelector('.btn-onboarding-close');
+    function openOnboarding(){{
+        if(!onboardingEl) return;
+        onboardingEl.hidden=false;
+        // focus le bouton de fermeture pour acces clavier
+        try {{ onboardingCloseBtn?.focus(); }} catch(e){{}}
+    }}
+    function closeOnboarding(){{
+        if(!onboardingEl) return;
+        onboardingEl.hidden=true;
+        try {{ localStorage.setItem(KEY_ONBOARDING_SEEN,'1'); }} catch(e){{}}
+    }}
+    if(onboardingEl){{
+        let seen=false;
+        try {{ seen=!!localStorage.getItem(KEY_ONBOARDING_SEEN); }} catch(e){{}}
+        if(!seen){{
+            setTimeout(openOnboarding, 600);
+        }}
+        onboardingCloseBtn?.addEventListener('click', closeOnboarding);
+        // Escape ferme l'overlay
+        document.addEventListener('keydown', e=>{{
+            if(!onboardingEl.hidden && e.key==='Escape'){{ closeOnboarding(); }}
+        }});
+    }}
+    document.getElementById('btn-help')?.addEventListener('click', openOnboarding);
     """
+    # C3.4 - injecter aria-label sur le SVG racine du coloriage (insertion juste
+    # apres '<svg ' ; si deja present (cas exotique), on n'altere rien).
+    svg_inline_a11y = svg_inline
+    if "<svg " in svg_inline_a11y and 'aria-label=' not in svg_inline_a11y.split(">", 1)[0]:
+        svg_inline_a11y = svg_inline_a11y.replace(
+            "<svg ",
+            '<svg role="img" aria-label="Zone de coloriage interactive" ',
+            1,
+        )
     return f"""<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"/><title>Coloriage — {html_escape.escape(name)}</title><style>{style}</style></head>
 <body><header>
 <h1>Coloriage : {html_escape.escape(name)}</h1>
 <div class="meta">{n_regions} régions · preset : {html_escape.escape(preset_name)} · extraction : {elapsed_ms:.0f} ms</div>
-<div class="controls">
+<div class="controls" role="group" aria-label="Outils">
   {palette_html}
   <div class="actions">
-    <button id="btn-undo" class="btn" title="Annuler (Ctrl+Z)" disabled>↶ Annuler</button>
-    <button id="btn-redo" class="btn" title="Rétablir (Ctrl+Shift+Z)" disabled>↷ Rétablir</button>
-    <button id="btn-reset" class="btn">tout effacer</button>
-    <button id="btn-solution" class="btn">voir la solution</button>
-    <button id="btn-zones" class="btn">afficher zones</button>
-    <button id="btn-rainbow" class="btn">auto rainbow</button>
-    <button id="btn-pastel" class="btn">auto pastel</button>
-    <button id="btn-vibrant" class="btn">auto vibrant</button>
+    <button id="btn-undo" class="btn" title="Annuler (Ctrl+Z)" aria-label="Annuler" disabled>↶ Annuler</button>
+    <button id="btn-redo" class="btn" title="Rétablir (Ctrl+Shift+Z)" aria-label="Rétablir" disabled>↷ Rétablir</button>
+    <button id="btn-reset" class="btn" title="Tout effacer" aria-label="Tout effacer">tout effacer</button>
+    <button id="btn-solution" class="btn" title="Voir la solution" aria-label="Voir la solution">voir la solution</button>
+    <button id="btn-zones" class="btn" title="Afficher zones" aria-label="Afficher zones">afficher zones</button>
+    <button id="btn-rainbow" class="btn" title="Coloriage automatique : palette arc-en-ciel" aria-label="Auto rainbow">auto rainbow</button>
+    <button id="btn-pastel" class="btn" title="Coloriage automatique : palette pastel" aria-label="Auto pastel">auto pastel</button>
+    <button id="btn-vibrant" class="btn" title="Coloriage automatique : palette vibrante" aria-label="Auto vibrant">auto vibrant</button>
     <div class="dropdown-export">
-      <button id="btn-export" class="btn" aria-haspopup="true" aria-expanded="false">💾 Exporter ▾</button>
+      <button id="btn-export" class="btn" aria-haspopup="true" aria-expanded="false" title="Exporter / partager" aria-label="Exporter ou partager">💾 Exporter ▾</button>
       <div class="dropdown-menu" id="export-menu" role="menu" hidden>
         <button class="dropdown-item" id="btn-export-png" role="menuitem" type="button">🖼 Image PNG</button>
         <button class="dropdown-item" id="btn-export-svg" role="menuitem" type="button">📐 SVG vectoriel</button>
         <button class="dropdown-item" id="btn-share-link" role="menuitem" type="button">🔗 Copier le lien</button>
       </div>
     </div>
+    <button id="btn-help" class="btn" title="Revoir l'aide" aria-label="Revoir l'aide">❓</button>
   </div>
 </div></header>
-<main><div class="canvas">{svg_inline}</div></main>
+<main role="application" aria-label="Coloriage interactif"><div class="canvas">{svg_inline_a11y}</div></main>
+<div id="onboarding-tip" class="onboarding-overlay" role="dialog" aria-modal="true" aria-labelledby="onboarding-title" hidden>
+  <div class="onboarding-card">
+    <h2 id="onboarding-title">🎨 Bienvenue !</h2>
+    <ol>
+      <li><strong>Choisis une couleur</strong> dans la palette à gauche.</li>
+      <li><strong>Clique sur une région</strong> du dessin pour la colorier.</li>
+      <li><strong>Annule</strong> avec ↶ ou <kbd>Ctrl</kbd>+<kbd>Z</kbd> si tu changes d'avis.</li>
+      <li><strong>Exporte ton œuvre</strong> avec le bouton 💾.</li>
+    </ol>
+    <button class="btn-onboarding-close" type="button" autofocus>C'est parti !</button>
+  </div>
+</div>
 <script>{script}</script>
 </body></html>
 """
