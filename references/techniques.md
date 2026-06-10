@@ -98,7 +98,11 @@ son line art ERNIE natif est déjà très détaillé — architecture fine).
 - `docs/reports/2026-06-10_poc-decoloriage-g5.md` (avec pivot encre/shading)
 - `docs/reports/2026-06-10_poc-decoloriage-SYNTHESE.md` — **synthèse finale**
 
-**Tag git** : `poc-decoloriage-v1`.
+**Tags git** :
+- `poc-decoloriage-v1` — POC initial (dog seul en G5 produit)
+- `poc-decoloriage-v1.1` — extension batch : 10 sujets, check auto tubes
+  creux résiduels (overlap > 30 %), 9/10 PASS (seul peacock 5 candidats =
+  ocelles répétitives), galerie 10×2, insight Prune jamais utilisée.
 
 **Scripts** :
 - `poc/decoloriage/g1a_v3_compact.py`
@@ -143,6 +147,11 @@ Le contraste (a)/(b) ↔ (c) est saisissant sur la planche verdict
   Chantier prod distinct.
 - (b8) ~~Variante print (guides shading clairs)~~ — **livrée** en G5 pivot :
   génère `<slot>_<rid>_g5_print.png` automatiquement.
+- (b9) Repositionner Prune `#8B5CF6` : 0/10 sujets sur corpus pastel ERNIE
+  l'utilisent (Océan plus proche pour tous les violets pastels en distance
+  Lab). Soit décaler vers un violet plus central (`#A78BFA`), soit assumer
+  "crayon de choix utilisateur" jamais matché en solution. Décision design
+  system, à traiter avec b5.
 
 ## Invalidées
 

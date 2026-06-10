@@ -1,6 +1,6 @@
 # POC — Décoloriage — Synthèse finale
-Date : 2026-06-10
-Statut : **CLÔTURÉ — PASS**
+Date : 2026-06-10 (étendu avec batch G5 sur les 10 sujets le même soir)
+Statut : **CLÔTURÉ — PASS** (v1) + **EXTENSION BATCH PASS** (v1.1)
 
 ## Hypothèse pré-enregistrée
 
@@ -124,6 +124,7 @@ Conséquence produit : copy UX de la palette à formuler en termes de
 | **b6** | **Mode solution paramétrable** : option `data-color-mode="ernie"` (couleurs originales) vs `data-color-mode="crayon"` (mapping actuel) | G5 closure | non implémenté |
 | **b7** | **Migration prod alwanbooks** : adapter `ColorierApp.tsx` pour consommer un SVG bicouche au lieu du PNG + bitmap | G5 closure | non implémenté — chantier prod distinct |
 | **b8** | **Variante "print" (guides shading réactivés en clair)** pour impression papier coloriage adulte | G5 pivot | **livrée** : `<slot>_<rid>_g5_print.png` généré automatiquement, guides 1 px `#DDDDDD` |
+| **b9** | **Repositionner Prune** : 0 régions / 10 sujets sur corpus pastel ERNIE → soit décaler vers un violet plus central (`#A78BFA`), soit assumer "crayon de choix utilisateur" jamais matché en solution. À traiter avec b5. | G5 batch | nouveau — décision design system |
 
 ## Capitalisations
 
@@ -137,11 +138,94 @@ Conséquence produit : copy UX de la palette à formuler en termes de
 - `MEMORY.md` → [[decoloriage-tout-petit-conditional]] —
   pré-existant, limite assumée.
 
-## Tag
+## Extension batch G5 — les 9 sujets restants (v1.1)
 
-`poc-decoloriage-v1` — sentinel de l'état final du POC, contenant les
-scripts G1a→G5, les rapports gates + synthèse, et les capitalisations
-T19 + MEMORY.
+Après G5 single-shot sur pastel_dog (v1), batch lancé sur les 9 autres
+sujets du corpus avec le même pipeline pivot (encre = fill noir non
+cliquable + shading masqué par défaut + toggle Guides).
+
+### Pipeline batch
+
+- Mode `--all` ajouté à `g5_product.py` : itère sur tous les slots du
+  corpus, accumule les stats dans un `stats.json` consolidé avec
+  `images: [...]` + agrégats globaux.
+- **Check automatique tubes creux résiduels** par sujet : une région
+  cliquable (non-encre, non-papier) dont l'overlap avec le masque G2
+  dilaté dépasse **30 %** est flaggée comme candidate tube creux. Seuil
+  intermédiaire entre 0 et le 50 % qui déclenche le classement
+  ink-region.
+- **ΔE médian** calculé par sujet et globalement.
+- Planche galerie 10×2 (`contact_sheet_g5.png`) : blank | solution
+  avec stats compactes par ligne (zones cliquables, régions encre,
+  arcs, ΔE, distribution crayons, hollow-tube PASS/FAIL).
+
+### Résultats batch
+
+| # | Sujet | Cat. | Zones | Ink-reg. | ΔE méd. | Hollow-tube |
+|---:|---|---|---:|---:|---:|---|
+| 01 | pastel_dog | animal | 29 | 3 | 44,6 | ✓ |
+| 02 | pastel_horse | animal | 37 | 7 | 52,3 | ✓ |
+| 03 | pastel_cat | animal | 54 | 6 | 44,6 | ✓ |
+| 04 | pastel_elephant | animal | 38 | 19 | 47,8 | ✓ |
+| 05 | pastel_lion2 | animal | 52 | 14 | 39,7 | ✓ |
+| 06 | taxo_polar_bear_on_ice | scène | 45 | 7 | 43,2 | ✓ |
+| 07 | pastel_pirate_ship | scène | 40 | 9 | 46,8 | ✓ |
+| 08 | pastel_lighthouse | objet | 46 | 4 | 38,5 | ✓ |
+| 09 | pastel_castle | objet | 61 | 15 | 42,1 | ✓ |
+| 10 | pastel_peacock | stress | 200 | 9 | 44,6 | ✗ (5 candidats) |
+
+**Hollow-tube global : 9/10 PASS**. Seul peacock (stress-test plumes
+répétitives) renvoie 5 candidats tubes creux résiduels : régions à
+ocelles ou plumes très fines dont l'overlap est entre 30 % et 50 %.
+Accepté tel quel en v1.1 — c'est précisément la sortie attendue du
+check (signaler à la revue humaine, pas bloquer).
+
+**Performance** : 15,4 s pour les 10 images. Moyenne ~1,5 s/image,
+peacock seul ~3,8 s.
+
+**ΔE médian global** : 44,6 — confirme la limite §2 ci-dessus
+(palette saturée vs pastels ERNIE).
+
+### Distribution crayons sur l'ensemble du corpus
+
+| Crayon | Hex | Régions (cumul 10 sujets) |
+|---|---|---:|
+| Océan | `#118AB2` | 228 |
+| Papier | `#ffffff` | 174 |
+| Mandarine | `#FF8A2B` | 114 |
+| Menthe | `#06D6A0` | 56 |
+| Cerise | `#FF2E63` | 24 |
+| Citron | `#FFD60A` | 6 |
+| **Prune** | **`#8B5CF6`** | **0** ⚠️ |
+
+**Prune n'est jamais utilisée** sur le corpus pastel ERNIE. Les violets
+pastels (a\* positif modéré + b\* fortement négatif) sont systématiquement
+plus proches de Océan en distance Lab (Océan a un b\* très négatif lui
+aussi, et un L\* intermédiaire, alors que Prune a un L\* élevé qui
+l'éloigne du violet "vrai"). Conséquences :
+
+- Confirme l'urgence du backlog **b5** (ajout d'un crayon Noir `#15151B`
+  pour ne pas forcer les détails sombres sur Océan — qui devient déjà
+  saturé visuellement).
+- Ouvre un nouveau backlog **b9** : revoir Prune. Soit la repositionner
+  dans Lab (vers un violet plus central type `#A78BFA` ou `#9333EA`),
+  soit la remplacer par un autre rôle (Magenta, Rose vif), soit accepter
+  qu'elle reste un crayon de "choix utilisateur" jamais matché en
+  solution.
+
+### Validation visuelle (planche galerie)
+
+`poc/decoloriage/contact_sheet_g5.png` : 10 lignes × 2 colonnes (blank |
+solution). Tous les blanks ressemblent à des line-arts ERNIE
+(traits noirs pleins, zéro tube creux visible). Toutes les solutions
+sont reconnaissables comme leur sujet d'origine, avec quantification 6
+crayons + papier.
+
+## Tags
+
+- `poc-decoloriage-v1` — POC initial (dog seul en G5 produit).
+- `poc-decoloriage-v1.1` — extension batch (10 sujets + check auto
+  tubes creux + planche galerie + insight Prune absente).
 
 ## Livrables (récap chemins)
 
@@ -152,10 +236,10 @@ poc/decoloriage/
   g2_partition.py
   g3_vectorize.py
   g4_two_weight.py
-  g5_product.py
-  make_contact_sheet_g{1a,2,3,4}.py
+  g5_product.py                            # --all = mode batch (10 sujets)
+  make_contact_sheet_g{1a,2,3,4,5}.py
   g{1a,2,3,4,5}_out/*.{npy,png,svg,html,json}
-  contact_sheet_g{1a,2,3,4}.png
+  contact_sheet_g{1a,2,3,4,5}.png          # contact_sheet_g5.png = galerie 10x2
 
 docs/reports/
   2026-06-09_poc-decoloriage-g1a.md

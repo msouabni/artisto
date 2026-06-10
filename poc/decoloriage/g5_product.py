@@ -62,6 +62,11 @@ DEFAULT_LEVEL = "enfant"
 INK_REGION_OVERLAP_THRESHOLD = 0.50
 INK_REGION_FILL = "#111111"
 
+# Extension G5 batch : detecteur de "tubes creux residuels". Une region NON
+# classee encre mais dont l'overlap depasse ce seuil est suspectee d'etre un
+# fragment de trait ERNIE qui n'a pas atteint 50 %. Liste pour revue.
+HOLLOW_TUBE_OVERLAP_THRESHOLD = 0.30
+
 # Crayons du design system Alwan Books (skill spec G5)
 CRAYONS = [
     {"name": "Cerise",    "hex": "#FF2E63"},
@@ -759,6 +764,33 @@ def process_image_g5(
         cv2.polylines(print_rendered, [pts], False, guides_bgr, 1, lineType=cv2.LINE_AA)
     cv2.imwrite(str(out_dir / f"{slot:02d}_{rid}_g5_print.png"), print_rendered)
 
+    # Check tubes creux residuels : regions cliquables dont l'overlap depasse
+    # HOLLOW_TUBE_OVERLAP_THRESHOLD sans atteindre INK_REGION_OVERLAP_THRESHOLD.
+    hollow_tube_candidates = []
+    for rid_int, data in region_data.items():
+        if rid_int in ink_region_ids:
+            continue  # deja noir non cliquable
+        if data["is_background"]:
+            continue  # papier, ignore
+        ratio = ink_overlap_ratios.get(rid_int, 0.0)
+        if ratio > HOLLOW_TUBE_OVERLAP_THRESHOLD:
+            hollow_tube_candidates.append({
+                "id": rid_int,
+                "overlap_ratio": round(ratio, 3),
+                "crayon_name": data["crayon_name"],
+                "delta_e": data["delta_e"],
+            })
+
+    # Delta E median des regions cliquables non background (mesure de la
+    # qualite du mapping crayon -> couleur ERNIE).
+    delta_es = [
+        data["delta_e"]
+        for rid_int, data in region_data.items()
+        if rid_int not in ink_region_ids and not data["is_background"]
+    ]
+    delta_e_median = float(np.median(delta_es)) if delta_es else 0.0
+    delta_e_max = float(np.max(delta_es)) if delta_es else 0.0
+
     elapsed = time.time() - t_total
 
     return {
@@ -775,6 +807,14 @@ def process_image_g5(
         "ink_stroke_width": round(ink_w, 2),
         "shading_stroke_width": round(shading_w, 2),
         "crayons_used": crayons_used,
+        "delta_e_median": round(delta_e_median, 2),
+        "delta_e_max": round(delta_e_max, 2),
+        "hollow_tube_check": {
+            "threshold": HOLLOW_TUBE_OVERLAP_THRESHOLD,
+            "n_candidates": len(hollow_tube_candidates),
+            "candidates": hollow_tube_candidates,
+            "pass": len(hollow_tube_candidates) == 0,
+        },
         "outputs": {
             "svg": str(svg_path.relative_to(PROJECT_ROOT)).replace("\\", "/"),
             "html": str(html_path.relative_to(PROJECT_ROOT)).replace("\\", "/"),
@@ -801,6 +841,43 @@ def process_image_g5(
 
 
 # ----------------------------------------------------------------------------
+# Resolve I/O paths pour un item du corpus
+# ----------------------------------------------------------------------------
+def resolve_inputs(item: dict, g2: dict, level: str) -> tuple[Path, Path, Path] | None:
+    rid = item["id"]
+    slot = item["slot"]
+    original_path = (PROJECT_ROOT / item["path"]).resolve()
+    if not original_path.exists():
+        print(f"[SKIP] #{slot:02d} {rid} : PNG original absent ({original_path})",
+              file=sys.stderr)
+        return None
+    g2_entry = next(
+        (s for s in g2["images"] if s["slot"] == slot and s["level"] == level),
+        None,
+    )
+    if g2_entry is None:
+        print(f"[SKIP] #{slot:02d} {rid} : G2 entry manquante level={level}",
+              file=sys.stderr)
+        return None
+    rm_npy = (PROJECT_ROOT / g2_entry["out_npy"]).resolve()
+    if not rm_npy.exists():
+        print(f"[SKIP] #{slot:02d} {rid} : region_map.npy absent ({rm_npy})",
+              file=sys.stderr)
+        return None
+    line_entry = g2.get("lines", {}).get(rid)
+    if line_entry is None:
+        print(f"[SKIP] #{slot:02d} {rid} : line mask manquant",
+              file=sys.stderr)
+        return None
+    line_mask_path = (PROJECT_ROOT / line_entry["path"]).resolve()
+    if not line_mask_path.exists():
+        print(f"[SKIP] #{slot:02d} {rid} : line mask absent ({line_mask_path})",
+              file=sys.stderr)
+        return None
+    return original_path, rm_npy, line_mask_path
+
+
+# ----------------------------------------------------------------------------
 # Main
 # ----------------------------------------------------------------------------
 def main() -> int:
@@ -809,70 +886,83 @@ def main() -> int:
     parser.add_argument("--g2-stats", type=Path, default=DEFAULT_G2_STATS)
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT_DIR)
     parser.add_argument("--slot", type=int, default=DEFAULT_SLOT,
-                        help="Slot du corpus (defaut 1 = pastel_dog)")
+                        help="Slot du corpus (defaut 1 = pastel_dog) - ignore si --all")
     parser.add_argument("--level", type=str, default=DEFAULT_LEVEL,
                         choices=["tout_petit", "enfant", "adulte"])
+    parser.add_argument("--all", action="store_true",
+                        help="Batch sur tous les slots du corpus")
     args = parser.parse_args()
 
     corpus = json.loads(args.corpus.read_text(encoding="utf-8"))
     g2 = json.loads(args.g2_stats.read_text(encoding="utf-8"))
-
-    # Trouver l'image cible dans le corpus
-    item = next((i for i in corpus["images"] if i["slot"] == args.slot), None)
-    if item is None:
-        print(f"[ERR] slot {args.slot} introuvable dans le corpus", file=sys.stderr)
-        return 1
-    rid = item["id"]
-    original_path = (PROJECT_ROOT / item["path"]).resolve()
-    if not original_path.exists():
-        print(f"[ERR] PNG original absent : {original_path}", file=sys.stderr)
-        return 1
-
-    # G2 region_map pour le niveau choisi
-    g2_entry = next(
-        (s for s in g2["images"]
-         if s["slot"] == args.slot and s["level"] == args.level),
-        None,
-    )
-    if g2_entry is None:
-        print(f"[ERR] G2 entry manquante slot={args.slot} level={args.level}", file=sys.stderr)
-        return 1
-    rm_npy = (PROJECT_ROOT / g2_entry["out_npy"]).resolve()
-    if not rm_npy.exists():
-        print(f"[ERR] region_map.npy absent : {rm_npy}", file=sys.stderr)
-        return 1
-
-    # Line mask
-    line_entry = g2.get("lines", {}).get(rid)
-    if line_entry is None:
-        print(f"[ERR] line mask manquant pour {rid}", file=sys.stderr)
-        return 1
-    line_mask_path = (PROJECT_ROOT / line_entry["path"]).resolve()
-    if not line_mask_path.exists():
-        print(f"[ERR] line mask absent : {line_mask_path}", file=sys.stderr)
-        return 1
-
-    print(f"[G5] #{args.slot:02d} {rid} (niveau {args.level})", flush=True)
-    print(f"     original   : {original_path}", flush=True)
-    print(f"     region_map : {rm_npy}", flush=True)
-    print(f"     line mask  : {line_mask_path}", flush=True)
-
     args.out.mkdir(parents=True, exist_ok=True)
-    stats = process_image_g5(
-        slot=args.slot,
-        rid=rid,
-        original_png_path=original_path,
-        region_map_path=rm_npy,
-        line_mask_path=line_mask_path,
-        out_dir=args.out,
-    )
-    stats["category"] = item["category"]
-    stats["level"] = args.level
 
-    # Stats consolidees
+    if args.all:
+        items = list(corpus["images"])
+    else:
+        item = next((i for i in corpus["images"] if i["slot"] == args.slot), None)
+        if item is None:
+            print(f"[ERR] slot {args.slot} introuvable dans le corpus", file=sys.stderr)
+            return 1
+        items = [item]
+
+    all_stats: list[dict] = []
+    t_start = time.time()
+
+    for item in items:
+        slot = item["slot"]
+        rid = item["id"]
+        paths = resolve_inputs(item, g2, args.level)
+        if paths is None:
+            continue
+        original_path, rm_npy, line_mask_path = paths
+
+        print(f"\n[G5] #{slot:02d} {rid} (niveau {args.level})", flush=True)
+        stats = process_image_g5(
+            slot=slot,
+            rid=rid,
+            original_png_path=original_path,
+            region_map_path=rm_npy,
+            line_mask_path=line_mask_path,
+            out_dir=args.out,
+        )
+        stats["category"] = item["category"]
+        stats["level"] = args.level
+        all_stats.append(stats)
+
+        # Print compact summary par image
+        hollow = stats["hollow_tube_check"]
+        hollow_str = (
+            "PASS" if hollow["pass"]
+            else f"FAIL ({hollow['n_candidates']} regions overlap > "
+                 f"{int(HOLLOW_TUBE_OVERLAP_THRESHOLD*100)}%)"
+        )
+        print(
+            f"     -> {stats['n_regions']:3d} zones cliquables, "
+            f"{stats['n_ink_regions']:2d} regions-encre, "
+            f"DeltaE median={stats['delta_e_median']:.1f}, "
+            f"hollow_tube={hollow_str}, t={stats['timing_s']}s"
+        )
+
+    elapsed = round(time.time() - t_start, 2)
+
+    # Aggregat hollow-tube + crayons globaux
+    n_pass = sum(1 for s in all_stats if s["hollow_tube_check"]["pass"])
+    n_total = len(all_stats)
+    crayons_global: dict[str, int] = {}
+    for s in all_stats:
+        for hex_str, cnt in s["crayons_used"].items():
+            crayons_global[hex_str] = crayons_global.get(hex_str, 0) + cnt
+    delta_es_global = [s["delta_e_median"] for s in all_stats]
+    delta_e_overall_median = (
+        round(float(np.median(delta_es_global)), 2) if delta_es_global else 0.0
+    )
+
     out_stats = {
         "params": {
             "background_L_threshold": BACKGROUND_L_THRESHOLD,
+            "ink_region_overlap_threshold": INK_REGION_OVERLAP_THRESHOLD,
+            "hollow_tube_overlap_threshold": HOLLOW_TUBE_OVERLAP_THRESHOLD,
             "ink_overlap_threshold": INK_OVERLAP_THRESHOLD,
             "line_mask_dilate_px": LINE_MASK_DILATE_PX,
             "dp_tolerance": DP_TOLERANCE,
@@ -881,29 +971,33 @@ def main() -> int:
             "shading_ratio_of_ink": SHADING_RATIO,
         },
         "crayons": [{"name": c["name"], "hex": c["hex"]} for c in CRAYONS],
-        "image": stats,
+        "hollow_tube_check_global": {
+            "threshold": HOLLOW_TUBE_OVERLAP_THRESHOLD,
+            "n_images_evaluated": n_total,
+            "n_images_pass": n_pass,
+            "all_pass": n_pass == n_total and n_total > 0,
+        },
+        "crayons_used_global": crayons_global,
+        "delta_e_overall_median": delta_e_overall_median,
+        "timing_s_total": elapsed,
+        "images": all_stats,
     }
     stats_path = args.out / "stats.json"
     stats_path.write_text(json.dumps(out_stats, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    print(f"\n[G5 OK] {stats['n_regions']} zones cliquables, {stats['n_arcs']} arcs "
-          f"({stats['n_ink']} encre / {stats['n_shading']} shading)")
-    print(f"        Stroke encre {stats['ink_stroke_width']} px / shading "
-          f"{stats['shading_stroke_width']} px")
-    print(f"        Crayons utilises (solution mode) :")
-    for hex_str, cnt in sorted(stats["crayons_used"].items(),
-                                key=lambda x: -x[1]):
+    print(f"\n[G5 BATCH OK] {n_total} image(s) traitee(s) en {elapsed}s")
+    print(f"              Hollow-tube global : {n_pass}/{n_total} pass")
+    print(f"              DeltaE median global : {delta_e_overall_median}")
+    print(f"              Crayons utilises (cumul solution) :")
+    for hex_str, cnt in sorted(crayons_global.items(), key=lambda x: -x[1]):
         name = next(
             (c["name"] for c in CRAYONS if c["hex"] == hex_str),
             "Papier" if hex_str == "#ffffff" else hex_str,
         )
-        print(f"          - {name:12s} ({hex_str}) : {cnt}")
+        print(f"                - {name:12s} ({hex_str}) : {cnt}")
     print(f"\n[G5 LIVRABLES]")
-    print(f"        SVG    : {stats['outputs']['svg']}")
-    print(f"        HTML   : {stats['outputs']['html']}  <-- ouvrir dans un navigateur")
-    print(f"        PNG    : solution {stats['outputs']['solution_png']}")
-    print(f"                  blank    {stats['outputs']['blank_png']}")
-    print(f"        Stats  : {stats_path.relative_to(PROJECT_ROOT)}")
+    print(f"        Stats batch : {stats_path.relative_to(PROJECT_ROOT)}")
+    print(f"        SVG + HTML + previews : {args.out.relative_to(PROJECT_ROOT)}/")
     return 0
 
 
