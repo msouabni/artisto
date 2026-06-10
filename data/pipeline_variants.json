@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "default_active": ["lineart", "pastel_chromakey"],
+  "variants": {
+    "pastel_chromakey": {
+      "prompt_style": "pastel",
+      "force_chromakey": true,
+      "chromakey_rgb": [0, 177, 64],
+      "extract_preset": "floodfill_chromakey_v1",
+      "output_kind": "online_coloring",
+      "label": "Pastel chromakey (coloriage en ligne doux)"
+    },
+    "flat_cartoon_chromakey": {
+      "prompt_style": "flat_cartoon",
+      "force_chromakey": true,
+      "chromakey_rgb": [0, 177, 64],
+      "extract_preset": "floodfill_chromakey_v1",
+      "output_kind": "online_coloring",
+      "label": "Flat cartoon chromakey (coloriage en ligne vif)"
+    },
+    "lineart": {
+      "prompt_style": "lineart",
+      "force_chromakey": false,
+      "chromakey_rgb": null,
+      "extract_preset": null,
+      "output_kind": "print",
+      "label": "Lineart (impression/téléchargement)"
+    }
+  },
+  "per_category_override": {}
+}

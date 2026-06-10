@@ -152,6 +152,14 @@ DEFAULT_JOB_TYPES = (
         "description": "5 regles deterministes (couleur/contraste/complexite/saturation) -> qc_tags sur image_output",
         "category": "image",
     },
+    {
+        "type": "image_post_processing",
+        "label": "Post-traitement coloriage (vectorisation + coloriage interactif)",
+        "enabled": True,
+        "max_concurrent": 2,
+        "description": "Genere SVG vectoriel print et SVG coloriage interactif depuis le PNG raw.",
+        "category": "image",
+    },
 )
 
 

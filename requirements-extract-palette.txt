@@ -1,0 +1,20 @@
+# Dependances du service extract_palette (src/services/extract_palette.py) +
+# CLI (scripts/extract_palette_cli.py).
+#
+# Promu depuis _lab/extract-palette/ le 2026-05-31.
+# Preset prod : iso_trait_v3_anomaly_split (detection anomalie auto-correctif).
+#
+# Voir CLAUDE.md section "Style pastel + pipeline coloriage" pour usage.
+
+# Vectorisation du trait noir (reutilise du service vectorizer)
+vtracer>=0.6.15
+
+# OpenCV + numpy (deja dans requirements.txt principal)
+opencv-python>=4.9
+numpy>=1.24
+
+# scipy.ndimage.distance_transform_edt (expansion Voronoi)
+scipy>=1.10
+
+# skimage.morphology.skeletonize (pipeline trait skeleton optionnel)
+scikit-image>=0.22

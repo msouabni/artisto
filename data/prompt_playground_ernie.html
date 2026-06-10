@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ernie Prompt Playground — Artiste Coloriage</title>
+<style>
+  :root {
+    --bg: #1a1a1a; --fg: #e8e8e8; --muted: #888; --accent: #4a9eff;
+    --border: #333; --ok: #5dd25d; --err: #ff6b6b; --panel: #252525;
+    --warn: #f0a830;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 14px;
+    font-family: ui-monospace, "Consolas", "Menlo", monospace;
+    background: var(--bg); color: var(--fg); font-size: 13px;
+  }
+  h1 { margin: 0 0 10px; font-size: 17px; font-weight: 600; }
+  .grid {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px;
+    height: calc(100vh - 70px);
+  }
+  .panel {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 6px; padding: 12px;
+    display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden;
+  }
+  /* Scrollbar custom (Webkit + Chromium) pour le panel scrollable */
+  .panel::-webkit-scrollbar { width: 8px; }
+  .panel::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+  .panel::-webkit-scrollbar-thumb:hover { background: #555; }
+  .panel::-webkit-scrollbar-track { background: #1a1a1a; }
+  /* Presets palette : chips cliquables */
+  .palette-presets {
+    display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 6px;
+  }
+  .palette-preset-btn {
+    padding: 3px 7px; font-size: 10px; background: #1a1a1a;
+    border: 1px solid var(--border); color: var(--fg);
+    border-radius: 3px; cursor: pointer;
+    font-family: ui-monospace, monospace;
+  }
+  .palette-preset-btn:hover { background: #2a2a2a; border-color: var(--accent); }
+  .palette-add-row {
+    display: flex; gap: 4px; align-items: center; margin-bottom: 6px;
+  }
+  .palette-add-row input[type=color] {
+    width: 36px; height: 28px; padding: 0; cursor: pointer;
+    border: 1px solid var(--border); border-radius: 3px; background: #1a1a1a;
+  }
+  .palette-chips {
+    display: flex; gap: 3px; flex-wrap: wrap; margin-top: 4px;
+  }
+  .palette-chip {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid #555; cursor: pointer; position: relative;
+  }
+  .palette-chip:hover::after {
+    content: "✕"; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); color: #fff;
+    font-size: 14px; text-shadow: 0 0 3px #000;
+  }
+  .panel h2 {
+    margin: 0 0 8px; font-size: 12px; text-transform: uppercase;
+    color: var(--muted); font-weight: 500; letter-spacing: .04em;
+  }
+  .row {
+    display: flex; gap: 6px; align-items: center; margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  label { font-size: 11px; color: var(--muted); }
+  input, select, textarea, button {
+    background: #1a1a1a; color: var(--fg); border: 1px solid var(--border);
+    border-radius: 4px; padding: 6px 8px; font-family: inherit; font-size: 12px;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none; border-color: var(--accent);
+  }
+  textarea {
+    width: 100%; resize: vertical; min-height: 60px;
+    font-family: inherit; line-height: 1.4;
+  }
+  textarea.large { min-height: 110px; }
+  button {
+    cursor: pointer; padding: 6px 12px; transition: background 0.1s;
+  }
+  button:hover { background: #2a2a2a; }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button.primary:hover { background: #5fa9ff; }
+  button.primary:disabled { opacity: 0.5; cursor: wait; }
+  button.toggle { background: #1a1a1a; }
+  button.toggle.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .input-main {
+    flex: 1; min-width: 0; font-size: 13px;
+  }
+  .meta {
+    background: #1a1a1a; border: 1px solid var(--border); border-radius: 4px;
+    padding: 6px 8px; font-size: 11px; color: var(--muted); margin-bottom: 8px;
+  }
+  .meta strong { color: var(--fg); }
+  .meta .ok { color: var(--ok); }
+  .meta .err { color: var(--err); }
+  .meta .warn { color: var(--warn); }
+  .status {
+    margin-top: 6px; font-size: 11px; color: var(--muted);
+  }
+  .params {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 8px;
+  }
+  .params label { display: block; margin-bottom: 2px; }
+  .params input { width: 100%; }
+  .image-area {
+    background: #111; border: 1px solid var(--border); border-radius: 4px;
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    overflow: auto; margin-bottom: 8px; position: relative;
+  }
+  .image-area img { max-width: 100%; max-height: 100%; display: block; }
+  .image-area .placeholder { color: var(--muted); font-size: 12px; }
+  .image-area .spinner {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: var(--accent); font-size: 14px;
+  }
+  .history {
+    background: #1a1a1a; border: 1px solid var(--border); border-radius: 4px;
+    max-height: 130px; overflow-y: auto; padding: 4px;
+  }
+  .history-item {
+    display: flex; gap: 6px; align-items: center; padding: 4px 6px;
+    border-bottom: 1px solid #222; cursor: pointer; font-size: 11px;
+  }
+  .history-item:hover { background: #222; }
+  .history-item:last-child { border-bottom: none; }
+  .history-item img {
+    width: 32px; height: 32px; object-fit: cover; border-radius: 2px;
+    background: #000;
+  }
+  .history-item .meta-h { flex: 1; min-width: 0; overflow: hidden; }
+  .history-item .meta-h .leaf { color: var(--fg); }
+  .history-item .meta-h .style { color: var(--muted); font-size: 10px; }
+  .actions { display: flex; gap: 6px; align-items: center; }
+  .small-btn { padding: 3px 8px; font-size: 11px; }
+  hr { border: 0; border-top: 1px solid var(--border); margin: 10px 0; }
+</style>
+</head>
+<body>
+<h1>Ernie Prompt Playground <span style="font-size:11px;color:var(--muted)">— Artiste Coloriage</span></h1>
+<div class="grid">
+
+  <!-- PANEL GAUCHE : input + prompts -->
+  <div class="panel">
+    <h2>Source du prompt</h2>
+    <div class="row">
+      <input type="text" class="input-main" id="input-q"
+             placeholder="leaf_id, slug, ou URL alwanbooks (ex: ar/colorier/aldb-alqtby/)"
+             list="leaf-suggestions">
+      <datalist id="leaf-suggestions"></datalist>
+      <button id="btn-resolve">Charger</button>
+    </div>
+    <div class="row">
+      <label>Style :</label>
+      <button class="toggle active" id="style-pastel" data-style="pastel" title="palette pastel douce a plat (validee prod 2026-05-31)">pastel</button>
+      <button class="toggle" id="style-lineart" data-style="lineart" title="noir et blanc (mode historique a colorier)">lineart</button>
+      <button class="toggle" id="style-watercolor" data-style="watercolor" title="aquarelle douce, edges organiques, palette pale">watercolor</button>
+      <button class="toggle" id="style-flat-cartoon" data-style="flat_cartoon" title="aplats vifs satures, contours nets, style cartoon moderne">flat cartoon</button>
+      <button class="toggle" id="style-crayon" data-style="crayon" title="texture crayon visible, palette terreuse, look hand-colored">crayon</button>
+      <button class="toggle" id="style-kawaii" data-style="kawaii" title="ultra-mignon japonais, palette rose/menthe/lavande">kawaii</button>
+    </div>
+    <div class="meta" id="meta-info">
+      Tape un leaf_id, slug ou URL pour charger le prompt.
+    </div>
+
+    <h2>Positif (éditable)</h2>
+    <textarea id="positive" class="large" placeholder="prompt positif..."></textarea>
+
+    <h2>Négatif (éditable)</h2>
+    <textarea id="negative" placeholder="prompt négatif..."></textarea>
+
+    <h2>Paramètres ComfyUI</h2>
+    <div class="params">
+      <div>
+        <label>Seed</label>
+        <input type="number" id="seed" value="42">
+      </div>
+      <div>
+        <label>Steps</label>
+        <input type="number" id="steps" value="8" min="1" max="50">
+      </div>
+      <div>
+        <label>CFG</label>
+        <input type="number" id="cfg" value="1.0" step="0.1" min="0.5" max="10">
+      </div>
+      <div>
+        <label>Résolution</label>
+        <select id="resolution">
+          <option value="1024x1024" selected>1024×1024 (carré)</option>
+          <option value="848x1264">848×1264 (portrait)</option>
+          <option value="1376x768">1376×768 (paysage)</option>
+        </select>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="btn-generate">Générer</button>
+      <button id="btn-reset">Reset depuis template</button>
+      <button id="btn-favorite" class="small-btn">★ favori</button>
+    </div>
+
+    <h2>Coloriage (post-traitement)</h2>
+
+    <div class="palette-presets">
+      <button class="palette-preset-btn" data-detect="8" disabled title="Auto-détection depuis image : 8 couleurs (palette stricte)">🔍 Auto 8</button>
+      <button class="palette-preset-btn" data-detect="16" disabled title="Auto-détection depuis image : 16 couleurs (sweet spot)">🔍 Auto 16</button>
+      <button class="palette-preset-btn" data-detect="32" disabled title="Auto-détection depuis image : 32 couleurs (debug)">🔍 Auto 32</button>
+      <button class="palette-preset-btn" data-preset="pastel8">Pastel 8</button>
+      <button class="palette-preset-btn" data-preset="flat8">Flat 8</button>
+      <button class="palette-preset-btn" data-preset="primary6">Primary 6</button>
+      <button class="palette-preset-btn" data-preset="rainbow7">Rainbow 7</button>
+      <button class="palette-preset-btn" data-preset="warm6">Warm 6</button>
+      <button class="palette-preset-btn" data-preset="cool6">Cool 6</button>
+      <button class="palette-preset-btn" id="btn-extract-palette-from-prompt" title="Détecte la palette mentionnée dans le prompt">↓ depuis prompt</button>
+    </div>
+
+    <div class="palette-add-row">
+      <input type="color" id="palette-add-color" value="#ff5252" title="Pick a color">
+      <button class="small-btn" id="btn-add-color">+ ajouter</button>
+      <button class="small-btn" id="btn-clear-palette">vider</button>
+      <span style="font-size:10px;color:var(--muted);">ou édite la liste ↓</span>
+    </div>
+
+    <input type="text" class="input-main" id="palette-input" style="font-size:11px;width:100%;"
+           placeholder="Vide = k-means auto. Sinon : #ffe89c,#ffc8a8,...">
+    <div class="palette-chips" id="palette-chips"></div>
+
+    <div class="actions" style="margin-top:8px;">
+      <button id="btn-coloriage" disabled title="Coloriage avec k-means auto (preset prod)">🎨 Auto</button>
+      <button id="btn-coloriage-palette" disabled title="Coloriage avec palette imposée">🎨 Palette imposée</button>
+      <button id="btn-coloriage-soft" disabled title="Palette imposée + morpho OPEN par couleur (élimine ruisseaux)">🌊 Palette + bords doux</button>
+      <button id="btn-coloriage-chromakey" disabled title="POC : pipeline floodfill chromakey (suppose fond #00B140 + trait net)">🟢 Chromakey</button>
+      <button id="btn-diagnose-chromakey" disabled title="Diagnostic visuel : palette LAB du sujet + masques chromakey/trait visualisés">🔍 Diagnostic</button>
+    </div>
+
+    <h2>Réglages trait (override preset)</h2>
+    <div class="params" style="grid-template-columns:repeat(6,1fr);font-size:10px;">
+      <div>
+        <label>Pipeline</label>
+        <select id="ink-pipeline" style="font-size:11px;">
+          <option value="">(preset)</option>
+          <option value="simple">simple</option>
+          <option value="skeleton">skeleton</option>
+        </select>
+      </div>
+      <div>
+        <label>V max (~80)</label>
+        <input type="number" id="ink-max-value" placeholder="80" min="20" max="200">
+      </div>
+      <div>
+        <label>S max (~60)</label>
+        <input type="number" id="ink-max-sat" placeholder="60" min="20" max="255">
+      </div>
+      <div>
+        <label>Otsu max (~90)</label>
+        <input type="number" id="otsu-max" placeholder="90" min="20" max="200">
+      </div>
+      <div>
+        <label>Dilate (~1)</label>
+        <input type="number" id="ink-dilate" placeholder="1" min="0" max="10">
+      </div>
+      <div>
+        <label>Close (~3)</label>
+        <input type="number" id="close-radius" placeholder="3" min="0" max="10">
+      </div>
+      <div>
+        <label>Thickness (~2)</label>
+        <input type="number" id="ink-thickness" placeholder="2" min="1" max="8">
+      </div>
+      <div>
+        <label>Speckle (~20)</label>
+        <input type="number" id="ink-min-speckle" placeholder="20" min="0" max="200">
+      </div>
+      <div style="grid-column:span 2;">
+        <label><input type="checkbox" id="no-otsu" style="width:auto;"> Désactiver Otsu</label>
+      </div>
+      <div style="grid-column:span 2;">
+        <button id="btn-clear-ink-params" class="small-btn" style="width:100%;">Reset overrides</button>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="btn-coloriage-custom" disabled class="primary" title="Coloriage avec tes overrides trait + palette si renseignée">🔧 Coloriage params custom</button>
+    </div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <!-- PANEL DROIT : image + historique -->
+  <div class="panel">
+    <h2>Image générée</h2>
+    <div class="image-area" id="image-area">
+      <span class="placeholder">aucune image — clique sur Générer</span>
+    </div>
+
+    <h2>Historique (20 derniers)</h2>
+    <div class="history" id="history">
+      <div style="padding:8px;color:var(--muted);font-size:11px;">vide</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ComfyUI accede via proxy same-origin (evite CORS).
+const COMFY_PROXY = "/api/comfy";
+const API_BASE = "/api/prompt-generator";
+const WORKFLOW_PATH = "/data/workflows/ernie-image-turbo-q8-api.json";
+const HISTORY_KEY = "ernie_playground_history_v1";
+const FAVORITES_KEY = "ernie_playground_favorites_v1";
+const HISTORY_LIMIT = 20;
+
+let currentStyle = "pastel";
+let currentLeafId = null;
+let currentTemplate = { positive: "", negative: "" };
+let comfyWorkflow = null;
+let lastImageParams = null; // {filename, subfolder, type} de la derniere image generee
+
+// === Style toggle ===
+document.querySelectorAll(".toggle").forEach(b => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".toggle").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    currentStyle = b.dataset.style;
+    if (currentLeafId) resolveAndLoad(document.getElementById("input-q").value || currentLeafId);
+  });
+});
+
+// === Autocomplete leafs ===
+const inputQ = document.getElementById("input-q");
+const suggestList = document.getElementById("leaf-suggestions");
+let autocompleteTimeout = null;
+inputQ.addEventListener("input", e => {
+  clearTimeout(autocompleteTimeout);
+  const v = e.target.value.trim();
+  if (v.length < 2 || v.includes("/") || v.includes("://")) {
+    suggestList.innerHTML = "";
+    return;
+  }
+  autocompleteTimeout = setTimeout(async () => {
+    try {
+      const r = await fetch(`${API_BASE}/leafs?search=${encodeURIComponent(v)}&limit=15`);
+      if (!r.ok) return;
+      const data = await r.json();
+      suggestList.innerHTML = data.leafs.map(l => `<option value="${l}">`).join("");
+    } catch (e) { /* ignore */ }
+  }, 200);
+});
+
+// === Resolve + load ===
+document.getElementById("btn-resolve").addEventListener("click", () => {
+  resolveAndLoad(inputQ.value);
+});
+inputQ.addEventListener("keydown", e => {
+  if (e.key === "Enter") resolveAndLoad(inputQ.value);
+});
+
+async function resolveAndLoad(q) {
+  q = q.trim();
+  if (!q) return;
+  setMeta(`Résolution de "${q}"...`, "");
+  try {
+    const r = await fetch(`${API_BASE}/resolve?q=${encodeURIComponent(q)}&style=${currentStyle}`);
+    if (!r.ok) {
+      const err = await r.json().catch(() => ({}));
+      throw new Error(err.detail || `HTTP ${r.status}`);
+    }
+    const data = await r.json();
+    currentLeafId = data.leaf_id;
+    currentTemplate.positive = data.prompt.positive;
+    currentTemplate.negative = data.prompt.negative;
+    document.getElementById("positive").value = data.prompt.positive;
+    document.getElementById("negative").value = data.prompt.negative;
+    // Auto-adjust resolution si fournie par le prompt
+    const res = data.prompt.resolution;
+    if (Array.isArray(res) && res.length === 2) {
+      const key = `${res[0]}x${res[1]}`;
+      const sel = document.getElementById("resolution");
+      [...sel.options].forEach(o => { if (o.value === key) sel.value = key; });
+    }
+    const meta = data.post_metadata;
+    let metaHTML = `<span class="ok">✓ ${data.leaf_id}</span> · format: ${data.input_format}`;
+    if (data.locale_detected) metaHTML += ` · locale: ${data.locale_detected}`;
+    if (meta && meta.title) metaHTML += `<br/>titre: ${meta.title}`;
+    metaHTML += `<br/>workflow: ${data.prompt.workflow_class || "?"} · confidence: ${data.prompt.confidence || "?"} · res: ${res ? res.join("×") : "?"}`;
+    if (data.prompt.pitfalls && data.prompt.pitfalls.length) {
+      metaHTML += `<br/><span class="warn">pitfalls: ${data.prompt.pitfalls.join(", ")}</span>`;
+    }
+    setMeta(metaHTML, "");
+  } catch (e) {
+    setMeta(`<span class="err">Erreur : ${e.message}</span>`, "err");
+  }
+}
+
+function setMeta(html, cls) {
+  const m = document.getElementById("meta-info");
+  m.innerHTML = html;
+}
+
+// === Reset template ===
+document.getElementById("btn-reset").addEventListener("click", () => {
+  if (currentTemplate.positive) {
+    document.getElementById("positive").value = currentTemplate.positive;
+    document.getElementById("negative").value = currentTemplate.negative;
+  }
+});
+
+// === Generate ===
+async function loadWorkflow() {
+  if (comfyWorkflow) return comfyWorkflow;
+  const r = await fetch(WORKFLOW_PATH);
+  if (!r.ok) throw new Error(`Workflow introuvable : ${WORKFLOW_PATH}`);
+  const w = await r.json();
+  delete w.__meta__;
+  comfyWorkflow = w;
+  return w;
+}
+
+async function generate() {
+  const pos = document.getElementById("positive").value.trim();
+  const neg = document.getElementById("negative").value.trim();
+  if (!pos) { setStatus("Positif vide", true); return; }
+  const seed = parseInt(document.getElementById("seed").value || "42");
+  const steps = parseInt(document.getElementById("steps").value || "8");
+  const cfg = parseFloat(document.getElementById("cfg").value || "1.0");
+  const [w, h] = document.getElementById("resolution").value.split("x").map(parseFloat);
+
+  const btn = document.getElementById("btn-generate");
+  btn.disabled = true;
+  setStatus("Soumission à ComfyUI...");
+  showSpinner();
+
+  try {
+    const wfBase = await loadWorkflow();
+    const wf = JSON.parse(JSON.stringify(wfBase));
+    wf["14"].inputs.text = pos;
+    wf["15"].inputs.text = neg;
+    wf["16"].inputs.seed = seed;
+    wf["16"].inputs.steps = steps;
+    wf["16"].inputs.cfg = cfg;
+    wf["13"].inputs.width = w;
+    wf["13"].inputs.height = h;
+
+    const r = await fetch(`${COMFY_PROXY}/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: wf }),
+    });
+    if (!r.ok) {
+      const txt = await r.text();
+      throw new Error(`ComfyUI rejette : ${r.status} ${txt.slice(0, 200)}`);
+    }
+    const { prompt_id } = await r.json();
+    setStatus(`Génération... (prompt_id ${prompt_id.slice(0, 8)})`);
+
+    const t0 = Date.now();
+    const hist = await pollHistory(prompt_id, 240000);
+    const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
+    const imageUrl = extractImageUrl(hist);
+    if (!imageUrl) throw new Error("Aucune image dans la réponse history");
+
+    showImage(imageUrl);
+    setStatus(`OK · ${elapsed}s · seed ${seed}`);
+
+    saveHistory({
+      leaf_id: currentLeafId, style: currentStyle, positive: pos, negative: neg,
+      seed, steps, cfg, width: w, height: h, imageUrl, elapsed,
+      timestamp: Date.now(),
+    });
+    renderHistory();
+  } catch (e) {
+    setStatus(`Erreur : ${e.message}`, true);
+    hideSpinner();
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+document.getElementById("btn-generate").addEventListener("click", generate);
+
+async function pollHistory(promptId, timeoutMs) {
+  const t0 = Date.now();
+  while (Date.now() - t0 < timeoutMs) {
+    try {
+      const r = await fetch(`${COMFY_PROXY}/history/${promptId}`);
+      if (r.ok) {
+        const data = await r.json();
+        if (data[promptId] && data[promptId].outputs) {
+          return data[promptId];
+        }
+      }
+    } catch (e) { /* retry */ }
+    await new Promise(r => setTimeout(r, 800));
+  }
+  throw new Error(`Timeout après ${(timeoutMs/1000).toFixed(0)}s`);
+}
+
+function extractImageUrl(hist) {
+  for (const nodeId in hist.outputs) {
+    const out = hist.outputs[nodeId];
+    if (out.images && out.images.length) {
+      const img = out.images[0];
+      lastImageParams = {
+        filename: img.filename,
+        subfolder: img.subfolder || "",
+        type: img.type || "output",
+      };
+      document.getElementById("btn-coloriage").disabled = false;
+      document.getElementById("btn-coloriage-palette").disabled = false;
+      document.getElementById("btn-coloriage-soft").disabled = false;
+      document.getElementById("btn-coloriage-chromakey").disabled = false;
+      document.getElementById("btn-diagnose-chromakey").disabled = false;
+      document.getElementById("btn-coloriage-custom").disabled = false;
+      document.querySelectorAll(".palette-preset-btn[data-detect]").forEach(b => b.disabled = false);
+      const params = new URLSearchParams(lastImageParams);
+      return `${COMFY_PROXY}/view?${params}`;
+    }
+  }
+  return null;
+}
+
+// Bouton coloriage auto : ouvre /api/extract-palette/coloriage dans nouvel onglet.
+document.getElementById("btn-coloriage").addEventListener("click", () => {
+  if (!lastImageParams) return;
+  const qs = new URLSearchParams(lastImageParams);
+  window.open(`/api/extract-palette/coloriage?${qs}`, "_blank");
+});
+
+// Bouton coloriage avec palette imposée.
+document.getElementById("btn-coloriage-palette").addEventListener("click", () => {
+  if (!lastImageParams) return;
+  const colors = document.getElementById("palette-input").value.trim();
+  const qs = new URLSearchParams(lastImageParams);
+  if (colors) qs.set("colors", colors);
+  window.open(`/api/extract-palette/coloriage?${qs}`, "_blank");
+});
+
+// Bouton "palette + bords doux" : élimine les ruisseaux via OPEN morpho.
+document.getElementById("btn-coloriage-soft").addEventListener("click", () => {
+  if (!lastImageParams) return;
+  const colors = document.getElementById("palette-input").value.trim();
+  const qs = new URLSearchParams(lastImageParams);
+  if (colors) qs.set("colors", colors);
+  qs.set("mask_smooth", "4");         // OPEN + CLOSE radius 4 = élimine ruisseaux jusqu'à 4 px
+  qs.set("merge_small", "600");       // fusionne composantes < 600 px
+  qs.set("no_anomaly", "true");       // anomaly_detection interfère avec palette imposée
+  window.open(`/api/extract-palette/coloriage?${qs}`, "_blank");
+});
+
+// Bouton "Chromakey" : preset floodfill chromakey (POC parallèle au preset prod).
+document.getElementById("btn-coloriage-chromakey").addEventListener("click", () => {
+  if (!lastImageParams) return;
+  const qs = new URLSearchParams(lastImageParams);
+  qs.set("preset", "floodfill_chromakey_v1");
+  // Note : ignore le champ "palette imposée" — le pipeline floodfill détermine
+  // les couleurs a posteriori (moyenne BGR de chaque bassin).
+  window.open(`/api/extract-palette/coloriage?${qs}`, "_blank");
+});
+
+// Bouton "Diagnostic" : palette LAB du sujet + masques chromakey/trait visualisés.
+// Permet de juger si le trait envahit le sujet et si la palette distingue les régions.
+document.getElementById("btn-diagnose-chromakey").addEventListener("click", () => {
+  if (!lastImageParams) return;
+  const qs = new URLSearchParams(lastImageParams);
+  qs.set("n_colors", "16");
+  window.open(`/api/extract-palette/diagnose?${qs}`, "_blank");
+});
+
+// Bouton "depuis prompt" : table de correspondance nom couleur -> hex (palette pastel).
+const PASTEL_NAMED_COLORS = {
+  "pale yellow": "#fff8b8",
+  "peach": "#ffd2a8",
+  "sky-blue": "#a8d8ff",
+  "sky blue": "#a8d8ff",
+  "mint": "#b8e8c8",
+  "lavender": "#d8c8ff",
+  "blush-pink": "#ffb8c8",
+  "blush pink": "#ffb8c8",
+  "sand": "#e8d8a8",
+  "cream": "#fff0d8",
+  // bonus
+  "red": "#ff5252",
+  "orange": "#ff9800",
+  "yellow": "#ffd54f",
+  "green": "#52b788",
+  "blue": "#118ab2",
+  "purple": "#9d4edd",
+  "pink": "#ff8fab",
+  "brown": "#8b5a3c",
+  "white": "#ffffff",
+  "black": "#000000",
+};
+
+// Bouton coloriage custom : envoie tous les overrides params trait + palette.
+function buildCustomColoriageURL() {
+  const qs = new URLSearchParams(lastImageParams);
+  const palette = document.getElementById("palette-input").value.trim();
+  if (palette) qs.set("colors", palette);
+  // Récupère chaque override trait s'il est renseigné.
+  const fields = [
+    ["ink-pipeline", "ink_pipeline"],
+    ["ink-max-value", "ink_max_value"],
+    ["ink-max-sat", "ink_max_sat"],
+    ["otsu-max", "otsu_max"],
+    ["ink-dilate", "ink_dilate"],
+    ["close-radius", "close_radius"],
+    ["ink-thickness", "ink_thickness"],
+    ["ink-min-speckle", "ink_min_speckle"],
+  ];
+  for (const [id, param] of fields) {
+    const el = document.getElementById(id);
+    const v = el.value.trim();
+    if (v !== "") qs.set(param, v);
+  }
+  if (document.getElementById("no-otsu").checked) qs.set("no_otsu", "true");
+  return `/api/extract-palette/coloriage?${qs}`;
+}
+document.getElementById("btn-coloriage-custom").addEventListener("click", () => {
+  if (!lastImageParams) return;
+  window.open(buildCustomColoriageURL(), "_blank");
+});
+
+document.getElementById("btn-clear-ink-params").addEventListener("click", () => {
+  ["ink-pipeline","ink-max-value","ink-max-sat","otsu-max","ink-dilate","close-radius","ink-thickness","ink-min-speckle"].forEach(id => {
+    document.getElementById(id).value = "";
+  });
+  document.getElementById("no-otsu").checked = false;
+  setStatus("Overrides trait réinitialisés (utilise le preset par défaut)");
+});
+
+// === Palettes preset ===
+const PALETTE_PRESETS = {
+  pastel8: ["#FFF8B8","#FFD2A8","#A8D8FF","#B8E8C8","#D8C8FF","#FFB8C8","#E8D8A8","#FFF0D8"],
+  flat8:   ["#FF0000","#FF8000","#FFFF00","#00C800","#00FFFF","#0066FF","#FF00FF","#8B4513"],
+  primary6:["#FF0000","#FFFF00","#0000FF","#FFFFFF","#000000","#808080"],
+  rainbow7:["#FF0000","#FF7F00","#FFFF00","#00FF00","#0000FF","#4B0082","#8B00FF"],
+  warm6:   ["#FFD54F","#FF9800","#E64A19","#D84315","#BF360C","#FFEE58"],
+  cool6:   ["#03A9F4","#1976D2","#0D47A1","#1DE9B6","#00BCD4","#7C4DFF"],
+};
+
+// === Auto-detection depuis image (k-means LAB) ===
+document.querySelectorAll(".palette-preset-btn[data-detect]").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    if (!lastImageParams) {
+      setStatus("Génère une image d'abord pour détecter sa palette", true);
+      return;
+    }
+    const n = parseInt(btn.dataset.detect);
+    const qs = new URLSearchParams(lastImageParams);
+    qs.set("n", n);
+    btn.textContent = `⟳ ...`;
+    btn.disabled = true;
+    try {
+      const r = await fetch(`/api/extract-palette/detect-palette?${qs}`);
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const data = await r.json();
+      document.getElementById("palette-input").value = data.colors.join(",");
+      renderPaletteChips();
+      const top3 = data.colors.slice(0, 3).map((c, i) => `${c} (${data.frequencies_pct[i]}%)`).join(", ");
+      setStatus(`Palette auto ${n} couleurs détectée. Top 3 : ${top3}`);
+    } catch (e) {
+      setStatus(`Erreur détection : ${e.message}`, true);
+    } finally {
+      btn.textContent = `🔍 Auto ${n}`;
+      btn.disabled = false;
+    }
+  });
+});
+
+document.querySelectorAll(".palette-preset-btn[data-preset]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const preset = btn.dataset.preset;
+    const colors = PALETTE_PRESETS[preset];
+    if (colors) {
+      document.getElementById("palette-input").value = colors.join(",");
+      renderPaletteChips();
+    }
+  });
+});
+
+// === Color picker + ajouter ===
+document.getElementById("btn-add-color").addEventListener("click", () => {
+  const hex = document.getElementById("palette-add-color").value.toUpperCase();
+  const input = document.getElementById("palette-input");
+  const current = input.value.trim();
+  const list = current ? current.split(",").map(s => s.trim()).filter(Boolean) : [];
+  if (!list.map(c => c.toUpperCase()).includes(hex)) {
+    list.push(hex);
+    input.value = list.join(",");
+    renderPaletteChips();
+  }
+});
+
+document.getElementById("btn-clear-palette").addEventListener("click", () => {
+  document.getElementById("palette-input").value = "";
+  renderPaletteChips();
+});
+
+// === Chips palette (visuelle + click pour retirer) ===
+function renderPaletteChips() {
+  const v = document.getElementById("palette-input").value.trim();
+  const container = document.getElementById("palette-chips");
+  if (!v) { container.innerHTML = ""; return; }
+  const colors = v.split(",").map(s => s.trim()).filter(Boolean);
+  container.innerHTML = colors.map((c, i) =>
+    `<div class="palette-chip" style="background:${c};" data-idx="${i}" title="${c} (click pour retirer)"></div>`
+  ).join("");
+  container.querySelectorAll(".palette-chip").forEach(el => {
+    el.addEventListener("click", () => {
+      const idx = parseInt(el.dataset.idx);
+      const list = colors.filter((_, i) => i !== idx);
+      document.getElementById("palette-input").value = list.join(",");
+      renderPaletteChips();
+    });
+  });
+}
+
+// Re-render chips quand input change manuellement
+document.getElementById("palette-input").addEventListener("input", renderPaletteChips);
+
+document.getElementById("btn-extract-palette-from-prompt").addEventListener("click", () => {
+  const pos = document.getElementById("positive").value.toLowerCase();
+  // Match nommees explicites (PASTEL_NAMED_COLORS), tries par longueur DESC pour eviter 'pink' avant 'blush-pink'.
+  const found = [];
+  const seen = new Set();
+  const sortedNames = Object.keys(PASTEL_NAMED_COLORS).sort((a, b) => b.length - a.length);
+  for (const name of sortedNames) {
+    const idx = pos.indexOf(name);
+    if (idx >= 0 && !seen.has(name)) {
+      found.push({ idx, hex: PASTEL_NAMED_COLORS[name], name });
+      seen.add(name);
+    }
+  }
+  found.sort((a, b) => a.idx - b.idx);
+  const hexList = found.map(f => f.hex);
+  document.getElementById("palette-input").value = hexList.join(",");
+  renderPaletteChips();
+  setStatus(`Palette extraite du prompt : ${found.length} couleurs (${found.map(f => f.name).join(", ")})`);
+});
+
+// Init chips au chargement (au cas où palette pré-remplie via localStorage)
+renderPaletteChips();
+
+function showImage(url) {
+  hideSpinner();
+  const area = document.getElementById("image-area");
+  area.innerHTML = `<img src="${url}" alt="generated"/>`;
+}
+
+function showSpinner() {
+  const area = document.getElementById("image-area");
+  area.innerHTML = `<div class="spinner">⟳ Génération en cours...</div>`;
+}
+function hideSpinner() {}
+
+function setStatus(text, isError) {
+  const s = document.getElementById("status");
+  s.textContent = text;
+  s.style.color = isError ? "var(--err)" : "var(--muted)";
+}
+
+// === Historique localStorage ===
+function loadStoredHistory() {
+  try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]"); }
+  catch { return []; }
+}
+function saveHistory(entry) {
+  const hist = loadStoredHistory();
+  hist.unshift(entry);
+  if (hist.length > HISTORY_LIMIT) hist.length = HISTORY_LIMIT;
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(hist));
+}
+function renderHistory() {
+  const hist = loadStoredHistory();
+  const c = document.getElementById("history");
+  if (!hist.length) {
+    c.innerHTML = `<div style="padding:8px;color:var(--muted);font-size:11px;">vide</div>`;
+    return;
+  }
+  c.innerHTML = hist.map((h, idx) => `
+    <div class="history-item" data-idx="${idx}">
+      <img src="${h.imageUrl}" alt=""/>
+      <div class="meta-h">
+        <div class="leaf">${h.leaf_id || "(direct)"}</div>
+        <div class="style">${h.style} · ${h.seed} · ${h.width}×${h.height} · ${h.elapsed}s</div>
+      </div>
+    </div>
+  `).join("");
+  c.querySelectorAll(".history-item").forEach(el => {
+    el.addEventListener("click", () => {
+      const h = loadStoredHistory()[parseInt(el.dataset.idx)];
+      restoreFromHistory(h);
+    });
+  });
+}
+function restoreFromHistory(h) {
+  if (!h) return;
+  document.getElementById("positive").value = h.positive;
+  document.getElementById("negative").value = h.negative;
+  document.getElementById("seed").value = h.seed;
+  document.getElementById("steps").value = h.steps;
+  document.getElementById("cfg").value = h.cfg;
+  document.getElementById("resolution").value = `${h.width}x${h.height}`;
+  if (h.leaf_id) {
+    currentLeafId = h.leaf_id;
+    inputQ.value = h.leaf_id;
+  }
+  if (h.style && h.style !== currentStyle) {
+    currentStyle = h.style;
+    document.querySelectorAll(".toggle").forEach(x => x.classList.remove("active"));
+    document.getElementById(`style-${h.style}`).classList.add("active");
+  }
+  showImage(h.imageUrl);
+  setStatus(`Restauré depuis historique · ${new Date(h.timestamp).toLocaleString()}`);
+}
+
+// === Favoris ===
+document.getElementById("btn-favorite").addEventListener("click", () => {
+  const entry = {
+    leaf_id: currentLeafId, style: currentStyle,
+    positive: document.getElementById("positive").value,
+    negative: document.getElementById("negative").value,
+    seed: parseInt(document.getElementById("seed").value),
+    label: prompt("Nom du favori :", currentLeafId || "favori"),
+    timestamp: Date.now(),
+  };
+  if (!entry.label) return;
+  const favs = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+  favs.unshift(entry);
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(favs));
+  alert(`Favori "${entry.label}" sauvegardé (${favs.length} au total).`);
+});
+
+// === Init ===
+renderHistory();
+</script>
+</body>
+</html>

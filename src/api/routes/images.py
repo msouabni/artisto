@@ -14,6 +14,11 @@ from pydantic import BaseModel, model_validator
 
 from api.db import DBConnAdapter, get_db_read, get_db_write
 from api.helpers import get_i18n, json_response, transaction
+from services.pipeline_variants import (
+    Variant,
+    get_active_variants,
+    get_variant,
+)
 from workers.comfy_client import (
     DEFAULT_WORKFLOW_TEMPLATE,
     list_workflow_template_names,
@@ -124,8 +129,16 @@ class CreateJobPayload(BaseModel):
 
 
 class BulkCreateGenerationJobsPayload(BaseModel):
-    """Création en masse de jobs image_generation (mêmes options optionnelles que CreateJobPayload)."""
+    """Création en masse de jobs image_generation (mêmes options optionnelles que CreateJobPayload).
+
+    Support multi-variantes (C1.2, 2026-06-01) : si ``variants`` est fourni, un job
+    est créé par image × variante listée. Si ``variants`` est ``None``, le
+    comportement legacy est utilisé : 1 job/image basé sur ``Image.prompt`` /
+    ``Image.negative_prompt`` (rétrocompat). Sur ``variants=[]`` explicite : 0 job
+    créé (no-op).
+    """
     image_ids: list[str]
+    variants: list[str] | None = None
     workflow_template: str | None = None
     steps: int | None = None
     cfg: float | None = None
@@ -157,6 +170,103 @@ def _append_image_generation_optional_fields(
         val = getattr(source, field, None)
         if val is not None:
             config_data[field] = val
+
+
+_CHROMAKEY_FRAGMENT = "on pure cinema chromakey green background (#00B140)"
+
+
+def _inject_chromakey(positive: str) -> str:
+    """Injecte le fragment chromakey green dans le positive si absent.
+
+    Approche défensive : si "chromakey green" ou "#00B140" apparait déjà dans le
+    prompt (cas ``flat_cartoon`` ou ``crayon`` qui l'embarquent dans le header),
+    on ne touche à rien. Sinon, on insère ``", on pure cinema chromakey green
+    background (#00B140)"`` après le premier ``" illustration,"`` rencontré ;
+    fallback prepend si motif introuvable.
+    """
+    lowered = positive.lower()
+    if "chromakey green" in lowered or "#00b140" in lowered:
+        return positive
+    marker = " illustration,"
+    idx = positive.lower().find(marker.lower())
+    if idx >= 0:
+        insert_at = idx + len(marker)
+        return (
+            positive[:insert_at]
+            + f" {_CHROMAKEY_FRAGMENT},"
+            + positive[insert_at:]
+        )
+    # Fallback : préfixe avec virgule séparatrice si fragment absent.
+    return f"{_CHROMAKEY_FRAGMENT}, {positive}"
+
+
+# Cache module-level pour éviter de relire les ~3 JSON taxonomie + cartographie
+# à chaque requête. Initialisé paresseusement lors du premier usage.
+_PROMPT_GENERATOR_SINGLETON: Any = None
+
+
+def _get_prompt_generator() -> Any:
+    """Retourne (et instancie au besoin) le PromptGenerator partagé.
+
+    Lazy : évite d'importer prompt_generator (et ses JSONs ~10 MB) au module
+    load — important pour les tests qui n'utilisent pas la fonctionnalité
+    multi-variantes. Le singleton vit pour toute la durée du process.
+    """
+    global _PROMPT_GENERATOR_SINGLETON
+    if _PROMPT_GENERATOR_SINGLETON is None:
+        from services.prompt_generator import PromptGenerator  # local import
+        _PROMPT_GENERATOR_SINGLETON = PromptGenerator()
+    return _PROMPT_GENERATOR_SINGLETON
+
+
+def _resolve_variants_for_request(
+    variants_param: list[str] | None,
+) -> list[Variant]:
+    """Résout la liste finale de variantes à appliquer pour la requête.
+
+    - ``None`` → registre default_active (catégorie ignorée en C1.2 — TBD C1.3
+      pour la résolution par catégorie via image.origin_term_id).
+    - liste explicite → résolution stricte. Toute variante inconnue lève
+      ``HTTPException(400)`` (refus complet, 0 job créé).
+    """
+    if variants_param is None:
+        # TBD C1.3 : category_id sera dérivé de la première image ou passé
+        # explicitement pour activer per_category_override.
+        return get_active_variants(category_id=None)
+
+    resolved: list[Variant] = []
+    for name in variants_param:
+        v = get_variant(name)
+        if v is None:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Variante inconnue : {name!r}",
+            )
+        resolved.append(v)
+    return resolved
+
+
+def _has_existing_output_for_variant(
+    conn: DBConnAdapter, image_id: str, variant_name: str,
+) -> bool:
+    """ADD-ONLY check : True si un image_output existe déjà pour cette
+    (image, variant_name). Recherche via LIKE sur le JSON model_config sérialisé
+    (cross-dialect : marche sur SQLite et Postgres TEXT). Le fragment cherché
+    est ``"variant_name": "<name>"`` (avec espace) ou ``"variant_name":"<name>"``
+    (sans espace).
+    """
+    pattern_spaced = f'%"variant_name": "{variant_name}"%'
+    pattern_compact = f'%"variant_name":"{variant_name}"%'
+    row = conn.execute(
+        """
+        SELECT 1 FROM image_output
+        WHERE image_id = ?
+          AND (model_config LIKE ? OR model_config LIKE ?)
+        LIMIT 1
+        """,
+        [image_id, pattern_spaced, pattern_compact],
+    ).fetchone()
+    return row is not None
 
 
 def build_image_generation_job_config(
@@ -656,13 +766,38 @@ def bulk_create_generation_jobs(
 
     workflow_tpl = _normalize_optional_workflow_template(payload.workflow_template)
 
+    # Résolution des variantes :
+    # - ``variants`` fourni explicitement (liste) → résolution stricte (variante
+    #   inconnue → 400 immédiat, 0 job créé).
+    # - ``variants=None`` → registre default_active (qui peut être vide ; dans ce
+    #   cas, fallback legacy 1-job-par-image sur Image.prompt).
+    # - ``variants=[]`` → no-op (aucun job créé, summary.success=0).
+    #
+    # Note rétrocompat : si default_active=[] (registre absent/vide), on bascule
+    # en mode legacy. C'est uniquement utile pour les chemins qui n'utilisent
+    # pas le registre (ex. tests historiques).
+    if payload.variants is None:
+        try:
+            resolved_variants = get_active_variants(category_id=None)
+        except Exception:  # noqa: BLE001
+            logger.warning(
+                "Registre pipeline_variants indisponible — fallback legacy 1-job-par-image",
+                exc_info=True,
+            )
+            resolved_variants = []
+    else:
+        resolved_variants = _resolve_variants_for_request(payload.variants)
+
+    legacy_mode = (payload.variants is None) and (not resolved_variants)
+
     results: list[dict[str, Any]] = []
     success = 0
     failed = 0
+    skipped = 0
 
     for idx, image_id in enumerate(image_ids):
         row = conn.execute(
-            "SELECT status, prompt, negative_prompt FROM image WHERE id = ?",
+            "SELECT status, prompt, negative_prompt, origin_term_id FROM image WHERE id = ?",
             [image_id],
         ).fetchone()
         if not row:
@@ -673,6 +808,7 @@ def bulk_create_generation_jobs(
         status = str(row[0] or "").strip()
         prompt = str(row[1] or "").strip()
         negative_prompt = str(row[2] or "").strip()
+        leaf_id = str(row[3] or "").strip() or None
 
         if status != "prompt_ready":
             failed += 1
@@ -690,14 +826,14 @@ def bulk_create_generation_jobs(
             results.append({"image_id": image_id, "ok": False, "error": "Prompt vide."})
             continue
 
-        existing = conn.execute(
+        existing_job = conn.execute(
             """
             SELECT 1 FROM job WHERE image_id = ? AND type = 'image_generation'
               AND status IN ('pending', 'running', 'awaiting_validation')
             """,
             [image_id],
         ).fetchone()
-        if existing:
+        if existing_job:
             failed += 1
             results.append(
                 {
@@ -714,42 +850,151 @@ def bulk_create_generation_jobs(
         ).fetchall()
         tags = [{"taxonomy_id": str(t[0]), "term_id": str(t[1])} for t in tag_rows]
 
-        job_id = f"job_gen_{time.time_ns()}_{idx}"
         now = _now()
-        config_data = build_image_generation_job_config(
-            prompt=prompt,
-            negative_prompt=negative_prompt,
-            tags=tags,
-            options=payload,
-            workflow_template=workflow_tpl,
-        )
-        config = json.dumps(config_data, ensure_ascii=False)
 
-        try:
-            with transaction(conn):
-                conn.execute(
-                    """INSERT INTO job (id, type, status, image_id, config, created_at, entity_type, entity_id)
-                       VALUES (?, 'image_generation', 'pending', ?, ?, ?, 'image', ?)""",
-                    [job_id, image_id, config, now, image_id],
-                )
-                conn.execute(
-                    """UPDATE image SET status = 'scheduled', updated_at = ?
-                       WHERE id = ? AND status NOT IN ('generating', 'generated', 'approved', 'published')""",
-                    [now, image_id],
-                )
-        except Exception as exc:  # noqa: BLE001
-            logger.exception("bulk_create_generation_jobs failed for %s", image_id)
-            failed += 1
-            results.append({"image_id": image_id, "ok": False, "error": str(exc)})
+        # ── Branche LEGACY : pas de variantes (registre vide ou indisponible)
+        # ───────────────────────────────────────────────────────────────────
+        if legacy_mode:
+            job_id = f"job_gen_{time.time_ns()}_{idx}"
+            config_data = build_image_generation_job_config(
+                prompt=prompt,
+                negative_prompt=negative_prompt,
+                tags=tags,
+                options=payload,
+                workflow_template=workflow_tpl,
+            )
+            config = json.dumps(config_data, ensure_ascii=False)
+            try:
+                with transaction(conn):
+                    conn.execute(
+                        """INSERT INTO job (id, type, status, image_id, config, created_at, entity_type, entity_id)
+                           VALUES (?, 'image_generation', 'pending', ?, ?, ?, 'image', ?)""",
+                        [job_id, image_id, config, now, image_id],
+                    )
+                    conn.execute(
+                        """UPDATE image SET status = 'scheduled', updated_at = ?
+                           WHERE id = ? AND status NOT IN ('generating', 'generated', 'approved', 'published')""",
+                        [now, image_id],
+                    )
+            except Exception as exc:  # noqa: BLE001
+                logger.exception("bulk_create_generation_jobs failed for %s", image_id)
+                failed += 1
+                results.append({"image_id": image_id, "ok": False, "error": str(exc)})
+                continue
+            success += 1
+            results.append({"image_id": image_id, "ok": True, "job_id": job_id})
             continue
 
-        success += 1
-        results.append({"image_id": image_id, "ok": True, "job_id": job_id})
+        # ── Branche MULTI-VARIANTES ──────────────────────────────────────────
+        for variant in resolved_variants:
+            # ADD-ONLY : skip si un image_output existe déjà avec ce variant_name.
+            if _has_existing_output_for_variant(conn, image_id, variant.name):
+                skipped += 1
+                results.append(
+                    {
+                        "image_id": image_id,
+                        "variant_name": variant.name,
+                        "ok": False,
+                        "skipped": True,
+                        "reason": "output_existant",
+                    }
+                )
+                continue
+
+            # Construction du prompt selon le style de la variante.
+            try:
+                if variant.prompt_style == "lineart":
+                    # Rétrocompat : on respecte la rédaction humaine éventuelle
+                    # de Image.prompt (qui est déjà en lineart en mode legacy).
+                    variant_positive = prompt
+                    variant_negative = negative_prompt
+                else:
+                    if not leaf_id:
+                        raise ValueError(
+                            "leaf_id manquant (image.origin_term_id vide) — "
+                            f"requis pour le style {variant.prompt_style!r}",
+                        )
+                    gen = _get_prompt_generator()
+                    gen_out = gen.build_prompt(leaf_id, style=variant.prompt_style)
+                    variant_positive = str(gen_out.get("positive") or "").strip()
+                    variant_negative = str(gen_out.get("negative") or "").strip()
+                    if variant.force_chromakey:
+                        variant_positive = _inject_chromakey(variant_positive)
+            except Exception as exc:  # noqa: BLE001
+                logger.exception(
+                    "build_prompt failed for image=%s variant=%s",
+                    image_id, variant.name,
+                )
+                failed += 1
+                results.append(
+                    {
+                        "image_id": image_id,
+                        "variant_name": variant.name,
+                        "ok": False,
+                        "error": f"build_prompt: {exc}",
+                    }
+                )
+                continue
+
+            config_data = build_image_generation_job_config(
+                prompt=variant_positive,
+                negative_prompt=variant_negative,
+                tags=tags,
+                options=payload,
+                workflow_template=workflow_tpl,
+            )
+            config_data["variant_name"] = variant.name
+            config_data["extract_preset"] = variant.extract_preset
+            config_data["force_chromakey"] = variant.force_chromakey
+            config = json.dumps(config_data, ensure_ascii=False)
+
+            job_id = f"job_gen_{time.time_ns()}_{idx}_{variant.name}"
+            try:
+                with transaction(conn):
+                    conn.execute(
+                        """INSERT INTO job (id, type, status, image_id, config, created_at, entity_type, entity_id)
+                           VALUES (?, 'image_generation', 'pending', ?, ?, ?, 'image', ?)""",
+                        [job_id, image_id, config, now, image_id],
+                    )
+                    conn.execute(
+                        """UPDATE image SET status = 'scheduled', updated_at = ?
+                           WHERE id = ? AND status NOT IN ('generating', 'generated', 'approved', 'published')""",
+                        [now, image_id],
+                    )
+            except Exception as exc:  # noqa: BLE001
+                logger.exception(
+                    "bulk_create_generation_jobs failed for %s (variant=%s)",
+                    image_id, variant.name,
+                )
+                failed += 1
+                results.append(
+                    {
+                        "image_id": image_id,
+                        "variant_name": variant.name,
+                        "ok": False,
+                        "error": str(exc),
+                    }
+                )
+                continue
+            success += 1
+            results.append(
+                {
+                    "image_id": image_id,
+                    "variant_name": variant.name,
+                    "ok": True,
+                    "job_id": job_id,
+                }
+            )
 
     return json_response(
         {
             "results": results,
-            "summary": {"total": len(image_ids), "success": success, "failed": failed},
+            "summary": {
+                "total": len(image_ids),
+                "success": success,
+                "failed": failed,
+                "skipped": skipped,
+            },
         }
     )
 

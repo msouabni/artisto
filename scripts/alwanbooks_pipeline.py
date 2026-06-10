@@ -112,6 +112,12 @@ R2_PATHS = {
     "pdf":    "coloriages/pdf/{slug}.pdf",
 }
 
+# Clé R2 du SVG bicouche décoloriage (Phase 4 — 5e asset, ADD-ONLY).
+# Aligné sur le nommage des 4 variantes : ``coloriages/<kind>/{slug}.<ext>``.
+# URL publique résultante : ``{CLOUDFLARE_R2_PUBLIC_BASE}/coloriages/svg/{slug}.svg``.
+R2_SVG_PATH = "coloriages/svg/{slug}.svg"
+R2_SVG_CONTENT_TYPE = "image/svg+xml"
+
 # Configuration de conversion d'images (cf. contrat §3)
 WEB_QUALITY = 85
 WEB_METHOD = 6
@@ -222,6 +228,163 @@ def compute_theme_ids(leaf_id: str, themes_registry: dict | None = None) -> list
     return sorted(result)
 
 
+# ── Multi-variantes coloriage (C2.3) ─────────────────────────────────────────
+#
+# Helpers pour publier les variantes generees (lineart / pastel_chromakey / ...)
+# dans le frontmatter Astro + copier les artefacts vers ``data/sites/{site_id}/``.
+#
+# Sources : ``src/services/coloring_storage.py`` (C2.1) + ``data/generated/``.
+# ADR : ``alwanbooks-docs/adr/2026-06-01_multi-variantes-coloriage.md``.
+
+#: URL publique par defaut pour les artefacts coloriage (cote Astro).
+#: Convention : les fichiers sont copies dans ``public/assets/coloriages/``
+#: cote site destinataire, donc accessibles via ``/assets/coloriages/<file>``
+#: a l'execution. Surchargeable via ``_build_variants_dict(public_url_prefix=...)``.
+DEFAULT_VARIANTS_PUBLIC_URL_PREFIX = "/assets/coloriages"
+
+#: Sous-dossier (relatif au clone du site) ou copier les artefacts.
+#: Convention Astro standard : ``public/<...>`` est servi a la racine du site.
+DEFAULT_SITE_ASSETS_SUBDIR = Path("public") / "assets" / "coloriages"
+
+
+def _build_variants_dict(
+    leaf_id: str,
+    base_dir: Path | None = None,
+    public_url_prefix: str = DEFAULT_VARIANTS_PUBLIC_URL_PREFIX,
+) -> dict[str, dict[str, str]]:
+    """Construit le dict ``variants`` pour le frontmatter (C2.3).
+
+    Scanne ``data/generated/`` (ou ``base_dir``) pour les artefacts existants
+    et renvoie un mapping ``{variant_name: {kind: url}}`` ou ``kind`` est l'un
+    de ``raw_png``, ``vector_svg``, ``coloring_svg``.
+
+    Les cles ``vector_svg`` / ``coloring_svg`` sont omises si le fichier
+    correspondant n'existe pas (variant peut n'avoir que le PNG si C2.2
+    pas encore tourne). Une variante n'est ajoutee au dict que si au moins
+    le ``raw_png`` est present.
+
+    Args:
+        leaf_id: identifiant feuille de la taxonomie (ex. ``lion_in_savanna``).
+        base_dir: dossier racine de scan (defaut ``data/generated/``).
+        public_url_prefix: prefixe URL public pour les artefacts (defaut
+            ``/assets/coloriages``).
+
+    Returns:
+        Dict ordonne (tri alphabetique des variant_name pour stabilite).
+        ``{}`` si aucune variante n'a de PNG genere.
+    """
+    from services.coloring_storage import get_storage_paths, list_existing_variants
+
+    existing = list_existing_variants(leaf_id, base_dir=base_dir)
+    result: dict[str, dict[str, str]] = {}
+    for variant_name in existing:
+        paths = get_storage_paths(leaf_id, variant_name, base_dir=base_dir)
+        variant_dict: dict[str, str] = {}
+        if paths.raw_png.is_file():
+            variant_dict["raw_png"] = f"{public_url_prefix}/{paths.raw_png.name}"
+        if paths.vector_svg.is_file():
+            variant_dict["vector_svg"] = f"{public_url_prefix}/{paths.vector_svg.name}"
+        if paths.coloring_svg.is_file():
+            variant_dict["coloring_svg"] = (
+                f"{public_url_prefix}/{paths.coloring_svg.name}"
+            )
+        # Une variante n'est exposee que si elle a au moins le raw_png.
+        if "raw_png" in variant_dict:
+            result[variant_name] = variant_dict
+    return result
+
+
+def _pick_legacy_image(variants_dict: dict[str, dict[str, str]]) -> str | None:
+    """Choisit la variante "principale" pour le champ legacy ``image``.
+
+    Ordre de preference :
+        1. ``lineart`` si present (variante print, choix conservateur)
+        2. premiere du ``default_active`` du registre presente dans variants_dict
+        3. premiere variante de variants_dict (ordre alphabetique)
+
+    Returns:
+        Le ``raw_png`` URL de la variante choisie, ou ``None`` si variants_dict
+        est vide ou ne contient aucun ``raw_png``.
+    """
+    if "lineart" in variants_dict and "raw_png" in variants_dict["lineart"]:
+        return variants_dict["lineart"]["raw_png"]
+
+    # Import local pour eviter cout au boot si la fonction n'est pas appelee.
+    try:
+        from services.pipeline_variants import get_active_variants
+        for variant in get_active_variants():
+            if (
+                variant.name in variants_dict
+                and "raw_png" in variants_dict[variant.name]
+            ):
+                return variants_dict[variant.name]["raw_png"]
+    except Exception:
+        # Defensif : si le registre est cassé, on tombe sur l'ordre alphabetique.
+        pass
+
+    for name in sorted(variants_dict):
+        if "raw_png" in variants_dict[name]:
+            return variants_dict[name]["raw_png"]
+    return None
+
+
+def _copy_variant_artefacts(
+    leaf_id: str,
+    site_root: Path,
+    base_dir: Path | None = None,
+    assets_subdir: Path = DEFAULT_SITE_ASSETS_SUBDIR,
+) -> dict[str, list[str]]:
+    """Copie les artefacts multi-variantes vers le clone d'un site destinataire.
+
+    Pour chaque (variant_name, kind) dont le fichier source existe dans
+    ``base_dir`` (defaut ``data/generated/``), copie vers
+    ``{site_root}/{assets_subdir}/{filename}``. Le nom de fichier est conserve
+    a l'identique (convention ``{leaf_id}__{variant_name}.{ext}``).
+
+    Idempotent : si le fichier destinataire existe deja avec les memes bytes,
+    skip. Sinon overwrite (un nouveau commit ComfyUI = nouveau contenu).
+
+    Args:
+        leaf_id: identifiant feuille de la taxonomie.
+        site_root: path absolu du clone local du site (ex.
+            ``data/sites/alwanbooks/``).
+        base_dir: dossier source (defaut ``data/generated/``).
+        assets_subdir: sous-dossier relatif au site_root ou copier les fichiers
+            (defaut ``public/assets/coloriages``).
+
+    Returns:
+        ``{"copied": [...filenames], "skipped": [...filenames]}``.
+        Vide si aucune variante n'est trouvee.
+    """
+    import shutil
+
+    from services.coloring_storage import get_storage_paths, list_existing_variants
+
+    existing = list_existing_variants(leaf_id, base_dir=base_dir)
+    dest_dir = site_root / assets_subdir
+    copied: list[str] = []
+    skipped: list[str] = []
+
+    if not existing:
+        return {"copied": copied, "skipped": skipped}
+
+    dest_dir.mkdir(parents=True, exist_ok=True)
+
+    for variant_name in existing:
+        paths = get_storage_paths(leaf_id, variant_name, base_dir=base_dir)
+        for src in (paths.raw_png, paths.vector_svg, paths.coloring_svg):
+            if not src.is_file():
+                continue
+            dst = dest_dir / src.name
+            if dst.is_file() and dst.read_bytes() == src.read_bytes():
+                skipped.append(src.name)
+                continue
+            shutil.copy2(src, dst)
+            copied.append(src.name)
+
+    return {"copied": copied, "skipped": skipped}
+
+
 # ── Données ──────────────────────────────────────────────────────────────────
 
 
@@ -236,6 +399,10 @@ class LeafResult:
     master_path: Path | None = None
     variants_uploaded: dict[str, str] = field(default_factory=dict)  # variant -> r2_key
     variants_skipped: dict[str, str] = field(default_factory=dict)   # idempotent skip
+    # SVG bicouche décoloriage (Phase 4) — au plus un des trois est renseigné.
+    svg_uploaded: str | None = None   # r2_key si poussé
+    svg_skipped: str | None = None    # r2_key si skip idempotent (master-md5)
+    svg_missing: bool = False         # pas de coloring_svg pour ce leaf
     posts_written: list[Path] = field(default_factory=list)
     errors: list[str] = field(default_factory=list)
 
@@ -249,6 +416,10 @@ class PipelineRunSummary:
     leaves_no_master: int = 0
     variants_uploaded: int = 0
     variants_skipped: int = 0
+    # SVG bicouche décoloriage (Phase 4) — même format que les variantes.
+    svg_uploaded: int = 0
+    svg_skipped: int = 0
+    svg_missing: int = 0
     posts_written: int = 0
     posts_created: int = 0
     posts_skipped_addonly: int = 0
@@ -448,6 +619,86 @@ def _upload_variants_mock(
     return uploaded, {}
 
 
+# ── SVG bicouche décoloriage (Phase 4 — 5e asset R2, ADD-ONLY) ──────────────
+
+
+def _resolve_coloring_svg(
+    leaf_id: str, base_dir: Path | None = None,
+) -> Path | None:
+    """Résout le SVG coloriage (décoloriage) d'un leaf via ``coloring_storage``.
+
+    On consomme l'artefact existant produit en Phase 2
+    (``data/generated/{leaf_id}__{variant}_coloriage.svg``, chemin reflété
+    dans ``ImageOutput.model_config.coloring_svg_path``). Une feuille peut
+    porter plusieurs variantes ; on retient le premier ``coloring_svg``
+    présent sur disque (ordre alphabétique stable des variantes via
+    ``list_existing_variants``).
+
+    Returns:
+        Le ``Path`` du fichier SVG si présent, sinon ``None`` (skip propre).
+        Ne lève jamais sur un ``leaf_id`` invalide : retourne ``None``.
+    """
+    try:
+        from services.coloring_storage import (
+            get_storage_paths,
+            list_existing_variants,
+        )
+        for variant_name in list_existing_variants(leaf_id, base_dir=base_dir):
+            paths = get_storage_paths(leaf_id, variant_name, base_dir=base_dir)
+            if paths.coloring_svg.is_file():
+                return paths.coloring_svg
+    except Exception:
+        # Défensif : un leaf_id non conforme / dossier absent ne doit pas
+        # casser la publication du leaf. On compte « missing ».
+        return None
+    return None
+
+
+def _upload_svg_real(
+    r2: R2Client, slug: str, svg_body: bytes,
+) -> tuple[str | None, str | None]:
+    """Upload réel du SVG coloriage. Retourne ``(uploaded_key, skipped_key)``.
+
+    ADD-ONLY + idempotent via custom metadata ``master-md5`` (réutilise la
+    mécanique des 4 variantes, cf. ``_upload_variants_real``). Le SVG n'ayant
+    pas de master PNG dont dériver le hash, on prend le **md5 du contenu SVG
+    lui-même** comme empreinte d'idempotence :
+    - présent et == md5(svg) → skip (SVG inchangé)
+    - présent et != → upload (SVG régénéré)
+    - absent (legacy) → fallback ETag == md5(svg)
+
+    Au plus un des deux éléments du tuple est non-``None``.
+    """
+    key = R2_SVG_PATH.format(slug=slug)
+    svg_md5 = _md5(svg_body)
+    existing = r2.head(key)
+    if existing is not None:
+        existing_master_md5 = (existing.get("Metadata") or {}).get("master-md5", "")
+        if existing_master_md5:
+            if existing_master_md5 == svg_md5:
+                return None, key
+        else:
+            existing_etag = existing.get("ETag", "").strip('"')
+            if existing_etag == svg_md5:
+                return None, key
+    r2.put(key, svg_body, R2_SVG_CONTENT_TYPE, metadata={"master-md5": svg_md5})
+    return key, None
+
+
+def _upload_svg_mock(
+    slug: str, svg_body: bytes,
+) -> tuple[str | None, str | None]:
+    """Mock : écrit le SVG dans ``data/export/r2_simulated/coloriages/svg/``.
+
+    Aucun appel réseau. Retourne ``(uploaded_key, None)``.
+    """
+    key = R2_SVG_PATH.format(slug=slug)
+    out = MOCK_R2_DIR / key
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_bytes(svg_body)
+    return key, None
+
+
 # ── Conversion JSON Post → MD Astro ─────────────────────────────────────────
 
 
@@ -460,7 +711,12 @@ def _yaml_quote(value: str) -> str:
 
 
 def _emit_yaml_value(value: Any, indent: int = 0) -> str:
-    """Émet une valeur YAML simple. Supporte str, int, bool, None, list[str]."""
+    """Émet une valeur YAML simple. Supporte str, int, bool, None, list, dict.
+
+    Les dicts sont emis en mode block YAML imbrique (indent 2 espaces), avec
+    cles triees par ordre alphabetique pour stabilite des diffs. Utilise pour
+    le champ ``variants`` (C2.3 — multi-variantes).
+    """
     pad = "  " * indent
     if value is None:
         return "null"
@@ -477,6 +733,18 @@ def _emit_yaml_value(value: Any, indent: int = 0) -> str:
         for item in value:
             lines.append(f"{pad}  - {_emit_yaml_value(item, indent + 1)}")
         return "\n" + "\n".join(lines)
+    if isinstance(value, dict):
+        if not value:
+            return "{}"
+        lines = []
+        for k in sorted(value.keys()):
+            v = value[k]
+            emitted = _emit_yaml_value(v, indent + 1)
+            if emitted.startswith("\n"):
+                lines.append(f"{pad}  {k}:{emitted}")
+            else:
+                lines.append(f"{pad}  {k}: {emitted}")
+        return "\n" + "\n".join(lines)
     raise ValueError(f"YAML value not supported: {type(value).__name__}")
 
 
@@ -489,6 +757,7 @@ _FRONTMATTER_ORDER = [
     "locale", "slug", "title", "title_card", "description", "keywords",
     "categoryId", "themeIds", "ageMin", "ageMax", "niveauDifficulte",
     "imageSource", "imageWeb", "imageThumb", "imagePdf",
+    "image", "variants",
     "status", "datePublication", "dateModification", "featured",
 ]
 
@@ -1328,6 +1597,9 @@ def print_deployment_recap(
     r2_uploaded: int = 0,
     r2_skipped: int = 0,
     r2_failed: int = 0,
+    svg_uploaded: int = 0,
+    svg_skipped: int = 0,
+    svg_missing: int = 0,
     branch_name: str | None = None,
     commit_count: int = 0,
     no_git_push: bool = False,
@@ -1350,6 +1622,7 @@ def print_deployment_recap(
     print(f"Themes sync       : {themes_created} créé{themes_detail} / {themes_skipped} existants ignorés")
     print(f"themeIds auto-tag : {theme_ids_tagged} posts impactés (lecture themes_registry)")
     print(f"R2 variants       : {r2_uploaded} uploadés / {r2_skipped} skipped (etag match) / {r2_failed} failed")
+    print(f"R2 svg décoloriage: {svg_uploaded} uploadés / {svg_skipped} skipped (master-md5) / {svg_missing} missing")
 
     if no_git_push:
         print(f"\n  Mode --no-git-push : écriture locale uniquement, pas de push")
@@ -1460,6 +1733,38 @@ def run_pipeline(
             logger.exception("Upload failed for %s", leaf_id_v)
             continue
 
+        # 3bis. SVG bicouche décoloriage (Phase 4) — 5e asset R2, ADD-ONLY.
+        # On consomme l'artefact existant (Phase 2) ; absent → skip propre.
+        # Best-effort : un échec d'upload SVG ne fait PAS échouer la leaf
+        # (les 4 variantes sont déjà poussées, le post reste publiable).
+        svg_path = _resolve_coloring_svg(leaf_id_v)
+        if svg_path is None:
+            result.svg_missing = True
+            summary.svg_missing += 1
+            logger.info("[svg] leaf=%s : pas de coloring_svg (skip)", leaf_id_v)
+        else:
+            try:
+                svg_body = svg_path.read_bytes()
+                if mock:
+                    svg_up, svg_skip = _upload_svg_mock(r2_slug_v, svg_body)
+                else:
+                    assert r2 is not None
+                    svg_up, svg_skip = _upload_svg_real(r2, r2_slug_v, svg_body)
+                result.svg_uploaded = svg_up
+                result.svg_skipped = svg_skip
+                if svg_up is not None:
+                    summary.svg_uploaded += 1
+                    logger.info("[svg] leaf=%s uploaded → %s", leaf_id_v, svg_up)
+                if svg_skip is not None:
+                    summary.svg_skipped += 1
+                    logger.info(
+                        "[svg] leaf=%s skipped (master-md5 inchangé) → %s",
+                        leaf_id_v, svg_skip,
+                    )
+            except Exception as exc:
+                result.errors.append(f"svg upload failed: {exc}")
+                logger.warning("[svg] upload SVG échoué pour %s: %s", leaf_id_v, exc)
+
         # 4. Convertir + écrire les Posts MD × 3 locales (ADD-ONLY)
         for locale, post_slug in post_slugs.items():
             json_path = POSTS_DIR / locale / f"{post_slug}.json"
@@ -1483,6 +1788,18 @@ def run_pipeline(
             if theme_ids:
                 post["themeIds"] = theme_ids
                 summary.theme_ids_tagged += 1
+
+            # Multi-variantes coloriage (C2.3) : injecte le dict `variants`
+            # dans le frontmatter + pose le champ `image` legacy (raw_png
+            # de la variante choisie via _pick_legacy_image), sans JAMAIS
+            # ecraser un champ `image` deja present (retrocompat stricte).
+            variants_dict = _build_variants_dict(leaf_id_v)
+            if variants_dict:
+                post["variants"] = variants_dict
+                legacy_image = _pick_legacy_image(variants_dict)
+                if legacy_image and not post.get("image"):
+                    post["image"] = legacy_image
+
             md = post_json_to_md(post)
             if out_path.exists():
                 summary.posts_regen += 1
@@ -1491,6 +1808,17 @@ def run_pipeline(
             written = write_post_md(rimalab_root, locale, post_slug, md)
             result.posts_written.append(written)
             summary.posts_written += 1
+
+        # 4bis. Copie des artefacts multi-variantes vers le site (C2.3).
+        # Best-effort : un echec ici ne fait pas échouer la leaf entiere
+        # (les posts MD ont deja ete ecrits).
+        try:
+            _copy_variant_artefacts(leaf_id_v, rimalab_root)
+        except Exception as exc:
+            result.errors.append(f"copy variants artefacts failed: {exc}")
+            logger.warning(
+                "Copy variant artefacts failed for %s: %s", leaf_id_v, exc
+            )
 
         summary.leaves_ok += 1
         summary.leaves.append(result)
@@ -1575,6 +1903,11 @@ def write_report(summary: PipelineRunSummary) -> None:
     lines.append(f"  - No master PNG : {summary.leaves_no_master}")
     lines.append(f"- Variants R2 uploaded : {summary.variants_uploaded}")
     lines.append(f"- Variants R2 skipped (idempotent ETag match) : {summary.variants_skipped}")
+    lines.append(
+        f"- SVG décoloriage R2 : {summary.svg_uploaded} uploaded / "
+        f"{summary.svg_skipped} skipped (master-md5) / "
+        f"{summary.svg_missing} missing"
+    )
     lines.append(f"- Posts MD écrits : {summary.posts_written}")
     lines.append("")
     if summary.errors:
@@ -1636,6 +1969,8 @@ def _print_summary(summary: PipelineRunSummary) -> None:
           f"failed={summary.leaves_failed} no_master={summary.leaves_no_master}")
     print(f"  variants uploaded={summary.variants_uploaded} "
           f"skipped={summary.variants_skipped} posts={summary.posts_written}")
+    print(f"  svg uploaded={summary.svg_uploaded} "
+          f"skipped={summary.svg_skipped} missing={summary.svg_missing}")
     if summary.errors:
         for leaf_id, msg in summary.errors[:5]:
             print(f"  err {leaf_id}: {msg}")
@@ -1873,6 +2208,9 @@ def main(argv: list[str] | None = None) -> int:
         theme_ids_tagged=summary.theme_ids_tagged,
         r2_uploaded=summary.variants_uploaded,
         r2_skipped=summary.variants_skipped,
+        svg_uploaded=summary.svg_uploaded,
+        svg_skipped=summary.svg_skipped,
+        svg_missing=summary.svg_missing,
         branch_name=summary.bot_branch_name,
         commit_count=summary.bot_commit_count,
         no_git_push=args.no_git_push or args.mock,

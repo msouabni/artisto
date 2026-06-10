@@ -1,0 +1,321 @@
+{
+  "params": {
+    "k": 12,
+    "meanshift_sp": 12,
+    "meanshift_sr": 24,
+    "merge_thresh": 0.0005,
+    "protect_contrast": 30.0
+  },
+  "images": [
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 6145,
+      "regions_final": 35,
+      "protected_legitimate": 5,
+      "sliver_forced_merges": 6109,
+      "non_sliver_merges": 1,
+      "slivers_initial": 6109,
+      "mean_deltaE_protected": 75.94,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.37,
+        "kmeans": 0.51,
+        "cc": 0.05,
+        "merge": 0.13,
+        "render": 0.01,
+        "total": 1.08
+      },
+      "slot": 1,
+      "id": "pastel_dog",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v3/01_pastel_dog_regions_v3.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 8020,
+      "regions_final": 46,
+      "protected_legitimate": 14,
+      "sliver_forced_merges": 7973,
+      "non_sliver_merges": 1,
+      "slivers_initial": 7973,
+      "mean_deltaE_protected": 65.69,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.43,
+        "kmeans": 0.52,
+        "cc": 0.05,
+        "merge": 0.15,
+        "render": 0.01,
+        "total": 1.17
+      },
+      "slot": 2,
+      "id": "pastel_horse",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v3/02_pastel_horse_regions_v3.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 7710,
+      "regions_final": 62,
+      "protected_legitimate": 12,
+      "sliver_forced_merges": 7648,
+      "non_sliver_merges": 0,
+      "slivers_initial": 7648,
+      "mean_deltaE_protected": 59.43,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.46,
+        "kmeans": 0.5,
+        "cc": 0.06,
+        "merge": 0.12,
+        "render": 0.02,
+        "total": 1.16
+      },
+      "slot": 3,
+      "id": "pastel_cat",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v3/03_pastel_cat_regions_v3.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 8210,
+      "regions_final": 58,
+      "protected_legitimate": 29,
+      "sliver_forced_merges": 8150,
+      "non_sliver_merges": 2,
+      "slivers_initial": 8150,
+      "mean_deltaE_protected": 80.68,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.46,
+        "kmeans": 0.52,
+        "cc": 0.06,
+        "merge": 0.14,
+        "render": 0.01,
+        "total": 1.2
+      },
+      "slot": 4,
+      "id": "pastel_elephant",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v3/04_pastel_elephant_regions_v3.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 9403,
+      "regions_final": 67,
+      "protected_legitimate": 21,
+      "sliver_forced_merges": 9335,
+      "non_sliver_merges": 1,
+      "slivers_initial": 9335,
+      "mean_deltaE_protected": 79.42,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.55,
+        "kmeans": 0.55,
+        "cc": 0.05,
+        "merge": 0.16,
+        "render": 0.01,
+        "total": 1.32
+      },
+      "slot": 5,
+      "id": "pastel_lion2",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v3/05_pastel_lion2_regions_v3.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 6187,
+      "regions_final": 59,
+      "protected_legitimate": 22,
+      "sliver_forced_merges": 6116,
+      "non_sliver_merges": 12,
+      "slivers_initial": 6116,
+      "mean_deltaE_protected": 56.57,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.42,
+        "kmeans": 0.53,
+        "cc": 0.06,
+        "merge": 0.13,
+        "render": 0.01,
+        "total": 1.14
+      },
+      "slot": 6,
+      "id": "taxo_polar_bear_on_ice",
+      "category": "scene",
+      "out_png": "poc/decoloriage/g1a_out_v3/06_taxo_polar_bear_on_ice_regions_v3.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 6860,
+      "regions_final": 53,
+      "protected_legitimate": 18,
+      "sliver_forced_merges": 6802,
+      "non_sliver_merges": 5,
+      "slivers_initial": 6802,
+      "mean_deltaE_protected": 61.18,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.46,
+        "kmeans": 0.57,
+        "cc": 0.06,
+        "merge": 0.14,
+        "render": 0.01,
+        "total": 1.24
+      },
+      "slot": 7,
+      "id": "pastel_pirate_ship",
+      "category": "scene",
+      "out_png": "poc/decoloriage/g1a_out_v3/07_pastel_pirate_ship_regions_v3.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 3818,
+      "regions_final": 52,
+      "protected_legitimate": 9,
+      "sliver_forced_merges": 3753,
+      "non_sliver_merges": 13,
+      "slivers_initial": 3753,
+      "mean_deltaE_protected": 67.46,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.42,
+        "kmeans": 0.52,
+        "cc": 0.05,
+        "merge": 0.1,
+        "render": 0.02,
+        "total": 1.11
+      },
+      "slot": 8,
+      "id": "pastel_lighthouse",
+      "category": "object",
+      "out_png": "poc/decoloriage/g1a_out_v3/08_pastel_lighthouse_regions_v3.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 9229,
+      "regions_final": 76,
+      "protected_legitimate": 15,
+      "sliver_forced_merges": 9151,
+      "non_sliver_merges": 2,
+      "slivers_initial": 9151,
+      "mean_deltaE_protected": 79.05,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.64,
+        "kmeans": 0.47,
+        "cc": 0.06,
+        "merge": 0.15,
+        "render": 0.01,
+        "total": 1.33
+      },
+      "slot": 9,
+      "id": "pastel_castle",
+      "category": "object",
+      "out_png": "poc/decoloriage/g1a_out_v3/09_pastel_castle_regions_v3.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "meanshift_sp": 12,
+      "meanshift_sr": 24,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 17092,
+      "regions_final": 214,
+      "protected_legitimate": 105,
+      "sliver_forced_merges": 16868,
+      "non_sliver_merges": 10,
+      "slivers_initial": 16868,
+      "mean_deltaE_protected": 52.25,
+      "passes_used": 2,
+      "timing_s": {
+        "meanshift": 0.92,
+        "kmeans": 0.55,
+        "cc": 0.06,
+        "merge": 0.23,
+        "render": 0.01,
+        "total": 1.78
+      },
+      "slot": 10,
+      "id": "pastel_peacock",
+      "category": "stress",
+      "out_png": "poc/decoloriage/g1a_out_v3/10_pastel_peacock_regions_v3.png"
+    }
+  ]
+}

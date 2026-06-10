@@ -28,12 +28,201 @@ import json
 import argparse
 import copy
 import logging
+import os
+import re
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
 
 # Hook prophylactique T5+T6+T7 (transfert skill prompt-taxonomy-ecosystem 2026-05-10)
 from services.prompt_filters import apply_all_filters as _apply_prompt_filters
+
+
+# === Style de generation (transition 2026-05-31) =============================
+# Passage du mode "lineart" historique (PNG noir/blanc a colorier) au mode
+# "pastel" (PNG colorie natif, compatible avec extract_palette + coloriage
+# interactif).
+#
+# DEFAULT_PROMPT_STYLE : peut etre 'pastel' (nouveau default 2026-05-31) ou
+# 'lineart' (mode historique, pour rollback).
+#
+# ROLLBACK :
+#   - Via env var : ARTISTE_PROMPT_STYLE=lineart python ...
+#   - Via param explicite : gen.build_prompt(leaf_id, style='lineart')
+#   - Via modification globale : changer le default ci-dessous
+#
+# Voir CLAUDE.md section "Style pastel + pipeline coloriage" pour details.
+DEFAULT_PROMPT_STYLE = os.environ.get("ARTISTE_PROMPT_STYLE", "pastel").lower()
+
+# Patterns communs a la plupart des styles colories (retirent les directives
+# lineart strictes pour autoriser le coloriage natif).
+_COMMON_REMOVE_POSITIVE_PATTERNS = [
+    r"black and white line art,?\s*",
+    r"thick clean outlines,?\s*",
+    r"no shading,?\s*",
+    r"no fill,?\s*",
+    r"white background,?\s*",
+]
+_COMMON_REMOVE_NEGATIVE_PATTERNS = [
+    r"no colors,?\s*",
+    r"no fill colors,?\s*",
+    r"no intersection,?\s*",
+    r"no change in ink transparency for different plan only black stroke,?\s*",
+]
+
+# === STYLE_CONFIGS - dict central des transformations de style =================
+# Chaque entree definit comment transformer un prompt lineart en prompt colorie
+# d'un style donne. Ajouter un style = ajouter une entree ici + un bouton dans
+# data/prompt_playground_ernie.html.
+#
+# Structure d'une entree :
+#   header_replacement : remplace "coloring book page for kids" en tete du positif
+#   positive_suffix    : ajoute en queue du positif (palette, contraintes style)
+#   negative_add       : ajoute au negatif (anti-patterns specifiques du style)
+#   remove_positive_*  : regex retirees du positif (par defaut, _COMMON_REMOVE_POSITIVE)
+#   remove_negative_*  : regex retirees du negatif (par defaut, _COMMON_REMOVE_NEGATIVE)
+STYLE_CONFIGS: dict = {
+    "pastel": {
+        # Validee 2026-05-31 sur 3 leafs taxonomie reels (polar_bear_on_ice,
+        # carpet_cleaner, bengal_tiger) + production-ready apres extract_palette.
+        "header_replacement": "soft pastel children's coloring illustration",
+        "positive_suffix": (
+            "thick black outlines preserved around every region, "
+            "filled with a soft pastel palette (pale yellow, peach, sky-blue, mint, "
+            "lavender, blush-pink, sand, cream), each region one uniform color, "
+            "no gradients"
+        ),
+        "negative_add": (
+            "photographic, realistic, 3d render, gradient fill, "
+            "soft shading transitions, blurry edges, dark colors, neon, oversaturated, "
+            "painterly, line art only, uncolored"
+        ),
+    },
+    "watercolor": {
+        # Test capacite degradees organiques.
+        "header_replacement": "soft watercolor children's coloring illustration",
+        "positive_suffix": (
+            "soft watercolor washes with gentle organic edges, "
+            "pale dreamy palette (sky blue, blush pink, lemon yellow, mint, "
+            "lavender, peach, cream), each region predominantly one color with "
+            "subtle wet-on-wet variation, light paper-grain texture visible, "
+            "preserved thin black outlines"
+        ),
+        "negative_add": (
+            "photographic, realistic, 3d render, harsh hard outlines, "
+            "perfectly uniform solid fills, oversaturated colors, neon, "
+            "digital perfect lines, glossy"
+        ),
+    },
+    "flat_cartoon": {
+        # Test capacite aplats saturees modernes + pipeline chromakey compatible.
+        # IMPORTANT 2026-06-01 : palette restreinte aux couleurs luma > 90 pour
+        # eviter le piege Otsu OR du masque trait (qui mange bright red luma 76,
+        # royal blue luma 78, purple luma 52 - confondues avec trait noir).
+        # Cf docs/reports/2026-06-01_diagnostic-flat-cartoon-bleu-mange-trait.md
+        "header_replacement": (
+            "bold flat cartoon children's illustration on pure cinema chromakey "
+            "green background (#00B140)"
+        ),
+        "positive_suffix": (
+            # Palette spread-LAB calibree 2026-06-01 : 6 couleurs maximalement
+            # distinctes en distance LAB (deltaE min = 60, luma toutes > 90).
+            # Conçue pour robustesse a la detection chromatique post-fusion.
+            "bold solid flat color fills, high-contrast 6-color palette "
+            "(vivid red, bright orange, sunny yellow, cyan, bright sapphire blue, "
+            "vibrant magenta), no two adjacent regions sharing similar colors, "
+            "every region including the outer silhouette bordered by crisp pure "
+            "black outlines (#000000), no green tint anywhere in the subject, "
+            "each region one pure uniform color, no shading, no gradients, "
+            "modern children's cartoon style"
+        ),
+        "negative_add": (
+            "watercolor, soft pastel, gradient, blurry edges, painterly, "
+            "sketchy lines, dull desaturated colors, beige, sepia, photographic, "
+            "colored outlines, blue outlines, dark navy contours, contours in "
+            "subject colors, royal blue, bright red, dark red, deep purple, navy, "
+            "maroon, any color darker than middle gray, green in the subject"
+        ),
+    },
+    "crayon": {
+        # Test capacite texture craie/crayon.
+        "header_replacement": "crayon-textured children's coloring illustration",
+        "positive_suffix": (
+            "filled with visible wax crayon strokes, slightly rough textured fills "
+            "(each region one color but with subtle crayon-stroke direction), "
+            "warm earthy palette (terracotta, ochre, forest green, butter yellow, "
+            "brick red, sand, cream, soft brown), preserved thick black outlines, "
+            "paper grain visible, hand-colored look"
+        ),
+        "negative_add": (
+            "perfectly smooth flat fills, glossy finish, digital perfect lines, "
+            "photographic, watercolor wash, neon, oversaturated, 3d render"
+        ),
+    },
+    "kawaii": {
+        # Test capacite style culturel marque.
+        "header_replacement": "kawaii adorable children's coloring illustration",
+        "positive_suffix": (
+            "ultra-cute kawaii aesthetic, soft pastel palette (cotton candy pink, "
+            "mint green, lavender, baby blue, butter yellow, peach, lilac, cream), "
+            "rounded shapes, subtle sparkles and tiny stars, blushed cheeks where "
+            "applicable, each region one uniform pastel color, preserved thick "
+            "black outlines, charming friendly mood"
+        ),
+        "negative_add": (
+            "dark colors, harsh shadows, gritty texture, realistic proportions, "
+            "photographic, painterly, scary, mature, somber, brown dominant"
+        ),
+    },
+}
+
+
+def _apply_style_transform(positive: str, negative: str, style: str) -> tuple[str, str]:
+    """Applique une transformation de style depuis STYLE_CONFIGS.
+
+    Retourne (positive, negative) inchanges si le style est inconnu (caller doit
+    valider en amont et fallback sur 'lineart' au besoin).
+    """
+    cfg = STYLE_CONFIGS.get(style)
+    if cfg is None:
+        return positive, negative
+
+    remove_pos = cfg.get("remove_positive_patterns", _COMMON_REMOVE_POSITIVE_PATTERNS)
+    remove_neg = cfg.get("remove_negative_patterns", _COMMON_REMOVE_NEGATIVE_PATTERNS)
+
+    pos = re.sub(
+        r"^coloring book page for kids,?\s*",
+        cfg["header_replacement"] + ", ",
+        positive, count=1, flags=re.IGNORECASE,
+    )
+    for pat in remove_pos:
+        pos = re.sub(pat, "", pos, flags=re.IGNORECASE)
+    pos = re.sub(r",\s*,", ",", pos)
+    pos = re.sub(r"\s+", " ", pos).strip().rstrip(",").strip()
+    pos = pos + ", " + cfg["positive_suffix"]
+
+    neg = negative
+    for pat in remove_neg:
+        neg = re.sub(pat, "", neg, flags=re.IGNORECASE)
+    neg = re.sub(r",\s*,", ",", neg)
+    neg = re.sub(r"\s+", " ", neg).strip().rstrip(",").strip()
+    neg = neg + ", " + cfg["negative_add"]
+
+    return pos, neg
+
+
+# Backward-compat : ancien nom utilise par tests/test_prompt_generator_pastel.py
+def _pastelize_prompt(positive: str, negative: str) -> tuple[str, str]:
+    """Alias historique de _apply_style_transform(..., 'pastel')."""
+    return _apply_style_transform(positive, negative, "pastel")
+
+
+# Backward-compat : anciennes constantes utilisees par d'autres modules / tests.
+_PASTEL_HEADER = STYLE_CONFIGS["pastel"]["header_replacement"]
+_PASTEL_POSITIVE_SUFFIX = STYLE_CONFIGS["pastel"]["positive_suffix"]
+_PASTEL_NEGATIVE_ADD = STYLE_CONFIGS["pastel"]["negative_add"]
+_PASTEL_REMOVE_POSITIVE_PATTERNS = _COMMON_REMOVE_POSITIVE_PATTERNS
+_PASTEL_REMOVE_NEGATIVE_PATTERNS = _COMMON_REMOVE_NEGATIVE_PATTERNS
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -1873,17 +2062,24 @@ class PromptGenerator:
     # ===================================================================
     # CŒUR : construction du prompt
     # ===================================================================
-    def build_prompt(self, leaf_id: str) -> Dict:
+    def build_prompt(self, leaf_id: str, style: Optional[str] = None) -> Dict:
         """
         Construit le prompt complet pour une feuille donnée.
-        
+
+        Args:
+            leaf_id : ID de la feuille taxonomie.
+            style : 'pastel' (default depuis 2026-05-31) ou 'lineart' (rollback).
+                    Si None, utilise DEFAULT_PROMPT_STYLE (env ARTISTE_PROMPT_STYLE
+                    ou 'pastel' par défaut).
+
         Returns dict avec :
-            - positive : prompt positif prêt à coller
-            - negative : negative v3 + extras
+            - positive : prompt positif prêt à coller (style applique)
+            - negative : negative v3 + extras (style applique)
             - resolution : (width, height)
             - workflow : classe à utiliser
             - leaf_metadata : infos sur la feuille
             - strategy : stratégie de production
+            - style : 'pastel' ou 'lineart' (le mode effectivement applique)
         """
         if leaf_id not in self.leaf_index:
             raise ValueError(f"Feuille introuvable : {leaf_id}")
@@ -1999,9 +2195,26 @@ class PromptGenerator:
         if template_fn.__name__ in _LANDSCAPE_THREEQUARTER_TEMPLATES:
             resolution = (1376, 768)
         
+        # === Application du style ================================================
+        # Default = env ARTISTE_PROMPT_STYLE ou 'pastel' (lecture DYNAMIQUE pour
+        # permettre le rollback runtime via env var sans reimport du module).
+        # 'lineart' = mode historique (rien a faire, le prompt est deja lineart).
+        # Tout autre style declare dans STYLE_CONFIGS = transformation appliquee.
+        # Pour ajouter un style : 1) entree dans STYLE_CONFIGS, 2) bouton dans
+        # data/prompt_playground_ernie.html.
+        effective_style = (style or os.environ.get("ARTISTE_PROMPT_STYLE", "pastel")).lower()
+        if effective_style in STYLE_CONFIGS:
+            positive, negative = _apply_style_transform(positive, negative, effective_style)
+        elif effective_style != "lineart":
+            logger.warning(
+                "Style inconnu '%s' pour leaf_id=%s, fallback sur 'lineart'.",
+                effective_style, leaf_id,
+            )
+            effective_style = "lineart"
+
         # Métadonnées
         seo_data = self.seo_index.get(leaf_id, {})
-        
+
         return {
             'leaf_id': leaf_id,
             'leaf_name_en': leaf.get('name_en'),
@@ -2012,6 +2225,7 @@ class PromptGenerator:
             'category_root': root.get('name_en'),
             'positive': positive,
             'negative': negative,
+            'style': effective_style,
             'resolution': resolution,
             'workflow_class': strategy['class'],
             'technique': strategy['technique'],

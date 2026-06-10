@@ -208,6 +208,222 @@ Aucun paramètre sampler/steps/cfg ne corrige les couleurs résiduelles. Fix uni
 - dpmpp_2m_sde : fallback expérimental uniquement (score moyen 4.38/10)
 - Si sampler_name == "dpmpp_2m" dans job.config : warning ou refus si steps < 20
 
+## Playground ERNIE (acté 2026-05-31)
+
+Interface HTML interactive pour tester rapidement des prompts ERNIE sans script.
+
+**URL** : `/data/prompt_playground_ernie.html` (servi via le mount static existant).
+**Accès** : carte "Playground Ernie" depuis `/data/admin.html`.
+
+### Endpoints API associés (`src/api/routes/prompt_generator.py`)
+
+```
+GET /api/prompt-generator/leafs?search=<substring>&limit=50
+    → autocomplete leaf_ids
+
+GET /api/prompt-generator/{leaf_id}?style=pastel|lineart
+    → prompt pour leaf_id direct (style applique)
+
+GET /api/prompt-generator/resolve?q=<input>&style=pastel|lineart
+    → résolution multi-format :
+        - leaf_id direct ('polar_bear_on_ice')
+        - slug nu ('aldb-alqtby')
+        - URL relative ('ar/colorier/aldb-alqtby/')
+        - URL absolue ('https://alwanbooks.com/ar/.../alnmr-albnghaly/')
+    Lookup : data/export/posts/{ar,fr,en}/<slug>.json
+              + fallback data/sites/alwanbooks/src/content/posts/<locale>/<slug>.md
+```
+
+Tests : `tests/test_prompt_generator_routes.py` (14 tests, tous passants).
+
+### Fonctionnalités UI
+
+- Input intelligent multi-format (leaf_id, slug, URL alwanbooks)
+- Toggle style **pastel** / **lineart** (rechargement auto du prompt)
+- Textareas **positif** et **négatif** éditables après chargement
+- Paramètres ComfyUI : seed / steps / cfg / résolution (3 presets : 1024×1024, 848×1264, 1376×768)
+- Bouton "Générer" → soumission directe à ComfyUI `127.0.0.1:8188` (pas de proxy API)
+- Affichage immédiat de l'image générée
+- Bouton "Reset depuis template" : revient au prompt PromptGenerator initial
+- Bouton "★ favori" : sauve dans localStorage avec un nom
+- Historique des 20 derniers runs (vignettes cliquables → restaure le contexte complet)
+- Autocomplete leaf_ids via `/leafs`
+
+### Pré-requis
+
+- API artiste-coloriage lancée (`python start.py`)
+- ComfyUI lancé sur `127.0.0.1:8188`
+- Workflow chargé : `data/workflows/ernie-image-turbo-q8-api.json`
+
+### Limites
+
+- 1 génération à la fois (pas de queue UI)
+- Stockage favoris/historique en localStorage (perdu si change de browser)
+- Pas de comparaison batch côte-à-côte (à venir si besoin v2)
+- Le proxy ComfyUI direct depuis le navigateur suppose ComfyUI en localhost
+
+## Style pastel + pipeline coloriage (acté 2026-05-31)
+
+**Transition adoptée** : `lineart` → `pastel` comme **style par défaut** de génération + extraction palette + coloriage interactif.
+
+Sources : `_lab/extract-palette/CAPITALISATION.md` + `docs/reports/2026-05-31_transition-pastel.md`.
+
+### Étape 1 — Prompts pastel (PromptGenerator)
+
+`src/services/prompt_generator.py` accepte un paramètre `style` :
+
+```python
+gen.build_prompt("polar_bear_on_ice")                    # default = pastel
+gen.build_prompt("polar_bear_on_ice", style="pastel")    # explicite
+gen.build_prompt("polar_bear_on_ice", style="lineart")   # rollback historique
+```
+
+Le default est lu dynamiquement via `os.environ["ARTISTE_PROMPT_STYLE"]` (lecture à chaque appel). Valeurs : `pastel` (def 2026-05-31) ou `lineart`.
+
+**Rollback global** : `ARTISTE_PROMPT_STYLE=lineart python …` (ou modifier le default `"pastel"` dans `prompt_generator.py:DEFAULT_PROMPT_STYLE`).
+
+La transformation pastel (`_pastelize_prompt`) :
+- Remplace `coloring book page for kids` par `soft pastel children's coloring illustration`
+- Retire `black and white line art`, `no shading`, `no fill`, `white background` du positif
+- Retire `no colors`, `no fill colors` du négatif
+- Ajoute palette nommée + contraintes flat fill au positif
+- Ajoute `photographic, realistic, 3d render, painterly, …` au négatif
+- **Préserve** sujet + isolation + contraintes anatomiques
+
+Tests dédiés : `tests/test_prompt_generator_pastel.py` (14 tests, tous passants).
+Tests legacy : `tests/test_prompt_generator.py` (124 tests) — utilisent `ARTISTE_PROMPT_STYLE=lineart` via `tests/conftest.py`.
+
+### Étape 2 — Extraction palette + coloriage interactif (src/services/extract_palette.py)
+
+**Service prod** : `from services.extract_palette import extract_palette, make_params, render_svg, PROD_PRESET`.
+
+```python
+from services.extract_palette import extract_palette, make_params, PROD_PRESET
+
+params = make_params(PROD_PRESET)  # = "iso_trait_v3_anomaly_split"
+result = extract_palette(png_colorie, params)
+# result.regions, result.palette, result.ink_svg_inline, ...
+```
+
+**Preset prod** : `iso_trait_v3_anomaly_split`. Caractéristiques :
+- Trait V3 (Otsu plafonné 90 + dilate 1 + close 3) — immutable
+- Séparation contour/régions (`ink_kmeans_dilate=2`)
+- Expansion Voronoi + simplify 0.0005 + stroke même couleur 1px
+- `merge_small_regions_px=400` (UX coloriage)
+- **`anomaly_detection_enabled=True`** : composantes > 30 % du canvas → re-k-means k=2 LAB local + split si ΔE > 10 et un seul touche le bord. Auto-correctif sur le bug "fond fuit dans la silhouette".
+
+**Couverture validée** : 99.5–100 % sur 47 PNG ERNIE pastel + 3 leafs taxonomie réels (polar_bear_on_ice, carpet_cleaner, bengal_tiger).
+
+**Rollback preset** : `make_params("iso_trait_v3_filled_no_gap_merged")` (ancien prod sans anomaly detection).
+
+### Étape 3 — CLI (scripts/extract_palette_cli.py)
+
+```bash
+# Génère un SVG simple
+python scripts/extract_palette_cli.py run <png> --out output.svg
+
+# Génère un coloriage interactif HTML self-contained
+python scripts/extract_palette_cli.py coloriage <png> --out coloriage.html
+
+# Bench sur un dossier
+python scripts/extract_palette_cli.py bench <folder> --out bench.html
+
+# Rollback preset
+python scripts/extract_palette_cli.py coloriage <png> --out out.html \
+    --preset iso_trait_v3_filled_no_gap_merged
+```
+
+### Dépendances
+
+```bash
+pip install -r requirements-extract-palette.txt
+# vtracer + opencv + numpy + scipy + scikit-image
+```
+
+### Pipeline cible
+
+```
+taxonomie
+    → PromptGenerator.build_prompt(leaf_id)           # style=pastel par défaut
+    → ComfyUI ERNIE Q8 (génération PNG colorié pastel)
+    → QC vision + humain
+    → Vectorizer (src/services/vectorizer.py)         # SVG impression/print
+    → extract_palette (src/services/extract_palette.py) # palette + coloriage
+    → coloriage interactif HTML self-contained         # via scripts/extract_palette_cli.py
+    → publication
+```
+
+### Procédure rollback (en cas de régression bloquante)
+
+1. **Génération en lineart uniquement** (sans toucher au code) :
+   ```bash
+   ARTISTE_PROMPT_STYLE=lineart python start.py
+   # ou pour un run isolé : ARTISTE_PROMPT_STYLE=lineart python scripts/...
+   ```
+
+2. **Rollback global du code** :
+   - Modifier `src/services/prompt_generator.py` : `DEFAULT_PROMPT_STYLE = "lineart"` (info-only, le code lit env)
+   - OU set `ARTISTE_PROMPT_STYLE=lineart` dans `.env` du déploiement
+
+3. **Rollback preset extract_palette** :
+   - Modifier `PROD_PRESET` dans `src/services/extract_palette.py` :
+     ```python
+     PROD_PRESET = "iso_trait_v3_filled_no_gap_merged"  # ancien prod
+     ```
+
+4. **Procédure complète** :
+   - `git revert` du commit de transition + `pytest` pour vérifier les tests lineart pré-transition (qui doivent re-devenir actifs par défaut)
+   - Re-générer les images impactées en lineart
+
+## Vectorisation post-ERNIE (PNG → SVG via VTracer)
+
+Source : `docs/reports/2026-05-30_poc-vectorisation.md` + bench `_lab/vectorize-bench/VERDICT.md`. Service `src/services/vectorizer.py` et CLI `scripts/vectorize_cli.py`.
+
+Place dans le pipeline : taxonomie → PromptGenerator → ComfyUI → QC → **[Vectorizer]** → SVG. Le service est **descripteur, pas correctif** : un défaut 2_objets / 3_jambes est reproduit tel quel. Le filtrage qualité reste en amont.
+
+**Moteur** : VTracer 0.6.15+ (Rust port via PyO3) — choisi après bench face à potrace. Aucun binaire système requis.
+
+**Dépendances** : `pip install -r requirements-vectorize.txt` (`vtracer`, `opencv-python-headless`, `numpy`).
+
+**Presets prod figés** (`PRESETS` dans `src/services/vectorizer.py` — ne pas changer sans nouveau bench sur ≥ 30 PNG ERNIE réels) :
+
+| Preset | Usage | mode | filter_speckle | corner | splice | path_prec | ratio médian PNG→SVG |
+|---|---|---|---|---|---|---|---|
+| `bw_default` | Prod générale (impression/web) | spline | 4 | 60 | 45 | 3 | 0.10 |
+| `bw_clean` | CDN / impression légère | spline | 10 | 80 | 60 | 2 | 0.08 |
+| `bw_detail` | Archivage éditorial | spline | 2 | 40 | 30 | 5 | 0.14 |
+| `bw_polygon` | **Piste phase 2** (coloriage interactif) | polygon | 4 | 60 | 45 | 3 | 0.03 |
+
+**Pre-clean OpenCV** = opt-in (`pre_clean=True`) — utile si raster dégradé (couleur résiduelle, scan). Désactivé par défaut car VTracer gère déjà `filter_speckle` natif.
+
+**API Python** :
+```python
+from services.vectorizer import Vectorizer, PRESETS
+
+vec = Vectorizer.from_preset("bw_default")
+result = vec.process(png_path, out_dir)  # VectorizeResult(name, svg_path, kb_in, kb_svg, n_paths, n_subpaths, ratio)
+
+# Override d'un preset
+vec = Vectorizer.from_preset("bw_default", filter_speckle=8, mode="polygon")
+```
+
+**CLI** (le dossier d'images est **externe au repo** — sortie ComfyUI, parfois sur autre machine via Tailscale) :
+```bash
+# Prod (preset par défaut bw_default)
+python scripts/vectorize_cli.py run "/chemin/comfy/output/" --out data/svg/
+
+# Avec preset spécifique
+python scripts/vectorize_cli.py run "/chemin/comfy/output/" --out data/svg/ --preset bw_polygon
+
+# Rapport HTML auto-contenu (miniatures base64 + SVG inline)
+python scripts/vectorize_cli.py report "/chemin/comfy/output/" --out review.html --max 30
+
+# Pre-clean OpenCV
+python scripts/vectorize_cli.py run "/chemin/comfy/output/" --out data/svg/ --pre-clean
+```
+
+**Hors périmètre (phase 2 distincte)** : coloriage interactif web = segmentation des régions blanches fermées en paths SVG remplissables. Le preset `bw_polygon` est la piste sérieuse identifiée par le bench (SVG ×3-4 plus léger, polygones droits → régions identifiables).
+
 ## Validation de contenu — HARD caps Zod plateforme vs SOFT caps éditoriaux pipeline
 
 Source : réponse plateforme Alwan Books **2026-05-05** + ADR §1.13. Les hard caps Zod sont **uniformes pour toutes les locales** (EN/FR/AR). Le pipeline Python applique en plus des sweet spots éditoriaux internes plus stricts, distincts et **différenciés par locale** (densité lexicale AR ~50 % inférieure à EN/FR).

@@ -11,11 +11,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 _LOG_FORMAT = "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
 _DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
-_VALID_COMPONENTS = frozenset({"api", "image_worker", "text_worker"})
+_VALID_COMPONENTS = frozenset({"api", "image_worker", "text_worker", "image_post_processing_worker"})
 _DEFAULT_LEVEL: dict[str, int] = {
     "api": logging.DEBUG,
     "image_worker": logging.INFO,
     "text_worker": logging.INFO,
+    "image_post_processing_worker": logging.INFO,
 }
 
 _ROTATE_BYTES = 10 * 1024 * 1024

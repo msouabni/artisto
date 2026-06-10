@@ -5,6 +5,10 @@ import os
 
 os.environ["ARTISTE_LOG_TO_FILE"] = "0"
 os.environ.setdefault("DATABASE_URL", "sqlite+pysqlite:///:memory:")
+# Tests legacy supposent le mode lineart historique (passage en pastel
+# 2026-05-31 est une transition prod, mais les tests restent ancres sur
+# le mode lineart). Tests dedies pastel : tests/test_prompt_generator_pastel.py.
+os.environ["ARTISTE_PROMPT_STYLE"] = "lineart"
 
 import pytest
 from sqlalchemy import create_engine

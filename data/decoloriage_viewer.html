@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Décoloriage - Viewer SVG click-to-fill</title>
+<style>
+  :root {
+    --bg: #fdfbf6;
+    --paper: #ffffff;
+    --ink: #15151b;
+    --muted: #6b6b78;
+    --shadow: 0 6px 24px rgba(0,0,0,0.08);
+    --gap: 14px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    padding: 18px 24px;
+    border-bottom: 1px solid #ece8df;
+    background: #fff;
+  }
+  header h1 { margin: 0; font-size: 18px; font-weight: 600; }
+  header p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+  main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 18px;
+    padding: 18px 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .canvas-wrap {
+    background: var(--paper);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+  }
+  .canvas-wrap svg { width: 100%; height: auto; max-height: 80vh; display: block; }
+  .region { cursor: pointer; transition: fill 0.08s ease; }
+  .region:hover { filter: brightness(0.97); }
+  /* Shading arcs masqués par défaut, révélés via le toggle "Guides". */
+  .arc-shading { stroke: none; }
+  .show-guides .arc-shading { stroke: #DDDDDD; stroke-width: 1; }
+  aside { display: flex; flex-direction: column; gap: var(--gap); }
+  .card { background: var(--paper); border-radius: 12px; padding: 14px; box-shadow: var(--shadow); }
+  .card h2 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  .palette { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .crayon {
+    aspect-ratio: 1.6 / 1;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+    transition: transform 0.1s ease;
+  }
+  .crayon.paper { color: #555; text-shadow: none; border: 1px solid #ccc; }
+  .crayon[aria-pressed="true"] { border-color: var(--ink); transform: translateY(-2px); }
+  .crayon:hover { transform: translateY(-2px); }
+  .actions { display: flex; flex-direction: column; gap: 8px; }
+  button.action {
+    appearance: none;
+    border: 1.5px solid var(--ink);
+    background: #fff;
+    color: var(--ink);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button.action:hover { background: #f5f1e6; }
+  button.action.primary { background: var(--ink); color: #fff; }
+  button.action.primary:hover { background: #2a2a35; }
+  .loader { display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+  .loader input[type="text"] { padding: 8px 10px; border: 1.5px solid #ddd; border-radius: 8px; font-size: 13px; }
+  .loader input[type="file"] { font-size: 12px; }
+  .stats { font-size: 12px; color: var(--muted); line-height: 1.55; }
+  .stats strong { color: var(--ink); }
+  .placeholder { color: var(--muted); font-size: 14px; text-align: center; }
+  footer { padding: 12px 24px; color: var(--muted); font-size: 12px; text-align: center; }
+  /* Liste de revue des artefacts décoloriage produits (Phase 3). */
+  .review-list { display: flex; flex-direction: column; gap: 6px; max-height: 340px; overflow-y: auto; }
+  .review-item {
+    text-align: left;
+    border: 1.5px solid #e6e2d8;
+    background: #fff;
+    border-radius: 10px;
+    padding: 9px 10px;
+    cursor: pointer;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--ink);
+    transition: border-color 0.1s ease, background 0.1s ease;
+  }
+  .review-item:hover { border-color: var(--ink); background: #f7f3ea; }
+  .review-item[aria-current="true"] { border-color: var(--ink); background: #f0ebde; }
+  .review-item .ri-title { font-weight: 600; }
+  .review-item .ri-meta { color: var(--muted); font-size: 11.5px; }
+  .review-item .ri-badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 1px 6px; border-radius: 6px; margin-left: 6px; vertical-align: middle;
+  }
+  .ri-badge.tp-yes { background: #06d6a0; color: #07301f; }
+  .ri-badge.tp-no { background: #eee; color: #777; }
+  .review-empty { color: var(--muted); font-size: 13px; line-height: 1.5; }
+  .review-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .btn-refresh {
+    appearance: none; border: 1.5px solid #ddd; background: #fff; border-radius: 8px;
+    padding: 4px 9px; font-size: 12px; cursor: pointer; color: var(--ink);
+  }
+  .btn-refresh:hover { background: #f5f1e6; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Décoloriage - Surface de revue</h1>
+  <p>Liste les artefacts décoloriage produits par le worker (moteur <code>decoloriage</code>). Clique une entrée pour la colorier. Chargement manuel (URL / fichier) conservé en fallback. Palette 6 crayons + Papier, solution = couleurs ERNIE quantifiées.</p>
+</header>
+<main>
+  <section class="canvas-wrap" id="canvas-wrap" aria-label="Zone de coloriage">
+    <div class="placeholder" id="placeholder">Chargement du SVG…</div>
+  </section>
+  <aside>
+    <div class="card">
+      <div class="review-head">
+        <h2 style="margin:0">Artefacts décoloriage</h2>
+        <button class="btn-refresh" id="btn-refresh" title="Recharger la liste">Rafraîchir</button>
+      </div>
+      <div class="review-list" id="review-list" style="margin-top:10px">
+        <div class="review-empty" id="review-loading">Chargement de la liste…</div>
+      </div>
+    </div>
+    <div class="card loader">
+      <h2>Charger un SVG (fallback)</h2>
+      <input type="text" id="svg-url" placeholder="/data/generated/...svg ou URL"
+             value="">
+      <button class="action" id="btn-load-url">Charger depuis l'URL</button>
+      <label>ou un fichier local :
+        <input type="file" id="svg-file" accept=".svg,image/svg+xml">
+      </label>
+    </div>
+    <div class="card">
+      <h2>Palette - 6 crayons + Papier</h2>
+      <div class="palette" role="radiogroup" aria-label="Choix de la couleur" id="palette"></div>
+    </div>
+    <div class="card actions">
+      <h2>Actions</h2>
+      <button class="action primary" id="btn-solution">Solution (couleurs ERNIE quantifiées)</button>
+      <button class="action" id="btn-reset">Tout effacer</button>
+      <button class="action" id="btn-guides" aria-pressed="false">Guides shading : OFF</button>
+    </div>
+    <div class="card stats" id="stats">Aucun SVG chargé.</div>
+  </aside>
+</main>
+<footer>Phase 1 - spike décoloriage - 2026-06-10</footer>
+<script>
+(() => {
+  // Palette design system Alwan Books (6 crayons) + Papier.
+  const CRAYONS = [
+    { name: "Cerise",    hex: "#FF2E63" },
+    { name: "Mandarine", hex: "#FF8A2B" },
+    { name: "Citron",    hex: "#FFD60A" },
+    { name: "Menthe",    hex: "#06D6A0" },
+    { name: "Ocean",     hex: "#118AB2" },
+    { name: "Prune",     hex: "#8B5CF6" },
+    { name: "Papier",    hex: "#ffffff" },
+  ];
+
+  let selected = CRAYONS[0].hex;
+
+  // Construire la palette
+  const paletteEl = document.getElementById("palette");
+  CRAYONS.forEach((c, i) => {
+    const btn = document.createElement("button");
+    btn.className = "crayon" + (c.hex === "#ffffff" ? " paper" : "");
+    btn.setAttribute("role", "radio");
+    btn.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    btn.dataset.color = c.hex;
+    btn.style.background = c.hex;
+    btn.title = c.name;
+    btn.textContent = c.name;
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".crayon").forEach(b => b.setAttribute("aria-pressed", "false"));
+      btn.setAttribute("aria-pressed", "true");
+      selected = c.hex;
+    });
+    paletteEl.appendChild(btn);
+  });
+
+  const wrap = document.getElementById("canvas-wrap");
+  const statsEl = document.getElementById("stats");
+
+  function wireRegions() {
+    const regions = wrap.querySelectorAll(".region");
+    regions.forEach(p => {
+      p.addEventListener("click", () => p.setAttribute("fill", selected));
+    });
+    const inkRegions = wrap.querySelectorAll(".ink-region").length;
+    const arcShading = wrap.querySelectorAll(".arc-shading").length;
+    const arcInk = wrap.querySelectorAll(".arc-ink").length;
+    statsEl.innerHTML =
+      `<strong>${regions.length}</strong> zones cliquables` +
+      ` (${inkRegions} régions-encre exclues)<br>` +
+      `<strong>${arcInk + arcShading}</strong> arcs ` +
+      `(${arcInk} encre / ${arcShading} shading)<br>` +
+      `Bouton <em>Guides</em> pour révéler les subdivisions internes.`;
+  }
+
+  function setSvg(svgText) {
+    wrap.innerHTML = svgText;
+    const svg = wrap.querySelector("svg");
+    if (!svg) {
+      wrap.innerHTML = '<div class="placeholder">SVG invalide (pas de balise &lt;svg&gt;).</div>';
+      statsEl.textContent = "Erreur de chargement.";
+      return;
+    }
+    wireRegions();
+  }
+
+  async function loadUrl(url) {
+    statsEl.textContent = "Chargement…";
+    try {
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+      const txt = await resp.text();
+      setSvg(txt);
+    } catch (e) {
+      wrap.innerHTML = '<div class="placeholder">Impossible de charger : ' + url + '<br>' + e.message + '</div>';
+      statsEl.textContent = "Échec du chargement.";
+    }
+  }
+
+  // Actions
+  document.getElementById("btn-solution").addEventListener("click", () => {
+    wrap.querySelectorAll(".region").forEach(p => {
+      p.setAttribute("fill", p.dataset.color || "#ffffff");
+    });
+  });
+  document.getElementById("btn-reset").addEventListener("click", () => {
+    wrap.querySelectorAll(".region").forEach(p => p.setAttribute("fill", "#ffffff"));
+  });
+  const guides = document.getElementById("btn-guides");
+  guides.addEventListener("click", () => {
+    const on = wrap.classList.toggle("show-guides");
+    guides.setAttribute("aria-pressed", on ? "true" : "false");
+    guides.textContent = on ? "Guides shading : ON" : "Guides shading : OFF";
+  });
+
+  // Loader
+  const urlInput = document.getElementById("svg-url");
+  document.getElementById("btn-load-url").addEventListener("click", () => {
+    if (urlInput.value.trim()) loadUrl(urlInput.value.trim());
+  });
+  document.getElementById("svg-file").addEventListener("change", (ev) => {
+    const f = ev.target.files[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = () => setSvg(reader.result);
+    reader.readAsText(f);
+  });
+
+  // ── Surface de revue : liste des artefacts décoloriage (Phase 3) ──────────
+  const reviewListEl = document.getElementById("review-list");
+  const ARTIFACTS_ENDPOINT = "/api/decoloriage/artifacts";
+  let activeItemBtn = null;
+
+  function renderReviewList(items) {
+    reviewListEl.innerHTML = "";
+    if (!items || items.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "review-empty";
+      empty.innerHTML =
+        "Aucun artefact décoloriage généré pour l'instant.<br>" +
+        "Utilise le chargement manuel ci-dessous (URL ou fichier).";
+      reviewListEl.appendChild(empty);
+      return;
+    }
+    items.forEach((it) => {
+      const btn = document.createElement("button");
+      btn.className = "review-item";
+      btn.type = "button";
+      const title = it.leaf_id || it.image_id || it.image_output_id || "(sans nom)";
+      const variant = it.variant_name ? " · " + it.variant_name : "";
+      const tpCls = it.publishable_tp ? "tp-yes" : "tp-no";
+      const tpTxt = it.publishable_tp ? "TP ✓" : "TP ✗";
+      const dE = (typeof it.delta_e_median === "number")
+        ? it.delta_e_median.toFixed(1) : "—";
+      btn.innerHTML =
+        '<div class="ri-title">' + title + variant +
+        '<span class="ri-badge ' + tpCls + '">' + tpTxt + "</span></div>" +
+        '<div class="ri-meta">' +
+        (it.n_clickable || 0) + " zones · " +
+        (it.n_ink_regions || 0) + " encre · ΔE méd. " + dE +
+        "</div>";
+      btn.addEventListener("click", () => {
+        if (activeItemBtn) activeItemBtn.setAttribute("aria-current", "false");
+        btn.setAttribute("aria-current", "true");
+        activeItemBtn = btn;
+        if (it.coloring_svg_url) {
+          urlInput.value = it.coloring_svg_url;
+          loadUrl(it.coloring_svg_url);
+        }
+      });
+      reviewListEl.appendChild(btn);
+    });
+  }
+
+  async function loadArtifacts(selectFirst) {
+    reviewListEl.innerHTML =
+      '<div class="review-empty">Chargement de la liste…</div>';
+    try {
+      const resp = await fetch(ARTIFACTS_ENDPOINT);
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+      const data = await resp.json();
+      const items = (data && data.items) || [];
+      renderReviewList(items);
+      if (selectFirst && items.length > 0 && items[0].coloring_svg_url) {
+        const first = reviewListEl.querySelector(".review-item");
+        if (first) first.click();
+        return true;
+      }
+    } catch (e) {
+      reviewListEl.innerHTML =
+        '<div class="review-empty">Liste indisponible (' + e.message +
+        ").<br>Utilise le chargement manuel ci-dessous.</div>";
+    }
+    return false;
+  }
+
+  document.getElementById("btn-refresh").addEventListener("click", () => {
+    loadArtifacts(false);
+  });
+
+  // Chargement initial :
+  //  - ?svg=<url> explicite → charge ce SVG + liste la revue (sans auto-select).
+  //  - sinon → liste la revue et sélectionne le 1er artefact ; si la liste est
+  //    vide/indisponible, fallback sur le SVG du spike s'il existe.
+  const params = new URLSearchParams(location.search);
+  const explicitSvg = params.get("svg");
+  (async () => {
+    if (explicitSvg) {
+      urlInput.value = explicitSvg;
+      loadUrl(explicitSvg);
+      loadArtifacts(false);
+      return;
+    }
+    const selected = await loadArtifacts(true);
+    if (!selected) {
+      // Aucun artefact listé : tenter le SVG historique du spike en fallback.
+      const fallback = "/data/generated/decoloriage_spike_polar_bear.svg";
+      urlInput.value = fallback;
+      loadUrl(fallback);
+    }
+  })();
+})();
+</script>
+</body>
+</html>

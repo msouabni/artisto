@@ -61,6 +61,68 @@ def _now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _enrich_model_config_with_variant(
+    base_model_config: str | dict | None,
+    job_config: Any,
+) -> str:
+    """Enrichit ``image_output.model_config`` avec les champs variante issus
+    du ``job.config`` JSON.
+
+    Champs ajoutés (toujours présents dans le résultat, même à ``None`` /
+    ``False`` pour les jobs legacy) :
+
+    - ``variant_name`` (``str | None``) — nom de variante du registre
+      ``pipeline_variants.json`` (ex. ``"pastel_chromakey"``, ``"lineart"``).
+    - ``extract_preset`` (``str | None``) — preset extract_palette à appliquer
+      en post-traitement (réservé C2).
+    - ``force_chromakey`` (``bool``) — drapeau chromakey injecté à l'enqueue.
+
+    Args:
+        base_model_config: model_config existant (str JSON, dict ou None).
+        job_config: job.config tel que reçu (str JSON, dict ou autre).
+
+    Returns:
+        Un str JSON prêt à être inséré dans ``image_output.model_config``.
+
+    Tolérance :
+        - ``job_config`` non-JSON → traité comme {} (legacy, pas d'erreur).
+        - ``base_model_config`` non-JSON → traité comme {} (override total).
+        - Les champs variante existants dans ``base_model_config`` sont écrasés
+          par ceux du ``job_config`` (le job est la source de vérité).
+    """
+    # Normalise base_model_config en dict.
+    mc_data: dict[str, Any]
+    if isinstance(base_model_config, dict):
+        mc_data = dict(base_model_config)
+    elif isinstance(base_model_config, str) and base_model_config.strip():
+        try:
+            parsed = json.loads(base_model_config)
+            mc_data = dict(parsed) if isinstance(parsed, dict) else {}
+        except (json.JSONDecodeError, ValueError):
+            mc_data = {}
+    else:
+        mc_data = {}
+
+    # Normalise job_config en dict (best-effort).
+    jc_data: dict[str, Any]
+    if isinstance(job_config, dict):
+        jc_data = job_config
+    elif isinstance(job_config, str) and job_config.strip():
+        try:
+            parsed_jc = json.loads(job_config)
+            jc_data = parsed_jc if isinstance(parsed_jc, dict) else {}
+        except (json.JSONDecodeError, ValueError):
+            jc_data = {}
+    else:
+        jc_data = {}
+
+    mc_data["variant_name"] = jc_data.get("variant_name")
+    mc_data["extract_preset"] = jc_data.get("extract_preset")
+    mc_data["force_chromakey"] = bool(jc_data.get("force_chromakey", False))
+
+    return json.dumps(mc_data, ensure_ascii=False)
+
+
 class ComfyUnavailableError(Exception):
     """Levée quand ComfyUI est indisponible avant même l'exécution d'un workflow."""
 
@@ -208,7 +270,13 @@ class ImageWorker(BaseWorker):
             model_name = "pillow_placeholder"
         out_w = int(gen.get("width", 1024) or 1024)
         out_h = int(gen.get("height", 1024) or 1024)
-        model_config = json.dumps(gen if gen else {"prompt": prompt})
+        # Enrichit model_config avec les champs variante du job.config (C1.3).
+        # Jobs legacy (sans variant_name) → variant_name/extract_preset=None,
+        # force_chromakey=False. Jobs C1.2+ → champs propagés depuis l'enqueue.
+        model_config = _enrich_model_config_with_variant(
+            gen if gen else {"prompt": prompt},
+            job.get("config"),
+        )
 
         abs_image = OUTPUTS_DIR / Path(rel_path).name
         try:
@@ -281,9 +349,81 @@ class ImageWorker(BaseWorker):
                     out_id,
                     exc,
                 )
+            # Trigger post-processing (vectorisation + coloriage SVG) si
+            # variant_name est presente dans le model_config (job C1.2+).
+            # Best-effort identique : un echec n'empeche jamais l'INSERT
+            # image_output.
+            try:
+                self._enqueue_post_processing_job(conn, out_id, model_config, now)
+            except Exception as exc:
+                logger.warning(
+                    "Échec enqueue image_post_processing pour image_output=%s : %s",
+                    out_id,
+                    exc,
+                )
             conn.session.commit()
         finally:
             conn.close()
+
+    def _enqueue_post_processing_job(
+        self,
+        conn,
+        image_output_id: str,
+        model_config_str: str,
+        now: str,
+    ) -> None:
+        """Crée un job ``image_post_processing`` si ``variant_name`` est
+        present dans ``model_config_str``.
+
+        Best-effort : un echec d'enqueue n'empeche jamais l'INSERT
+        ``image_output``. Si ``model_config_str`` n'est pas du JSON valide
+        ou si ``variant_name`` est absent (legacy), aucun job n'est cree.
+
+        Idempotence simple : un seul job pending par image_output_id.
+        """
+        try:
+            mc = json.loads(model_config_str or "{}")
+            if not isinstance(mc, dict):
+                return
+        except (json.JSONDecodeError, ValueError):
+            return
+        variant_name = mc.get("variant_name")
+        if not variant_name:
+            return  # legacy : pas de post-processing
+        # Verifie que le type est seede en base avant d'enqueue.
+        cfg_row = conn.execute(
+            "SELECT 1 FROM job_type_config WHERE type = ?",
+            ["image_post_processing"],
+        ).fetchone()
+        if not cfg_row:
+            return
+        existing = conn.execute(
+            """
+            SELECT id FROM job
+            WHERE type = ? AND entity_id = ? AND status IN ('pending', 'running')
+            LIMIT 1
+            """,
+            ["image_post_processing", image_output_id],
+        ).fetchone()
+        if existing:
+            return
+        extract_preset = mc.get("extract_preset")
+        config = json.dumps(
+            {
+                "variant_name": variant_name,
+                "extract_preset": extract_preset,
+            },
+            ensure_ascii=False,
+        )
+        pp_job_id = f"pp_{image_output_id}_{uuid.uuid4().hex[:8]}"
+        conn.execute(
+            """
+            INSERT INTO job (id, type, status, config, created_at, priority,
+                              retry_count, max_retries, entity_type, entity_id)
+            VALUES (?, ?, 'pending', ?, ?, 5, 0, 3, 'image_output', ?)
+            """,
+            [pp_job_id, "image_post_processing", config, now, image_output_id],
+        )
 
     def _enqueue_qc_job(self, conn, image_output_id: str, now: str) -> None:
         """Crée un job ``image_qc_auto`` avec ``entity_id=<image_output_id>``.

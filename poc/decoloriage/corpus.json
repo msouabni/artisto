@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "frozen_at": "2026-06-09",
+  "gate": "G0",
+  "source": "ERNIE pastel outputs from _lab/colored-fill-test/outputs/ (runs run_pastel_subjects.py, run_pastel_extended.py, run_stress_lot.py)",
+  "ernie_workflow": "data/workflows/ernie-image-turbo-q8-api.json",
+  "ernie_style": "pastel (template F : 'soft pastel children's coloring illustration', palette pastel nommée, flat colors)",
+  "selection_criteria": "G0 du skill decoloriage-validation : 5 animaux (incl. chien + cheval), 2 scènes, 2 objets, 1 stress-test (dégradés/ombres).",
+  "images": [
+    {
+      "slot": 1,
+      "category": "animal",
+      "id": "pastel_dog",
+      "path": "_lab/colored-fill-test/outputs/pastel_dog.png",
+      "subject": "one single dog sitting in profile, full body view, all four legs visible",
+      "reason": "Chien obligatoire (G0). Sujet animalier simple, silhouette nette, fourrure unie — référence baseline pour mesurer le nombre de régions internes (oreilles, collier, pattes)."
+    },
+    {
+      "slot": 2,
+      "category": "animal",
+      "id": "pastel_horse",
+      "path": "_lab/colored-fill-test/outputs/pastel_horse.png",
+      "subject": "one single horse standing in profile, full body view, all four legs visible",
+      "reason": "Cheval obligatoire (G0). Anatomie verticale complexe (4 pattes + crinière + queue), test de la séparation membres-corps en composantes connexes."
+    },
+    {
+      "slot": 3,
+      "category": "animal",
+      "id": "pastel_cat",
+      "path": "_lab/colored-fill-test/outputs/pastel_cat.png",
+      "subject": "one single cat sitting in profile, full body view, all four legs visible",
+      "reason": "Chat — sujet de référence du POC extract-palette, dispose de baselines partition/anomaly déjà connues, utile comme contrôle de continuité méthodologique."
+    },
+    {
+      "slot": 4,
+      "category": "animal",
+      "id": "pastel_elephant",
+      "path": "_lab/colored-fill-test/outputs/pastel_elephant.png",
+      "subject": "one single elephant standing in profile, full body view, all four legs visible",
+      "reason": "Éléphant — silhouette massive et largement uniforme, test inverse : est-ce que la quantification couleur sait NE PAS sur-segmenter une grande zone de teinte quasi-constante (peau grise pastel) ?"
+    },
+    {
+      "slot": 5,
+      "category": "animal",
+      "id": "pastel_lion2",
+      "path": "_lab/colored-fill-test/outputs/pastel_lion2.png",
+      "subject": "one single lion cub sitting in profile, full body view",
+      "reason": "Lionceau — sujet à détails internes attendus (crinière naissante, taches, museau, pattes intérieures). Cible directe du critère G1a 'oreilles, taches, collier, crinière sortent comme régions distinctes'."
+    },
+    {
+      "slot": 6,
+      "category": "scene",
+      "id": "taxo_polar_bear_on_ice",
+      "path": "_lab/colored-fill-test/outputs/taxo_polar_bear_on_ice.png",
+      "subject": "polar bear on ice (leaf taxonomie réelle prod : polar_bear_on_ice)",
+      "reason": "Scène animal-en-environnement issue de la taxonomie de production (leaf_id réel). Test contraste sujet/fond proche (ours blanc sur glace) — cas connu difficile pour la séparation par couleur seule."
+    },
+    {
+      "slot": 7,
+      "category": "scene",
+      "id": "pastel_pirate_ship",
+      "path": "_lab/colored-fill-test/outputs/pastel_pirate_ship.png",
+      "subject": "one single small pirate ship with sails and flag, side view on water",
+      "reason": "Scène composée multi-éléments (coque, voiles, mât, drapeau, eau, ciel). Test de partition sur sujet riche structuré + arrière-plan paysage."
+    },
+    {
+      "slot": 8,
+      "category": "object",
+      "id": "pastel_lighthouse",
+      "path": "_lab/colored-fill-test/outputs/pastel_lighthouse.png",
+      "subject": "one single lighthouse on a small island, side view with sea around",
+      "reason": "Objet architectural avec environnement minimal (île + mer + ciel). Test bandes de couleur verticales (alternance fût rouge/blanc typique du phare)."
+    },
+    {
+      "slot": 9,
+      "category": "object",
+      "id": "pastel_castle",
+      "path": "_lab/colored-fill-test/outputs/pastel_castle.png",
+      "subject": "one single fairy tale castle with towers, front view",
+      "reason": "Objet architectural complexe (multi-tours, créneaux, drapeaux, porte). Test sur formes géométriques répétées avec petites régions (drapeaux, fenêtres) que la fusion ne doit pas avaler."
+    },
+    {
+      "slot": 10,
+      "category": "stress",
+      "id": "pastel_peacock",
+      "path": "_lab/colored-fill-test/outputs/pastel_peacock.png",
+      "subject": "one single peacock with open tail feathers, front view, full body",
+      "reason": "Stress-test (G0) : plumes ouvertes en éventail = motif répétitif riche en couleurs et en ocelles (yeux de plume). Cible directe du risque 'dégradés/ombres' et de la prolifération de petites régions — torture la fusion < 0,3% et le nombre de régions par planche."
+    }
+  ]
+}

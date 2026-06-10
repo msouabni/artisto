@@ -41,9 +41,16 @@ class TestBulkCreateGenerationJobs:
             "INSERT INTO image_taxonomy_tag (image_id, taxonomy_id, term_id, created_at) VALUES (?, 'universal_v0', 'themes', '2026-01-01')",
             ["img_wf_ok"],
         )
+        # variants=["lineart"] : mode legacy explicite (Image.prompt direct,
+        # pas de PromptGenerator). Requis depuis C1.2 (2026-06-01) : le défaut
+        # registre est désormais ``pastel_chromakey`` qui exige un leaf_id.
         r = client.post(
             "/api/images/bulk-create-generation-jobs",
-            json={"image_ids": ["img_wf_ok"], "workflow_template": "z_image_turbo_v1"},
+            json={
+                "image_ids": ["img_wf_ok"],
+                "variants": ["lineart"],
+                "workflow_template": "z_image_turbo_v1",
+            },
         )
         assert r.status_code == 200
         job = test_conn.execute("SELECT config FROM job WHERE image_id = 'img_wf_ok'").fetchone()
@@ -53,7 +60,11 @@ class TestBulkCreateGenerationJobs:
     def test_unknown_workflow_template_422(self, client):
         r = client.post(
             "/api/images/bulk-create-generation-jobs",
-            json={"image_ids": ["img_any"], "workflow_template": "template_inexistant_xyz"},
+            json={
+                "image_ids": ["img_any"],
+                "variants": ["lineart"],
+                "workflow_template": "template_inexistant_xyz",
+            },
         )
         assert r.status_code == 422
         detail = r.json().get("detail", "")
@@ -68,7 +79,10 @@ class TestBulkCreateGenerationJobs:
             VALUES ('job_existing', 'image_generation', 'pending', 'img_busy', '{}', '2026-01-01', 'image', 'img_busy')
             """
         )
-        r = client.post("/api/images/bulk-create-generation-jobs", json={"image_ids": ["img_busy"]})
+        r = client.post(
+            "/api/images/bulk-create-generation-jobs",
+            json={"image_ids": ["img_busy"], "variants": ["lineart"]},
+        )
         assert r.status_code == 200
         data = r.json()
         assert data["summary"]["success"] == 0

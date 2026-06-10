@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>G3 Decoloriage - SVG browseable</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, system-ui, sans-serif; background:#f5f5f7; color:#222; padding:24px; }
+  h1 { margin-top:0; }
+  .grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:18px; margin-top:16px; }
+  .card { background:#fff; border:1px solid #ddd; border-radius:8px; padding:12px; }
+  .card h2 { font-size: 15px; margin: 0 0 8px; color:#444; }
+  .card .stat { font-size: 12px; color:#666; margin-bottom:8px; }
+  .card img { display:block; width: 100%; height: auto; image-rendering: -webkit-optimize-contrast; }
+  .pass { color: #2e7d32; font-weight: 600; }
+  .fail { color: #c62828; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>G3 Decoloriage - SVG ouvrables dans le navigateur</h1>
+<p>Chaque carte ci-dessous charge un SVG en tag &lt;img&gt;. Si le navigateur sait afficher
+le SVG vectoriel, il l'affiche tel quel. Critere pass : 0 marche d'escalier visible
+a zoom 200 % (zoom navigateur).</p>
+<div class="grid">
+<div class="card">
+  <h2>#01 pastel_dog</h2>
+  <div class="stat">polylines: 41 | pts: 7706 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 44 | 4+: 0</div>
+  <img src="g3_out/01_pastel_dog_enfant.svg" alt="pastel_dog">
+</div>
+<div class="card">
+  <h2>#02 pastel_horse</h2>
+  <div class="stat">polylines: 59 | pts: 9228 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 56 | 4+: 0</div>
+  <img src="g3_out/02_pastel_horse_enfant.svg" alt="pastel_horse">
+</div>
+<div class="card">
+  <h2>#03 pastel_cat</h2>
+  <div class="stat">polylines: 73 | pts: 10782 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 92 | 4+: 0</div>
+  <img src="g3_out/03_pastel_cat_enfant.svg" alt="pastel_cat">
+</div>
+<div class="card">
+  <h2>#04 pastel_elephant</h2>
+  <div class="stat">polylines: 94 | pts: 10175 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 38 | 4+: 0</div>
+  <img src="g3_out/04_pastel_elephant_enfant.svg" alt="pastel_elephant">
+</div>
+<div class="card">
+  <h2>#05 pastel_lion2</h2>
+  <div class="stat">polylines: 91 | pts: 13068 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 80 | 4+: 0</div>
+  <img src="g3_out/05_pastel_lion2_enfant.svg" alt="pastel_lion2">
+</div>
+<div class="card">
+  <h2>#06 taxo_polar_bear_on_ice</h2>
+  <div class="stat">polylines: 63 | pts: 10384 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 78 | 4+: 1</div>
+  <img src="g3_out/06_taxo_polar_bear_on_ice_enfant.svg" alt="taxo_polar_bear_on_ice">
+</div>
+<div class="card">
+  <h2>#07 pastel_pirate_ship</h2>
+  <div class="stat">polylines: 77 | pts: 7586 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 41 | 4+: 0</div>
+  <img src="g3_out/07_pastel_pirate_ship_enfant.svg" alt="pastel_pirate_ship">
+</div>
+<div class="card">
+  <h2>#08 pastel_lighthouse</h2>
+  <div class="stat">polylines: 75 | pts: 7661 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 44 | 4+: 0</div>
+  <img src="g3_out/08_pastel_lighthouse_enfant.svg" alt="pastel_lighthouse">
+</div>
+<div class="card">
+  <h2>#09 pastel_castle</h2>
+  <div class="stat">polylines: 138 | pts: 12607 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 27 | 4+: 0</div>
+  <img src="g3_out/09_pastel_castle_enfant.svg" alt="pastel_castle">
+</div>
+<div class="card">
+  <h2>#10 pastel_peacock</h2>
+  <div class="stat">polylines: 283 | pts: 25796 |
+    non couvert: <span class="pass">0.000 %</span> |
+    jonctions triples: 258 | 4+: 5</div>
+  <img src="g3_out/10_pastel_peacock_enfant.svg" alt="pastel_peacock">
+</div>
+</div></body></html>

@@ -1,0 +1,279 @@
+{
+  "params": {
+    "k": 12,
+    "merge_thresh": 0.0005,
+    "protect_contrast": 30.0
+  },
+  "images": [
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 7499,
+      "regions_after_merge": 6450,
+      "merged_regions": 1049,
+      "protected_regions": 6420,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 40.34,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.52,
+        "cc": 0.06,
+        "merge": 0.14,
+        "render": 0.01,
+        "total": 0.73
+      },
+      "slot": 1,
+      "id": "pastel_dog",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v2/01_pastel_dog_regions_v2.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 8910,
+      "regions_after_merge": 7922,
+      "merged_regions": 988,
+      "protected_regions": 7889,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 40.47,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.57,
+        "cc": 0.06,
+        "merge": 0.16,
+        "render": 0.01,
+        "total": 0.81
+      },
+      "slot": 2,
+      "id": "pastel_horse",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v2/02_pastel_horse_regions_v2.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 9204,
+      "regions_after_merge": 7568,
+      "merged_regions": 1636,
+      "protected_regions": 7518,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 39.27,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.56,
+        "cc": 0.06,
+        "merge": 0.18,
+        "render": 0.02,
+        "total": 0.82
+      },
+      "slot": 3,
+      "id": "pastel_cat",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v2/03_pastel_cat_regions_v2.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 9178,
+      "regions_after_merge": 8001,
+      "merged_regions": 1177,
+      "protected_regions": 7971,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 38.94,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.57,
+        "cc": 0.06,
+        "merge": 0.17,
+        "render": 0.01,
+        "total": 0.81
+      },
+      "slot": 4,
+      "id": "pastel_elephant",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v2/04_pastel_elephant_regions_v2.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 11799,
+      "regions_after_merge": 10158,
+      "merged_regions": 1641,
+      "protected_regions": 10111,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 39.86,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.61,
+        "cc": 0.06,
+        "merge": 0.18,
+        "render": 0.02,
+        "total": 0.86
+      },
+      "slot": 5,
+      "id": "pastel_lion2",
+      "category": "animal",
+      "out_png": "poc/decoloriage/g1a_out_v2/05_pastel_lion2_regions_v2.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 7811,
+      "regions_after_merge": 5267,
+      "merged_regions": 2544,
+      "protected_regions": 5230,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 33.5,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.59,
+        "cc": 0.06,
+        "merge": 0.15,
+        "render": 0.01,
+        "total": 0.81
+      },
+      "slot": 6,
+      "id": "taxo_polar_bear_on_ice",
+      "category": "scene",
+      "out_png": "poc/decoloriage/g1a_out_v2/06_taxo_polar_bear_on_ice_regions_v2.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 7813,
+      "regions_after_merge": 7030,
+      "merged_regions": 783,
+      "protected_regions": 6995,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 40.76,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.66,
+        "cc": 0.07,
+        "merge": 0.14,
+        "render": 0.01,
+        "total": 0.88
+      },
+      "slot": 7,
+      "id": "pastel_pirate_ship",
+      "category": "scene",
+      "out_png": "poc/decoloriage/g1a_out_v2/07_pastel_pirate_ship_regions_v2.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 4917,
+      "regions_after_merge": 2411,
+      "merged_regions": 2506,
+      "protected_regions": 2369,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 28.92,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.57,
+        "cc": 0.06,
+        "merge": 0.12,
+        "render": 0.01,
+        "total": 0.76
+      },
+      "slot": 8,
+      "id": "pastel_lighthouse",
+      "category": "object",
+      "out_png": "poc/decoloriage/g1a_out_v2/08_pastel_lighthouse_regions_v2.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 10401,
+      "regions_after_merge": 9766,
+      "merged_regions": 635,
+      "protected_regions": 9705,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 41.99,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.64,
+        "cc": 0.06,
+        "merge": 0.17,
+        "render": 0.02,
+        "total": 0.89
+      },
+      "slot": 9,
+      "id": "pastel_castle",
+      "category": "object",
+      "out_png": "poc/decoloriage/g1a_out_v2/09_pastel_castle_regions_v2.png"
+    },
+    {
+      "image_size": [
+        1024,
+        1024
+      ],
+      "k": 12,
+      "merge_thresh_ratio": 0.0005,
+      "contrast_threshold": 30.0,
+      "regions_before_merge": 19433,
+      "regions_after_merge": 14843,
+      "merged_regions": 4590,
+      "protected_regions": 14735,
+      "min_area_px": 524,
+      "mean_deltaE_observed": 36.92,
+      "passes_used": 2,
+      "timing_s": {
+        "kmeans": 0.68,
+        "cc": 0.07,
+        "merge": 0.28,
+        "render": 0.02,
+        "total": 1.05
+      },
+      "slot": 10,
+      "id": "pastel_peacock",
+      "category": "stress",
+      "out_png": "poc/decoloriage/g1a_out_v2/10_pastel_peacock_regions_v2.png"
+    }
+  ]
+}

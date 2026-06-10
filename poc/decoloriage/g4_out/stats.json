@@ -1,0 +1,549 @@
+{
+  "params": {
+    "ink_overlap_threshold": 0.6,
+    "line_mask_dilate_px": 3,
+    "dp_tolerance": 1.0,
+    "chaikin_iters_arc": 2,
+    "chaikin_iters_region": 2,
+    "shading_ratio_of_ink": 0.3333333333333333
+  },
+  "hypothesis_pre_recorded": "regions(c) >= 2 x regions(a) sur les 5 animaux",
+  "images": [
+    {
+      "slot": 1,
+      "id": "pastel_dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 6.39,
+        "ink_stroke_width": 6.39,
+        "shading_stroke_width": 2.13
+      },
+      "arcs": {
+        "n_cracks": 21510,
+        "n_junctions": 44,
+        "n_arcs": 74,
+        "n_ink": 37,
+        "n_shading": 37
+      },
+      "regions": {
+        "a_line_art_zones": 7,
+        "c_decoloriage_regions": 32,
+        "ratio_c_over_a": 4.57
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/01_pastel_dog_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/01_pastel_dog_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/01_pastel_dog_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/01_pastel_dog_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.02,
+        "dilate": 0.0,
+        "arcs": 0.08,
+        "classify": 0.21,
+        "fills": 0.29,
+        "svg": 0.01,
+        "render": 0.02,
+        "total": 0.64
+      },
+      "category": "animal"
+    },
+    {
+      "slot": 2,
+      "id": "pastel_horse",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 4.39,
+        "ink_stroke_width": 4.39,
+        "shading_stroke_width": 1.46
+      },
+      "arcs": {
+        "n_cracks": 24137,
+        "n_junctions": 56,
+        "n_arcs": 95,
+        "n_ink": 49,
+        "n_shading": 46
+      },
+      "regions": {
+        "a_line_art_zones": 14,
+        "c_decoloriage_regions": 44,
+        "ratio_c_over_a": 3.14
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/02_pastel_horse_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/02_pastel_horse_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/02_pastel_horse_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/02_pastel_horse_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.0,
+        "dilate": 0.0,
+        "arcs": 0.1,
+        "classify": 0.27,
+        "fills": 0.37,
+        "svg": 0.01,
+        "render": 0.01,
+        "total": 0.76
+      },
+      "category": "animal"
+    },
+    {
+      "slot": 3,
+      "id": "pastel_cat",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 6.39,
+        "ink_stroke_width": 6.39,
+        "shading_stroke_width": 2.13
+      },
+      "arcs": {
+        "n_cracks": 25382,
+        "n_junctions": 92,
+        "n_arcs": 147,
+        "n_ink": 63,
+        "n_shading": 84
+      },
+      "regions": {
+        "a_line_art_zones": 8,
+        "c_decoloriage_regions": 60,
+        "ratio_c_over_a": 7.5
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/03_pastel_cat_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/03_pastel_cat_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/03_pastel_cat_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/03_pastel_cat_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.0,
+        "dilate": 0.0,
+        "arcs": 0.09,
+        "classify": 0.37,
+        "fills": 0.49,
+        "svg": 0.02,
+        "render": 0.02,
+        "total": 1.0
+      },
+      "category": "animal"
+    },
+    {
+      "slot": 4,
+      "id": "pastel_elephant",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 5.6,
+        "ink_stroke_width": 5.6,
+        "shading_stroke_width": 1.87
+      },
+      "arcs": {
+        "n_cracks": 24747,
+        "n_junctions": 38,
+        "n_arcs": 92,
+        "n_ink": 57,
+        "n_shading": 35
+      },
+      "regions": {
+        "a_line_art_zones": 19,
+        "c_decoloriage_regions": 57,
+        "ratio_c_over_a": 3.0
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/04_pastel_elephant_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/04_pastel_elephant_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/04_pastel_elephant_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/04_pastel_elephant_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.0,
+        "dilate": 0.0,
+        "arcs": 0.09,
+        "classify": 0.26,
+        "fills": 0.47,
+        "svg": 0.01,
+        "render": 0.03,
+        "total": 0.86
+      },
+      "category": "animal"
+    },
+    {
+      "slot": 5,
+      "id": "pastel_lion2",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 4.39,
+        "ink_stroke_width": 4.39,
+        "shading_stroke_width": 1.46
+      },
+      "arcs": {
+        "n_cracks": 30506,
+        "n_junctions": 80,
+        "n_arcs": 138,
+        "n_ink": 80,
+        "n_shading": 58
+      },
+      "regions": {
+        "a_line_art_zones": 12,
+        "c_decoloriage_regions": 66,
+        "ratio_c_over_a": 5.5
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/05_pastel_lion2_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/05_pastel_lion2_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/05_pastel_lion2_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/05_pastel_lion2_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.01,
+        "dilate": 0.0,
+        "arcs": 0.12,
+        "classify": 0.38,
+        "fills": 0.55,
+        "svg": 0.02,
+        "render": 0.02,
+        "total": 1.1
+      },
+      "category": "animal"
+    },
+    {
+      "slot": 6,
+      "id": "taxo_polar_bear_on_ice",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 5.6,
+        "ink_stroke_width": 5.6,
+        "shading_stroke_width": 1.87
+      },
+      "arcs": {
+        "n_cracks": 24738,
+        "n_junctions": 79,
+        "n_arcs": 128,
+        "n_ink": 60,
+        "n_shading": 68
+      },
+      "regions": {
+        "a_line_art_zones": 6,
+        "c_decoloriage_regions": 52,
+        "ratio_c_over_a": 8.67
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/06_taxo_polar_bear_on_ice_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/06_taxo_polar_bear_on_ice_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/06_taxo_polar_bear_on_ice_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/06_taxo_polar_bear_on_ice_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.01,
+        "dilate": 0.0,
+        "arcs": 0.09,
+        "classify": 0.32,
+        "fills": 0.44,
+        "svg": 0.01,
+        "render": 0.02,
+        "total": 0.89
+      },
+      "category": "scene"
+    },
+    {
+      "slot": 7,
+      "id": "pastel_pirate_ship",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 5.6,
+        "ink_stroke_width": 5.6,
+        "shading_stroke_width": 1.87
+      },
+      "arcs": {
+        "n_cracks": 26947,
+        "n_junctions": 41,
+        "n_arcs": 85,
+        "n_ink": 52,
+        "n_shading": 33
+      },
+      "regions": {
+        "a_line_art_zones": 20,
+        "c_decoloriage_regions": 49,
+        "ratio_c_over_a": 2.45
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/07_pastel_pirate_ship_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/07_pastel_pirate_ship_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/07_pastel_pirate_ship_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/07_pastel_pirate_ship_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.0,
+        "dilate": 0.0,
+        "arcs": 0.1,
+        "classify": 0.23,
+        "fills": 0.39,
+        "svg": 0.01,
+        "render": 0.01,
+        "total": 0.75
+      },
+      "category": "scene"
+    },
+    {
+      "slot": 8,
+      "id": "pastel_lighthouse",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 4.39,
+        "ink_stroke_width": 4.39,
+        "shading_stroke_width": 1.46
+      },
+      "arcs": {
+        "n_cracks": 24554,
+        "n_junctions": 48,
+        "n_arcs": 93,
+        "n_ink": 32,
+        "n_shading": 61
+      },
+      "regions": {
+        "a_line_art_zones": 14,
+        "c_decoloriage_regions": 50,
+        "ratio_c_over_a": 3.57
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/08_pastel_lighthouse_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/08_pastel_lighthouse_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/08_pastel_lighthouse_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/08_pastel_lighthouse_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.0,
+        "dilate": 0.0,
+        "arcs": 0.09,
+        "classify": 0.24,
+        "fills": 0.39,
+        "svg": 0.01,
+        "render": 0.01,
+        "total": 0.75
+      },
+      "category": "object"
+    },
+    {
+      "slot": 9,
+      "id": "pastel_castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 4.39,
+        "ink_stroke_width": 4.39,
+        "shading_stroke_width": 1.46
+      },
+      "arcs": {
+        "n_cracks": 35371,
+        "n_junctions": 27,
+        "n_arcs": 95,
+        "n_ink": 75,
+        "n_shading": 20
+      },
+      "regions": {
+        "a_line_art_zones": 49,
+        "c_decoloriage_regions": 76,
+        "ratio_c_over_a": 1.55
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/09_pastel_castle_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/09_pastel_castle_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/09_pastel_castle_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/09_pastel_castle_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.01,
+        "dilate": 0.0,
+        "arcs": 0.14,
+        "classify": 0.28,
+        "fills": 0.61,
+        "svg": 0.02,
+        "render": 0.02,
+        "total": 1.09
+      },
+      "category": "object"
+    },
+    {
+      "slot": 10,
+      "id": "pastel_peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "params": {
+        "ink_overlap_threshold": 0.6,
+        "line_mask_dilate_px": 3,
+        "dp_tolerance": 1.0,
+        "chaikin_iters_arc": 2,
+        "chaikin_iters_region": 2
+      },
+      "line_thickness": {
+        "median_measured": 4.39,
+        "ink_stroke_width": 4.39,
+        "shading_stroke_width": 1.46
+      },
+      "arcs": {
+        "n_cracks": 51903,
+        "n_junctions": 263,
+        "n_arcs": 423,
+        "n_ink": 116,
+        "n_shading": 307
+      },
+      "regions": {
+        "a_line_art_zones": 44,
+        "c_decoloriage_regions": 209,
+        "ratio_c_over_a": 4.75
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g4_out/10_pastel_peacock_g4.svg",
+        "g4_render": "poc/decoloriage/g4_out/10_pastel_peacock_g4_render.png",
+        "a_line_art": "poc/decoloriage/g4_out/10_pastel_peacock_a_line_art.png",
+        "b_binarize_potrace": "poc/decoloriage/g4_out/10_pastel_peacock_b_binarize_potrace.png"
+      },
+      "timing_s": {
+        "thickness": 0.01,
+        "dilate": 0.0,
+        "arcs": 0.24,
+        "classify": 1.02,
+        "fills": 1.45,
+        "svg": 0.03,
+        "render": 0.03,
+        "total": 2.78
+      },
+      "category": "stress"
+    }
+  ],
+  "hypothesis_check": {
+    "n_animals_evaluated": 5,
+    "n_animals_pass": 5,
+    "details": [
+      {
+        "slot": 1,
+        "id": "pastel_dog",
+        "a": 7,
+        "c": 32,
+        "ratio": 4.57,
+        "pass_2x": true
+      },
+      {
+        "slot": 2,
+        "id": "pastel_horse",
+        "a": 14,
+        "c": 44,
+        "ratio": 3.14,
+        "pass_2x": true
+      },
+      {
+        "slot": 3,
+        "id": "pastel_cat",
+        "a": 8,
+        "c": 60,
+        "ratio": 7.5,
+        "pass_2x": true
+      },
+      {
+        "slot": 4,
+        "id": "pastel_elephant",
+        "a": 19,
+        "c": 57,
+        "ratio": 3.0,
+        "pass_2x": true
+      },
+      {
+        "slot": 5,
+        "id": "pastel_lion2",
+        "a": 12,
+        "c": 66,
+        "ratio": 5.5,
+        "pass_2x": true
+      }
+    ]
+  }
+}
