@@ -148,7 +148,13 @@ def _install_fake_vectorizer(monkeypatch, calls: list):
 
 def test_dispatch_extract_palette_pour_chromakey(test_conn, tmp_path, monkeypatch):
     """variant pastel_chromakey + extract_preset -> extract_palette appele
-    + SVG coloriage ecrit."""
+    + SVG coloriage ecrit.
+
+    Le moteur coloriage est ici epingle sur ``extract_palette`` (rollback D1) :
+    le defaut prod est desormais ``decoloriage``. Cf.
+    tests/test_decoloriage_phase2.py pour le dispatch decoloriage par defaut.
+    """
+    monkeypatch.setenv("ARTISTE_COLORING_ENGINE", "extract_palette")
     extract_calls: list = []
     vec_calls: list = []
     _install_fake_extract_palette(monkeypatch, extract_calls)
@@ -250,6 +256,7 @@ def test_dispatch_vectorizer_pour_lineart(test_conn, tmp_path, monkeypatch):
 def test_update_model_config_apres_succes(test_conn, tmp_path, monkeypatch):
     """save_result enrichit image_output.model_config avec vector_svg_path
     + coloring_svg_path, en preservant les champs existants."""
+    monkeypatch.setenv("ARTISTE_COLORING_ENGINE", "extract_palette")
     extract_calls: list = []
     vec_calls: list = []
     _install_fake_extract_palette(monkeypatch, extract_calls)
@@ -428,6 +435,7 @@ def test_job_failed_si_variant_name_absent(test_conn, tmp_path, monkeypatch):
 
 def test_idempotence_rejouable(test_conn, tmp_path, monkeypatch):
     """Run 2x le meme job -> pas d'erreur, fichiers ecrases."""
+    monkeypatch.setenv("ARTISTE_COLORING_ENGINE", "extract_palette")
     extract_calls: list = []
     vec_calls: list = []
     _install_fake_extract_palette(monkeypatch, extract_calls)

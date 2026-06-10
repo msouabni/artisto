@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
@@ -47,6 +48,114 @@ from services.vectorizer import Vectorizer
 from workers.base_worker import BaseWorker, _compute_duration_ms
 
 logger = logging.getLogger(__name__)
+
+# Flag de bascule du moteur coloriage interactif (plan migration décoloriage,
+# décision D1). Lu via ``os.environ`` à CHAQUE appel (pattern
+# ``ARTISTE_PROMPT_STYLE``), jamais figé à l'import — un rollback ne demande
+# pas de redémarrer le worker.
+COLORING_ENGINE_ENV = "ARTISTE_COLORING_ENGINE"
+ENGINE_DECOLORIAGE = "decoloriage"
+ENGINE_EXTRACT_PALETTE = "extract_palette"
+DEFAULT_COLORING_ENGINE = ENGINE_DECOLORIAGE  # D1 : décoloriage par défaut.
+DECOLORIAGE_LEVEL = "enfant"  # D5 : niveau enfant câblé, tout-petit/adulte non exposés.
+
+
+def _resolve_coloring_engine() -> str:
+    """Lit ``ARTISTE_COLORING_ENGINE`` à chaque appel (pattern prompt style).
+
+    Valeurs reconnues : ``decoloriage`` (défaut) ou ``extract_palette``
+    (rollback). Toute valeur inconnue retombe sur le défaut avec un warning.
+    """
+    raw = (os.environ.get(COLORING_ENGINE_ENV) or "").strip().lower()
+    if not raw:
+        return DEFAULT_COLORING_ENGINE
+    if raw in (ENGINE_DECOLORIAGE, ENGINE_EXTRACT_PALETTE):
+        return raw
+    logger.warning(
+        "%s=%r inconnu — fallback sur %s",
+        COLORING_ENGINE_ENV, raw, DEFAULT_COLORING_ENGINE,
+    )
+    return DEFAULT_COLORING_ENGINE
+
+
+def produce_coloring_artifact(
+    png_path: Path | str,
+    out_svg_path: Path | str,
+    engine: str,
+    level: str = DECOLORIAGE_LEVEL,
+    extract_preset: str | None = None,
+) -> dict[str, Any]:
+    """Produit l'artefact **coloriage interactif** et retourne ses métadonnées.
+
+    Fonction **pure et testable** (aucun accès DB, aucune queue, aucun ComfyUI) :
+    dispatche selon ``engine`` et écrit le SVG coloriage dans ``out_svg_path``.
+
+    - ``engine == "decoloriage"`` → moteur décoloriage (SVG bicouche
+      click-to-fill) + métadonnées typées via ``DecoloriageResult.to_metadata()``
+      (clés ``coloring_engine``, ``level``, ``n_clickable``, ``n_ink_regions``,
+      ``publishable_tp``, ``crayon_distribution``, ``delta_e_median``,
+      ``processing_s``). ``extract_preset`` est ignoré.
+    - ``engine == "extract_palette"`` → chemin **legacy inchangé**
+      (``make_params(extract_preset)`` → ``extract_palette`` →
+      ``render_svg(mode="blank_outlined")``). Nécessite ``extract_preset``.
+      Métadonnées minimales (``coloring_engine="extract_palette"`` +
+      ``extract_preset``).
+
+    Args:
+        png_path: PNG colorié pastel source.
+        out_svg_path: chemin de sortie du SVG coloriage.
+        engine: ``"decoloriage"`` ou ``"extract_palette"``.
+        level: niveau de partition décoloriage (``"enfant"`` en v1, D5).
+        extract_preset: preset extract_palette (requis si engine == extract_palette).
+
+    Returns:
+        Dict JSON-sérialisable de métadonnées (toujours ``coloring_engine``).
+
+    Raises:
+        ValueError: ``engine`` inconnu, ou extract_palette sans preset.
+        Toute exception métier du moteur (ex. ``DecoloriageError``).
+    """
+    png_path = Path(png_path)
+    out_svg_path = Path(out_svg_path)
+    out_svg_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if engine == ENGINE_DECOLORIAGE:
+        # Import local : isole la dépendance lourde (cv2/scipy/skimage) au
+        # seul chemin décoloriage et garde le module léger pour les tests qui
+        # mockent le moteur.
+        from services.decoloriage import decolorize
+
+        result = decolorize(png_path, level=level)
+        out_svg_path.write_text(result.svg, encoding="utf-8")
+        logger.info(
+            "coloring engine=decoloriage png=%s -> %s (clickable=%d, ink=%d)",
+            png_path.name, out_svg_path, result.n_clickable, result.n_ink_regions,
+        )
+        return result.to_metadata()
+
+    if engine == ENGINE_EXTRACT_PALETTE:
+        # Chemin legacy strictement inchangé (rollback D1) : mêmes appels
+        # module-level (make_params / extract_palette / render_svg) que la
+        # branche historique du worker → mockables comme avant.
+        if not extract_preset:
+            raise ValueError(
+                "produce_coloring_artifact(engine='extract_palette') exige "
+                "un extract_preset non vide."
+            )
+        params = make_params(extract_preset)
+        result = extract_palette(png_path, params)
+        svg_text = render_svg(result, mode=DEFAULT_COLORING_MODE)
+        out_svg_path.write_text(svg_text, encoding="utf-8")
+        logger.info(
+            "coloring engine=extract_palette png=%s preset=%s -> %s",
+            png_path.name, extract_preset, out_svg_path,
+        )
+        return {
+            "coloring_engine": ENGINE_EXTRACT_PALETTE,
+            "extract_preset": str(extract_preset),
+        }
+
+    raise ValueError(f"Moteur coloriage inconnu : {engine!r}")
 
 # Chemin absolu du projet (resout le TBD CWD pose en C2.1 : on n'utilise
 # pas ``DEFAULT_GENERATED_DIR`` relatif, on calcule depuis ``__file__``).
@@ -189,16 +298,26 @@ class ImagePostProcessingWorker(BaseWorker):
             )
 
         # === SVG coloriage interactif (si variante chromakey/extract) =====
+        # Le coloriage interactif n'est produit que pour les variantes
+        # "colorables" (celles qui portent un ``extract_preset`` — signal
+        # historique). Le MOTEUR utilisé est piloté par ARTISTE_COLORING_ENGINE
+        # (D1) : ``decoloriage`` (défaut, SVG bicouche) ou ``extract_palette``
+        # (rollback, comportement legacy strictement inchangé).
         coloring_svg_path: Path | None = None
+        coloring_metadata: dict[str, Any] = {}
         if extract_preset:
-            params = make_params(extract_preset)
-            result = extract_palette(png_path, params)
-            svg_text = render_svg(result, mode=DEFAULT_COLORING_MODE)
-            paths.coloring_svg.write_text(svg_text, encoding="utf-8")
+            engine = _resolve_coloring_engine()
+            coloring_metadata = produce_coloring_artifact(
+                png_path,
+                paths.coloring_svg,
+                engine=engine,
+                level=DECOLORIAGE_LEVEL,
+                extract_preset=extract_preset,
+            )
             coloring_svg_path = paths.coloring_svg
             logger.info(
-                "post-processing extract_palette OK leaf=%s variant=%s preset=%s -> %s",
-                leaf_id, variant_name, extract_preset, paths.coloring_svg,
+                "post-processing coloring OK leaf=%s variant=%s engine=%s -> %s",
+                leaf_id, variant_name, engine, paths.coloring_svg,
             )
 
         # === SVG print via Vectorizer (toujours genere) ====================
@@ -232,6 +351,11 @@ class ImagePostProcessingWorker(BaseWorker):
             "extract_preset": extract_preset,
             "vector_svg_path": _rel(paths.vector_svg),
             "coloring_svg_path": _rel(coloring_svg_path) if coloring_svg_path else None,
+            # Métadonnées du moteur coloriage (décoloriage : clés typées ;
+            # extract_palette : coloring_engine + extract_preset). Vide si la
+            # variante n'est pas colorable. Fusionné additivement dans
+            # model_config par save_result (préserve les clés existantes).
+            "coloring_metadata": coloring_metadata,
         }
 
     def save_result(self, job: dict[str, Any], result: dict[str, Any]) -> None:
@@ -270,6 +394,15 @@ class ImagePostProcessingWorker(BaseWorker):
 
             mc_data["vector_svg_path"] = result.get("vector_svg_path")
             mc_data["coloring_svg_path"] = result.get("coloring_svg_path")
+            # Fusion additive des métadonnées du moteur coloriage (D6 : stockées
+            # dans model_config JSON, pas de migration). Les clés du moteur
+            # (coloring_engine, level, n_clickable, …) sont ajoutées/écrasées
+            # SANS toucher aux clés existantes (variant_name, force_chromakey,
+            # seed, etc.).
+            coloring_metadata = result.get("coloring_metadata") or {}
+            if isinstance(coloring_metadata, dict):
+                for k, v in coloring_metadata.items():
+                    mc_data[k] = v
             mc_serialized = json.dumps(mc_data, ensure_ascii=False)
 
             if image_output_id:
@@ -305,10 +438,16 @@ class ImagePostProcessingWorker(BaseWorker):
 
 __all__ = [
     "ImagePostProcessingWorker",
+    "produce_coloring_artifact",
     "GENERATED_DIR",
     "PROJECT_ROOT",
     "DEFAULT_VECTOR_PRESET",
     "DEFAULT_COLORING_MODE",
+    "COLORING_ENGINE_ENV",
+    "ENGINE_DECOLORIAGE",
+    "ENGINE_EXTRACT_PALETTE",
+    "DEFAULT_COLORING_ENGINE",
+    "DECOLORIAGE_LEVEL",
     "KIND_VECTOR_SVG",
     "KIND_COLORING_SVG",
 ]

@@ -224,7 +224,9 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     .dropdown-item:hover{background:#f0f0f0;}
     .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:.6rem 1.2rem;border-radius:.4rem;font-size:.85rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:100;}
     .toast.show{opacity:1;}
-    .palette-accordion{display:flex;flex-direction:column;gap:.4rem;flex:1 1 260px;min-width:240px;max-width:420px;}
+    /* C3.4-fix : palette en footer pleine largeur (auparavant dans header) */
+    .palette-footer{background:#fff;border:1px solid #ddd;border-radius:.5rem;padding:.75rem 1rem;max-width:920px;margin:1rem auto 0;position:sticky;bottom:.5rem;z-index:5;box-shadow:0 -1px 6px rgba(0,0,0,.05);}
+    .palette-accordion{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.4rem;}
     .category-block{background:#fff;border:1px solid #ddd;border-radius:.4rem;overflow:hidden;}
     .category-block summary{cursor:pointer;padding:.5rem .75rem;font-weight:600;font-size:.85rem;background:#f8f8f8;list-style:none;user-select:none;}
     .category-block summary::-webkit-details-marker{display:none;}
@@ -246,11 +248,15 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     .btn:hover{background:#e5e5e5;} .btn.active{background:#222;color:#fff;border-color:#222;}
     .btn:disabled{opacity:.45;cursor:not-allowed;background:#f5f5f5;}
     .btn:disabled:hover{background:#f5f5f5;}
-    main{background:#fff;border:1px solid #ddd;border-radius:.5rem;padding:1rem;max-width:920px;margin:0 auto;}
-    .canvas{background:#fff;border:1px solid #eee;border-radius:.3rem;overflow:hidden;}
-    .canvas-svg{width:100%;height:auto;display:block;}
+    /* C3.4-fix : main centre le canvas, hauteur calculee pour eviter scroll */
+    main{background:#fff;border:1px solid #ddd;border-radius:.5rem;padding:1rem;max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:center;}
+    /* Canvas auto-fit : ratio carre preserve, hauteur limitee a l'espace dispo
+       entre header et palette-footer pour que le sujet soit visible en totalite
+       sans scroll vertical. */
+    .canvas{background:#fff;border:1px solid #eee;border-radius:.3rem;overflow:hidden;width:100%;max-height:calc(100vh - 280px);display:flex;align-items:center;justify-content:center;}
+    .canvas-svg{width:auto;height:auto;max-width:100%;max-height:calc(100vh - 280px);display:block;object-fit:contain;}
     .region:hover{filter:brightness(.85);}
-    body.solution .region{pointer-events:none;}
+    /* C3.4-fix : regions cliquables en mode solution (click -> adopt + paint) */
     body.show-zones .region{stroke:#999 !important;stroke-width:0.7 !important;}
     /* Fond verrouille : non cliquable + curseur par defaut + opacite legere */
     .region.region-bg{pointer-events:none !important;cursor:default !important;}
@@ -273,7 +279,8 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
     @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
     /* C3.4 - responsive mobile : palette compacte, header non sticky */
     @media (max-width: 600px){
-      .palette-accordion{max-height:50vh;overflow-y:auto;}
+      .palette-accordion{grid-template-columns:1fr;max-height:42vh;overflow-y:auto;}
+      .palette-footer{position:sticky;bottom:0;border-radius:.4rem .4rem 0 0;}
       header{position:static;}
       .onboarding-card{padding:1.2rem 1.4rem;}
     }
@@ -484,9 +491,41 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
         else if((key==='z' && e.shiftKey) || key==='y'){{ e.preventDefault(); doRedo(); }}
     }});
     // === Regions click (utilise setRegionColor qui gere undo automatiquement) ===
+    // C3.4-fix : si on est en mode solution lors d'un click, on adopte la
+    // palette solution (natural -> dataset.user pour toutes regions),
+    // on desactive le mode solution, puis on applique le click. Permet a
+    // l'utilisateur de partir d'une palette pre-existante (solution ou
+    // auto-palette) et la modifier ensuite.
+    function adoptSolutionAsUserState(){{
+        const before=captureState();
+        regions.forEach(rr=>{{
+            if(rr.dataset.bg==='1') return;
+            const natural=rr.dataset.natural;
+            if(natural){{
+                rr.dataset.user=natural;
+                rr.setAttribute('fill',natural);
+                rr.setAttribute('stroke',natural);
+            }}
+            delete rr.dataset.userBackup;
+        }});
+        document.body.classList.remove('solution');
+        const bs=document.getElementById('btn-solution');
+        if(bs) bs.classList.remove('active');
+        const after=captureState();
+        if(JSON.stringify(before)!==JSON.stringify(after)){{
+            undoStack.push({{type:'bulk_swap', before:before, after:after}});
+            if(undoStack.length>MAX_STACK) undoStack.shift();
+            redoStack.length=0;
+            saveState();
+            updateUndoRedoButtons();
+        }}
+    }}
     regions.forEach(r=>r.addEventListener('click',e=>{{
         if(r.dataset.bg==='1') return;
         e.stopPropagation();
+        if(document.body.classList.contains('solution')){{
+            adoptSolutionAsUserState();
+        }}
         setRegionColor(r,currentColor);
     }}));
     // === C3.4 : Hover preview couleur (pointer events = souris + touch) ===
@@ -503,12 +542,17 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
             r.style.opacity='0.7';
         }});
         r.addEventListener('pointerleave',()=>{{
-            if(hoverPrev){{
-                r.setAttribute('fill',hoverPrev.fill);
-                r.setAttribute('stroke',hoverPrev.stroke);
-                hoverPrev=null;
-            }}
+            // C3.4-fix : restaurer depuis dataset.user (source de verite)
+            // au lieu de hoverPrev qui devient stale apres un click.
+            // En mode solution : fill = dataset.natural, on ne touche pas.
             r.style.opacity='';
+            hoverPrev=null;
+            if(document.body.classList.contains('solution')){{
+                return;
+            }}
+            const userColor=r.dataset.user||'#ffffff';
+            r.setAttribute('fill',userColor);
+            r.setAttribute('stroke',userColor);
         }});
     }});
     // === Btn reset : push bulk_swap reversible (before=snapshot, after={{}}) ===
@@ -711,7 +755,6 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
 <h1>Coloriage : {html_escape.escape(name)}</h1>
 <div class="meta">{n_regions} régions · preset : {html_escape.escape(preset_name)} · extraction : {elapsed_ms:.0f} ms</div>
 <div class="controls" role="group" aria-label="Outils">
-  {palette_html}
   <div class="actions">
     <button id="btn-undo" class="btn" title="Annuler (Ctrl+Z)" aria-label="Annuler" disabled>↶ Annuler</button>
     <button id="btn-redo" class="btn" title="Rétablir (Ctrl+Shift+Z)" aria-label="Rétablir" disabled>↷ Rétablir</button>
@@ -733,11 +776,12 @@ def _render_html(name: str, source_url: str, svg_inline: str, n_regions: int,
   </div>
 </div></header>
 <main role="application" aria-label="Coloriage interactif"><div class="canvas">{svg_inline_a11y}</div></main>
+<footer class="palette-footer" role="group" aria-label="Palette">{palette_html}</footer>
 <div id="onboarding-tip" class="onboarding-overlay" role="dialog" aria-modal="true" aria-labelledby="onboarding-title" hidden>
   <div class="onboarding-card">
     <h2 id="onboarding-title">🎨 Bienvenue !</h2>
     <ol>
-      <li><strong>Choisis une couleur</strong> dans la palette à gauche.</li>
+      <li><strong>Choisis une couleur</strong> dans la palette en bas de page.</li>
       <li><strong>Clique sur une région</strong> du dessin pour la colorier.</li>
       <li><strong>Annule</strong> avec ↶ ou <kbd>Ctrl</kbd>+<kbd>Z</kbd> si tu changes d'avis.</li>
       <li><strong>Exporte ton œuvre</strong> avec le bouton 💾.</li>

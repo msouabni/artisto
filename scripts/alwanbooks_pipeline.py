@@ -112,6 +112,12 @@ R2_PATHS = {
     "pdf":    "coloriages/pdf/{slug}.pdf",
 }
 
+# Clé R2 du SVG bicouche décoloriage (Phase 4 — 5e asset, ADD-ONLY).
+# Aligné sur le nommage des 4 variantes : ``coloriages/<kind>/{slug}.<ext>``.
+# URL publique résultante : ``{CLOUDFLARE_R2_PUBLIC_BASE}/coloriages/svg/{slug}.svg``.
+R2_SVG_PATH = "coloriages/svg/{slug}.svg"
+R2_SVG_CONTENT_TYPE = "image/svg+xml"
+
 # Configuration de conversion d'images (cf. contrat §3)
 WEB_QUALITY = 85
 WEB_METHOD = 6
@@ -393,6 +399,10 @@ class LeafResult:
     master_path: Path | None = None
     variants_uploaded: dict[str, str] = field(default_factory=dict)  # variant -> r2_key
     variants_skipped: dict[str, str] = field(default_factory=dict)   # idempotent skip
+    # SVG bicouche décoloriage (Phase 4) — au plus un des trois est renseigné.
+    svg_uploaded: str | None = None   # r2_key si poussé
+    svg_skipped: str | None = None    # r2_key si skip idempotent (master-md5)
+    svg_missing: bool = False         # pas de coloring_svg pour ce leaf
     posts_written: list[Path] = field(default_factory=list)
     errors: list[str] = field(default_factory=list)
 
@@ -406,6 +416,10 @@ class PipelineRunSummary:
     leaves_no_master: int = 0
     variants_uploaded: int = 0
     variants_skipped: int = 0
+    # SVG bicouche décoloriage (Phase 4) — même format que les variantes.
+    svg_uploaded: int = 0
+    svg_skipped: int = 0
+    svg_missing: int = 0
     posts_written: int = 0
     posts_created: int = 0
     posts_skipped_addonly: int = 0
@@ -603,6 +617,86 @@ def _upload_variants_mock(
         out.write_bytes(body)
         uploaded[variant] = key
     return uploaded, {}
+
+
+# ── SVG bicouche décoloriage (Phase 4 — 5e asset R2, ADD-ONLY) ──────────────
+
+
+def _resolve_coloring_svg(
+    leaf_id: str, base_dir: Path | None = None,
+) -> Path | None:
+    """Résout le SVG coloriage (décoloriage) d'un leaf via ``coloring_storage``.
+
+    On consomme l'artefact existant produit en Phase 2
+    (``data/generated/{leaf_id}__{variant}_coloriage.svg``, chemin reflété
+    dans ``ImageOutput.model_config.coloring_svg_path``). Une feuille peut
+    porter plusieurs variantes ; on retient le premier ``coloring_svg``
+    présent sur disque (ordre alphabétique stable des variantes via
+    ``list_existing_variants``).
+
+    Returns:
+        Le ``Path`` du fichier SVG si présent, sinon ``None`` (skip propre).
+        Ne lève jamais sur un ``leaf_id`` invalide : retourne ``None``.
+    """
+    try:
+        from services.coloring_storage import (
+            get_storage_paths,
+            list_existing_variants,
+        )
+        for variant_name in list_existing_variants(leaf_id, base_dir=base_dir):
+            paths = get_storage_paths(leaf_id, variant_name, base_dir=base_dir)
+            if paths.coloring_svg.is_file():
+                return paths.coloring_svg
+    except Exception:
+        # Défensif : un leaf_id non conforme / dossier absent ne doit pas
+        # casser la publication du leaf. On compte « missing ».
+        return None
+    return None
+
+
+def _upload_svg_real(
+    r2: R2Client, slug: str, svg_body: bytes,
+) -> tuple[str | None, str | None]:
+    """Upload réel du SVG coloriage. Retourne ``(uploaded_key, skipped_key)``.
+
+    ADD-ONLY + idempotent via custom metadata ``master-md5`` (réutilise la
+    mécanique des 4 variantes, cf. ``_upload_variants_real``). Le SVG n'ayant
+    pas de master PNG dont dériver le hash, on prend le **md5 du contenu SVG
+    lui-même** comme empreinte d'idempotence :
+    - présent et == md5(svg) → skip (SVG inchangé)
+    - présent et != → upload (SVG régénéré)
+    - absent (legacy) → fallback ETag == md5(svg)
+
+    Au plus un des deux éléments du tuple est non-``None``.
+    """
+    key = R2_SVG_PATH.format(slug=slug)
+    svg_md5 = _md5(svg_body)
+    existing = r2.head(key)
+    if existing is not None:
+        existing_master_md5 = (existing.get("Metadata") or {}).get("master-md5", "")
+        if existing_master_md5:
+            if existing_master_md5 == svg_md5:
+                return None, key
+        else:
+            existing_etag = existing.get("ETag", "").strip('"')
+            if existing_etag == svg_md5:
+                return None, key
+    r2.put(key, svg_body, R2_SVG_CONTENT_TYPE, metadata={"master-md5": svg_md5})
+    return key, None
+
+
+def _upload_svg_mock(
+    slug: str, svg_body: bytes,
+) -> tuple[str | None, str | None]:
+    """Mock : écrit le SVG dans ``data/export/r2_simulated/coloriages/svg/``.
+
+    Aucun appel réseau. Retourne ``(uploaded_key, None)``.
+    """
+    key = R2_SVG_PATH.format(slug=slug)
+    out = MOCK_R2_DIR / key
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_bytes(svg_body)
+    return key, None
 
 
 # ── Conversion JSON Post → MD Astro ─────────────────────────────────────────
@@ -1503,6 +1597,9 @@ def print_deployment_recap(
     r2_uploaded: int = 0,
     r2_skipped: int = 0,
     r2_failed: int = 0,
+    svg_uploaded: int = 0,
+    svg_skipped: int = 0,
+    svg_missing: int = 0,
     branch_name: str | None = None,
     commit_count: int = 0,
     no_git_push: bool = False,
@@ -1525,6 +1622,7 @@ def print_deployment_recap(
     print(f"Themes sync       : {themes_created} créé{themes_detail} / {themes_skipped} existants ignorés")
     print(f"themeIds auto-tag : {theme_ids_tagged} posts impactés (lecture themes_registry)")
     print(f"R2 variants       : {r2_uploaded} uploadés / {r2_skipped} skipped (etag match) / {r2_failed} failed")
+    print(f"R2 svg décoloriage: {svg_uploaded} uploadés / {svg_skipped} skipped (master-md5) / {svg_missing} missing")
 
     if no_git_push:
         print(f"\n  Mode --no-git-push : écriture locale uniquement, pas de push")
@@ -1634,6 +1732,38 @@ def run_pipeline(
             summary.leaves.append(result)
             logger.exception("Upload failed for %s", leaf_id_v)
             continue
+
+        # 3bis. SVG bicouche décoloriage (Phase 4) — 5e asset R2, ADD-ONLY.
+        # On consomme l'artefact existant (Phase 2) ; absent → skip propre.
+        # Best-effort : un échec d'upload SVG ne fait PAS échouer la leaf
+        # (les 4 variantes sont déjà poussées, le post reste publiable).
+        svg_path = _resolve_coloring_svg(leaf_id_v)
+        if svg_path is None:
+            result.svg_missing = True
+            summary.svg_missing += 1
+            logger.info("[svg] leaf=%s : pas de coloring_svg (skip)", leaf_id_v)
+        else:
+            try:
+                svg_body = svg_path.read_bytes()
+                if mock:
+                    svg_up, svg_skip = _upload_svg_mock(r2_slug_v, svg_body)
+                else:
+                    assert r2 is not None
+                    svg_up, svg_skip = _upload_svg_real(r2, r2_slug_v, svg_body)
+                result.svg_uploaded = svg_up
+                result.svg_skipped = svg_skip
+                if svg_up is not None:
+                    summary.svg_uploaded += 1
+                    logger.info("[svg] leaf=%s uploaded → %s", leaf_id_v, svg_up)
+                if svg_skip is not None:
+                    summary.svg_skipped += 1
+                    logger.info(
+                        "[svg] leaf=%s skipped (master-md5 inchangé) → %s",
+                        leaf_id_v, svg_skip,
+                    )
+            except Exception as exc:
+                result.errors.append(f"svg upload failed: {exc}")
+                logger.warning("[svg] upload SVG échoué pour %s: %s", leaf_id_v, exc)
 
         # 4. Convertir + écrire les Posts MD × 3 locales (ADD-ONLY)
         for locale, post_slug in post_slugs.items():
@@ -1773,6 +1903,11 @@ def write_report(summary: PipelineRunSummary) -> None:
     lines.append(f"  - No master PNG : {summary.leaves_no_master}")
     lines.append(f"- Variants R2 uploaded : {summary.variants_uploaded}")
     lines.append(f"- Variants R2 skipped (idempotent ETag match) : {summary.variants_skipped}")
+    lines.append(
+        f"- SVG décoloriage R2 : {summary.svg_uploaded} uploaded / "
+        f"{summary.svg_skipped} skipped (master-md5) / "
+        f"{summary.svg_missing} missing"
+    )
     lines.append(f"- Posts MD écrits : {summary.posts_written}")
     lines.append("")
     if summary.errors:
@@ -1834,6 +1969,8 @@ def _print_summary(summary: PipelineRunSummary) -> None:
           f"failed={summary.leaves_failed} no_master={summary.leaves_no_master}")
     print(f"  variants uploaded={summary.variants_uploaded} "
           f"skipped={summary.variants_skipped} posts={summary.posts_written}")
+    print(f"  svg uploaded={summary.svg_uploaded} "
+          f"skipped={summary.svg_skipped} missing={summary.svg_missing}")
     if summary.errors:
         for leaf_id, msg in summary.errors[:5]:
             print(f"  err {leaf_id}: {msg}")
@@ -2071,6 +2208,9 @@ def main(argv: list[str] | None = None) -> int:
         theme_ids_tagged=summary.theme_ids_tagged,
         r2_uploaded=summary.variants_uploaded,
         r2_skipped=summary.variants_skipped,
+        svg_uploaded=summary.svg_uploaded,
+        svg_skipped=summary.svg_skipped,
+        svg_missing=summary.svg_missing,
         branch_name=summary.bot_branch_name,
         commit_count=summary.bot_commit_count,
         no_git_push=args.no_git_push or args.mock,
