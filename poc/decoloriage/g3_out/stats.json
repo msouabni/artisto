@@ -1,0 +1,620 @@
+{
+  "level_used": "enfant",
+  "params": {
+    "dp_tolerance": 1.0,
+    "chaikin_iters": 2,
+    "stroke_width": 2
+  },
+  "images": [
+    {
+      "slot": 1,
+      "id": "pastel_dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 32,
+      "n_polylines": 41,
+      "n_points_total": 7706,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 44,
+      "junctions_4plus": 0,
+      "junctions_total": 44,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 0.29,
+        "svg": 0.01,
+        "raster": 0.02,
+        "junctions": 0.05,
+        "total": 0.36
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/01_pastel_dog_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/01_pastel_dog_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/01_pastel_dog_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/01_pastel_dog_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 136,
+          "col": 475,
+          "labels_around": 3
+        },
+        {
+          "row": 138,
+          "col": 376,
+          "labels_around": 3
+        },
+        {
+          "row": 189,
+          "col": 311,
+          "labels_around": 3
+        },
+        {
+          "row": 214,
+          "col": 299,
+          "labels_around": 3
+        },
+        {
+          "row": 259,
+          "col": 319,
+          "labels_around": 3
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "id": "pastel_horse",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 44,
+      "n_polylines": 59,
+      "n_points_total": 9228,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 56,
+      "junctions_4plus": 0,
+      "junctions_total": 56,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 0.36,
+        "svg": 0.01,
+        "raster": 0.01,
+        "junctions": 0.04,
+        "total": 0.42
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/02_pastel_horse_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/02_pastel_horse_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/02_pastel_horse_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/02_pastel_horse_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 108,
+          "col": 205,
+          "labels_around": 3
+        },
+        {
+          "row": 113,
+          "col": 320,
+          "labels_around": 3
+        },
+        {
+          "row": 119,
+          "col": 329,
+          "labels_around": 3
+        },
+        {
+          "row": 120,
+          "col": 325,
+          "labels_around": 3
+        },
+        {
+          "row": 144,
+          "col": 297,
+          "labels_around": 3
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "id": "pastel_cat",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 60,
+      "n_polylines": 73,
+      "n_points_total": 10782,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 92,
+      "junctions_4plus": 0,
+      "junctions_total": 92,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 0.45,
+        "svg": 0.01,
+        "raster": 0.02,
+        "junctions": 0.05,
+        "total": 0.52
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/03_pastel_cat_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/03_pastel_cat_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/03_pastel_cat_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/03_pastel_cat_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 156,
+          "col": 230,
+          "labels_around": 3
+        },
+        {
+          "row": 159,
+          "col": 491,
+          "labels_around": 3
+        },
+        {
+          "row": 195,
+          "col": 339,
+          "labels_around": 3
+        },
+        {
+          "row": 196,
+          "col": 374,
+          "labels_around": 3
+        },
+        {
+          "row": 197,
+          "col": 325,
+          "labels_around": 3
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "id": "pastel_elephant",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 57,
+      "n_polylines": 94,
+      "n_points_total": 10175,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 38,
+      "junctions_4plus": 0,
+      "junctions_total": 38,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 0.45,
+        "svg": 0.01,
+        "raster": 0.02,
+        "junctions": 0.05,
+        "total": 0.53
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/04_pastel_elephant_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/04_pastel_elephant_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/04_pastel_elephant_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/04_pastel_elephant_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 211,
+          "col": 597,
+          "labels_around": 3
+        },
+        {
+          "row": 223,
+          "col": 566,
+          "labels_around": 3
+        },
+        {
+          "row": 282,
+          "col": 805,
+          "labels_around": 3
+        },
+        {
+          "row": 289,
+          "col": 442,
+          "labels_around": 3
+        },
+        {
+          "row": 294,
+          "col": 815,
+          "labels_around": 3
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "id": "pastel_lion2",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 66,
+      "n_polylines": 91,
+      "n_points_total": 13068,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 80,
+      "junctions_4plus": 0,
+      "junctions_total": 80,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 0.56,
+        "svg": 0.01,
+        "raster": 0.02,
+        "junctions": 0.05,
+        "total": 0.64
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/05_pastel_lion2_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/05_pastel_lion2_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/05_pastel_lion2_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/05_pastel_lion2_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 126,
+          "col": 465,
+          "labels_around": 3
+        },
+        {
+          "row": 157,
+          "col": 573,
+          "labels_around": 3
+        },
+        {
+          "row": 159,
+          "col": 573,
+          "labels_around": 3
+        },
+        {
+          "row": 171,
+          "col": 280,
+          "labels_around": 3
+        },
+        {
+          "row": 173,
+          "col": 531,
+          "labels_around": 3
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "id": "taxo_polar_bear_on_ice",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 52,
+      "n_polylines": 63,
+      "n_points_total": 10384,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 78,
+      "junctions_4plus": 1,
+      "junctions_total": 79,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 0.43,
+        "svg": 0.01,
+        "raster": 0.02,
+        "junctions": 0.05,
+        "total": 0.51
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/06_taxo_polar_bear_on_ice_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/06_taxo_polar_bear_on_ice_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/06_taxo_polar_bear_on_ice_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/06_taxo_polar_bear_on_ice_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 806,
+          "col": 107,
+          "labels_around": 4
+        },
+        {
+          "row": 245,
+          "col": 212,
+          "labels_around": 3
+        },
+        {
+          "row": 250,
+          "col": 203,
+          "labels_around": 3
+        },
+        {
+          "row": 251,
+          "col": 371,
+          "labels_around": 3
+        },
+        {
+          "row": 257,
+          "col": 357,
+          "labels_around": 3
+        }
+      ]
+    },
+    {
+      "slot": 7,
+      "id": "pastel_pirate_ship",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 49,
+      "n_polylines": 77,
+      "n_points_total": 7586,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 41,
+      "junctions_4plus": 0,
+      "junctions_total": 41,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 0.37,
+        "svg": 0.01,
+        "raster": 0.02,
+        "junctions": 0.04,
+        "total": 0.44
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/07_pastel_pirate_ship_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/07_pastel_pirate_ship_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/07_pastel_pirate_ship_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/07_pastel_pirate_ship_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 308,
+          "col": 388,
+          "labels_around": 3
+        },
+        {
+          "row": 311,
+          "col": 395,
+          "labels_around": 3
+        },
+        {
+          "row": 501,
+          "col": 363,
+          "labels_around": 3
+        },
+        {
+          "row": 524,
+          "col": 192,
+          "labels_around": 3
+        },
+        {
+          "row": 526,
+          "col": 707,
+          "labels_around": 3
+        }
+      ]
+    },
+    {
+      "slot": 8,
+      "id": "pastel_lighthouse",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 50,
+      "n_polylines": 75,
+      "n_points_total": 7661,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 44,
+      "junctions_4plus": 0,
+      "junctions_total": 44,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 0.4,
+        "svg": 0.01,
+        "raster": 0.01,
+        "junctions": 0.05,
+        "total": 0.47
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/08_pastel_lighthouse_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/08_pastel_lighthouse_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/08_pastel_lighthouse_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/08_pastel_lighthouse_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 213,
+          "col": 675,
+          "labels_around": 3
+        },
+        {
+          "row": 237,
+          "col": 591,
+          "labels_around": 3
+        },
+        {
+          "row": 251,
+          "col": 584,
+          "labels_around": 3
+        },
+        {
+          "row": 277,
+          "col": 587,
+          "labels_around": 3
+        },
+        {
+          "row": 288,
+          "col": 584,
+          "labels_around": 3
+        }
+      ]
+    },
+    {
+      "slot": 9,
+      "id": "pastel_castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 76,
+      "n_polylines": 138,
+      "n_points_total": 12607,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 27,
+      "junctions_4plus": 0,
+      "junctions_total": 27,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 0.59,
+        "svg": 0.01,
+        "raster": 0.02,
+        "junctions": 0.05,
+        "total": 0.68
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/09_pastel_castle_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/09_pastel_castle_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/09_pastel_castle_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/09_pastel_castle_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 437,
+          "col": 666,
+          "labels_around": 3
+        },
+        {
+          "row": 438,
+          "col": 374,
+          "labels_around": 3
+        },
+        {
+          "row": 438,
+          "col": 669,
+          "labels_around": 3
+        },
+        {
+          "row": 439,
+          "col": 681,
+          "labels_around": 3
+        },
+        {
+          "row": 464,
+          "col": 356,
+          "labels_around": 3
+        }
+      ]
+    },
+    {
+      "slot": 10,
+      "id": "pastel_peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 209,
+      "n_polylines": 283,
+      "n_points_total": 25796,
+      "non_covered_pixels": 0,
+      "non_covered_pct": 0.0,
+      "junctions_3": 258,
+      "junctions_4plus": 5,
+      "junctions_total": 263,
+      "params": {
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "stroke_width": 2
+      },
+      "timing_s": {
+        "extract": 1.43,
+        "svg": 0.02,
+        "raster": 0.04,
+        "junctions": 0.06,
+        "total": 1.55
+      },
+      "outputs": {
+        "svg": "poc/decoloriage/g3_out/10_pastel_peacock_enfant.svg",
+        "svg_render_png": "poc/decoloriage/g3_out/10_pastel_peacock_svg_render.png",
+        "diff_png": "poc/decoloriage/g3_out/10_pastel_peacock_diff.png",
+        "junctions_overlay_png": "poc/decoloriage/g3_out/10_pastel_peacock_junctions_overlay.png"
+      },
+      "best_junctions": [
+        {
+          "row": 431,
+          "col": 230,
+          "labels_around": 4
+        },
+        {
+          "row": 496,
+          "col": 460,
+          "labels_around": 4
+        },
+        {
+          "row": 637,
+          "col": 669,
+          "labels_around": 4
+        },
+        {
+          "row": 692,
+          "col": 393,
+          "labels_around": 4
+        },
+        {
+          "row": 698,
+          "col": 652,
+          "labels_around": 4
+        }
+      ]
+    }
+  ]
+}

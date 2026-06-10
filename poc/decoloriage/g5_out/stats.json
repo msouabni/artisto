@@ -1,0 +1,556 @@
+{
+  "params": {
+    "background_L_threshold": 92.0,
+    "ink_overlap_threshold": 0.6,
+    "line_mask_dilate_px": 3,
+    "dp_tolerance": 1.0,
+    "chaikin_iters_arc": 2,
+    "chaikin_iters_region": 2,
+    "shading_ratio_of_ink": 0.3333333333333333
+  },
+  "crayons": [
+    {
+      "name": "Cerise",
+      "hex": "#FF2E63"
+    },
+    {
+      "name": "Mandarine",
+      "hex": "#FF8A2B"
+    },
+    {
+      "name": "Citron",
+      "hex": "#FFD60A"
+    },
+    {
+      "name": "Menthe",
+      "hex": "#06D6A0"
+    },
+    {
+      "name": "Ocean",
+      "hex": "#118AB2"
+    },
+    {
+      "name": "Prune",
+      "hex": "#8B5CF6"
+    }
+  ],
+  "image": {
+    "slot": 1,
+    "id": "pastel_dog",
+    "image_size": [
+      1024,
+      1024
+    ],
+    "n_regions_total": 32,
+    "n_regions": 29,
+    "n_ink_regions": 3,
+    "ink_region_ids": [
+      272,
+      273,
+      274
+    ],
+    "n_arcs": 74,
+    "n_ink": 37,
+    "n_shading": 37,
+    "ink_stroke_width": 6.39,
+    "shading_stroke_width": 2.13,
+    "crayons_used": {
+      "#ffffff": 14,
+      "#118AB2": 8,
+      "#FF8A2B": 6,
+      "#06D6A0": 1
+    },
+    "outputs": {
+      "svg": "poc/decoloriage/g5_out/01_pastel_dog_g5.svg",
+      "html": "poc/decoloriage/g5_out/01_pastel_dog_g5.html",
+      "solution_png": "poc/decoloriage/g5_out/01_pastel_dog_g5_solution.png",
+      "blank_png": "poc/decoloriage/g5_out/01_pastel_dog_g5_blank.png",
+      "print_png": "poc/decoloriage/g5_out/01_pastel_dog_g5_print.png"
+    },
+    "regions_detail": [
+      {
+        "id": 1,
+        "hex_original": "#FEFEFE",
+        "lab": [
+          99.76,
+          0.03,
+          -0.0
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.006
+      },
+      {
+        "id": 13,
+        "hex_original": "#FBFAFA",
+        "lab": [
+          98.58,
+          0.2,
+          0.05
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.316
+      },
+      {
+        "id": 14,
+        "hex_original": "#FBFAFB",
+        "lab": [
+          98.67,
+          0.32,
+          -0.29
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.228
+      },
+      {
+        "id": 20,
+        "hex_original": "#F7F7EF",
+        "lab": [
+          97.14,
+          -1.26,
+          3.65
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.304
+      },
+      {
+        "id": 64,
+        "hex_original": "#CFEAE6",
+        "lab": [
+          90.99,
+          -9.68,
+          -0.86
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 47.6,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.006
+      },
+      {
+        "id": 132,
+        "hex_original": "#CFECEC",
+        "lab": [
+          91.59,
+          -9.42,
+          -2.97
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 46.89,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.034
+      },
+      {
+        "id": 150,
+        "hex_original": "#D9EDE4",
+        "lab": [
+          92.37,
+          -8.27,
+          2.29
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.043
+      },
+      {
+        "id": 272,
+        "hex_original": "#0F0E0C",
+        "lab": [
+          4.06,
+          0.3,
+          0.68
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 60.16,
+        "is_background": false,
+        "is_ink_region": true,
+        "ink_overlap_ratio": 0.999
+      },
+      {
+        "id": 273,
+        "hex_original": "#060505",
+        "lab": [
+          1.5,
+          0.24,
+          0.18
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 62.03,
+        "is_background": false,
+        "is_ink_region": true,
+        "ink_overlap_ratio": 1.0
+      },
+      {
+        "id": 274,
+        "hex_original": "#010101",
+        "lab": [
+          0.36,
+          -0.05,
+          0.12
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 62.89,
+        "is_background": false,
+        "is_ink_region": true,
+        "ink_overlap_ratio": 1.0
+      },
+      {
+        "id": 275,
+        "hex_original": "#FDC28F",
+        "lab": [
+          82.85,
+          14.7,
+          33.75
+        ],
+        "crayon_name": "Mandarine",
+        "crayon_hex": "#FF8A2B",
+        "delta_e": 42.16,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.018
+      },
+      {
+        "id": 393,
+        "hex_original": "#FBCC8F",
+        "lab": [
+          84.95,
+          9.28,
+          36.37
+        ],
+        "crayon_name": "Mandarine",
+        "crayon_hex": "#FF8A2B",
+        "delta_e": 44.34,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.013
+      },
+      {
+        "id": 399,
+        "hex_original": "#E7C68F",
+        "lab": [
+          81.78,
+          4.11,
+          31.91
+        ],
+        "crayon_name": "Mandarine",
+        "crayon_hex": "#FF8A2B",
+        "delta_e": 49.87,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.015
+      },
+      {
+        "id": 404,
+        "hex_original": "#C6A9EF",
+        "lab": [
+          74.18,
+          23.76,
+          -31.07
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 44.78,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.035
+      },
+      {
+        "id": 405,
+        "hex_original": "#C9AAEB",
+        "lab": [
+          74.31,
+          23.55,
+          -28.36
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 44.64,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.044
+      },
+      {
+        "id": 411,
+        "hex_original": "#D6BAEA",
+        "lab": [
+          79.4,
+          19.02,
+          -20.44
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 44.44,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.221
+      },
+      {
+        "id": 419,
+        "hex_original": "#FDB8B1",
+        "lab": [
+          81.01,
+          24.15,
+          13.21
+        ],
+        "crayon_name": "Mandarine",
+        "crayon_hex": "#FF8A2B",
+        "delta_e": 55.77,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.006
+      },
+      {
+        "id": 420,
+        "hex_original": "#FDB9B3",
+        "lab": [
+          81.36,
+          23.8,
+          12.47
+        ],
+        "crayon_name": "Mandarine",
+        "crayon_hex": "#FF8A2B",
+        "delta_e": 56.63,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.019
+      },
+      {
+        "id": 453,
+        "hex_original": "#F9F4D2",
+        "lab": [
+          95.88,
+          -3.65,
+          17.1
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.032
+      },
+      {
+        "id": 486,
+        "hex_original": "#FDF9CB",
+        "lab": [
+          97.47,
+          -6.32,
+          22.95
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.027
+      },
+      {
+        "id": 493,
+        "hex_original": "#FDF6D2",
+        "lab": [
+          96.76,
+          -3.36,
+          18.15
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.0
+      },
+      {
+        "id": 592,
+        "hex_original": "#FDF7DB",
+        "lab": [
+          97.15,
+          -2.51,
+          14.2
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.032
+      },
+      {
+        "id": 661,
+        "hex_original": "#FCF7D7",
+        "lab": [
+          96.96,
+          -3.24,
+          16.06
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.028
+      },
+      {
+        "id": 665,
+        "hex_original": "#FCF8D6",
+        "lab": [
+          97.25,
+          -4.04,
+          17.0
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.032
+      },
+      {
+        "id": 684,
+        "hex_original": "#FDF8DB",
+        "lab": [
+          97.56,
+          -3.35,
+          14.75
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.04
+      },
+      {
+        "id": 717,
+        "hex_original": "#9DECC6",
+        "lab": [
+          87.81,
+          -32.47,
+          10.98
+        ],
+        "crayon_name": "Menthe",
+        "crayon_hex": "#06D6A0",
+        "delta_e": 26.75,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.01
+      },
+      {
+        "id": 737,
+        "hex_original": "#AFE1F0",
+        "lab": [
+          86.78,
+          -12.46,
+          -12.8
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 37.41,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.023
+      },
+      {
+        "id": 742,
+        "hex_original": "#8DD9FA",
+        "lab": [
+          83.2,
+          -15.06,
+          -23.37
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 30.34,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.015
+      },
+      {
+        "id": 753,
+        "hex_original": "#95D7F1",
+        "lab": [
+          82.69,
+          -14.34,
+          -19.37
+        ],
+        "crayon_name": "Ocean",
+        "crayon_hex": "#118AB2",
+        "delta_e": 30.95,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.02
+      },
+      {
+        "id": 758,
+        "hex_original": "#FDF282",
+        "lab": [
+          94.56,
+          -10.87,
+          54.91
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.046
+      },
+      {
+        "id": 759,
+        "hex_original": "#FDF182",
+        "lab": [
+          94.11,
+          -10.29,
+          54.57
+        ],
+        "crayon_name": "Papier",
+        "crayon_hex": "#ffffff",
+        "delta_e": 0.0,
+        "is_background": true,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.033
+      },
+      {
+        "id": 6134,
+        "hex_original": "#FBA895",
+        "lab": [
+          76.68,
+          28.58,
+          22.16
+        ],
+        "crayon_name": "Mandarine",
+        "crayon_hex": "#FF8A2B",
+        "delta_e": 45.36,
+        "is_background": false,
+        "is_ink_region": false,
+        "ink_overlap_ratio": 0.056
+      }
+    ],
+    "timing_s": 0.97,
+    "category": "animal",
+    "level": "enfant"
+  }
+}

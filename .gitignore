@@ -54,3 +54,11 @@ data/export/r2_simulated/
 
 # Clones des sites destinataires (Niveau 1 multi-sites)
 data/sites/*/
+
+# POC decoloriage : artefacts intermediaires lourds (regenerables via scripts).
+# On garde les scripts, corpus.json, stats.json, planches contact, lines/,
+# et les livrables G3/G4/G5 (SVG + diff + previews).
+poc/decoloriage/g1a_out/
+poc/decoloriage/g2_out/adulte/
+poc/decoloriage/g2_out/enfant/
+poc/decoloriage/g2_out/tout_petit/
