@@ -153,6 +153,38 @@ Le contraste (a)/(b) ↔ (c) est saisissant sur la planche verdict
   "crayon de choix utilisateur" jamais matché en solution. Décision design
   system, à traiter avec b5.
 
+### T20 — Styles de coloriage : architecture 2-modes (décoloriage couleur / lineart-fill N&B) + styles ornementaux natifs
+
+**Statut** : exploration 2026-06-12 (POC 2 `decoloriage-styles`). 4 styles ornementaux natifs rendus coloriables production-ready via le mode **lineart-fill**. Pistes catalogue adulte, pas encore figées prod.
+
+**Insight produit clé** : pour les styles ornementaux/décoratifs, NE PAS forcer la taxonomie sujet (chien/château/paon) — c'est « parachuté » et ça dévie le style de sa nature. Chaque style en sa **forme native** + **sujets adaptés** : zellige → étoiles/médaillons arabesques ; mandala → floral/géométrique/lotus ; zentangle → hibou/plume/papillon remplis de tangles ; mosaïque → poisson/oiseau romain/médaillon byzantin. Cible = motif hypnotique qui donne envie de colorier. (cf. mémoire `feedback_styles_ornementaux_sujet_natif`.)
+
+**Architecture 2-modes (selon la source de l'image)** :
+- **Mode décoloriage** (= T19) — image **COLORÉE** → régions (k-means Lab) + encre. Pour : pastel POC 1, kawaii contours, low-poly colorés.
+- **Mode lineart-fill** (NOUVEAU) — **line-art N&B** → composantes connexes du blanc bornées par les traits noirs. Pour : mandala, zentangle, zellige, mosaïque, **et tout line-art** (y compris les prompts lineart d'origine pré-pastel).
+
+**Recette styles ornementaux (lineart-fill)** :
+1. Génération ERNIE turbo (params défaut), prompt natif par style + `coloring book line art, bold clean black outlines, white background` ; négatif `color, colored, grayscale shading, gradient`. Pas de chromakey (fond blanc → Papier via L*≥92).
+2. **lineart-fill v2** (`poc/decoloriage_styles/lineart_fill_v2.py`) :
+   - Binarisation encre (gris < ~110) + `MORPH_CLOSE` 3 px (soude les micro-trous de trait).
+   - Composantes connexes 4-conn du NON-encre (blanc) = cellules ; fond = plus grande zone touchant le bord = Papier.
+   - **Expansion Voronoi** (`scipy.ndimage.distance_transform_edt(return_indices=True)`) des cellules **sous le trait** → couverture canvas 100 %, **zéro halo blanc** au remplissage (fix production).
+   - Cellules vectorisées (`g3_vectorize.extract_region_polygons`, Chaikin) ; **encre vectorisée** (`services.vectorizer.Vectorizer.from_preset("bw_default")`, VTracer) → traits lisses, 0 raster (fix production « traits smooth »).
+   - SVG bicouche : `<g id="fills">` (1 path cliquable par cellule, `data-region-id`) + `<g id="strokes">` (encre vectorielle, `pointer-events:none`).
+3. HTML click-to-fill standalone.
+
+**Résultats** (4 styles × 3 sujets natifs) : couverture **100 %** (halo supprimé), cellules indépendantes (médiane ~480), traits vectoriels lisses (zoom AVANT/APRÈS validé), SVG ~770 Ko (encre vectorielle ; 392 Ko en variante raster). Pages adulte publiables. Réf : `poc/decoloriage_styles/EXPLORATION_LOG.md` + `fill_v3/`.
+
+**Styles durs (manga/réaliste/peinture/3D)** : baseline POC 1 insuffisant (gate S1, diagnostic). Outils d'adaptation S2 **validés et disponibles** : **SAM 2** (segmentation, réduit la sur-fragmentation : peacock 641→49 régions) + **informative-drawings `contour_style`** (extraction de traits appris quand pas d'encre native → vrai line-art sur 3D). Non poursuivis (pivot styles-adaptés plus rentable), mais outils prêts si retour.
+
+**Backlog prod (T20)** :
+- (c1) Intégrer **lineart-fill comme 3e moteur** dans `image_post_processing_worker` (à côté de décoloriage + extract_palette rollback), sélection par style/variante.
+- (c2) **Alléger l'encre** : exposer l'option raster (392 Ko) vs vectorielle (773 Ko), ou simplifier les paths VTracer.
+- (c3) **Appliquer lineart-fill aux prompts lineart d'origine** (style historique) → débloque leur coloriage interactif.
+- (c4) Re-gen des sujets à artefact gen (zentangle_dog « 2 chiens », low_poly_dog « 2 têtes »).
+- (c5) stained_glass / mosaïque colorée : récupérables via sujet isolé chromakey + grandes vitres, ou SAM 2 — backlog.
+- (c6) Figer les styles validés en variantes prod (`data/pipeline_variants.json`) + décision catalogue Alwan (mémoire).
+
 ## Invalidées
 
 *(aucune entrée à ce jour)*

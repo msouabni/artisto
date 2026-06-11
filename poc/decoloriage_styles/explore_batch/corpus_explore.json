@@ -1,0 +1,122 @@
+{
+  "gate": "POC2-exploration-ornamental",
+  "frozen_at": "2026-06-11",
+  "seed": 42,
+  "resolution": [
+    1024,
+    1024
+  ],
+  "styles": [
+    "mosaic",
+    "zellige",
+    "mandala",
+    "zentangle"
+  ],
+  "subjects": [
+    "dog",
+    "castle",
+    "peacock"
+  ],
+  "negatives": {
+    "tiles": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic",
+    "lineart": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic, color, colored, grayscale gradient shading"
+  },
+  "images": [
+    {
+      "id": "mosaic_dog",
+      "style": "mosaic",
+      "subject": "dog",
+      "positive": "mosaic artwork of a single dog sitting in profile, full body, made of small colored ceramic tesserae tiles separated by dark grout lines, byzantine mosaic style, flat tile colors, highly detailed, on a solid chroma key green background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic",
+      "generated": true
+    },
+    {
+      "id": "mosaic_castle",
+      "style": "mosaic",
+      "subject": "castle",
+      "positive": "mosaic artwork of a single fairytale castle with towers, full view, made of small colored ceramic tesserae tiles separated by dark grout lines, byzantine mosaic style, flat tile colors, highly detailed, on a solid chroma key green background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic",
+      "generated": true
+    },
+    {
+      "id": "mosaic_peacock",
+      "style": "mosaic",
+      "subject": "peacock",
+      "positive": "mosaic artwork of a single peacock with tail feathers displayed, made of small colored ceramic tesserae tiles separated by dark grout lines, byzantine mosaic style, flat tile colors, highly detailed, on a solid chroma key green background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic",
+      "generated": true
+    },
+    {
+      "id": "zellige_dog",
+      "style": "zellige",
+      "subject": "dog",
+      "positive": "a single dog sitting in profile, full body rendered in islamic geometric zellige style, tessellated geometric colored tiles with dark outlines, arabesque ornamental, flat tile colors, highly detailed, on a solid chroma key green background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic",
+      "generated": true
+    },
+    {
+      "id": "zellige_castle",
+      "style": "zellige",
+      "subject": "castle",
+      "positive": "a single fairytale castle with towers, full view rendered in islamic geometric zellige style, tessellated geometric colored tiles with dark outlines, arabesque ornamental, flat tile colors, highly detailed, on a solid chroma key green background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic",
+      "generated": true
+    },
+    {
+      "id": "zellige_peacock",
+      "style": "zellige",
+      "subject": "peacock",
+      "positive": "a single peacock with tail feathers displayed rendered in islamic geometric zellige style, tessellated geometric colored tiles with dark outlines, arabesque ornamental, flat tile colors, highly detailed, on a solid chroma key green background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic",
+      "generated": true
+    },
+    {
+      "id": "mandala_dog",
+      "style": "mandala",
+      "subject": "dog",
+      "positive": "ornamental mandala-style line art of a single dog sitting in profile, full body, intricate symmetric decorative black linework, coloring book line art, black and white, highly detailed, white background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic, color, colored, grayscale gradient shading",
+      "generated": true
+    },
+    {
+      "id": "mandala_castle",
+      "style": "mandala",
+      "subject": "castle",
+      "positive": "ornamental mandala-style line art of a single fairytale castle with towers, full view, intricate symmetric decorative black linework, coloring book line art, black and white, highly detailed, white background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic, color, colored, grayscale gradient shading",
+      "generated": true
+    },
+    {
+      "id": "mandala_peacock",
+      "style": "mandala",
+      "subject": "peacock",
+      "positive": "ornamental mandala-style line art of a single peacock with tail feathers displayed, intricate symmetric decorative black linework, coloring book line art, black and white, highly detailed, white background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic, color, colored, grayscale gradient shading",
+      "generated": true
+    },
+    {
+      "id": "zentangle_dog",
+      "style": "zentangle",
+      "subject": "dog",
+      "positive": "zentangle doodle line art of a single dog sitting in profile, full body, intricate black and white tangle patterns filling the shape, coloring book line art, highly detailed, white background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic, color, colored, grayscale gradient shading",
+      "generated": true
+    },
+    {
+      "id": "zentangle_castle",
+      "style": "zentangle",
+      "subject": "castle",
+      "positive": "zentangle doodle line art of a single fairytale castle with towers, full view, intricate black and white tangle patterns filling the shape, coloring book line art, highly detailed, white background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic, color, colored, grayscale gradient shading",
+      "generated": true
+    },
+    {
+      "id": "zentangle_peacock",
+      "style": "zentangle",
+      "subject": "peacock",
+      "positive": "zentangle doodle line art of a single peacock with tail feathers displayed, intricate black and white tangle patterns filling the shape, coloring book line art, highly detailed, white background, centered",
+      "negative": "blurry, low quality, watermark, text, deformed, multiple subjects, photorealistic, color, colored, grayscale gradient shading",
+      "generated": true
+    }
+  ]
+}

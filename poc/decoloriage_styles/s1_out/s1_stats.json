@@ -1,0 +1,279 @@
+{
+  "gate": "S1",
+  "description": "Baseline brute POC 1 INCHANGE (g1a_v3 + g2 niveau enfant + masque traits L<25) applique aux 12 images du corpus S0. Aucune adaptation. Diagnostic de ce qui casse par style. Verdict pass/kill = humain.",
+  "poc1_reused": [
+    "poc/decoloriage/g1a_v3_compact.py (process_image / preprocess_meanshift / kmeans_lab / connected_regions / merge_v3)",
+    "poc/decoloriage/g2_partition.py (process_image_3levels, niveau enfant, build_line_mask L<25 + close 3x3)"
+  ],
+  "params_verbatim_poc1": {
+    "meanshift_sp": 12,
+    "meanshift_sr": 24,
+    "kmeans_k": 12,
+    "merge_thresh": 0.0005,
+    "contrast_thresh": 30.0,
+    "enfant_smooth_merge_thresh": 12.0,
+    "lines_L_threshold": 25.0,
+    "line_mask_close": "MORPH_CLOSE 3x3 iter=1"
+  },
+  "sliver_ratio_definition": "sliver_ratio = proxy des 'slivers forces' de G3. Sur le squelette des frontieres inter-regions du region_map enfant (pixels ou un voisin 4-conn porte un label different), fraction de ces pixels-frontiere qui NE sont PAS couverts par le masque de traits L<25 dilate de 1px. Interpretation : une frontiere de region sans encre native dessous est invisible sur la planche finale ; G3 doit y forcer un stroke artificiel (sliver). sliver_ratio eleve = beaucoup de frontieres de segmentation sans support d'encre = traits fabriques. 0 = toute frontiere de region tombe sur de l'encre reelle.",
+  "images": [
+    {
+      "id": "manga_dog",
+      "style": "manga",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 116,
+      "pct_ink_mask": 7.17,
+      "sliver_ratio": 0.5039,
+      "n_boundary_px": 33806,
+      "n_boundary_uncovered_px": 17034,
+      "protected_immune": 102,
+      "enfant_png": "s1_out/manga_dog_enfant.png",
+      "linemask_png": "s1_out/manga_dog_linemask.png",
+      "time_s": 3.32
+    },
+    {
+      "id": "manga_castle",
+      "style": "manga",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 240,
+      "pct_ink_mask": 12.95,
+      "sliver_ratio": 0.3601,
+      "n_boundary_px": 60190,
+      "n_boundary_uncovered_px": 21674,
+      "protected_immune": 191,
+      "enfant_png": "s1_out/manga_castle_enfant.png",
+      "linemask_png": "s1_out/manga_castle_linemask.png",
+      "time_s": 4.09
+    },
+    {
+      "id": "manga_peacock",
+      "style": "manga",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 641,
+      "pct_ink_mask": 29.19,
+      "sliver_ratio": 0.1362,
+      "n_boundary_px": 106188,
+      "n_boundary_uncovered_px": 14462,
+      "protected_immune": 565,
+      "enfant_png": "s1_out/manga_peacock_enfant.png",
+      "linemask_png": "s1_out/manga_peacock_linemask.png",
+      "time_s": 6.63
+    },
+    {
+      "id": "realiste_dog",
+      "style": "realiste",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 57,
+      "pct_ink_mask": 7.01,
+      "sliver_ratio": 0.6954,
+      "n_boundary_px": 27982,
+      "n_boundary_uncovered_px": 19458,
+      "protected_immune": 17,
+      "enfant_png": "s1_out/realiste_dog_enfant.png",
+      "linemask_png": "s1_out/realiste_dog_linemask.png",
+      "time_s": 2.82
+    },
+    {
+      "id": "realiste_castle",
+      "style": "realiste",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 186,
+      "pct_ink_mask": 9.28,
+      "sliver_ratio": 0.559,
+      "n_boundary_px": 42741,
+      "n_boundary_uncovered_px": 23893,
+      "protected_immune": 147,
+      "enfant_png": "s1_out/realiste_castle_enfant.png",
+      "linemask_png": "s1_out/realiste_castle_linemask.png",
+      "time_s": 3.69
+    },
+    {
+      "id": "realiste_peacock",
+      "style": "realiste",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 410,
+      "pct_ink_mask": 12.99,
+      "sliver_ratio": 0.5811,
+      "n_boundary_px": 58044,
+      "n_boundary_uncovered_px": 33729,
+      "protected_immune": 360,
+      "enfant_png": "s1_out/realiste_peacock_enfant.png",
+      "linemask_png": "s1_out/realiste_peacock_linemask.png",
+      "time_s": 5.76
+    },
+    {
+      "id": "peinture_dog",
+      "style": "peinture",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 178,
+      "pct_ink_mask": 9.53,
+      "sliver_ratio": 0.5991,
+      "n_boundary_px": 42567,
+      "n_boundary_uncovered_px": 25500,
+      "protected_immune": 109,
+      "enfant_png": "s1_out/peinture_dog_enfant.png",
+      "linemask_png": "s1_out/peinture_dog_linemask.png",
+      "time_s": 3.5
+    },
+    {
+      "id": "peinture_castle",
+      "style": "peinture",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 523,
+      "pct_ink_mask": 9.85,
+      "sliver_ratio": 0.514,
+      "n_boundary_px": 75869,
+      "n_boundary_uncovered_px": 38998,
+      "protected_immune": 409,
+      "enfant_png": "s1_out/peinture_castle_enfant.png",
+      "linemask_png": "s1_out/peinture_castle_linemask.png",
+      "time_s": 4.06
+    },
+    {
+      "id": "peinture_peacock",
+      "style": "peinture",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 754,
+      "pct_ink_mask": 10.49,
+      "sliver_ratio": 0.6655,
+      "n_boundary_px": 102498,
+      "n_boundary_uncovered_px": 68209,
+      "protected_immune": 649,
+      "enfant_png": "s1_out/peinture_peacock_enfant.png",
+      "linemask_png": "s1_out/peinture_peacock_linemask.png",
+      "time_s": 5.94
+    },
+    {
+      "id": "3d_dog",
+      "style": "3d",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 74,
+      "pct_ink_mask": 1.07,
+      "sliver_ratio": 0.9234,
+      "n_boundary_px": 28332,
+      "n_boundary_uncovered_px": 26162,
+      "protected_immune": 34,
+      "enfant_png": "s1_out/3d_dog_enfant.png",
+      "linemask_png": "s1_out/3d_dog_linemask.png",
+      "time_s": 2.55
+    },
+    {
+      "id": "3d_castle",
+      "style": "3d",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 321,
+      "pct_ink_mask": 3.5,
+      "sliver_ratio": 0.7879,
+      "n_boundary_px": 56267,
+      "n_boundary_uncovered_px": 44333,
+      "protected_immune": 232,
+      "enfant_png": "s1_out/3d_castle_enfant.png",
+      "linemask_png": "s1_out/3d_castle_linemask.png",
+      "time_s": 3.03
+    },
+    {
+      "id": "3d_peacock",
+      "style": "3d",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions_final": 444,
+      "pct_ink_mask": 7.2,
+      "sliver_ratio": 0.7523,
+      "n_boundary_px": 81493,
+      "n_boundary_uncovered_px": 61309,
+      "protected_immune": 342,
+      "enfant_png": "s1_out/3d_peacock_enfant.png",
+      "linemask_png": "s1_out/3d_peacock_linemask.png",
+      "time_s": 4.67
+    }
+  ],
+  "aggregates_by_style_median": {
+    "manga": {
+      "n_images": 3,
+      "median_n_regions_final": 240,
+      "median_pct_ink_mask": 12.95,
+      "median_sliver_ratio": 0.3601,
+      "min_n_regions_final": 116,
+      "max_n_regions_final": 641,
+      "min_pct_ink_mask": 7.17,
+      "max_pct_ink_mask": 29.19
+    },
+    "realiste": {
+      "n_images": 3,
+      "median_n_regions_final": 186,
+      "median_pct_ink_mask": 9.28,
+      "median_sliver_ratio": 0.5811,
+      "min_n_regions_final": 57,
+      "max_n_regions_final": 410,
+      "min_pct_ink_mask": 7.01,
+      "max_pct_ink_mask": 12.99
+    },
+    "peinture": {
+      "n_images": 3,
+      "median_n_regions_final": 523,
+      "median_pct_ink_mask": 9.85,
+      "median_sliver_ratio": 0.5991,
+      "min_n_regions_final": 178,
+      "max_n_regions_final": 754,
+      "min_pct_ink_mask": 9.53,
+      "max_pct_ink_mask": 10.49
+    },
+    "3d": {
+      "n_images": 3,
+      "median_n_regions_final": 321,
+      "median_pct_ink_mask": 3.5,
+      "median_sliver_ratio": 0.7879,
+      "min_n_regions_final": 74,
+      "max_n_regions_final": 444,
+      "min_pct_ink_mask": 1.07,
+      "max_pct_ink_mask": 7.2
+    }
+  }
+}

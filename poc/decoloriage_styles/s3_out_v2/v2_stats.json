@@ -1,0 +1,260 @@
+{
+  "gate": "S3-v2",
+  "corpus": "corpus_v2 (low_poly + kawaii_bold, fond chromakey green) x 3 sujets",
+  "description": "v2 ciblee : FIX1 fond chromakey -> region papier dediee (museau preserve) ; FIX2 trait kawaii fin (prompt fine outlines + erosion masque encre -> ink_stroke plafonne). POC1+POC2 reutilises par import.",
+  "fixes": {
+    "fix1_chromakey": {
+      "chromakey_rgb": [
+        0,
+        177,
+        64
+      ],
+      "chromakey_delta_e": 40.0,
+      "source": "src/services/extract_palette._detect_chromakey_mask (import)"
+    },
+    "fix2_kawaii_thin": {
+      "prompt": "fine thin clean black outlines (cote generation)",
+      "render_cap_px": 2.0,
+      "erode_kernel": 3,
+      "method": "erosion masque encre L<25 -> mi-epaisseur mesuree"
+    }
+  },
+  "poc_reused": [
+    "poc/decoloriage/g2_partition.py (process_image_3levels)",
+    "poc/decoloriage/g4_two_weight.py (measure_line_thickness)",
+    "poc/decoloriage/g5_product.py (process_image_g5)",
+    "poc/decoloriage_styles/s3_endtoend.py (build_2weight_ink)",
+    "src/services/extract_palette.py (_detect_chromakey_mask)"
+  ],
+  "n_processed": 6,
+  "n_failed": 0,
+  "failures": [],
+  "images": [
+    {
+      "id": "low_poly_dog",
+      "slot": 1,
+      "style": "low_poly",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "chromakey_bg_pct": 78.19,
+      "n_subject_regions": 82,
+      "n_regions": 83,
+      "pct_ink_mask": 4.41,
+      "ink_source": "2weight",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 4.41,
+        "pct_ink_2weight": 3.67,
+        "bg_label": 82,
+        "n_arcs": 2039,
+        "n_thick_arcs": 1172,
+        "n_thin_arcs": 867,
+        "thick_w": 4,
+        "thin_w": 1
+      },
+      "n_clickable": 48,
+      "n_ink_regions": 35,
+      "ink_stroke_px": 2.0,
+      "shading_stroke_px": 1.0,
+      "delta_e_median": 53.4,
+      "muzzle_preserved": {
+        "preserved": true,
+        "n_subject_px_in_band": 63168,
+        "n_bg_leak_px_in_band": 0
+      },
+      "blank_png": "s3_out_v2/low_poly_dog_blank.png",
+      "solution_png": "s3_out_v2/low_poly_dog_solution.png",
+      "html": "poc/decoloriage_styles/s3_out_v2/01_low_poly_dog_g5.html",
+      "timing_s": 5.1
+    },
+    {
+      "id": "low_poly_castle",
+      "slot": 2,
+      "style": "low_poly",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "chromakey_bg_pct": 71.42,
+      "n_subject_regions": 356,
+      "n_regions": 357,
+      "pct_ink_mask": 4.42,
+      "ink_source": "2weight",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 4.42,
+        "pct_ink_2weight": 6.43,
+        "bg_label": 356,
+        "n_arcs": 3088,
+        "n_thick_arcs": 1429,
+        "n_thin_arcs": 1659,
+        "thick_w": 4,
+        "thin_w": 1
+      },
+      "n_clickable": 154,
+      "n_ink_regions": 203,
+      "ink_stroke_px": 2.0,
+      "shading_stroke_px": 1.0,
+      "delta_e_median": 48.14,
+      "muzzle_preserved": {
+        "preserved": true,
+        "n_subject_px_in_band": 76952,
+        "n_bg_leak_px_in_band": 0
+      },
+      "blank_png": "s3_out_v2/low_poly_castle_blank.png",
+      "solution_png": "s3_out_v2/low_poly_castle_solution.png",
+      "html": "poc/decoloriage_styles/s3_out_v2/02_low_poly_castle_g5.html",
+      "timing_s": 9.69
+    },
+    {
+      "id": "low_poly_peacock",
+      "slot": 3,
+      "style": "low_poly",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "chromakey_bg_pct": 70.32,
+      "n_subject_regions": 316,
+      "n_regions": 317,
+      "pct_ink_mask": 3.45,
+      "ink_source": "2weight",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 3.45,
+        "pct_ink_2weight": 13.56,
+        "bg_label": 316,
+        "n_arcs": 11018,
+        "n_thick_arcs": 7568,
+        "n_thin_arcs": 3450,
+        "thick_w": 4,
+        "thin_w": 1
+      },
+      "n_clickable": 98,
+      "n_ink_regions": 219,
+      "ink_stroke_px": 4.0,
+      "shading_stroke_px": 1.33,
+      "delta_e_median": 39.23,
+      "muzzle_preserved": {
+        "preserved": true,
+        "n_subject_px_in_band": 116571,
+        "n_bg_leak_px_in_band": 0
+      },
+      "blank_png": "s3_out_v2/low_poly_peacock_blank.png",
+      "solution_png": "s3_out_v2/low_poly_peacock_solution.png",
+      "html": "poc/decoloriage_styles/s3_out_v2/03_low_poly_peacock_g5.html",
+      "timing_s": 24.54
+    },
+    {
+      "id": "kawaii_bold_dog",
+      "slot": 4,
+      "style": "kawaii_bold",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "chromakey_bg_pct": 76.67,
+      "n_subject_regions": 31,
+      "n_regions": 32,
+      "pct_ink_mask": 3.03,
+      "ink_source": "L25_eroded",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 3.03,
+        "thickness_before_erode": 4.39,
+        "thickness_after_erode": 2.0,
+        "erode_kernel": 3,
+        "ink_cap_px_target": 2.0
+      },
+      "n_clickable": 30,
+      "n_ink_regions": 2,
+      "ink_stroke_px": 2.0,
+      "shading_stroke_px": 1.0,
+      "delta_e_median": 42.52,
+      "muzzle_preserved": {
+        "preserved": true,
+        "n_subject_px_in_band": 83722,
+        "n_bg_leak_px_in_band": 0
+      },
+      "blank_png": "s3_out_v2/kawaii_bold_dog_blank.png",
+      "solution_png": "s3_out_v2/kawaii_bold_dog_solution.png",
+      "html": "poc/decoloriage_styles/s3_out_v2/04_kawaii_bold_dog_g5.html",
+      "timing_s": 5.69
+    },
+    {
+      "id": "kawaii_bold_castle",
+      "slot": 5,
+      "style": "kawaii_bold",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "chromakey_bg_pct": 74.82,
+      "n_subject_regions": 125,
+      "n_regions": 126,
+      "pct_ink_mask": 5.98,
+      "ink_source": "L25_eroded",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 5.98,
+        "thickness_before_erode": 4.0,
+        "thickness_after_erode": 2.0,
+        "erode_kernel": 3,
+        "ink_cap_px_target": 2.0
+      },
+      "n_clickable": 112,
+      "n_ink_regions": 14,
+      "ink_stroke_px": 2.0,
+      "shading_stroke_px": 1.0,
+      "delta_e_median": 48.12,
+      "muzzle_preserved": {
+        "preserved": true,
+        "n_subject_px_in_band": 77397,
+        "n_bg_leak_px_in_band": 0
+      },
+      "blank_png": "s3_out_v2/kawaii_bold_castle_blank.png",
+      "solution_png": "s3_out_v2/kawaii_bold_castle_solution.png",
+      "html": "poc/decoloriage_styles/s3_out_v2/05_kawaii_bold_castle_g5.html",
+      "timing_s": 7.62
+    },
+    {
+      "id": "kawaii_bold_peacock",
+      "slot": 6,
+      "style": "kawaii_bold",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "chromakey_bg_pct": 78.4,
+      "n_subject_regions": 214,
+      "n_regions": 215,
+      "pct_ink_mask": 9.31,
+      "ink_source": "L25_eroded",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 9.31,
+        "thickness_before_erode": 4.0,
+        "thickness_after_erode": 2.0,
+        "erode_kernel": 3,
+        "ink_cap_px_target": 2.0
+      },
+      "n_clickable": 196,
+      "n_ink_regions": 19,
+      "ink_stroke_px": 2.0,
+      "shading_stroke_px": 1.0,
+      "delta_e_median": 38.19,
+      "muzzle_preserved": {
+        "preserved": true,
+        "n_subject_px_in_band": 81424,
+        "n_bg_leak_px_in_band": 0
+      },
+      "blank_png": "s3_out_v2/kawaii_bold_peacock_blank.png",
+      "solution_png": "s3_out_v2/kawaii_bold_peacock_solution.png",
+      "html": "poc/decoloriage_styles/s3_out_v2/06_kawaii_bold_peacock_g5.html",
+      "timing_s": 16.17
+    }
+  ],
+  "timing_s_total": 86.29
+}

@@ -1,0 +1,184 @@
+{
+  "gate": "S2",
+  "scope": "SPIKE CIBLE : S2a (SAM 2 / manga) + S2b (traits appris / 3D) uniquement. Pas de S3, pas d'autres styles.",
+  "no_verdict": "Comparaisons produites, verdict humain par branche/style sur les planches.",
+  "planches": {
+    "s2a_manga": "s2_out/planche_s2a_manga.png",
+    "s2b_3d": "s2_out/planche_s2b_3d.png"
+  },
+  "S2a": {
+    "branch": "S2a",
+    "style": "manga",
+    "model": "SAM 2.1 hiera small (automatic mask generator)",
+    "config": "configs/sam2.1/sam2.1_hiera_s.yaml",
+    "device": "cpu",
+    "amg_params": {
+      "points_per_side": 32,
+      "pred_iou_thresh": 0.7,
+      "stability_score_thresh": 0.85,
+      "min_mask_region_area": 100
+    },
+    "per_subject": {
+      "manga_dog": {
+        "n_regions_kmeans_poc1": 116,
+        "n_sam_masks": 15,
+        "n_regions_sam2_raw": 170,
+        "n_regions_sam2_final": 55,
+        "smooth_merges": 115,
+        "time_sam_s": 41.24
+      },
+      "manga_castle": {
+        "n_regions_kmeans_poc1": 240,
+        "n_sam_masks": 55,
+        "n_regions_sam2_raw": 282,
+        "n_regions_sam2_final": 177,
+        "smooth_merges": 105,
+        "time_sam_s": 41.84
+      },
+      "manga_peacock": {
+        "n_regions_kmeans_poc1": 641,
+        "n_sam_masks": 112,
+        "n_regions_sam2_raw": 166,
+        "n_regions_sam2_final": 49,
+        "smooth_merges": 117,
+        "time_sam_s": 40.95
+      }
+    }
+  },
+  "S2b": {
+    "branch": "S2b",
+    "style": "3d",
+    "model": "informative-drawings (carolineec) anime_style + contour_style",
+    "infer_size": 1024,
+    "bin_threshold": 0.5,
+    "device": "cpu",
+    "per_subject": {
+      "3d_dog": {
+        "L25_poc1": {
+          "pct_ink": 1.07,
+          "n_ink_components": 34
+        },
+        "infodraw_anime": {
+          "pct_ink": 0.65,
+          "n_ink_components": 138,
+          "time_s": 2.25
+        },
+        "infodraw_contour": {
+          "pct_ink": 4.84,
+          "n_ink_components": 316,
+          "time_s": 1.81
+        },
+        "fallback_2weight_partition": {
+          "pct_ink": 4.61,
+          "n_ink_components": 7,
+          "bg_label": 2721,
+          "n_arcs": 192,
+          "n_thick_arcs": 52,
+          "n_thin_arcs": 140,
+          "thick_w": 4,
+          "thin_w": 1,
+          "time_s": 8.85
+        }
+      },
+      "3d_castle": {
+        "L25_poc1": {
+          "pct_ink": 3.5,
+          "n_ink_components": 284
+        },
+        "infodraw_anime": {
+          "pct_ink": 3.74,
+          "n_ink_components": 469,
+          "time_s": 1.97
+        },
+        "infodraw_contour": {
+          "pct_ink": 9.65,
+          "n_ink_components": 273,
+          "time_s": 1.79
+        },
+        "fallback_2weight_partition": {
+          "pct_ink": 8.02,
+          "n_ink_components": 30,
+          "bg_label": 1,
+          "n_arcs": 818,
+          "n_thick_arcs": 232,
+          "n_thin_arcs": 586,
+          "thick_w": 4,
+          "thin_w": 1,
+          "time_s": 11.04
+        }
+      },
+      "3d_peacock": {
+        "L25_poc1": {
+          "pct_ink": 7.2,
+          "n_ink_components": 853
+        },
+        "infodraw_anime": {
+          "pct_ink": 7.58,
+          "n_ink_components": 783,
+          "time_s": 1.77
+        },
+        "infodraw_contour": {
+          "pct_ink": 27.46,
+          "n_ink_components": 186,
+          "time_s": 1.79
+        },
+        "fallback_2weight_partition": {
+          "pct_ink": 9.49,
+          "n_ink_components": 65,
+          "bg_label": 1,
+          "n_arcs": 1074,
+          "n_thick_arcs": 108,
+          "n_thin_arcs": 966,
+          "thick_w": 4,
+          "thin_w": 1,
+          "time_s": 12.66
+        }
+      }
+    },
+    "ink_metric_notes": "pct_ink = %% pixels encre (couverture). n_ink_components = nb composantes connexes 8-conn de l'encre (proxy continuite : moins = plus continu/propre, plus = morcele/bruite). fallback_2weight : n_thick/thin_arcs = nb d'arcs topologiques classes sujet/fond (epais) vs internes (fin)."
+  },
+  "install_log": {
+    "platform": "Windows 11, Python 3.11.9, pip-only (pas de conda), torch CPU.",
+    "gpu_note": "torch installe = 2.12.0+cpu : CUDA NON disponible dans ce Python. SAM 2 et informative-drawings ont donc tourne en CPU. ComfyUI tourne sur le GPU dans un autre environnement, non partage avec ce Python.",
+    "S2a_sam2": {
+      "status": "OK",
+      "commands": [
+        "pip install torchvision  (-> torchvision 0.27.0+cpu, prerequis manquant)",
+        "pip install \"SAM-2 @ git+https://github.com/facebookresearch/sam2.git\"  (build wheel local OK)",
+        "download checkpoint : https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_small.pt (184 MB) via urllib",
+        "config bundlee dans le package : configs/sam2.1/sam2.1_hiera_s.yaml"
+      ],
+      "versions": {
+        "torch": "2.12.0+cpu",
+        "torchvision": "0.27.0+cpu",
+        "sam2": "sam_2-1.0",
+        "hydra-core": "1.3.2",
+        "omegaconf": "2.3.0",
+        "checkpoint": "sam2.1_hiera_small.pt (184 MB)"
+      },
+      "frictions": [
+        "torchvision n'etait pas installe (torch CPU seul) : pip install torchvision requis avant SAM 2.",
+        "Warning a l'execution : \"cannot import name '_C' from 'sam2'\" -> extension CUDA C++ optionnelle non compilee (normal en pip-only Windows). SAM 2 skip le post-processing des masques mais les resultats AMG sont valides (cf. https://github.com/facebookresearch/sam2 INSTALL.md). AUCUN impact bloquant.",
+        "AMG en CPU : ~41 s/image (1024x1024, points_per_side=32). Acceptable pour 3 images."
+      ]
+    },
+    "S2b_infodraw": {
+      "status": "OK",
+      "commands": [
+        "git clone --depth 1 https://github.com/carolineec/informative-drawings.git",
+        "pip install gdown",
+        "python -m gdown 1MIdHzecxz-z0uY3ARL_R40DlKcuQxiDk -O model.zip  (47.7 MB, weights officiels)",
+        "unzip -> checkpoints/model/{anime_style,contour_style,opensketch_style}/netG_A_latest.pth"
+      ],
+      "versions": {
+        "gdown": "6.1.0",
+        "repo": "carolineec/informative-drawings (depth 1)"
+      },
+      "frictions": [
+        "test.py officiel est cuda-only (.cuda() en dur) : on importe Generator (model.py) et on l'execute en CPU via un script maison (s2b_infodraw.py). Aucune modif du repo.",
+        "Pas de frottement reseau : gdown a recupere le zip Google Drive directement (confirm token auto)."
+      ],
+      "fallback_anime2sketch": "NON utilise : informative-drawings a fonctionne du premier coup (anime_style + contour_style). Branche fallback non declenchee."
+    }
+  }
+}

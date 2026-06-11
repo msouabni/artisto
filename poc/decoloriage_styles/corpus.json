@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "frozen_at": "2026-06-11",
+  "gate": "S0",
+  "source": "ComfyUI ERNIE turbo q8 (generation POC2 decoloriage-styles)",
+  "ernie_workflow": "data/workflows/ernie-image-turbo-q8-api.json",
+  "sampler_defaults": "euler / steps=8 / cfg=1.0 / scheduler=normal / 1024x1024 (defauts workflow turbo, non retunes)",
+  "styles": [
+    "manga",
+    "realiste",
+    "peinture",
+    "3d"
+  ],
+  "subjects": [
+    "dog",
+    "castle",
+    "peacock"
+  ],
+  "no_flat_colors": true,
+  "seed_policy": "seed fixe=42 pour les 12 images (reproductible)",
+  "images": [
+    {
+      "slot": 1,
+      "subject": "dog",
+      "style": "manga",
+      "id": "manga_dog",
+      "path": "corpus/manga_dog.png",
+      "prompt": "Japanese manga / anime style illustration of a single dog sitting in profile, full body, all four legs visible, bold clean black ink outlines, screentone halftone shading, high contrast, detailed linework, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 2,
+      "subject": "castle",
+      "style": "manga",
+      "id": "manga_castle",
+      "path": "corpus/manga_castle.png",
+      "prompt": "Japanese manga / anime style illustration of a single fairytale castle with towers, full view, bold clean black ink outlines, screentone halftone shading, high contrast, detailed linework, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 3,
+      "subject": "peacock",
+      "style": "manga",
+      "id": "manga_peacock",
+      "path": "corpus/manga_peacock.png",
+      "prompt": "Japanese manga / anime style illustration of a single peacock with tail feathers fully displayed, bold clean black ink outlines, screentone halftone shading, high contrast, detailed linework, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 4,
+      "subject": "dog",
+      "style": "realiste",
+      "id": "realiste_dog",
+      "path": "corpus/realiste_dog.png",
+      "prompt": "photorealistic photograph of a single dog sitting in profile, full body, all four legs visible, highly detailed fur, realistic natural lighting, soft shadows, continuous tones, lifelike, isolated subject, plain studio background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 5,
+      "subject": "castle",
+      "style": "realiste",
+      "id": "realiste_castle",
+      "path": "corpus/realiste_castle.png",
+      "prompt": "photorealistic photograph of a single fairytale castle with towers, full view, highly detailed stone, realistic natural lighting, soft shadows, continuous tones, lifelike, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 6,
+      "subject": "peacock",
+      "style": "realiste",
+      "id": "realiste_peacock",
+      "path": "corpus/realiste_peacock.png",
+      "prompt": "photorealistic photograph of a single peacock with tail feathers fully displayed, highly detailed iridescent feathers, realistic natural lighting, soft shadows, continuous tones, lifelike, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 7,
+      "subject": "dog",
+      "style": "peinture",
+      "id": "peinture_dog",
+      "path": "corpus/peinture_dog.png",
+      "prompt": "traditional oil painting of a single dog sitting in profile, full body, all four legs visible, visible brushstrokes, painterly impressionist style, rich textured colors, fine art canvas, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 8,
+      "subject": "castle",
+      "style": "peinture",
+      "id": "peinture_castle",
+      "path": "corpus/peinture_castle.png",
+      "prompt": "traditional oil painting of a single fairytale castle with towers, full view, visible brushstrokes, painterly impressionist style, rich textured colors, fine art canvas, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 9,
+      "subject": "peacock",
+      "style": "peinture",
+      "id": "peinture_peacock",
+      "path": "corpus/peinture_peacock.png",
+      "prompt": "traditional oil painting of a single peacock with tail feathers fully displayed, visible brushstrokes, painterly impressionist style, rich textured colors, fine art canvas, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 10,
+      "subject": "dog",
+      "style": "3d",
+      "id": "3d_dog",
+      "path": "corpus/3d_dog.png",
+      "prompt": "high quality 3D render of a single cute dog sitting in profile, full body, all four legs visible, Pixar style, soft global illumination, glossy specular highlights, smooth subsurface shading, octane render, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 11,
+      "subject": "castle",
+      "style": "3d",
+      "id": "3d_castle",
+      "path": "corpus/3d_castle.png",
+      "prompt": "high quality 3D render of a single fairytale castle with towers, full view, Pixar style, soft global illumination, glossy specular highlights, smooth shading, octane render, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    },
+    {
+      "slot": 12,
+      "subject": "peacock",
+      "style": "3d",
+      "id": "3d_peacock",
+      "path": "corpus/3d_peacock.png",
+      "prompt": "high quality 3D render of a single peacock with tail feathers fully displayed, Pixar style, soft global illumination, glossy specular highlights, smooth subsurface shading, octane render, isolated subject, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, cropped"
+    }
+  ]
+}

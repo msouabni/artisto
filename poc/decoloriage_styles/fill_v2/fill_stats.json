@@ -1,0 +1,435 @@
+{
+  "gate": "POC2-lineart-fill",
+  "n_images": 12,
+  "timing_s_total": 39.42,
+  "global": {
+    "coverage_pct_median": 99.52,
+    "coverage_pct_min": 99.04,
+    "n_cells_median": 482
+  },
+  "by_style": {
+    "zellige": {
+      "n_images": 3,
+      "n_cells_median": 449,
+      "n_cells_min": 248,
+      "n_cells_max": 658,
+      "coverage_pct_median": 99.56,
+      "coverage_pct_min": 99.04,
+      "svg_kb_median": 753.2
+    },
+    "mandala": {
+      "n_images": 3,
+      "n_cells_median": 421,
+      "n_cells_min": 311,
+      "n_cells_max": 622,
+      "coverage_pct_median": 99.4,
+      "coverage_pct_min": 99.17,
+      "svg_kb_median": 766.3
+    },
+    "zentangle": {
+      "n_images": 3,
+      "n_cells_median": 541,
+      "n_cells_min": 344,
+      "n_cells_max": 655,
+      "coverage_pct_median": 99.45,
+      "coverage_pct_min": 99.39,
+      "svg_kb_median": 686.7
+    },
+    "mosaic": {
+      "n_images": 3,
+      "n_cells_median": 516,
+      "n_cells_min": 361,
+      "n_cells_max": 590,
+      "coverage_pct_median": 99.65,
+      "coverage_pct_min": 99.61,
+      "svg_kb_median": 475.7
+    }
+  },
+  "gallery": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\gallery_fill.png",
+  "images": [
+    {
+      "id": "zellige_star",
+      "style": "zellige",
+      "subject": "star",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 248,
+      "n_paper": 1,
+      "n_polylines": 249,
+      "cells_px": 842726,
+      "white_px_orig": 844504,
+      "coverage_pct": 99.79,
+      "median_cell_px": 727,
+      "svg_kb": 391.9,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_star_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_star.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_star.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_star_demo_filled.png"
+      },
+      "timing_s": 1.79
+    },
+    {
+      "id": "zellige_medallion",
+      "style": "zellige",
+      "subject": "medallion",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 449,
+      "n_paper": 1,
+      "n_polylines": 462,
+      "cells_px": 771168,
+      "white_px_orig": 774567,
+      "coverage_pct": 99.56,
+      "median_cell_px": 450,
+      "svg_kb": 753.2,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_medallion_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_medallion.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_medallion.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_medallion_demo_filled.png"
+      },
+      "timing_s": 3.25
+    },
+    {
+      "id": "zellige_panel",
+      "style": "zellige",
+      "subject": "panel",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 658,
+      "n_paper": 1,
+      "n_polylines": 679,
+      "cells_px": 747655,
+      "white_px_orig": 754898,
+      "coverage_pct": 99.04,
+      "median_cell_px": 442,
+      "svg_kb": 772.3,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_panel_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_panel.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_panel.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zellige_panel_demo_filled.png"
+      },
+      "timing_s": 4.42
+    },
+    {
+      "id": "mandala_floral",
+      "style": "mandala",
+      "subject": "floral",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 311,
+      "n_paper": 1,
+      "n_polylines": 382,
+      "cells_px": 827664,
+      "white_px_orig": 832697,
+      "coverage_pct": 99.4,
+      "median_cell_px": 1011,
+      "svg_kb": 680.5,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_floral_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_floral.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_floral.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_floral_demo_filled.png"
+      },
+      "timing_s": 2.55
+    },
+    {
+      "id": "mandala_geometric",
+      "style": "mandala",
+      "subject": "geometric",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 622,
+      "n_paper": 1,
+      "n_polylines": 634,
+      "cells_px": 753085,
+      "white_px_orig": 759390,
+      "coverage_pct": 99.17,
+      "median_cell_px": 432,
+      "svg_kb": 830.3,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_geometric_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_geometric.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_geometric.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_geometric_demo_filled.png"
+      },
+      "timing_s": 4.3
+    },
+    {
+      "id": "mandala_lotus",
+      "style": "mandala",
+      "subject": "lotus",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 421,
+      "n_paper": 1,
+      "n_polylines": 461,
+      "cells_px": 836131,
+      "white_px_orig": 839781,
+      "coverage_pct": 99.57,
+      "median_cell_px": 513,
+      "svg_kb": 766.3,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_lotus_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_lotus.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_lotus.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mandala_lotus_demo_filled.png"
+      },
+      "timing_s": 3.2
+    },
+    {
+      "id": "zentangle_owl",
+      "style": "zentangle",
+      "subject": "owl",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 655,
+      "n_paper": 1,
+      "n_polylines": 665,
+      "cells_px": 837514,
+      "white_px_orig": 842180,
+      "coverage_pct": 99.45,
+      "median_cell_px": 161,
+      "svg_kb": 690.3,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_owl_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_owl.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_owl.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_owl_demo_filled.png"
+      },
+      "timing_s": 4.27
+    },
+    {
+      "id": "zentangle_feather",
+      "style": "zentangle",
+      "subject": "feather",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 344,
+      "n_paper": 1,
+      "n_polylines": 412,
+      "cells_px": 858372,
+      "white_px_orig": 862822,
+      "coverage_pct": 99.48,
+      "median_cell_px": 227,
+      "svg_kb": 524.3,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_feather_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_feather.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_feather.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_feather_demo_filled.png"
+      },
+      "timing_s": 2.49
+    },
+    {
+      "id": "zentangle_butterfly",
+      "style": "zentangle",
+      "subject": "butterfly",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 541,
+      "n_paper": 1,
+      "n_polylines": 615,
+      "cells_px": 817716,
+      "white_px_orig": 822701,
+      "coverage_pct": 99.39,
+      "median_cell_px": 169,
+      "svg_kb": 686.7,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_butterfly_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_butterfly.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_butterfly.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\zentangle_butterfly_demo_filled.png"
+      },
+      "timing_s": 3.76
+    },
+    {
+      "id": "mosaic_fish",
+      "style": "mosaic",
+      "subject": "fish",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 361,
+      "n_paper": 1,
+      "n_polylines": 405,
+      "cells_px": 919701,
+      "white_px_orig": 922950,
+      "coverage_pct": 99.65,
+      "median_cell_px": 388,
+      "svg_kb": 360.9,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_fish_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_fish.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_fish.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_fish_demo_filled.png"
+      },
+      "timing_s": 2.37
+    },
+    {
+      "id": "mosaic_medallion",
+      "style": "mosaic",
+      "subject": "medallion",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 590,
+      "n_paper": 1,
+      "n_polylines": 594,
+      "cells_px": 775839,
+      "white_px_orig": 778902,
+      "coverage_pct": 99.61,
+      "median_cell_px": 730,
+      "svg_kb": 530.1,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_medallion_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_medallion.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_medallion.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_medallion_demo_filled.png"
+      },
+      "timing_s": 3.7
+    },
+    {
+      "id": "mosaic_bird",
+      "style": "mosaic",
+      "subject": "bird",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 516,
+      "n_paper": 1,
+      "n_polylines": 526,
+      "cells_px": 831462,
+      "white_px_orig": 833154,
+      "coverage_pct": 99.8,
+      "median_cell_px": 419,
+      "svg_kb": 475.7,
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_bird_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_bird.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_bird.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v2\\mosaic_bird_demo_filled.png"
+      },
+      "timing_s": 3.29
+    }
+  ]
+}

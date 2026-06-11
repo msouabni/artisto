@@ -1,0 +1,434 @@
+{
+  "gate": "S3",
+  "corpus": "corpus_adapted.json (4 styles adaptes x 3 sujets)",
+  "description": "Bout-en-bout par style : g2 enfant + choix source d'encre (L<25 si dense, fallback frontieres partition 2 poids sinon) + g3/g4/g5 SVG bicouche click-to-fill. POC 1 reutilise par import. Verdict publiable/non = humain, par style.",
+  "params": {
+    "ink_dense_threshold_pct": 6.0,
+    "fallback_2weight_thick_w": 4,
+    "fallback_2weight_thin_w": 1,
+    "ink_source_policy": "kawaii_bold/stained_glass attendus denses -> L<25 ; low_poly/papercut attendus pauvres -> 2weight ; tranche par pct_ink_mask >= seuil."
+  },
+  "poc1_reused": [
+    "poc/decoloriage/g2_partition.py (process_image_3levels)",
+    "poc/decoloriage/g4_two_weight.py (extract_topological_arcs)",
+    "poc/decoloriage/g5_product.py (process_image_g5 + nearest_crayon + SVG/HTML)"
+  ],
+  "n_processed": 12,
+  "n_failed": 0,
+  "failures": [],
+  "html_dog_by_style": {
+    "low_poly": "s3_out/low_poly_dog.html",
+    "stained_glass": "s3_out/stained_glass_dog.html",
+    "papercut": "s3_out/papercut_dog.html",
+    "kawaii_bold": "s3_out/kawaii_bold_dog.html"
+  },
+  "images": [
+    {
+      "id": "low_poly_dog",
+      "slot": 1,
+      "style": "low_poly",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 57,
+      "pct_ink_mask": 4.12,
+      "ink_source_chosen": "2weight",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 4.12,
+        "pct_ink_2weight": 4.04,
+        "bg_label": 7,
+        "n_arcs": 155,
+        "n_thick_arcs": 55,
+        "n_thin_arcs": 100,
+        "thick_w": 4,
+        "thin_w": 1
+      },
+      "n_clickable": 40,
+      "n_ink_regions": 17,
+      "delta_e_median": 49.79,
+      "n_arcs": 155,
+      "n_ink_arcs": 155,
+      "n_shading_arcs": 0,
+      "ink_stroke_width": 2.8,
+      "blank_png": "s3_out/low_poly_dog_blank.png",
+      "solution_png": "s3_out/low_poly_dog_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/01_low_poly_dog_g5.html",
+      "timing_s": 1.27
+    },
+    {
+      "id": "low_poly_castle",
+      "slot": 2,
+      "style": "low_poly",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 230,
+      "pct_ink_mask": 5.34,
+      "ink_source_chosen": "2weight",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 5.34,
+        "pct_ink_2weight": 6.01,
+        "bg_label": 168,
+        "n_arcs": 630,
+        "n_thick_arcs": 100,
+        "n_thin_arcs": 530,
+        "thick_w": 4,
+        "thin_w": 1
+      },
+      "n_clickable": 136,
+      "n_ink_regions": 94,
+      "delta_e_median": 42.91,
+      "n_arcs": 630,
+      "n_ink_arcs": 630,
+      "n_shading_arcs": 0,
+      "ink_stroke_width": 2.0,
+      "blank_png": "s3_out/low_poly_castle_blank.png",
+      "solution_png": "s3_out/low_poly_castle_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/02_low_poly_castle_g5.html",
+      "timing_s": 3.91
+    },
+    {
+      "id": "low_poly_peacock",
+      "slot": 3,
+      "style": "low_poly",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 389,
+      "pct_ink_mask": 3.74,
+      "ink_source_chosen": "2weight",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 3.74,
+        "pct_ink_2weight": 7.85,
+        "bg_label": 997,
+        "n_arcs": 1044,
+        "n_thick_arcs": 83,
+        "n_thin_arcs": 961,
+        "thick_w": 4,
+        "thin_w": 1
+      },
+      "n_clickable": 181,
+      "n_ink_regions": 208,
+      "delta_e_median": 33.36,
+      "n_arcs": 1044,
+      "n_ink_arcs": 1044,
+      "n_shading_arcs": 0,
+      "ink_stroke_width": 2.0,
+      "blank_png": "s3_out/low_poly_peacock_blank.png",
+      "solution_png": "s3_out/low_poly_peacock_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/03_low_poly_peacock_g5.html",
+      "timing_s": 6.66
+    },
+    {
+      "id": "stained_glass_dog",
+      "slot": 4,
+      "style": "stained_glass",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 475,
+      "pct_ink_mask": 37.04,
+      "ink_source_chosen": "L25",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 37.04
+      },
+      "n_clickable": 368,
+      "n_ink_regions": 107,
+      "delta_e_median": 44.35,
+      "n_arcs": 1116,
+      "n_ink_arcs": 508,
+      "n_shading_arcs": 608,
+      "ink_stroke_width": 20.39,
+      "blank_png": "s3_out/stained_glass_dog_blank.png",
+      "solution_png": "s3_out/stained_glass_dog_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/04_stained_glass_dog_g5.html",
+      "timing_s": 8.86
+    },
+    {
+      "id": "stained_glass_castle",
+      "slot": 5,
+      "style": "stained_glass",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 1288,
+      "pct_ink_mask": 50.73,
+      "ink_source_chosen": "L25",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 50.73
+      },
+      "n_clickable": 1035,
+      "n_ink_regions": 253,
+      "delta_e_median": 35.72,
+      "n_arcs": 2521,
+      "n_ink_arcs": 1224,
+      "n_shading_arcs": 1297,
+      "ink_stroke_width": 19.6,
+      "blank_png": "s3_out/stained_glass_castle_blank.png",
+      "solution_png": "s3_out/stained_glass_castle_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/05_stained_glass_castle_g5.html",
+      "timing_s": 18.9
+    },
+    {
+      "id": "stained_glass_peacock",
+      "slot": 6,
+      "style": "stained_glass",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 1428,
+      "pct_ink_mask": 46.79,
+      "ink_source_chosen": "L25",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 46.79
+      },
+      "n_clickable": 1022,
+      "n_ink_regions": 406,
+      "delta_e_median": 38.19,
+      "n_arcs": 2571,
+      "n_ink_arcs": 1644,
+      "n_shading_arcs": 927,
+      "ink_stroke_width": 8.4,
+      "blank_png": "s3_out/stained_glass_peacock_blank.png",
+      "solution_png": "s3_out/stained_glass_peacock_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/06_stained_glass_peacock_g5.html",
+      "timing_s": 20.75
+    },
+    {
+      "id": "papercut_dog",
+      "slot": 7,
+      "style": "papercut",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 99,
+      "pct_ink_mask": 3.38,
+      "ink_source_chosen": "2weight",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 3.38,
+        "pct_ink_2weight": 5.22,
+        "bg_label": 5444,
+        "n_arcs": 267,
+        "n_thick_arcs": 75,
+        "n_thin_arcs": 192,
+        "thick_w": 4,
+        "thin_w": 1
+      },
+      "n_clickable": 29,
+      "n_ink_regions": 70,
+      "delta_e_median": 52.73,
+      "n_arcs": 267,
+      "n_ink_arcs": 267,
+      "n_shading_arcs": 0,
+      "ink_stroke_width": 2.8,
+      "blank_png": "s3_out/papercut_dog_blank.png",
+      "solution_png": "s3_out/papercut_dog_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/07_papercut_dog_g5.html",
+      "timing_s": 2.23
+    },
+    {
+      "id": "papercut_castle",
+      "slot": 8,
+      "style": "papercut",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 258,
+      "pct_ink_mask": 3.9,
+      "ink_source_chosen": "2weight",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 3.9,
+        "pct_ink_2weight": 7.02,
+        "bg_label": 4905,
+        "n_arcs": 679,
+        "n_thick_arcs": 97,
+        "n_thin_arcs": 582,
+        "thick_w": 4,
+        "thin_w": 1
+      },
+      "n_clickable": 75,
+      "n_ink_regions": 183,
+      "delta_e_median": 49.69,
+      "n_arcs": 679,
+      "n_ink_arcs": 679,
+      "n_shading_arcs": 0,
+      "ink_stroke_width": 2.0,
+      "blank_png": "s3_out/papercut_castle_blank.png",
+      "solution_png": "s3_out/papercut_castle_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/08_papercut_castle_g5.html",
+      "timing_s": 4.61
+    },
+    {
+      "id": "papercut_peacock",
+      "slot": 9,
+      "style": "papercut",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 522,
+      "pct_ink_mask": 6.1,
+      "ink_source_chosen": "L25",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 6.1
+      },
+      "n_clickable": 363,
+      "n_ink_regions": 159,
+      "delta_e_median": 35.41,
+      "n_arcs": 1333,
+      "n_ink_arcs": 580,
+      "n_shading_arcs": 753,
+      "ink_stroke_width": 4.0,
+      "blank_png": "s3_out/papercut_peacock_blank.png",
+      "solution_png": "s3_out/papercut_peacock_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/09_papercut_peacock_g5.html",
+      "timing_s": 8.7
+    },
+    {
+      "id": "kawaii_bold_dog",
+      "slot": 10,
+      "style": "kawaii_bold",
+      "subject": "dog",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 26,
+      "pct_ink_mask": 6.66,
+      "ink_source_chosen": "L25",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 6.66
+      },
+      "n_clickable": 24,
+      "n_ink_regions": 2,
+      "delta_e_median": 38.61,
+      "n_arcs": 60,
+      "n_ink_arcs": 28,
+      "n_shading_arcs": 32,
+      "ink_stroke_width": 8.79,
+      "blank_png": "s3_out/kawaii_bold_dog_blank.png",
+      "solution_png": "s3_out/kawaii_bold_dog_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/10_kawaii_bold_dog_g5.html",
+      "timing_s": 0.86
+    },
+    {
+      "id": "kawaii_bold_castle",
+      "slot": 11,
+      "style": "kawaii_bold",
+      "subject": "castle",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 69,
+      "pct_ink_mask": 10.82,
+      "ink_source_chosen": "L25",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 10.82
+      },
+      "n_clickable": 60,
+      "n_ink_regions": 9,
+      "delta_e_median": 46.75,
+      "n_arcs": 88,
+      "n_ink_arcs": 60,
+      "n_shading_arcs": 28,
+      "ink_stroke_width": 6.39,
+      "blank_png": "s3_out/kawaii_bold_castle_blank.png",
+      "solution_png": "s3_out/kawaii_bold_castle_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/11_kawaii_bold_castle_g5.html",
+      "timing_s": 1.44
+    },
+    {
+      "id": "kawaii_bold_peacock",
+      "slot": 12,
+      "style": "kawaii_bold",
+      "subject": "peacock",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_regions": 212,
+      "pct_ink_mask": 8.65,
+      "ink_source_chosen": "L25",
+      "ink_source_meta": {
+        "pct_ink_mask_L25": 8.65
+      },
+      "n_clickable": 186,
+      "n_ink_regions": 26,
+      "delta_e_median": 35.41,
+      "n_arcs": 439,
+      "n_ink_arcs": 177,
+      "n_shading_arcs": 262,
+      "ink_stroke_width": 6.0,
+      "blank_png": "s3_out/kawaii_bold_peacock_blank.png",
+      "solution_png": "s3_out/kawaii_bold_peacock_solution.png",
+      "html": "poc/decoloriage_styles/s3_out/12_kawaii_bold_peacock_g5.html",
+      "timing_s": 3.73
+    }
+  ],
+  "aggregates_by_style": {
+    "low_poly": {
+      "n_images": 3,
+      "median_n_regions": 230,
+      "median_pct_ink_mask": 4.12,
+      "median_n_clickable": 136,
+      "median_n_ink_regions": 94,
+      "median_delta_e": 42.91,
+      "ink_source_chosen": [
+        "2weight"
+      ]
+    },
+    "stained_glass": {
+      "n_images": 3,
+      "median_n_regions": 1288,
+      "median_pct_ink_mask": 46.79,
+      "median_n_clickable": 1022,
+      "median_n_ink_regions": 253,
+      "median_delta_e": 38.19,
+      "ink_source_chosen": [
+        "L25"
+      ]
+    },
+    "papercut": {
+      "n_images": 3,
+      "median_n_regions": 258,
+      "median_pct_ink_mask": 3.9,
+      "median_n_clickable": 75,
+      "median_n_ink_regions": 159,
+      "median_delta_e": 49.69,
+      "ink_source_chosen": [
+        "2weight",
+        "L25"
+      ]
+    },
+    "kawaii_bold": {
+      "n_images": 3,
+      "median_n_regions": 69,
+      "median_pct_ink_mask": 8.65,
+      "median_n_clickable": 60,
+      "median_n_ink_regions": 9,
+      "median_delta_e": 38.61,
+      "ink_source_chosen": [
+        "L25"
+      ]
+    }
+  },
+  "timing_s_total": 124.1
+}

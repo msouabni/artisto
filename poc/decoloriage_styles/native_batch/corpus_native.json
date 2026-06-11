@@ -1,0 +1,115 @@
+{
+  "gate": "POC2-exploration-native-subjects",
+  "frozen_at": "2026-06-12",
+  "seed": 42,
+  "resolution": [
+    1024,
+    1024
+  ],
+  "principle": "sujets natifs adaptes au style, line-art contours noirs sur fond blanc, N&B, pas de chromakey",
+  "styles": [
+    "zellige",
+    "mandala",
+    "zentangle",
+    "mosaic"
+  ],
+  "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+  "images": [
+    {
+      "id": "zellige_star",
+      "style": "zellige",
+      "subject": "star",
+      "positive": "intricate islamic geometric zellige pattern, eight-pointed star tessellation, interlacing arabesque lines, perfectly symmetric, coloring book line art, bold clean black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "zellige_medallion",
+      "style": "zellige",
+      "subject": "medallion",
+      "positive": "ornate arabesque medallion, islamic geometric rosette, symmetric floral arabesque, coloring book line art, bold clean black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "zellige_panel",
+      "style": "zellige",
+      "subject": "panel",
+      "positive": "moroccan zellige tile pattern panel, interlacing geometric tessellation, coloring book line art, bold clean black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "mandala_floral",
+      "style": "mandala",
+      "subject": "floral",
+      "positive": "intricate floral mandala, symmetric radial flower petals, coloring book line art, bold clean black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "mandala_geometric",
+      "style": "mandala",
+      "subject": "geometric",
+      "positive": "intricate geometric mandala, symmetric radial pattern, coloring book line art, bold clean black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "mandala_lotus",
+      "style": "mandala",
+      "subject": "lotus",
+      "positive": "lotus mandala, symmetric radial lotus petals and ornaments, coloring book line art, bold clean black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "zentangle_owl",
+      "style": "zentangle",
+      "subject": "owl",
+      "positive": "a stylized owl filled with intricate zentangle tangle patterns, coloring book line art, bold black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "zentangle_feather",
+      "style": "zentangle",
+      "subject": "feather",
+      "positive": "a large feather filled with intricate zentangle doodle patterns, coloring book line art, bold black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "zentangle_butterfly",
+      "style": "zentangle",
+      "subject": "butterfly",
+      "positive": "a symmetric butterfly filled with intricate zentangle tangle patterns, coloring book line art, bold black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "mosaic_fish",
+      "style": "mosaic",
+      "subject": "fish",
+      "positive": "a fish in ancient roman mosaic style, tesserae tile grid, coloring book line art of mosaic tiles, bold black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "mosaic_medallion",
+      "style": "mosaic",
+      "subject": "medallion",
+      "positive": "a geometric byzantine mosaic medallion, concentric tesserae tile rings, coloring book line art, bold black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    },
+    {
+      "id": "mosaic_bird",
+      "style": "mosaic",
+      "subject": "bird",
+      "positive": "a bird in byzantine mosaic style, tesserae tiles, coloring book line art, bold black outlines, white background, centered",
+      "negative": "color, colored, grayscale shading, gradient, photo, photorealistic, blurry, watermark, text, signature, low quality, deformed",
+      "generated": true
+    }
+  ]
+}

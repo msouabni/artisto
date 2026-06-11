@@ -1,0 +1,49 @@
+{
+  "branch": "S2a",
+  "model": "SAM 2.1 hiera small (automatic mask generator)",
+  "config": "configs/sam2.1/sam2.1_hiera_s.yaml",
+  "device": "cpu",
+  "amg_params": {
+    "points_per_side": 32,
+    "pred_iou_thresh": 0.7,
+    "stability_score_thresh": 0.85,
+    "min_mask_region_area": 100
+  },
+  "enfant_smooth_thresh": 12.0,
+  "poc1_reused": [
+    "g1a_v3_compact.render_with_outline",
+    "g2_partition.smooth_merge_similar (niveau enfant, ΔE<12)"
+  ],
+  "results": {
+    "manga_dog": {
+      "n_sam_masks": 15,
+      "n_regions_sam_raw": 170,
+      "n_regions_final": 55,
+      "smooth_merges": 115,
+      "time_sam_s": 41.24,
+      "time_merge_s": 0.07,
+      "sam2_enfant_png": "s2_out/sam2_raw/manga_dog_sam2_enfant.png",
+      "sam2_regionmap_npy": "s2_out/sam2_raw/manga_dog_sam2_regionmap.npy"
+    },
+    "manga_castle": {
+      "n_sam_masks": 55,
+      "n_regions_sam_raw": 282,
+      "n_regions_final": 177,
+      "smooth_merges": 105,
+      "time_sam_s": 41.84,
+      "time_merge_s": 0.08,
+      "sam2_enfant_png": "s2_out/sam2_raw/manga_castle_sam2_enfant.png",
+      "sam2_regionmap_npy": "s2_out/sam2_raw/manga_castle_sam2_regionmap.npy"
+    },
+    "manga_peacock": {
+      "n_sam_masks": 112,
+      "n_regions_sam_raw": 166,
+      "n_regions_final": 49,
+      "smooth_merges": 117,
+      "time_sam_s": 40.95,
+      "time_merge_s": 0.06,
+      "sam2_enfant_png": "s2_out/sam2_raw/manga_peacock_sam2_enfant.png",
+      "sam2_regionmap_npy": "s2_out/sam2_raw/manga_peacock_sam2_regionmap.npy"
+    }
+  }
+}

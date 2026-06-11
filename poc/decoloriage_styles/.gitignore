@@ -1,0 +1,14 @@
+# POC 2 decoloriage-styles — garder le repo léger
+# On versionne le CODE + DOCS + RECETTES (.py / .md / .json), pas les binaires.
+
+# Poids de modèles téléchargés (SAM 2, informative-drawings) — re-téléchargeables
+_models/
+
+# Sorties visuelles générées (reproductibles via les scripts) — ne pas alourdir le repo
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.svg
+*.html
+*.npy

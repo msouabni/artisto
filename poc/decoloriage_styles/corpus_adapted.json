@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "frozen_at": "2026-06-11",
+  "gate": "S0-pivot-adapted",
+  "source": "ComfyUI ERNIE turbo q8 (generation POC2 decoloriage-styles, pivot styles adaptes)",
+  "ernie_workflow": "data/workflows/ernie-image-turbo-q8-api.json",
+  "sampler_defaults": "euler / steps=8 / cfg=1.0 / scheduler=normal / 1024x1024 (defauts workflow turbo, non retunes)",
+  "styles": [
+    "low_poly",
+    "stained_glass",
+    "papercut",
+    "kawaii_bold"
+  ],
+  "subjects": [
+    "dog",
+    "castle",
+    "peacock"
+  ],
+  "no_flat_colors": false,
+  "pivot_note": "styles coloriage-adaptes par construction (low_poly/stained_glass/papercut/kawaii_bold) au lieu de styles durs",
+  "seed_policy": "seed fixe=42 pour les 12 images (reproductible)",
+  "images": [
+    {
+      "slot": 1,
+      "subject": "dog",
+      "style": "low_poly",
+      "id": "low_poly_dog",
+      "path": "corpus_adapted/low_poly_dog.png",
+      "prompt": "low poly geometric art of a single dog sitting in profile, full body, triangulated polygonal facets, flat shaded triangles, sharp clean edges, vector geometric style, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 2,
+      "subject": "castle",
+      "style": "low_poly",
+      "id": "low_poly_castle",
+      "path": "corpus_adapted/low_poly_castle.png",
+      "prompt": "low poly geometric art of a single fairytale castle with towers, full view, triangulated polygonal facets, flat shaded triangles, sharp clean edges, vector geometric style, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 3,
+      "subject": "peacock",
+      "style": "low_poly",
+      "id": "low_poly_peacock",
+      "path": "corpus_adapted/low_poly_peacock.png",
+      "prompt": "low poly geometric art of a single peacock with tail feathers displayed, triangulated polygonal facets, flat shaded triangles, sharp clean edges, vector geometric style, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 4,
+      "subject": "dog",
+      "style": "stained_glass",
+      "id": "stained_glass_dog",
+      "path": "corpus_adapted/stained_glass_dog.png",
+      "prompt": "stained glass window illustration of a single dog sitting in profile, full body, bold black leading outlines separating flat colored glass panes, mosaic, luminous, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 5,
+      "subject": "castle",
+      "style": "stained_glass",
+      "id": "stained_glass_castle",
+      "path": "corpus_adapted/stained_glass_castle.png",
+      "prompt": "stained glass window illustration of a single fairytale castle with towers, full view, bold black leading outlines separating flat colored glass panes, mosaic, luminous, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 6,
+      "subject": "peacock",
+      "style": "stained_glass",
+      "id": "stained_glass_peacock",
+      "path": "corpus_adapted/stained_glass_peacock.png",
+      "prompt": "stained glass window illustration of a single peacock with tail feathers displayed, bold black leading outlines separating flat colored glass panes, mosaic, luminous, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 7,
+      "subject": "dog",
+      "style": "papercut",
+      "id": "papercut_dog",
+      "path": "corpus_adapted/papercut_dog.png",
+      "prompt": "papercut craft illustration of a single dog sitting in profile, full body, layered flat cut-paper shapes, clean crisp edges, paper collage style, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 8,
+      "subject": "castle",
+      "style": "papercut",
+      "id": "papercut_castle",
+      "path": "corpus_adapted/papercut_castle.png",
+      "prompt": "papercut craft illustration of a single fairytale castle with towers, full view, layered flat cut-paper shapes, clean crisp edges, paper collage style, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 9,
+      "subject": "peacock",
+      "style": "papercut",
+      "id": "papercut_peacock",
+      "path": "corpus_adapted/papercut_peacock.png",
+      "prompt": "papercut craft illustration of a single peacock with tail feathers displayed, layered flat cut-paper shapes, clean crisp edges, paper collage style, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 10,
+      "subject": "dog",
+      "style": "kawaii_bold",
+      "id": "kawaii_bold_dog",
+      "path": "corpus_adapted/kawaii_bold_dog.png",
+      "prompt": "cute kawaii cartoon of a single dog sitting in profile, full body, bold thick black outlines, flat color fills, simple clean shapes, sticker style, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 11,
+      "subject": "castle",
+      "style": "kawaii_bold",
+      "id": "kawaii_bold_castle",
+      "path": "corpus_adapted/kawaii_bold_castle.png",
+      "prompt": "cute kawaii cartoon of a single fairytale castle with towers, full view, bold thick black outlines, flat color fills, simple clean shapes, sticker style, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    },
+    {
+      "slot": 12,
+      "subject": "peacock",
+      "style": "kawaii_bold",
+      "id": "kawaii_bold_peacock",
+      "path": "corpus_adapted/kawaii_bold_peacock.png",
+      "prompt": "cute kawaii cartoon of a single peacock with tail feathers displayed, bold thick black outlines, flat color fills, simple clean shapes, sticker style, plain background, centered",
+      "negative": "blurry, low quality, jpeg artifacts, watermark, text, signature, deformed, extra limbs, multiple subjects, photorealistic, photo"
+    }
+  ]
+}

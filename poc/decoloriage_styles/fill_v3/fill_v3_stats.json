@@ -1,0 +1,579 @@
+{
+  "gate": "POC2-lineart-fill-v2-production",
+  "module": "lineart_fill_v2.py",
+  "fixes": {
+    "fix1_halo": "expansion Voronoi (distance_transform_edt return_indices) des cellules sous le trait -> couverture canvas ~100%",
+    "fix2_smooth": "encre vectorisee via src/services/vectorizer.Vectorizer (VTracer bw_default spline) au lieu de raster base64"
+  },
+  "n_images": 12,
+  "timing_s_total": 179.44,
+  "global": {
+    "coverage_before_pct_median": 79.11,
+    "coverage_after_pct_median": 100.0,
+    "coverage_after_pct_min": 100.0,
+    "n_cells_median": 482,
+    "svg_kb_median": 773.2
+  },
+  "note_metrique": "fill_v2 mesurait coverage_pct vs surface BLANCHE (le halo etait exclu du denominateur -> ~99.5% trompeur). v3 mesure vs CANVAS complet (H*W) : coverage_before = ancien comportement v1 reel (halo non assigne), coverage_after = apres expansion Voronoi (~100%).",
+  "by_style": {
+    "zellige": {
+      "n_images": 3,
+      "coverage_before_pct_median": 73.54,
+      "coverage_after_pct_median": 100.0,
+      "coverage_after_pct_min": 100.0,
+      "svg_kb_median": 909.1
+    },
+    "mandala": {
+      "n_images": 3,
+      "coverage_before_pct_median": 78.93,
+      "coverage_after_pct_median": 100.0,
+      "coverage_after_pct_min": 100.0,
+      "svg_kb_median": 824.0
+    },
+    "zentangle": {
+      "n_images": 3,
+      "coverage_before_pct_median": 79.87,
+      "coverage_after_pct_median": 100.0,
+      "coverage_after_pct_min": 100.0,
+      "svg_kb_median": 769.4
+    },
+    "mosaic": {
+      "n_images": 3,
+      "coverage_before_pct_median": 79.29,
+      "coverage_after_pct_median": 100.0,
+      "coverage_after_pct_min": 100.0,
+      "svg_kb_median": 667.3
+    }
+  },
+  "gallery": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\gallery_fill_v3.png",
+  "images": [
+    {
+      "id": "zellige_star",
+      "style": "zellige",
+      "subject": "star",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 248,
+      "n_paper": 1,
+      "n_polylines": 249,
+      "n_ink_paths": 1,
+      "coverage_before_pct": 80.37,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 611.0,
+      "ink_svg_kb": 320.4,
+      "median_cell_px": 727,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_star_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_star.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_star.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_star_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_star_zoom.png"
+      },
+      "timing_s": 7.7,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.79,
+        "v2_svg_kb": 391.9,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 219.1
+      }
+    },
+    {
+      "id": "zellige_medallion",
+      "style": "zellige",
+      "subject": "medallion",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 449,
+      "n_paper": 1,
+      "n_polylines": 461,
+      "n_ink_paths": 12,
+      "coverage_before_pct": 73.54,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 909.1,
+      "ink_svg_kb": 367.7,
+      "median_cell_px": 450,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_medallion_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_medallion.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_medallion.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_medallion_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_medallion_zoom.png"
+      },
+      "timing_s": 14.1,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.56,
+        "v2_svg_kb": 753.2,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 155.9
+      }
+    },
+    {
+      "id": "zellige_panel",
+      "style": "zellige",
+      "subject": "panel",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 658,
+      "n_paper": 1,
+      "n_polylines": 672,
+      "n_ink_paths": 13,
+      "coverage_before_pct": 71.3,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 1212.2,
+      "ink_svg_kb": 580.4,
+      "median_cell_px": 442,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_panel_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_panel.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_panel.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_panel_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zellige_panel_zoom.png"
+      },
+      "timing_s": 20.53,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.04,
+        "v2_svg_kb": 772.3,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 439.9
+      }
+    },
+    {
+      "id": "mandala_floral",
+      "style": "mandala",
+      "subject": "floral",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 311,
+      "n_paper": 1,
+      "n_polylines": 312,
+      "n_ink_paths": 6,
+      "coverage_before_pct": 78.93,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 692.7,
+      "ink_svg_kb": 272.3,
+      "median_cell_px": 1011,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_floral_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_floral.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_floral.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_floral_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_floral_zoom.png"
+      },
+      "timing_s": 9.98,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.4,
+        "v2_svg_kb": 680.5,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 12.2
+      }
+    },
+    {
+      "id": "mandala_geometric",
+      "style": "mandala",
+      "subject": "geometric",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 622,
+      "n_paper": 1,
+      "n_polylines": 623,
+      "n_ink_paths": 2,
+      "coverage_before_pct": 71.82,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 1062.7,
+      "ink_svg_kb": 438.2,
+      "median_cell_px": 432,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_geometric_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_geometric.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_geometric.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_geometric_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_geometric_zoom.png"
+      },
+      "timing_s": 19.02,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.17,
+        "v2_svg_kb": 830.3,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 232.4
+      }
+    },
+    {
+      "id": "mandala_lotus",
+      "style": "mandala",
+      "subject": "lotus",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 421,
+      "n_paper": 1,
+      "n_polylines": 422,
+      "n_ink_paths": 17,
+      "coverage_before_pct": 79.74,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 824.0,
+      "ink_svg_kb": 316.8,
+      "median_cell_px": 513,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_lotus_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_lotus.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_lotus.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_lotus_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mandala_lotus_zoom.png"
+      },
+      "timing_s": 13.36,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.57,
+        "v2_svg_kb": 766.3,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 57.7
+      }
+    },
+    {
+      "id": "zentangle_owl",
+      "style": "zentangle",
+      "subject": "owl",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 655,
+      "n_paper": 1,
+      "n_polylines": 660,
+      "n_ink_paths": 8,
+      "coverage_before_pct": 79.87,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 817.7,
+      "ink_svg_kb": 271.8,
+      "median_cell_px": 161,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_owl_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_owl.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_owl.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_owl_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_owl_zoom.png"
+      },
+      "timing_s": 19.45,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.45,
+        "v2_svg_kb": 690.3,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 127.4
+      }
+    },
+    {
+      "id": "zentangle_feather",
+      "style": "zentangle",
+      "subject": "feather",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 344,
+      "n_paper": 1,
+      "n_polylines": 347,
+      "n_ink_paths": 50,
+      "coverage_before_pct": 81.86,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 577.4,
+      "ink_svg_kb": 226.8,
+      "median_cell_px": 227,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_feather_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_feather.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_feather.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_feather_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_feather_zoom.png"
+      },
+      "timing_s": 13.18,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.48,
+        "v2_svg_kb": 524.3,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 53.1
+      }
+    },
+    {
+      "id": "zentangle_butterfly",
+      "style": "zentangle",
+      "subject": "butterfly",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 541,
+      "n_paper": 1,
+      "n_polylines": 559,
+      "n_ink_paths": 47,
+      "coverage_before_pct": 77.98,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 769.4,
+      "ink_svg_kb": 273.3,
+      "median_cell_px": 169,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_butterfly_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_butterfly.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_butterfly.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_butterfly_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\zentangle_butterfly_zoom.png"
+      },
+      "timing_s": 18.44,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.39,
+        "v2_svg_kb": 686.7,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 82.7
+      }
+    },
+    {
+      "id": "mosaic_fish",
+      "style": "mosaic",
+      "subject": "fish",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 361,
+      "n_paper": 1,
+      "n_polylines": 362,
+      "n_ink_paths": 8,
+      "coverage_before_pct": 87.71,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 454.7,
+      "ink_svg_kb": 197.5,
+      "median_cell_px": 388,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_fish_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_fish.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_fish.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_fish_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_fish_zoom.png"
+      },
+      "timing_s": 11.38,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.65,
+        "v2_svg_kb": 360.9,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 93.8
+      }
+    },
+    {
+      "id": "mosaic_medallion",
+      "style": "mosaic",
+      "subject": "medallion",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 590,
+      "n_paper": 1,
+      "n_polylines": 597,
+      "n_ink_paths": 4,
+      "coverage_before_pct": 73.99,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 777.1,
+      "ink_svg_kb": 409.7,
+      "median_cell_px": 730,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_medallion_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_medallion.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_medallion.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_medallion_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_medallion_zoom.png"
+      },
+      "timing_s": 17.13,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.61,
+        "v2_svg_kb": 530.1,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 247.0
+      }
+    },
+    {
+      "id": "mosaic_bird",
+      "style": "mosaic",
+      "subject": "bird",
+      "image_size": [
+        1024,
+        1024
+      ],
+      "n_cells": 516,
+      "n_paper": 1,
+      "n_polylines": 518,
+      "n_ink_paths": 4,
+      "coverage_before_pct": 79.29,
+      "coverage_after_pct": 100.0,
+      "svg_kb": 667.3,
+      "ink_svg_kb": 312.9,
+      "median_cell_px": 419,
+      "zoom_source": "vector_ink_render",
+      "params": {
+        "ink_threshold": 110,
+        "morph_close": 3,
+        "min_cell_px": 24,
+        "connectivity": 1,
+        "dp_tolerance": 1.0,
+        "chaikin_iters": 2,
+        "ink_vector_preset": "bw_default"
+      },
+      "outputs": {
+        "blank_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_bird_blank.png",
+        "svg": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_bird.svg",
+        "html": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_bird.html",
+        "demo_filled_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_bird_demo_filled.png",
+        "zoom_png": "D:\\projets\\artiste-coloriage\\poc\\decoloriage_styles\\fill_v3\\mosaic_bird_zoom.png"
+      },
+      "timing_s": 15.16,
+      "vs_fill_v2": {
+        "v2_coverage_pct_vs_white": 99.8,
+        "v2_svg_kb": 475.7,
+        "v2_ink_layer": "raster_base64",
+        "v3_ink_layer": "vector_vtracer",
+        "v3_coverage_pct_vs_canvas": 100.0,
+        "svg_kb_delta": 191.6
+      }
+    }
+  ]
+}
