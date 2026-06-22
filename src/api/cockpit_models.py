@@ -27,7 +27,17 @@ TODO (tâches suivantes du plan vivant, HORS de cet incrément) :
 """
 from __future__ import annotations
 
-from sqlalchemy import JSON, Boolean, Date, Index, String, Text, UniqueConstraint
+from sqlalchemy import (
+    JSON,
+    Boolean,
+    Date,
+    Float,
+    Index,
+    Integer,
+    String,
+    Text,
+    UniqueConstraint,
+)
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -75,11 +85,21 @@ class WorkItem(Base):
     # État d'orchestration (pilotage éditorial), distinct de l'état dérivé de git.
     state: Mapped[str] = mapped_column(String, nullable=False, default="candidat")
 
-    # Liens score / opportunité (import alawseo — tâche ultérieure). FK nullable :
-    # la table cible n'existe pas dans cet incrément, on garde une simple
-    # référence souple (id texte) sans contrainte FK matérielle pour ne pas
-    # coupler à un schéma absent. Documenté comme « lien score/opportunité ».
+    # Liens score / opportunité (import alawseo). Référence souple (id texte)
+    # vers ``opportunity.id`` — pas de contrainte FK matérielle pour rester
+    # tolérant aux imports partiels (un work_item peut exister sans opportunité,
+    # une opportunité peut arriver après le work_item). Le lien est posé par
+    # slug à l'import (cf. services/opportunity_import.py::link_work_items).
     opportunity_id: Mapped[str | None] = mapped_column(String, nullable=True)
+
+    # last_synced_hash : ``content_hash`` git constaté la dernière fois que le
+    # cockpit s'est synchronisé sur cette page (commit émis ou accusé de lecture).
+    # Sert UNIQUEMENT à la détection de drift « édition hors cockpit » : si le
+    # ``git_index.content_hash`` courant diffère de cette valeur, la page a été
+    # éditée dans git hors du cockpit → on SIGNALE (jamais on ne corrige git).
+    # NULL = pas encore synchronisé (un work_item neuf sur une page existante
+    # n'est PAS en drift hash tant qu'on n'a pas posé de référence).
+    last_synced_hash: Mapped[str | None] = mapped_column(String, nullable=True)
 
     # Buffer de staging (TRANSITOIRE, jamais autoritaire, jamais servi).
     staging_frontmatter: Mapped[dict | None] = mapped_column(_JSONB, nullable=True)
@@ -128,3 +148,48 @@ class GitIndex(Base):
     rel_path: Mapped[str | None] = mapped_column(String, nullable=True)
 
     last_indexed_at: Mapped[str] = mapped_column(Text, nullable=False)
+
+
+class Opportunity(Base):
+    """Score de demande importé (mock ``alawseo`` — CSV cluster scoré).
+
+    Lecture seule côté cockpit : reflète l'analyse de demande SEO (volume, KD,
+    score) par mot-clé / sujet. Reliée aux ``work_item`` par ``slug`` à l'import
+    (cf. services/opportunity_import.py). Pas la vérité du contenu (qui reste
+    git) — juste le signal de priorisation éditoriale affiché sur les cartes.
+
+    Le CSV source (``data/clusters/cluster-marin-sujets.csv``) ne porte PAS de
+    colonne ``score`` brute : on dérive un **proxy** ``score`` depuis ``volume``
+    (normalisé 0-100 sur le max du cluster). Documenté dans l'importeur.
+    """
+
+    __tablename__ = "opportunity"
+    __table_args__ = (
+        UniqueConstraint("source", "keyword", name="uq_opportunity_source_keyword"),
+        Index("idx_opportunity_slug", "slug"),
+        Index("idx_opportunity_cluster", "cluster"),
+    )
+
+    id: Mapped[str] = mapped_column(String, primary_key=True)
+
+    # keyword : requête SEO source (ex. "coloriage baleine").
+    keyword: Mapped[str] = mapped_column(String, nullable=False)
+    # sujet : libellé sujet normalisé (ex. "baleine").
+    sujet: Mapped[str | None] = mapped_column(String, nullable=True)
+    # slug : clé de jointure vers work_item.slug (ex. "baleine").
+    slug: Mapped[str] = mapped_column(String, nullable=False)
+
+    # volume : volume de recherche mensuel (signal brut).
+    volume: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    # kd : keyword difficulty (0-100) si fournie ; NULL sinon.
+    kd: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    # score : score de demande 0-100 (proxy dérivé du volume si pas de colonne
+    # score dans la source — voir opportunity_import).
+    score: Mapped[float | None] = mapped_column(Float, nullable=True)
+
+    # cluster : regroupement thématique (ex. "animaux marins").
+    cluster: Mapped[str | None] = mapped_column(String, nullable=True)
+    # source : provenance de l'import (ex. "cluster-marin-sujets.csv").
+    source: Mapped[str] = mapped_column(String, nullable=False)
+
+    imported_at: Mapped[str] = mapped_column(Text, nullable=False)

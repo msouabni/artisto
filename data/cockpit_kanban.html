@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cockpit — Kanban (miroir git)</title>
+  <link rel="stylesheet" href="/data/shared/nav.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      margin: 0; min-height: 100vh; background: #f8f9fa; color: #202124;
+    }
+    body[data-theme="dark"] { background: #1a1a2e; color: #f7fafc; }
+
+    .app-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; background: #fff; border-bottom: 1px solid #dadce0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06); flex-wrap: wrap; gap: 0.75rem;
+    }
+    body[data-theme="dark"] .app-header { background: #16213e; border-color: #2d3748; }
+    .app-header h1 { margin: 0; font-size: 1.2rem; font-weight: 700; color: #1a73e8; }
+    body[data-theme="dark"] .app-header h1 { color: #90cdf4; }
+    .header-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .btn {
+      padding: 0.4rem 0.85rem; border: 1px solid #1a73e8; border-radius: 6px;
+      background: #1a73e8; color: #fff; cursor: pointer; font-size: 0.83rem; font-weight: 600;
+    }
+    .btn.secondary { background: #fff; color: #1a73e8; }
+    body[data-theme="dark"] .btn.secondary { background: #16213e; }
+    .btn:hover { filter: brightness(1.05); }
+
+    .main { max-width: 1500px; margin: 1.5rem auto; padding: 0 1.25rem; }
+
+    /* ── Miroir banner ── */
+    .mirror-note {
+      font-size: 0.8rem; color: #6b7280; background: #eef2ff; border: 1px solid #c7d2fe;
+      border-radius: 8px; padding: 0.55rem 0.9rem; margin-bottom: 1rem;
+    }
+    body[data-theme="dark"] .mirror-note { background: #1e293b; border-color: #334155; color: #94a3b8; }
+
+    /* ── Reprends ici ── */
+    .resume-panel {
+      display: none; align-items: center; gap: 0.75rem;
+      background: #fff7ed; border: 1px solid #fdba74; border-radius: 10px;
+      padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.9rem;
+    }
+    body[data-theme="dark"] .resume-panel { background: #431407; border-color: #9a3412; color: #fed7aa; }
+    .resume-panel.visible { display: flex; }
+    .resume-panel .alarm { font-size: 1.4rem; }
+
+    /* ── Totals ── */
+    .totals { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .total-chip {
+      padding: 0.35rem 0.8rem; border-radius: 18px; background: #f1f5f9; color: #334155;
+      font-size: 0.82rem; font-weight: 600; border: 1px solid #e2e8f0;
+    }
+    body[data-theme="dark"] .total-chip { background: #1e293b; color: #cbd5e0; border-color: #334155; }
+    .total-chip.drift { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+    body[data-theme="dark"] .total-chip.drift { background: #450a0a; color: #fca5a5; border-color: #7f1d1d; }
+
+    /* ── Board ── */
+    .board { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.85rem; align-items: start; }
+    @media (max-width: 1100px) { .board { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .board { grid-template-columns: 1fr; } }
+
+    .column {
+      background: #f1f3f5; border: 1px solid #e5e7eb; border-radius: 12px;
+      padding: 0.6rem; min-height: 120px;
+    }
+    body[data-theme="dark"] .column { background: #15203a; border-color: #2d3748; }
+    .col-header {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; color: #475569; margin-bottom: 0.6rem; padding: 0 0.25rem;
+    }
+    body[data-theme="dark"] .col-header { color: #94a3b8; }
+    .col-count { background: #cbd5e1; color: #1e293b; border-radius: 10px; padding: 0 0.5rem; font-size: 0.72rem; }
+    body[data-theme="dark"] .col-count { background: #334155; color: #e2e8f0; }
+
+    /* ── Card ── */
+    .card {
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+      padding: 0.7rem 0.8rem; margin-bottom: 0.55rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    body[data-theme="dark"] .card { background: #1f2a44; border-color: #2d3748; }
+    .card.drift { border-color: #ef4444; box-shadow: 0 0 0 1px #ef4444; }
+    .card-slug { font-weight: 700; font-size: 0.92rem; word-break: break-word; }
+    .card-meta { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.45rem; align-items: center; }
+
+    .badge { padding: 0.1rem 0.5rem; border-radius: 8px; font-size: 0.72rem; font-weight: 600; }
+    .badge.git-ecrit    { background: #e0e7ff; color: #3730a3; }
+    .badge.git-programme{ background: #fef9c3; color: #854d0e; }
+    .badge.git-publie   { background: #dcfce7; color: #166534; }
+    .badge.git-absent   { background: #fee2e2; color: #991b1b; }
+    .badge.locale       { background: #f1f5f9; color: #475569; }
+    body[data-theme="dark"] .badge.locale { background: #334155; color: #cbd5e0; }
+
+    .score-pill {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.1rem 0.5rem; border-radius: 8px; font-size: 0.72rem; font-weight: 700;
+      background: linear-gradient(90deg,#dbeafe,#bfdbfe); color: #1e3a8a;
+    }
+    .score-pill.none { background: #f1f5f9; color: #94a3b8; }
+    body[data-theme="dark"] .score-pill { background: #1e3a8a; color: #bfdbfe; }
+
+    .drift-flag {
+      display: inline-flex; align-items: center; gap: 0.25rem;
+      padding: 0.1rem 0.5rem; border-radius: 8px; font-size: 0.72rem; font-weight: 700;
+      background: #fee2e2; color: #b91c1c;
+    }
+    body[data-theme="dark"] .drift-flag { background: #450a0a; color: #fca5a5; }
+
+    .empty { font-size: 0.8rem; color: #94a3b8; font-style: italic; padding: 0.5rem 0.25rem; }
+    .status-msg { font-size: 0.82rem; color: #6b7280; }
+  </style>
+</head>
+<body data-theme="light">
+
+  <header class="app-header">
+    <h1>🗂️ Cockpit — Kanban <span style="font-weight:400;font-size:0.85rem;color:#6b7280;">miroir git (lecture seule)</span></h1>
+    <div class="header-actions">
+      <span class="status-msg" id="status-msg"></span>
+      <button class="btn secondary" id="btn-reindex">↻ Reindex git</button>
+      <button class="btn secondary" id="btn-import">📈 Importer opportunités</button>
+      <button class="btn" id="btn-refresh">🔄 Rafraîchir</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="mirror-note">
+      Cette vue <strong>reflète git</strong> : états (<em>écrit / programmé / publié</em>) et drift sont
+      <strong>dérivés</strong> du dépôt indexé, jamais d'un contenu en base. Le cockpit
+      <strong>signale</strong> les écarts, il ne corrige jamais git. Aucune édition de contenu ici.
+    </div>
+
+    <div class="resume-panel" id="resume-panel">
+      <span class="alarm">⚠️</span>
+      <div>
+        <strong>Reprends ici :</strong>
+        <span id="resume-text"></span>
+      </div>
+    </div>
+
+    <div class="totals" id="totals"></div>
+
+    <div class="board" id="board"></div>
+  </main>
+
+  <script>
+    const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:8000' : '';
+    const STATE_LABELS = {
+      candidat: 'Candidat', valide: 'Validé', construction: 'Construction',
+      mesure: 'Mesure', verdict: 'Verdict',
+    };
+    const GIT_LABELS = { ecrit: 'écrit', programme: 'programmé', publie: 'publié', absent: 'absent' };
+    const DRIFT_LABELS = {
+      absent_from_git: 'absent de git',
+      content_hash_changed: 'édité hors cockpit',
+    };
+
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    function setStatus(msg) { document.getElementById('status-msg').textContent = msg || ''; }
+
+    function cardHtml(c) {
+      const git = c.derived_state || 'absent';
+      const driftCls = c.drift ? ' drift' : '';
+      const score = c.score;
+      const scorePill = (score != null)
+        ? `<span class="score-pill" title="volume ${esc(c.volume)}">📈 ${esc(score)}</span>`
+        : `<span class="score-pill none">— pas de score</span>`;
+      const driftFlag = c.drift
+        ? `<span class="drift-flag" title="${esc(c.drift_reason)}">⚠️ drift · ${esc(DRIFT_LABELS[c.drift_reason] || c.drift_reason)}</span>`
+        : '';
+      const plate = (c.opportunity && c.opportunity.plate_id)
+        ? `<span class="badge locale">🖼️ ${esc(c.opportunity.plate_id)}</span>` : '';
+      return `
+        <div class="card${driftCls}">
+          <div class="card-slug">${esc(c.slug)}</div>
+          <div class="card-meta">
+            <span class="badge locale">${esc(c.locale)}</span>
+            <span class="badge git-${esc(git)}">git: ${esc(GIT_LABELS[git] || git)}</span>
+            ${scorePill}
+            ${plate}
+          </div>
+          ${driftFlag ? `<div class="card-meta">${driftFlag}</div>` : ''}
+        </div>`;
+    }
+
+    function render(data) {
+      const board = document.getElementById('board');
+      board.innerHTML = '';
+      (data.states || []).forEach(st => {
+        const cards = (data.columns && data.columns[st]) || [];
+        const col = document.createElement('div');
+        col.className = 'column';
+        col.innerHTML =
+          `<div class="col-header"><span>${esc(STATE_LABELS[st] || st)}</span>` +
+          `<span class="col-count">${cards.length}</span></div>` +
+          (cards.length ? cards.map(cardHtml).join('') : '<div class="empty">— vide —</div>');
+        board.appendChild(col);
+      });
+
+      // Totaux.
+      const t = data.totals || {};
+      const totals = document.getElementById('totals');
+      totals.innerHTML =
+        `<span class="total-chip">${esc(t.work_items || 0)} work_items</span>` +
+        `<span class="total-chip${t.drift ? ' drift' : ''}">⚠️ ${esc(t.drift || 0)} drift</span>`;
+
+      // Reprends ici (1er drift).
+      const panel = document.getElementById('resume-panel');
+      if (data.first_drift) {
+        const d = data.first_drift;
+        document.getElementById('resume-text').innerHTML =
+          `<strong>${esc(d.slug)}</strong> (${esc(d.locale)}) — ` +
+          `${esc(DRIFT_LABELS[d.drift_reason] || d.drift_reason)}. ` +
+          `Le cockpit signale : à vérifier dans git.`;
+        panel.classList.add('visible');
+      } else {
+        panel.classList.remove('visible');
+      }
+    }
+
+    async function loadKanban() {
+      setStatus('Chargement…');
+      try {
+        const res = await fetch(API_BASE + '/api/cockpit/kanban');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        render(await res.json());
+        setStatus('');
+      } catch (e) {
+        setStatus('Erreur : ' + e.message + ' (API lancée ?)');
+      }
+    }
+
+    async function post(path, label) {
+      setStatus(label + '…');
+      try {
+        const res = await fetch(API_BASE + path, { method: 'POST' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        await res.json();
+        await loadKanban();
+      } catch (e) {
+        setStatus('Erreur : ' + e.message);
+      }
+    }
+
+    document.getElementById('btn-refresh').addEventListener('click', loadKanban);
+    document.getElementById('btn-reindex').addEventListener('click',
+      () => post('/api/cockpit/reindex', 'Reindex git'));
+    document.getElementById('btn-import').addEventListener('click',
+      () => post('/api/cockpit/opportunities/import', 'Import opportunités'));
+
+    loadKanban();
+  </script>
+  <script src="/data/shared/nav.js"></script>
+</body>
+</html>

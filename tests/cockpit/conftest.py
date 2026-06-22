@@ -55,7 +55,11 @@ def _pg_reachable(url: str) -> bool:
 
 # Tables du cockpit créées/droppées dans le schéma éphémère (ne touche pas le
 # schéma public de prod).
-_COCKPIT_TABLES = [cockpit_models.WorkItem.__table__, cockpit_models.GitIndex.__table__]
+_COCKPIT_TABLES = [
+    cockpit_models.WorkItem.__table__,
+    cockpit_models.GitIndex.__table__,
+    cockpit_models.Opportunity.__table__,
+]
 
 
 @pytest.fixture(scope="session")
@@ -97,7 +101,7 @@ def _truncate_between_tests(pg_engine):
     entre tests.
     """
     with pg_engine.begin() as c:
-        c.execute(text("TRUNCATE work_item, git_index"))
+        c.execute(text("TRUNCATE work_item, git_index, opportunity"))
     yield
 
 
