@@ -1,15 +1,21 @@
 ---
 locale: 'fr'
 slug: 'tortue-de-mer'
-title: 'Coloriage tortue de mer à imprimer gratuit | Alwan Books'
+title: "Coloriage tortue de mer à imprimer — la grande voyageuse"
+h1: "La tortue de mer, la grande voyageuse — coloriage à imprimer"
 title_card: 'Coloriage tortue de mer'
-description: "Coloriage tortue de mer à imprimer gratuit — illustration adaptée aux enfants. Plaque mock du cluster animaux marins."
+description: "Une tortue de mer en noir & blanc qui revient de loin. Coloriage tortue de mer à imprimer, gratuit, et le mystère de la plage qu'elle retrouve toujours."
+imageAlt: "coloriage tortue de mer à imprimer, dessin au trait à colorier"
 keywords:
   - 'coloriage tortue de mer'
   - 'tortue de mer à imprimer'
   - 'animaux marins'
-categoryId: 'animals_marine'
+categoryId: 'cahier_des_mers'
 themeIds: []
+liens:
+  - 'baleine'
+  - 'hippocampe'
+  - 'crabe'
 ageMin: 4
 ageMax: 10
 niveauDifficulte: 'easy'
@@ -19,18 +25,15 @@ imageThumb: 'https://assets.alwanbooks.com/coloriages/thumbs/tortue-de-mer-0003.
 imagePdf: 'https://assets.alwanbooks.com/coloriages/pdf/tortue-de-mer-0003.pdf'
 imageSvg: 'https://assets.alwanbooks.com/coloriages/svg/tortue-de-mer-0003.svg'
 status: 'approved'
-publishDate: 2026-07-13
-datePublication: 2026-07-13
+publishDate: 2026-06-20
+datePublication: 2026-06-20
 dateModification: 2026-06-22
 featured: false
-clusterId: 'animaux-marins'
+launchSet: 'cahier-des-mers'
+clusterId: 'cahier-des-mers'
 plateId: 'tortue-de-mer-0003'
+plateSource: 'decoloriage'
+searchVolume: 1000
 ---
 
-## À propos de ce coloriage
-
-Plaque **mock** « tortue de mer » du cluster *animaux marins*. Ce contenu est un placeholder à la spec réelle ; la vraie plaque le remplacera par commit dans git, sans autre changement.
-
-## Conseils
-
-Utilise des bleus et des verts pour l'eau, et des teintes vives pour le sujet.
+Elle ne marche pas, elle vole : sous l'eau, ses grandes nageoires battent comme des ailes lentes. La tortue de mer traverse des océans entiers — des milliers de kilomètres — puis revient pondre exactement sur la plage où elle est née, parfois des années plus tard. Personne ne sait vraiment comment elle s'en souvient. Sur ta page, elle est rentrée de très loin, toute pâle du voyage. Rends-lui ses couleurs : elle les a bien méritées.

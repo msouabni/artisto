@@ -1,15 +1,21 @@
 ---
 locale: 'fr'
 slug: 'meduse'
-title: 'Coloriage méduse à imprimer gratuit | Alwan Books'
-title_card: 'Coloriage méduse'
-description: "Coloriage méduse à imprimer gratuit — illustration adaptée aux enfants. Plaque mock du cluster animaux marins."
+title: "Coloriage méduse à imprimer — la lanterne des mers · Alwan"
+h1: "La méduse, presque rien et pourtant vivante — coloriage à imprimer"
+title_card: 'Coloriage meduse'
+description: "Une méduse en noir & blanc, lumière éteinte. Coloriage méduse à imprimer, gratuit : ni cœur, ni cerveau, ni os, et pourtant bien vivante."
+imageAlt: "coloriage méduse à imprimer, dessin au trait à colorier"
 keywords:
-  - 'coloriage méduse'
-  - 'méduse à imprimer'
+  - 'coloriage meduse'
+  - 'meduse à imprimer'
   - 'animaux marins'
-categoryId: 'animals_marine'
+categoryId: 'cahier_des_mers'
 themeIds: []
+liens:
+  - 'pieuvre'
+  - 'baleine-bleue'
+  - 'hippocampe'
 ageMin: 4
 ageMax: 10
 niveauDifficulte: 'easy'
@@ -19,18 +25,15 @@ imageThumb: 'https://assets.alwanbooks.com/coloriages/thumbs/meduse-0009.webp'
 imagePdf: 'https://assets.alwanbooks.com/coloriages/pdf/meduse-0009.pdf'
 imageSvg: 'https://assets.alwanbooks.com/coloriages/svg/meduse-0009.svg'
 status: 'approved'
-publishDate: 2026-05-23
-datePublication: 2026-05-23
+publishDate: 2026-06-14
+datePublication: 2026-06-14
 dateModification: 2026-06-22
 featured: false
-clusterId: 'animaux-marins'
+launchSet: 'cahier-des-mers'
+clusterId: 'cahier-des-mers'
 plateId: 'meduse-0009'
+plateSource: 'decoloriage'
+searchVolume: 480
 ---
 
-## À propos de ce coloriage
-
-Plaque **mock** « méduse » du cluster *animaux marins*. Ce contenu est un placeholder à la spec réelle ; la vraie plaque le remplacera par commit dans git, sans autre changement.
-
-## Conseils
-
-Utilise des bleus et des verts pour l'eau, et des teintes vives pour le sujet.
+Pas d'os, pas de cœur, pas de cerveau — et pourtant elle vit, elle bouge, elle danse. La méduse, c'est presque de l'eau pure mise en forme. Elle se laisse porter par les courants, en ouvrant et fermant son ombrelle tout doucement. Certaines s'allument dans le noir, comme de petites lanternes. Et on en connaît une, minuscule, capable de redevenir jeune au lieu de mourir. Sur ta page, sa lumière s'est éteinte. Rallume-la avec tes couleurs.

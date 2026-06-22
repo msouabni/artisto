@@ -33,9 +33,9 @@ def test_work_items_join_git_index_and_derived_state(client, conn):
     # Indexe git d'abord (via l'endpoint, même DB éphémère).
     client.post("/api/cockpit/reindex")
 
-    # work_item baleine (publishDate future → programme).
+    # Lot de lancement « Cahier des mers » : toutes les publishDate sont
+    # passées → derived_state == publie pour les 10.
     _insert_work_item(conn, "wi_baleine", "baleine")
-    # work_item poisson-rigolo (index 9 → passé → publie).
     _insert_work_item(conn, "wi_rigolo", "poisson-rigolo")
 
     resp = client.get("/api/cockpit/work-items")
@@ -44,7 +44,7 @@ def test_work_items_join_git_index_and_derived_state(client, conn):
 
     assert "baleine" in items
     assert items["baleine"]["git_index"] is not None
-    assert items["baleine"]["derived_state"] == "programme"
+    assert items["baleine"]["derived_state"] == "publie"
     assert items["baleine"]["drift"] is False
     assert items["baleine"]["content_hash"]
 
@@ -83,10 +83,14 @@ def test_get_work_item_404(client):
 
 
 def test_demo_ten_marine_work_items(client, conn):
-    """Démo : 10 work_items marins reliés à git → états dérivés cohérents."""
+    """Démo : 10 work_items « Cahier des mers » reliés à git → états cohérents.
+
+    Lot de lancement : les 10 ont une ``publishDate`` PASSÉE (publiable au build
+    courant) → derived_state == publie pour les 10, drift 0.
+    """
     client.post("/api/cockpit/reindex")
     slugs = [
-        "baleine", "poisson-simple", "tortue-de-mer", "hippocampe", "crabe",
+        "baleine", "poisson-facile", "tortue-de-mer", "hippocampe", "crabe",
         "poisson-rouge", "pieuvre", "baleine-bleue", "meduse", "poisson-rigolo",
     ]
     for i, slug in enumerate(slugs):
@@ -96,11 +100,6 @@ def test_demo_ten_marine_work_items(client, conn):
     items = resp.json()
     assert len(items) == 10
     states = {i["slug"]: i["derived_state"] for i in items}
-    # 3 premiers (gros volume) en futur → programme ; reste → publie.
-    assert states["baleine"] == "programme"
-    assert states["tortue-de-mer"] == "programme"
-    n_programme = sum(1 for v in states.values() if v == "programme")
     n_publie = sum(1 for v in states.values() if v == "publie")
-    assert n_programme == 3
-    assert n_publie == 7
+    assert n_publie == 10
     assert all(not i["drift"] for i in items)

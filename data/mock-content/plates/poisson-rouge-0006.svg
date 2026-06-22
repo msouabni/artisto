@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="2480" height="3508" viewBox="0 0 2480 3508">
-  <title>MOCK PLATE: poisson-rouge-0006</title>
+  <title>MOCK PLATE (decoloriage): poisson-rouge-0006</title>
   <g id="regions">
     <rect x="0" y="0" width="2480" height="3508" fill="#ffffff"/>
+    <ellipse cx="1240" cy="1754" rx="930" ry="877" fill="#ffffff"/>
+    <circle cx="826" cy="1169" r="206" fill="#ffffff"/>
   </g>
-  <g id="ink" fill="none" stroke="#000000" stroke-width="3">
-    <rect x="310" y="438" width="1860" height="2631"/>
+  <g id="ink" fill="none" stroke="#000000" stroke-width="6">
+    <ellipse cx="1240" cy="1754" rx="930" ry="877"/>
+    <circle cx="826" cy="1169" r="206"/>
   </g>
 </svg>

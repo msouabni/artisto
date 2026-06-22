@@ -1,15 +1,21 @@
 ---
 locale: 'fr'
 slug: 'crabe'
-title: 'Coloriage crabe à imprimer gratuit | Alwan Books'
+title: "Coloriage crabe à imprimer — le chevalier de côté · Alwan"
+h1: "Le crabe, le chevalier qui marche de côté — coloriage à imprimer"
 title_card: 'Coloriage crabe'
-description: "Coloriage crabe à imprimer gratuit — illustration adaptée aux enfants. Plaque mock du cluster animaux marins."
+description: "Un crabe en noir & blanc, armure comprise. Coloriage crabe à imprimer, gratuit, et pourquoi sa pince repousse quand il la perd."
+imageAlt: "coloriage crabe à imprimer, dessin au trait à colorier"
 keywords:
   - 'coloriage crabe'
   - 'crabe à imprimer'
   - 'animaux marins'
-categoryId: 'animals_marine'
+categoryId: 'cahier_des_mers'
 themeIds: []
+liens:
+  - 'tortue-de-mer'
+  - 'pieuvre'
+  - 'poisson-rouge'
 ageMin: 4
 ageMax: 10
 niveauDifficulte: 'easy'
@@ -19,18 +25,15 @@ imageThumb: 'https://assets.alwanbooks.com/coloriages/thumbs/crabe-0005.webp'
 imagePdf: 'https://assets.alwanbooks.com/coloriages/pdf/crabe-0005.pdf'
 imageSvg: 'https://assets.alwanbooks.com/coloriages/svg/crabe-0005.svg'
 status: 'approved'
-publishDate: 2026-06-12
-datePublication: 2026-06-12
+publishDate: 2026-06-18
+datePublication: 2026-06-18
 dateModification: 2026-06-22
 featured: false
-clusterId: 'animaux-marins'
+launchSet: 'cahier-des-mers'
+clusterId: 'cahier-des-mers'
 plateId: 'crabe-0005'
+plateSource: 'lineart-fill'
+searchVolume: 880
 ---
 
-## À propos de ce coloriage
-
-Plaque **mock** « crabe » du cluster *animaux marins*. Ce contenu est un placeholder à la spec réelle ; la vraie plaque le remplacera par commit dans git, sans autre changement.
-
-## Conseils
-
-Utilise des bleus et des verts pour l'eau, et des teintes vives pour le sujet.
+Il porte son squelette à l'extérieur, comme une armure, et il avance de travers — jamais tout droit, toujours de côté. Avec ses pinces, il attrape, il pince, il bricole. S'il en perd une, pas de panique : elle repousse. Et quand il devient trop grand pour sa carapace, il en sort et s'en fabrique une neuve. Sur ta page, l'armure est encore blanche. À toi de la peindre — rouge, orange, ou bleue comme certains crabes des récifs.

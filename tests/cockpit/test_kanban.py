@@ -70,7 +70,7 @@ def test_kanban_groups_by_orchestration_state_with_git_and_score(client, conn):
 def test_kanban_zero_drift_on_nominal_demo(client, conn):
     _bootstrap(client, conn)
     slugs = [
-        "baleine", "poisson-simple", "tortue-de-mer", "hippocampe", "crabe",
+        "baleine", "poisson-facile", "tortue-de-mer", "hippocampe", "crabe",
         "poisson-rouge", "pieuvre", "baleine-bleue", "meduse", "poisson-rigolo",
     ]
     for i, slug in enumerate(slugs):

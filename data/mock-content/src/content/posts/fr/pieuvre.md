@@ -1,15 +1,21 @@
 ---
 locale: 'fr'
 slug: 'pieuvre'
-title: 'Coloriage pieuvre à imprimer gratuit | Alwan Books'
+title: "Coloriage pieuvre à imprimer — le caméléon des mers · Alwan"
+h1: "La pieuvre, le caméléon des mers — coloriage à imprimer"
 title_card: 'Coloriage pieuvre'
-description: "Coloriage pieuvre à imprimer gratuit — illustration adaptée aux enfants. Plaque mock du cluster animaux marins."
+description: "Une pieuvre en noir & blanc qui n'attend que tes couleurs. Coloriage pieuvre à imprimer, gratuit, et trois secrets vrais : trois cœurs, sang bleu, zéro os."
+imageAlt: "coloriage pieuvre à imprimer, dessin au trait à colorier"
 keywords:
   - 'coloriage pieuvre'
   - 'pieuvre à imprimer'
   - 'animaux marins'
-categoryId: 'animals_marine'
+categoryId: 'cahier_des_mers'
 themeIds: []
+liens:
+  - 'meduse'
+  - 'hippocampe'
+  - 'crabe'
 ageMin: 4
 ageMax: 10
 niveauDifficulte: 'easy'
@@ -19,18 +25,15 @@ imageThumb: 'https://assets.alwanbooks.com/coloriages/thumbs/pieuvre-0007.webp'
 imagePdf: 'https://assets.alwanbooks.com/coloriages/pdf/pieuvre-0007.pdf'
 imageSvg: 'https://assets.alwanbooks.com/coloriages/svg/pieuvre-0007.svg'
 status: 'approved'
-publishDate: 2026-06-02
-datePublication: 2026-06-02
+publishDate: 2026-06-16
+datePublication: 2026-06-16
 dateModification: 2026-06-22
 featured: false
-clusterId: 'animaux-marins'
+launchSet: 'cahier-des-mers'
+clusterId: 'cahier-des-mers'
 plateId: 'pieuvre-0007'
+plateSource: 'decoloriage'
+searchVolume: 720
 ---
 
-## À propos de ce coloriage
-
-Plaque **mock** « pieuvre » du cluster *animaux marins*. Ce contenu est un placeholder à la spec réelle ; la vraie plaque le remplacera par commit dans git, sans autre changement.
-
-## Conseils
-
-Utilise des bleus et des verts pour l'eau, et des teintes vives pour le sujet.
+Approche sans bruit. Dans le creux du rocher vit un animal sans un seul os, avec trois cœurs et du sang bleu. Quand il a peur, il devient pierre ; quand il est curieux, il devient corail — il change de couleur sans même y penser. Comme il n'a pas d'os, il se faufile par un trou grand comme son œil. Et ses huit bras réfléchissent presque tout seuls. De toute la mer, c'est lui qui a porté le plus de couleurs. Rends-lui-en — une, ou les huit.

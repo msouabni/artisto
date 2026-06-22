@@ -6,8 +6,8 @@ Couvre :
   - ``last_synced_hash`` posé == ``git_index.content_hash`` → drift 0 ;
   - idempotence / ADD-ONLY (refus de réécrire sans ``force``) ;
   - dry-run (montre le ``.md`` sans rien écrire) ;
-  - end-to-end : 10 work_items marins commités dans un clone jetable, marqueur
-    ``launchSet: animaux-marins``, drift global repassé à 0.
+  - end-to-end : 10 work_items « Cahier des mers » commités dans un clone
+    jetable, marqueur ``launchSet: cahier-des-mers``, drift global repassé à 0.
 
 Aucun SQLite. Le repo contenu est un **clone git jetable** créé dans tmp_path.
 """
@@ -31,9 +31,10 @@ MOCK_POSTS_DIR = (
     Path(__file__).resolve().parents[2] / "data" / "mock-content" / "src" / "content" / "posts" / "fr"
 )
 MARINE_SLUGS = [
-    "baleine", "poisson-simple", "tortue-de-mer", "hippocampe", "crabe",
+    "baleine", "poisson-facile", "tortue-de-mer", "hippocampe", "crabe",
     "poisson-rouge", "pieuvre", "baleine-bleue", "meduse", "poisson-rigolo",
 ]
+LAUNCH_SET = "cahier-des-mers"
 
 
 def _git(root: Path, *args: str) -> subprocess.CompletedProcess:
@@ -86,13 +87,13 @@ def _insert_staged_work_item(conn, wid: str, slug: str, fm: dict, body: str) -> 
 def test_serialize_preserves_launch_set_and_extra_keys():
     fm = {
         "locale": "fr", "slug": "baleine", "title": "Coloriage baleine",
-        "description": "desc", "categoryId": "animals_marine",
-        "launchSet": "animaux-marins", "imageSvg": "https://x/y.svg",
+        "description": "desc", "categoryId": "cahier_des_mers",
+        "launchSet": "cahier-des-mers", "imageSvg": "https://x/y.svg",
         "plateId": "baleine-0001", "themeIds": [],
     }
     md = serialize_post_md(fm, "## corps\n")
     parsed_fm, body = split_frontmatter(md)
-    assert parsed_fm["launchSet"] == "animaux-marins"
+    assert parsed_fm["launchSet"] == "cahier-des-mers"
     assert parsed_fm["imageSvg"] == "https://x/y.svg"
     assert parsed_fm["plateId"] == "baleine-0001"
     assert parsed_fm["themeIds"] == []
@@ -106,7 +107,7 @@ def test_commit_work_item_writes_md_with_launchset(conn, content_clone):
     _insert_staged_work_item(conn, "wi_baleine", "baleine", fm, body)
 
     result = commit_work_item(
-        conn, "wi_baleine", repo_root=content_clone, launch_set="animaux-marins"
+        conn, "wi_baleine", repo_root=content_clone, launch_set="cahier-des-mers"
     )
     conn.session.commit()
 
@@ -114,8 +115,8 @@ def test_commit_work_item_writes_md_with_launchset(conn, content_clone):
     md_path = content_clone / "src" / "content" / "posts" / "fr" / "baleine.md"
     assert md_path.exists()
     parsed_fm, _ = split_frontmatter(md_path.read_text(encoding="utf-8"))
-    assert parsed_fm["launchSet"] == "animaux-marins"
-    assert parsed_fm["categoryId"] == "animals_marine"
+    assert parsed_fm["launchSet"] == "cahier-des-mers"
+    assert parsed_fm["categoryId"] == "cahier_des_mers"
     assert parsed_fm["slug"] == "baleine"
 
 
@@ -123,7 +124,7 @@ def test_commit_author_is_bot(conn, content_clone):
     fm, body = _staging_from_mock("crabe")
     _insert_staged_work_item(conn, "wi_crabe", "crabe", fm, body)
     result = commit_work_item(
-        conn, "wi_crabe", repo_root=content_clone, launch_set="animaux-marins"
+        conn, "wi_crabe", repo_root=content_clone, launch_set="cahier-des-mers"
     )
     conn.session.commit()
 
@@ -136,7 +137,7 @@ def test_last_synced_hash_set_and_matches_git_index(conn, content_clone):
     fm, body = _staging_from_mock("pieuvre")
     _insert_staged_work_item(conn, "wi_pieuvre", "pieuvre", fm, body)
     result = commit_work_item(
-        conn, "wi_pieuvre", repo_root=content_clone, launch_set="animaux-marins"
+        conn, "wi_pieuvre", repo_root=content_clone, launch_set="cahier-des-mers"
     )
     conn.session.commit()
 
@@ -162,7 +163,7 @@ def test_last_synced_hash_set_and_matches_git_index(conn, content_clone):
 def test_add_only_refuses_existing_without_force(conn, content_clone):
     fm, body = _staging_from_mock("meduse")
     _insert_staged_work_item(conn, "wi_meduse", "meduse", fm, body)
-    commit_work_item(conn, "wi_meduse", repo_root=content_clone, launch_set="animaux-marins")
+    commit_work_item(conn, "wi_meduse", repo_root=content_clone, launch_set="cahier-des-mers")
     conn.session.commit()
 
     # 2e commit du même slug → ADD-ONLY refuse.
@@ -175,7 +176,7 @@ def test_force_allows_rewrite(conn, content_clone):
 
     fm, body = _staging_from_mock("hippocampe")
     _insert_staged_work_item(conn, "wi_hippo", "hippocampe", fm, body)
-    commit_work_item(conn, "wi_hippo", repo_root=content_clone, launch_set="animaux-marins")
+    commit_work_item(conn, "wi_hippo", repo_root=content_clone, launch_set="cahier-des-mers")
     conn.session.commit()
 
     # Édite le staging (changement réel de contenu) puis force=True.
@@ -187,7 +188,7 @@ def test_force_allows_rewrite(conn, content_clone):
     )
     conn.session.commit()
     result = commit_work_item(
-        conn, "wi_hippo", repo_root=content_clone, launch_set="animaux-marins", force=True
+        conn, "wi_hippo", repo_root=content_clone, launch_set="cahier-des-mers", force=True
     )
     conn.session.commit()
     assert result.committed is True
@@ -200,12 +201,12 @@ def test_dry_run_writes_nothing(conn, content_clone):
     fm, body = _staging_from_mock("poisson-rouge")
     _insert_staged_work_item(conn, "wi_pr", "poisson-rouge", fm, body)
     result = commit_work_item(
-        conn, "wi_pr", repo_root=content_clone, launch_set="animaux-marins", dry_run=True
+        conn, "wi_pr", repo_root=content_clone, launch_set="cahier-des-mers", dry_run=True
     )
     assert result.dry_run is True
     assert result.committed is False
     parsed_fm, _ = split_frontmatter(result.md)
-    assert parsed_fm["launchSet"] == "animaux-marins"
+    assert parsed_fm["launchSet"] == "cahier-des-mers"
     assert not (content_clone / "src" / "content" / "posts" / "fr" / "poisson-rouge.md").exists()
     # Aucun hash posé.
     row = conn.execute(
@@ -235,7 +236,7 @@ def test_e2e_ten_marine_commits_drift_zero(conn, content_clone):
 
     for i, slug in enumerate(MARINE_SLUGS):
         res = commit_work_item(
-            conn, f"wi_{i}", repo_root=content_clone, launch_set="animaux-marins"
+            conn, f"wi_{i}", repo_root=content_clone, launch_set="cahier-des-mers"
         )
         assert res.committed is True
     conn.session.commit()
@@ -245,7 +246,7 @@ def test_e2e_ten_marine_commits_drift_zero(conn, content_clone):
     assert len(md_files) == 10
     for f in md_files:
         parsed_fm, _ = split_frontmatter(f.read_text(encoding="utf-8"))
-        assert parsed_fm["launchSet"] == "animaux-marins"
+        assert parsed_fm["launchSet"] == "cahier-des-mers"
 
     # Tous les commits sont du bot.
     authors = _git(content_clone, "log", "--format=%an <%ae>").stdout.strip().splitlines()
@@ -287,7 +288,7 @@ def test_endpoint_dry_run_then_commit(client, conn, content_clone, monkeypatch):
     # dry-run : montre le .md, n'écrit rien.
     resp = client.post(
         "/api/cockpit/work-items/wi_ep/commit",
-        json={"launch_set": "animaux-marins", "dry_run": True},
+        json={"launch_set": "cahier-des-mers", "dry_run": True},
     )
     assert resp.status_code == 200, resp.text
     body_json = resp.json()
@@ -299,7 +300,7 @@ def test_endpoint_dry_run_then_commit(client, conn, content_clone, monkeypatch):
     # commit réel.
     resp = client.post(
         "/api/cockpit/work-items/wi_ep/commit",
-        json={"launch_set": "animaux-marins"},
+        json={"launch_set": "cahier-des-mers"},
     )
     assert resp.status_code == 200, resp.text
     body_json = resp.json()
