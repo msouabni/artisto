@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cockpit — Validation HITL (avant commit git)</title>
+  <link rel="stylesheet" href="/data/shared/nav.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      margin: 0; min-height: 100vh; background: #f8f9fa; color: #202124;
+    }
+    .app-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; background: #fff; border-bottom: 1px solid #dadce0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06); flex-wrap: wrap; gap: 0.75rem;
+    }
+    .app-header h1 { margin: 0; font-size: 1.2rem; font-weight: 700; color: #1a73e8; }
+    .header-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .btn {
+      padding: 0.4rem 0.85rem; border: 1px solid #1a73e8; border-radius: 6px;
+      background: #1a73e8; color: #fff; cursor: pointer; font-size: 0.83rem; font-weight: 600;
+    }
+    .btn.secondary { background: #fff; color: #1a73e8; }
+    .btn.approve { background: #16a34a; border-color: #16a34a; }
+    .btn.reject  { background: #dc2626; border-color: #dc2626; }
+    .btn.commit  { background: #7c3aed; border-color: #7c3aed; }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn:hover:not(:disabled) { filter: brightness(1.05); }
+
+    .main { max-width: 1400px; margin: 1.5rem auto; padding: 0 1.25rem; }
+    .mirror-note {
+      font-size: 0.8rem; color: #6b7280; background: #eef2ff; border: 1px solid #c7d2fe;
+      border-radius: 8px; padding: 0.55rem 0.9rem; margin-bottom: 1rem;
+    }
+    .status-msg { font-size: 0.82rem; color: #6b7280; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 1rem; }
+    .card {
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+      padding: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .card-slug { font-weight: 700; font-size: 1rem; word-break: break-word; }
+    .badge { padding: 0.12rem 0.55rem; border-radius: 8px; font-size: 0.72rem; font-weight: 700; }
+    .st-review_image { background: #fef9c3; color: #854d0e; }
+    .st-review_text  { background: #dbeafe; color: #1e40af; }
+    .st-approved     { background: #dcfce7; color: #166534; }
+
+    .plate-preview {
+      width: 100%; max-height: 200px; object-fit: contain; background: #f8fafc;
+      border: 1px dashed #cbd5e1; border-radius: 8px; padding: 0.5rem;
+    }
+    .plate-missing { font-size: 0.8rem; color: #94a3b8; font-style: italic; }
+
+    label { font-size: 0.74rem; font-weight: 700; color: #475569; display: block; margin-bottom: 0.2rem; }
+    input[type=text], textarea {
+      width: 100%; padding: 0.4rem 0.55rem; border: 1px solid #cbd5e1; border-radius: 6px;
+      font-family: inherit; font-size: 0.85rem;
+    }
+    textarea { resize: vertical; min-height: 70px; }
+    .field { margin-bottom: 0.5rem; }
+    .actions { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.4rem; }
+    .empty { font-size: 0.9rem; color: #94a3b8; font-style: italic; padding: 2rem; text-align: center; }
+    .note { font-size: 0.72rem; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <h1>✅ Cockpit — Validation HITL</h1>
+    <div class="header-actions">
+      <span class="status-msg" id="status-msg"></span>
+      <a class="btn secondary" href="/data/cockpit_kanban.html">← Kanban (miroir git)</a>
+      <button class="btn" id="btn-refresh">🔄 Rafraîchir</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="mirror-note">
+      Zone de <strong>supervision humaine</strong> AVANT commit git. La plaque et les métadonnées sont
+      <strong>générées (MOCK)</strong> dans le buffer de staging — <strong>jamais servies</strong>.
+      Gate IMAGE → gate TEXTE (édition légère possible) → <strong>commit git</strong> (seule porte d'entrée,
+      identité bot, ADD-ONLY). Le buffer est purgé au commit ; l'autorité passe à git.
+      <em>Génération réelle (ComfyUI + LLM) derrière le mock = track Hamma.</em>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <script>
+    const API_BASE = window.location.protocol === 'file:' ? 'http://localhost:8000' : '';
+    const ST_LABELS = {
+      review_image: 'Revue IMAGE', review_text: 'Revue TEXTE', approved: 'Approuvé',
+    };
+
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;');
+    }
+    function setStatus(m) { document.getElementById('status-msg').textContent = m || ''; }
+
+    function cardHtml(it) {
+      const fm = it.frontmatter || {};
+      const ss = it.staging_state;
+      const plate = it.plate || {};
+      const preview = plate.preview_url
+        ? `<img class="plate-preview" src="${esc(plate.preview_url)}" alt="aperçu plaque ${esc(it.slug)}">`
+        : `<div class="plate-missing">— pas de plaque —</div>`;
+
+      // Champs éditables (revue texte) : title / description / body.
+      const editable = (ss === 'review_text');
+      const dis = editable ? '' : 'disabled';
+      const fields = `
+        <div class="field">
+          <label>Titre</label>
+          <input type="text" data-f="title" value="${esc(fm.title)}" ${dis}>
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea data-f="description" ${dis}>${esc(fm.description)}</textarea>
+        </div>
+        <div class="field">
+          <label>Corps</label>
+          <textarea data-f="body" ${dis}>${esc(it.body)}</textarea>
+        </div>`;
+
+      let actions = '';
+      if (ss === 'review_image') {
+        actions = `
+          <button class="btn approve" data-act="image-approve">✅ Image OK → texte</button>
+          <button class="btn reject"  data-act="image-reject">↻ Rejeter (re-générer)</button>
+          <button class="btn secondary" data-act="image-drop">🗑️ Abandonner</button>`;
+      } else if (ss === 'review_text') {
+        actions = `
+          <button class="btn approve" data-act="text-approve">✅ Texte OK → approuver</button>
+          <button class="btn reject"  data-act="text-reject">← Revoir l'image</button>`;
+      } else if (ss === 'approved') {
+        actions = `
+          <button class="btn commit" data-act="commit">🚀 Committer dans git (bot)</button>
+          <span class="note">Seul l'approuvé entre dans git.</span>`;
+      }
+
+      return `
+        <div class="card" data-id="${esc(it.id)}" data-state="${esc(ss)}">
+          <div class="card-head">
+            <span class="card-slug">${esc(it.locale)}/${esc(it.slug)}</span>
+            <span class="badge st-${esc(ss)}">${esc(ST_LABELS[ss] || ss)}</span>
+          </div>
+          ${preview}
+          <div class="note">plaque : ${esc(plate.image_state || 'none')} · style ${esc(plate.style_source || '—')}</div>
+          ${fields}
+          <div class="actions">${actions}</div>
+        </div>`;
+    }
+
+    function collectEdits(card) {
+      const edits = { frontmatter: {} };
+      card.querySelectorAll('[data-f]').forEach(el => {
+        const f = el.getAttribute('data-f');
+        if (f === 'body') edits.body = el.value;
+        else edits.frontmatter[f] = el.value;
+      });
+      return edits;
+    }
+
+    async function api(path, body) {
+      const res = await fetch(API_BASE + path, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body || {}),
+      });
+      if (!res.ok) {
+        let d = 'HTTP ' + res.status;
+        try { d = (await res.json()).detail || d; } catch (_) {}
+        throw new Error(d);
+      }
+      return res.json();
+    }
+
+    async function onAction(card, act) {
+      const id = card.getAttribute('data-id');
+      try {
+        setStatus('…');
+        if (act === 'image-approve') await api(`/api/cockpit/work-items/${id}/review/image`, { decision: 'approve' });
+        else if (act === 'image-reject') await api(`/api/cockpit/work-items/${id}/review/image`, { decision: 'reject' });
+        else if (act === 'image-drop') await api(`/api/cockpit/work-items/${id}/review/image`, { decision: 'reject', drop: true });
+        else if (act === 'text-approve') await api(`/api/cockpit/work-items/${id}/review/text`, { decision: 'approve', edits: collectEdits(card) });
+        else if (act === 'text-reject') await api(`/api/cockpit/work-items/${id}/review/text`, { decision: 'reject', edits: collectEdits(card) });
+        else if (act === 'commit') await api(`/api/cockpit/work-items/${id}/commit`, { launch_set: 'cahier-des-mers' });
+        await load();
+        setStatus('OK');
+      } catch (e) {
+        setStatus('Erreur : ' + e.message);
+      }
+    }
+
+    async function load() {
+      setStatus('Chargement…');
+      try {
+        const res = await fetch(API_BASE + '/api/cockpit/validation-queue');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        const grid = document.getElementById('grid');
+        const items = data.items || [];
+        if (!items.length) {
+          grid.innerHTML = '<div class="empty">Aucun candidat en validation. Déclenchez une génération depuis le kanban / l\'API.</div>';
+        } else {
+          grid.innerHTML = items.map(cardHtml).join('');
+          grid.querySelectorAll('[data-act]').forEach(btn => {
+            btn.addEventListener('click', () => onAction(btn.closest('.card'), btn.getAttribute('data-act')));
+          });
+        }
+        setStatus(items.length ? `${items.length} candidat(s)` : '');
+      } catch (e) {
+        setStatus('Erreur : ' + e.message + ' (API lancée ?)');
+      }
+    }
+
+    document.getElementById('btn-refresh').addEventListener('click', load);
+    load();
+  </script>
+  <script src="/data/shared/nav.js"></script>
+</body>
+</html>

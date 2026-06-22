@@ -50,7 +50,7 @@ from sqlalchemy import (
     String,
     Text,
     UniqueConstraint,
-)
+)  # noqa: F401  (Date/Integer conservés pour cohérence du module)
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -69,8 +69,41 @@ _JSONB = JSON().with_variant(JSONB(), "postgresql")
 # JAMAIS stockés — voir api.services? non : src/services/git_states.py.
 WORK_ITEM_STATES = ("candidat", "valide", "construction", "mesure", "verdict")
 
-# État du buffer de staging (contenu transitoire, jamais autoritaire, jamais servi).
-STAGING_STATES = ("none", "draft", "pending_commit")
+# ── Machine d'états HITL (supervision humaine — Phase 2, incrément 1) ──────────
+#
+# Le buffer de staging d'un work_item (``staging_frontmatter`` / ``staging_body``
+# + plaque mock) traverse une machine d'états de validation humaine PENDANT que
+# le work_item est en orchestration ``state='construction'``. Cap inchangé : le
+# staging n'est JAMAIS servi ni autoritaire ; sa seule issue est un commit git
+# (seule porte d'entrée). Les états :
+#
+#   none  ──generate──►  generating ──(plaque+méta mock prêtes)──►  review_image
+#   review_image ──approve──► review_text ──approve──► approved ──commit──► (none)
+#   review_image ──reject──► generating  (re-générer)  | ou drop → none
+#   review_text  ──reject──► review_image (revoir l'image) | ou generating
+#   approved     ──commit──► none  (buffer purgé, work_item avance ; git autoritaire)
+#
+# ``committed`` n'est PAS un état stocké : après commit, ``staging_state`` repasse
+# à ``none`` (buffer purgé) et le work_item avance côté orchestration. La preuve
+# du commit vit dans git (``git_index`` réindexé, ``last_synced_hash`` posé).
+HITL_STATES = (
+    "none",          # pas de génération en cours / buffer vide
+    "generating",    # job de génération (mock) enfilé / en cours
+    "review_image",  # plaque générée — en attente de validation humaine IMAGE
+    "review_text",   # image approuvée — en attente de validation humaine TEXTE
+    "approved",      # image + texte approuvés — autorisé à committer (git)
+    "rejected",      # rejeté en fin de chaîne (drop explicite) — buffer purgeable
+)
+
+# Compat : les anciens états ``draft`` / ``pending_commit`` (Phase 1) restent
+# acceptés (des work_items Phase 1 peuvent les porter). Les nouveaux flux HITL
+# utilisent ``HITL_STATES``. L'union est la contrainte applicative (pas de CHECK
+# SQL : on garde le schéma souple, cf. cap « schéma libre d'évoluer »).
+STAGING_STATES = ("none", "draft", "pending_commit", *HITL_STATES[1:])
+
+# États de la plaque (image bicouche). MOCK en Phase 2 incrément 1 : la vraie
+# génération (ComfyUI + décoloriage) est derrière le mock (track Hamma).
+PLATE_STATES = ("none", "pending", "ready", "failed")
 
 # Moteurs de recherche dont on cache la couverture (index_status.engine).
 INDEX_ENGINES = ("gsc", "bing")
@@ -132,6 +165,51 @@ class WorkItem(Base):
     staging_frontmatter: Mapped[dict | None] = mapped_column(_JSONB, nullable=True)
     staging_body: Mapped[str | None] = mapped_column(Text, nullable=True)
     staging_state: Mapped[str] = mapped_column(String, nullable=False, default="none")
+
+    created_at: Mapped[str] = mapped_column(Text, nullable=False)
+    updated_at: Mapped[str] = mapped_column(Text, nullable=False)
+
+
+class PlateImage(Base):
+    """Plaque (image bicouche) générée pour un ``work_item`` — MOCK en P2 inc.1.
+
+    Cap : ce n'est PAS du contenu autoritaire. La plaque réelle (PNG/SVG
+    décoloriage) vit sur R2 ; son URL part dans git au commit (frontmatter
+    ``imageSource``/``imageSvg``…). Cette table porte l'**état de génération**
+    (orchestration) + les références mock le temps de la revue. Purgée logiquement
+    au commit (la vérité passe à git).
+
+    En Phase 2 incrément 1, la génération est **mockée** : aucun appel ComfyUI /
+    LLM. ``image_state`` passe ``pending → ready`` quand le générateur mock a
+    produit une plaque factice (data-URI / chemin local mock). La vraie
+    génération (ComfyUI + décoloriage + LLM métadonnées) est **derrière ce mock**
+    (worker dédié = track Hamma) ; l'interface (``generate_plate``) est documentée
+    dans ``src/services/generation_mock.py``.
+    """
+
+    __tablename__ = "plate_image"
+    __table_args__ = (
+        UniqueConstraint("work_item_id", name="uq_plate_image_work_item"),
+        Index("idx_plate_image_state", "image_state"),
+    )
+
+    id: Mapped[str] = mapped_column(String, primary_key=True)
+
+    # Référence souple vers work_item.id (pas de FK matérielle — cf. opportunity).
+    work_item_id: Mapped[str] = mapped_column(String, nullable=False)
+
+    # image_state ∈ PLATE_STATES.
+    image_state: Mapped[str] = mapped_column(String, nullable=False, default="none")
+
+    # style_source : origine du style de génération (ex. 'decoloriage', 'mock').
+    # Détermine quel générateur (réel/mock) produit la plaque. Mock par défaut.
+    style_source: Mapped[str | None] = mapped_column(String, nullable=True)
+
+    # Références mock (le temps de la revue). En réel : URLs R2 (frontmatter git).
+    # preview : data-URI/URL d'aperçu de la plaque (affichée en zone Validation).
+    preview_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    # mock_meta : métadonnées de génération mock (seed, prompt, dérivé opp…) JSONB.
+    mock_meta: Mapped[dict | None] = mapped_column(_JSONB, nullable=True)
 
     created_at: Mapped[str] = mapped_column(Text, nullable=False)
     updated_at: Mapped[str] = mapped_column(Text, nullable=False)

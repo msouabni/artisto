@@ -25,8 +25,11 @@ from api.cockpit_models import WORK_ITEM_STATES
 from api.db import DBConnAdapter, get_db_read, get_db_write
 from api.helpers import json_response, transaction
 from services.cockpit_git_publish import CockpitPublishError, commit_work_item
+from services.generation_mock import GenerationError, generate as generate_mock
 from services.git_indexer import DEFAULT_REPO, reindex
 from services.git_states import compute_drift, derive_git_state
+from services.hitl import HitlTransitionError, get_plate
+from services.hitl_review import ReviewError, review_image, review_text
 from services.index_providers import provider_is_live, work_item_url
 from services.index_sync import (
     derive_index_state,
@@ -320,6 +323,12 @@ def commit_work_item_route(
                 commit_message=opts.get("commit_message"),
                 force=bool(opts.get("force", False)),
                 dry_run=bool(opts.get("dry_run", False)),
+                # Gate HITL : ``require_approved`` (défaut intelligent côté
+                # service) exige ``staging_state == 'approved'`` pour les items
+                # passés par le flux HITL, tout en laissant passer les chemins
+                # Phase 1 (staging ``pending_commit`` / ``draft``). Surchargeable
+                # explicitement dans le corps.
+                require_approved=opts.get("require_approved"),
             )
         except CockpitPublishError as exc:
             # Erreur métier (staging vide, collision ADD-ONLY, work_item absent) → 4xx.
@@ -328,6 +337,168 @@ def commit_work_item_route(
             status = 404 if "introuvable" in msg else 409
             raise HTTPException(status_code=status, detail=msg) from exc
     return json_response(result.as_dict())
+
+
+# ── Workflow HITL (Phase 2, incrément 1) — génération mock + gates de revue ──────
+
+@router.post("/work-items/{work_item_id}/generate")
+def generate_route(
+    work_item_id: str,
+    body: dict[str, Any] | None = Body(default=None),
+    conn: DBConnAdapter = Depends(get_db_write),
+):
+    """Déclenche la génération **MOCKÉE** d'un work_item (plaque + métadonnées).
+
+    Aucun appel ComfyUI / LLM (la vraie génération est derrière le mock = track
+    Hamma). Produit une plaque mock (``plate_image.image_state=ready``) + des
+    métadonnées brouillon (``staging_frontmatter`` / ``staging_body``) dérivées de
+    l'opportunité reliée / du slug, puis place ``staging_state=review_image``.
+
+    Corps optionnel : ``style_source`` (origine du style, ``decoloriage`` défaut),
+    ``repo``. Transition HITL gardée : refuse si l'état staging ne permet pas
+    d'entrer en génération.
+    """
+    opts = body or {}
+    with transaction(conn):
+        try:
+            result = generate_mock(
+                conn,
+                work_item_id,
+                style_source=opts.get("style_source"),
+                repo=opts.get("repo", DEFAULT_REPO),
+            )
+        except HitlTransitionError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        except GenerationError as exc:
+            msg = str(exc)
+            status = 404 if "introuvable" in msg else 409
+            raise HTTPException(status_code=status, detail=msg) from exc
+    return json_response(result.as_dict())
+
+
+@router.post("/work-items/{work_item_id}/review/image")
+def review_image_route(
+    work_item_id: str,
+    body: dict[str, Any] | None = Body(default=None),
+    conn: DBConnAdapter = Depends(get_db_write),
+):
+    """Gate de revue IMAGE (HITL). Corps : ``{decision: approve|reject, note?, drop?}``.
+
+    approve → ``review_text`` ; reject → ``generating`` (re-générer) ou ``none``
+    si ``drop=true`` (abandon). Transition gardée (doit partir de ``review_image``).
+    """
+    opts = body or {}
+    decision = opts.get("decision")
+    with transaction(conn):
+        try:
+            result = review_image(
+                conn, work_item_id, decision,
+                note=opts.get("note"), drop=bool(opts.get("drop", False)),
+            )
+        except HitlTransitionError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        except ReviewError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return json_response(result.as_dict())
+
+
+@router.post("/work-items/{work_item_id}/review/text")
+def review_text_route(
+    work_item_id: str,
+    body: dict[str, Any] | None = Body(default=None),
+    conn: DBConnAdapter = Depends(get_db_write),
+):
+    """Gate de revue TEXTE (HITL). Corps :
+    ``{decision: approve|reject, edits?, note?, back_to_generating?}``.
+
+    ``edits`` patche le staging (édition légère en revue) :
+    ``{frontmatter: {...}, body: "..."}``. approve → ``approved`` (autorise le
+    commit) ; reject → ``review_image`` (ou ``generating`` si
+    ``back_to_generating=true``). Transition gardée (doit partir de ``review_text``).
+    """
+    opts = body or {}
+    decision = opts.get("decision")
+    with transaction(conn):
+        try:
+            result = review_text(
+                conn, work_item_id, decision,
+                edits=opts.get("edits"),
+                note=opts.get("note"),
+                back_to_generating=bool(opts.get("back_to_generating", False)),
+            )
+        except HitlTransitionError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        except ReviewError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return json_response(result.as_dict())
+
+
+@router.get("/validation-queue")
+def validation_queue(
+    repo: str | None = None, conn: DBConnAdapter = Depends(get_db_read)
+):
+    """File de validation HITL : les candidats en ``review_image`` / ``review_text``
+    (+ ``approved`` prêts à committer).
+
+    Chaque entrée porte : le work_item, son ``staging_state``, la plaque (aperçu +
+    image_state) et le staging brouillon (frontmatter + corps éditables en revue).
+    Miroir : rien n'est servi en prod depuis ces données — c'est la zone de revue
+    AVANT commit git (seule porte d'entrée).
+    """
+    cols = [
+        "id", "repo", "locale", "slug", "state", "staging_state",
+        "staging_frontmatter", "staging_body", "updated_at",
+    ]
+    sel = ", ".join(cols)
+    sql = (
+        f"SELECT {sel} FROM work_item "
+        "WHERE staging_state IN ('review_image', 'review_text', 'approved')"
+    )
+    params: list[Any] = []
+    if repo:
+        sql += " AND repo = ?"
+        params.append(repo)
+    sql += " ORDER BY staging_state, slug"
+    rows = conn.execute(sql, params).fetchall()
+
+    items: list[dict[str, Any]] = []
+    for r in rows:
+        d = dict(zip(cols, r))
+        # staging_frontmatter peut arriver en dict (JSONB) ou str JSON.
+        fm = d.get("staging_frontmatter")
+        if isinstance(fm, str):
+            import json as _json
+            try:
+                fm = _json.loads(fm)
+            except _json.JSONDecodeError:
+                fm = None
+        plate = get_plate(conn, d["id"])
+        # mock_meta peut être str (selon driver) — laissé tel quel (debug).
+        items.append({
+            "id": d["id"],
+            "repo": d["repo"],
+            "locale": d["locale"],
+            "slug": d["slug"],
+            "state": d["state"],
+            "staging_state": d["staging_state"],
+            "frontmatter": fm,
+            "body": d.get("staging_body"),
+            "updated_at": d.get("updated_at"),
+            "plate": {
+                "image_state": plate.get("image_state") if plate else "none",
+                "preview_url": plate.get("preview_url") if plate else None,
+                "style_source": plate.get("style_source") if plate else None,
+            } if plate else None,
+        })
+
+    buckets = {"review_image": [], "review_text": [], "approved": []}
+    for it in items:
+        buckets.setdefault(it["staging_state"], []).append(it)
+    return json_response({
+        "count": len(items),
+        "buckets": buckets,
+        "items": items,
+    })
 
 
 @router.get("/kanban")

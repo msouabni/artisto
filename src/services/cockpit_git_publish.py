@@ -298,6 +298,7 @@ def commit_work_item(
     force: bool = False,
     dry_run: bool = False,
     reindex_after: bool = True,
+    require_approved: bool | None = None,
 ) -> PublishResult:
     """Commite un ``work_item`` prêt comme Post ``.md`` dans le clone de contenu.
 
@@ -316,6 +317,14 @@ def commit_work_item(
         force: autorise la réécriture d'un ``.md`` existant (sinon ADD-ONLY → erreur).
         dry_run: ne touche ni le FS ni git ni la DB ; retourne juste le ``.md``.
         reindex_after: réindexe ``git_index`` pour ce slug après commit (drift → 0).
+        require_approved: gate HITL « seul l'approuvé entre dans git ».
+            - ``None`` (défaut intelligent) : exige ``staging_state == 'approved'``
+              UNIQUEMENT pour les items passés par le flux HITL Phase 2 (états
+              ``generating`` / ``review_image`` / ``review_text`` / ``rejected``)
+              — un item dans un de ces états n'a PAS fini sa revue → refus. Les
+              chemins Phase 1 (``pending_commit`` / ``draft`` / ``none``) passent.
+            - ``True`` : exige strictement ``approved`` (refuse tout le reste).
+            - ``False`` : aucun gate (compat / commandes outillage).
 
     Returns:
         ``PublishResult``.
@@ -327,6 +336,23 @@ def commit_work_item(
     wi = _fetch_work_item(conn, work_item_id)
     locale = wi["locale"]
     slug = wi["slug"]
+
+    # Gate HITL : seul l'approuvé entre dans git (cf. ADR §5). Vérifié AVANT toute
+    # écriture FS/git.
+    staging_state = (wi.get("staging_state") or "none")
+    # États « en cours de revue HITL » : un commit y est interdit (revue non finie).
+    _HITL_IN_PROGRESS = ("generating", "review_image", "review_text", "rejected")
+    if require_approved is None:
+        # Défaut intelligent : on bloque seulement si l'item est manifestement en
+        # cours de revue HITL (non approuvé). Les chemins Phase 1 passent.
+        gate = staging_state in _HITL_IN_PROGRESS
+    else:
+        gate = bool(require_approved)
+    if gate and staging_state != "approved":
+        raise CockpitPublishError(
+            f"commit refusé : staging_state '{staging_state}' "
+            f"(la revue HITL doit aboutir à 'approved' avant le commit)"
+        )
 
     fm = _normalize_frontmatter(wi.get("staging_frontmatter"))
     if not fm:
