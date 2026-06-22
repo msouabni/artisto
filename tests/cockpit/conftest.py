@@ -59,6 +59,7 @@ _COCKPIT_TABLES = [
     cockpit_models.WorkItem.__table__,
     cockpit_models.GitIndex.__table__,
     cockpit_models.Opportunity.__table__,
+    cockpit_models.Schedule.__table__,
 ]
 
 
@@ -101,7 +102,7 @@ def _truncate_between_tests(pg_engine):
     entre tests.
     """
     with pg_engine.begin() as c:
-        c.execute(text("TRUNCATE work_item, git_index, opportunity"))
+        c.execute(text("TRUNCATE work_item, git_index, opportunity, schedule"))
     yield
 
 

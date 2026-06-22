@@ -28,6 +28,13 @@ from services.cockpit_git_publish import CockpitPublishError, commit_work_item
 from services.git_indexer import DEFAULT_REPO, reindex
 from services.git_states import compute_drift, derive_git_state
 from services.opportunity_import import import_opportunities
+from services.rebuild import (
+    compute_rebuild_due,
+    fetch_due_schedules,
+    rebuild_due_run,
+    sync_schedule_from_git,
+    trigger_rebuild,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -91,6 +98,22 @@ def _fetch_git_index_map(conn: DBConnAdapter, repo: str | None = None) -> dict[t
     return out
 
 
+def _fetch_schedule_map(conn: DBConnAdapter) -> dict[str, dict[str, Any]]:
+    """Charge ``schedule`` indexé par ``work_item_id`` (pour le badge rebuild dû)."""
+    rows = conn.execute(
+        "SELECT work_item_id, publish_date, last_build_at FROM schedule"
+    ).fetchall()
+    out: dict[str, dict[str, Any]] = {}
+    for r in rows:
+        pub = r[1]
+        out[r[0]] = {
+            "publish_date": pub.isoformat() if pub is not None and hasattr(pub, "isoformat")
+            else (str(pub) if pub is not None else None),
+            "last_build_at": r[2],
+        }
+    return out
+
+
 def _fetch_opportunity_maps(
     conn: DBConnAdapter,
 ) -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
@@ -119,6 +142,7 @@ def _enrich_work_item(
     git_map: dict[tuple, dict[str, Any]],
     opp_by_id: dict[str, dict[str, Any]] | None = None,
     opp_by_slug: dict[str, dict[str, Any]] | None = None,
+    sched_map: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Joint un work_item à git_index + opportunité ; calcule état dérivé + drift.
 
@@ -149,6 +173,15 @@ def _enrich_work_item(
     wi["opportunity"] = opp
     wi["score"] = opp.get("score") if opp else None
     wi["volume"] = opp.get("volume") if opp else None
+
+    # Signal « rebuild dû » (site statique : page programmée échue mais pas
+    # encore rebuildée). Dérivé — jamais stocké. publish_date = miroir git_index ;
+    # last_build_at = dernier build déployé (schedule). Sans ligne schedule, on
+    # retombe sur publish_date git (last_build_at NULL → due si échue).
+    sched = (sched_map or {}).get(wi.get("id")) or {}
+    last_build_at = sched.get("last_build_at")
+    wi["last_build_at"] = last_build_at
+    wi["rebuild_due"] = compute_rebuild_due(wi.get("publish_date"), last_build_at)
     return wi
 
 
@@ -212,8 +245,9 @@ def list_work_items(
 
     git_map = _fetch_git_index_map(conn, repo)
     opp_by_id, opp_by_slug = _fetch_opportunity_maps(conn)
+    sched_map = _fetch_schedule_map(conn)
     items = [
-        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug)
+        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug, sched_map)
         for r in rows
     ]
     return json_response(items)
@@ -230,7 +264,8 @@ def get_work_item(work_item_id: str, conn: DBConnAdapter = Depends(get_db_read))
     wi = _work_item_to_dict(rows[0])
     git_map = _fetch_git_index_map(conn, wi["repo"])
     opp_by_id, opp_by_slug = _fetch_opportunity_maps(conn)
-    return json_response(_enrich_work_item(wi, git_map, opp_by_id, opp_by_slug))
+    sched_map = _fetch_schedule_map(conn)
+    return json_response(_enrich_work_item(wi, git_map, opp_by_id, opp_by_slug, sched_map))
 
 
 @router.post("/work-items/{work_item_id}/commit")
@@ -307,19 +342,23 @@ def kanban(
 
     git_map = _fetch_git_index_map(conn, repo)
     opp_by_id, opp_by_slug = _fetch_opportunity_maps(conn)
+    sched_map = _fetch_schedule_map(conn)
     items = [
-        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug)
+        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug, sched_map)
         for r in rows
     ]
 
     # Groupe par état d'orchestration ; colonnes toujours présentes (rendu stable).
     columns: dict[str, list[dict[str, Any]]] = {st: [] for st in WORK_ITEM_STATES}
     drift_count = 0
+    rebuild_due_count = 0
     for it in items:
         st = it.get("state") or "candidat"
         columns.setdefault(st, []).append(it)
         if it.get("drift"):
             drift_count += 1
+        if it.get("rebuild_due"):
+            rebuild_due_count += 1
 
     # Tri intra-colonne : score de demande décroissant (NULL en dernier).
     for col in columns.values():
@@ -334,8 +373,162 @@ def kanban(
         "totals": {
             "work_items": len(items),
             "drift": drift_count,
+            "rebuild_due": rebuild_due_count,
             "by_state": {st: len(columns.get(st, [])) for st in WORK_ITEM_STATES},
         },
         "first_drift": first_drift,
     }
     return json_response(payload)
+
+
+# ── Rebuild (prio 3 — décision 4 DIRECTION-2026-06-22) ──────────────────────────
+
+@router.post("/rebuild")
+def rebuild_now_route(
+    repo: str = DEFAULT_REPO, conn: DBConnAdapter = Depends(get_db_write)
+):
+    """Rebuild **à la demande** (publication immédiate) — bouton cockpit.
+
+    Aligne d'abord ``schedule`` sur ``git_index`` (miroir publishDate), déclenche
+    **un** build+deploy (configurable : ``REBUILD_HOOK_URL`` / ``REBUILD_CMD``,
+    sinon **mock** no-op loggué), puis pose ``last_build_at`` sur toutes les
+    pages du repo (un build couvre tout le site statique).
+
+    Renvoie l'état du déclenchement (``triggered`` / ``mode`` hook|cmd|mock /
+    ``built_at``). **Aucun deploy réel** tant qu'aucune variable d'env n'est
+    configurée (le câblage Cloudflare effectif = track Hamma).
+    """
+    with transaction(conn):
+        sync_schedule_from_git(conn, repo)
+        result = trigger_rebuild()
+        updated = 0
+        if result.triggered and result.built_at:
+            # Build à la demande : couvre tout le site → stampe toutes les pages
+            # du repo (pas seulement les dues) pour refléter qu'elles sont à jour.
+            sched_ids = conn.execute(
+                "SELECT s.id FROM schedule s JOIN work_item wi ON wi.id = s.work_item_id "
+                "WHERE wi.repo = ?", [repo],
+            ).fetchall()
+            from services.rebuild import _now_iso  # local : helper interne
+
+            ts = _now_iso()
+            for (sid,) in sched_ids:
+                conn.execute(
+                    "UPDATE schedule SET last_build_at = ?, updated_at = ? WHERE id = ?",
+                    [result.built_at, ts, sid],
+                )
+                updated += 1
+    payload = result.as_dict()
+    payload["updated_schedules"] = updated
+    return json_response(payload)
+
+
+@router.post("/rebuild/run-due")
+def rebuild_run_due_route(
+    repo: str = DEFAULT_REPO, conn: DBConnAdapter = Depends(get_db_write)
+):
+    """Passage **cron horaire** : ne rebuild que si des pages programmées sont dues.
+
+    Aligne ``schedule`` sur git, trouve les pages ``rebuild_due`` (programmées
+    échues, pas encore rebuildées), déclenche **un** build (mock par défaut) et
+    pose ``last_build_at``. No-op si rien n'est dû (pas de build inutile).
+
+    Pensé pour 3 déclencheurs possibles (cf. PLAN-PHASE1) : Cloudflare Cron
+    Trigger, cron CI, ou le cockpit lui-même. Aucun cron système n'est installé
+    ici — c'est une fonction appelable + cet endpoint.
+    """
+    with transaction(conn):
+        sync_schedule_from_git(conn, repo)
+        report = rebuild_due_run(conn)
+    return json_response(report.as_dict())
+
+
+@router.get("/rebuild/due")
+def rebuild_due_route(conn: DBConnAdapter = Depends(get_db_read)):
+    """Liste les pages actuellement **dues au rebuild** (dérivé, pas stocké)."""
+    due = fetch_due_schedules(conn)
+    return json_response({"count": len(due), "items": due})
+
+
+# ── Next-action (« Reprends ici ») ──────────────────────────────────────────────
+
+@router.get("/next-action")
+def next_action(
+    repo: str | None = None, conn: DBConnAdapter = Depends(get_db_read)
+):
+    """Signal « Reprends ici » : LA prochaine action prioritaire du cockpit.
+
+    Priorité (haute → basse) :
+      1. **rebuild dû** — N page(s) programmée(s) échue(s) en attente de build.
+         Action = lancer le rebuild (``POST /api/cockpit/rebuild/run-due``).
+         C'est l'urgence : du contenu prêt mais invisible (site statique).
+      2. **drift** — une page éditée hors cockpit / absente de git. Action =
+         resynchroniser / réindexer.
+      3. rien — tout est à jour.
+    """
+    sql = f"SELECT {WORK_ITEM_SELECT} FROM work_item"
+    params: list[Any] = []
+    if repo:
+        sql += " WHERE repo = ?"
+        params.append(repo)
+    rows = conn.execute(sql, params).fetchall()
+
+    git_map = _fetch_git_index_map(conn, repo)
+    opp_by_id, opp_by_slug = _fetch_opportunity_maps(conn)
+    sched_map = _fetch_schedule_map(conn)
+    items = [
+        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug, sched_map)
+        for r in rows
+    ]
+
+    due = [it for it in items if it.get("rebuild_due")]
+    if due:
+        n = len(due)
+        payload = {
+            "kind": "rebuild_due",
+            "priority": "high",
+            "count": n,
+            "message": (
+                f"{n} page(s) programmée(s) en attente de rebuild — "
+                "lancez le rebuild pour les publier."
+            ),
+            "action": {
+                "label": "Lancer le rebuild",
+                "method": "POST",
+                "endpoint": "/api/cockpit/rebuild/run-due",
+            },
+            "items": [
+                {"work_item_id": it["id"], "slug": it["slug"], "locale": it["locale"],
+                 "publish_date": it.get("publish_date"), "last_build_at": it.get("last_build_at")}
+                for it in due
+            ],
+        }
+        return json_response(payload)
+
+    drift = next((it for it in items if it.get("drift")), None)
+    if drift:
+        payload = {
+            "kind": "drift",
+            "priority": "medium",
+            "count": sum(1 for it in items if it.get("drift")),
+            "message": (
+                f"Drift détecté sur « {drift['slug']} » ({drift.get('drift_reason')}) — "
+                "page éditée hors cockpit ou absente de git."
+            ),
+            "action": {
+                "label": "Resynchroniser",
+                "method": "POST",
+                "endpoint": "/api/cockpit/reindex",
+            },
+            "items": [drift],
+        }
+        return json_response(payload)
+
+    return json_response({
+        "kind": "none",
+        "priority": "none",
+        "count": 0,
+        "message": "Tout est à jour — aucune action prioritaire.",
+        "action": None,
+        "items": [],
+    })

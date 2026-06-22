@@ -17,13 +17,18 @@ PostgreSQL unique. SQLite est interdit, y compris pour les tests (le dialecte
 diverge → faux verts). Les tests tournent sur une Postgres éphémère
 (cf. ``tests/cockpit/conftest.py``). On utilise donc librement ``JSONB``.
 
+Incrément « rebuild » (Phase 1, prio 3 — décision 4 DIRECTION-2026-06-22) :
+  - ``schedule`` : miroir ``publishDate`` (depuis git_index) + ``last_build_at``
+    (dernier build déployé). ``rebuild_due`` est **dérivé** (jamais stocké) par
+    ``src/services/rebuild.py`` : une page programmée arrivée à échéance mais
+    pas encore rebuildée → due. Le câblage Cloudflare réel = track Hamma ; ici
+    le déclencheur est mocké/configurable (hook URL ou commande locale).
+
 TODO (tâches suivantes du plan vivant, HORS de cet incrément) :
   - ``index_status`` : cache Search Console / Bing (couverture/indexation par
     URL) — alimente l'état dérivé ``indexe``.
   - ``perf_metric`` : cache GSC Search Analytics (impressions/clics/position),
     tendance par cluster.
-  - ``schedule`` : miroir ``publishDate`` + ``last_build_at`` + ``rebuild_due``
-    dérivé (alerte « rebuild dû »).
 """
 from __future__ import annotations
 
@@ -193,3 +198,52 @@ class Opportunity(Base):
     source: Mapped[str] = mapped_column(String, nullable=False)
 
     imported_at: Mapped[str] = mapped_column(Text, nullable=False)
+
+
+class Schedule(Base):
+    """Calendrier de publication d'une page + dernier build déployé.
+
+    Cap : ``schedule`` ne porte AUCUNE vérité de contenu. ``publish_date`` est
+    un **miroir** de ``git_index.publish_date`` (frontmatter ``publishDate``,
+    seule vérité de planification). ``last_build_at`` est le **fait
+    opérationnel** « un build a été déployé à cet instant » — la seule donnée
+    propre à cette table (git ne sait rien des builds déployés).
+
+    ``rebuild_due`` n'est JAMAIS stocké : il est dérivé à la lecture par
+    ``src/services/rebuild.py::compute_rebuild_due`` :
+
+        rebuild_due = (publish_date <= now)
+                      ET (last_build_at IS NULL OU last_build_at < publish_date)
+
+    c.-à-d. une page **programmée arrivée à échéance mais pas encore rebuildée**
+    (site statique Astro→Cloudflare : une page à ``publishDate`` future ne
+    devient live qu'après un build postérieur à la date).
+
+    Reliée à ``work_item`` par ``work_item_id`` (référence souple, pas de FK
+    matérielle — cohérent avec le reste du cockpit). ``last_build_at`` est posé
+    par ``trigger_rebuild`` au succès d'un build (mocké tant que ni
+    ``REBUILD_HOOK_URL`` ni ``REBUILD_CMD`` ne sont configurés).
+    """
+
+    __tablename__ = "schedule"
+    __table_args__ = (
+        UniqueConstraint("work_item_id", name="uq_schedule_work_item"),
+        Index("idx_schedule_publish_date", "publish_date"),
+    )
+
+    id: Mapped[str] = mapped_column(String, primary_key=True)
+
+    # Référence souple vers work_item.id (pas de FK matérielle, cf. opportunity).
+    work_item_id: Mapped[str] = mapped_column(String, nullable=False)
+
+    # Miroir de git_index.publish_date (frontmatter publishDate). NULL = page
+    # sans publishDate → publiée à la date de commit (jamais « due » au rebuild).
+    publish_date: Mapped[object | None] = mapped_column(Date, nullable=True)
+
+    # last_build_at : timestamp ISO (UTC) du dernier build *déployé* couvrant
+    # cette page. NULL = jamais buildée depuis l'enregistrement → due dès que
+    # publish_date est échue. Posé par trigger_rebuild au succès.
+    last_build_at: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+    created_at: Mapped[str] = mapped_column(Text, nullable=False)
+    updated_at: Mapped[str] = mapped_column(Text, nullable=False)
