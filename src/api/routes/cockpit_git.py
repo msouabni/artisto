@@ -27,6 +27,12 @@ from api.helpers import json_response, transaction
 from services.cockpit_git_publish import CockpitPublishError, commit_work_item
 from services.git_indexer import DEFAULT_REPO, reindex
 from services.git_states import compute_drift, derive_git_state
+from services.index_providers import provider_is_live, work_item_url
+from services.index_sync import (
+    derive_index_state,
+    fetch_coverage_map,
+    sync_index_status,
+)
 from services.opportunity_import import import_opportunities
 from services.rebuild import (
     compute_rebuild_due,
@@ -143,6 +149,7 @@ def _enrich_work_item(
     opp_by_id: dict[str, dict[str, Any]] | None = None,
     opp_by_slug: dict[str, dict[str, Any]] | None = None,
     sched_map: dict[str, dict[str, Any]] | None = None,
+    coverage_map: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Joint un work_item à git_index + opportunité ; calcule état dérivé + drift.
 
@@ -182,6 +189,16 @@ def _enrich_work_item(
     last_build_at = sched.get("last_build_at")
     wi["last_build_at"] = last_build_at
     wi["rebuild_due"] = compute_rebuild_due(wi.get("publish_date"), last_build_at)
+
+    # Couverture moteur (cache index_status, dérivé de l'URL publique). L'état
+    # ``indexe`` est DÉRIVÉ (jamais stocké) : indexé == coverage_state 'indexed'.
+    # Sans cache (jamais synchronisé) → coverage None → indexe False.
+    url = work_item_url(wi["locale"], wi["slug"])
+    coverage = (coverage_map or {}).get(url)
+    wi["url"] = url
+    wi["coverage"] = coverage
+    wi["coverage_state"] = coverage.get("coverage_state") if coverage else "unknown"
+    wi["indexed"] = derive_index_state(coverage)
     return wi
 
 
@@ -246,8 +263,10 @@ def list_work_items(
     git_map = _fetch_git_index_map(conn, repo)
     opp_by_id, opp_by_slug = _fetch_opportunity_maps(conn)
     sched_map = _fetch_schedule_map(conn)
+    coverage_map = fetch_coverage_map(conn)
     items = [
-        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug, sched_map)
+        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug,
+                          sched_map, coverage_map)
         for r in rows
     ]
     return json_response(items)
@@ -265,7 +284,10 @@ def get_work_item(work_item_id: str, conn: DBConnAdapter = Depends(get_db_read))
     git_map = _fetch_git_index_map(conn, wi["repo"])
     opp_by_id, opp_by_slug = _fetch_opportunity_maps(conn)
     sched_map = _fetch_schedule_map(conn)
-    return json_response(_enrich_work_item(wi, git_map, opp_by_id, opp_by_slug, sched_map))
+    coverage_map = fetch_coverage_map(conn)
+    return json_response(
+        _enrich_work_item(wi, git_map, opp_by_id, opp_by_slug, sched_map, coverage_map)
+    )
 
 
 @router.post("/work-items/{work_item_id}/commit")
@@ -343,8 +365,10 @@ def kanban(
     git_map = _fetch_git_index_map(conn, repo)
     opp_by_id, opp_by_slug = _fetch_opportunity_maps(conn)
     sched_map = _fetch_schedule_map(conn)
+    coverage_map = fetch_coverage_map(conn)
     items = [
-        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug, sched_map)
+        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug,
+                          sched_map, coverage_map)
         for r in rows
     ]
 
@@ -352,6 +376,8 @@ def kanban(
     columns: dict[str, list[dict[str, Any]]] = {st: [] for st in WORK_ITEM_STATES}
     drift_count = 0
     rebuild_due_count = 0
+    indexed_count = 0
+    published_not_indexed = 0
     for it in items:
         st = it.get("state") or "candidat"
         columns.setdefault(st, []).append(it)
@@ -359,6 +385,11 @@ def kanban(
             drift_count += 1
         if it.get("rebuild_due"):
             rebuild_due_count += 1
+        if it.get("indexed"):
+            indexed_count += 1
+        # Signal SEO : page publiée (git) mais pas indexée (moteur).
+        if it.get("derived_state") == "publie" and not it.get("indexed"):
+            published_not_indexed += 1
 
     # Tri intra-colonne : score de demande décroissant (NULL en dernier).
     for col in columns.values():
@@ -374,6 +405,8 @@ def kanban(
             "work_items": len(items),
             "drift": drift_count,
             "rebuild_due": rebuild_due_count,
+            "indexed": indexed_count,
+            "published_not_indexed": published_not_indexed,
             "by_state": {st: len(columns.get(st, [])) for st in WORK_ITEM_STATES},
         },
         "first_drift": first_drift,
@@ -450,6 +483,49 @@ def rebuild_due_route(conn: DBConnAdapter = Depends(get_db_read)):
     return json_response({"count": len(due), "items": due})
 
 
+# ── Indexation (prio 4 — cache index_status, provider mock/réel gated creds) ────
+
+@router.post("/index-status/sync")
+def index_status_sync_route(
+    repo: str = DEFAULT_REPO,
+    cluster: str | None = None,
+    engine: str = "gsc",
+    conn: DBConnAdapter = Depends(get_db_write),
+):
+    """Sync le **cache** ``index_status`` (couverture moteur) sur un lot d'URLs.
+
+    Dérive les URLs publiques des work_items du périmètre (``repo`` / ``cluster``)
+    → provider (``MockIndexProvider`` par défaut ; **GSC/Bing réels gatés sur
+    creds** — *track Hamma*) → upsert ``index_status``. C'est un **cache**, jamais
+    une vérité de contenu.
+
+    **Aucun appel réseau sans creds** : sans ``GSC_*`` / ``BING_WEBMASTER_API_KEY``,
+    le mock déterministe alimente le cache. ``provider`` dans la réponse vaut
+    ``mock`` tant que les creds ne sont pas branchées, ``live`` ensuite.
+    """
+    if engine not in ("gsc", "bing"):
+        raise HTTPException(status_code=400, detail=f"engine inconnu : {engine!r}")
+    with transaction(conn):
+        report = sync_index_status(conn, repo=repo, cluster=cluster, engine=engine)
+    return json_response(report.as_dict())
+
+
+@router.get("/index-status")
+def index_status_list(
+    engine: str | None = None, conn: DBConnAdapter = Depends(get_db_read)
+):
+    """Liste le cache d'indexation par URL (agrégat multi-moteur + détail engines)."""
+    cov = fetch_coverage_map(conn, engine)
+    return json_response({
+        "count": len(cov),
+        "provider": {
+            "gsc": "live" if provider_is_live("gsc") else "mock",
+            "bing": "live" if provider_is_live("bing") else "mock",
+        },
+        "items": list(cov.values()),
+    })
+
+
 # ── Next-action (« Reprends ici ») ──────────────────────────────────────────────
 
 @router.get("/next-action")
@@ -476,8 +552,10 @@ def next_action(
     git_map = _fetch_git_index_map(conn, repo)
     opp_by_id, opp_by_slug = _fetch_opportunity_maps(conn)
     sched_map = _fetch_schedule_map(conn)
+    coverage_map = fetch_coverage_map(conn)
     items = [
-        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug, sched_map)
+        _enrich_work_item(_work_item_to_dict(r), git_map, opp_by_id, opp_by_slug,
+                          sched_map, coverage_map)
         for r in rows
     ]
 
@@ -521,6 +599,39 @@ def next_action(
                 "endpoint": "/api/cockpit/reindex",
             },
             "items": [drift],
+        }
+        return json_response(payload)
+
+    # Signal SEO (priorité basse) : pages publiées (git) mais pas indexées
+    # (moteur). N'a de sens qu'une fois les creds branchées (track Hamma) — en
+    # mode mock le cache reste plausible mais non autoritaire. Surfacé seulement
+    # si au moins une page concernée a effectivement un cache (sync passée).
+    not_indexed = [
+        it for it in items
+        if it.get("derived_state") == "publie"
+        and not it.get("indexed")
+        and it.get("coverage") is not None
+    ]
+    if not_indexed:
+        n = len(not_indexed)
+        payload = {
+            "kind": "published_not_indexed",
+            "priority": "low",
+            "count": n,
+            "message": (
+                f"{n} page(s) publiée(s) mais pas (encore) indexée(s) côté moteur "
+                "— surveillez la couverture (creds GSC/Bing requis pour fiabilité)."
+            ),
+            "action": {
+                "label": "Resynchroniser l'indexation",
+                "method": "POST",
+                "endpoint": "/api/cockpit/index-status/sync",
+            },
+            "items": [
+                {"work_item_id": it["id"], "slug": it["slug"], "locale": it["locale"],
+                 "url": it.get("url"), "coverage_state": it.get("coverage_state")}
+                for it in not_indexed
+            ],
         }
         return json_response(payload)
 

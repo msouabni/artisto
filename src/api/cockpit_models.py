@@ -24,11 +24,19 @@ Incrément « rebuild » (Phase 1, prio 3 — décision 4 DIRECTION-2026-06-22) 
     pas encore rebuildée → due. Le câblage Cloudflare réel = track Hamma ; ici
     le déclencheur est mocké/configurable (hook URL ou commande locale).
 
+Incrément « indexation » (Phase 1, prio 4 — DIRECTION-2026-06-22) :
+  - ``index_status`` : **cache lecture** de la couverture moteur de recherche
+    (Google Search Console URL Inspection + Bing Webmaster) par URL. Alimente
+    l'état dérivé ``indexe`` (jamais stocké). Comme ``git_index``, c'est un
+    miroir : la vérité reste l'API moteur ; le cache n'est qu'un instantané
+    horodaté (``fetched_at``). Le provider réel est **gated sur creds** (env
+    ``GSC_*`` / ``BING_WEBMASTER_API_KEY``) ; sans creds, un ``MockIndexProvider``
+    déterministe alimente le cache (aucun appel réseau). Câblage des creds =
+    track Hamma.
+
 TODO (tâches suivantes du plan vivant, HORS de cet incrément) :
-  - ``index_status`` : cache Search Console / Bing (couverture/indexation par
-    URL) — alimente l'état dérivé ``indexe``.
   - ``perf_metric`` : cache GSC Search Analytics (impressions/clics/position),
-    tendance par cluster.
+    tendance par cluster — Phase 2.
 """
 from __future__ import annotations
 
@@ -63,6 +71,20 @@ WORK_ITEM_STATES = ("candidat", "valide", "construction", "mesure", "verdict")
 
 # État du buffer de staging (contenu transitoire, jamais autoritaire, jamais servi).
 STAGING_STATES = ("none", "draft", "pending_commit")
+
+# Moteurs de recherche dont on cache la couverture (index_status.engine).
+INDEX_ENGINES = ("gsc", "bing")
+
+# États de couverture normalisés (index_status.coverage_state). Le mapping des
+# états bruts spécifiques à chaque API (GSC verdict / Bing) vers ce vocabulaire
+# commun est fait côté provider (src/services/index_providers.py).
+COVERAGE_STATES = (
+    "indexed",                # la page est indexée (visible dans l'index)
+    "discovered",             # connue mais pas encore crawlée
+    "crawled_not_indexed",    # crawlée mais non indexée (exclue ou en attente)
+    "excluded",               # explicitement exclue (noindex, dupliquée, etc.)
+    "unknown",                # état indéterminé (non-200 API, quota, jamais inspectée)
+)
 
 
 class WorkItem(Base):
@@ -247,3 +269,54 @@ class Schedule(Base):
 
     created_at: Mapped[str] = mapped_column(Text, nullable=False)
     updated_at: Mapped[str] = mapped_column(Text, nullable=False)
+
+
+class IndexStatus(Base):
+    """Cache lecture de la couverture moteur de recherche (GSC + Bing) par URL.
+
+    Cap : c'est un **cache** (lecture), JAMAIS une vérité de contenu. La vérité
+    de l'indexation appartient à l'API moteur (Google Search Console URL
+    Inspection / Bing Webmaster) ; cette table n'est qu'un **instantané
+    horodaté** (``fetched_at``). On l'interroge pour dériver l'état ``indexe``
+    d'un work_item (jamais persisté côté git_states), sans rappeler l'API à
+    chaque affichage (quota GSC ~2000 inspections/jour).
+
+    Clé fonctionnelle : ``(engine, url)`` — une même URL a une couverture par
+    moteur (``gsc`` et ``bing`` peuvent diverger). L'``url`` est dérivée du
+    work_item (``{base}/{locale}/colorier/{slug}/``) par
+    ``src/services/index_providers.py::work_item_url`` — pas de FK matérielle
+    (cohérent avec le reste du cockpit : référence souple par URL).
+
+    Alimentée par ``POST /api/cockpit/index-status/sync`` → provider
+    (mock par défaut ; réel gated sur creds) → upsert. Aucune écriture moteur :
+    on ne fait que **lire** la couverture (URL Inspection est en lecture seule
+    ici ; on n'utilise pas l'API d'indexation/submit).
+    """
+
+    __tablename__ = "index_status"
+    __table_args__ = (
+        UniqueConstraint("engine", "url", name="uq_index_status_engine_url"),
+        Index("idx_index_status_url", "url"),
+        Index("idx_index_status_coverage", "coverage_state"),
+    )
+
+    id: Mapped[str] = mapped_column(String, primary_key=True)
+
+    # url : URL publique inspectée (clé de jointure souple avec le work_item via
+    # work_item_url). Stockée canonique (avec slash final, cf. work_item_url).
+    url: Mapped[str] = mapped_column(String, nullable=False)
+
+    # engine : 'gsc' | 'bing' (cf. INDEX_ENGINES). Une URL = une ligne par moteur.
+    engine: Mapped[str] = mapped_column(String, nullable=False)
+
+    # coverage_state : état de couverture normalisé (cf. COVERAGE_STATES). Le
+    # mapping API brute → ce vocabulaire est fait côté provider.
+    coverage_state: Mapped[str] = mapped_column(String, nullable=False, default="unknown")
+
+    # last_crawl : dernière date de crawl rapportée par le moteur (nullable :
+    # une page 'discovered'/'unknown' n'a pas de dernier crawl). ISO str.
+    last_crawl: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+    # fetched_at : instant où le cache a été rafraîchi depuis le moteur (ISO
+    # UTC). Sert à juger la fraîcheur du cache (re-sync si trop ancien).
+    fetched_at: Mapped[str] = mapped_column(Text, nullable=False)

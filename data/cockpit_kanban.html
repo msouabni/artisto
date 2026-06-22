@@ -96,6 +96,14 @@
     .badge.locale       { background: #f1f5f9; color: #475569; }
     body[data-theme="dark"] .badge.locale { background: #334155; color: #cbd5e0; }
 
+    /* Couverture moteur (cache index_status, dérivé de l'URL publique). */
+    .badge.cov-indexed             { background: #dcfce7; color: #166534; }
+    .badge.cov-discovered          { background: #fef9c3; color: #854d0e; }
+    .badge.cov-crawled_not_indexed { background: #ffedd5; color: #9a3412; }
+    .badge.cov-excluded            { background: #fee2e2; color: #991b1b; }
+    .badge.cov-unknown             { background: #f1f5f9; color: #94a3b8; }
+    body[data-theme="dark"] .badge.cov-unknown { background: #334155; color: #94a3b8; }
+
     .score-pill {
       display: inline-flex; align-items: center; gap: 0.3rem;
       padding: 0.1rem 0.5rem; border-radius: 8px; font-size: 0.72rem; font-weight: 700;
@@ -123,6 +131,7 @@
       <span class="status-msg" id="status-msg"></span>
       <button class="btn secondary" id="btn-reindex">↻ Reindex git</button>
       <button class="btn secondary" id="btn-import">📈 Importer opportunités</button>
+      <button class="btn secondary" id="btn-sync-index" title="Sync cache d'indexation (mock par défaut ; creds GSC/Bing = Hamma)">🔎 Sync indexation</button>
       <button class="btn" id="btn-refresh">🔄 Rafraîchir</button>
     </div>
   </header>
@@ -132,6 +141,8 @@
       Cette vue <strong>reflète git</strong> : états (<em>écrit / programmé / publié</em>) et drift sont
       <strong>dérivés</strong> du dépôt indexé, jamais d'un contenu en base. Le cockpit
       <strong>signale</strong> les écarts, il ne corrige jamais git. Aucune édition de contenu ici.
+      La <em>couverture moteur</em> (badge indexé/découvert/…) est un <strong>cache lecture</strong>
+      (Search Console / Bing) — <strong>mock</strong> tant que les creds ne sont pas branchées (track Hamma).
     </div>
 
     <div class="resume-panel" id="resume-panel">
@@ -158,6 +169,18 @@
       absent_from_git: 'absent de git',
       content_hash_changed: 'édité hors cockpit',
     };
+    // Couverture moteur (cache index_status). Mock par défaut ; creds = Hamma.
+    const COV_LABELS = {
+      indexed: 'indexé',
+      discovered: 'découvert',
+      crawled_not_indexed: 'crawlé, non indexé',
+      excluded: 'exclu',
+      unknown: 'inconnu',
+    };
+    const COV_ICONS = {
+      indexed: '✅', discovered: '🔍', crawled_not_indexed: '🕸️',
+      excluded: '🚫', unknown: '❔',
+    };
 
     function esc(s) {
       return String(s == null ? '' : s)
@@ -177,12 +200,19 @@
         : '';
       const plate = (c.opportunity && c.opportunity.plate_id)
         ? `<span class="badge locale">🖼️ ${esc(c.opportunity.plate_id)}</span>` : '';
+      const cov = c.coverage_state || 'unknown';
+      const covTitle = (c.coverage && c.coverage.last_crawl)
+        ? `dernier crawl ${esc(c.coverage.last_crawl)}` : 'cache index_status';
+      const covBadge =
+        `<span class="badge cov-${esc(cov)}" title="${covTitle}">` +
+        `${COV_ICONS[cov] || '❔'} ${esc(COV_LABELS[cov] || cov)}</span>`;
       return `
         <div class="card${driftCls}">
           <div class="card-slug">${esc(c.slug)}</div>
           <div class="card-meta">
             <span class="badge locale">${esc(c.locale)}</span>
             <span class="badge git-${esc(git)}">git: ${esc(GIT_LABELS[git] || git)}</span>
+            ${covBadge}
             ${scorePill}
             ${plate}
           </div>
@@ -209,7 +239,10 @@
       const totals = document.getElementById('totals');
       totals.innerHTML =
         `<span class="total-chip">${esc(t.work_items || 0)} work_items</span>` +
-        `<span class="total-chip${t.drift ? ' drift' : ''}">⚠️ ${esc(t.drift || 0)} drift</span>`;
+        `<span class="total-chip${t.drift ? ' drift' : ''}">⚠️ ${esc(t.drift || 0)} drift</span>` +
+        `<span class="total-chip">✅ ${esc(t.indexed || 0)} indexés</span>` +
+        `<span class="total-chip${t.published_not_indexed ? ' drift' : ''}">` +
+        `🔍 ${esc(t.published_not_indexed || 0)} publiés non indexés</span>`;
 
       // Reprends ici (1er drift).
       const panel = document.getElementById('resume-panel');
@@ -254,6 +287,8 @@
       () => post('/api/cockpit/reindex', 'Reindex git'));
     document.getElementById('btn-import').addEventListener('click',
       () => post('/api/cockpit/opportunities/import', 'Import opportunités'));
+    document.getElementById('btn-sync-index').addEventListener('click',
+      () => post('/api/cockpit/index-status/sync', 'Sync indexation'));
 
     loadKanban();
   </script>

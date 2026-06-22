@@ -12,6 +12,7 @@ unique** (SQLite interdit, y compris en test → faux verts).
 | 1 | Indexeur git + schéma `work_item`/`git_index` + kanban dérivé + drift + score de demande | ✅ | `src/services/git_indexer.py`, `git_states.py`, `src/api/routes/cockpit_git.py`, `src/api/cockpit_models.py` |
 | 2 | Commit bot cockpit→git (seule porte d'entrée) + marqueur `launchSet` | ✅ | `src/services/cockpit_git_publish.py` |
 | 3 | **Rebuild : à la demande + cron horaire + signal « rebuild dû »** | ✅ | `src/services/rebuild.py`, `src/api/cockpit_models.py` (table `schedule`), `src/api/routes/cockpit_git.py` |
+| 4 | **Intégration indexation** : cache `index_status` + provider (GSC/Bing réels gated creds + mock actif) + sync + affichage kanban (coverage par item) + état dérivé `indexé` | ✅ **prêt-à-brancher** (creds = Hamma) | `src/services/index_providers.py`, `src/services/index_sync.py`, `src/api/cockpit_models.py` (table `index_status`), `src/api/routes/cockpit_git.py`, `data/cockpit_kanban.html` |
 
 ## Prio 3 — Rebuild (décision 4 DIRECTION-2026-06-22) ✅
 
@@ -105,3 +106,74 @@ le rebuild dû (et passe avant le drift). **Aucun deploy réel, hook mocké.**
   le mode mock.
 - Pas de planificateur système installé : les 3 options ci-dessus sont
   documentées, leur mise en place opérationnelle est hors incrément.
+
+## Prio 4 — Intégration indexation (couverture GSC + Bing) ✅ prêt-à-brancher
+
+Cache de la **couverture moteur de recherche** (URL Inspection / couverture)
+par page, affiché au cockpit. **Cap** : `index_status` est un **cache lecture**,
+jamais une vérité de contenu (la vérité = API moteur ; git = vérité du contenu).
+**Périmètre strict** : couverture/indexation uniquement — la **performance**
+(Search Analytics : impressions/clics/position) est en **Phase 2**, hors scope.
+
+### Modèle de données
+
+Table **`index_status`** (`src/api/cockpit_models.py`) :
+- `url` · `engine` (`gsc`|`bing`) · `coverage_state`
+  (`indexed`|`discovered`|`crawled_not_indexed`|`excluded`|`unknown`) ·
+  `last_crawl` (nullable) · `fetched_at` ;
+- clé unique **`(engine, url)`** (une URL a une couverture par moteur).
+- Créée par `create_all` (scan `Base.metadata`) — pas de migration Alembic
+  dédiée (cohérent avec `work_item`/`git_index`/`schedule`).
+
+### Interface fournisseur (`src/services/index_providers.py`)
+
+- `IndexProvider` (protocole) : `inspect(urls) -> {url: {coverage_state, last_crawl}}`.
+- **`GscUrlInspectionProvider`** (réel, **gated sur** `GSC_SERVICE_ACCOUNT_JSON` +
+  `GSC_PROPERTY` — OAuth service account, URL Inspection API ; quota ~2000/j,
+  back-off, non-200 → `unknown`). **Implémenté mais INACTIF sans creds.**
+- **`BingWebmasterProvider`** (réel, **gated sur** `BING_WEBMASTER_API_KEY` +
+  `BING_SITE_URL`). Idem.
+- **`MockIndexProvider`** (défaut, **actif maintenant**) : états plausibles
+  **déterministes** (hash d'URL → ~80% `indexed`), **hors-ligne**.
+- **Sélection** : `select_provider(engine)` → réel **si creds présentes**, sinon
+  **mock**. **Aucun appel réseau réel sans creds.** L'URL publique d'une page est
+  dérivée par `work_item_url(locale, slug)` = `{COCKPIT_SITE_BASE}/{locale}/colorier/{slug}/`.
+
+### Sync + affichage
+
+- **Sync** : `POST /api/cockpit/index-status/sync?repo=&cluster=&engine=` →
+  dérive les URLs des work_items du périmètre → provider → **upsert**
+  `index_status` (`src/services/index_sync.py::sync_index_status`). Idempotent.
+- **Lecture** : `GET /api/cockpit/index-status` (cache agrégé multi-moteur +
+  détail `engines`, + drapeau `provider: mock|live` par moteur).
+- **Affichage** : `GET /api/cockpit/kanban` et `/work-items` enrichis avec
+  `coverage_state` + `coverage` + **`indexed`** (dérivé) + `url` par item.
+  `totals.indexed` + `totals.published_not_indexed`. Badge couleur dans
+  `data/cockpit_kanban.html` + bouton « 🔎 Sync indexation ».
+- **État dérivé `indexé`** : `derive_index_state(coverage)` = `coverage_state == 'indexed'`
+  — **fonction pure, jamais stockée** (cohérent avec `git_states`).
+
+### Signal SEO (next-action)
+
+`GET /api/cockpit/next-action` surface, en **priorité basse**, « N page(s)
+publiée(s) non indexée(s) » (`derived_state == publie` ET non `indexed` ET cache
+présent) → action = `POST /api/cockpit/index-status/sync`. Sous le rebuild dû
+(haute) et le drift (moyenne).
+
+### Tests
+
+`tests/cockpit/test_index_status.py` (Postgres éphémère, 21 tests) : upsert/
+lecture `index_status` (clé `(engine, url)`, agrégat multi-moteur), sélection
+provider (mock par défaut ; **réel sélectionné si env GSC/Bing simulées mais
+`inspect` monkeypatché → zéro réseau**), sync mock → cache peuplé (10 URLs
+marines, idempotent), kanban/work-items exposent `coverage_state` + `indexed`,
+next-action « publiées non indexées ». **Aucun SQLite, aucun réseau.**
+
+### Réserves — ce qui reste
+
+- **Creds GSC/Bing = track Hamma** : poser `GSC_SERVICE_ACCOUNT_JSON` +
+  `GSC_PROPERTY` (et/ou `BING_WEBMASTER_API_KEY` + `BING_SITE_URL`) → le provider
+  réel s'active **sans changement de code** (mock retombe automatiquement). La
+  lib `google-api-python-client` (GSC) sera à installer côté déploiement Hamma.
+- **Performance (Search Analytics) = Phase 2** : impressions/clics/position,
+  tendance par cluster, table `perf_metric` — hors de cet incrément.
