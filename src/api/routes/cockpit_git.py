@@ -19,11 +19,12 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Body, Depends, HTTPException
 
 from api.cockpit_models import WORK_ITEM_STATES
 from api.db import DBConnAdapter, get_db_read, get_db_write
 from api.helpers import json_response, transaction
+from services.cockpit_git_publish import CockpitPublishError, commit_work_item
 from services.git_indexer import DEFAULT_REPO, reindex
 from services.git_states import compute_drift, derive_git_state
 from services.opportunity_import import import_opportunities
@@ -230,6 +231,46 @@ def get_work_item(work_item_id: str, conn: DBConnAdapter = Depends(get_db_read))
     git_map = _fetch_git_index_map(conn, wi["repo"])
     opp_by_id, opp_by_slug = _fetch_opportunity_maps(conn)
     return json_response(_enrich_work_item(wi, git_map, opp_by_id, opp_by_slug))
+
+
+@router.post("/work-items/{work_item_id}/commit")
+def commit_work_item_route(
+    work_item_id: str,
+    body: dict[str, Any] | None = Body(default=None),
+    conn: DBConnAdapter = Depends(get_db_write),
+):
+    """Commite un work_item prêt comme Post ``.md`` dans le clone de contenu.
+
+    **Seule porte d'entrée dans git** : sérialise le staging → écrit
+    ``src/content/posts/<locale>/<slug>.md`` → commit identité bot → met à jour
+    le miroir (``last_synced_hash`` + ``git_index``). ADD-ONLY (refuse de
+    réécrire un ``.md`` existant sans ``force``).
+
+    Corps optionnel (JSON) :
+      - ``launch_set`` : marqueur de lot à stamper (``frontmatter['launchSet']``) ;
+      - ``dry_run`` : ne touche rien, retourne le ``.md`` qui SERAIT écrit ;
+      - ``force`` : autorise la réécriture (sinon ADD-ONLY) ;
+      - ``commit_message`` / ``repo`` : surcharges optionnelles.
+    """
+    opts = body or {}
+    with transaction(conn):
+        try:
+            result = commit_work_item(
+                conn,
+                work_item_id,
+                repo=opts.get("repo", DEFAULT_REPO),
+                launch_set=opts.get("launch_set"),
+                commit_message=opts.get("commit_message"),
+                force=bool(opts.get("force", False)),
+                dry_run=bool(opts.get("dry_run", False)),
+            )
+        except CockpitPublishError as exc:
+            # Erreur métier (staging vide, collision ADD-ONLY, work_item absent) → 4xx.
+            # Levée en HTTPException ici → traverse ``transaction`` sans devenir un 500.
+            msg = str(exc)
+            status = 404 if "introuvable" in msg else 409
+            raise HTTPException(status_code=status, detail=msg) from exc
+    return json_response(result.as_dict())
 
 
 @router.get("/kanban")
