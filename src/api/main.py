@@ -19,7 +19,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from api.routes import ai, benchmark, generation, images, jobs, qc, review, sites, subjects, taxonomy
+from api import cockpit_models as _cockpit_models  # noqa: F401  (enregistre work_item / git_index sur Base.metadata)
+from api.routes import ai, benchmark, cockpit_git, generation, images, jobs, qc, review, sites, subjects, taxonomy
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
@@ -100,6 +101,7 @@ app.include_router(benchmark.router)
 app.include_router(review.router)
 app.include_router(subjects.router)
 app.include_router(qc.router)
+app.include_router(cockpit_git.router)
 
 if DATA_DIR.exists():
     app.mount("/data", StaticFiles(directory=str(DATA_DIR), html=True), name="data")

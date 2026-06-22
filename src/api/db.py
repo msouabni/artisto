@@ -270,6 +270,9 @@ def ensure_default_job_types(session: Session) -> None:
 def init_db(path: Path | None = None) -> None:
     _ = path
     from api.models import Base
+    # Enregistre les tables du cockpit git-autoritaire (work_item / git_index)
+    # sur Base.metadata avant create_all (sinon non créées hors tests).
+    from api import cockpit_models  # noqa: F401
 
     Base.metadata.create_all(bind=ENGINE)
     session = SessionLocal()
