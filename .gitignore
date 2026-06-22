@@ -52,6 +52,10 @@ data/export/images/*.png
 # (PNG/WebP/PDF binaires, volumineux, non commit).
 data/export/r2_simulated/
 
+# Plaques/artefacts regenerables (mock content, POC). Binaires non commit ;
+# evite les orphelins de rename de slug (ex. poisson-simple-0002.* purge 2026-06-22).
+data/generated/
+
 # Clones des sites destinataires (Niveau 1 multi-sites)
 data/sites/*/
 
