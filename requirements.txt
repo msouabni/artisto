@@ -13,3 +13,8 @@ psutil>=6.0.0
 sqlalchemy>=2.0.36
 psycopg[binary]>=3.2.3
 alembic>=1.14.0
+
+# Cockpit — provider d'indexation Google Search Console (URL Inspection API).
+# Gated sur creds (GSC_SERVICE_ACCOUNT_JSON / GSC_PROPERTY) ; inactif sans env.
+google-api-python-client>=2.130.0
+google-auth>=2.30.0

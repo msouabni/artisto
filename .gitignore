@@ -11,6 +11,7 @@ __pycache__/
 .venv/
 venv/
 .env
+.env.local
 *.egg-info/
 dist/
 build/
@@ -38,6 +39,9 @@ Thumbs.db
 
 # Backups DB (dumps SQL/JSON locaux, ex. pré-purge)
 backups/
+
+# Secrets (service accounts GSC, clés API moteurs). JAMAIS commité.
+secrets/
 
 # PNG générés par les POC benchmark (volumineux, ~635 MB sur 1055 fichiers).
 # Les rapports .md/.json à côté sont conservés.
