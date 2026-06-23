@@ -30,6 +30,7 @@ from __future__ import annotations
 import hashlib
 import logging
 import os
+import re
 from datetime import datetime, timezone
 from typing import Iterable, Protocol, runtime_checkable
 
@@ -353,29 +354,71 @@ class GscUrlInspectionProvider:
 
 # ── Bing Webmaster (réel, gated sur creds, INACTIF sans env) ───────────────────
 
-_BING_COVERAGE_MAP = {
-    "Indexed": "indexed",
-    "Discovered": "discovered",
-    "Crawled": "crawled_not_indexed",
-    "Excluded": "excluded",
-    "Blocked": "excluded",
-}
+# Format date .NET renvoyé par l'API Bing : ``/Date(<ms>[±<offset>])/``.
+# Ex. réel : ``/Date(-62135568000000-0800)/`` = DateTime.MinValue = sentinelle
+# « jamais crawlé/découvert ». Le ms peut être négatif (sentinelle) ou positif.
+_DOTNET_DATE_RE = re.compile(r"/Date\((-?\d+)(?:[+-]\d{4})?\)/")
 
 
-def _map_bing_coverage(raw: str | None) -> str:
-    if not raw:
-        return "unknown"
-    if raw in _BING_COVERAGE_MAP:
-        return _BING_COVERAGE_MAP[raw]
-    low = raw.lower()
-    if "index" in low and "not" not in low:
-        return "indexed"
-    if "discover" in low:
+def _parse_dotnet_date(raw: object) -> str | None:
+    """Parse une date .NET ``/Date(<ms>[±offset])/`` → ISO8601 UTC, sinon ``None``.
+
+    - L'offset (``±HHMM``) est **ignoré** : les ms .NET sont déjà en UTC (epoch).
+    - Sentinelle ``DateTime.MinValue`` (ms négatif, ex. ``-62135568000000``) ou
+      toute valeur absente/non-parsable → ``None`` (= jamais crawlé/découvert).
+    - **Ne lève jamais** : toute exception/format invalide → ``None``.
+    """
+    if not raw or not isinstance(raw, str):
+        return None
+    m = _DOTNET_DATE_RE.search(raw)
+    if not m:
+        return None
+    try:
+        ms = int(m.group(1))
+    except (ValueError, TypeError):
+        return None
+    if ms < 0:
+        # Sentinelle MinValue (et toute date antérieure à l'epoch = non pertinent ici).
+        return None
+    try:
+        dt = datetime.fromtimestamp(ms / 1000.0, tz=timezone.utc)
+    except (OverflowError, OSError, ValueError):
+        return None
+    return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _bing_coverage_from_info(info: dict) -> str:
+    """Dérive ``coverage_state`` depuis les champs réels d'un ``UrlInfo`` Bing.
+
+    L'API Bing ne renvoie PAS d'« état de couverture » textuel : on le DÉRIVE des
+    champs ``LastCrawledDate`` / ``DiscoveryDate`` / ``HttpStatus`` (cf. contrat
+    réel observé en live, HTTP 200). Règle :
+
+    - ``LastCrawledDate`` réelle (≠ sentinelle MinValue) ET ``HttpStatus == 200``
+      → ``"indexed"`` ;
+    - ``LastCrawledDate`` réelle mais ``HttpStatus`` non-200 (≠ 0)
+      → ``"crawled_not_indexed"`` ;
+    - ``DiscoveryDate`` réelle mais ``LastCrawledDate`` à la sentinelle (jamais
+      crawlé) → ``"discovered"`` ;
+    - tout à la sentinelle / ``HttpStatus == 0`` (jamais découvert) → ``"unknown"``.
+    """
+    last_crawl = _parse_dotnet_date(info.get("LastCrawledDate"))
+    discovery = _parse_dotnet_date(info.get("DiscoveryDate"))
+    try:
+        http_status = int(info.get("HttpStatus") or 0)
+    except (ValueError, TypeError):
+        http_status = 0
+
+    if last_crawl is not None:
+        if http_status == 200:
+            return "indexed"
+        if http_status != 0:
+            return "crawled_not_indexed"
+        # Crawlé mais HttpStatus inconnu (0) : on reste prudent → discovered si
+        # découvert, sinon unknown. En pratique un crawl réel porte un status.
+        return "discovered" if discovery is not None else "unknown"
+    if discovery is not None:
         return "discovered"
-    if "crawl" in low:
-        return "crawled_not_indexed"
-    if "exclud" in low or "block" in low:
-        return "excluded"
     return "unknown"
 
 
@@ -409,22 +452,27 @@ class BingWebmasterProvider:
         import json
         import time
         import urllib.error
+        import urllib.parse
         import urllib.request
 
-        endpoint = (
-            "https://ssl.bing.com/webmaster/api.svc/json/GetUrlInfo"
-            f"?apikey={self.api_key}"
-        )
+        # Contrat réel observé en live (HTTP 200) : l'endpoint est un **GET** avec
+        # query params (le POST renvoie HTTP 405 Method Not Allowed). La réponse
+        # est un objet unique sous la clé ``d`` (pas de champ ``DocumentStatus``) ;
+        # on DÉRIVE coverage_state des champs réels via ``_bing_coverage_from_info``.
+        base_endpoint = "https://ssl.bing.com/webmaster/api.svc/json/GetUrlInfo"
         out: dict[str, dict[str, object]] = {}
         for url in urls:
-            payload = json.dumps({"siteUrl": self.site_url, "url": url}).encode("utf-8")
+            qs = urllib.parse.urlencode({
+                "apikey": self.api_key,
+                "siteUrl": self.site_url,
+                "url": url,
+            })
+            endpoint = f"{base_endpoint}?{qs}"
             backoff = 1.0
             for attempt in range(3):
                 try:
-                    req = urllib.request.Request(
-                        endpoint, data=payload, method="POST",
-                        headers={"Content-Type": "application/json"},
-                    )
+                    # GET : pas de body, pas de méthode POST.
+                    req = urllib.request.Request(endpoint, method="GET")
                     with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310
                         if getattr(resp, "status", 200) != 200:
                             out[url] = {"coverage_state": "unknown", "last_crawl": None}
@@ -432,11 +480,12 @@ class BingWebmasterProvider:
                         data = json.loads(resp.read().decode("utf-8"))
                     info = (data or {}).get("d", {}) or {}
                     out[url] = {
-                        "coverage_state": _map_bing_coverage(info.get("DocumentStatus")),
-                        "last_crawl": info.get("LastCrawledDate"),
+                        "coverage_state": _bing_coverage_from_info(info),
+                        "last_crawl": _parse_dotnet_date(info.get("LastCrawledDate")),
                     }
                     break
                 except urllib.error.HTTPError as exc:
+                    # Ne jamais logger la query string (contient apikey) : seul ``url``.
                     logger.warning("Bing GetUrlInfo %s HTTP %s", url, exc.code)
                     out[url] = {"coverage_state": "unknown", "last_crawl": None}
                     break
