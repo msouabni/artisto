@@ -95,11 +95,15 @@ HITL_STATES = (
     "rejected",      # rejeté en fin de chaîne (drop explicite) — buffer purgeable
 )
 
+# ``editing`` (Phase 2, incrément 2) : buffer chargé DEPUIS git pour une édition
+# légère d'une page déjà publiée (UPDATE gardé par hash). Distinct des états HITL
+# de création — l'édition repart toujours de git (jamais d'un état parallèle).
+#
 # Compat : les anciens états ``draft`` / ``pending_commit`` (Phase 1) restent
 # acceptés (des work_items Phase 1 peuvent les porter). Les nouveaux flux HITL
 # utilisent ``HITL_STATES``. L'union est la contrainte applicative (pas de CHECK
 # SQL : on garde le schéma souple, cf. cap « schéma libre d'évoluer »).
-STAGING_STATES = ("none", "draft", "pending_commit", *HITL_STATES[1:])
+STAGING_STATES = ("none", "draft", "pending_commit", "editing", *HITL_STATES[1:])
 
 # États de la plaque (image bicouche). MOCK en Phase 2 incrément 1 : la vraie
 # génération (ComfyUI + décoloriage) est derrière le mock (track Hamma).
@@ -165,6 +169,18 @@ class WorkItem(Base):
     staging_frontmatter: Mapped[dict | None] = mapped_column(_JSONB, nullable=True)
     staging_body: Mapped[str | None] = mapped_column(Text, nullable=True)
     staging_state: Mapped[str] = mapped_column(String, nullable=False, default="none")
+
+    # variantes (V5) : galerie de variantes de style du MÊME sujet portée par le
+    # staging du work_item — liste de ``{style, image, alt?}`` (style = id de
+    # collection ``styles`` côté front ; image = chemin servi ``/img/<slug>/<style>.png``).
+    # ``classique`` est OBLIGATOIRE + en PREMIER (cf. convention d'assets
+    # verrouillée). Le bot SCANNE ``{slug}/`` → produit cette liste (pas de table
+    # de mapping). Au commit, ``cockpit_git_publish`` SÉRIALISE ce bloc dans le
+    # frontmatter du ``.md`` (format lisible par le schéma front : ref→styles,
+    # image, alt?) + place/copie les images à la convention. TRANSITOIRE comme le
+    # reste du staging : la vérité passe à git au commit (jamais servi d'ici).
+    # Absent/vide ⇒ la galerie front retombe sur l'image unique (back-compat).
+    staging_variantes: Mapped[list | None] = mapped_column(_JSONB, nullable=True)
 
     created_at: Mapped[str] = mapped_column(Text, nullable=False)
     updated_at: Mapped[str] = mapped_column(Text, nullable=False)

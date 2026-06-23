@@ -261,6 +261,89 @@ def _upsert_git_index(conn: Any, repo: str, doc: ParsedDoc, now: str) -> str:
     return "inserted"
 
 
+def _locale_slug_from_rel(rel_path: str) -> tuple[str, str] | None:
+    """Extrait ``(locale, slug)`` d'un chemin ``src/content/{posts,pages}/<locale>/<slug>.md``.
+
+    Retourne ``None`` si le chemin n'est pas un markdown de contenu reconnu
+    (autre dossier, autre extension) — le webhook ignore alors ce chemin.
+    """
+    norm = rel_path.replace("\\", "/").lstrip("/")
+    parts = norm.split("/")
+    # Attendu : src / content / {posts|pages} / <locale> / <file>.md(x)
+    if len(parts) < 5:
+        return None
+    if parts[0] != "src" or parts[1] != "content" or parts[2] not in CONTENT_SUBDIRS:
+        return None
+    file_name = parts[-1]
+    suffix = Path(file_name).suffix.lower()
+    if suffix not in MARKDOWN_SUFFIXES:
+        return None
+    locale = parts[3]
+    slug = Path(file_name).stem
+    return locale, slug
+
+
+def reindex_paths(
+    conn: Any,
+    rel_paths: list[str],
+    repo: str = DEFAULT_REPO,
+    root: Path | None = None,
+) -> IndexReport:
+    """Réindexe ``git_index`` pour un ENSEMBLE de chemins touchés (webhook push).
+
+    Autorité = git. Pour chaque chemin de contenu reconnu :
+      - le fichier existe dans le clone → upsert (inserted/updated/unchanged) ;
+      - le fichier a disparu (suppression côté git) → ligne marquée ``exists=false``.
+    Les chemins non reconnus (hors ``src/content/{posts,pages}/<locale>/*.md``)
+    sont ignorés (pas une erreur). Idempotent. Ne touche QUE les chemins fournis
+    (n'efface pas le reste de l'index, contrairement à ``reindex``).
+    """
+    scan_root = root or content_repo_path()
+    report = IndexReport(repo=repo, root=str(scan_root))
+    now = _now_iso()
+    seen: set[tuple[str, str]] = set()
+
+    for rel in rel_paths:
+        ls = _locale_slug_from_rel(rel)
+        if ls is None:
+            continue
+        locale, slug = ls
+        if (locale, slug) in seen:
+            continue  # idempotence : un chemin listé 2× ne compte qu'une fois
+        seen.add((locale, slug))
+        report.scanned += 1
+
+        norm = rel.replace("\\", "/").lstrip("/")
+        abs_path = scan_root / norm
+        try:
+            if abs_path.is_file():
+                doc = parse_doc(abs_path, locale, norm)
+                outcome = _upsert_git_index(conn, repo, doc, now)
+                if outcome == "inserted":
+                    report.inserted += 1
+                elif outcome == "updated":
+                    report.updated += 1
+                else:
+                    report.unchanged += 1
+            else:
+                # Fichier supprimé côté git → marque la ligne absente (drift = absent).
+                rows = conn.execute(
+                    "SELECT id FROM git_index WHERE repo = ? AND locale = ? AND slug = ?",
+                    [repo, locale, slug],
+                ).fetchall()
+                if rows:
+                    conn.execute(
+                        "UPDATE git_index SET exists = ?, last_indexed_at = ? WHERE id = ?",
+                        [False, now, rows[0][0]],
+                    )
+                    report.marked_absent += 1
+        except Exception as exc:  # noqa: BLE001
+            logger.exception("git_indexer: échec réindex chemin %s", rel)
+            report.errors.append({"slug": f"{locale}/{slug}", "error": str(exc)})
+
+    return report
+
+
 def reindex(conn: Any, repo: str = DEFAULT_REPO, root: Path | None = None) -> IndexReport:
     """Indexe le clone de contenu → upsert ``git_index``. Autorité = git.
 

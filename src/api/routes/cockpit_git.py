@@ -19,12 +19,24 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from fastapi import APIRouter, Body, Depends, HTTPException
+from fastapi import APIRouter, Body, Depends, HTTPException, Request
 
 from api.cockpit_models import WORK_ITEM_STATES
 from api.db import DBConnAdapter, get_db_read, get_db_write
 from api.helpers import json_response, transaction
-from services.cockpit_git_publish import CockpitPublishError, commit_work_item
+from services.cockpit_edit import CockpitEditError, edit_load, edit_patch
+from services.cockpit_git_publish import (
+    CockpitDriftError,
+    CockpitPublishError,
+    commit_work_item,
+)
+from services.git_webhook import (
+    WebhookAuthError,
+    WebhookError,
+    handle_push,
+    parse_payload,
+    verify_signature,
+)
 from services.generation_mock import GenerationError, generate as generate_mock
 from services.git_indexer import DEFAULT_REPO, reindex
 from services.git_states import compute_drift, derive_git_state
@@ -313,6 +325,7 @@ def commit_work_item_route(
       - ``commit_message`` / ``repo`` : surcharges optionnelles.
     """
     opts = body or {}
+    mode = opts.get("mode", "create")
     with transaction(conn):
         try:
             result = commit_work_item(
@@ -323,19 +336,125 @@ def commit_work_item_route(
                 commit_message=opts.get("commit_message"),
                 force=bool(opts.get("force", False)),
                 dry_run=bool(opts.get("dry_run", False)),
+                # ``asset_dir`` (V5) : si fourni, le bot SCANNE ce dossier
+                # ``{slug}/`` → ``variantes[]`` (convention, classique en premier)
+                # + place les images sous public/img/{slug}/. Sinon, on retombe sur
+                # ``staging_variantes`` du work_item (ou aucune variante).
+                asset_dir=opts.get("asset_dir"),
+                # ``mode='update'`` = édition gardée d'une page publiée (garde de
+                # hash / optimistic concurrency) ; ``create`` (défaut) = ADD-ONLY.
+                mode=mode,
                 # Gate HITL : ``require_approved`` (défaut intelligent côté
                 # service) exige ``staging_state == 'approved'`` pour les items
                 # passés par le flux HITL, tout en laissant passer les chemins
-                # Phase 1 (staging ``pending_commit`` / ``draft``). Surchargeable
-                # explicitement dans le corps.
+                # Phase 1 (staging ``pending_commit`` / ``draft``) et l'édition
+                # (``editing``). Surchargeable explicitement dans le corps.
                 require_approved=opts.get("require_approved"),
             )
+        except CockpitDriftError as exc:
+            # Conflit d'optimistic concurrency (git a changé hors cockpit) → 409
+            # + détail du drift. JAMAIS d'écrasement.
+            raise HTTPException(status_code=409, detail=exc.drift_detail()) from exc
         except CockpitPublishError as exc:
             # Erreur métier (staging vide, collision ADD-ONLY, work_item absent) → 4xx.
             # Levée en HTTPException ici → traverse ``transaction`` sans devenir un 500.
             msg = str(exc)
             status = 404 if "introuvable" in msg else 409
             raise HTTPException(status_code=status, detail=msg) from exc
+    return json_response(result.as_dict())
+
+
+# ── Édition légère cockpit → git (UPDATE gardé) — Phase 2, incrément 2 ────────────
+
+@router.post("/work-items/{work_item_id}/edit-load")
+def edit_load_route(
+    work_item_id: str,
+    body: dict[str, Any] | None = Body(default=None),
+    conn: DBConnAdapter = Depends(get_db_write),
+):
+    """Charge le buffer d'édition depuis le ``.md`` COURANT de git.
+
+    git autoritaire : on repart toujours de git, jamais d'un état parallèle. Lit
+    ``src/content/posts/<locale>/<slug>.md`` → remplit ``staging_frontmatter`` /
+    ``staging_body`` (buffer transitoire) + pose ``last_synced_hash`` = le
+    ``content_hash`` de base (référence d'optimistic concurrency). 404 si la page
+    n'existe pas dans git (passer par la création).
+
+    Corps optionnel : ``repo`` (override clé logique, non utilisé pour le chemin).
+    """
+    with transaction(conn):
+        try:
+            result = edit_load(conn, work_item_id)
+        except CockpitEditError as exc:
+            msg = str(exc)
+            status = 404 if ("introuvable" in msg or "absent de git" in msg) else 409
+            raise HTTPException(status_code=status, detail=msg) from exc
+    return json_response(result.as_dict())
+
+
+@router.patch("/work-items/{work_item_id}/edit")
+def edit_patch_route(
+    work_item_id: str,
+    body: dict[str, Any] | None = Body(default=None),
+    conn: DBConnAdapter = Depends(get_db_write),
+):
+    """Applique des edits LÉGERS au buffer staging (frontmatter / corps).
+
+    Corps : ``{frontmatter?: {...}, body?: "..."}``. Le frontmatter est mergé
+    superficiellement (une clé à ``null`` la supprime) ; ``body`` remplace le
+    corps. Garde : le buffer doit avoir été chargé depuis git (``edit-load``)
+    sinon 409 (on n'invente pas un contenu parallèle — git autoritaire).
+    """
+    opts = body or {}
+    with transaction(conn):
+        try:
+            result = edit_patch(
+                conn,
+                work_item_id,
+                frontmatter=opts.get("frontmatter"),
+                body=opts.get("body"),
+            )
+        except CockpitEditError as exc:
+            msg = str(exc)
+            status = 404 if "introuvable" in msg else 409
+            raise HTTPException(status_code=status, detail=msg) from exc
+    return json_response(result.as_dict())
+
+
+# ── Webhook post-commit git (réconciliation hors cockpit) — P2 inc.2 ─────────────
+
+@router.post("/webhook/git")
+async def webhook_git_route(
+    request: Request,
+    repo: str = DEFAULT_REPO,
+    conn: DBConnAdapter = Depends(get_db_write),
+):
+    """Réceptionne un payload push GitHub-style → réindexe les chemins touchés.
+
+    Capte les éditions faites **hors cockpit** (édition directe dans git) et
+    complète le poll Phase 1. Sécurité : signature HMAC-SHA256 (en-tête
+    ``X-Hub-Signature-256: sha256=<hex>``) vérifiée contre ``GIT_WEBHOOK_SECRET``
+    (pas de secret en dur ; secret absent → 503). Idempotent ; repo injoignable →
+    dégrade proprement (jamais de crash).
+    """
+    raw_body = await request.body()
+    signature = request.headers.get(
+        "X-Hub-Signature-256"
+    ) or request.headers.get("x-hub-signature-256")
+
+    # Vérif HMAC AVANT tout parsing/écriture DB (rejette tôt).
+    try:
+        verify_signature(raw_body, signature)
+    except WebhookAuthError as exc:
+        raise HTTPException(status_code=exc.status, detail=str(exc)) from exc
+
+    try:
+        payload = parse_payload(raw_body)
+    except WebhookError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    with transaction(conn):
+        result = handle_push(conn, payload, repo=repo)
     return json_response(result.as_dict())
 
 
