@@ -42,7 +42,11 @@ from services.git_indexer import DEFAULT_REPO, reindex
 from services.git_states import compute_drift, derive_git_state
 from services.hitl import HitlTransitionError, get_plate
 from services.hitl_review import ReviewError, review_image, review_text
-from services.index_providers import provider_is_live, work_item_url
+from services.index_providers import (
+    category_slug_for_cluster,
+    provider_is_live,
+    work_item_url,
+)
 from services.index_sync import (
     derive_index_state,
     fetch_coverage_map,
@@ -205,10 +209,13 @@ def _enrich_work_item(
     wi["last_build_at"] = last_build_at
     wi["rebuild_due"] = compute_rebuild_due(wi.get("publish_date"), last_build_at)
 
-    # Couverture moteur (cache index_status, dérivé de l'URL publique). L'état
-    # ``indexe`` est DÉRIVÉ (jamais stocké) : indexé == coverage_state 'indexed'.
-    # Sans cache (jamais synchronisé) → coverage None → indexe False.
-    url = work_item_url(wi["locale"], wi["slug"])
+    # Couverture moteur (cache index_status, dérivé de l'URL publique SEO). L'URL
+    # est la feuille catégorie-nichée du front (PAS la page colorieur noindex) ;
+    # le slug catégorie vient du cluster de l'opportunité liée (défaut sinon).
+    # L'état ``indexe`` est DÉRIVÉ (jamais stocké) : indexé == coverage_state
+    # 'indexed'. Sans cache (jamais synchronisé) → coverage None → indexe False.
+    category_slug = category_slug_for_cluster(opp.get("cluster") if opp else None)
+    url = work_item_url(wi["locale"], wi["slug"], category_slug)
     coverage = (coverage_map or {}).get(url)
     wi["url"] = url
     wi["coverage"] = coverage

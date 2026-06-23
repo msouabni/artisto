@@ -45,24 +45,108 @@ DEFAULT_SITE_BASE = "https://alwanbooks.com"
 # Le provider réel s'arrête à ce plafond par run (back-off documenté).
 GSC_DAILY_QUOTA = 2000
 
+# Segment racine des catégories par locale dans l'URL publique du front
+# (rimalab-v2 : ``src/lib/i18n/paths.ts::categoriesRoot``). C'est la SEULE source
+# de vérité côté cockpit pour répliquer la route SEO catégorie-nichée. Toute
+# feuille SEO vit sous ``/{locale}/{CATEGORIES_ROOT[locale]}/<chemin-cat>/<slug>``.
+CATEGORIES_ROOT = {
+    "ar": "talween",
+    "fr": "coloriages",
+    "en": "coloring",
+}
+
+# Catégorie SEO par défaut quand on ne sait pas résoudre le cluster d'un
+# work_item (ex. work_item sans opportunité liée). Le lot marin « Cahier des
+# mers » (DIRECTION-2026-06-22) est la racine catégorie ``cahier-des-mers``.
+DEFAULT_CATEGORY_SLUG = "cahier-des-mers"
+
+# Mapping cluster (libellé/id côté opportunity) → slug catégorie racine du front.
+# Le CSV d'opportunités porte ``cluster`` en libellé humain (« animaux marins »)
+# ou en id ; le front, lui, range ces planches sous la catégorie racine
+# ``cahier-des-mers`` (id ``cahier_des_mers``). On normalise donc plusieurs
+# variantes vers le même slug. Pour un arbre catégorie multi-niveaux futur,
+# remplacer la valeur par le CHEMIN complet (``parent-slug/enfant-slug``) — la
+# dérivation d'URL joint déjà les segments tels quels (cf. ``work_item_url``).
+_CLUSTER_TO_CATEGORY_SLUG = {
+    "cahier_des_mers": "cahier-des-mers",
+    "cahier-des-mers": "cahier-des-mers",
+    "animaux marins": "cahier-des-mers",
+    "animaux-marins": "cahier-des-mers",
+}
+
 
 def site_base() -> str:
     """Base publique du site (env ``COCKPIT_SITE_BASE``), sans slash final."""
     return os.environ.get("COCKPIT_SITE_BASE", DEFAULT_SITE_BASE).rstrip("/")
 
 
-def work_item_url(locale: str, slug: str, base: str | None = None) -> str:
-    """Dérive l'URL publique canonique d'une page depuis ``(locale, slug)``.
+def categories_root(locale: str) -> str:
+    """Segment racine des catégories pour ``locale`` (fr=coloriages, ar=talween…).
 
-    Convention alwanbooks (cf. CLAUDE.md, route prompt-generator) ::
+    Retombe sur ``coloriages`` (fr) pour une locale inconnue — défensif, jamais
+    de 500. Réplique ``categoriesRoot`` du front (rimalab-v2).
+    """
+    return CATEGORIES_ROOT.get(locale, CATEGORIES_ROOT["fr"])
 
-        {base}/{locale}/colorier/{slug}/
 
-    Slash final inclus (forme canonique stockée dans ``index_status.url`` et
-    interrogée auprès des moteurs).
+def _slugify_cluster(cluster: str) -> str:
+    """Slugifie un libellé cluster brut (« animaux marins » → « animaux-marins »).
+
+    Fallback quand le cluster n'est pas dans ``_CLUSTER_TO_CATEGORY_SLUG`` : on
+    produit un slug raisonnable plutôt que d'inventer une catégorie. Ne gère pas
+    l'arbre multi-niveaux (réserve : un cluster mappera un jour un chemin complet).
+    """
+    return "-".join(cluster.strip().lower().split())
+
+
+def category_slug_for_cluster(cluster: str | None) -> str:
+    """Résout le slug (ou chemin) catégorie SEO depuis le cluster d'un work_item.
+
+    - ``None`` / vide → ``DEFAULT_CATEGORY_SLUG`` (lot marin = ``cahier-des-mers``).
+    - cluster connu (id ou libellé) → slug mappé (``_CLUSTER_TO_CATEGORY_SLUG``).
+    - sinon → slugification du libellé (fallback raisonnable).
+
+    Réserve : si l'arbre catégorie devient multi-niveaux, la valeur mappée doit
+    porter le CHEMIN complet (``parent/enfant``) — ``work_item_url`` l'insère tel
+    quel entre la racine et le slug de planche.
+    """
+    if not cluster:
+        return DEFAULT_CATEGORY_SLUG
+    key = cluster.strip()
+    if key in _CLUSTER_TO_CATEGORY_SLUG:
+        return _CLUSTER_TO_CATEGORY_SLUG[key]
+    low = key.lower()
+    if low in _CLUSTER_TO_CATEGORY_SLUG:
+        return _CLUSTER_TO_CATEGORY_SLUG[low]
+    return _slugify_cluster(key)
+
+
+def work_item_url(
+    locale: str,
+    slug: str,
+    category_slug: str | None = None,
+    base: str | None = None,
+) -> str:
+    """Dérive l'URL publique **SEO indexable** d'une planche.
+
+    Réplique la route catégorie-nichée du front (rimalab-v2 :
+    ``getPostUrl`` / ``getCategoryPath`` + ``categoriesRoot``) ::
+
+        {base}/{locale}/{categoriesRoot[locale]}/{chemin-catégorie}/{slug}
+
+    Ex. : ``https://alwanbooks.com/fr/coloriages/cahier-des-mers/baleine``.
+
+    **Pas** de ``/colorier/`` (= page colorieur ``noindex``, à ne PAS interroger
+    en GSC) et **pas de slash final** (``trailingSlash: 'never'`` côté Astro).
+
+    ``category_slug`` est le slug (ou chemin ``parent/enfant``) de la catégorie
+    racine de la planche ; à défaut, on retombe sur ``DEFAULT_CATEGORY_SLUG``
+    (lot marin = ``cahier-des-mers``). C'est la forme canonique stockée dans
+    ``index_status.url`` et interrogée auprès des moteurs.
     """
     b = (base or site_base()).rstrip("/")
-    return f"{b}/{locale}/colorier/{slug}/"
+    cat = (category_slug or DEFAULT_CATEGORY_SLUG).strip("/")
+    return f"{b}/{locale}/{categories_root(locale)}/{cat}/{slug}"
 
 
 def _now_iso() -> str:

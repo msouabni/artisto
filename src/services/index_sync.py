@@ -26,6 +26,7 @@ from typing import Any
 from api.cockpit_models import INDEX_ENGINES
 from services.index_providers import (
     IndexProvider,
+    category_slug_for_cluster,
     provider_is_live,
     select_provider,
     work_item_url,
@@ -126,15 +127,22 @@ def _work_item_urls(conn: Any, repo: str | None, cluster: str | None) -> list[tu
     Périmètre = ``repo`` (clé de jointure git) et/ou ``cluster`` (via la
     jointure souple work_item.opportunity_id → opportunity.cluster, ou
     opportunity.slug == work_item.slug). Sans filtre → tous les work_items.
+
+    L'URL produite est la **feuille SEO catégorie-nichée** (cf.
+    ``work_item_url``) : le slug catégorie est résolu depuis le ``cluster`` de
+    l'opportunité liée (jointure souple par opportunity_id ou par slug). Un
+    work_item sans opportunité retombe sur la catégorie par défaut.
     """
-    sql = "SELECT DISTINCT wi.locale, wi.slug FROM work_item wi"
+    # On ramène le cluster de l'opportunité liée (LEFT JOIN souple) pour dériver
+    # le slug catégorie de chaque planche. Un work_item peut n'avoir aucune
+    # opportunité → cluster NULL → catégorie par défaut côté résolveur.
+    sql = (
+        "SELECT DISTINCT wi.locale, wi.slug, o.cluster FROM work_item wi "
+        "LEFT JOIN opportunity o ON (o.id = wi.opportunity_id OR o.slug = wi.slug)"
+    )
     clauses: list[str] = []
     params: list[Any] = []
     if cluster:
-        # Jointure souple par slug (le lien opportunity_id est une commodité).
-        sql += (
-            " JOIN opportunity o ON (o.id = wi.opportunity_id OR o.slug = wi.slug)"
-        )
         clauses.append("o.cluster = ?")
         params.append(cluster)
     if repo:
@@ -144,8 +152,9 @@ def _work_item_urls(conn: Any, repo: str | None, cluster: str | None) -> list[tu
         sql += " WHERE " + " AND ".join(clauses)
     rows = conn.execute(sql, params).fetchall()
     out: list[tuple[str, str, str]] = []
-    for locale, slug in rows:
-        out.append((work_item_url(locale, slug), locale, slug))
+    for locale, slug, wi_cluster in rows:
+        category_slug = category_slug_for_cluster(wi_cluster)
+        out.append((work_item_url(locale, slug, category_slug), locale, slug))
     return out
 
 

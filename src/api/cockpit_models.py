@@ -376,10 +376,11 @@ class IndexStatus(Base):
     chaque affichage (quota GSC ~2000 inspections/jour).
 
     Clé fonctionnelle : ``(engine, url)`` — une même URL a une couverture par
-    moteur (``gsc`` et ``bing`` peuvent diverger). L'``url`` est dérivée du
-    work_item (``{base}/{locale}/colorier/{slug}/``) par
-    ``src/services/index_providers.py::work_item_url`` — pas de FK matérielle
-    (cohérent avec le reste du cockpit : référence souple par URL).
+    moteur (``gsc`` et ``bing`` peuvent diverger). L'``url`` est la **feuille
+    SEO catégorie-nichée** du front (``{base}/{locale}/{categoriesRoot}/{cat}/
+    {slug}``, sans slash final — PAS la page colorieur ``/colorier/`` noindex),
+    dérivée par ``src/services/index_providers.py::work_item_url`` — pas de FK
+    matérielle (cohérent avec le reste du cockpit : référence souple par URL).
 
     Alimentée par ``POST /api/cockpit/index-status/sync`` → provider
     (mock par défaut ; réel gated sur creds) → upsert. Aucune écriture moteur :
@@ -397,7 +398,7 @@ class IndexStatus(Base):
     id: Mapped[str] = mapped_column(String, primary_key=True)
 
     # url : URL publique inspectée (clé de jointure souple avec le work_item via
-    # work_item_url). Stockée canonique (avec slash final, cf. work_item_url).
+    # work_item_url). Stockée canonique (SANS slash final, cf. work_item_url).
     url: Mapped[str] = mapped_column(String, nullable=False)
 
     # engine : 'gsc' | 'bing' (cf. INDEX_ENGINES). Une URL = une ligne par moteur.

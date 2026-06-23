@@ -25,6 +25,7 @@ from services.index_providers import (
     BingWebmasterProvider,
     GscUrlInspectionProvider,
     MockIndexProvider,
+    category_slug_for_cluster,
     provider_is_live,
     select_provider,
     work_item_url,
@@ -39,17 +40,67 @@ from services.index_sync import (
 REPO = DEFAULT_REPO
 
 
-# ── work_item_url (dérivation URL) ──────────────────────────────────────────────
+# ── work_item_url (dérivation URL — feuille SEO catégorie-nichée) ───────────────
 
-def test_work_item_url_canonical(monkeypatch):
+def test_work_item_url_seo_category_nested(monkeypatch):
+    """L'URL est la feuille SEO catégorie-nichée du front, PAS la page colorieur.
+
+    Convention (rimalab-v2 ``getPostUrl`` + ``categoriesRoot``) :
+    ``{base}/{locale}/{categoriesRoot[locale]}/{cat}/{slug}`` — sans ``/colorier/``
+    et SANS slash final (``trailingSlash: 'never'``).
+    """
     monkeypatch.delenv("COCKPIT_SITE_BASE", raising=False)
-    assert work_item_url("fr", "baleine") == "https://alwanbooks.com/fr/colorier/baleine/"
-    assert work_item_url("ar", "حوت") == "https://alwanbooks.com/ar/colorier/حوت/"
+    assert (
+        work_item_url("fr", "baleine", "cahier-des-mers")
+        == "https://alwanbooks.com/fr/coloriages/cahier-des-mers/baleine"
+    )
+    # categoriesRoot par locale : ar=talween, en=coloring.
+    assert (
+        work_item_url("ar", "حوت", "cahier-des-mers")
+        == "https://alwanbooks.com/ar/talween/cahier-des-mers/حوت"
+    )
+    assert (
+        work_item_url("en", "whale", "cahier-des-mers")
+        == "https://alwanbooks.com/en/coloring/cahier-des-mers/whale"
+    )
+
+
+def test_work_item_url_not_colorier_and_no_trailing_slash(monkeypatch):
+    monkeypatch.delenv("COCKPIT_SITE_BASE", raising=False)
+    url = work_item_url("fr", "baleine", "cahier-des-mers")
+    assert "/colorier/" not in url
+    assert not url.endswith("/")
+    assert url.startswith("https://alwanbooks.com/fr/coloriages/cahier-des-mers/")
+
+
+def test_work_item_url_default_category_when_unspecified(monkeypatch):
+    # Sans slug catégorie → défaut lot marin (cahier-des-mers).
+    monkeypatch.delenv("COCKPIT_SITE_BASE", raising=False)
+    assert (
+        work_item_url("fr", "baleine")
+        == "https://alwanbooks.com/fr/coloriages/cahier-des-mers/baleine"
+    )
+
+
+def test_category_slug_for_cluster():
+    # id, libellé, et variantes du cluster marin → cahier-des-mers.
+    assert category_slug_for_cluster("cahier_des_mers") == "cahier-des-mers"
+    assert category_slug_for_cluster("animaux marins") == "cahier-des-mers"
+    assert category_slug_for_cluster("animaux-marins") == "cahier-des-mers"
+    assert category_slug_for_cluster("Animaux Marins") == "cahier-des-mers"
+    # None / vide → défaut.
+    assert category_slug_for_cluster(None) == "cahier-des-mers"
+    assert category_slug_for_cluster("") == "cahier-des-mers"
+    # Cluster inconnu → slugification raisonnable (fallback).
+    assert category_slug_for_cluster("Animaux de la ferme") == "animaux-de-la-ferme"
 
 
 def test_work_item_url_respects_site_base(monkeypatch):
     monkeypatch.setenv("COCKPIT_SITE_BASE", "https://staging.example.com/")
-    assert work_item_url("en", "whale") == "https://staging.example.com/en/colorier/whale/"
+    assert (
+        work_item_url("en", "whale", "cahier-des-mers")
+        == "https://staging.example.com/en/coloring/cahier-des-mers/whale"
+    )
 
 
 # ── derive_index_state (fonction pure) ──────────────────────────────────────────
@@ -98,15 +149,15 @@ def test_real_provider_never_calls_network_in_test(monkeypatch):
         return {u: {"coverage_state": "indexed", "last_crawl": "2026-06-22T00:00:00Z"} for u in urls}
 
     monkeypatch.setattr(prov, "inspect", _fake_inspect)
-    out = prov.inspect(["https://alwanbooks.com/fr/colorier/baleine/"])
-    assert out["https://alwanbooks.com/fr/colorier/baleine/"]["coverage_state"] == "indexed"
+    out = prov.inspect(["https://alwanbooks.com/fr/coloriages/cahier-des-mers/baleine"])
+    assert out["https://alwanbooks.com/fr/coloriages/cahier-des-mers/baleine"]["coverage_state"] == "indexed"
 
 
 # ── MockIndexProvider (déterministe, hors-ligne) ────────────────────────────────
 
 def test_mock_provider_deterministic():
     prov = MockIndexProvider(engine="gsc")
-    url = "https://alwanbooks.com/fr/colorier/baleine/"
+    url = "https://alwanbooks.com/fr/coloriages/cahier-des-mers/baleine"
     r1 = prov.inspect([url])
     r2 = prov.inspect([url])
     assert r1 == r2  # déterministe
@@ -117,16 +168,16 @@ def test_mock_provider_deterministic():
 
 def test_mock_provider_overrides():
     prov = MockIndexProvider(engine="gsc", overrides={
-        "https://alwanbooks.com/fr/colorier/meduse/": "discovered",
+        "https://alwanbooks.com/fr/coloriages/cahier-des-mers/meduse": "discovered",
     })
-    out = prov.inspect(["https://alwanbooks.com/fr/colorier/meduse/"])
-    assert out["https://alwanbooks.com/fr/colorier/meduse/"]["coverage_state"] == "discovered"
+    out = prov.inspect(["https://alwanbooks.com/fr/coloriages/cahier-des-mers/meduse"])
+    assert out["https://alwanbooks.com/fr/coloriages/cahier-des-mers/meduse"]["coverage_state"] == "discovered"
 
 
 # ── upsert/lecture index_status (DB éphémère) ───────────────────────────────────
 
 def test_upsert_index_status_insert_then_update(conn):
-    url = "https://alwanbooks.com/fr/colorier/baleine/"
+    url = "https://alwanbooks.com/fr/coloriages/cahier-des-mers/baleine"
     assert _upsert_index_status(conn, url, "gsc", "discovered", None, "2026-06-22T00:00:00Z") == "inserted"
     conn.session.commit()
 
@@ -143,7 +194,7 @@ def test_upsert_index_status_insert_then_update(conn):
 
 
 def test_fetch_coverage_aggregates_multi_engine(conn):
-    url = "https://alwanbooks.com/fr/colorier/crabe/"
+    url = "https://alwanbooks.com/fr/coloriages/cahier-des-mers/crabe"
     _upsert_index_status(conn, url, "gsc", "discovered", None, "now")
     _upsert_index_status(conn, url, "bing", "indexed", "now", "now")
     conn.session.commit()
@@ -202,8 +253,12 @@ def test_sync_index_status_mock_populates_cache(conn, monkeypatch):
 
     cov = fetch_coverage_map(conn)
     assert len(cov) == 10
+    # Les URLs cachées sont les feuilles SEO catégorie-nichées (PAS /colorier/).
     for slug in MARINE_SLUGS:
-        assert work_item_url("fr", slug) in cov
+        expected = work_item_url("fr", slug, "cahier-des-mers")
+        assert expected in cov
+        assert "/colorier/" not in expected
+        assert not expected.endswith("/")
 
 
 def test_sync_index_status_idempotent(conn, monkeypatch):
@@ -228,13 +283,35 @@ def test_sync_index_status_explicit_provider_no_network(conn, monkeypatch):
     conn.session.commit()
 
     forced = MockIndexProvider(engine="gsc", overrides={
-        work_item_url("fr", "baleine"): "indexed",
-        work_item_url("fr", "meduse"): "discovered",
+        work_item_url("fr", "baleine", "cahier-des-mers"): "indexed",
+        work_item_url("fr", "meduse", "cahier-des-mers"): "discovered",
     })
     report = sync_index_status(conn, repo=REPO, engine="gsc", provider=forced)
     conn.session.commit()
     assert report.by_state.get("indexed") == 1
     assert report.by_state.get("discovered") == 1
+
+
+def test_sync_uses_cluster_category_slug(conn, monkeypatch):
+    """L'URL synchronisée utilise le slug catégorie issu du cluster de l'opportunité."""
+    for k in ("GSC_SERVICE_ACCOUNT_JSON", "GSC_PROPERTY", "BING_WEBMASTER_API_KEY"):
+        monkeypatch.delenv(k, raising=False)
+    _insert_work_item(conn, "wi_baleine", "baleine")
+    # Opportunité liée par slug, cluster libellé « animaux marins ».
+    conn.execute(
+        "INSERT INTO opportunity (id, keyword, sujet, slug, volume, kd, score, "
+        "cluster, source, imported_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        ["opp_baleine", "coloriage baleine", "baleine", "baleine", 1600, None,
+         100.0, "animaux marins", "test.csv", "now"],
+    )
+    conn.session.commit()
+
+    sync_index_status(conn, repo=REPO, engine="gsc")
+    conn.session.commit()
+
+    cov = fetch_coverage_map(conn)
+    expected = "https://alwanbooks.com/fr/coloriages/cahier-des-mers/baleine"
+    assert expected in cov
 
 
 # ── kanban / work-items affichent la couverture + état dérivé ───────────────────
@@ -248,7 +325,7 @@ def test_kanban_shows_coverage_and_indexed(client, conn, monkeypatch):
 
     # Sync ciblé sur la baleine, forcé 'indexed' (déterministe).
     forced = MockIndexProvider(engine="gsc", overrides={
-        work_item_url("fr", "baleine"): "indexed",
+        work_item_url("fr", "baleine", "cahier-des-mers"): "indexed",
     })
     sync_index_status(conn, repo=REPO, engine="gsc", provider=forced)
     conn.session.commit()
@@ -259,14 +336,16 @@ def test_kanban_shows_coverage_and_indexed(client, conn, monkeypatch):
     baleine = next(c for c in cards if c["slug"] == "baleine")
     assert baleine["coverage_state"] == "indexed"
     assert baleine["indexed"] is True
-    assert baleine["url"] == work_item_url("fr", "baleine")
+    # L'URL exposée est la feuille SEO catégorie-nichée (PAS /colorier/).
+    assert baleine["url"] == work_item_url("fr", "baleine", "cahier-des-mers")
+    assert "/colorier/" not in baleine["url"]
     assert body["totals"]["indexed"] == 1
 
 
 def test_work_items_endpoint_exposes_coverage(client, conn):
     _insert_work_item(conn, "wi_meduse", "meduse")
     forced = MockIndexProvider(engine="gsc", overrides={
-        work_item_url("fr", "meduse"): "crawled_not_indexed",
+        work_item_url("fr", "meduse", "cahier-des-mers"): "crawled_not_indexed",
     })
     sync_index_status(conn, repo=REPO, engine="gsc", provider=forced)
     conn.session.commit()
@@ -336,7 +415,7 @@ def test_next_action_published_not_indexed(client, conn, monkeypatch):
 
     # Cache: publiée mais NON indexée (discovered).
     forced = MockIndexProvider(engine="gsc", overrides={
-        work_item_url("fr", "meduse"): "discovered",
+        work_item_url("fr", "meduse", "cahier-des-mers"): "discovered",
     })
     sync_index_status(conn, repo=REPO, engine="gsc", provider=forced)
     conn.session.commit()
@@ -364,7 +443,7 @@ def test_next_action_none_when_indexed(client, conn):
     )
     conn.session.commit()
     forced = MockIndexProvider(engine="gsc", overrides={
-        work_item_url("fr", "baleine"): "indexed",
+        work_item_url("fr", "baleine", "cahier-des-mers"): "indexed",
     })
     sync_index_status(conn, repo=REPO, engine="gsc", provider=forced)
     conn.session.commit()
